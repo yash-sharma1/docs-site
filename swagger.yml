@@ -1,0 +1,964 @@
+swagger: '2.0'
+info:
+  title: 'Binance Chain Frontier API'
+  version: 0.1.0
+  description: 'The Binance Chain Frontier API: HTTP endpoints providing access to the Binance Chain validator node network and market data services.'
+  termsOfService: 'https://www.binance.com/agreement.html'
+  contact:
+    name: 'Binance Support'
+    email: 'support@binance.com'
+    url: 'https://support.binance.com'
+  license:
+    name: 'Apache 2.0'
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+basePath: /
+schemes:
+  - https
+  # - wss
+consumes:
+  - application/json
+produces:
+  - application/json
+tags:
+  -
+    name: info
+    description: 'Access to runtime metadata'
+  -
+    name: account
+    description: 'Access to an individual user''s trading activity'
+  -
+    name: tx
+    description: 'Access to transactions metadata'
+  -
+    name: tokens
+    description: 'Access to tokens metadata'
+  -
+    name: market
+    description: 'Access to DEX market data'
+  -
+    name: orders
+    description: 'Access to historical orders'
+  -
+    name: trade
+    description: 'Access to historical trading activity'
+  -
+    name: userdata
+    description: 'Access to an individual user''s trading activity'
+  -
+    name: node
+    description: 'Access to the node RPC functions'
+  -
+    name: frontier
+    description: 'Access to the frontier services'
+  -
+    name: misc
+    description: Others
+paths:
+  /api/v1/time:
+    get:
+      tags:
+        - misc
+      summary: getTime
+      operationId: getTime
+      consumes:
+        - application/json
+      produces:
+        - text/plain
+        - application/json
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: object
+            title: Times
+            properties:
+              ap_time: {type: string}
+              block_time: {type: string}
+        '400':
+          description: 'Bad Request'
+          schema:
+            $ref: "#/definitions/Error"
+        '404':
+          description: 'Not Found'
+        default:
+          description: Generic error response
+          schema:
+            $ref: "#/definitions/Error"
+  /api/v1/node-info:
+    get:
+      summary: 'Obtain blockchain node runtime metadata'
+      operationId: getNodeInfo
+      tags:
+        - info
+        - node
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: object
+            title: 'Node info'
+            description: 'Represents block height, current timestamp and the number of connected peers.'
+  /api/v1/validators:
+    get:
+      summary: 'Obtain blockchain validators list'
+      operationId: getValidators
+      tags:
+        - info
+        - node
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: object
+            title: 'Validators'
+            description: 'Represents information about the current validator set.'
+  /api/v1/frontier-info:
+    get:
+      summary: 'Obtains frontier runtime data'
+      operationId: getFrontierInfo
+      tags:
+        - info
+        - frontier
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: object
+            title: 'Frontier info'
+            description: 'Represents the current server time and sync state.'
+            properties:
+              time:
+                type: integer
+                title: 'The current server time'
+                description: 'In unix time (the number of seconds since the Unix Epoch)'
+                format: int64
+  /api/v1/account/{address}:
+    get:
+      summary: 'Gets acccount metadata for an address'
+      operationId: getAccount
+      tags:
+        - node
+        - account
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/Account'
+        '400':
+          description: 'Bad Request'
+          schema:
+            $ref: "#/definitions/Error"
+        '404':
+          description: 'Not Found'
+        default:
+          description: Generic error response
+          schema:
+            $ref: "#/definitions/Error"
+      parameters:
+        -
+          name: address
+          in: path
+          description: 'The account address to query'
+          required: true
+          type: string
+  /api/v1/tx/{hash}:
+    get:
+      summary: 'Gets metadata for an individual transaction'
+      operationId: getTransaction
+      tags:
+        - node
+        - tx
+      parameters:
+        -
+          name: hash
+          in: path
+          description: 'The transaction hash to query'
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/Transaction'
+        '400':
+          description: 'Bad Request'
+          schema:
+            $ref: "#/definitions/Error"
+        '404':
+          description: 'Not Found'
+        default:
+          description: Generic error response
+          schema:
+            $ref: "#/definitions/Error"
+  /api/v1/tokens:
+    get:
+      tags:
+        - tokens
+      summary: Gets a list of available tokens.
+      operationId: getTokens
+      consumes:
+        - application/json
+      produces:
+        - text/plain
+        - application/json
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/Tokens'
+        '400':
+          description: 'Bad Request'
+          schema:
+            $ref: "#/definitions/Error"
+        '404':
+          description: 'Not Found'
+        default:
+          description: Generic error response
+          schema:
+            $ref: "#/definitions/Error"
+  /api/v1/markets:
+    get:
+      tags:
+        - market
+      summary: Gets a list of market pairs.
+      operationId: getPairs
+      consumes:
+        - application/json
+      produces:
+        - text/plain
+        - application/json
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/Markets'
+        '400':
+          description: 'Bad Request'
+          schema:
+            $ref: "#/definitions/Error"
+        '404':
+          description: 'Not Found'
+        default:
+          description: Generic error response
+          schema:
+            $ref: "#/definitions/Error"
+  /api/v1/orders/{id}:
+    get:
+      tags:
+        - orders
+      summary: Get an individual order's status
+      operationId: getOrder
+      consumes:
+        - application/json
+      produces:
+        - text/plain
+        - application/json
+      parameters:
+        - 
+          in: path
+          name: id
+          description: order id
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/Order'
+        '400':
+          description: 'Bad Request'
+          schema:
+            $ref: "#/definitions/Error"
+        '404':
+          description: 'Not Found'
+        default:
+          description: Generic error response
+          schema:
+            $ref: "#/definitions/Error"
+  /api/v1/orders/open:
+    get:
+      tags:
+        - orders
+      summary: Get open orders for a given address
+      operationId: getOpenOrders
+      consumes:
+        - application/json
+      produces:
+        - text/plain
+        - application/json
+      parameters:
+        -
+          in: query
+          name: address
+          description: the sender address (optional)
+          required: true
+          type: string
+        -
+          in: query
+          name: symbol
+          description: symbol
+          required: false
+          type: string
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/Order'
+        '400':
+          description: 'Bad Request'
+          schema:
+            $ref: "#/definitions/Error"
+        '404':
+          description: 'Not Found'
+        default:
+          description: Generic error response
+          schema:
+            $ref: "#/definitions/Error"
+  /api/v1/orders/closed:
+    get:
+      tags:
+        - orders
+      summary: Get closed (filled and cancelled) orders for a given address
+      operationId: getClosedOrders
+      consumes:
+        - application/json
+      produces:
+        - text/plain
+        - application/json
+      parameters:
+        -
+          in: query
+          name: address
+          description: the sender address (optional)
+          required: true
+          type: string
+        -
+          in: query
+          name: symbol
+          description: symbol
+          required: false
+          type: string
+        -
+          in: query
+          name: offset
+          description: limit
+          required: false
+          type: integer
+          default: 0
+          format: int32
+        -
+          in: query
+          name: limit
+          description: limit
+          required: false
+          type: integer
+          default: 500
+          format: int32
+        -
+          in: query
+          name: start
+          description: start
+          required: false
+          type: integer
+          format: int64
+        -
+          in: query
+          name: end
+          description: end
+          required: false
+          type: integer
+          format: int64
+        -
+          in: query
+          name: side
+          description: side
+          required: false
+          type: string
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Order'
+        '400':
+          description: 'Bad Request'
+          schema:
+            $ref: "#/definitions/Error"
+        '404':
+          description: 'Not Found'
+        default:
+          description: Generic error response
+          schema:
+            $ref: "#/definitions/Error"
+  /api/v1/trades:
+    get:
+      tags:
+        - trade
+      summary: getTrades
+      operationId: getTrades
+      consumes:
+        - application/json
+      produces:
+        - text/plain
+        - application/json
+      parameters:
+        -
+          in: query
+          name: symbol
+          description: symbol (required)
+          required: true
+          type: string
+        -
+          in: query
+          name: address
+          description: the sender address (optional)
+          required: false
+          type: string
+        -
+          in: query
+          name: offset
+          description: limit
+          required: false
+          type: integer
+          default: 0
+          format: int32
+        -
+          in: query
+          name: limit
+          description: limit
+          required: false
+          type: integer
+          default: 500
+          format: int32
+        -
+          in: query
+          name: start
+          description: start
+          required: false
+          type: integer
+          format: int64
+        -
+          in: query
+          name: end
+          description: end
+          required: false
+          type: integer
+          format: int64
+        -
+          name: side
+          in: query
+          description: order side (BID or ASK)
+          required: false
+          type: string
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/TradesVo'
+        '400':
+          description: 'Bad Request'
+          schema:
+            $ref: "#/definitions/Error"
+        '404':
+          description: 'Not Found'
+        default:
+          description: Generic error response
+          schema:
+            $ref: "#/definitions/Error"
+  /api/v1/depth:
+    get:
+      tags:
+        - market
+      summary: getDepth
+      operationId: getDepth
+      consumes:
+        - application/json
+      produces:
+        - text/plain
+        - application/json
+      parameters:
+        -
+          in: query
+          name: symbol
+          description: symbol
+          required: false
+          type: string
+        -
+          in: query
+          name: limit
+          description: symbol
+          required: false
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: 'Bad Request'
+          schema:
+            $ref: "#/definitions/Error"
+        '404':
+          description: 'Not Found'
+        default:
+          description: Generic error response
+          schema:
+            $ref: "#/definitions/Error"
+  /api/v1/klines:
+    get:
+      tags:
+        - market
+      summary: Get chart candlestick bars.
+      operationId: getKlines
+      consumes:
+        - application/json
+      produces:
+        - text/plain
+        - application/json
+      parameters:
+        -
+          name: symbol
+          in: query
+          description: symbol
+          required: true
+          type: string
+        -
+          name: interval
+          in: query
+          description: interval (5m, 1h, 1d, 1w, etc.)
+          required: true
+          type: string
+        -
+          name: limit
+          in: query
+          description: limit
+          required: false
+          type: integer
+          format: int32
+        -
+          name: startTime
+          in: query
+          description: startTime
+          required: false
+          type: integer
+          format: int64
+        -
+          name: endTime
+          in: query
+          description: endTime
+          required: false
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Candlestick'
+        '400':
+          description: 'Bad Request'
+          schema:
+            $ref: "#/definitions/Error"
+        '404':
+          description: 'Not Found'
+        default:
+          description: Generic error response
+          schema:
+            $ref: "#/definitions/Error"
+  /api/v1/ticker/24hr:
+    get:
+      tags:
+        - market
+      summary: get24HrPriceStatistics
+      operationId: get24HrPriceStatistics
+      consumes:
+        - application/json
+      produces:
+        - text/plain
+        - application/json
+      parameters:
+        -
+          name: symbol
+          in: query
+          description: symbol
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/TickerStatistics'
+        '400':
+          description: 'Bad Request'
+          schema:
+            $ref: "#/definitions/Error"
+        '404':
+          description: 'Not Found'
+        default:
+          description: Generic error response
+          schema:
+            $ref: "#/definitions/Error"
+  /api/v1/broadcast:
+    post:
+      tags:
+        - node
+      operationId: broadcastTx
+      summary: 'Broadcasts a transaction given its signed binary form.'
+      description: 'Use this API route to post your own signed transaction.'
+      consumes:
+        - text/plain
+      produces:
+        - text/plain
+        - application/json
+      schemes:
+        - https
+      parameters:
+        - in: body
+          name: body
+          required: true
+          schema:
+            type: string
+            format: binary
+            minLength: 1
+            maxLength: 100000
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: object
+            title: TxSimulateResult
+            properties:
+              code: {type: integer, format: int32}
+              data: {type: string}
+              log: {type: string}
+              hash:
+                type: string
+                title: Hash
+        '400':
+          description: 'Bad Request'
+          schema:
+            $ref: "#/definitions/Error"
+        '404':
+          description: 'Not Found'
+        default:
+          description: Generic error response
+          schema:
+            $ref: "#/definitions/Error"
+definitions:
+  Error:
+    type: object
+    required:
+      - message
+    properties:
+      code:
+        type: integer
+        format: int64
+      message:
+        type: string
+  Transaction:
+    type: object
+    properties:
+      hash:
+        type: string
+        title: Hash
+      log:
+        title: Log
+        type: string
+      data:
+        title: Data
+        type: string
+      code:
+        title: Code
+        type: integer
+        format: int32
+        default: 0
+  Account:
+    type: object
+    properties:
+      account_number:
+        type: integer
+        title: 'Account number'
+        format: int32
+      address:
+        type: string
+        title: Address
+        format: address
+      balances:
+        type: array
+        title: Balances
+        items:
+          properties:
+            symbol: {type: string, example: BNB, format: currency}
+            free: {type: string, title: Free, description: "In decimal form, e.g. 0.00000000", example: "0.00000000", format: fixed8}
+            locked: {type: string, title: Locked, description: "In decimal form, e.g. 0.00000000", example: "0.00000000", format: fixed8}
+            frozen: {type: string, title: Frozen, description: "In decimal form, e.g. 0.00000000", example: "0.00000000", format: fixed8}
+      public_key:
+        type: array
+        title: 'Public key'
+        description: 'Public key bytes'
+        items:
+          type: integer
+      sequence:
+        type: integer
+        title: Sequence
+        format: int64
+  Tokens:
+    type: array
+    items:
+      properties:
+        name:
+          type: string
+          example: Binance Chain Native Token
+        symbol:
+          type: string
+          example: BNB
+        total_supply:
+          type: string
+          description: "In decimal form, e.g. 1.00000000"
+          example: "0.00000000"
+          format: fixed8
+        owner:
+          type: string
+          description: Address
+          format: address
+  Markets:
+    type: array
+    items:
+      properties:
+        base_asset_symbol:
+          type: string
+          example: BNB
+          format: currency
+        quote_asset_symbol:
+          type: string
+          example: BNB
+          format: currency
+        price:
+          type: string
+          description: "In decimal form, e.g. 1.00000000"
+          example: "0.00000000"
+          format: fixed8
+        tick_size:
+          type: string
+          description: "In decimal form, e.g. 1.00000000"
+          example: "0.00000000"
+          format: fixed8
+        lot_size:
+          type: string
+          description: "In decimal form, e.g. 1.00000000"
+          example: "0.00000000"
+          format: fixed8
+  Candlestick:
+    type: object
+    properties:
+      close:
+        type: number
+      closeTime:
+        type: integer
+        format: int64
+      high:
+        type: number
+      low:
+        type: number
+      numberOfTrades:
+        type: integer
+        format: int32
+      open:
+        type: number
+      openTime:
+        type: integer
+        format: int64
+      quoteAssetVolume:
+        type: number
+      volume:
+        type: number
+  Order:
+    type: object
+    properties:
+      orderId:
+        type: string
+      owner:
+        type: string
+        format: address
+      symbol:
+        type: string
+        example: BNB
+        format: currency
+      price:
+        type: string
+        description: "In decimal form, e.g. 1.00000000"
+        example: "0.00000000"
+        format: fixed8
+      quantity:
+        type: string
+        description: "In decimal form, e.g. 1.00000000"
+        example: "0.00000000"
+        format: fixed8
+      executedQuantity:
+        type: string
+      side:
+        type: string
+        enum:
+          - BUY
+          - SELL
+      status:
+        type: string
+        enum:
+          - ACK
+          - PARTIALLY_FILLED
+          - IOC_NO_FILL
+          - FULLY_FILLED
+          - CANCELED
+          - EXPIRED
+          - UNKNOWN
+      timeInForce:
+        type: string
+        enum:
+          - GTC
+          - IOC
+      type:
+        type: string
+        enum:
+          - LIMIT
+          - MARKET
+          - STOP_LOSS
+          - STOP_LOSS_LIMIT
+          - TAKE_PROFIT
+          - TAKE_PROFIT_LIMIT
+          - LIMIT_MAKER
+  TickerStatistics:
+    type: array
+    items:
+      properties:
+        symbol:
+          type: string
+          example: BNB
+          format: currency
+        askPrice:
+          type: string
+          description: "In decimal form, e.g. 1.00000000"
+          example: "0.00000000"
+          format: fixed8
+        askQuantity:
+          type: string
+          description: "In decimal form, e.g. 1.00000000"
+          example: "0.00000000"
+          format: fixed8
+        bidPrice:
+          type: string
+          description: "In decimal form, e.g. 1.00000000"
+          example: "0.00000000"
+          format: fixed8
+        bidQuantity:
+          type: string
+          description: "In decimal form, e.g. 1.00000000"
+          example: "0.00000000"
+          format: fixed8
+        closeTime:
+          type: integer
+          format: int64
+        count:
+          type: integer
+          format: int64
+        firstId:
+          type: string
+        highPrice:
+          type: string
+          description: "In decimal form, e.g. 1.00000000"
+          example: "0.00000000"
+          format: fixed8
+        lastId:
+          type: string
+        lastPrice:
+          type: string
+          description: "In decimal form, e.g. 1.00000000"
+          example: "0.00000000"
+          format: fixed8
+        lastQuantity:
+          type: string
+          description: "In decimal form, e.g. 1.00000000"
+          example: "0.00000000"
+          format: fixed8
+        lowPrice:
+          type: string
+          description: "In decimal form, e.g. 1.00000000"
+          example: "0.00000000"
+          format: fixed8
+        openPrice:
+          type: string
+          description: "In decimal form, e.g. 1.00000000"
+          example: "0.00000000"
+          format: fixed8
+        openTime:
+          type: integer
+          format: int64
+        prevClosePrice:
+          type: string
+          description: "In decimal form, e.g. 1.00000000"
+          example: "0.00000000"
+          format: fixed8
+        priceChange:
+          type: string
+          description: "In decimal form, e.g. 1.00000000"
+          example: "0.00000000"
+          format: fixed8
+        priceChangePercent:
+          type: string
+        quoteVolume:
+          type: string
+          description: "In decimal form, e.g. 1.00000000"
+          example: "0.00000000"
+          format: fixed8
+        volume:
+          type: string
+          description: "In decimal form, e.g. 1.00000000"
+          example: "0.00000000"
+          format: fixed8
+        weightedAvgPrice:
+          type: string
+          description: "In decimal form, e.g. 1.00000000"
+          example: "0.00000000"
+          format: fixed8
+  Trade:
+    type: object
+    properties:
+      buyerOrderId:
+        type: string
+      buyFee:
+        type: string
+      price:
+        type: string
+        description: "In decimal form, e.g. 1.00000000"
+        example: "0.00000000"
+        format: fixed8
+      quantity:
+        type: string
+        description: "In decimal form, e.g. 1.00000000"
+        example: "0.00000000"
+        format: fixed8
+      sellFee:
+        type: string
+        example: "0.00000000"
+        format: fixed8
+      sellerOrderId:
+        type: string
+      symbol:
+        type: string
+        example: BNB
+        format: currency
+      time:
+        type: integer
+        format: int64
+      tradeId:
+        type: string
+  TradesVo:
+    type: object
+    properties:
+      totalNum:
+        type: integer
+        format: int64
+      tradeList:
+        type: array
+        items:
+          $ref: '#/definitions/Trade'

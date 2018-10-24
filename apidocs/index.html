@@ -1,0 +1,1768 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Binance Chain Frontier API</title>
+    <style type="text/css">
+      body {
+	font-family: Trebuchet MS, sans-serif;
+	font-size: 15px;
+	color: #444;
+	margin-right: 24px;
+}
+
+h1	{
+	font-size: 25px;
+}
+h2	{
+	font-size: 20px;
+}
+h3	{
+	font-size: 16px;
+	font-weight: bold;
+}
+hr	{
+	height: 1px;
+	border: 0;
+	color: #ddd;
+	background-color: #ddd;
+}
+
+.app-desc {
+  clear: both;
+  margin-left: 20px;
+}
+.param-name {
+  width: 100%;
+}
+.license-info {
+  margin-left: 20px;
+}
+
+.license-url {
+  margin-left: 20px;
+}
+
+.model {
+  margin: 0 0 0px 20px;
+}
+
+.method {
+  margin-left: 20px;
+}
+
+.method-notes	{
+	margin: 10px 0 20px 0;
+	font-size: 90%;
+	color: #555;
+}
+
+pre {
+  padding: 10px;
+  margin-bottom: 2px;
+}
+
+.http-method {
+ text-transform: uppercase;
+}
+
+pre.get {
+  background-color: #0f6ab4;
+}
+
+pre.post {
+  background-color: #10a54a;
+}
+
+pre.put {
+  background-color: #c5862b;
+}
+
+pre.delete {
+  background-color: #a41e22;
+}
+
+.huge	{
+	color: #fff;
+}
+
+pre.example {
+  background-color: #f3f3f3;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+code {
+  white-space: pre;
+}
+
+.nickname {
+  font-weight: bold;
+}
+
+.method-path {
+  font-size: 1.5em;
+  background-color: #0f6ab4;
+}
+
+.up {
+  float:right;
+}
+
+.parameter {
+  width: 500px;
+}
+
+.param {
+  width: 500px;
+  padding: 10px 0 0 20px;
+  font-weight: bold;
+}
+
+.param-desc {
+  width: 700px;
+  padding: 0 0 0 20px;
+  color: #777;
+}
+
+.param-type {
+  font-style: italic;
+}
+
+.param-enum-header {
+width: 700px;
+padding: 0 0 0 60px;
+color: #777;
+font-weight: bold;
+}
+
+.param-enum {
+width: 700px;
+padding: 0 0 0 80px;
+color: #777;
+font-style: italic;
+}
+
+.field-label {
+  padding: 0;
+  margin: 0;
+  clear: both;
+}
+
+.field-items	{
+	padding: 0 0 15px 0;
+	margin-bottom: 15px;
+}
+
+.return-type {
+  clear: both;
+  padding-bottom: 10px;
+}
+
+.param-header {
+  font-weight: bold;
+}
+
+.method-tags {
+  text-align: right;
+}
+
+.method-tag {
+  background: none repeat scroll 0% 0% #24A600;
+  border-radius: 3px;
+  padding: 2px 10px;
+  margin: 2px;
+  color: #FFF;
+  display: inline-block;
+  text-decoration: none;
+}
+
+    </style>
+  </head>
+  <body>
+  <h1>Binance Chain Frontier API</h1>
+    <div class="app-desc">The Binance Chain Frontier API: HTTP endpoints providing access to the Binance Chain validator node network and market data services.</div>
+    <div class="app-desc">More information: <a href="https://support.binance.com">https://support.binance.com</a></div>
+    <div class="app-desc">Contact Info: <a href="support@binance.com">support@binance.com</a></div>
+    <div class="app-desc">Version: 0.1.0</div>
+    <div class="app-desc">BasePath:/</div>
+    <div class="license-info">Apache 2.0</div>
+    <div class="license-url">http://www.apache.org/licenses/LICENSE-2.0.html</div>
+  <h2>Access</h2>
+
+  <h2><a name="__Methods">Methods</a></h2>
+  [ Jump to <a href="#__Models">Models</a> ]
+
+  <h3>Table of Contents </h3>
+  <div class="method-summary"></div>
+  <h4><a href="#Account">Account</a></h4>
+  <ul>
+  <li><a href="#getAccount"><code><span class="http-method">get</span> /api/v1/account/{address}</code></a></li>
+  </ul>
+  <h4><a href="#Frontier">Frontier</a></h4>
+  <ul>
+  <li><a href="#getFrontierInfo"><code><span class="http-method">get</span> /api/v1/frontier-info</code></a></li>
+  </ul>
+  <h4><a href="#Info">Info</a></h4>
+  <ul>
+  <li><a href="#getFrontierInfo"><code><span class="http-method">get</span> /api/v1/frontier-info</code></a></li>
+  <li><a href="#getNodeInfo"><code><span class="http-method">get</span> /api/v1/node-info</code></a></li>
+  <li><a href="#getValidators"><code><span class="http-method">get</span> /api/v1/validators</code></a></li>
+  </ul>
+  <h4><a href="#Market">Market</a></h4>
+  <ul>
+  <li><a href="#get24HrPriceStatistics"><code><span class="http-method">get</span> /api/v1/ticker/24hr</code></a></li>
+  <li><a href="#getDepth"><code><span class="http-method">get</span> /api/v1/depth</code></a></li>
+  <li><a href="#getKlines"><code><span class="http-method">get</span> /api/v1/klines</code></a></li>
+  <li><a href="#getPairs"><code><span class="http-method">get</span> /api/v1/markets</code></a></li>
+  </ul>
+  <h4><a href="#Misc">Misc</a></h4>
+  <ul>
+  <li><a href="#getTime"><code><span class="http-method">get</span> /api/v1/time</code></a></li>
+  </ul>
+  <h4><a href="#Node">Node</a></h4>
+  <ul>
+  <li><a href="#broadcastTx"><code><span class="http-method">post</span> /api/v1/broadcast</code></a></li>
+  <li><a href="#getAccount"><code><span class="http-method">get</span> /api/v1/account/{address}</code></a></li>
+  <li><a href="#getNodeInfo"><code><span class="http-method">get</span> /api/v1/node-info</code></a></li>
+  <li><a href="#getTransaction"><code><span class="http-method">get</span> /api/v1/tx/{hash}</code></a></li>
+  <li><a href="#getValidators"><code><span class="http-method">get</span> /api/v1/validators</code></a></li>
+  </ul>
+  <h4><a href="#Orders">Orders</a></h4>
+  <ul>
+  <li><a href="#getClosedOrders"><code><span class="http-method">get</span> /api/v1/orders/closed</code></a></li>
+  <li><a href="#getOpenOrders"><code><span class="http-method">get</span> /api/v1/orders/open</code></a></li>
+  <li><a href="#getOrder"><code><span class="http-method">get</span> /api/v1/orders/{id}</code></a></li>
+  </ul>
+  <h4><a href="#Tokens">Tokens</a></h4>
+  <ul>
+  <li><a href="#getTokens"><code><span class="http-method">get</span> /api/v1/tokens</code></a></li>
+  </ul>
+  <h4><a href="#Trade">Trade</a></h4>
+  <ul>
+  <li><a href="#getTrades"><code><span class="http-method">get</span> /api/v1/trades</code></a></li>
+  </ul>
+  <h4><a href="#Tx">Tx</a></h4>
+  <ul>
+  <li><a href="#getTransaction"><code><span class="http-method">get</span> /api/v1/tx/{hash}</code></a></li>
+  </ul>
+
+  <h1><a name="Account">Account</a></h1>
+  <div class="method"><a name="getAccount"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/v1/account/{address}</code></pre></div>
+    <div class="method-summary">Gets acccount metadata for an address (<span class="nickname">getAccount</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">address (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The account address to query </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Account">Account</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "public_key" : [ 6, 6 ],
+  "account_number" : 0,
+  "sequence" : 1,
+  "balances" : [ {
+    "symbol" : "BNB",
+    "frozen" : "0.00000000",
+    "free" : "0.00000000",
+    "locked" : "0.00000000"
+  }, {
+    "symbol" : "BNB",
+    "frozen" : "0.00000000",
+    "free" : "0.00000000",
+    "locked" : "0.00000000"
+  } ],
+  "address" : "address"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#Account">Account</a>
+    <h4 class="field-label">400</h4>
+    Bad Request
+        <a href="#Error">Error</a>
+    <h4 class="field-label">404</h4>
+    Not Found
+        <a href="#"></a>
+    <h4 class="field-label">default</h4>
+    Generic error response
+        <a href="#Error">Error</a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="Frontier">Frontier</a></h1>
+  <div class="method"><a name="getFrontierInfo"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/v1/frontier-info</code></pre></div>
+    <div class="method-summary">Obtains frontier runtime data (<span class="nickname">getFrontierInfo</span>)</div>
+    <div class="method-notes"></div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Frontier info">Frontier info</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "time" : 0
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#Frontier info">Frontier info</a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="Info">Info</a></h1>
+  <div class="method"><a name="getFrontierInfo"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/v1/frontier-info</code></pre></div>
+    <div class="method-summary">Obtains frontier runtime data (<span class="nickname">getFrontierInfo</span>)</div>
+    <div class="method-notes"></div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Frontier info">Frontier info</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "time" : 0
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#Frontier info">Frontier info</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getNodeInfo"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/v1/node-info</code></pre></div>
+    <div class="method-summary">Obtain blockchain node runtime metadata (<span class="nickname">getNodeInfo</span>)</div>
+    <div class="method-notes"></div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      Object
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>"{}"</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#Object">Object</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getValidators"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/v1/validators</code></pre></div>
+    <div class="method-summary">Obtain blockchain validators list (<span class="nickname">getValidators</span>)</div>
+    <div class="method-notes"></div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      Object
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>"{}"</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#Object">Object</a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="Market">Market</a></h1>
+  <div class="method"><a name="get24HrPriceStatistics"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/v1/ticker/24hr</code></pre></div>
+    <div class="method-summary">get24HrPriceStatistics (<span class="nickname">get24HrPriceStatistics</span>)</div>
+    <div class="method-notes"></div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">symbol (required)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; symbol </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#TickerStatistics">TickerStatistics</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>""</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>text/plain</code></li>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#TickerStatistics">TickerStatistics</a>
+    <h4 class="field-label">400</h4>
+    Bad Request
+        <a href="#Error">Error</a>
+    <h4 class="field-label">404</h4>
+    Not Found
+        <a href="#"></a>
+    <h4 class="field-label">default</h4>
+    Generic error response
+        <a href="#Error">Error</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getDepth"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/v1/depth</code></pre></div>
+    <div class="method-summary">getDepth (<span class="nickname">getDepth</span>)</div>
+    <div class="method-notes"></div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">symbol (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; symbol </div><div class="param">limit (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; symbol format: int32</div>
+    </div>  <!-- field-items -->
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>text/plain</code></li>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    Bad Request
+        <a href="#Error">Error</a>
+    <h4 class="field-label">404</h4>
+    Not Found
+        <a href="#"></a>
+    <h4 class="field-label">default</h4>
+    Generic error response
+        <a href="#Error">Error</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getKlines"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/v1/klines</code></pre></div>
+    <div class="method-summary">Get chart candlestick bars. (<span class="nickname">getKlines</span>)</div>
+    <div class="method-notes"></div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">symbol (required)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; symbol </div><div class="param">interval (required)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; interval (5m, 1h, 1d, 1w, etc.) </div><div class="param">limit (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; limit format: int32</div><div class="param">startTime (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; startTime format: int64</div><div class="param">endTime (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; endTime format: int64</div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#Candlestick">Candlestick</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "volume" : 3.61607674925191080461672754609026014804840087890625,
+  "high" : 1.46581298050294517310021547018550336360931396484375,
+  "low" : 5.962133916683182377482808078639209270477294921875,
+  "closeTime" : 6,
+  "numberOfTrades" : 5,
+  "openTime" : 7,
+  "close" : 0.80082819046101150206595775671303272247314453125,
+  "open" : 2.3021358869347654518833223846741020679473876953125,
+  "quoteAssetVolume" : 9.301444243932575517419536481611430644989013671875
+}, {
+  "volume" : 3.61607674925191080461672754609026014804840087890625,
+  "high" : 1.46581298050294517310021547018550336360931396484375,
+  "low" : 5.962133916683182377482808078639209270477294921875,
+  "closeTime" : 6,
+  "numberOfTrades" : 5,
+  "openTime" : 7,
+  "close" : 0.80082819046101150206595775671303272247314453125,
+  "open" : 2.3021358869347654518833223846741020679473876953125,
+  "quoteAssetVolume" : 9.301444243932575517419536481611430644989013671875
+} ]</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>text/plain</code></li>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        
+    <h4 class="field-label">400</h4>
+    Bad Request
+        <a href="#Error">Error</a>
+    <h4 class="field-label">404</h4>
+    Not Found
+        <a href="#"></a>
+    <h4 class="field-label">default</h4>
+    Generic error response
+        <a href="#Error">Error</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getPairs"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/v1/markets</code></pre></div>
+    <div class="method-summary">Gets a list of market pairs. (<span class="nickname">getPairs</span>)</div>
+    <div class="method-notes"></div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Markets">Markets</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>""</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>text/plain</code></li>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#Markets">Markets</a>
+    <h4 class="field-label">400</h4>
+    Bad Request
+        <a href="#Error">Error</a>
+    <h4 class="field-label">404</h4>
+    Not Found
+        <a href="#"></a>
+    <h4 class="field-label">default</h4>
+    Generic error response
+        <a href="#Error">Error</a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="Misc">Misc</a></h1>
+  <div class="method"><a name="getTime"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/v1/time</code></pre></div>
+    <div class="method-summary">getTime (<span class="nickname">getTime</span>)</div>
+    <div class="method-notes"></div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Times">Times</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "block_time" : "block_time",
+  "ap_time" : "ap_time"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>text/plain</code></li>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#Times">Times</a>
+    <h4 class="field-label">400</h4>
+    Bad Request
+        <a href="#Error">Error</a>
+    <h4 class="field-label">404</h4>
+    Not Found
+        <a href="#"></a>
+    <h4 class="field-label">default</h4>
+    Generic error response
+        <a href="#Error">Error</a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="Node">Node</a></h1>
+  <div class="method"><a name="broadcastTx"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /api/v1/broadcast</code></pre></div>
+    <div class="method-summary">Broadcasts a transaction given its signed binary form. (<span class="nickname">broadcastTx</span>)</div>
+    <div class="method-notes">Use this API route to post your own signed transaction.</div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+      <li><code>text/plain</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="#binary">binary</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash;  </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#TxSimulateResult">TxSimulateResult</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "code" : 0,
+  "data" : "data",
+  "log" : "log",
+  "hash" : "hash"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>text/plain</code></li>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#TxSimulateResult">TxSimulateResult</a>
+    <h4 class="field-label">400</h4>
+    Bad Request
+        <a href="#Error">Error</a>
+    <h4 class="field-label">404</h4>
+    Not Found
+        <a href="#"></a>
+    <h4 class="field-label">default</h4>
+    Generic error response
+        <a href="#Error">Error</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getAccount"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/v1/account/{address}</code></pre></div>
+    <div class="method-summary">Gets acccount metadata for an address (<span class="nickname">getAccount</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">address (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The account address to query </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Account">Account</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "public_key" : [ 6, 6 ],
+  "account_number" : 0,
+  "sequence" : 1,
+  "balances" : [ {
+    "symbol" : "BNB",
+    "frozen" : "0.00000000",
+    "free" : "0.00000000",
+    "locked" : "0.00000000"
+  }, {
+    "symbol" : "BNB",
+    "frozen" : "0.00000000",
+    "free" : "0.00000000",
+    "locked" : "0.00000000"
+  } ],
+  "address" : "address"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#Account">Account</a>
+    <h4 class="field-label">400</h4>
+    Bad Request
+        <a href="#Error">Error</a>
+    <h4 class="field-label">404</h4>
+    Not Found
+        <a href="#"></a>
+    <h4 class="field-label">default</h4>
+    Generic error response
+        <a href="#Error">Error</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getNodeInfo"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/v1/node-info</code></pre></div>
+    <div class="method-summary">Obtain blockchain node runtime metadata (<span class="nickname">getNodeInfo</span>)</div>
+    <div class="method-notes"></div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      Object
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>"{}"</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#Object">Object</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getTransaction"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/v1/tx/{hash}</code></pre></div>
+    <div class="method-summary">Gets metadata for an individual transaction (<span class="nickname">getTransaction</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">hash (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The transaction hash to query </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Transaction">Transaction</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "code" : 0,
+  "data" : "data",
+  "log" : "log",
+  "hash" : "hash"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#Transaction">Transaction</a>
+    <h4 class="field-label">400</h4>
+    Bad Request
+        <a href="#Error">Error</a>
+    <h4 class="field-label">404</h4>
+    Not Found
+        <a href="#"></a>
+    <h4 class="field-label">default</h4>
+    Generic error response
+        <a href="#Error">Error</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getValidators"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/v1/validators</code></pre></div>
+    <div class="method-summary">Obtain blockchain validators list (<span class="nickname">getValidators</span>)</div>
+    <div class="method-notes"></div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      Object
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>"{}"</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#Object">Object</a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="Orders">Orders</a></h1>
+  <div class="method"><a name="getClosedOrders"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/v1/orders/closed</code></pre></div>
+    <div class="method-summary">Get closed (filled and cancelled) orders for a given address (<span class="nickname">getClosedOrders</span>)</div>
+    <div class="method-notes"></div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">address (required)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; the sender address (optional) </div><div class="param">symbol (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; symbol </div><div class="param">offset (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; limit default: 0 format: int32</div><div class="param">limit (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; limit default: 500 format: int32</div><div class="param">start (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; start format: int64</div><div class="param">end (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; end format: int64</div><div class="param">side (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; side </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#Order">Order</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "owner" : "owner",
+  "symbol" : "BNB",
+  "executedQuantity" : "executedQuantity",
+  "side" : "BUY",
+  "quantity" : "0.00000000",
+  "orderId" : "orderId",
+  "price" : "0.00000000",
+  "type" : "LIMIT",
+  "timeInForce" : "GTC",
+  "status" : "ACK"
+}, {
+  "owner" : "owner",
+  "symbol" : "BNB",
+  "executedQuantity" : "executedQuantity",
+  "side" : "BUY",
+  "quantity" : "0.00000000",
+  "orderId" : "orderId",
+  "price" : "0.00000000",
+  "type" : "LIMIT",
+  "timeInForce" : "GTC",
+  "status" : "ACK"
+} ]</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>text/plain</code></li>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        
+    <h4 class="field-label">400</h4>
+    Bad Request
+        <a href="#Error">Error</a>
+    <h4 class="field-label">404</h4>
+    Not Found
+        <a href="#"></a>
+    <h4 class="field-label">default</h4>
+    Generic error response
+        <a href="#Error">Error</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getOpenOrders"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/v1/orders/open</code></pre></div>
+    <div class="method-summary">Get open orders for a given address (<span class="nickname">getOpenOrders</span>)</div>
+    <div class="method-notes"></div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">address (required)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; the sender address (optional) </div><div class="param">symbol (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; symbol </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Order">Order</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "owner" : "owner",
+  "symbol" : "BNB",
+  "executedQuantity" : "executedQuantity",
+  "side" : "BUY",
+  "quantity" : "0.00000000",
+  "orderId" : "orderId",
+  "price" : "0.00000000",
+  "type" : "LIMIT",
+  "timeInForce" : "GTC",
+  "status" : "ACK"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>text/plain</code></li>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#Order">Order</a>
+    <h4 class="field-label">400</h4>
+    Bad Request
+        <a href="#Error">Error</a>
+    <h4 class="field-label">404</h4>
+    Not Found
+        <a href="#"></a>
+    <h4 class="field-label">default</h4>
+    Generic error response
+        <a href="#Error">Error</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getOrder"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/v1/orders/{id}</code></pre></div>
+    <div class="method-summary">Get an individual order's status (<span class="nickname">getOrder</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">id (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; order id </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Order">Order</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "owner" : "owner",
+  "symbol" : "BNB",
+  "executedQuantity" : "executedQuantity",
+  "side" : "BUY",
+  "quantity" : "0.00000000",
+  "orderId" : "orderId",
+  "price" : "0.00000000",
+  "type" : "LIMIT",
+  "timeInForce" : "GTC",
+  "status" : "ACK"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>text/plain</code></li>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#Order">Order</a>
+    <h4 class="field-label">400</h4>
+    Bad Request
+        <a href="#Error">Error</a>
+    <h4 class="field-label">404</h4>
+    Not Found
+        <a href="#"></a>
+    <h4 class="field-label">default</h4>
+    Generic error response
+        <a href="#Error">Error</a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="Tokens">Tokens</a></h1>
+  <div class="method"><a name="getTokens"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/v1/tokens</code></pre></div>
+    <div class="method-summary">Gets a list of available tokens. (<span class="nickname">getTokens</span>)</div>
+    <div class="method-notes"></div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Tokens">Tokens</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>""</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>text/plain</code></li>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#Tokens">Tokens</a>
+    <h4 class="field-label">400</h4>
+    Bad Request
+        <a href="#Error">Error</a>
+    <h4 class="field-label">404</h4>
+    Not Found
+        <a href="#"></a>
+    <h4 class="field-label">default</h4>
+    Generic error response
+        <a href="#Error">Error</a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="Trade">Trade</a></h1>
+  <div class="method"><a name="getTrades"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/v1/trades</code></pre></div>
+    <div class="method-summary">getTrades (<span class="nickname">getTrades</span>)</div>
+    <div class="method-notes"></div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">symbol (required)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; symbol (required) </div><div class="param">address (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; the sender address (optional) </div><div class="param">offset (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; limit default: 0 format: int32</div><div class="param">limit (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; limit default: 500 format: int32</div><div class="param">start (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; start format: int64</div><div class="param">end (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; end format: int64</div><div class="param">side (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; order side (BID or ASK) </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#TradesVo">TradesVo</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "totalNum" : 0,
+  "tradeList" : [ {
+    "symbol" : "BNB",
+    "buyFee" : "buyFee",
+    "quantity" : "0.00000000",
+    "price" : "0.00000000",
+    "time" : 6,
+    "buyerOrderId" : "buyerOrderId",
+    "sellFee" : "0.00000000",
+    "sellerOrderId" : "sellerOrderId",
+    "tradeId" : "tradeId"
+  }, {
+    "symbol" : "BNB",
+    "buyFee" : "buyFee",
+    "quantity" : "0.00000000",
+    "price" : "0.00000000",
+    "time" : 6,
+    "buyerOrderId" : "buyerOrderId",
+    "sellFee" : "0.00000000",
+    "sellerOrderId" : "sellerOrderId",
+    "tradeId" : "tradeId"
+  } ]
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>text/plain</code></li>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#TradesVo">TradesVo</a>
+    <h4 class="field-label">400</h4>
+    Bad Request
+        <a href="#Error">Error</a>
+    <h4 class="field-label">404</h4>
+    Not Found
+        <a href="#"></a>
+    <h4 class="field-label">default</h4>
+    Generic error response
+        <a href="#Error">Error</a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="Tx">Tx</a></h1>
+  <div class="method"><a name="getTransaction"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/v1/tx/{hash}</code></pre></div>
+    <div class="method-summary">Gets metadata for an individual transaction (<span class="nickname">getTransaction</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">hash (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The transaction hash to query </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Transaction">Transaction</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "code" : 0,
+  "data" : "data",
+  "log" : "log",
+  "hash" : "hash"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#Transaction">Transaction</a>
+    <h4 class="field-label">400</h4>
+    Bad Request
+        <a href="#Error">Error</a>
+    <h4 class="field-label">404</h4>
+    Not Found
+        <a href="#"></a>
+    <h4 class="field-label">default</h4>
+    Generic error response
+        <a href="#Error">Error</a>
+  </div> <!-- method -->
+  <hr/>
+
+  <h2><a name="__Models">Models</a></h2>
+  [ Jump to <a href="#__Methods">Methods</a> ]
+
+  <h3>Table of Contents</h3>
+  <ol>
+    <li><a href="#Account"><code>Account</code> - </a></li>
+    <li><a href="#Account_balances"><code>Account_balances</code> - </a></li>
+    <li><a href="#Candlestick"><code>Candlestick</code> - </a></li>
+    <li><a href="#Error"><code>Error</code> - </a></li>
+    <li><a href="#Frontier info"><code>Frontier info</code> - </a></li>
+    <li><a href="#Markets"><code>Markets</code> - </a></li>
+    <li><a href="#Markets_inner"><code>Markets_inner</code> - </a></li>
+    <li><a href="#Order"><code>Order</code> - </a></li>
+    <li><a href="#TickerStatistics"><code>TickerStatistics</code> - </a></li>
+    <li><a href="#TickerStatistics_inner"><code>TickerStatistics_inner</code> - </a></li>
+    <li><a href="#Times"><code>Times</code> - </a></li>
+    <li><a href="#Tokens"><code>Tokens</code> - </a></li>
+    <li><a href="#Tokens_inner"><code>Tokens_inner</code> - </a></li>
+    <li><a href="#Trade"><code>Trade</code> - </a></li>
+    <li><a href="#TradesVo"><code>TradesVo</code> - </a></li>
+    <li><a href="#Transaction"><code>Transaction</code> - </a></li>
+    <li><a href="#TxSimulateResult"><code>TxSimulateResult</code> - </a></li>
+  </ol>
+
+  <div class="model">
+    <h3><a name="Account"><code>Account</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">account_number (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+<div class="param">address (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  format: address</div>
+<div class="param">balances (optional)</div><div class="param-desc"><span class="param-type"><a href="#Account_balances">array[Account_balances]</a></span>  </div>
+<div class="param">public_key (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">array[Integer]</a></span> Public key bytes </div>
+<div class="param">sequence (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Account_balances"><code>Account_balances</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">symbol (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  format: currency</div>
+<div class="param">free (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> In decimal form, e.g. 0.00000000 format: fixed8</div>
+<div class="param">locked (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> In decimal form, e.g. 0.00000000 format: fixed8</div>
+<div class="param">frozen (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> In decimal form, e.g. 0.00000000 format: fixed8</div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Candlestick"><code>Candlestick</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">close (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  </div>
+<div class="param">closeTime (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">high (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  </div>
+<div class="param">low (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  </div>
+<div class="param">numberOfTrades (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+<div class="param">open (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  </div>
+<div class="param">openTime (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">quoteAssetVolume (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  </div>
+<div class="param">volume (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Error"><code>Error</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">code (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">message </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Frontier info"><code>Frontier info</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>Represents the current server time and sync state.</div>
+    <div class="field-items">
+      <div class="param">time (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span> In unix time (the number of seconds since the Unix Epoch) format: int64</div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Markets"><code>Markets</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+          </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Markets_inner"><code>Markets_inner</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">base_asset_symbol (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  format: currency</div>
+<div class="param">quote_asset_symbol (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  format: currency</div>
+<div class="param">price (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> In decimal form, e.g. 1.00000000 format: fixed8</div>
+<div class="param">tick_size (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> In decimal form, e.g. 1.00000000 format: fixed8</div>
+<div class="param">lot_size (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> In decimal form, e.g. 1.00000000 format: fixed8</div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Order"><code>Order</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">orderId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">owner (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  format: address</div>
+<div class="param">symbol (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  format: currency</div>
+<div class="param">price (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> In decimal form, e.g. 1.00000000 format: fixed8</div>
+<div class="param">quantity (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> In decimal form, e.g. 1.00000000 format: fixed8</div>
+<div class="param">executedQuantity (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">side (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+        <div class="param-enum-header">Enum:</div>
+        <div class="param-enum">BUY</div><div class="param-enum">SELL</div>
+<div class="param">status (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+        <div class="param-enum-header">Enum:</div>
+        <div class="param-enum">ACK</div><div class="param-enum">PARTIALLY_FILLED</div><div class="param-enum">IOC_NO_FILL</div><div class="param-enum">FULLY_FILLED</div><div class="param-enum">CANCELED</div><div class="param-enum">EXPIRED</div><div class="param-enum">UNKNOWN</div>
+<div class="param">timeInForce (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+        <div class="param-enum-header">Enum:</div>
+        <div class="param-enum">GTC</div><div class="param-enum">IOC</div>
+<div class="param">type (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+        <div class="param-enum-header">Enum:</div>
+        <div class="param-enum">LIMIT</div><div class="param-enum">MARKET</div><div class="param-enum">STOP_LOSS</div><div class="param-enum">STOP_LOSS_LIMIT</div><div class="param-enum">TAKE_PROFIT</div><div class="param-enum">TAKE_PROFIT_LIMIT</div><div class="param-enum">LIMIT_MAKER</div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="TickerStatistics"><code>TickerStatistics</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+          </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="TickerStatistics_inner"><code>TickerStatistics_inner</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">symbol (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  format: currency</div>
+<div class="param">askPrice (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> In decimal form, e.g. 1.00000000 format: fixed8</div>
+<div class="param">askQuantity (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> In decimal form, e.g. 1.00000000 format: fixed8</div>
+<div class="param">bidPrice (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> In decimal form, e.g. 1.00000000 format: fixed8</div>
+<div class="param">bidQuantity (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> In decimal form, e.g. 1.00000000 format: fixed8</div>
+<div class="param">closeTime (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">count (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">firstId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">highPrice (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> In decimal form, e.g. 1.00000000 format: fixed8</div>
+<div class="param">lastId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">lastPrice (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> In decimal form, e.g. 1.00000000 format: fixed8</div>
+<div class="param">lastQuantity (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> In decimal form, e.g. 1.00000000 format: fixed8</div>
+<div class="param">lowPrice (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> In decimal form, e.g. 1.00000000 format: fixed8</div>
+<div class="param">openPrice (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> In decimal form, e.g. 1.00000000 format: fixed8</div>
+<div class="param">openTime (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">prevClosePrice (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> In decimal form, e.g. 1.00000000 format: fixed8</div>
+<div class="param">priceChange (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> In decimal form, e.g. 1.00000000 format: fixed8</div>
+<div class="param">priceChangePercent (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">quoteVolume (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> In decimal form, e.g. 1.00000000 format: fixed8</div>
+<div class="param">volume (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> In decimal form, e.g. 1.00000000 format: fixed8</div>
+<div class="param">weightedAvgPrice (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> In decimal form, e.g. 1.00000000 format: fixed8</div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Times"><code>Times</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">ap_time (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">block_time (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Tokens"><code>Tokens</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+          </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Tokens_inner"><code>Tokens_inner</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">symbol (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">total_supply (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> In decimal form, e.g. 1.00000000 format: fixed8</div>
+<div class="param">owner (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Address format: address</div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Trade"><code>Trade</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">buyerOrderId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">buyFee (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">price (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> In decimal form, e.g. 1.00000000 format: fixed8</div>
+<div class="param">quantity (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> In decimal form, e.g. 1.00000000 format: fixed8</div>
+<div class="param">sellFee (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  format: fixed8</div>
+<div class="param">sellerOrderId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">symbol (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  format: currency</div>
+<div class="param">time (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">tradeId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="TradesVo"><code>TradesVo</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">totalNum (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">tradeList (optional)</div><div class="param-desc"><span class="param-type"><a href="#Trade">array[Trade]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Transaction"><code>Transaction</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">hash (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">log (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">data (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">code (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="TxSimulateResult"><code>TxSimulateResult</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">code (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+<div class="param">data (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">log (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">hash (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  </body>
+</html>
