@@ -63,7 +63,6 @@ paths:
       consumes:
         - application/json
       produces:
-        - text/plain
         - application/json
       responses:
         '200':
@@ -199,7 +198,6 @@ paths:
       consumes:
         - application/json
       produces:
-        - text/plain
         - application/json
       responses:
         '200':
@@ -225,7 +223,6 @@ paths:
       consumes:
         - application/json
       produces:
-        - text/plain
         - application/json
       responses:
         '200':
@@ -251,7 +248,6 @@ paths:
       consumes:
         - application/json
       produces:
-        - text/plain
         - application/json
       parameters:
         - 
@@ -284,7 +280,6 @@ paths:
       consumes:
         - application/json
       produces:
-        - text/plain
         - application/json
       parameters:
         -
@@ -323,7 +318,6 @@ paths:
       consumes:
         - application/json
       produces:
-        - text/plain
         - application/json
       parameters:
         -
@@ -400,7 +394,6 @@ paths:
       consumes:
         - application/json
       produces:
-        - text/plain
         - application/json
       parameters:
         -
@@ -475,7 +468,6 @@ paths:
       consumes:
         - application/json
       produces:
-        - text/plain
         - application/json
       parameters:
         -
@@ -513,7 +505,6 @@ paths:
       consumes:
         - application/json
       produces:
-        - text/plain
         - application/json
       parameters:
         -
@@ -575,7 +566,6 @@ paths:
       consumes:
         - application/json
       produces:
-        - text/plain
         - application/json
       parameters:
         -
@@ -609,7 +599,6 @@ paths:
       consumes:
         - text/plain
       produces:
-        - text/plain
         - application/json
       schemes:
         - https
