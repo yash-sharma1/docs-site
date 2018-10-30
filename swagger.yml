@@ -15,8 +15,6 @@ basePath: /
 schemes:
   - https
   # - wss
-consumes:
-  - application/json
 produces:
   - application/json
 tags:
@@ -60,8 +58,6 @@ paths:
         - misc
       summary: getTime
       operationId: getTime
-      consumes:
-        - application/json
       produces:
         - application/json
       responses:
@@ -87,6 +83,8 @@ paths:
     get:
       summary: 'Obtain blockchain node runtime metadata'
       operationId: getNodeInfo
+      produces:
+        - application/json
       tags:
         - info
         - node
@@ -101,6 +99,8 @@ paths:
     get:
       summary: 'Obtain blockchain validators list'
       operationId: getValidators
+      produces:
+        - application/json
       tags:
         - info
         - node
@@ -115,6 +115,8 @@ paths:
     get:
       summary: 'Obtains frontier runtime data'
       operationId: getFrontierInfo
+      produces:
+        - application/json
       tags:
         - info
         - frontier
@@ -135,6 +137,8 @@ paths:
     get:
       summary: 'Gets acccount metadata for an address'
       operationId: getAccount
+      produces:
+        - application/json
       tags:
         - node
         - account
@@ -164,6 +168,8 @@ paths:
     get:
       summary: 'Gets metadata for an individual transaction'
       operationId: getTransaction
+      produces:
+        - application/json
       tags:
         - node
         - tx
@@ -195,8 +201,6 @@ paths:
         - tokens
       summary: Gets a list of available tokens.
       operationId: getTokens
-      consumes:
-        - application/json
       produces:
         - application/json
       responses:
@@ -220,8 +224,6 @@ paths:
         - market
       summary: Gets a list of market pairs.
       operationId: getPairs
-      consumes:
-        - application/json
       produces:
         - application/json
       responses:
@@ -245,8 +247,6 @@ paths:
         - orders
       summary: Get an individual order's status
       operationId: getOrder
-      consumes:
-        - application/json
       produces:
         - application/json
       parameters:
@@ -277,8 +277,6 @@ paths:
         - orders
       summary: Get open orders for a given address
       operationId: getOpenOrders
-      consumes:
-        - application/json
       produces:
         - application/json
       parameters:
@@ -315,8 +313,6 @@ paths:
         - orders
       summary: Get closed (filled and cancelled) orders for a given address
       operationId: getClosedOrders
-      consumes:
-        - application/json
       produces:
         - application/json
       parameters:
@@ -391,8 +387,6 @@ paths:
         - trade
       summary: getTrades
       operationId: getTrades
-      consumes:
-        - application/json
       produces:
         - application/json
       parameters:
@@ -465,8 +459,6 @@ paths:
         - market
       summary: getDepth
       operationId: getDepth
-      consumes:
-        - application/json
       produces:
         - application/json
       parameters:
@@ -502,8 +494,6 @@ paths:
         - market
       summary: Get chart candlestick bars.
       operationId: getKlines
-      consumes:
-        - application/json
       produces:
         - application/json
       parameters:
@@ -563,8 +553,6 @@ paths:
         - market
       summary: get24HrPriceStatistics
       operationId: get24HrPriceStatistics
-      consumes:
-        - application/json
       produces:
         - application/json
       parameters:
