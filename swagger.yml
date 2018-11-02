@@ -108,9 +108,41 @@ paths:
         '200':
           description: Success
           schema:
-            type: object
-            title: 'Validators'
-            description: 'Represents information about the current validator set.'
+            $ref: '#/definitions/Validators'
+        '400':
+          description: 'Bad Request'
+          schema:
+            $ref: "#/definitions/Error"
+        '404':
+          description: 'Not Found'
+        default:
+          description: Generic error response
+          schema:
+            $ref: "#/definitions/Error"
+  /api/v1/peers:
+    get:
+      summary: Obtain the peers list
+      operationId: getPeers
+      produces:
+      - application/json
+      tags:
+      - info
+      - node
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/Peers'
+        '400':
+          description: 'Bad Request'
+          schema:
+            $ref: "#/definitions/Error"
+        '404':
+          description: 'Not Found'
+        default:
+          description: Generic error response
+          schema:
+            $ref: "#/definitions/Error"
   /api/v1/frontier-info:
     get:
       summary: 'Obtains frontier runtime data'
@@ -633,6 +665,60 @@ definitions:
         format: int64
       message:
         type: string
+  Validators:
+    type: object
+    properties:
+      block_height:
+        type: integer
+        description: 'Current block height'
+        format: int64
+      validators:
+        type: array
+        items:
+          properties:
+            address:
+              type: string
+              description: Address
+              format: hexaddress
+            pub_key:
+              type: array
+              title: 'Public key'
+              description: 'Public key bytes'
+              items:
+                type: integer
+                format: int32
+            voting_power:
+              type: integer
+            accum:
+              type: integer
+  Peers:
+    type: array
+    items:
+      properties:
+        id:
+          type: string
+          description: 'Authenticated identifier'
+        listen_addr:
+          type: string
+          description: 'Listen address'
+          format: RemoteAddr
+        network:
+          type: string
+          description: 'Chain ID'
+        version:
+          type: string
+          description: 'Version'
+        moniker:
+          type: string
+          description: 'Moniker (Name)'
+        capabilities:
+          type: array
+          items:
+            type: string
+            enum: ['node', 'qs', 'ap', 'ws']
+        accelerated:
+          type: boolean
+          description: 'Is an accelerated path to a validator node'
   Transaction:
     type: object
     properties:
