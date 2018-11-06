@@ -623,6 +623,12 @@ paths:
       schemes:
         - https
       parameters:
+        - in: query
+          name: sync
+          description: Synchronous broadcast (wait for DeliverTx)
+          required: false
+          type: boolean
+          default: false
         - in: body
           name: body
           required: true
@@ -701,6 +707,14 @@ definitions:
         listen_addr:
           type: string
           description: 'Listen address'
+          format: RemoteAddr
+        access_addr:
+          type: string
+          description: 'Access address (HTTP)'
+          format: RemoteAddr
+        stream_addr:
+          type: string
+          description: 'Stream address (WS)'
           format: RemoteAddr
         network:
           type: string
