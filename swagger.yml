@@ -644,9 +644,15 @@ paths:
             type: object
             title: TxSimulateResult
             properties:
-              code: {type: integer, format: int32}
-              data: {type: string}
-              log: {type: string}
+              ok:
+                type: boolean
+              code:
+                type: integer
+                format: int32
+              data:
+                type: string
+              log:
+                type: string
               hash:
                 type: string
                 title: Hash
