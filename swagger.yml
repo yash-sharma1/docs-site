@@ -167,7 +167,7 @@ paths:
                 format: int64
   /api/v1/account/{address}:
     get:
-      summary: 'Gets acccount metadata for an address'
+      summary: 'Gets account metadata given an address'
       operationId: getAccount
       produces:
         - application/json
@@ -179,6 +179,37 @@ paths:
           description: Success
           schema:
             $ref: '#/definitions/Account'
+        '400':
+          description: 'Bad Request'
+          schema:
+            $ref: "#/definitions/Error"
+        '404':
+          description: 'Not Found'
+        default:
+          description: Generic error response
+          schema:
+            $ref: "#/definitions/Error"
+      parameters:
+        -
+          name: address
+          in: path
+          description: 'The account address to query'
+          required: true
+          type: string
+  /api/v1/account/{address}/sequence:
+    get:
+      summary: 'Gets the current sequence for an address'
+      operationId: getAccountSequence
+      produces:
+        - application/json
+      tags:
+        - node
+        - account
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/AccountSequence'
         '400':
           description: 'Bad Request'
           schema:
@@ -641,21 +672,21 @@ paths:
         '200':
           description: Success
           schema:
-            type: object
-            title: TxSimulateResult
-            properties:
-              ok:
-                type: boolean
-              code:
-                type: integer
-                format: int32
-              data:
-                type: string
-              log:
-                type: string
-              hash:
-                type: string
-                title: Hash
+            type: array
+            items:
+              properties:
+                ok:
+                  type: boolean
+                code:
+                  type: integer
+                  format: int32
+                data:
+                  type: string
+                log:
+                  type: string
+                hash:
+                  type: string
+                  title: Hash
         '400':
           description: 'Bad Request'
           schema:
@@ -782,6 +813,13 @@ definitions:
         description: 'Public key bytes'
         items:
           type: integer
+      sequence:
+        type: integer
+        title: Sequence
+        format: int64
+  AccountSequence:
+    type: object
+    properties:
       sequence:
         type: integer
         title: Sequence

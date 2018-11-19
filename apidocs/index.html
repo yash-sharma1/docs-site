@@ -197,6 +197,7 @@ font-style: italic;
   <h4><a href="#Account">Account</a></h4>
   <ul>
   <li><a href="#getAccount"><code><span class="http-method">get</span> /api/v1/account/{address}</code></a></li>
+  <li><a href="#getAccountSequence"><code><span class="http-method">get</span> /api/v1/account/{address}/sequence</code></a></li>
   </ul>
   <h4><a href="#Frontier">Frontier</a></h4>
   <ul>
@@ -224,6 +225,7 @@ font-style: italic;
   <ul>
   <li><a href="#broadcastTx"><code><span class="http-method">post</span> /api/v1/broadcast</code></a></li>
   <li><a href="#getAccount"><code><span class="http-method">get</span> /api/v1/account/{address}</code></a></li>
+  <li><a href="#getAccountSequence"><code><span class="http-method">get</span> /api/v1/account/{address}/sequence</code></a></li>
   <li><a href="#getNodeInfo"><code><span class="http-method">get</span> /api/v1/node-info</code></a></li>
   <li><a href="#getPeers"><code><span class="http-method">get</span> /api/v1/peers</code></a></li>
   <li><a href="#getTransaction"><code><span class="http-method">get</span> /api/v1/tx/{hash}</code></a></li>
@@ -253,7 +255,7 @@ font-style: italic;
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
     <pre class="get"><code class="huge"><span class="http-method">get</span> /api/v1/account/{address}</code></pre></div>
-    <div class="method-summary">Gets acccount metadata for an address (<span class="nickname">getAccount</span>)</div>
+    <div class="method-summary">Gets account metadata given an address (<span class="nickname">getAccount</span>)</div>
     <div class="method-notes"></div>
 
     <h3 class="field-label">Path parameters</h3>
@@ -307,6 +309,61 @@ font-style: italic;
     <h4 class="field-label">200</h4>
     Success
         <a href="#Account">Account</a>
+    <h4 class="field-label">400</h4>
+    Bad Request
+        <a href="#Error">Error</a>
+    <h4 class="field-label">404</h4>
+    Not Found
+        <a href="#"></a>
+    <h4 class="field-label">default</h4>
+    Generic error response
+        <a href="#Error">Error</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getAccountSequence"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/v1/account/{address}/sequence</code></pre></div>
+    <div class="method-summary">Gets the current sequence for an address (<span class="nickname">getAccountSequence</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">address (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The account address to query </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#AccountSequence">AccountSequence</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "sequence" : 0
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#AccountSequence">AccountSequence</a>
     <h4 class="field-label">400</h4>
     Bad Request
         <a href="#Error">Error</a>
@@ -859,7 +916,7 @@ font-style: italic;
 
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
-      <a href="#TxSimulateResult">TxSimulateResult</a>
+      array[<a href="#inline_response_200">inline_response_200</a>]
       
     </div>
 
@@ -867,13 +924,19 @@ font-style: italic;
 
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>{
+    <pre class="example"><code>[ {
   "code" : 0,
   "data" : "data",
   "log" : "log",
   "ok" : true,
   "hash" : "hash"
-}</code></pre>
+}, {
+  "code" : 0,
+  "data" : "data",
+  "log" : "log",
+  "ok" : true,
+  "hash" : "hash"
+} ]</code></pre>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
@@ -885,7 +948,7 @@ font-style: italic;
     <h3 class="field-label">Responses</h3>
     <h4 class="field-label">200</h4>
     Success
-        <a href="#TxSimulateResult">TxSimulateResult</a>
+        
     <h4 class="field-label">400</h4>
     Bad Request
         <a href="#Error">Error</a>
@@ -901,7 +964,7 @@ font-style: italic;
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
     <pre class="get"><code class="huge"><span class="http-method">get</span> /api/v1/account/{address}</code></pre></div>
-    <div class="method-summary">Gets acccount metadata for an address (<span class="nickname">getAccount</span>)</div>
+    <div class="method-summary">Gets account metadata given an address (<span class="nickname">getAccount</span>)</div>
     <div class="method-notes"></div>
 
     <h3 class="field-label">Path parameters</h3>
@@ -955,6 +1018,61 @@ font-style: italic;
     <h4 class="field-label">200</h4>
     Success
         <a href="#Account">Account</a>
+    <h4 class="field-label">400</h4>
+    Bad Request
+        <a href="#Error">Error</a>
+    <h4 class="field-label">404</h4>
+    Not Found
+        <a href="#"></a>
+    <h4 class="field-label">default</h4>
+    Generic error response
+        <a href="#Error">Error</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getAccountSequence"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/v1/account/{address}/sequence</code></pre></div>
+    <div class="method-summary">Gets the current sequence for an address (<span class="nickname">getAccountSequence</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">address (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; The account address to query </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#AccountSequence">AccountSequence</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "sequence" : 0
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#AccountSequence">AccountSequence</a>
     <h4 class="field-label">400</h4>
     Bad Request
         <a href="#Error">Error</a>
@@ -1590,6 +1708,7 @@ font-style: italic;
   <h3>Table of Contents</h3>
   <ol>
     <li><a href="#Account"><code>Account</code> - </a></li>
+    <li><a href="#AccountSequence"><code>AccountSequence</code> - </a></li>
     <li><a href="#Account_balances"><code>Account_balances</code> - </a></li>
     <li><a href="#Candlestick"><code>Candlestick</code> - </a></li>
     <li><a href="#Error"><code>Error</code> - </a></li>
@@ -1607,9 +1726,9 @@ font-style: italic;
     <li><a href="#Trade"><code>Trade</code> - </a></li>
     <li><a href="#TradesVo"><code>TradesVo</code> - </a></li>
     <li><a href="#Transaction"><code>Transaction</code> - </a></li>
-    <li><a href="#TxSimulateResult"><code>TxSimulateResult</code> - </a></li>
     <li><a href="#Validators"><code>Validators</code> - </a></li>
     <li><a href="#Validators_validators"><code>Validators_validators</code> - </a></li>
+    <li><a href="#inline_response_200"><code>inline_response_200</code> - </a></li>
   </ol>
 
   <div class="model">
@@ -1621,6 +1740,13 @@ font-style: italic;
 <div class="param">balances (optional)</div><div class="param-desc"><span class="param-type"><a href="#Account_balances">array[Account_balances]</a></span>  </div>
 <div class="param">public_key (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">array[Integer]</a></span> Public key bytes </div>
 <div class="param">sequence (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="AccountSequence"><code>AccountSequence</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">sequence (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
@@ -1818,17 +1944,6 @@ font-style: italic;
     </div>  <!-- field-items -->
   </div>
   <div class="model">
-    <h3><a name="TxSimulateResult"><code>TxSimulateResult</code> - </a> <a class="up" href="#__Models">Up</a></h3>
-    
-    <div class="field-items">
-      <div class="param">ok (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
-<div class="param">code (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
-<div class="param">data (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">log (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">hash (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-    </div>  <!-- field-items -->
-  </div>
-  <div class="model">
     <h3><a name="Validators"><code>Validators</code> - </a> <a class="up" href="#__Models">Up</a></h3>
     <div class='model-description'></div>
     <div class="field-items">
@@ -1844,6 +1959,17 @@ font-style: italic;
 <div class="param">pub_key (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">array[Integer]</a></span> Public key bytes format: int32</div>
 <div class="param">voting_power (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
 <div class="param">accum (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="inline_response_200"><code>inline_response_200</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">ok (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">code (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+<div class="param">data (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">log (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">hash (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
     </div>  <!-- field-items -->
   </div>
   </body>
