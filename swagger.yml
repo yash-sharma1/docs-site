@@ -741,6 +741,10 @@ definitions:
         id:
           type: string
           description: 'Authenticated identifier'
+        original_listen_addr:
+          type: string
+          description: 'Original listen address before PeersService changed it'
+          format: RemoteAddr
         listen_addr:
           type: string
           description: 'Listen address'
