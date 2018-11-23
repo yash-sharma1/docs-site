@@ -645,8 +645,8 @@ paths:
       tags:
         - node
       operationId: broadcastTx
-      summary: 'Broadcasts a transaction given its signed binary form.'
-      description: 'Use this API route to post your own signed transaction.'
+      summary: 'Broadcasts a transaction, or a batch of up to 5 transactions, given their signed binary forms.'
+      description: 'Use this API to broadcast your own signed transactions. Transactions must be sent in hex format in plain text, separated by commas (,).'
       consumes:
         - text/plain
       produces:
