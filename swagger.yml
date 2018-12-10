@@ -837,7 +837,10 @@ definitions:
           example: Binance Chain Native Token
         symbol:
           type: string
-          example: BNB
+          example: BTC-000
+        original_symbol:
+          type: string
+          example: BTC
         total_supply:
           type: string
           description: "In decimal form, e.g. 1.00000000"
