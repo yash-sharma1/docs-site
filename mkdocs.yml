@@ -1,0 +1,29 @@
+site_name: Binance Chain Docs
+site_description: Binance Chain Technology Documentation
+site_author: Binance Chain Community
+
+repo_url: https://github.com/binance-chain/
+edit_uri: ""
+
+theme:
+  name: mkdocs
+  highlightjs: true
+  hljs_languages:
+    - go
+    - java
+    - javascript
+
+nav:
+  - 'Home': index.md
+  - API Reference:
+    - DEX API: api-reference/dex-api.md
+    - Node RPC: api-reference/node-rpc.md
+    - SDK: api-reference/sdk.md
+    - Commands: api-reference/cli.md
+  - More Help: resources.md
+  - Binance DEX: https://dex.binance.org
+  - Chain Explorer: https://explorer.binance.org
+
+plugins:
+  - search:
+      prebuild_index: true
