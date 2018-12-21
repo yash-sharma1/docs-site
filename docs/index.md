@@ -56,6 +56,7 @@ Binance DEX is the native market place on Binance Chain to exchange digital asse
 
 ## Technology Details
 Read the below if you are more interested into the things under the hood.
+
 - [Binance Chain as a Block Chain](blockchain.md): about consensus, software stack, network layout and roles.
 
 - [Connect to Binance Chain](chain-access.md): how to connect to Binance Chain and DEX via different ways.
