@@ -21,9 +21,19 @@ Essentially command line interfaces are just tools that wrap the incoming comman
 
 ## Write APIs
 You can only write to Binance Chain via `Transactions`. Both Web API and Node RPC provide a `broadcastTx` API to submit a `signed and encoded` transaction onto the Binance Chain. 
-Encoding and Signature
-Encoding is a big part, which defines the way how transactions are persisted and transferred between clients and nodes, and different nodes themselves. [here](encoding.md) has a detailed specification on the transaction types and encoding logic.
 
+### Encoding 
+Encoding defines the way how transactions are serialized and transferred between clients and nodes, and different nodes themselves. [here](encoding.md) has a detailed specification on the transaction types and encoding logic.
 
+### Signature
 
-## Sequence Number for Transactions
+## Account and Sequence Number
+
+After `Account` is [created](transfer.md#account_and_balance), besides the balances, `Account` also contains:
+
+- Account Number: an internal identifier for the account
+- Sequence Number: an ever-changing integer.
+
+The Sequence Number is the way how Binance Chain prevents `Replay Attack` (the idea is borrowed fromCosmos network, but varies a bit in handling). Every transaction should have a new `Sequence Number` increased by 1 from the current latest sequence number of the `Account`, and after this transaction is recorded on the block chain, the `Sequence Number` would be set to the same as the one of latest transaction.
+
+This logic forces the client has to be aware of the current `Sequence Number`, either by reading from the blockchain via API, or keeping counting locally by themsevels. The encouraged way would be to keep counting locally and re-synchronized from the blockchain periodically.
