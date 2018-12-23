@@ -42,10 +42,12 @@ Order would expire after 72 hours once it is booked on a block. A whole order bo
 
 
 ## Precision
+All the numbers are limited to 8-digit decimals.
 
 ## Tick Size and Lot Size
+Tick size stands for the smallest unit on price change, while lot size stands for the smallest quantity change. Order price must be larger than and rounded to 1 tick size and order quantity must be larger than and rounded to 1 lot size, otherwise orders would be rejected.
 
-## Trading Limit
+Tick size and lot size can be queried from DEX API, and they would be reviewed and changed by DEX match engine automatically according to the trading price every UTC mid-night. Once the tick size or/and lot size is changed, new orders must stick to the new vaules while the existing orders on the order book can still be traded.
 
 ## Fees
 
