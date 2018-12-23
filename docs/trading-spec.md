@@ -41,5 +41,11 @@ If the order can match with any opposite side, the trade would be generated and 
 Order would expire after 72 hours once it is booked on a block. A whole order book scan would happen every UTC mid-night to filter out all the expired orders. After the scan, all the expired orders would be removed from the order book, the locked quantity in the account would be unlocked. Before this action all the existing orders in the order book is subject to matching. 
 
 
+## Precision
+
+## Tick Size and Lot Size
+
+## Trading Limit
+
 ## Fees
 

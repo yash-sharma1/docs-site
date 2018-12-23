@@ -1,1 +1,1 @@
-# DEX APIs via Http and Websocket
+# DEX APIs via Http REST and Websocket
