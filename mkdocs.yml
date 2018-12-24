@@ -6,7 +6,7 @@ repo_url: https://github.com/binance-chain/
 edit_uri: ""
 
 theme:
-  name: mkdocs
+  name: readthedocs
   highlightjs: true
   hljs_languages:
     - go

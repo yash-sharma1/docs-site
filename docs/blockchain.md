@@ -56,7 +56,7 @@ Blockchain state stores the below information:
 - account and balances
 - fees
 - token information
-- traidng pairs
+- trading pairs
 - tick size and lot size
 - governance information
 
@@ -64,8 +64,18 @@ please note the transactions are not stored as chain state, because they are sto
 
 ## Cryptographic Design
 
-### Keys
+### Account and Address
+For normal users, all the keys and addresses can be generated via Binance [Web Wallet](wallet.binance.org). 
 
-### Address
+#### Keys
+Binance Chain uses the same elliptic curve cryptography as the current [Bitcoin implementation](https://github.com/btcsuite/btcd/tree/master/btcec), i.e. secp256k1. Its private key is 32 bytes while public key is 33 bytes.
 
-### Signature
+#### Address
+
+`Address = RIPEMD160(SHA256(public key))`
+
+The address is presented via [bech32](https://github.com/bitcoin/bips/blob/master/bip-0173.mediawiki) format with a checksum and human-read prefix. For Binance Chain address, the prefix is `bnb` for production network, and `tbnb` for testnet.
+
+#### Signature
+
+Binance Chain uses ECDSA signature on curve Secp256k1 against `SHA256` hash of the byte array of encoded transaction, in the same way as the current Bitcoin, according to RFC 6979 and BIP 62.

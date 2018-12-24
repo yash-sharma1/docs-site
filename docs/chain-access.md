@@ -15,7 +15,7 @@ There are public accessible node peers that joins the Binance Chain network. The
 You can also run a [full node](fullnode.md) by yourself, so that you would have a local server to send RPC requests and read Chain information off.
 
 ## Command Line Interface
-Essentially command line interfaces are just tools that wrap the incoming command line arguments and call RPCs. Please check the [Command Line Referenace](cli.md).
+Essentially command line interfaces are just tools that wrap the incoming command line arguments and call RPCs. Please check the [Command Line Referenace](api-reference/cli.md).
 
 
 
