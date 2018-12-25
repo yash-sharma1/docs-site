@@ -17,4 +17,144 @@ via interfaces.
 ## List Transaction
 
 
+### Create a proposal
+
+Assume that the token you want to list already exists. Then you need to create a proposal to list this token
+against one benchmark asset.
+
+```bash
+➜  test git:(master) ✗ ./bnbcli gov submit-list-proposal --from test --deposit 10000000000:BNB \
+--base-asset-symbol AAA-254 --quote-asset-symbol BNB --init-price 100000000 --title "list AAA-254/BNB" \
+--description "list AAA-254/BNB" --expire-time 1570665600 --chain-id=chain-bnb --node=172.22.41.165:26657 --json
+Password to sign with 'test':
+{  
+   "Height":"281822",
+   "TxHash":"55966E369E567DF55B061E129EAA40EA09B5AA2F",
+   "Response":{  
+      "data":"Hg==",
+      "log":"Msg 0: ",
+      "tags":[  
+         {  
+            "key":"YWN0aW9u",
+            "value":"c3VibWl0LXByb3Bvc2Fs"
+         },
+         {  
+            "key":"cHJvcG9zZXI=",
+            "value":"Ym5jMTdrd3pudWxqc3k0bjg5d2NqZDZlc3gyajV0MHczMjZjMDN4aHly"
+         },
+         {  
+            "key":"cHJvcG9zYWwtaWQ=",
+            "value":"Hg=="
+         },
+         {  
+            "key":"YWN0aW9u",
+            "value":"c3VibWl0X3Byb3Bvc2Fs"
+         }
+      ]
+   }
+}
+```
+
+You need to specify the base asset you want to list, quote asset and init price. And when the proposal is 
+passed, you should use the identical params to list.
+
+And you also have to set expire time after which you will not be able to list even though proposal is passed.
+
+### Deposit
+
+Before validators can vote on the proposal you created, you need to deposit enough BNB (for now is 2000 BNB). You 
+may have already deposit a number of BNB when you propose, in the upper case, it is 100 BNB. So now you still 
+need to deposit another 1900 BNB.
+
+```bash
+➜  test git:(master) ✗ ./bnbcli gov deposit --deposit 190000000000:BNB --from test --proposal-id 14 
+--chain-id=chain-bnb --node=172.22.41.165:26657 --json
+Password to sign with 'test':
+{  
+   "Height":"282059",
+   "TxHash":"78EE857C19E44294387CEE28C9CB71895EB0B670",
+   "Response":{  
+      "log":"Msg 0: ",
+      "tags":[  
+         {  
+            "key":"YWN0aW9u",
+            "value":"ZGVwb3NpdA=="
+         },
+         {  
+            "key":"ZGVwb3NpdGVy",
+            "value":"Ym5jMTdrd3pudWxqc3k0bjg5d2NqZDZlc3gyajV0MHczMjZjMDN4aHly"
+         },
+         {  
+            "key":"cHJvcG9zYWwtaWQ=",
+            "value":"Hg=="
+         },
+         {  
+            "key":"YWN0aW9u",
+            "value":"ZGVwb3NpdA=="
+         }
+      ]
+   }
+}
+```
+
+### Wait for voting result
+
+When you have deposited enough BNB, the proposal's status will switch to `VotingPeriod`. Then you should wait
+for voting result from validators (for now is two weeks).
+
+If proposal is rejected by validator, the money you have deposited will be distribute to validators.
+
+If proposal is passed, BNB you have deposited will be returned.
+
+You can query proposal status via CLI.
+
+```bash
+➜  test git:(master) ✗ ./bnbcli gov proposal --proposal-id 15 --chain-id=chain-bnb --node=172.22.41.165:26657
+{
+  "type": "gov/TextProposal",
+  "value": {
+    "proposal_id": "15",
+    "title": "list AAA-254/BNB",
+    "description": "{\"base_asset_symbol\":\"AAA-254\",\"quote_asset_symbol\":\"BNB\",\"init_price\":100000000,\"description\":\"list AAA-254/BNB\",\"expire_time\":\"2019-10-10T00:00:00Z\"}",
+    "proposal_type": "ListTradingPair",
+    "proposal_status": "Passed",
+    "tally_result": {
+      "yes": "100000000000",
+      "abstain": "0",
+      "no": "0",
+      "no_with_veto": "0"
+    },
+    "submit_time": "2018-12-25T09:17:56.128860238Z",
+    "total_deposit": [
+      {
+        "denom": "BNB",
+        "amount": "200000000000"
+      }
+    ],
+    "voting_start_time": "2018-12-25T09:21:14.282127201Z"
+  }
+}
+```
+
+### List 
+
+When proposal is passed, the owner of the token to be listed can list the token before `expire_time` specified.
+
+```bash
+➜  test git:(master) ✗ ./bnbcli dex list -s AAA-254 --quote-asset-symbol BNB --from test \
+--init-price 100000000 --proposal-id 15 --chain-id=chain-bnb --node=172.22.41.165:26657 --json
+{  
+   "Height":"282409",
+   "TxHash":"77AE3D190F430FE6E4B1A9659BEBB3F022CF7631",
+   "Response":{  
+      "log":"Msg 0: ",
+      "tags":[  
+         {  
+            "key":"YWN0aW9u",
+            "value":"ZGV4TGlzdA=="
+         }
+      ]
+   }
+}
+```
 
