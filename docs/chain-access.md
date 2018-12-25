@@ -4,11 +4,9 @@
 Wallet and Explorers. Here we would like to dive into some technology details for access 
 in a programming way.
 
+There are 3 ways to read and write data from Binance chain:
 
-## Read APIs
-There are 3 ways to read data from Binance chain:
-
-### Web API
+## Web API
 The `Accelerated Node` infrastructure provide easy access via http REST API and WebSocket 
 push APIs. There are mulitple endpoints from different validator infrastructures. Please 
 check the [Web API Reference](api-reference/dex-api.md)
@@ -24,10 +22,20 @@ to send RPC requests and read Chain information off.
 Essentially command line interfaces are just tools that wrap the incoming command line arguments and call RPCs. Please check the [Command Line Referenace](api-reference/cli.md).
 
 
-
 ## Write APIs
 You can only write to Binance Chain via `Transactions`. Both Web API and Node RPC provide 
-a `broadcastTx` API to submit a `signed and encoded` transaction onto the Binance Chain. 
+a `broadcastTx` API to submit a `signed and encoded` transaction onto the Binance Chain. The detailed process would be like the below:
+
+### Message Composition
+The transaction message and related information would be packed into a `payload`, which contains the below parts:
+
+- Account Number: a 64-bit integer, an identifier number associated with the signing address
+- Chain ID: a string, unique ID for the Chain, it stays the same for most time, but may vary as Binance Chain evolves;
+- Memo: a string, a short sentence of remark for the transaction
+- Msgs: a byte array, `json` encoded transaction messages.
+- Sequence Number: a 64-bit integer, please check [the below](#account_and_sequence_number)
+
+The above fields form into a transaction structure, which can be encoded via the codec described in the below section.
 
 ### Encoding 
 Encoding defines the way how transactions are serialized and transferred between clients and nodes, 
@@ -35,6 +43,9 @@ and different nodes themselves. [here](encoding.md) has a detailed specification
 types and encoding logic.
 
 ### Signature
+
+
+
 
 ## Account and Sequence Number
 
