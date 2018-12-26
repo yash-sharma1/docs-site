@@ -13,53 +13,53 @@ info:
     url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
 basePath: /
 schemes:
-  - https
-  # - wss
+- https
+# - wss
 produces:
-  - application/json
+- application/json
 tags:
-  -
-    name: info
-    description: 'Access to runtime metadata'
-  -
-    name: account
-    description: 'Access to an individual user''s trading activity'
-  -
-    name: tx
-    description: 'Access to transactions metadata'
-  -
-    name: tokens
-    description: 'Access to tokens metadata'
-  -
-    name: market
-    description: 'Access to DEX market data'
-  -
-    name: orders
-    description: 'Access to historical orders'
-  -
-    name: trade
-    description: 'Access to historical trading activity'
-  -
-    name: userdata
-    description: 'Access to an individual user''s trading activity'
-  -
-    name: node
-    description: 'Access to the node RPC functions'
-  -
-    name: frontier
-    description: 'Access to the frontier services'
-  -
-    name: misc
-    description: Others
+-
+  name: info
+  description: 'Access to runtime metadata'
+-
+  name: account
+  description: 'Access to an individual user''s trading activity'
+-
+  name: tx
+  description: 'Access to transactions metadata'
+-
+  name: tokens
+  description: 'Access to tokens metadata'
+-
+  name: market
+  description: 'Access to DEX market data'
+-
+  name: order
+  description: 'Access to historical orders'
+-
+  name: trade
+  description: 'Access to historical trading activity'
+-
+  name: userdata
+  description: 'Access to an individual user''s trading activity'
+-
+  name: node
+  description: 'Access to the node RPC functions'
+-
+  name: frontier
+  description: 'Access to the frontier services'
+-
+  name: misc
+  description: Others
 paths:
   /api/v1/time:
     get:
       tags:
-        - misc
+      - misc
       summary: getTime
       operationId: getTime
       produces:
-        - application/json
+      - application/json
       responses:
         '200':
           description: Success
@@ -84,10 +84,10 @@ paths:
       summary: 'Obtain blockchain node runtime metadata'
       operationId: getNodeInfo
       produces:
-        - application/json
+      - application/json
       tags:
-        - info
-        - node
+      - info
+      - node
       responses:
         '200':
           description: Success
@@ -100,10 +100,10 @@ paths:
       summary: 'Obtain blockchain validators list'
       operationId: getValidators
       produces:
-        - application/json
+      - application/json
       tags:
-        - info
-        - node
+      - info
+      - node
       responses:
         '200':
           description: Success
@@ -148,10 +148,10 @@ paths:
       summary: 'Obtains frontier runtime data'
       operationId: getFrontierInfo
       produces:
-        - application/json
+      - application/json
       tags:
-        - info
-        - frontier
+      - info
+      - frontier
       responses:
         '200':
           description: Success
@@ -170,10 +170,10 @@ paths:
       summary: 'Gets account metadata given an address'
       operationId: getAccount
       produces:
-        - application/json
+      - application/json
       tags:
-        - node
-        - account
+      - node
+      - account
       responses:
         '200':
           description: Success
@@ -190,21 +190,21 @@ paths:
           schema:
             $ref: "#/definitions/Error"
       parameters:
-        -
-          name: address
-          in: path
-          description: 'The account address to query'
-          required: true
-          type: string
+      -
+        name: address
+        in: path
+        description: 'The account address to query'
+        required: true
+        type: string
   /api/v1/account/{address}/sequence:
     get:
       summary: 'Gets the current sequence for an address'
       operationId: getAccountSequence
       produces:
-        - application/json
+      - application/json
       tags:
-        - node
-        - account
+      - node
+      - account
       responses:
         '200':
           description: Success
@@ -221,28 +221,28 @@ paths:
           schema:
             $ref: "#/definitions/Error"
       parameters:
-        -
-          name: address
-          in: path
-          description: 'The account address to query'
-          required: true
-          type: string
+      -
+        name: address
+        in: path
+        description: 'The account address to query'
+        required: true
+        type: string
   /api/v1/tx/{hash}:
     get:
       summary: 'Gets metadata for an individual transaction'
       operationId: getTransaction
       produces:
-        - application/json
+      - application/json
       tags:
-        - node
-        - tx
+      - node
+      - tx
       parameters:
-        -
-          name: hash
-          in: path
-          description: 'The transaction hash to query'
-          required: true
-          type: string
+      -
+        name: hash
+        in: path
+        description: 'The transaction hash to query'
+        required: true
+        type: string
       responses:
         '200':
           description: Success
@@ -261,11 +261,11 @@ paths:
   /api/v1/tokens:
     get:
       tags:
-        - tokens
+      - tokens
       summary: Gets a list of available tokens.
       operationId: getTokens
       produces:
-        - application/json
+      - application/json
       responses:
         '200':
           description: Success
@@ -284,11 +284,11 @@ paths:
   /api/v1/markets:
     get:
       tags:
-        - market
+      - market
       summary: Gets a list of market pairs.
       operationId: getPairs
       produces:
-        - application/json
+      - application/json
       responses:
         '200':
           description: Success
@@ -304,332 +304,31 @@ paths:
           description: Generic error response
           schema:
             $ref: "#/definitions/Error"
-  /api/v1/orders/{id}:
-    get:
-      tags:
-        - orders
-      summary: Get an individual order's status
-      operationId: getOrder
-      produces:
-        - application/json
-      parameters:
-        - 
-          in: path
-          name: id
-          description: order id
-          required: true
-          type: string
-      responses:
-        '200':
-          description: Success
-          schema:
-            $ref: '#/definitions/Order'
-        '400':
-          description: 'Bad Request'
-          schema:
-            $ref: "#/definitions/Error"
-        '404':
-          description: 'Not Found'
-        default:
-          description: Generic error response
-          schema:
-            $ref: "#/definitions/Error"
-  /api/v1/orders/open:
-    get:
-      tags:
-        - orders
-      summary: Get open orders for a given address
-      operationId: getOpenOrders
-      produces:
-        - application/json
-      parameters:
-        -
-          in: query
-          name: address
-          description: the sender address (optional)
-          required: true
-          type: string
-        -
-          in: query
-          name: symbol
-          description: symbol
-          required: false
-          type: string
-      responses:
-        '200':
-          description: Success
-          schema:
-            $ref: '#/definitions/Order'
-        '400':
-          description: 'Bad Request'
-          schema:
-            $ref: "#/definitions/Error"
-        '404':
-          description: 'Not Found'
-        default:
-          description: Generic error response
-          schema:
-            $ref: "#/definitions/Error"
-  /api/v1/orders/closed:
-    get:
-      tags:
-        - orders
-      summary: Get closed (filled and cancelled) orders for a given address
-      operationId: getClosedOrders
-      produces:
-        - application/json
-      parameters:
-        -
-          in: query
-          name: address
-          description: the sender address (optional)
-          required: true
-          type: string
-        -
-          in: query
-          name: symbol
-          description: symbol
-          required: false
-          type: string
-        -
-          in: query
-          name: offset
-          description: limit
-          required: false
-          type: integer
-          default: 0
-          format: int32
-        -
-          in: query
-          name: limit
-          description: limit
-          required: false
-          type: integer
-          default: 500
-          format: int32
-        -
-          in: query
-          name: start
-          description: start
-          required: false
-          type: integer
-          format: int64
-        -
-          in: query
-          name: end
-          description: end
-          required: false
-          type: integer
-          format: int64
-        -
-          in: query
-          name: side
-          description: side
-          required: false
-          type: string
-      responses:
-        '200':
-          description: Success
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/Order'
-        '400':
-          description: 'Bad Request'
-          schema:
-            $ref: "#/definitions/Error"
-        '404':
-          description: 'Not Found'
-        default:
-          description: Generic error response
-          schema:
-            $ref: "#/definitions/Error"
-  /api/v1/trades:
-    get:
-      tags:
-        - trade
-      summary: getTrades
-      operationId: getTrades
-      produces:
-        - application/json
-      parameters:
-        -
-          in: query
-          name: symbol
-          description: symbol (required)
-          required: true
-          type: string
-        -
-          in: query
-          name: address
-          description: the sender address (optional)
-          required: false
-          type: string
-        -
-          in: query
-          name: offset
-          description: limit
-          required: false
-          type: integer
-          default: 0
-          format: int32
-        -
-          in: query
-          name: limit
-          description: limit
-          required: false
-          type: integer
-          default: 500
-          format: int32
-        -
-          in: query
-          name: start
-          description: start
-          required: false
-          type: integer
-          format: int64
-        -
-          in: query
-          name: end
-          description: end
-          required: false
-          type: integer
-          format: int64
-        -
-          name: side
-          in: query
-          description: order side (BID or ASK)
-          required: false
-          type: string
-      responses:
-        '200':
-          description: Success
-          schema:
-            $ref: '#/definitions/TradesVo'
-        '400':
-          description: 'Bad Request'
-          schema:
-            $ref: "#/definitions/Error"
-        '404':
-          description: 'Not Found'
-        default:
-          description: Generic error response
-          schema:
-            $ref: "#/definitions/Error"
   /api/v1/depth:
     get:
       tags:
-        - market
+      - market
       summary: getDepth
       operationId: getDepth
       produces:
-        - application/json
+      - application/json
       parameters:
-        -
-          in: query
-          name: symbol
-          description: symbol
-          required: false
-          type: string
-        -
-          in: query
-          name: limit
-          description: symbol
-          required: false
-          type: integer
-          format: int32
+      -
+        in: query
+        name: symbol
+        description: symbol
+        required: false
+        type: string
+      -
+        in: query
+        name: limit
+        description: symbol
+        required: false
+        type: integer
+        format: int32
       responses:
         '200':
           description: Success
-        '400':
-          description: 'Bad Request'
-          schema:
-            $ref: "#/definitions/Error"
-        '404':
-          description: 'Not Found'
-        default:
-          description: Generic error response
-          schema:
-            $ref: "#/definitions/Error"
-  /api/v1/klines:
-    get:
-      tags:
-        - market
-      summary: Get chart candlestick bars.
-      operationId: getKlines
-      produces:
-        - application/json
-      parameters:
-        -
-          name: symbol
-          in: query
-          description: symbol
-          required: true
-          type: string
-        -
-          name: interval
-          in: query
-          description: interval (5m, 1h, 1d, 1w, etc.)
-          required: true
-          type: string
-        -
-          name: limit
-          in: query
-          description: limit
-          required: false
-          type: integer
-          format: int32
-        -
-          name: startTime
-          in: query
-          description: startTime
-          required: false
-          type: integer
-          format: int64
-        -
-          name: endTime
-          in: query
-          description: endTime
-          required: false
-          type: integer
-          format: int64
-      responses:
-        '200':
-          description: Success
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/Candlestick'
-        '400':
-          description: 'Bad Request'
-          schema:
-            $ref: "#/definitions/Error"
-        '404':
-          description: 'Not Found'
-        default:
-          description: Generic error response
-          schema:
-            $ref: "#/definitions/Error"
-  /api/v1/ticker/24hr:
-    get:
-      tags:
-        - market
-      summary: get24HrPriceStatistics
-      operationId: get24HrPriceStatistics
-      produces:
-        - application/json
-      parameters:
-        -
-          name: symbol
-          in: query
-          description: symbol
-          required: true
-          type: string
-      responses:
-        '200':
-          description: Success
-          schema:
-            $ref: '#/definitions/TickerStatistics'
         '400':
           description: 'Bad Request'
           schema:
@@ -643,31 +342,31 @@ paths:
   /api/v1/broadcast:
     post:
       tags:
-        - node
+      - node
       operationId: broadcastTx
       summary: 'Broadcasts a transaction, or a batch of up to 5 transactions, given their signed binary forms.'
       description: 'Use this API to broadcast your own signed transactions. Transactions must be sent in hex format in plain text, separated by commas (,).'
       consumes:
-        - text/plain
+      - text/plain
       produces:
-        - application/json
+      - application/json
       schemes:
-        - https
+      - https
       parameters:
-        - in: query
-          name: sync
-          description: Synchronous broadcast (wait for DeliverTx)
-          required: false
-          type: boolean
-          default: false
-        - in: body
-          name: body
-          required: true
-          schema:
-            type: string
-            format: binary
-            minLength: 1
-            maxLength: 100000
+      - in: query
+        name: sync
+        description: Synchronous broadcast (wait for DeliverTx)
+        required: false
+        type: boolean
+        default: false
+      - in: body
+        name: body
+        required: true
+        schema:
+          type: string
+          format: binary
+          minLength: 1
+          maxLength: 100000
       responses:
         '200':
           description: Success
@@ -697,11 +396,533 @@ paths:
           description: Generic error response
           schema:
             $ref: "#/definitions/Error"
+  /api/query/trades-statistics:
+    get:
+      tags:
+      - explorer
+      summary: trades statistics by symbol
+      operationId: getTradeStatisticsDTOUsingGET
+      produces:
+      - '*/*'
+      parameters:
+      - name: symbol
+        in: query
+        description: symbol
+        required: true
+        type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/TradeStatisticsDTO'
+      deprecated: false
+  /api/v1/block-trades:
+    get:
+      tags:
+      - trade
+      summary: Trades grouped by block
+      description: Get historical trades per block. Order by block height DESC.
+      operationId: getBlockTradesUsingGET
+      produces:
+      - application/json
+      parameters:
+      - name: address
+        in: query
+        description: the sender address
+        required: false
+        type: string
+        allowEmptyValue: false
+      - name: end
+        in: query
+        description: end time
+        required: false
+        type: integer
+        format: int64
+        allowEmptyValue: false
+      - name: height
+        in: query
+        description: block height
+        required: false
+        type: integer
+        format: int64
+        allowEmptyValue: false
+      - name: limit
+        in: query
+        description: default 50; max 100.
+        required: false
+        type: integer
+        default: 50
+        format: int32
+        allowEmptyValue: false
+      - name: offset
+        in: query
+        description: start with 0; default 0.
+        required: false
+        type: integer
+        default: 0
+        format: int32
+        allowEmptyValue: false
+      - name: start
+        in: query
+        description: start time
+        required: false
+        type: integer
+        format: int64
+        allowEmptyValue: false
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/BlockTradePageVo'
+      deprecated: false
+  /api/v1/crypto-currency:
+    get:
+      tags:
+      - market
+      summary: CryptoCurrency rate
+      description: Get exchange rate of crypto currency off Binance Chain. The rate is updated every 30 seconds.
+      operationId: getCryptoCurrencyRateUsingGET
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            additionalProperties:
+              type: number
+              format: double
+      deprecated: false
+  /api/v1/fiat-currency:
+    get:
+      tags:
+      - market
+      summary: Fiat currency rate
+      description: Get exchange rate of fiat currency. The rate is updated every 5 minutes.
+      operationId: getFiatCurrencyRateUsingGET
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            additionalProperties:
+              type: number
+              format: double
+      deprecated: false
+  /api/v1/klines:
+    get:
+      tags:
+      - market
+      summary: Kline
+      description: Kline/candlestick bars for a symbol. Klines are uniquely identified by their open time.
+      operationId: getCandlestickBarsUsingGET
+      produces:
+      - application/json
+      parameters:
+      - name: endTime
+        in: query
+        description: end time
+        required: false
+        type: integer
+        format: int64
+        allowEmptyValue: false
+      - name: interval
+        in: query
+        description: interval
+        required: true
+        type: string
+        allowEmptyValue: false
+        enum:
+        - 1m
+        - 3m
+        - 5m
+        - 15m
+        - 30m
+        - 1h
+        - 2h
+        - 4h
+        - 6h
+        - 8h
+        - 12h
+        - 1d
+        - 3d
+        - 1w
+        - 1M
+      - name: limit
+        in: query
+        description: default 500; max 1000.
+        required: false
+        type: integer
+        format: int32
+        allowEmptyValue: false
+      - name: startTime
+        in: query
+        description: start time
+        required: false
+        type: integer
+        format: int64
+        allowEmptyValue: false
+      - name: symbol
+        in: query
+        description: symbol
+        required: true
+        type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/CandlestickVo'
+      deprecated: false
+  /api/v1/orders/closed:
+    get:
+      tags:
+      - order
+      summary: Closed order
+      description: Get closed (filled and cancelled) openOrders for a given address
+      operationId: getClosedOrdersUsingGET
+      produces:
+      - application/json
+      parameters:
+      - name: address
+        in: query
+        description: the sender address
+        required: true
+        type: string
+        allowEmptyValue: false
+      - name: end
+        in: query
+        description: end time
+        required: false
+        type: integer
+        format: int64
+        allowEmptyValue: false
+      - name: limit
+        in: query
+        description: default 500; max 1000.
+        required: false
+        type: integer
+        default: 500
+        format: int32
+        allowEmptyValue: false
+      - name: offset
+        in: query
+        description: start with 0; default 0.
+        required: false
+        type: integer
+        default: 0
+        format: int32
+        allowEmptyValue: false
+      - name: side
+        in: query
+        description: order side
+        required: false
+        type: string
+        allowEmptyValue: false
+        enum:
+        - BUY
+        - SELL
+      - name: start
+        in: query
+        description: start time
+        required: false
+        type: integer
+        format: int64
+        allowEmptyValue: false
+      - name: status
+        in: query
+        description: order status list
+        required: false
+        type: array
+        items:
+          type: string
+        collectionFormat: multi
+        allowEmptyValue: false
+      - name: symbol
+        in: query
+        description: symbol
+        required: false
+        type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/OrderPageVo'
+      deprecated: false
+  /api/v1/orders/open:
+    get:
+      tags:
+      - order
+      summary: Open order
+      description: Get open openOrders for a given address
+      operationId: getOpenOrdersUsingGET
+      produces:
+      - application/json
+      parameters:
+      - name: address
+        in: query
+        description: the sender address
+        required: true
+        type: string
+        allowEmptyValue: false
+      - name: limit
+        in: query
+        description: default 500; max 1000.
+        required: false
+        type: integer
+        default: 500
+        format: int32
+        allowEmptyValue: false
+      - name: offset
+        in: query
+        description: start with 0; default 0.
+        required: false
+        type: integer
+        default: 0
+        format: int32
+        allowEmptyValue: false
+      - name: symbol
+        in: query
+        description: symbol
+        required: false
+        type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/OrderPageVo'
+      deprecated: false
+  '/api/v1/orders/{id}':
+    get:
+      tags:
+      - order
+      summary: Order
+      description: Get an individual order's status
+      operationId: getOrderUsingGET
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: order id
+        required: true
+        type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/OrderVo'
+      deprecated: false
+  /api/v1/ticker/24hr:
+    get:
+      tags:
+      - market
+      summary: 24 hour price
+      description: 24 hour price change statistics.
+      operationId: get24HrPriceStatisticsUsingGET
+      produces:
+      - application/json
+      parameters:
+      - name: symbol
+        in: query
+        description: symbol
+        required: false
+        type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/TickerStatisticsVo'
+      deprecated: false
+  /api/v1/trades:
+    get:
+      tags:
+      - trade
+      summary: Trades
+      description: Get historical trades.
+      operationId: getTradesUsingGET
+      produces:
+      - application/json
+      parameters:
+      - name: address
+        in: query
+        description: the sender address
+        required: false
+        type: string
+        allowEmptyValue: false
+      - name: baseAsset
+        in: query
+        description: base asset
+        required: false
+        type: string
+        allowEmptyValue: false
+      - name: buyerOrderId
+        in: query
+        description: buyer order id
+        required: false
+        type: string
+        allowEmptyValue: false
+      - name: end
+        in: query
+        description: end time
+        required: false
+        type: integer
+        format: int64
+        allowEmptyValue: false
+      - name: height
+        in: query
+        description: block height
+        required: false
+        type: integer
+        format: int64
+        allowEmptyValue: false
+      - name: limit
+        in: query
+        description: default 500; max 1000.
+        required: false
+        type: integer
+        default: 500
+        format: int32
+        allowEmptyValue: false
+      - name: offset
+        in: query
+        description: start with 0; default 0.
+        required: false
+        type: integer
+        default: 0
+        format: int32
+        allowEmptyValue: false
+      - name: quoteAsset
+        in: query
+        description: quote asset
+        required: false
+        type: string
+        allowEmptyValue: false
+      - name: sellerOrderId
+        in: query
+        description: seller order id
+        required: false
+        type: string
+        allowEmptyValue: false
+      - name: side
+        in: query
+        description: order side
+        required: false
+        type: string
+        allowEmptyValue: false
+        enum:
+        - BUY
+        - SELL
+      - name: start
+        in: query
+        description: start time
+        required: false
+        type: integer
+        format: int64
+        allowEmptyValue: false
+      - name: symbol
+        in: query
+        description: symbol
+        required: false
+        type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/TradePageVo'
+      deprecated: false
+  /api/v1/transactions:
+    get:
+      tags:
+      - transaction
+      summary: Transactions
+      description: Get transactions.
+      operationId: txnsUsingGET
+      produces:
+      - '*/*'
+      parameters:
+      - name: address
+        in: query
+        description: address
+        required: false
+        type: string
+      - name: blockHeight
+        in: query
+        description: blockHeight
+        required: false
+        type: integer
+        format: int64
+      - name: endTime
+        in: query
+        description: endTime
+        required: false
+        type: integer
+        format: int64
+      - name: limit
+        in: query
+        description: limit
+        required: false
+        type: integer
+        default: 500
+        format: int32
+      - name: offset
+        in: query
+        description: offset
+        required: false
+        type: integer
+        default: 0
+        format: int32
+      - name: side
+        in: query
+        description: transaction side
+        required: false
+        type: string
+        allowEmptyValue: false
+        enum:
+        - RECEIVE
+        - SEND
+      - name: startTime
+        in: query
+        description: startTime
+        required: false
+        type: integer
+        format: int64
+      - name: txAsset
+        in: query
+        description: txAsset
+        required: false
+        type: string
+      - name: txType
+        in: query
+        description: transaction type
+        required: false
+        type: string
+        allowEmptyValue: false
+        enum:
+        - NEW_ORDER
+        - ISSUE_TOKEN
+        - BURN_TOKEN
+        - LIST_TOKEN
+        - CANCEL_ORDER
+        - FREEZE_TOKEN
+        - UN_FREEZE_TOKEN
+        - TRANSFER
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/TxPageVo'
+      deprecated: false
 definitions:
   Error:
     type: object
     required:
-      - message
+    - message
     properties:
       code:
         type: integer
@@ -877,7 +1098,33 @@ definitions:
           description: "In decimal form, e.g. 1.00000000"
           example: "0.00000000"
           format: fixed8
-  Candlestick:
+  BlockTradePageVo:
+    type: object
+    properties:
+      blockTrade:
+        type: array
+        items:
+          $ref: '#/definitions/BlockTradeVo'
+      total:
+        type: string
+    title: BlockTradePageVo
+  BlockTradeVo:
+    type: object
+    properties:
+      blockTime:
+        type: integer
+        format: int64
+      fee:
+        type: string
+      height:
+        type: integer
+        format: int64
+      trade:
+        type: array
+        items:
+          $ref: '#/definitions/TradeVo'
+    title: BlockTradeVo
+  CandlestickVo:
     type: object
     properties:
       close:
@@ -901,192 +1148,363 @@ definitions:
         type: number
       volume:
         type: number
-  Order:
+    title: CandlestickVo
+  OrderHistoryDTO:
     type: object
     properties:
+      blockTime:
+        type: string
+        format: date-time
+      cumulateQuantity:
+        type: number
+      executionType:
+        type: string
+        enum:
+        - NEW
+      fee:
+        type: string
+      initBlockHeight:
+        type: integer
+        format: int64
+      lastExecutedPrice:
+        type: number
+      lastExecutedQuantity:
+        type: number
+      orderCreateTime:
+        type: string
+        format: date-time
       orderId:
         type: string
       owner:
         type: string
-        format: address
-      symbol:
-        type: string
-        example: BNB
-        format: currency
       price:
-        type: string
-        description: "In decimal form, e.g. 1.00000000"
-        example: "0.00000000"
-        format: fixed8
+        type: number
       quantity:
-        type: string
-        description: "In decimal form, e.g. 1.00000000"
-        example: "0.00000000"
-        format: fixed8
-      executedQuantity:
-        type: string
+        type: number
       side:
         type: string
         enum:
-          - BUY
-          - SELL
+        - BUY
+        - SELL
       status:
         type: string
         enum:
-          - ACK
-          - PARTIALLY_FILLED
-          - IOC_NO_FILL
-          - FULLY_FILLED
-          - CANCELED
-          - EXPIRED
-          - UNKNOWN
+        - ACK
+        - PARTIALLY_FILLED
+        - IOC_NO_FILL
+        - FULLY_FILLED
+        - CANCELED
+        - EXPIRED
+        - FAIL_BLOCKING
+        - FAIL_MATCH
+        - UNKNOWN
+      symbol:
+        type: string
       timeInForce:
         type: string
         enum:
-          - GTC
-          - IOC
+        - GTC
+        - IOC
+        - UNKNOWN
+      tradeId:
+        type: string
+      transactionHash:
+        type: string
+      transactionTime:
+        type: string
+        format: date-time
       type:
         type: string
         enum:
-          - LIMIT
-          - MARKET
-          - STOP_LOSS
-          - STOP_LOSS_LIMIT
-          - TAKE_PROFIT
-          - TAKE_PROFIT_LIMIT
-          - LIMIT_MAKER
-  TickerStatistics:
-    type: array
-    items:
-      properties:
-        symbol:
-          type: string
-          example: BNB
-          format: currency
-        askPrice:
-          type: string
-          description: "In decimal form, e.g. 1.00000000"
-          example: "0.00000000"
-          format: fixed8
-        askQuantity:
-          type: string
-          description: "In decimal form, e.g. 1.00000000"
-          example: "0.00000000"
-          format: fixed8
-        bidPrice:
-          type: string
-          description: "In decimal form, e.g. 1.00000000"
-          example: "0.00000000"
-          format: fixed8
-        bidQuantity:
-          type: string
-          description: "In decimal form, e.g. 1.00000000"
-          example: "0.00000000"
-          format: fixed8
-        closeTime:
-          type: integer
-          format: int64
-        count:
-          type: integer
-          format: int64
-        firstId:
-          type: string
-        highPrice:
-          type: string
-          description: "In decimal form, e.g. 1.00000000"
-          example: "0.00000000"
-          format: fixed8
-        lastId:
-          type: string
-        lastPrice:
-          type: string
-          description: "In decimal form, e.g. 1.00000000"
-          example: "0.00000000"
-          format: fixed8
-        lastQuantity:
-          type: string
-          description: "In decimal form, e.g. 1.00000000"
-          example: "0.00000000"
-          format: fixed8
-        lowPrice:
-          type: string
-          description: "In decimal form, e.g. 1.00000000"
-          example: "0.00000000"
-          format: fixed8
-        openPrice:
-          type: string
-          description: "In decimal form, e.g. 1.00000000"
-          example: "0.00000000"
-          format: fixed8
-        openTime:
-          type: integer
-          format: int64
-        prevClosePrice:
-          type: string
-          description: "In decimal form, e.g. 1.00000000"
-          example: "0.00000000"
-          format: fixed8
-        priceChange:
-          type: string
-          description: "In decimal form, e.g. 1.00000000"
-          example: "0.00000000"
-          format: fixed8
-        priceChangePercent:
-          type: string
-        quoteVolume:
-          type: string
-          description: "In decimal form, e.g. 1.00000000"
-          example: "0.00000000"
-          format: fixed8
-        volume:
-          type: string
-          description: "In decimal form, e.g. 1.00000000"
-          example: "0.00000000"
-          format: fixed8
-        weightedAvgPrice:
-          type: string
-          description: "In decimal form, e.g. 1.00000000"
-          example: "0.00000000"
-          format: fixed8
-  Trade:
+        - LIMIT
+      updateBlockHeight:
+        type: integer
+        format: int64
+    title: OrderHistoryDTO
+  OrderPageDTO:
     type: object
     properties:
-      buyerOrderId:
+      order:
+        type: array
+        items:
+          $ref: '#/definitions/OrderHistoryDTO'
+      total:
         type: string
-      buyFee:
+    title: OrderPageDTO
+  OrderPageVo:
+    type: object
+    properties:
+      order:
+        type: array
+        items:
+          $ref: '#/definitions/OrderVo'
+      total:
+        type: string
+    title: OrderPageVo
+  OrderVo:
+    type: object
+    properties:
+      cumulateQuantity:
+        type: number
+      fee:
+        type: string
+      lastExecutedPrice:
+        type: number
+      lastExecutedQuantity:
+        type: number
+      orderCreateTime:
+        type: string
+        format: date-time
+      orderId:
+        type: string
+      owner:
         type: string
       price:
-        type: string
-        description: "In decimal form, e.g. 1.00000000"
-        example: "0.00000000"
-        format: fixed8
+        type: number
       quantity:
+        type: number
+      side:
         type: string
-        description: "In decimal form, e.g. 1.00000000"
-        example: "0.00000000"
-        format: fixed8
+        enum:
+        - BUY
+        - SELL
+      status:
+        type: string
+        enum:
+        - ACK
+        - PARTIALLY_FILLED
+        - IOC_NO_FILL
+        - FULLY_FILLED
+        - CANCELED
+        - EXPIRED
+        - FAIL_BLOCKING
+        - FAIL_MATCH
+        - UNKNOWN
+      symbol:
+        type: string
+      timeInForce:
+        type: string
+        enum:
+        - GTC
+        - IOC
+        - UNKNOWN
+      tradeId:
+        type: string
+      transactionHash:
+        type: string
+      transactionTime:
+        type: string
+        format: date-time
+      type:
+        type: string
+        enum:
+        - LIMIT
+    title: OrderVo
+  TickerStatisticsVo:
+    type: object
+    properties:
+      askPrice:
+        type: string
+      askQuantity:
+        type: string
+      bidPrice:
+        type: string
+      bidQuantity:
+        type: string
+      closeTime:
+        type: integer
+        format: int64
+      count:
+        type: integer
+        format: int64
+      firstId:
+        type: string
+      highPrice:
+        type: string
+      lastId:
+        type: string
+      lastPrice:
+        type: string
+      lastQuantity:
+        type: string
+      lowPrice:
+        type: string
+      openPrice:
+        type: string
+      openTime:
+        type: integer
+        format: int64
+      prevClosePrice:
+        type: string
+      priceChange:
+        type: string
+      priceChangePercent:
+        type: string
+      quoteVolume:
+        type: string
+      symbol:
+        type: string
+      volume:
+        type: string
+      weightedAvgPrice:
+        type: string
+    title: TickerStatisticsVo
+  TradeDTO:
+    type: object
+    properties:
+      baseAsset:
+        type: string
+      blockTime:
+        type: string
+        format: date-time
+      buyFee:
+        type: string
+      buyerId:
+        type: string
+      buyerOrderId:
+        type: string
+      initBlockHeight:
+        type: integer
+        format: int64
+      price:
+        type: number
+      quantity:
+        type: number
+      quoteAsset:
+        type: string
       sellFee:
         type: string
-        example: "0.00000000"
-        format: fixed8
+      sellerId:
+        type: string
       sellerOrderId:
         type: string
       symbol:
         type: string
-        example: BNB
-        format: currency
+      tradeId:
+        type: string
+    title: TradeDTO
+  TradePageVo:
+    type: object
+    properties:
+      total:
+        type: string
+      trade:
+        type: array
+        items:
+          $ref: '#/definitions/TradeVo'
+    title: TradePageVo
+  TradeStatisticsDTO:
+    type: object
+    properties:
+      avgPrice:
+        type: number
+      high:
+        type: number
+      low:
+        type: number
+      symbol:
+        type: string
+      totalBaseVolume:
+        type: number
+      totalCount:
+        type: integer
+        format: int64
+      totalQuotaVolume:
+        type: number
+    title: TradeStatisticsDTO
+  TradeVo:
+    type: object
+    properties:
+      baseAsset:
+        type: string
+      blockHeight:
+        type: integer
+        format: int64
+      buyFee:
+        type: string
+      buyerId:
+        type: string
+      buyerOrderId:
+        type: string
+      price:
+        type: number
+      quantity:
+        type: number
+      quoteAsset:
+        type: string
+      sellFee:
+        type: string
+      sellerId:
+        type: string
+      sellerOrderId:
+        type: string
+      symbol:
+        type: string
       time:
         type: integer
         format: int64
       tradeId:
         type: string
-  TradesVo:
+    title: TradeVo
+  TradingFeeDTO:
     type: object
     properties:
-      totalNum:
+      address:
+        type: string
+      blockHeight:
         type: integer
         format: int64
-      tradeList:
+      fee:
+        type: string
+      tradingFeeId:
+        type: string
+    title: TradingFeeDTO
+  TxPageVo:
+    type: object
+    properties:
+      total:
+        type: string
+      tx:
         type: array
         items:
-          $ref: '#/definitions/Trade'
+          $ref: '#/definitions/TxVo'
+    title: TxPageVo
+  TxVo:
+    type: object
+    properties:
+      blockHeight:
+        type: integer
+        format: int64
+      code:
+        type: integer
+        format: int32
+        example: 0
+      confirmBlocks:
+        type: integer
+        format: int64
+      data:
+        type: string
+      fromAddr:
+        type: string
+      orderId:
+        type: string
+      timeStamp:
+        type: string
+        format: date-time
+      toAddr:
+        type: string
+      txAge:
+        type: integer
+        format: int64
+      txAsset:
+        type: string
+      txFee:
+        type: number
+      txHash:
+        type: string
+      txType:
+        type: string
+      value:
+        type: number
+    title: TxVo
+
