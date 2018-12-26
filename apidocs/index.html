@@ -199,6 +199,10 @@ font-style: italic;
   <li><a href="#getAccount"><code><span class="http-method">get</span> /api/v1/account/{address}</code></a></li>
   <li><a href="#getAccountSequence"><code><span class="http-method">get</span> /api/v1/account/{address}/sequence</code></a></li>
   </ul>
+  <h4><a href="#Explorer">Explorer</a></h4>
+  <ul>
+  <li><a href="#getTradeStatisticsDTOUsingGET"><code><span class="http-method">get</span> /api/query/trades-statistics</code></a></li>
+  </ul>
   <h4><a href="#Frontier">Frontier</a></h4>
   <ul>
   <li><a href="#getFrontierInfo"><code><span class="http-method">get</span> /api/v1/frontier-info</code></a></li>
@@ -212,9 +216,11 @@ font-style: italic;
   </ul>
   <h4><a href="#Market">Market</a></h4>
   <ul>
-  <li><a href="#get24HrPriceStatistics"><code><span class="http-method">get</span> /api/v1/ticker/24hr</code></a></li>
+  <li><a href="#get24HrPriceStatisticsUsingGET"><code><span class="http-method">get</span> /api/v1/ticker/24hr</code></a></li>
+  <li><a href="#getCandlestickBarsUsingGET"><code><span class="http-method">get</span> /api/v1/klines</code></a></li>
+  <li><a href="#getCryptoCurrencyRateUsingGET"><code><span class="http-method">get</span> /api/v1/crypto-currency</code></a></li>
   <li><a href="#getDepth"><code><span class="http-method">get</span> /api/v1/depth</code></a></li>
-  <li><a href="#getKlines"><code><span class="http-method">get</span> /api/v1/klines</code></a></li>
+  <li><a href="#getFiatCurrencyRateUsingGET"><code><span class="http-method">get</span> /api/v1/fiat-currency</code></a></li>
   <li><a href="#getPairs"><code><span class="http-method">get</span> /api/v1/markets</code></a></li>
   </ul>
   <h4><a href="#Misc">Misc</a></h4>
@@ -231,11 +237,11 @@ font-style: italic;
   <li><a href="#getTransaction"><code><span class="http-method">get</span> /api/v1/tx/{hash}</code></a></li>
   <li><a href="#getValidators"><code><span class="http-method">get</span> /api/v1/validators</code></a></li>
   </ul>
-  <h4><a href="#Orders">Orders</a></h4>
+  <h4><a href="#Order">Order</a></h4>
   <ul>
-  <li><a href="#getClosedOrders"><code><span class="http-method">get</span> /api/v1/orders/closed</code></a></li>
-  <li><a href="#getOpenOrders"><code><span class="http-method">get</span> /api/v1/orders/open</code></a></li>
-  <li><a href="#getOrder"><code><span class="http-method">get</span> /api/v1/orders/{id}</code></a></li>
+  <li><a href="#getClosedOrdersUsingGET"><code><span class="http-method">get</span> /api/v1/orders/closed</code></a></li>
+  <li><a href="#getOpenOrdersUsingGET"><code><span class="http-method">get</span> /api/v1/orders/open</code></a></li>
+  <li><a href="#getOrderUsingGET"><code><span class="http-method">get</span> /api/v1/orders/{id}</code></a></li>
   </ul>
   <h4><a href="#Tokens">Tokens</a></h4>
   <ul>
@@ -243,7 +249,12 @@ font-style: italic;
   </ul>
   <h4><a href="#Trade">Trade</a></h4>
   <ul>
-  <li><a href="#getTrades"><code><span class="http-method">get</span> /api/v1/trades</code></a></li>
+  <li><a href="#getBlockTradesUsingGET"><code><span class="http-method">get</span> /api/v1/block-trades</code></a></li>
+  <li><a href="#getTradesUsingGET"><code><span class="http-method">get</span> /api/v1/trades</code></a></li>
+  </ul>
+  <h4><a href="#Transaction">Transaction</a></h4>
+  <ul>
+  <li><a href="#txnsUsingGET"><code><span class="http-method">get</span> /api/v1/transactions</code></a></li>
   </ul>
   <h4><a href="#Tx">Tx</a></h4>
   <ul>
@@ -364,6 +375,60 @@ font-style: italic;
     <h4 class="field-label">200</h4>
     Success
         <a href="#AccountSequence">AccountSequence</a>
+    <h4 class="field-label">400</h4>
+    Bad Request
+        <a href="#Error">Error</a>
+    <h4 class="field-label">404</h4>
+    Not Found
+        <a href="#"></a>
+    <h4 class="field-label">default</h4>
+    Generic error response
+        <a href="#Error">Error</a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="Explorer">Explorer</a></h1>
+  <div class="method"><a name="getTradeStatisticsDTOUsingGET"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/query/trades-statistics</code></pre></div>
+    <div class="method-summary">trades statistics by symbol (<span class="nickname">getTradeStatisticsDTOUsingGET</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">symbol (required)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; symbol </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#TradeStatisticsDTO">TradeStatisticsDTO</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: </div>
+    <pre class="example"><code></code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>*/*</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#TradeStatisticsDTO">TradeStatisticsDTO</a>
     <h4 class="field-label">400</h4>
     Bad Request
         <a href="#Error">Error</a>
@@ -603,12 +668,12 @@ font-style: italic;
   </div> <!-- method -->
   <hr/>
   <h1><a name="Market">Market</a></h1>
-  <div class="method"><a name="get24HrPriceStatistics"/>
+  <div class="method"><a name="get24HrPriceStatisticsUsingGET"/>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
     <pre class="get"><code class="huge"><span class="http-method">get</span> /api/v1/ticker/24hr</code></pre></div>
-    <div class="method-summary">get24HrPriceStatistics (<span class="nickname">get24HrPriceStatistics</span>)</div>
-    <div class="method-notes"></div>
+    <div class="method-summary">24 hour price (<span class="nickname">get24HrPriceStatisticsUsingGET</span>)</div>
+    <div class="method-notes">24 hour price change statistics.</div>
 
 
 
@@ -616,7 +681,7 @@ font-style: italic;
 
     <h3 class="field-label">Query parameters</h3>
     <div class="field-items">
-      <div class="param">symbol (required)</div>
+      <div class="param">symbol (optional)</div>
 
       <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; symbol </div>
     </div>  <!-- field-items -->
@@ -624,7 +689,7 @@ font-style: italic;
 
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
-      <a href="#TickerStatistics">TickerStatistics</a>
+      array[<a href="#TickerStatisticsVo">TickerStatisticsVo</a>]
       
     </div>
 
@@ -632,7 +697,51 @@ font-style: italic;
 
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>""</code></pre>
+    <pre class="example"><code>[ {
+  "priceChange" : "priceChange",
+  "askPrice" : "askPrice",
+  "bidQuantity" : "bidQuantity",
+  "symbol" : "symbol",
+  "askQuantity" : "askQuantity",
+  "count" : 6,
+  "lastId" : "lastId",
+  "openPrice" : "openPrice",
+  "quoteVolume" : "quoteVolume",
+  "bidPrice" : "bidPrice",
+  "firstId" : "firstId",
+  "volume" : "volume",
+  "lowPrice" : "lowPrice",
+  "weightedAvgPrice" : "weightedAvgPrice",
+  "closeTime" : 0,
+  "highPrice" : "highPrice",
+  "prevClosePrice" : "prevClosePrice",
+  "openTime" : 1,
+  "lastQuantity" : "lastQuantity",
+  "priceChangePercent" : "priceChangePercent",
+  "lastPrice" : "lastPrice"
+}, {
+  "priceChange" : "priceChange",
+  "askPrice" : "askPrice",
+  "bidQuantity" : "bidQuantity",
+  "symbol" : "symbol",
+  "askQuantity" : "askQuantity",
+  "count" : 6,
+  "lastId" : "lastId",
+  "openPrice" : "openPrice",
+  "quoteVolume" : "quoteVolume",
+  "bidPrice" : "bidPrice",
+  "firstId" : "firstId",
+  "volume" : "volume",
+  "lowPrice" : "lowPrice",
+  "weightedAvgPrice" : "weightedAvgPrice",
+  "closeTime" : 0,
+  "highPrice" : "highPrice",
+  "prevClosePrice" : "prevClosePrice",
+  "openTime" : 1,
+  "lastQuantity" : "lastQuantity",
+  "priceChangePercent" : "priceChangePercent",
+  "lastPrice" : "lastPrice"
+} ]</code></pre>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
@@ -643,8 +752,138 @@ font-style: italic;
 
     <h3 class="field-label">Responses</h3>
     <h4 class="field-label">200</h4>
-    Success
-        <a href="#TickerStatistics">TickerStatistics</a>
+    OK
+        
+    <h4 class="field-label">400</h4>
+    Bad Request
+        <a href="#Error">Error</a>
+    <h4 class="field-label">404</h4>
+    Not Found
+        <a href="#"></a>
+    <h4 class="field-label">default</h4>
+    Generic error response
+        <a href="#Error">Error</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getCandlestickBarsUsingGET"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/v1/klines</code></pre></div>
+    <div class="method-summary">Kline (<span class="nickname">getCandlestickBarsUsingGET</span>)</div>
+    <div class="method-notes">Kline/candlestick bars for a symbol. Klines are uniquely identified by their open time.</div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">endTime (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; end time format: int64</div><div class="param">interval (required)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; interval </div><div class="param">limit (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; default 500; max 1000. format: int32</div><div class="param">startTime (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; start time format: int64</div><div class="param">symbol (required)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; symbol </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#CandlestickVo">CandlestickVo</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "volume" : 3.61607674925191080461672754609026014804840087890625,
+  "high" : 1.46581298050294517310021547018550336360931396484375,
+  "low" : 5.962133916683182377482808078639209270477294921875,
+  "closeTime" : 6,
+  "numberOfTrades" : 5,
+  "openTime" : 7,
+  "close" : 0.80082819046101150206595775671303272247314453125,
+  "open" : 2.3021358869347654518833223846741020679473876953125,
+  "quoteAssetVolume" : 9.301444243932575517419536481611430644989013671875
+}, {
+  "volume" : 3.61607674925191080461672754609026014804840087890625,
+  "high" : 1.46581298050294517310021547018550336360931396484375,
+  "low" : 5.962133916683182377482808078639209270477294921875,
+  "closeTime" : 6,
+  "numberOfTrades" : 5,
+  "openTime" : 7,
+  "close" : 0.80082819046101150206595775671303272247314453125,
+  "open" : 2.3021358869347654518833223846741020679473876953125,
+  "quoteAssetVolume" : 9.301444243932575517419536481611430644989013671875
+} ]</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        
+    <h4 class="field-label">400</h4>
+    Bad Request
+        <a href="#Error">Error</a>
+    <h4 class="field-label">404</h4>
+    Not Found
+        <a href="#"></a>
+    <h4 class="field-label">default</h4>
+    Generic error response
+        <a href="#Error">Error</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getCryptoCurrencyRateUsingGET"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/v1/crypto-currency</code></pre></div>
+    <div class="method-summary">CryptoCurrency rate (<span class="nickname">getCryptoCurrencyRateUsingGET</span>)</div>
+    <div class="method-notes">Get exchange rate of crypto currency off Binance Chain. The rate is updated every 30 seconds.</div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      map[String, Double]
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "key" : 0.8008281904610115
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        
     <h4 class="field-label">400</h4>
     Bad Request
         <a href="#Error">Error</a>
@@ -703,64 +942,32 @@ font-style: italic;
         <a href="#Error">Error</a>
   </div> <!-- method -->
   <hr/>
-  <div class="method"><a name="getKlines"/>
+  <div class="method"><a name="getFiatCurrencyRateUsingGET"/>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
-    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/v1/klines</code></pre></div>
-    <div class="method-summary">Get chart candlestick bars. (<span class="nickname">getKlines</span>)</div>
-    <div class="method-notes"></div>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/v1/fiat-currency</code></pre></div>
+    <div class="method-summary">Fiat currency rate (<span class="nickname">getFiatCurrencyRateUsingGET</span>)</div>
+    <div class="method-notes">Get exchange rate of fiat currency. The rate is updated every 5 minutes.</div>
 
 
 
 
 
-    <h3 class="field-label">Query parameters</h3>
-    <div class="field-items">
-      <div class="param">symbol (required)</div>
-
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; symbol </div><div class="param">interval (required)</div>
-
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; interval (5m, 1h, 1d, 1w, etc.) </div><div class="param">limit (optional)</div>
-
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; limit format: int32</div><div class="param">startTime (optional)</div>
-
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; startTime format: int64</div><div class="param">endTime (optional)</div>
-
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; endTime format: int64</div>
-    </div>  <!-- field-items -->
 
 
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
-      array[<a href="#Candlestick">Candlestick</a>]
       
+      map[String, Double]
     </div>
 
     <!--Todo: process Response Object and its headers, schema, examples -->
 
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>[ {
-  "volume" : 3.61607674925191080461672754609026014804840087890625,
-  "high" : 1.46581298050294517310021547018550336360931396484375,
-  "low" : 5.962133916683182377482808078639209270477294921875,
-  "closeTime" : 6,
-  "numberOfTrades" : 5,
-  "openTime" : 7,
-  "close" : 0.80082819046101150206595775671303272247314453125,
-  "open" : 2.3021358869347654518833223846741020679473876953125,
-  "quoteAssetVolume" : 9.301444243932575517419536481611430644989013671875
-}, {
-  "volume" : 3.61607674925191080461672754609026014804840087890625,
-  "high" : 1.46581298050294517310021547018550336360931396484375,
-  "low" : 5.962133916683182377482808078639209270477294921875,
-  "closeTime" : 6,
-  "numberOfTrades" : 5,
-  "openTime" : 7,
-  "close" : 0.80082819046101150206595775671303272247314453125,
-  "open" : 2.3021358869347654518833223846741020679473876953125,
-  "quoteAssetVolume" : 9.301444243932575517419536481611430644989013671875
-} ]</code></pre>
+    <pre class="example"><code>{
+  "key" : 0.8008281904610115
+}</code></pre>
 
     <h3 class="field-label">Produces</h3>
     This API call produces the following media types according to the <span class="header">Accept</span> request header;
@@ -771,7 +978,7 @@ font-style: italic;
 
     <h3 class="field-label">Responses</h3>
     <h4 class="field-label">200</h4>
-    Success
+    OK
         
     <h4 class="field-label">400</h4>
     Bad Request
@@ -1287,13 +1494,13 @@ font-style: italic;
         <a href="#Error">Error</a>
   </div> <!-- method -->
   <hr/>
-  <h1><a name="Orders">Orders</a></h1>
-  <div class="method"><a name="getClosedOrders"/>
+  <h1><a name="Order">Order</a></h1>
+  <div class="method"><a name="getClosedOrdersUsingGET"/>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
     <pre class="get"><code class="huge"><span class="http-method">get</span> /api/v1/orders/closed</code></pre></div>
-    <div class="method-summary">Get closed (filled and cancelled) orders for a given address (<span class="nickname">getClosedOrders</span>)</div>
-    <div class="method-notes"></div>
+    <div class="method-summary">Closed order (<span class="nickname">getClosedOrdersUsingGET</span>)</div>
+    <div class="method-notes">Get closed (filled and cancelled) openOrders for a given address</div>
 
 
 
@@ -1303,94 +1510,19 @@ font-style: italic;
     <div class="field-items">
       <div class="param">address (required)</div>
 
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; the sender address (optional) </div><div class="param">symbol (optional)</div>
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; the sender address </div><div class="param">end (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; symbol </div><div class="param">offset (optional)</div>
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; end time format: int64</div><div class="param">limit (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; limit default: 0 format: int32</div><div class="param">limit (optional)</div>
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; default 500; max 1000. default: 500 format: int32</div><div class="param">offset (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; limit default: 500 format: int32</div><div class="param">start (optional)</div>
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; start with 0; default 0. default: 0 format: int32</div><div class="param">side (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; start format: int64</div><div class="param">end (optional)</div>
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; order side </div><div class="param">start (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; end format: int64</div><div class="param">side (optional)</div>
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; start time format: int64</div><div class="param">status (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; side </div>
-    </div>  <!-- field-items -->
-
-
-    <h3 class="field-label">Return type</h3>
-    <div class="return-type">
-      array[<a href="#Order">Order</a>]
-      
-    </div>
-
-    <!--Todo: process Response Object and its headers, schema, examples -->
-
-    <h3 class="field-label">Example data</h3>
-    <div class="example-data-content-type">Content-Type: application/json</div>
-    <pre class="example"><code>[ {
-  "owner" : "owner",
-  "symbol" : "BNB",
-  "executedQuantity" : "executedQuantity",
-  "side" : "BUY",
-  "quantity" : "0.00000000",
-  "orderId" : "orderId",
-  "price" : "0.00000000",
-  "type" : "LIMIT",
-  "timeInForce" : "GTC",
-  "status" : "ACK"
-}, {
-  "owner" : "owner",
-  "symbol" : "BNB",
-  "executedQuantity" : "executedQuantity",
-  "side" : "BUY",
-  "quantity" : "0.00000000",
-  "orderId" : "orderId",
-  "price" : "0.00000000",
-  "type" : "LIMIT",
-  "timeInForce" : "GTC",
-  "status" : "ACK"
-} ]</code></pre>
-
-    <h3 class="field-label">Produces</h3>
-    This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
-    <ul>
-      <li><code>application/json</code></li>
-    </ul>
-
-    <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">200</h4>
-    Success
-        
-    <h4 class="field-label">400</h4>
-    Bad Request
-        <a href="#Error">Error</a>
-    <h4 class="field-label">404</h4>
-    Not Found
-        <a href="#"></a>
-    <h4 class="field-label">default</h4>
-    Generic error response
-        <a href="#Error">Error</a>
-  </div> <!-- method -->
-  <hr/>
-  <div class="method"><a name="getOpenOrders"/>
-    <div class="method-path">
-    <a class="up" href="#__Methods">Up</a>
-    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/v1/orders/open</code></pre></div>
-    <div class="method-summary">Get open orders for a given address (<span class="nickname">getOpenOrders</span>)</div>
-    <div class="method-notes"></div>
-
-
-
-
-
-    <h3 class="field-label">Query parameters</h3>
-    <div class="field-items">
-      <div class="param">address (required)</div>
-
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; the sender address (optional) </div><div class="param">symbol (optional)</div>
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; order status list </div><div class="param">symbol (optional)</div>
 
       <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; symbol </div>
     </div>  <!-- field-items -->
@@ -1398,7 +1530,7 @@ font-style: italic;
 
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
-      <a href="#Order">Order</a>
+      <a href="#OrderPageVo">OrderPageVo</a>
       
     </div>
 
@@ -1407,16 +1539,44 @@ font-style: italic;
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
     <pre class="example"><code>{
-  "owner" : "owner",
-  "symbol" : "BNB",
-  "executedQuantity" : "executedQuantity",
-  "side" : "BUY",
-  "quantity" : "0.00000000",
-  "orderId" : "orderId",
-  "price" : "0.00000000",
-  "type" : "LIMIT",
-  "timeInForce" : "GTC",
-  "status" : "ACK"
+  "total" : "total",
+  "order" : [ {
+    "owner" : "owner",
+    "symbol" : "symbol",
+    "side" : "BUY",
+    "quantity" : 5.63737665663332876420099637471139430999755859375,
+    "orderId" : "orderId",
+    "lastExecutedQuantity" : 1.46581298050294517310021547018550336360931396484375,
+    "orderCreateTime" : "2000-01-23T04:56:07.000+00:00",
+    "fee" : "fee",
+    "transactionTime" : "2000-01-23T04:56:07.000+00:00",
+    "type" : "LIMIT",
+    "transactionHash" : "transactionHash",
+    "cumulateQuantity" : 0.80082819046101150206595775671303272247314453125,
+    "price" : 5.962133916683182377482808078639209270477294921875,
+    "lastExecutedPrice" : 6.02745618307040320615897144307382404804229736328125,
+    "timeInForce" : "GTC",
+    "tradeId" : "tradeId",
+    "status" : "ACK"
+  }, {
+    "owner" : "owner",
+    "symbol" : "symbol",
+    "side" : "BUY",
+    "quantity" : 5.63737665663332876420099637471139430999755859375,
+    "orderId" : "orderId",
+    "lastExecutedQuantity" : 1.46581298050294517310021547018550336360931396484375,
+    "orderCreateTime" : "2000-01-23T04:56:07.000+00:00",
+    "fee" : "fee",
+    "transactionTime" : "2000-01-23T04:56:07.000+00:00",
+    "type" : "LIMIT",
+    "transactionHash" : "transactionHash",
+    "cumulateQuantity" : 0.80082819046101150206595775671303272247314453125,
+    "price" : 5.962133916683182377482808078639209270477294921875,
+    "lastExecutedPrice" : 6.02745618307040320615897144307382404804229736328125,
+    "timeInForce" : "GTC",
+    "tradeId" : "tradeId",
+    "status" : "ACK"
+  } ]
 }</code></pre>
 
     <h3 class="field-label">Produces</h3>
@@ -1428,8 +1588,97 @@ font-style: italic;
 
     <h3 class="field-label">Responses</h3>
     <h4 class="field-label">200</h4>
-    Success
-        <a href="#Order">Order</a>
+    OK
+        <a href="#OrderPageVo">OrderPageVo</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getOpenOrdersUsingGET"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/v1/orders/open</code></pre></div>
+    <div class="method-summary">Open order (<span class="nickname">getOpenOrdersUsingGET</span>)</div>
+    <div class="method-notes">Get open openOrders for a given address</div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">address (required)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; the sender address </div><div class="param">limit (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; default 500; max 1000. default: 500 format: int32</div><div class="param">offset (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; start with 0; default 0. default: 0 format: int32</div><div class="param">symbol (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; symbol </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#OrderPageVo">OrderPageVo</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "total" : "total",
+  "order" : [ {
+    "owner" : "owner",
+    "symbol" : "symbol",
+    "side" : "BUY",
+    "quantity" : 5.63737665663332876420099637471139430999755859375,
+    "orderId" : "orderId",
+    "lastExecutedQuantity" : 1.46581298050294517310021547018550336360931396484375,
+    "orderCreateTime" : "2000-01-23T04:56:07.000+00:00",
+    "fee" : "fee",
+    "transactionTime" : "2000-01-23T04:56:07.000+00:00",
+    "type" : "LIMIT",
+    "transactionHash" : "transactionHash",
+    "cumulateQuantity" : 0.80082819046101150206595775671303272247314453125,
+    "price" : 5.962133916683182377482808078639209270477294921875,
+    "lastExecutedPrice" : 6.02745618307040320615897144307382404804229736328125,
+    "timeInForce" : "GTC",
+    "tradeId" : "tradeId",
+    "status" : "ACK"
+  }, {
+    "owner" : "owner",
+    "symbol" : "symbol",
+    "side" : "BUY",
+    "quantity" : 5.63737665663332876420099637471139430999755859375,
+    "orderId" : "orderId",
+    "lastExecutedQuantity" : 1.46581298050294517310021547018550336360931396484375,
+    "orderCreateTime" : "2000-01-23T04:56:07.000+00:00",
+    "fee" : "fee",
+    "transactionTime" : "2000-01-23T04:56:07.000+00:00",
+    "type" : "LIMIT",
+    "transactionHash" : "transactionHash",
+    "cumulateQuantity" : 0.80082819046101150206595775671303272247314453125,
+    "price" : 5.962133916683182377482808078639209270477294921875,
+    "lastExecutedPrice" : 6.02745618307040320615897144307382404804229736328125,
+    "timeInForce" : "GTC",
+    "tradeId" : "tradeId",
+    "status" : "ACK"
+  } ]
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#OrderPageVo">OrderPageVo</a>
     <h4 class="field-label">400</h4>
     Bad Request
         <a href="#Error">Error</a>
@@ -1441,12 +1690,12 @@ font-style: italic;
         <a href="#Error">Error</a>
   </div> <!-- method -->
   <hr/>
-  <div class="method"><a name="getOrder"/>
+  <div class="method"><a name="getOrderUsingGET"/>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
     <pre class="get"><code class="huge"><span class="http-method">get</span> /api/v1/orders/{id}</code></pre></div>
-    <div class="method-summary">Get an individual order's status (<span class="nickname">getOrder</span>)</div>
-    <div class="method-notes"></div>
+    <div class="method-summary">Order (<span class="nickname">getOrderUsingGET</span>)</div>
+    <div class="method-notes">Get an individual order's status</div>
 
     <h3 class="field-label">Path parameters</h3>
     <div class="field-items">
@@ -1462,7 +1711,7 @@ font-style: italic;
 
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
-      <a href="#Order">Order</a>
+      <a href="#OrderVo">OrderVo</a>
       
     </div>
 
@@ -1472,14 +1721,21 @@ font-style: italic;
     <div class="example-data-content-type">Content-Type: application/json</div>
     <pre class="example"><code>{
   "owner" : "owner",
-  "symbol" : "BNB",
-  "executedQuantity" : "executedQuantity",
+  "symbol" : "symbol",
   "side" : "BUY",
-  "quantity" : "0.00000000",
+  "quantity" : 5.63737665663332876420099637471139430999755859375,
   "orderId" : "orderId",
-  "price" : "0.00000000",
+  "lastExecutedQuantity" : 1.46581298050294517310021547018550336360931396484375,
+  "orderCreateTime" : "2000-01-23T04:56:07.000+00:00",
+  "fee" : "fee",
+  "transactionTime" : "2000-01-23T04:56:07.000+00:00",
   "type" : "LIMIT",
+  "transactionHash" : "transactionHash",
+  "cumulateQuantity" : 0.80082819046101150206595775671303272247314453125,
+  "price" : 5.962133916683182377482808078639209270477294921875,
+  "lastExecutedPrice" : 6.02745618307040320615897144307382404804229736328125,
   "timeInForce" : "GTC",
+  "tradeId" : "tradeId",
   "status" : "ACK"
 }</code></pre>
 
@@ -1492,8 +1748,8 @@ font-style: italic;
 
     <h3 class="field-label">Responses</h3>
     <h4 class="field-label">200</h4>
-    Success
-        <a href="#Order">Order</a>
+    OK
+        <a href="#OrderVo">OrderVo</a>
     <h4 class="field-label">400</h4>
     Bad Request
         <a href="#Error">Error</a>
@@ -1554,12 +1810,12 @@ font-style: italic;
   </div> <!-- method -->
   <hr/>
   <h1><a name="Trade">Trade</a></h1>
-  <div class="method"><a name="getTrades"/>
+  <div class="method"><a name="getBlockTradesUsingGET"/>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
-    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/v1/trades</code></pre></div>
-    <div class="method-summary">getTrades (<span class="nickname">getTrades</span>)</div>
-    <div class="method-notes"></div>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/v1/block-trades</code></pre></div>
+    <div class="method-summary">Trades grouped by block (<span class="nickname">getBlockTradesUsingGET</span>)</div>
+    <div class="method-notes">Get historical trades per block. Order by block height DESC.</div>
 
 
 
@@ -1567,27 +1823,25 @@ font-style: italic;
 
     <h3 class="field-label">Query parameters</h3>
     <div class="field-items">
-      <div class="param">symbol (required)</div>
+      <div class="param">address (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; symbol (required) </div><div class="param">address (optional)</div>
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; the sender address </div><div class="param">end (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; the sender address (optional) </div><div class="param">offset (optional)</div>
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; end time format: int64</div><div class="param">height (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; limit default: 0 format: int32</div><div class="param">limit (optional)</div>
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; block height format: int64</div><div class="param">limit (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; limit default: 500 format: int32</div><div class="param">start (optional)</div>
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; default 50; max 100. default: 50 format: int32</div><div class="param">offset (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; start format: int64</div><div class="param">end (optional)</div>
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; start with 0; default 0. default: 0 format: int32</div><div class="param">start (optional)</div>
 
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; end format: int64</div><div class="param">side (optional)</div>
-
-      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; order side (BID or ASK) </div>
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; start time format: int64</div>
     </div>  <!-- field-items -->
 
 
     <h3 class="field-label">Return type</h3>
     <div class="return-type">
-      <a href="#TradesVo">TradesVo</a>
+      <a href="#BlockTradePageVo">BlockTradePageVo</a>
       
     </div>
 
@@ -1596,25 +1850,183 @@ font-style: italic;
     <h3 class="field-label">Example data</h3>
     <div class="example-data-content-type">Content-Type: application/json</div>
     <pre class="example"><code>{
-  "totalNum" : 0,
-  "tradeList" : [ {
-    "symbol" : "BNB",
+  "total" : "total",
+  "blockTrade" : [ {
+    "trade" : [ {
+      "symbol" : "symbol",
+      "buyFee" : "buyFee",
+      "quantity" : 5.63737665663332876420099637471139430999755859375,
+      "baseAsset" : "baseAsset",
+      "buyerId" : "buyerId",
+      "sellerId" : "sellerId",
+      "blockHeight" : 1,
+      "price" : 5.962133916683182377482808078639209270477294921875,
+      "time" : 2,
+      "buyerOrderId" : "buyerOrderId",
+      "quoteAsset" : "quoteAsset",
+      "sellFee" : "sellFee",
+      "sellerOrderId" : "sellerOrderId",
+      "tradeId" : "tradeId"
+    }, {
+      "symbol" : "symbol",
+      "buyFee" : "buyFee",
+      "quantity" : 5.63737665663332876420099637471139430999755859375,
+      "baseAsset" : "baseAsset",
+      "buyerId" : "buyerId",
+      "sellerId" : "sellerId",
+      "blockHeight" : 1,
+      "price" : 5.962133916683182377482808078639209270477294921875,
+      "time" : 2,
+      "buyerOrderId" : "buyerOrderId",
+      "quoteAsset" : "quoteAsset",
+      "sellFee" : "sellFee",
+      "sellerOrderId" : "sellerOrderId",
+      "tradeId" : "tradeId"
+    } ],
+    "fee" : "fee",
+    "blockTime" : 0,
+    "height" : 6
+  }, {
+    "trade" : [ {
+      "symbol" : "symbol",
+      "buyFee" : "buyFee",
+      "quantity" : 5.63737665663332876420099637471139430999755859375,
+      "baseAsset" : "baseAsset",
+      "buyerId" : "buyerId",
+      "sellerId" : "sellerId",
+      "blockHeight" : 1,
+      "price" : 5.962133916683182377482808078639209270477294921875,
+      "time" : 2,
+      "buyerOrderId" : "buyerOrderId",
+      "quoteAsset" : "quoteAsset",
+      "sellFee" : "sellFee",
+      "sellerOrderId" : "sellerOrderId",
+      "tradeId" : "tradeId"
+    }, {
+      "symbol" : "symbol",
+      "buyFee" : "buyFee",
+      "quantity" : 5.63737665663332876420099637471139430999755859375,
+      "baseAsset" : "baseAsset",
+      "buyerId" : "buyerId",
+      "sellerId" : "sellerId",
+      "blockHeight" : 1,
+      "price" : 5.962133916683182377482808078639209270477294921875,
+      "time" : 2,
+      "buyerOrderId" : "buyerOrderId",
+      "quoteAsset" : "quoteAsset",
+      "sellFee" : "sellFee",
+      "sellerOrderId" : "sellerOrderId",
+      "tradeId" : "tradeId"
+    } ],
+    "fee" : "fee",
+    "blockTime" : 0,
+    "height" : 6
+  } ]
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#BlockTradePageVo">BlockTradePageVo</a>
+    <h4 class="field-label">400</h4>
+    Bad Request
+        <a href="#Error">Error</a>
+    <h4 class="field-label">404</h4>
+    Not Found
+        <a href="#"></a>
+    <h4 class="field-label">default</h4>
+    Generic error response
+        <a href="#Error">Error</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getTradesUsingGET"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/v1/trades</code></pre></div>
+    <div class="method-summary">Trades (<span class="nickname">getTradesUsingGET</span>)</div>
+    <div class="method-notes">Get historical trades.</div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">address (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; the sender address </div><div class="param">baseAsset (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; base asset </div><div class="param">buyerOrderId (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; buyer order id </div><div class="param">end (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; end time format: int64</div><div class="param">height (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; block height format: int64</div><div class="param">limit (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; default 500; max 1000. default: 500 format: int32</div><div class="param">offset (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; start with 0; default 0. default: 0 format: int32</div><div class="param">quoteAsset (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; quote asset </div><div class="param">sellerOrderId (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; seller order id </div><div class="param">side (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; order side </div><div class="param">start (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; start time format: int64</div><div class="param">symbol (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; symbol </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#TradePageVo">TradePageVo</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "total" : "total",
+  "trade" : [ {
+    "symbol" : "symbol",
     "buyFee" : "buyFee",
-    "quantity" : "0.00000000",
-    "price" : "0.00000000",
-    "time" : 6,
+    "quantity" : 5.63737665663332876420099637471139430999755859375,
+    "baseAsset" : "baseAsset",
+    "buyerId" : "buyerId",
+    "sellerId" : "sellerId",
+    "blockHeight" : 1,
+    "price" : 5.962133916683182377482808078639209270477294921875,
+    "time" : 2,
     "buyerOrderId" : "buyerOrderId",
-    "sellFee" : "0.00000000",
+    "quoteAsset" : "quoteAsset",
+    "sellFee" : "sellFee",
     "sellerOrderId" : "sellerOrderId",
     "tradeId" : "tradeId"
   }, {
-    "symbol" : "BNB",
+    "symbol" : "symbol",
     "buyFee" : "buyFee",
-    "quantity" : "0.00000000",
-    "price" : "0.00000000",
-    "time" : 6,
+    "quantity" : 5.63737665663332876420099637471139430999755859375,
+    "baseAsset" : "baseAsset",
+    "buyerId" : "buyerId",
+    "sellerId" : "sellerId",
+    "blockHeight" : 1,
+    "price" : 5.962133916683182377482808078639209270477294921875,
+    "time" : 2,
     "buyerOrderId" : "buyerOrderId",
-    "sellFee" : "0.00000000",
+    "quoteAsset" : "quoteAsset",
+    "sellFee" : "sellFee",
     "sellerOrderId" : "sellerOrderId",
     "tradeId" : "tradeId"
   } ]
@@ -1629,8 +2041,78 @@ font-style: italic;
 
     <h3 class="field-label">Responses</h3>
     <h4 class="field-label">200</h4>
-    Success
-        <a href="#TradesVo">TradesVo</a>
+    OK
+        <a href="#TradePageVo">TradePageVo</a>
+    <h4 class="field-label">400</h4>
+    Bad Request
+        <a href="#Error">Error</a>
+    <h4 class="field-label">404</h4>
+    Not Found
+        <a href="#"></a>
+    <h4 class="field-label">default</h4>
+    Generic error response
+        <a href="#Error">Error</a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="Transaction">Transaction</a></h1>
+  <div class="method"><a name="txnsUsingGET"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/v1/transactions</code></pre></div>
+    <div class="method-summary">Transactions (<span class="nickname">txnsUsingGET</span>)</div>
+    <div class="method-notes">Get transactions.</div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">address (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; address </div><div class="param">blockHeight (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; blockHeight format: int64</div><div class="param">endTime (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; endTime format: int64</div><div class="param">limit (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; limit default: 500 format: int32</div><div class="param">offset (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; offset default: 0 format: int32</div><div class="param">side (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; transaction side </div><div class="param">startTime (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; startTime format: int64</div><div class="param">txAsset (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; txAsset </div><div class="param">txType (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; transaction type </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#TxPageVo">TxPageVo</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: </div>
+    <pre class="example"><code></code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+      <li><code>*/*</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#TxPageVo">TxPageVo</a>
     <h4 class="field-label">400</h4>
     Bad Request
         <a href="#Error">Error</a>
@@ -1710,22 +2192,31 @@ font-style: italic;
     <li><a href="#Account"><code>Account</code> - </a></li>
     <li><a href="#AccountSequence"><code>AccountSequence</code> - </a></li>
     <li><a href="#Account_balances"><code>Account_balances</code> - </a></li>
-    <li><a href="#Candlestick"><code>Candlestick</code> - </a></li>
+    <li><a href="#BlockTradePageVo"><code>BlockTradePageVo</code> - BlockTradePageVo</a></li>
+    <li><a href="#BlockTradeVo"><code>BlockTradeVo</code> - BlockTradeVo</a></li>
+    <li><a href="#CandlestickVo"><code>CandlestickVo</code> - CandlestickVo</a></li>
     <li><a href="#Error"><code>Error</code> - </a></li>
     <li><a href="#Frontier info"><code>Frontier info</code> - </a></li>
     <li><a href="#Markets"><code>Markets</code> - </a></li>
     <li><a href="#Markets_inner"><code>Markets_inner</code> - </a></li>
-    <li><a href="#Order"><code>Order</code> - </a></li>
+    <li><a href="#OrderHistoryDTO"><code>OrderHistoryDTO</code> - OrderHistoryDTO</a></li>
+    <li><a href="#OrderPageDTO"><code>OrderPageDTO</code> - OrderPageDTO</a></li>
+    <li><a href="#OrderPageVo"><code>OrderPageVo</code> - OrderPageVo</a></li>
+    <li><a href="#OrderVo"><code>OrderVo</code> - OrderVo</a></li>
     <li><a href="#Peers"><code>Peers</code> - </a></li>
     <li><a href="#Peers_inner"><code>Peers_inner</code> - </a></li>
-    <li><a href="#TickerStatistics"><code>TickerStatistics</code> - </a></li>
-    <li><a href="#TickerStatistics_inner"><code>TickerStatistics_inner</code> - </a></li>
+    <li><a href="#TickerStatisticsVo"><code>TickerStatisticsVo</code> - TickerStatisticsVo</a></li>
     <li><a href="#Times"><code>Times</code> - </a></li>
     <li><a href="#Tokens"><code>Tokens</code> - </a></li>
     <li><a href="#Tokens_inner"><code>Tokens_inner</code> - </a></li>
-    <li><a href="#Trade"><code>Trade</code> - </a></li>
-    <li><a href="#TradesVo"><code>TradesVo</code> - </a></li>
+    <li><a href="#TradeDTO"><code>TradeDTO</code> - TradeDTO</a></li>
+    <li><a href="#TradePageVo"><code>TradePageVo</code> - TradePageVo</a></li>
+    <li><a href="#TradeStatisticsDTO"><code>TradeStatisticsDTO</code> - TradeStatisticsDTO</a></li>
+    <li><a href="#TradeVo"><code>TradeVo</code> - TradeVo</a></li>
+    <li><a href="#TradingFeeDTO"><code>TradingFeeDTO</code> - TradingFeeDTO</a></li>
     <li><a href="#Transaction"><code>Transaction</code> - </a></li>
+    <li><a href="#TxPageVo"><code>TxPageVo</code> - TxPageVo</a></li>
+    <li><a href="#TxVo"><code>TxVo</code> - TxVo</a></li>
     <li><a href="#Validators"><code>Validators</code> - </a></li>
     <li><a href="#Validators_validators"><code>Validators_validators</code> - </a></li>
     <li><a href="#inline_response_200"><code>inline_response_200</code> - </a></li>
@@ -1760,7 +2251,25 @@ font-style: italic;
     </div>  <!-- field-items -->
   </div>
   <div class="model">
-    <h3><a name="Candlestick"><code>Candlestick</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <h3><a name="BlockTradePageVo"><code>BlockTradePageVo</code> - BlockTradePageVo</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">blockTrade (optional)</div><div class="param-desc"><span class="param-type"><a href="#BlockTradeVo">array[BlockTradeVo]</a></span>  </div>
+<div class="param">total (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="BlockTradeVo"><code>BlockTradeVo</code> - BlockTradeVo</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">blockTime (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">fee (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">height (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">trade (optional)</div><div class="param-desc"><span class="param-type"><a href="#TradeVo">array[TradeVo]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="CandlestickVo"><code>CandlestickVo</code> - CandlestickVo</a> <a class="up" href="#__Models">Up</a></h3>
     <div class='model-description'></div>
     <div class="field-items">
       <div class="param">close (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  </div>
@@ -1807,27 +2316,87 @@ font-style: italic;
     </div>  <!-- field-items -->
   </div>
   <div class="model">
-    <h3><a name="Order"><code>Order</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <h3><a name="OrderHistoryDTO"><code>OrderHistoryDTO</code> - OrderHistoryDTO</a> <a class="up" href="#__Models">Up</a></h3>
     <div class='model-description'></div>
     <div class="field-items">
-      <div class="param">orderId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">owner (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  format: address</div>
-<div class="param">symbol (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  format: currency</div>
-<div class="param">price (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> In decimal form, e.g. 1.00000000 format: fixed8</div>
-<div class="param">quantity (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> In decimal form, e.g. 1.00000000 format: fixed8</div>
-<div class="param">executedQuantity (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+      <div class="param">blockTime (optional)</div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
+<div class="param">cumulateQuantity (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  </div>
+<div class="param">executionType (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+        <div class="param-enum-header">Enum:</div>
+        <div class="param-enum">NEW</div>
+<div class="param">fee (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">initBlockHeight (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">lastExecutedPrice (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  </div>
+<div class="param">lastExecutedQuantity (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  </div>
+<div class="param">orderCreateTime (optional)</div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
+<div class="param">orderId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">owner (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">price (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  </div>
+<div class="param">quantity (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  </div>
 <div class="param">side (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
         <div class="param-enum-header">Enum:</div>
         <div class="param-enum">BUY</div><div class="param-enum">SELL</div>
 <div class="param">status (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
         <div class="param-enum-header">Enum:</div>
-        <div class="param-enum">ACK</div><div class="param-enum">PARTIALLY_FILLED</div><div class="param-enum">IOC_NO_FILL</div><div class="param-enum">FULLY_FILLED</div><div class="param-enum">CANCELED</div><div class="param-enum">EXPIRED</div><div class="param-enum">UNKNOWN</div>
+        <div class="param-enum">ACK</div><div class="param-enum">PARTIALLY_FILLED</div><div class="param-enum">IOC_NO_FILL</div><div class="param-enum">FULLY_FILLED</div><div class="param-enum">CANCELED</div><div class="param-enum">EXPIRED</div><div class="param-enum">FAIL_BLOCKING</div><div class="param-enum">FAIL_MATCH</div><div class="param-enum">UNKNOWN</div>
+<div class="param">symbol (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">timeInForce (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
         <div class="param-enum-header">Enum:</div>
-        <div class="param-enum">GTC</div><div class="param-enum">IOC</div>
+        <div class="param-enum">GTC</div><div class="param-enum">IOC</div><div class="param-enum">UNKNOWN</div>
+<div class="param">tradeId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">transactionHash (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">transactionTime (optional)</div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
 <div class="param">type (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
         <div class="param-enum-header">Enum:</div>
-        <div class="param-enum">LIMIT</div><div class="param-enum">MARKET</div><div class="param-enum">STOP_LOSS</div><div class="param-enum">STOP_LOSS_LIMIT</div><div class="param-enum">TAKE_PROFIT</div><div class="param-enum">TAKE_PROFIT_LIMIT</div><div class="param-enum">LIMIT_MAKER</div>
+        <div class="param-enum">LIMIT</div>
+<div class="param">updateBlockHeight (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="OrderPageDTO"><code>OrderPageDTO</code> - OrderPageDTO</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">order (optional)</div><div class="param-desc"><span class="param-type"><a href="#OrderHistoryDTO">array[OrderHistoryDTO]</a></span>  </div>
+<div class="param">total (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="OrderPageVo"><code>OrderPageVo</code> - OrderPageVo</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">order (optional)</div><div class="param-desc"><span class="param-type"><a href="#OrderVo">array[OrderVo]</a></span>  </div>
+<div class="param">total (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="OrderVo"><code>OrderVo</code> - OrderVo</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">cumulateQuantity (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  </div>
+<div class="param">fee (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">lastExecutedPrice (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  </div>
+<div class="param">lastExecutedQuantity (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  </div>
+<div class="param">orderCreateTime (optional)</div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
+<div class="param">orderId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">owner (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">price (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  </div>
+<div class="param">quantity (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  </div>
+<div class="param">side (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+        <div class="param-enum-header">Enum:</div>
+        <div class="param-enum">BUY</div><div class="param-enum">SELL</div>
+<div class="param">status (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+        <div class="param-enum-header">Enum:</div>
+        <div class="param-enum">ACK</div><div class="param-enum">PARTIALLY_FILLED</div><div class="param-enum">IOC_NO_FILL</div><div class="param-enum">FULLY_FILLED</div><div class="param-enum">CANCELED</div><div class="param-enum">EXPIRED</div><div class="param-enum">FAIL_BLOCKING</div><div class="param-enum">FAIL_MATCH</div><div class="param-enum">UNKNOWN</div>
+<div class="param">symbol (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">timeInForce (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+        <div class="param-enum-header">Enum:</div>
+        <div class="param-enum">GTC</div><div class="param-enum">IOC</div><div class="param-enum">UNKNOWN</div>
+<div class="param">tradeId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">transactionHash (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">transactionTime (optional)</div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
+<div class="param">type (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+        <div class="param-enum-header">Enum:</div>
+        <div class="param-enum">LIMIT</div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
@@ -1855,36 +2424,30 @@ font-style: italic;
     </div>  <!-- field-items -->
   </div>
   <div class="model">
-    <h3><a name="TickerStatistics"><code>TickerStatistics</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <h3><a name="TickerStatisticsVo"><code>TickerStatisticsVo</code> - TickerStatisticsVo</a> <a class="up" href="#__Models">Up</a></h3>
     <div class='model-description'></div>
     <div class="field-items">
-          </div>  <!-- field-items -->
-  </div>
-  <div class="model">
-    <h3><a name="TickerStatistics_inner"><code>TickerStatistics_inner</code> - </a> <a class="up" href="#__Models">Up</a></h3>
-    
-    <div class="field-items">
-      <div class="param">symbol (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  format: currency</div>
-<div class="param">askPrice (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> In decimal form, e.g. 1.00000000 format: fixed8</div>
-<div class="param">askQuantity (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> In decimal form, e.g. 1.00000000 format: fixed8</div>
-<div class="param">bidPrice (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> In decimal form, e.g. 1.00000000 format: fixed8</div>
-<div class="param">bidQuantity (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> In decimal form, e.g. 1.00000000 format: fixed8</div>
+      <div class="param">askPrice (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">askQuantity (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">bidPrice (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">bidQuantity (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">closeTime (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
 <div class="param">count (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
 <div class="param">firstId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">highPrice (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> In decimal form, e.g. 1.00000000 format: fixed8</div>
+<div class="param">highPrice (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">lastId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">lastPrice (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> In decimal form, e.g. 1.00000000 format: fixed8</div>
-<div class="param">lastQuantity (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> In decimal form, e.g. 1.00000000 format: fixed8</div>
-<div class="param">lowPrice (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> In decimal form, e.g. 1.00000000 format: fixed8</div>
-<div class="param">openPrice (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> In decimal form, e.g. 1.00000000 format: fixed8</div>
+<div class="param">lastPrice (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">lastQuantity (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">lowPrice (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">openPrice (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">openTime (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
-<div class="param">prevClosePrice (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> In decimal form, e.g. 1.00000000 format: fixed8</div>
-<div class="param">priceChange (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> In decimal form, e.g. 1.00000000 format: fixed8</div>
+<div class="param">prevClosePrice (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">priceChange (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">priceChangePercent (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">quoteVolume (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> In decimal form, e.g. 1.00000000 format: fixed8</div>
-<div class="param">volume (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> In decimal form, e.g. 1.00000000 format: fixed8</div>
-<div class="param">weightedAvgPrice (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> In decimal form, e.g. 1.00000000 format: fixed8</div>
+<div class="param">quoteVolume (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">symbol (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">volume (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">weightedAvgPrice (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
@@ -1913,26 +2476,74 @@ font-style: italic;
     </div>  <!-- field-items -->
   </div>
   <div class="model">
-    <h3><a name="Trade"><code>Trade</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <h3><a name="TradeDTO"><code>TradeDTO</code> - TradeDTO</a> <a class="up" href="#__Models">Up</a></h3>
     <div class='model-description'></div>
     <div class="field-items">
-      <div class="param">buyerOrderId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+      <div class="param">baseAsset (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">blockTime (optional)</div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
 <div class="param">buyFee (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">price (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> In decimal form, e.g. 1.00000000 format: fixed8</div>
-<div class="param">quantity (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> In decimal form, e.g. 1.00000000 format: fixed8</div>
-<div class="param">sellFee (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  format: fixed8</div>
+<div class="param">buyerId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">buyerOrderId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">initBlockHeight (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">price (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  </div>
+<div class="param">quantity (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  </div>
+<div class="param">quoteAsset (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">sellFee (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">sellerId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">sellerOrderId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
-<div class="param">symbol (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  format: currency</div>
+<div class="param">symbol (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">tradeId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="TradePageVo"><code>TradePageVo</code> - TradePageVo</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">total (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">trade (optional)</div><div class="param-desc"><span class="param-type"><a href="#TradeVo">array[TradeVo]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="TradeStatisticsDTO"><code>TradeStatisticsDTO</code> - TradeStatisticsDTO</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">avgPrice (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  </div>
+<div class="param">high (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  </div>
+<div class="param">low (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  </div>
+<div class="param">symbol (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">totalBaseVolume (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  </div>
+<div class="param">totalCount (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">totalQuotaVolume (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="TradeVo"><code>TradeVo</code> - TradeVo</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">baseAsset (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">blockHeight (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">buyFee (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">buyerId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">buyerOrderId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">price (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  </div>
+<div class="param">quantity (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  </div>
+<div class="param">quoteAsset (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">sellFee (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">sellerId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">sellerOrderId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">symbol (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">time (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
 <div class="param">tradeId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
-    <h3><a name="TradesVo"><code>TradesVo</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <h3><a name="TradingFeeDTO"><code>TradingFeeDTO</code> - TradingFeeDTO</a> <a class="up" href="#__Models">Up</a></h3>
     <div class='model-description'></div>
     <div class="field-items">
-      <div class="param">totalNum (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
-<div class="param">tradeList (optional)</div><div class="param-desc"><span class="param-type"><a href="#Trade">array[Trade]</a></span>  </div>
+      <div class="param">address (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">blockHeight (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">fee (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">tradingFeeId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
@@ -1943,6 +2554,34 @@ font-style: italic;
 <div class="param">log (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">data (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
 <div class="param">code (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="TxPageVo"><code>TxPageVo</code> - TxPageVo</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">total (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">tx (optional)</div><div class="param-desc"><span class="param-type"><a href="#TxVo">array[TxVo]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="TxVo"><code>TxVo</code> - TxVo</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">blockHeight (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">code (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+<div class="param">confirmBlocks (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">data (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">fromAddr (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">orderId (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">timeStamp (optional)</div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
+<div class="param">toAddr (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">txAge (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">txAsset (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">txFee (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  </div>
+<div class="param">txHash (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">txType (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">value (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  </div>
     </div>  <!-- field-items -->
   </div>
   <div class="model">
