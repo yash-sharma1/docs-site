@@ -415,6 +415,16 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/TradeStatisticsDTO'
+        '400':
+          description: 'Bad Request'
+          schema:
+            $ref: "#/definitions/Error"
+        '404':
+          description: 'Not Found'
+        default:
+          description: Generic error response
+          schema:
+            $ref: "#/definitions/Error"
       deprecated: false
   /api/v1/block-trades:
     get:
@@ -474,6 +484,16 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/BlockTradePageVo'
+        '400':
+          description: 'Bad Request'
+          schema:
+            $ref: "#/definitions/Error"
+        '404':
+          description: 'Not Found'
+        default:
+          description: Generic error response
+          schema:
+            $ref: "#/definitions/Error"
       deprecated: false
   /api/v1/crypto-currency:
     get:
@@ -492,6 +512,16 @@ paths:
             additionalProperties:
               type: number
               format: double
+        '400':
+          description: 'Bad Request'
+          schema:
+            $ref: "#/definitions/Error"
+        '404':
+          description: 'Not Found'
+        default:
+          description: Generic error response
+          schema:
+            $ref: "#/definitions/Error"
       deprecated: false
   /api/v1/fiat-currency:
     get:
@@ -510,6 +540,16 @@ paths:
             additionalProperties:
               type: number
               format: double
+        '400':
+          description: 'Bad Request'
+          schema:
+            $ref: "#/definitions/Error"
+        '404':
+          description: 'Not Found'
+        default:
+          description: Generic error response
+          schema:
+            $ref: "#/definitions/Error"
       deprecated: false
   /api/v1/klines:
     get:
@@ -576,6 +616,16 @@ paths:
             type: array
             items:
               $ref: '#/definitions/CandlestickVo'
+        '400':
+          description: 'Bad Request'
+          schema:
+            $ref: "#/definitions/Error"
+        '404':
+          description: 'Not Found'
+        default:
+          description: Generic error response
+          schema:
+            $ref: "#/definitions/Error"
       deprecated: false
   /api/v1/orders/closed:
     get:
@@ -694,8 +744,18 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/OrderPageVo'
+        '400':
+          description: 'Bad Request'
+          schema:
+            $ref: "#/definitions/Error"
+        '404':
+          description: 'Not Found'
+        default:
+          description: Generic error response
+          schema:
+            $ref: "#/definitions/Error"
       deprecated: false
-  '/api/v1/orders/{id}':
+  /api/v1/orders/{id}:
     get:
       tags:
       - order
@@ -715,6 +775,16 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/OrderVo'
+        '400':
+          description: 'Bad Request'
+          schema:
+            $ref: "#/definitions/Error"
+        '404':
+          description: 'Not Found'
+        default:
+          description: Generic error response
+          schema:
+            $ref: "#/definitions/Error"
       deprecated: false
   /api/v1/ticker/24hr:
     get:
@@ -738,6 +808,16 @@ paths:
             type: array
             items:
               $ref: '#/definitions/TickerStatisticsVo'
+        '400':
+          description: 'Bad Request'
+          schema:
+            $ref: "#/definitions/Error"
+        '404':
+          description: 'Not Found'
+        default:
+          description: Generic error response
+          schema:
+            $ref: "#/definitions/Error"
       deprecated: false
   /api/v1/trades:
     get:
@@ -835,6 +915,16 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/TradePageVo'
+        '400':
+          description: 'Bad Request'
+          schema:
+            $ref: "#/definitions/Error"
+        '404':
+          description: 'Not Found'
+        default:
+          description: Generic error response
+          schema:
+            $ref: "#/definitions/Error"
       deprecated: false
   /api/v1/transactions:
     get:
@@ -917,6 +1007,16 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/TxPageVo'
+        '400':
+          description: 'Bad Request'
+          schema:
+            $ref: "#/definitions/Error"
+        '404':
+          description: 'Not Found'
+        default:
+          description: Generic error response
+          schema:
+            $ref: "#/definitions/Error"
       deprecated: false
 definitions:
   Error:
