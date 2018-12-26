@@ -24,11 +24,14 @@ serve:
 	mkdocs serve
 
 ########################################
-### Build swagger2markup-cli
+### Build other docs
 
 build-swagger2markup: submodules
 	@echo "--> Building swagger2markup-cli"
 	cd utils/swagger2markup-cli && gradle assemble
+
+build-html-apidocs:
+	swagger-codegen generate -i swagger.yml -l html -o ./docs-html/dex-api
 
 ########################################
 ### Swagger
