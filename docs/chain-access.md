@@ -29,23 +29,42 @@ a `broadcastTx` API to submit a `signed and encoded` transaction onto the Binanc
 ### Message Composition
 The transaction message and related information would be packed into a `payload`, which contains the below parts:
 
-- Account Number: a 64-bit integer, an identifier number associated with the signing address
-- Chain ID: a string, unique ID for the Chain, it stays the same for most time, but may vary as Binance Chain evolves;
-- Memo: a string, a short sentence of remark for the transaction
-- Msgs: a byte array, `json` encoded transaction messages.
-- Sequence Number: a 64-bit integer, please check [the below](#account_and_sequence_number)
+- `Msg`: array of size 1, containing the transaction message
+- `Signature`: array of size 1, containing the signature of the transaction sender, the below **Signature** section explains how to generate it.
+- `Source`: 64 bits integer, which is an identifier for transaction incoming tools
+- `Data`: byte array, reserved for future use
+- `Memo`: a string, a short sentence of remark for the transaction
 
 The above fields form into a transaction structure, which can be encoded via the codec described in the below section.
 
-### Encoding 
+### Transaction Encoding 
 Encoding defines the way how transactions are serialized and transferred between clients and nodes, 
 and different nodes themselves. [here](encoding.md) has a detailed specification on the transaction 
 types and encoding logic.
 
 ### Signature
+Signature is the evidence to prove the sender owns the transaction. It would be performed in the below actions:
+
+1. Compose a data structure. please note `Msg`, `Memo`, `Source`, `Data` are the same as in the above `payload`.
+
+    - `Chain ID`: a string, unique ID for the Chain, it stays the same for most time, but may vary as Binance Chain evolves;
+    - `Account Number`: a 64-bit integer, an identifier number associated with the signing address
+    - `Sequence Number`: a 64-bit integer, please check [the below](#account_and_sequence_number)
+    - `Memo`: a string, a short sentence of remark for the transaction
+    - `Msg`: a byte array, encoded transaction messages, please check the [encoding](encoding.md) section.
+    - `Source`: 64 bits integer, which is an identifier for transaction incoming tools
+    - `Data`: byte array, reserved for future use
 
 
+2. Encode the above data structure in json, with ordered key,  Specifically:
 
+    - Maps have their keys sorted lexicographically
+    - Structs keys are marshalled in the order defined in the struct
+
+
+3. Sign SHA256 of the encoded byte array, to create an ECDSA signature on curve Secp256k1
+
+The `signature` would be encoded together with transaction message and sent as `payload` to Binance Chain node via RPC or http REST API, as described in the above section.
 
 ## Account and Sequence Number
 
@@ -62,3 +81,7 @@ block chain, the `Sequence Number` would be set to the same as the one of latest
 This logic forces the client has to be aware of the current `Sequence Number`, either by reading from the
 blockchain via API, or keeping counting locally by themselves. The encouraged way would be to keep 
 counting locally and re-synchronized from the blockchain periodically.
+
+## Examples
+
+[SDK](api-reference/sdk.md) in different languages act as examples to use APIs to access Binance Chain.

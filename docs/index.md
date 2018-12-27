@@ -54,7 +54,9 @@ operations supported on Binance Chain.
 
 ## BNB (and Other Coins) MainNet Switch
 
-BNB is an ERC20 token and runs on Ethereum network. After Binance Chain is alive, 
+BNB is an ERC20 token now and runs on Ethereum network. After Binance Chain is alive, BNB would be converted from ERC20 token into native token running on Binance Chain via Binance.com. 
+
+Binance Chain welcome other tokens to migrate to Binance Chain for faster and economical transactions with more liquidity options.
 
 ## Trading on Binance DEX
 
