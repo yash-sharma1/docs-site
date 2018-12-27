@@ -1,14 +1,15 @@
 # Binance Chain Command Line Interface(CLI) Reference
 
-Binance Chain CLI is one of our ways to access Binance Chain.
+Binance Chain CLI is one of ways to access Binance Chain.
 
 Binance Chain CLI can be used as a local wallet, you can manage your keys via Binance CLI. You can add a new
 key or restore your key from mnemonic words. And you can list your keys and show specified key info. 
 
 With Binance Chain CLI, you can send transactions to Binance Chain, like placing order, transferring token, 
-issuing token and so on. Actually you can do almost everything you can do with our web wallet.
+issuing token and so on. Actually you can do almost everything you can do with Binance Chain web wallet. What is
+more, you can propose to list trading pairs and join chain governance.
 
-In addition to that, you can do some simple queries through CLI. For example, you can query your account's 
+In addition, you can do some simple queries through CLI. For example, you can query your account's 
 balance, transaction detail by transaction hash and etc.
 
 ## Where can I download the Binance Chain CLI?
@@ -20,8 +21,9 @@ TODO
 You can manage you keys locally without connecting to any node. But if you want to interact with Binance Chain, 
 you need to connect to one of Binance Chain full nodes. 
 
-We may release some full nodes officially which you can access. In the mean time, you can connect to full nodes
-run by other people. 
+You can run your own full node, which may automatically connect to Binance Chain, and you can run your CLI there 
+with your own full node. In the mean time, you can connect to any full nodes provided by other people. Please 
+check [here] (dataseed_list.md) for a list.
 
 Full nodes will be denoted as the format of `ip:port`.
 

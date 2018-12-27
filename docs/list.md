@@ -16,6 +16,15 @@ via interfaces.
 
 ## List Transaction
 
+As mentioned before, if you wan to list a trading pair, you have to create a proposal first and deposit 
+enough BNB (for now is 2000BNB), then you should wait for voting result of validators (so far is two weeks).
+
+But to prevent abuse, if your proposal is rejected by validators, all of your deposit will be distributed to 
+validators. So please make sure you are creating **reasonable** proposals. If your proposal is passed, you deposit 
+will be returned to your account.
+
+Then then owner of the asset to be listed can list the trading pair according to the proposal approved before
+the proposal is expired.
 
 ### Create a proposal
 
@@ -139,6 +148,37 @@ You can query proposal status via CLI.
 ### List 
 
 When proposal is passed, the owner of the token to be listed can list the token before `expire_time` specified.
+
+If you forget the symbol name of the token you issued, you can query your account info for detail.
+```bash
+➜  test git:(master) ✗ ./bnbcli account bnc1wwgakqy32m7vdnlf00pctf9hnaak37eh7wkmqa --trust-node --node=172.22.41.165:26657
+{  
+   "type":"bnbchain/Account",
+   "value":{  
+      "base":{  
+         "address":"bnc1wwgakqy32m7vdnlf00pctf9hnaak37eh7wkmqa",
+         "coins":[  
+            {  
+               "denom":"AAA-254",
+               "amount":"19500000000000000"
+            }
+         ],
+         "public_key":{  
+            "type":"tendermint/PubKeySecp256k1",
+            "value":"A1V88I61gCbF2V1RqdCxb0UN/8g95mNUlJGH5htNNC70"
+         },
+         "account_number":"0",
+         "sequence":"337"
+      },
+      "name":"node0",
+      "frozen":null,
+      "locked":null
+   }
+}
+```
+
+Then you can list your asset according to the proposal, you need to make sure that arguments are identical to your 
+proposal.
 
 ```bash
 ➜  test git:(master) ✗ ./bnbcli dex list -s AAA-254 --quote-asset-symbol BNB --from test \
