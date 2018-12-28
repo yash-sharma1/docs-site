@@ -17,7 +17,7 @@ via interfaces.
 ## List Transaction
 
 As mentioned before, if you wan to list a trading pair, you have to create a proposal first and deposit 
-enough BNB (for now is 2000BNB), then you should wait for voting result of validators (so far is two weeks).
+enough BNB, then you should wait for voting result of validators (so far is two weeks).
 
 But to prevent abuse, if your proposal is rejected by validators, all of your deposit will be distributed to 
 validators. So please make sure you are creating **reasonable** proposals, and you are encouraged to talk with 
@@ -72,7 +72,7 @@ And you also have to set expire time after which you will not be able to list ev
 
 ### Deposit
 
-Before validators can vote on the proposal you created, you need to deposit enough BNB (for now is 2000 BNB). You 
+Before validators can vote on the proposal you created, you need to deposit enough BNB (like 2000 BNB). You 
 may have already deposit a number of BNB when you propose, in the upper case, it is 100 BNB. So now you still 
 need to deposit another 1900 BNB.
 
