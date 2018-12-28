@@ -20,11 +20,12 @@ As mentioned before, if you wan to list a trading pair, you have to create a pro
 enough BNB (for now is 2000BNB), then you should wait for voting result of validators (so far is two weeks).
 
 But to prevent abuse, if your proposal is rejected by validators, all of your deposit will be distributed to 
-validators. So please make sure you are creating **reasonable** proposals. If your proposal is passed, you deposit 
+validators. So please make sure you are creating **reasonable** proposals, and you are encouraged to talk with 
+community and validators before you create the actual proposal. If your proposal is passed, you deposit 
 will be returned to your account.
 
-Then then owner of the asset to be listed can list the trading pair according to the proposal approved before
-the proposal is expired.
+Then the owner of the asset to be listed can list the trading pair via command line according to the proposal 
+approved before the proposal is expired.
 
 ### Create a proposal
 
@@ -32,7 +33,7 @@ Assume that the token you want to list already exists. Then you need to create a
 against one benchmark asset.
 
 ```bash
-➜  test git:(master) ✗ ./bnbcli gov submit-list-proposal --from test --deposit 10000000000:BNB \
+$  ./bnbcli gov submit-list-proposal --from test --deposit 10000000000:BNB \
 --base-asset-symbol AAA-254 --quote-asset-symbol BNB --init-price 100000000 --title "list AAA-254/BNB" \
 --description "list AAA-254/BNB" --expire-time 1570665600 --chain-id=chain-bnb --node=172.22.41.165:26657 --json
 Password to sign with 'test':
@@ -76,7 +77,7 @@ may have already deposit a number of BNB when you propose, in the upper case, it
 need to deposit another 1900 BNB.
 
 ```bash
-➜  test git:(master) ✗ ./bnbcli gov deposit --deposit 190000000000:BNB --from test --proposal-id 14 
+$  ./bnbcli gov deposit --deposit 190000000000:BNB --from test --proposal-id 14 
 --chain-id=chain-bnb --node=172.22.41.165:26657 --json
 Password to sign with 'test':
 {  
@@ -118,7 +119,7 @@ If proposal is passed, BNB you have deposited will be returned.
 You can query proposal status via CLI.
 
 ```bash
-➜  test git:(master) ✗ ./bnbcli gov proposal --proposal-id 15 --chain-id=chain-bnb --node=172.22.41.165:26657
+$  ./bnbcli gov proposal --proposal-id 15 --chain-id=chain-bnb --node=172.22.41.165:26657
 {
   "type": "gov/TextProposal",
   "value": {
@@ -151,7 +152,7 @@ When proposal is passed, the owner of the token to be listed can list the token 
 
 If you forget the symbol name of the token you issued, you can query your account info for detail.
 ```bash
-➜  test git:(master) ✗ ./bnbcli account bnc1wwgakqy32m7vdnlf00pctf9hnaak37eh7wkmqa --trust-node --node=172.22.41.165:26657
+$  ./bnbcli account bnc1wwgakqy32m7vdnlf00pctf9hnaak37eh7wkmqa --trust-node --node=172.22.41.165:26657
 {  
    "type":"bnbchain/Account",
    "value":{  
@@ -181,7 +182,7 @@ Then you can list your asset according to the proposal, you need to make sure th
 proposal.
 
 ```bash
-➜  test git:(master) ✗ ./bnbcli dex list -s AAA-254 --quote-asset-symbol BNB --from test \
+$  ./bnbcli dex list -s AAA-254 --quote-asset-symbol BNB --from test \
 --init-price 100000000 --proposal-id 15 --chain-id=chain-bnb --node=172.22.41.165:26657 --json
 {  
    "Height":"282409",

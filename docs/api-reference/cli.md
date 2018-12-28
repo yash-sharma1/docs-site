@@ -32,7 +32,7 @@ Full nodes will be denoted as the format of `ip:port`.
 When you have downloaded Binance Chain CLI, you can use `help` sub command to show all the available commands:
 
 ```bash
-➜  test git:(master) ✗ ./bnbcli help
+$  ./bnbcli help
 BNBChain light-client
 
 Usage:

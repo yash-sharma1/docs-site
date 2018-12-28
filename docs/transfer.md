@@ -39,7 +39,7 @@ Fee charged and balance will be showed in below.
 
 If you want to send token to an address, make sure you have restored your key. You can list all of your keys:
 ```bash
-➜  test git:(master) ✗ ./bnbcli keys list --home ~/.bnbcli
+$  ./bnbcli keys list --home ~/.bnbcli
 NAME:	TYPE:	ADDRESS:						PUBKEY:
 test	local	bnc17kwznuljsy4n89wcjd6esx2j5t0w326c03xhyr	bncp1addwnpepq2gudmfe0dqqax3f57j9azy5rujlwcra4w8ueehsl5whzhlvczxuuakuldy
 ```
@@ -47,7 +47,7 @@ test	local	bnc17kwznuljsy4n89wcjd6esx2j5t0w326c03xhyr	bncp1addwnpepq2gudmfe0dqqa
 You can query your balance before send tokens.
 
 ```bash
-➜  test git:(master) ✗ ./bnbcli account bnc17kwznuljsy4n89wcjd6esx2j5t0w326c03xhyr --trust-node --node tcp://172.22.41.165:26657
+$  ./bnbcli account bnc17kwznuljsy4n89wcjd6esx2j5t0w326c03xhyr --trust-node --node tcp://172.22.41.165:26657
 {  
    "type":"bnbchain/Account",
    "value":{  
@@ -107,7 +107,7 @@ Password to sign with 'test':
 
 If you are not familiar with CLI, you can use `-h` to get helps:
 ```bash
-➜  test git:(master) ✗ ./bnbcli send -h
+$  ./bnbcli send -h
 Create and sign a send tx
 
 Usage:
