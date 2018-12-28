@@ -5,5 +5,5 @@
 
 # WebSocket Streams
 
-* [Connection](dex-api/ws_connection.md)
-* [Streams](dex-api/ws_streams.md)
+* [Connection](dex-api/ws-connection.md)
+* [Streams](dex-api/ws-streams.md)
