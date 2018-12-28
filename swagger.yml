@@ -561,13 +561,11 @@ paths:
       produces:
       - application/json
       parameters:
-      - name: endTime
+      - name: symbol
         in: query
-        description: end time
-        required: false
-        type: integer
-        format: int64
-        allowEmptyValue: false
+        description: symbol
+        required: true
+        type: string
       - name: interval
         in: query
         description: interval
@@ -604,28 +602,41 @@ paths:
         type: integer
         format: int64
         allowEmptyValue: false
-      - name: symbol
+      - name: endTime
         in: query
-        description: symbol
-        required: true
-        type: string
+        description: end time
+        required: false
+        type: integer
+        format: int64
+        allowEmptyValue: false
       responses:
         '200':
           description: OK
           schema:
             type: array
             items:
-              $ref: '#/definitions/CandlestickVo'
-        '400':
-          description: 'Bad Request'
-          schema:
-            $ref: "#/definitions/Error"
-        '404':
-          description: 'Not Found'
-        default:
-          description: Generic error response
-          schema:
-            $ref: "#/definitions/Error"
+              type: object
+            example: ' [[
+
+                              1499040000000,      // Open time
+
+                              "0.01634790",       // Open
+
+                              "0.80000000",       // High
+
+                              "0.01575800",       // Low
+
+                              "0.01577100",       // Close
+
+                              "148976.11427815",  // Volume
+
+                              1499644799999,      // Close time
+
+                              "2434.19055334",    // Quote asset volume
+
+                              308                // Number of trades
+
+                      ]] '
       deprecated: false
   /api/v1/orders/closed:
     get:
