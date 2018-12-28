@@ -27,6 +27,9 @@ You can:
 - Propose to create trading pairs between two different tokens
 - Send orders to buy or sell assets through trading pairs created on the chain
 
+## Will Binance Chain introduce more features and transaction types in the future?
+
+Yes, Binance Chain team and community would pay attentions to the technology advance and requirement trends to make value-transfer and value-exchange easier and easier.
 
 ## What is the native coin on Binance Chain?
 

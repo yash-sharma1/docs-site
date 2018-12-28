@@ -27,15 +27,9 @@ You can only write to Binance Chain via `Transactions`. Both Web API and Node RP
 a `broadcastTx` API to submit a `signed and encoded` transaction onto the Binance Chain. The detailed process would be like the below:
 
 ### Message Composition
-The transaction message and related information would be packed into a `payload`, which contains the below parts:
+The transaction message and related information would be packed into a `payload`, which is the so called [`Standard Transaction`](encoding.md#standard_transaction_to_use_and_encode_for_binance_chain). 
 
-- `Msg`: array of size 1, containing the transaction message
-- `Signature`: array of size 1, containing the signature of the transaction sender, the below **Signature** section explains how to generate it.
-- `Source`: 64 bits integer, which is an identifier for transaction incoming tools
-- `Data`: byte array, reserved for future use
-- `Memo`: a string, a short sentence of remark for the transaction
-
-The above fields form into a transaction structure, which can be encoded via the codec described in the below section.
+The transaction body, memo, signature, etc. fill in the `Standard Transaction and encoded and broadcast out together onto Binance Chain.
 
 ### Transaction Encoding 
 Encoding defines the way how transactions are serialized and transferred between clients and nodes, 
@@ -47,11 +41,11 @@ Signature is the evidence to prove the sender owns the transaction. It would be 
 
 1. Compose a data structure. please note `Msg`, `Memo`, `Source`, `Data` are the same as in the above `payload`.
 
-    - `Chain ID`: a string, unique ID for the Chain, it stays the same for most time, but may vary as Binance Chain evolves;
-    - `Account Number`: a 64-bit integer, an identifier number associated with the signing address
-    - `Sequence Number`: a 64-bit integer, please check [the below](#account_and_sequence_number)
-    - `Memo`: a string, a short sentence of remark for the transaction
-    - `Msg`: a byte array, encoded transaction messages, please check the [encoding](encoding.md) section.
+    - `chain_id`: a string, unique ID for the Chain, it stays the same for most time, but may vary as Binance Chain evolves;
+    - `account_number`: a 64-bit integer, an identifier number associated with the signing address
+    - `sequence_number`: a 64-bit integer, please check [the below](#account_and_sequence_number)
+    - `memo`: a string, a short sentence of remark for the transaction
+    - `msgs`: a byte array, **json encoded** transaction messages, please check the [encoding](encoding.md) section.
     - `Source`: 64 bits integer, which is an identifier for transaction incoming tools
     - `Data`: byte array, reserved for future use
 
