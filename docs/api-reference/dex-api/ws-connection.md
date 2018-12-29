@@ -17,6 +17,8 @@ Can be established through a different URL streams as follows:
 - Combined streams are accessed at **/stream?streams=\<streamName1\>/\<streamName2\>/\<streamName3\>**
 - Ex: to establish a connection
 
+> please note all the example code are in Javascript.
+
 ```javascript
   // for personal streams, ex: Account & Orders
   const accountAndOrdersFeeds = new WebSocket("ws://localhost:3333/ws/<USER_ADDRESS>");

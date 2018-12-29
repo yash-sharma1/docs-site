@@ -27,7 +27,7 @@ You can only write to Binance Chain via `Transactions`. Both Web API and Node RP
 a `broadcastTx` API to submit a `signed and encoded` transaction onto the Binance Chain. The detailed process would be like the below:
 
 ### Message Composition
-The transaction message and related information would be packed into a `payload`, which is the so called [`Standard Transaction`](encoding.md#standard_transaction_to_use_and_encode_for_binance_chain). 
+The transaction message and related information would be packed into a `payload`, which is the so called [`Standard Transaction`](encoding.md#standard-transaction-to-use-and-encode-for-binance_chain). 
 
 The transaction body, memo, signature, etc. fill in the `Standard Transaction and encoded and broadcast out together onto Binance Chain.
 

@@ -29,7 +29,7 @@ Please refer to the [API Reference](api-reference/dex-api.md) for detailed speci
 [SDK](api-reference/sdk.md) are also provided as more friendly programming libraries.
 
 
-## Advance Usage
+## Advanced Usage
 
 ### Run a Full Node
 

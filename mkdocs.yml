@@ -21,8 +21,14 @@ nav:
     - SDK: api-reference/sdk.md
     - Commands: api-reference/cli.md
   - More Help: resources.md
-  - Binance DEX: https://dex.binance.org
-  - Chain Explorer: https://explorer.binance.org
+  - Binance DEX TestNet: https://testnet-wallet.binance.org
+  - Chain Explorer TestNet: https://testnet-explorer.binance.org
+
+markdown_extensions:
+    - toc:
+        permalink: 
+    - admonition
+    - def_list
 
 plugins:
   - search:
