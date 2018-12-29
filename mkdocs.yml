@@ -4,6 +4,7 @@ site_author: Binance Chain Community
 
 repo_url: https://github.com/binance-chain/
 edit_uri: ""
+use_directory_urls: false
 
 theme:
   name: readthedocs
