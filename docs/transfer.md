@@ -2,7 +2,7 @@
 
 `Transfer` is the most basic transaction Binance Chain supports, it moves assets among different addresses.
 
-Please note the fees must be paid first in BNB before the transaction can be executioned.
+Please note the fees must be paid first in BNB before the transaction can be executed.
 
 ## Account and Balance
 
@@ -14,12 +14,14 @@ The balance (the amount of token) of each asset is composed of 3 different parts
 - Available: the amount of token can be transferred, and spent to swap (buy) other assets
 - Locked: the amount of token has been used in any outstanding orders. Once the order terminates 
 (either filled, canceled or expired), the locked amount would decrease.
-- Frozen: the amount of token has been fronze via `Freeze` transactions.
+- Frozen: the amount of token has been frozen via `Freeze` transactions.
 
 ## Simple Transfer and Memo
 
 Before transferring token to someone else, please make sure that you have an account with enough balance
 and have unlocked your wallet on web wallet or restored your key via CLI.
+
+You can always input a "memo" sentence as extra information to be recorded on the blockchain.
 
 ### Web wallet 
 
