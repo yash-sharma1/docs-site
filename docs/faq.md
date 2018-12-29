@@ -29,7 +29,7 @@ You can:
 
 ## Will Binance Chain introduce more features and transaction types in the future?
 
-Yes, Binance Chain team and community would pay attentions to the technology advance and requirement trends to make value-transfer and value-exchange easier and easier.
+Yes, Binance Chain team and community would cherish the technology advance and requirement trends and strive to make circulation of assets and value easier and easier.
 
 ## What is the native coin on Binance Chain?
 
@@ -226,6 +226,8 @@ The only exception is it would not participate consensus if the full node is not
 
 No. This was an intentional design decision to improve the performance of the system and eliminate 
 having to support unnecessary features.
+
+If you have certain must-have features, it might be added as a native implementation instead of using smart contract. Feel free to talk to Binance community.
 
 ## How can I transfer tokens, such as Bitcoin, from other block chains onto Binance Chain?
 
