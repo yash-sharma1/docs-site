@@ -75,4 +75,16 @@ the tick size or/and lot size is changed, new orders must stick to the new vaule
 existing orders on the order book can still be traded.
 
 ## Fees
+We have five kinds of order operations, each kind has its specific fee calculation logic and collection timing as the table described below.
 
+| Operation    |  calculation  |  collection timing |
+|:------------- |:------- |:------- |
+| Place order | free | - |
+| Cancel order| fixed fees | when the `Cancel` transaction executes |
+| Order expire| fixed fees if fully expired, otherwise free| when the scheduled order expiration happenes |
+| IOC order cancel| fixed fees if fully canceled, otherwise free| when the IOC order not fully filled |
+| Order execution | rate based fees | when the order matched |
+
+BNB is the priority in the fee collection and has some discounts. 
+
+DEX would always calculate and collect the fees based on the latest balance and in the best interest of users.
