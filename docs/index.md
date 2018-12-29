@@ -83,5 +83,5 @@ Read the below if you are more interested into the things under the hood.
 
 - [Disaster Recovery and Emergency](recovery.md): what are the disaster and emergency cases
 
-## Credit
-Thanks to [community, partners and supporters](credits.md).
+## Acknowledgement
+Thanks to [community, partners and supporters](acknowledgement.md).
