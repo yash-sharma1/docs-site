@@ -55,11 +55,11 @@ Using this method, streams are be consumed via subscribe and unsubscribe command
     };
 ```
 
-After connecting successfully, a user can subscribe/unsubscribe to different topics.
+After connecting successfully you can subscribe/unsubscribe to different topics.
 
 #### Examples
 
-**Example:** To subscribe to orders events and market depth updates, a user needs to send socket messages with the `subscribe` payloads as below:
+**Example:** To subscribe to orders events and market depth updates, you should to send a socket message with the `subscribe` payload as below:
 
 ```javascript
     const conn = new WebSocket("ws://testnet-dex.binance.org/api");
@@ -73,7 +73,7 @@ After connecting successfully, a user can subscribe/unsubscribe to different top
     }
 ```
 
-**Example:** To unsubscribe from orders events, a user needs to send socket message with the payloads as below:
+**Example:** To unsubscribe from orders events, you should to send a socket message with payloads as below:
 
 ```javascript
     // unsubscribe from topic
@@ -83,7 +83,7 @@ After connecting successfully, a user can subscribe/unsubscribe to different top
     conn.send(JSON.stringify({ method: "unsubscribe", topic: "marketDepth", symbols: ["BNB_BTC"] }));
 ```
 
-**Example:** To extend connection life, a user needs to send a message with a payload using the `keepAlive` method:
+**Example:** To extend connection life, you should to send a a message with a payload using the `keepAlive` method:
 
 ```javascript
     // This will extend the connection time to another 60 minutes
@@ -91,7 +91,7 @@ After connecting successfully, a user can subscribe/unsubscribe to different top
     conn.send(JSON.stringify({ method: "keepAlive" }));
 ```
 
-**Example:** To close a connection, a user needs to send socket message with the payload as below:
+**Example:** To close a connection, you should to send a socket message with a payload as below:
 
 ```javascript
     // Connections will auto close after 60 minutes by default if no "keepAlive" messages received
