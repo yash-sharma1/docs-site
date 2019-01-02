@@ -97,7 +97,7 @@ message NewOrder {
   int64  side = 5 // 1 for buy and 2 fory sell
   int64 price = 6 // price of the order, which is the real price multiplied by 1e8 (10^8) and rounded to integer
   int64 quantity = 7 // quantity of the order, which is the real price multiplied by 1e8 (10^8) and rounded to integer
-  int64 timeinforce = 8 // 1 for Good Till Cancel(GTC) order and 3 for Immediate Or Cancel (IOC)
+  int64 timeinforce = 8 // 1 for Good Till Expire(GTE) order and 3 for Immediate Or Cancel (IOC)
 ```
 
 #### Cancel
@@ -116,7 +116,7 @@ message CancelOrder {
 ```
   
 #### Freeze
-Freeze transaction would move the amount of the tokens into a `fronze` state, in which it cannot be used to transfer or send new orders.
+Freeze transaction would move the amount of the tokens into a `frozen` state, in which it cannot be used to transfer or send new orders.
 
 ```go
 // please note the field name is the JSON name.
@@ -130,7 +130,7 @@ message TokenFreeze {
 ```
 
 #### Unfreeze
-Unfreezcanceltransaction would reversely turn the amount of `frozen` tokens back to free state.
+Unfreeze would reversely turn the amount of `frozen` tokens back to free state.
 
 ```go
 // please note the field name is the JSON name.
