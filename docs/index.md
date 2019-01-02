@@ -1,6 +1,6 @@
 # Welcome to Binance Chain Docs
 
-## What is Binance Chain, or Binance DEX
+## What are Binance Chain and Binance DEX?
 
 Binance Chain is a blockchain software system developed by Binance and its community.
 Binance DEX refers to the decentralized exchange features developed on top of Binance Chain.
@@ -48,9 +48,9 @@ Binance Chain essentially is a digital asset creation and exchange platform. The
 
 ## BNB (and Other Coins) MainNet Switch
 
-Binance Coin (BNB) is an ERC20 token and runs on the Ethereum network. After Binance Chain is ready to go with its MainNet, BNB will be converted from ERC20 tokens into native BNB tokens running on Binance Chain via the exchange platform at Binance.com. We see this as a pragmatic and efficient way to perform the intiial token swap.
+Binance Coin (BNB) is an ERC20 token on the Ethereum network. After Binance Chain is ready to go with its main network, BNB will be converted from ERC20 tokens into native BNB tokens running on Binance Chain via the exchange platform at Binance.com, a pragmatic and efficient way to perform the initial token swap.
 
-Binance Chain is ready for other projects to migrate their tokens to take advantage of performant transactions with more liquidity options and built-in native marketplace features. We will provide more information about how projects can set themselves up for this (via Binance.com or one of our partners) in the near future.
+Binance Chain is ready for other projects to migrate their tokens to take advantage of performant transactions with more liquidity options and native marketplace features. More information about how projects can set themselves up for this (via Binance.com or partners) will come soon.
 
 ## Trading on Binance DEX
 
