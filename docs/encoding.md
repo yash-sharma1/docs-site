@@ -30,7 +30,7 @@ Binary encoding is a variant of Google protocol buffer. The bytes are layed out 
 2. an object type prefix of 4-8 bytes - For different type of objects, there would be different type prefixes, and they are showed as in the below specific objects (data structures).
 3. a binary encoded object - the encoding is mostly the same as protocol buffer encoding mechnism, except the embedded fields of complex type:
     - to encode array of some specific types, a length in varint and an object type prefix would be added ahead of the real encoding
-    - to encode data field of some specific types, aj object type prefix for the field would be added ahead of the real encoding.
+    - to encode data field of some specific types, an object type prefix for the field would be added ahead of the real encoding.
 
 ## Binance Chain Encoding Types
 
