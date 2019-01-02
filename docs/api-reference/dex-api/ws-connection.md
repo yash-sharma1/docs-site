@@ -8,6 +8,7 @@ The DEX exposes several data streams over standard WebSocket connections, which 
 - All symbols in stream names are lowercase.
 
 Stream names may be provided in the URL **or** there is a mechanism to `subscribe` to consume streams on demand through one connection.
+
 Examples for each of these methods are provided below in JavaScript:
 
 ### Method 1: Connect with stream names in the URL
@@ -56,8 +57,6 @@ Using this method, streams are be consumed via subscribe and unsubscribe command
 ```
 
 After connecting successfully you can subscribe/unsubscribe to different topics.
-
-#### Examples
 
 **Example:** To subscribe to orders events and market depth updates, you should to send a socket message with the `subscribe` payload as below:
 
