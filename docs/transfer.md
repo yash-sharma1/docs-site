@@ -21,7 +21,7 @@ The balance (the amount of token) of each asset is composed of 3 different parts
 Before transferring token to someone else, please make sure that you have an account with enough balance
 and have unlocked your wallet on web wallet or restored your key via CLI.
 
-You can always input a "memo" sentence as extra information to be recorded on the blockchain.
+You can always input a "memo" sentence as extra information to be recorded on the blockchain, though it has a limit on the length.
 
 ### Web wallet 
 

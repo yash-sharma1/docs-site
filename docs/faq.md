@@ -116,6 +116,8 @@ shared among different transactions. New orders are exempt from fees to encourag
 trades would be charged more for their benefits from the liquidity provided in the network. 
 Order Expire and Cancel are also charged with a fee if they fail to provide any liquidity.
 
+Besides the fees, **no other gas would be charged.**
+
 Fees can be paid in any asset, but the network would charge BNB first and apply a discount if the 
 address has BNB balance.
 
