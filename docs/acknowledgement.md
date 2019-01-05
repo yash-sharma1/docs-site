@@ -1,4 +1,4 @@
- # Acknowledgements
+# Acknowledgements
 
 Binance Chain has been through several iterations and evolutions, each time building upon work contributed by the amazing members of the blockchain community. As a blockchain company with the community at its core, we would like to acknowledge the outstanding work that we have been able to utilize to grow and evolve. We hope that Binance Chain will present an opportunity for more projects to grow in the blockchain ecosystem. Let's build the future together!
 
