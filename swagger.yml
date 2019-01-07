@@ -1,13 +1,12 @@
 swagger: '2.0'
 info:
-  title: 'Binance Chain Frontier API'
-  version: 0.1.0
-  description: 'The Binance Chain Frontier API: HTTP endpoints providing access to the Binance Chain validator node network and market data services.'
-  termsOfService: 'https://www.binance.com/agreement.html'
+  title: 'HTTP API'
+  version: 1.0.0
+  description: 'The Binance Chain HTTP API provides access to a Binance Chain node deployment and market data services.'
   contact:
     name: 'Binance Support'
-    email: 'support@binance.com'
-    url: 'https://support.binance.com'
+    email: 'support@binance.org'
+    url: 'https://support.binance.org'
   license:
     name: 'Apache 2.0'
     url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
@@ -56,8 +55,13 @@ paths:
     get:
       tags:
       - misc
-      summary: Get Block Time
-      description: Gets the latest block time and the current time according to the HTTP service.
+      summary: Get the block time.
+      description: |
+        Gets the latest block time and the current time according to the HTTP service.
+
+        **Destination:** Validator node.
+
+        **Rate Limit:** 1 request per IP per second.
       operationId: getTime
       produces:
       - application/json
@@ -82,8 +86,13 @@ paths:
             $ref: "#/definitions/Error"
   /api/v1/node-info:
     get:
-      summary: Get Node Information
-      description: Gets runtime information about the node.
+      summary: Get node information.
+      description: |
+        Gets runtime information about the node.
+
+        **Destination:** Validator node.
+
+        **Rate Limit:** 1 request per IP per second.
       operationId: getNodeInfo
       produces:
       - application/json
@@ -99,8 +108,13 @@ paths:
             description: 'Represents block height, current timestamp and the number of connected peers.'
   /api/v1/validators:
     get:
-      summary: Get Validators
-      description: Gets the list of consensus validators.
+      summary: Get validators.
+      description: |
+        Gets the list of validators used in consensus.
+
+        **Destination:** Witness node.
+
+        **Rate Limit:** 10 requests per IP per second.
       operationId: getValidators
       produces:
       - application/json
@@ -124,8 +138,13 @@ paths:
             $ref: "#/definitions/Error"
   /api/v1/peers:
     get:
-      summary: Get Peers
-      description: Gets the list of network peers.
+      summary: Get network peers.
+      description: |
+        Gets the list of network peers.
+
+        **Destination:** Witness node.
+
+        **Rate Limit:** 1 request per IP per second.
       operationId: getPeers
       produces:
       - application/json
@@ -147,33 +166,15 @@ paths:
           description: Generic error response
           schema:
             $ref: "#/definitions/Error"
-  /api/v1/frontier-info:
-    get:
-      summary: Get Frontier Information
-      description: Gets runtime information about the frontier services.
-      operationId: getFrontierInfo
-      produces:
-      - application/json
-      tags:
-      - info
-      - frontier
-      responses:
-        '200':
-          description: Success
-          schema:
-            type: object
-            title: 'Frontier info'
-            description: 'Represents the current server time and sync state.'
-            properties:
-              time:
-                type: integer
-                title: 'The current server time'
-                description: 'In unix time (the number of seconds since the Unix Epoch)'
-                format: int64
   /api/v1/account/{address}:
     get:
-      summary: Get Account
-      description: Gets account metadata for an address.
+      summary: Get an account.
+      description: |
+        Gets account metadata for an address.
+
+        **Destination:** Witness node.
+
+        **Rate Limit:** 5 requests per IP per second.
       operationId: getAccount
       produces:
       - application/json
@@ -204,8 +205,13 @@ paths:
         type: string
   /api/v1/account/{address}/sequence:
     get:
-      summary: Get Account Sequence
-      description: Gets an account sequence for an address.
+      summary: Get an account sequence.
+      description: |
+        Gets an account sequence for an address.
+
+        **Destination:** Validator node.
+
+        **Rate Limit:** 5 requests per IP per second.
       operationId: getAccountSequence
       produces:
       - application/json
@@ -236,8 +242,13 @@ paths:
         type: string
   /api/v1/tx/{hash}:
     get:
-      summary: Get Transaction
-      description: Gets transaction metadata by transaction ID.
+      summary: Get a transaction.
+      description: |
+        Gets transaction metadata by transaction ID.
+
+        **Destination:** Seed node.
+
+        **Rate Limit:** 10 requests per IP per second.
       operationId: getTransaction
       produces:
       - application/json
@@ -270,8 +281,13 @@ paths:
     get:
       tags:
       - tokens
-      summary: Get Tokens
-      description: Gets a list of tokens that have been issued.
+      summary: Get tokens list.
+      description: |
+        Gets a list of tokens that have been issued.
+
+        **Destination:** Witness node.
+
+        **Rate Limit:** 1 request per IP per second.
       operationId: getTokens
       produces:
       - application/json
@@ -294,8 +310,13 @@ paths:
     get:
       tags:
       - market
-      summary: Get Market Pairs
-      description: Gets the list of market pairs that have been listed.
+      summary: Get market pairs.
+      description: |
+        Gets the list of market pairs that have been listed.
+
+        **Destination:** Witness node.
+
+        **Rate Limit:** 1 request per IP per second.
       operationId: getPairs
       produces:
       - application/json
@@ -318,8 +339,13 @@ paths:
     get:
       tags:
       - market
-      summary: Get Order Depth Data
-      description: Gets the order book depth data for a given pair symbol.
+      summary: Get the order book.
+      description: |
+        Gets the order book depth data for a given pair symbol.
+
+        **Destination:** Validator node.
+
+        **Rate Limit:** 10 requests per IP per second.
       operationId: getDepth
       produces:
       - application/json
@@ -340,6 +366,8 @@ paths:
       responses:
         '200':
           description: Success
+          schema:
+            $ref: "#/definitions/MarketDepth"
         '400':
           description: 'Bad Request'
           schema:
@@ -355,8 +383,13 @@ paths:
       tags:
       - node
       operationId: broadcastTx
-      summary: Post Transaction to Broadcast
-      description: Broadcasts a signed transaction. A single transaction must be sent in hex format in plain text.
+      summary: Broadcast a transaction.
+      description: |
+        Broadcasts a signed transaction. A single transaction must be sent in hex format in plain text.
+
+        **Destination:** Witness node.
+
+        **Rate Limit:** 5 requests per IP per second.
       consumes:
       - text/plain
       produces:
@@ -407,13 +440,13 @@ paths:
           description: Generic error response
           schema:
             $ref: "#/definitions/Error"
-  /api/query/trades-statistics:
+  /api/trades-statistics:
     get:
       tags:
       - explorer
-      summary: Get Trade Statistics
+      summary: Get trade statistics.
       description: Gets statistics about market trades for a given pair symbol.
-      operationId: getTradeStatisticsDTOUsingGET
+      operationId: getTradeStatisticsDTO
       produces:
       - application/json
       parameters:
@@ -426,7 +459,7 @@ paths:
         '200':
           description: OK
           schema:
-            $ref: '#/definitions/TradeStatisticsDTO'
+            $ref: '#/definitions/TradeStatistics'
         '400':
           description: 'Bad Request'
           schema:
@@ -442,9 +475,9 @@ paths:
     get:
       tags:
       - trade
-      summary: Get Trades in Block
-      description: Gets historical trades per block. Sorted by block height in descending order.
-      operationId: getBlockTradesUsingGET
+      summary: Get the trades sorted by block height.
+      description: Gets a list of trades sorted by block height in descending order.
+      operationId: getBlockTrades
       produces:
       - application/json
       parameters:
@@ -495,7 +528,7 @@ paths:
         '200':
           description: OK
           schema:
-            $ref: '#/definitions/BlockTradePageVo'
+            $ref: '#/definitions/BlockTradePage'
         '400':
           description: 'Bad Request'
           schema:
@@ -511,19 +544,16 @@ paths:
     get:
       tags:
       - market
-      summary: Get Currency Exchange Rate
+      summary: Get currency exchange rate.
       description: Gets exchange rates for tokens on Binance DEX. The rate is updated every 30 seconds.
-      operationId: getCryptoCurrencyRateUsingGET
+      operationId: getCryptoCurrencyRate
       produces:
       - application/json
       responses:
         '200':
           description: OK
           schema:
-            type: object
-            additionalProperties:
-              type: number
-              format: double
+            $ref: "#/definitions/ExchangeRate"
         '400':
           description: 'Bad Request'
           schema:
@@ -539,19 +569,16 @@ paths:
     get:
       tags:
       - market
-      summary: Get Fiat Exchange Rate
-      description: Gets exchange rates of fiat currency to crypto currency. The rate is updated every 5 minutes.
-      operationId: getFiatCurrencyRateUsingGET
+      summary: Get fiat currency exchange rate.
+      description: Gets exchange rate of fiat currency to cryptocurrency. The rate is updated every 5 minutes.
+      operationId: getFiatCurrencyRate
       produces:
       - application/json
       responses:
         '200':
           description: OK
           schema:
-            type: object
-            additionalProperties:
-              type: number
-              format: double
+            $ref: "#/definitions/ExchangeRate"
         '400':
           description: 'Bad Request'
           schema:
@@ -567,9 +594,9 @@ paths:
     get:
       tags:
       - market
-      summary: Get Candlestick Bars
+      summary: Get candlestick bars.
       description: Gets candlestick/kline bars for a symbol. Bars are uniquely identified by their open time.
-      operationId: getCandlestickBarsUsingGET
+      operationId: getCandlestickBars
       produces:
       - application/json
       parameters:
@@ -627,7 +654,7 @@ paths:
           schema:
             type: array
             items:
-              type: object
+              $ref: '#/definitions/Candlestick'
             example: ' [[
 
                               1499040000000,      // Open time
@@ -654,9 +681,9 @@ paths:
     get:
       tags:
       - order
-      summary: Get Closed Orders
+      summary: Get closed orders.
       description: Gets closed (filled and cancelled) orders for a given address.
-      operationId: getClosedOrdersUsingGET
+      operationId: getClosedOrders
       produces:
       - application/json
       parameters:
@@ -723,15 +750,15 @@ paths:
         '200':
           description: OK
           schema:
-            $ref: '#/definitions/OrderPageVo'
+            $ref: '#/definitions/OrderList'
       deprecated: false
   /api/v1/orders/open:
     get:
       tags:
       - order
-      summary: Get Open Orders
+      summary: Get open orders.
       description: Gets open orders for a given address.
-      operationId: getOpenOrdersUsingGET
+      operationId: getOpenOrders
       produces:
       - application/json
       parameters:
@@ -766,7 +793,7 @@ paths:
         '200':
           description: OK
           schema:
-            $ref: '#/definitions/OrderPageVo'
+            $ref: '#/definitions/OrderList'
         '400':
           description: 'Bad Request'
           schema:
@@ -782,9 +809,9 @@ paths:
     get:
       tags:
       - order
-      summary: Get Order
-      description: Gets metadata for an individual order.
-      operationId: getOrderUsingGET
+      summary: Get an order.
+      description: Gets metadata for an individual order by its ID.
+      operationId: getOrder
       produces:
       - application/json
       parameters:
@@ -797,7 +824,7 @@ paths:
         '200':
           description: OK
           schema:
-            $ref: '#/definitions/OrderVo'
+            $ref: '#/definitions/Order'
         '400':
           description: 'Bad Request'
           schema:
@@ -813,9 +840,9 @@ paths:
     get:
       tags:
       - market
-      summary: Get Ticker
+      summary: Get a market ticker.
       description: Gets 24 hour price change statistics for a market pair symbol.
-      operationId: get24HrPriceStatisticsUsingGET
+      operationId: get24HrPriceStatistics
       produces:
       - application/json
       parameters:
@@ -830,7 +857,7 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/TickerStatisticsVo'
+              $ref: '#/definitions/TickerStatistics'
         '400':
           description: 'Bad Request'
           schema:
@@ -846,9 +873,9 @@ paths:
     get:
       tags:
       - trade
-      summary: Get Trades
+      summary: Get market trades.
       description: Gets a list of historical trades.
-      operationId: getTradesUsingGET
+      operationId: getTrades
       produces:
       - application/json
       parameters:
@@ -937,7 +964,7 @@ paths:
         '200':
           description: OK
           schema:
-            $ref: '#/definitions/TradePageVo'
+            $ref: '#/definitions/TradePage'
         '400':
           description: 'Bad Request'
           schema:
@@ -953,9 +980,9 @@ paths:
     get:
       tags:
       - transaction
-      summary: Get Transactions
+      summary: Get transactions.
       description: Gets a list of transactions.
-      operationId: txnsUsingGET
+      operationId: txns
       produces:
       - application/json
       parameters:
@@ -1029,7 +1056,7 @@ paths:
         '200':
           description: OK
           schema:
-            $ref: '#/definitions/TxPageVo'
+            $ref: '#/definitions/TxPage'
         '400':
           description: 'Bad Request'
           schema:
@@ -1221,17 +1248,38 @@ definitions:
           description: "In decimal form, e.g. 1.00000000"
           example: "0.00000000"
           format: fixed8
-  BlockTradePageVo:
+  MarketDepth:
+    type: object
+    properties:
+      asks:
+        type: array
+        description: "Price and qty in decimal form, e.g. 1.00000000"
+        example: "[\"1.00000000\",\"800.00000000\"]"
+        items:
+          type: string
+          format: fixed8
+        minItems: 2
+        maxItems: 2
+      bids:
+        type: array
+        description: "Price and qty in decimal form, e.g. 1.00000000"
+        example: "[\"1.00000000\",\"800.00000000\"]"
+        items:
+          type: string
+          format: fixed8
+        minItems: 2
+        maxItems: 2
+  BlockTradePage:
     type: object
     properties:
       blockTrade:
         type: array
         items:
-          $ref: '#/definitions/BlockTradeVo'
+          $ref: '#/definitions/BlockTrade'
       total:
         type: string
-    title: BlockTradePageVo
-  BlockTradeVo:
+    title: BlockTradePage
+  BlockTrade:
     type: object
     properties:
       blockTime:
@@ -1245,9 +1293,9 @@ definitions:
       trade:
         type: array
         items:
-          $ref: '#/definitions/TradeVo'
-    title: BlockTradeVo
-  CandlestickVo:
+          $ref: '#/definitions/Trade'
+    title: BlockTrade
+  Candlestick:
     type: object
     properties:
       close:
@@ -1271,100 +1319,18 @@ definitions:
         type: number
       volume:
         type: number
-    title: CandlestickVo
-  OrderHistoryDTO:
-    type: object
-    properties:
-      blockTime:
-        type: string
-        format: date-time
-      cumulateQuantity:
-        type: number
-      executionType:
-        type: string
-        enum:
-        - NEW
-      fee:
-        type: string
-      initBlockHeight:
-        type: integer
-        format: int64
-      lastExecutedPrice:
-        type: number
-      lastExecutedQuantity:
-        type: number
-      orderCreateTime:
-        type: string
-        format: date-time
-      orderId:
-        type: string
-      owner:
-        type: string
-      price:
-        type: number
-      quantity:
-        type: number
-      side:
-        type: string
-        enum:
-        - BUY
-        - SELL
-      status:
-        type: string
-        enum:
-        - ACK
-        - PARTIALLY_FILLED
-        - IOC_NO_FILL
-        - FULLY_FILLED
-        - CANCELED
-        - EXPIRED
-        - FAIL_BLOCKING
-        - FAIL_MATCH
-        - UNKNOWN
-      symbol:
-        type: string
-      timeInForce:
-        type: string
-        enum:
-        - GTC
-        - IOC
-        - UNKNOWN
-      tradeId:
-        type: string
-      transactionHash:
-        type: string
-      transactionTime:
-        type: string
-        format: date-time
-      type:
-        type: string
-        enum:
-        - LIMIT
-      updateBlockHeight:
-        type: integer
-        format: int64
-    title: OrderHistoryDTO
-  OrderPageDTO:
+    title: Candlestick
+  OrderList:
     type: object
     properties:
       order:
         type: array
         items:
-          $ref: '#/definitions/OrderHistoryDTO'
+          $ref: '#/definitions/Order'
       total:
         type: string
-    title: OrderPageDTO
-  OrderPageVo:
-    type: object
-    properties:
-      order:
-        type: array
-        items:
-          $ref: '#/definitions/OrderVo'
-      total:
-        type: string
-    title: OrderPageVo
-  OrderVo:
+    title: OrderList
+  Order:
     type: object
     properties:
       cumulateQuantity:
@@ -1422,8 +1388,8 @@ definitions:
         type: string
         enum:
         - LIMIT
-    title: OrderVo
-  TickerStatisticsVo:
+    title: Order
+  TickerStatistics:
     type: object
     properties:
       askPrice:
@@ -1471,42 +1437,8 @@ definitions:
         type: string
       weightedAvgPrice:
         type: string
-    title: TickerStatisticsVo
-  TradeDTO:
-    type: object
-    properties:
-      baseAsset:
-        type: string
-      blockTime:
-        type: string
-        format: date-time
-      buyFee:
-        type: string
-      buyerId:
-        type: string
-      buyerOrderId:
-        type: string
-      initBlockHeight:
-        type: integer
-        format: int64
-      price:
-        type: number
-      quantity:
-        type: number
-      quoteAsset:
-        type: string
-      sellFee:
-        type: string
-      sellerId:
-        type: string
-      sellerOrderId:
-        type: string
-      symbol:
-        type: string
-      tradeId:
-        type: string
-    title: TradeDTO
-  TradePageVo:
+    title: TickerStatistics
+  TradePage:
     type: object
     properties:
       total:
@@ -1514,9 +1446,9 @@ definitions:
       trade:
         type: array
         items:
-          $ref: '#/definitions/TradeVo'
-    title: TradePageVo
-  TradeStatisticsDTO:
+          $ref: '#/definitions/Trade'
+    title: TradePage
+  TradeStatistics:
     type: object
     properties:
       avgPrice:
@@ -1534,8 +1466,8 @@ definitions:
         format: int64
       totalQuotaVolume:
         type: number
-    title: TradeStatisticsDTO
-  TradeVo:
+    title: TradeStatistics
+  Trade:
     type: object
     properties:
       baseAsset:
@@ -1568,21 +1500,8 @@ definitions:
         format: int64
       tradeId:
         type: string
-    title: TradeVo
-  TradingFeeDTO:
-    type: object
-    properties:
-      address:
-        type: string
-      blockHeight:
-        type: integer
-        format: int64
-      fee:
-        type: string
-      tradingFeeId:
-        type: string
-    title: TradingFeeDTO
-  TxPageVo:
+    title: Trade
+  TxPage:
     type: object
     properties:
       total:
@@ -1590,9 +1509,9 @@ definitions:
       tx:
         type: array
         items:
-          $ref: '#/definitions/TxVo'
-    title: TxPageVo
-  TxVo:
+          $ref: '#/definitions/Tx'
+    title: TxPage
+  Tx:
     type: object
     properties:
       blockHeight:
@@ -1629,5 +1548,9 @@ definitions:
         type: string
       value:
         type: number
-    title: TxVo
-
+    title: Tx
+  ExchangeRate:
+    type: object
+    additionalProperties:
+      type: number
+      format: double
