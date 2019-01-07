@@ -266,7 +266,7 @@ support@binance.org
 
 | Code | Description | Schema |
 | ---- | ----------- | ------ |
-| 200 | Success | [  ] |
+| 200 | Success | [ [Transaction](#transaction) ] |
 | 400 | Bad Request | [Error](#error) |
 | 404 | Not Found |  |
 | default | Generic error response | [Error](#error) |
@@ -560,10 +560,11 @@ support@binance.org
 
 | Name | Type | Description | Required |
 | ---- | ---- | ----------- | -------- |
-| hash | string |  | No |
+| code | integer |  | No |
 | log | string |  | No |
 | data | string |  | No |
-| code | integer |  | No |
+| hash | string |  | No |
+| ok | boolean |  | No |
 
 ### Account  
 
