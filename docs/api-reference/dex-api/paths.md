@@ -1,890 +1,756 @@
+HTTP API
+========
+The Binance Chain HTTP API provides access to a Binance Chain node deployment and market data services.
 
-<a name="paths"></a>
-## Paths
+**Version:** 1.0.0
 
-<a name="gettradestatisticsdtousingget"></a>
-### Get Trade Statistics
-```
-GET /api/query/trades-statistics
-```
+**Contact information:**  
+Binance Support  
+https://support.binance.org  
+support@binance.org  
 
+**License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.html)
 
-#### Description
-Gets statistics about market trades for a given pair symbol.
+### /api/v1/time
+---
+##### ***GET***
+**Summary:** Get the block time.
 
+**Description:** Gets the latest block time and the current time according to the HTTP service.
 
-#### Parameters
+**Destination:** Validator node.
 
-|Type|Name|Description|Schema|
-|---|---|---|---|
-|**Query**|**symbol**  <br>*required*|symbol|string|
+**Rate Limit:** 1 request per IP per second.
 
 
-#### Responses
+**Responses**
 
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|OK|[TradeStatisticsDTO](#tradestatisticsdto)|
-|**400**|Bad Request|[Error](#error)|
-|**404**|Not Found|No Content|
-|**default**|Generic error response|[Error](#error)|
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | Success | object |
+| 400 | Bad Request | [Error](#error) |
+| 404 | Not Found |  |
+| default | Generic error response | [Error](#error) |
 
+### /api/v1/node-info
+---
+##### ***GET***
+**Summary:** Get node information.
 
-#### Produces
+**Description:** Gets runtime information about the node.
 
-* `application/json`
+**Destination:** Validator node.
 
+**Rate Limit:** 1 request per IP per second.
 
-#### Tags
 
-* explorer
+**Responses**
 
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | Success | object |
 
-<a name="getaccount"></a>
-### Get Account
-```
-GET /api/v1/account/{address}
-```
+### /api/v1/validators
+---
+##### ***GET***
+**Summary:** Get validators.
 
+**Description:** Gets the list of validators used in consensus.
 
-#### Description
-Gets account metadata for an address.
+**Destination:** Witness node.
 
+**Rate Limit:** 10 requests per IP per second.
 
-#### Parameters
 
-|Type|Name|Description|Schema|
-|---|---|---|---|
-|**Path**|**address**  <br>*required*|The account address to query|string|
+**Responses**
 
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | Success | [Validators](#validators) |
+| 400 | Bad Request | [Error](#error) |
+| 404 | Not Found |  |
+| default | Generic error response | [Error](#error) |
 
-#### Responses
+### /api/v1/peers
+---
+##### ***GET***
+**Summary:** Get network peers.
 
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|Success|[Account](#account)|
-|**400**|Bad Request|[Error](#error)|
-|**404**|Not Found|No Content|
-|**default**|Generic error response|[Error](#error)|
+**Description:** Gets the list of network peers.
 
+**Destination:** Witness node.
 
-#### Produces
+**Rate Limit:** 1 request per IP per second.
 
-* `application/json`
 
+**Responses**
 
-#### Tags
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | Success | [Peers](#peers) |
+| 400 | Bad Request | [Error](#error) |
+| 404 | Not Found |  |
+| default | Generic error response | [Error](#error) |
 
-* account
-* node
+### /api/v1/account/{address}
+---
+##### ***GET***
+**Summary:** Get an account.
 
+**Description:** Gets account metadata for an address.
 
-<a name="getaccountsequence"></a>
-### Get Account Sequence
-```
-GET /api/v1/account/{address}/sequence
-```
+**Destination:** Witness node.
 
+**Rate Limit:** 5 requests per IP per second.
 
-#### Description
-Gets an account sequence for an address.
 
+**Parameters**
 
-#### Parameters
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| address | path | The account address to query | Yes | string |
 
-|Type|Name|Description|Schema|
-|---|---|---|---|
-|**Path**|**address**  <br>*required*|The account address to query|string|
+**Responses**
 
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | Success | [Account](#account) |
+| 400 | Bad Request | [Error](#error) |
+| 404 | Not Found |  |
+| default | Generic error response | [Error](#error) |
 
-#### Responses
+### /api/v1/account/{address}/sequence
+---
+##### ***GET***
+**Summary:** Get an account sequence.
 
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|Success|[AccountSequence](#accountsequence)|
-|**400**|Bad Request|[Error](#error)|
-|**404**|Not Found|No Content|
-|**default**|Generic error response|[Error](#error)|
+**Description:** Gets an account sequence for an address.
 
+**Destination:** Validator node.
 
-#### Produces
+**Rate Limit:** 5 requests per IP per second.
 
-* `application/json`
 
+**Parameters**
 
-#### Tags
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| address | path | The account address to query | Yes | string |
 
-* account
-* node
+**Responses**
 
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | Success | [AccountSequence](#accountsequence) |
+| 400 | Bad Request | [Error](#error) |
+| 404 | Not Found |  |
+| default | Generic error response | [Error](#error) |
 
-<a name="getblocktradesusingget"></a>
-### Get Trades in Block
-```
-GET /api/v1/block-trades
-```
+### /api/v1/tx/{hash}
+---
+##### ***GET***
+**Summary:** Get a transaction.
 
+**Description:** Gets transaction metadata by transaction ID.
 
-#### Description
-Gets historical trades per block. Sorted by block height in descending order.
+**Destination:** Seed node.
 
+**Rate Limit:** 10 requests per IP per second.
 
-#### Parameters
 
-|Type|Name|Description|Schema|Default|
-|---|---|---|---|---|
-|**Query**|**address**  <br>*optional*|the sender address|string||
-|**Query**|**end**  <br>*optional*|end time|integer (int64)||
-|**Query**|**height**  <br>*optional*|block height|integer (int64)||
-|**Query**|**limit**  <br>*optional*|default 50; max 100.|integer (int32)|`50`|
-|**Query**|**offset**  <br>*optional*|start with 0; default 0.|integer (int32)|`0`|
-|**Query**|**start**  <br>*optional*|start time|integer (int64)||
+**Parameters**
 
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| hash | path | The transaction hash to query | Yes | string |
 
-#### Responses
+**Responses**
 
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|OK|[BlockTradePageVo](#blocktradepagevo)|
-|**400**|Bad Request|[Error](#error)|
-|**404**|Not Found|No Content|
-|**default**|Generic error response|[Error](#error)|
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | Success | [Transaction](#transaction) |
+| 400 | Bad Request | [Error](#error) |
+| 404 | Not Found |  |
+| default | Generic error response | [Error](#error) |
 
+### /api/v1/tokens
+---
+##### ***GET***
+**Summary:** Get tokens list.
 
-#### Produces
+**Description:** Gets a list of tokens that have been issued.
 
-* `application/json`
+**Destination:** Witness node.
 
+**Rate Limit:** 1 request per IP per second.
 
-#### Tags
 
-* trade
+**Responses**
 
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | Success | [Tokens](#tokens) |
+| 400 | Bad Request | [Error](#error) |
+| 404 | Not Found |  |
+| default | Generic error response | [Error](#error) |
 
-<a name="broadcasttx"></a>
-### Post Transaction to Broadcast
-```
-POST /api/v1/broadcast
-```
+### /api/v1/markets
+---
+##### ***GET***
+**Summary:** Get market pairs.
 
+**Description:** Gets the list of market pairs that have been listed.
 
-#### Description
-Broadcasts a signed transaction. A single transaction must be sent in hex format in plain text.
+**Destination:** Witness node.
 
+**Rate Limit:** 1 request per IP per second.
 
-#### Parameters
 
-|Type|Name|Description|Schema|Default|
-|---|---|---|---|---|
-|**Query**|**sync**  <br>*optional*|Synchronous broadcast (wait for DeliverTx)|boolean|`"false"`|
-|**Body**|**body**  <br>*required*||string (binary)||
+**Responses**
 
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | Success | [Markets](#markets) |
+| 400 | Bad Request | [Error](#error) |
+| 404 | Not Found |  |
+| default | Generic error response | [Error](#error) |
 
-#### Responses
+### /api/v1/depth
+---
+##### ***GET***
+**Summary:** Get the order book.
 
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|Success|< [Response 200](#broadcasttx-response-200) > array|
-|**400**|Bad Request|[Error](#error)|
-|**404**|Not Found|No Content|
-|**default**|Generic error response|[Error](#error)|
+**Description:** Gets the order book depth data for a given pair symbol.
 
-<a name="broadcasttx-response-200"></a>
-**Response 200**
+**Destination:** Validator node.
 
-|Name|Schema|
-|---|---|
-|**code**  <br>*optional*|integer (int32)|
-|**data**  <br>*optional*|string|
-|**hash**  <br>*optional*|string|
-|**log**  <br>*optional*|string|
-|**ok**  <br>*optional*|boolean|
+**Rate Limit:** 10 requests per IP per second.
 
 
-#### Consumes
+**Parameters**
 
-* `text/plain`
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| symbol | query | symbol | No | string |
+| limit | query | symbol | No | integer |
 
+**Responses**
 
-#### Produces
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | Success | [MarketDepth](#marketdepth) |
+| 400 | Bad Request | [Error](#error) |
+| 404 | Not Found |  |
+| default | Generic error response | [Error](#error) |
 
-* `application/json`
+### /api/v1/broadcast
+---
+##### ***POST***
+**Summary:** Broadcast a transaction.
 
+**Description:** Broadcasts a signed transaction. A single transaction must be sent in hex format in plain text.
 
-#### Tags
+**Destination:** Witness node.
 
-* node
+**Rate Limit:** 5 requests per IP per second.
 
 
-<a name="getcryptocurrencyrateusingget"></a>
-### Get Currency Exchange Rate
-```
-GET /api/v1/crypto-currency
-```
+**Parameters**
 
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| sync | query | Synchronous broadcast (wait for DeliverTx) | No | boolean |
+| body | body |  | Yes | binary |
 
-#### Description
-Gets exchange rates for tokens on Binance DEX. The rate is updated every 30 seconds.
+**Responses**
 
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | Success | [  ] |
+| 400 | Bad Request | [Error](#error) |
+| 404 | Not Found |  |
+| default | Generic error response | [Error](#error) |
 
-#### Responses
+### /api/trades-statistics
+---
+##### ***GET***
+**Summary:** Get trade statistics.
 
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|OK|< string, number (double) > map|
-|**400**|Bad Request|[Error](#error)|
-|**404**|Not Found|No Content|
-|**default**|Generic error response|[Error](#error)|
+**Description:** Gets statistics about market trades for a given pair symbol.
 
+**Parameters**
 
-#### Produces
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| symbol | query | symbol | Yes | string |
 
-* `application/json`
+**Responses**
 
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [TradeStatistics](#tradestatistics) |
+| 400 | Bad Request | [Error](#error) |
+| 404 | Not Found |  |
+| default | Generic error response | [Error](#error) |
 
-#### Tags
+### /api/v1/block-trades
+---
+##### ***GET***
+**Summary:** Get the trades sorted by block height.
 
-* market
+**Description:** Gets a list of trades sorted by block height in descending order.
 
+**Parameters**
 
-<a name="getdepth"></a>
-### Get Order Depth Data
-```
-GET /api/v1/depth
-```
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| address | query | the sender address | No | string |
+| end | query | end time | No | long |
+| height | query | block height | No | long |
+| limit | query | default 50; max 100. | No | integer |
+| offset | query | start with 0; default 0. | No | integer |
+| start | query | start time | No | long |
 
+**Responses**
 
-#### Description
-Gets the order book depth data for a given pair symbol.
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [BlockTradePage](#blocktradepage) |
+| 400 | Bad Request | [Error](#error) |
+| 404 | Not Found |  |
+| default | Generic error response | [Error](#error) |
 
+### /api/v1/crypto-currency
+---
+##### ***GET***
+**Summary:** Get currency exchange rate.
 
-#### Parameters
+**Description:** Gets exchange rates for tokens on Binance DEX. The rate is updated every 30 seconds.
 
-|Type|Name|Description|Schema|
-|---|---|---|---|
-|**Query**|**limit**  <br>*optional*|symbol|integer (int32)|
-|**Query**|**symbol**  <br>*optional*|symbol|string|
+**Responses**
 
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [ExchangeRate](#exchangerate) |
+| 400 | Bad Request | [Error](#error) |
+| 404 | Not Found |  |
+| default | Generic error response | [Error](#error) |
 
-#### Responses
+### /api/v1/fiat-currency
+---
+##### ***GET***
+**Summary:** Get fiat currency exchange rate.
 
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|Success|No Content|
-|**400**|Bad Request|[Error](#error)|
-|**404**|Not Found|No Content|
-|**default**|Generic error response|[Error](#error)|
+**Description:** Gets exchange rate of fiat currency to cryptocurrency. The rate is updated every 5 minutes.
 
+**Responses**
 
-#### Produces
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [ExchangeRate](#exchangerate) |
+| 400 | Bad Request | [Error](#error) |
+| 404 | Not Found |  |
+| default | Generic error response | [Error](#error) |
 
-* `application/json`
+### /api/v1/klines
+---
+##### ***GET***
+**Summary:** Get candlestick bars.
 
+**Description:** Gets candlestick/kline bars for a symbol. Bars are uniquely identified by their open time.
 
-#### Tags
+**Parameters**
 
-* market
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| symbol | query | symbol | Yes | string |
+| interval | query | interval | Yes | string |
+| limit | query | default 500; max 1000. | No | integer |
+| startTime | query | start time | No | long |
+| endTime | query | end time | No | long |
 
+**Responses**
 
-<a name="getfiatcurrencyrateusingget"></a>
-### Get Fiat Exchange Rate
-```
-GET /api/v1/fiat-currency
-```
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [ [Candlestick](#candlestick) ] |
 
+### /api/v1/orders/closed
+---
+##### ***GET***
+**Summary:** Get closed orders.
 
-#### Description
-Gets exchange rates of fiat currency to crypto currency. The rate is updated every 5 minutes.
+**Description:** Gets closed (filled and cancelled) orders for a given address.
 
+**Parameters**
 
-#### Responses
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| address | query | the sender address | Yes | string |
+| end | query | end time | No | long |
+| limit | query | default 500; max 1000. | No | integer |
+| offset | query | start with 0; default 0. | No | integer |
+| side | query | order side | No | string |
+| start | query | start time | No | long |
+| status | query | order status list | No | [ string ] |
+| symbol | query | symbol | No | string |
 
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|OK|< string, number (double) > map|
-|**400**|Bad Request|[Error](#error)|
-|**404**|Not Found|No Content|
-|**default**|Generic error response|[Error](#error)|
+**Responses**
 
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [OrderList](#orderlist) |
 
-#### Produces
+### /api/v1/orders/open
+---
+##### ***GET***
+**Summary:** Get open orders.
 
-* `application/json`
+**Description:** Gets open orders for a given address.
 
+**Parameters**
 
-#### Tags
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| address | query | the sender address | Yes | string |
+| limit | query | default 500; max 1000. | No | integer |
+| offset | query | start with 0; default 0. | No | integer |
+| symbol | query | symbol | No | string |
 
-* market
+**Responses**
 
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [OrderList](#orderlist) |
+| 400 | Bad Request | [Error](#error) |
+| 404 | Not Found |  |
+| default | Generic error response | [Error](#error) |
 
-<a name="getfrontierinfo"></a>
-### Get Frontier Information
-```
-GET /api/v1/frontier-info
-```
+### /api/v1/orders/{id}
+---
+##### ***GET***
+**Summary:** Get an order.
 
+**Description:** Gets metadata for an individual order by its ID.
 
-#### Description
-Gets runtime information about the frontier services.
+**Parameters**
 
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| id | path | order id | Yes | string |
 
-#### Responses
+**Responses**
 
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|Success|[Frontier info](#frontier-info)|
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [Order](#order) |
+| 400 | Bad Request | [Error](#error) |
+| 404 | Not Found |  |
+| default | Generic error response | [Error](#error) |
 
-<a name="frontier-info"></a>
-**Frontier info**
+### /api/v1/ticker/24hr
+---
+##### ***GET***
+**Summary:** Get a market ticker.
 
-|Name|Description|Schema|
-|---|---|---|
-|**time**  <br>*optional*|In unix time (the number of seconds since the Unix Epoch)|integer (int64)|
+**Description:** Gets 24 hour price change statistics for a market pair symbol.
 
+**Parameters**
 
-#### Produces
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| symbol | query | symbol | No | string |
 
-* `application/json`
+**Responses**
 
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [ [TickerStatistics](#tickerstatistics) ] |
+| 400 | Bad Request | [Error](#error) |
+| 404 | Not Found |  |
+| default | Generic error response | [Error](#error) |
 
-#### Tags
+### /api/v1/trades
+---
+##### ***GET***
+**Summary:** Get market trades.
 
-* frontier
-* info
+**Description:** Gets a list of historical trades.
 
+**Parameters**
 
-<a name="getcandlestickbarsusingget"></a>
-### Get Candlestick Bars
-```
-GET /api/v1/klines
-```
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| address | query | the sender address | No | string |
+| baseAsset | query | base asset | No | string |
+| buyerOrderId | query | buyer order id | No | string |
+| end | query | end time | No | long |
+| height | query | block height | No | long |
+| limit | query | default 500; max 1000. | No | integer |
+| offset | query | start with 0; default 0. | No | integer |
+| quoteAsset | query | quote asset | No | string |
+| sellerOrderId | query | seller order id | No | string |
+| side | query | order side | No | string |
+| start | query | start time | No | long |
+| symbol | query | symbol | No | string |
 
+**Responses**
 
-#### Description
-Gets candlestick/kline bars for a symbol. Bars are uniquely identified by their open time.
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [TradePage](#tradepage) |
+| 400 | Bad Request | [Error](#error) |
+| 404 | Not Found |  |
+| default | Generic error response | [Error](#error) |
 
+### /api/v1/transactions
+---
+##### ***GET***
+**Summary:** Get transactions.
 
-#### Parameters
+**Description:** Gets a list of transactions.
 
-|Type|Name|Description|Schema|
-|---|---|---|---|
-|**Query**|**endTime**  <br>*optional*|end time|integer (int64)|
-|**Query**|**interval**  <br>*required*|interval|enum (1m, 3m, 5m, 15m, 30m, 1h, 2h, 4h, 6h, 8h, 12h, 1d, 3d, 1w, 1M)|
-|**Query**|**limit**  <br>*optional*|default 500; max 1000.|integer (int32)|
-|**Query**|**startTime**  <br>*optional*|start time|integer (int64)|
-|**Query**|**symbol**  <br>*required*|symbol|string|
+**Parameters**
 
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| address | query | address | No | string |
+| blockHeight | query | blockHeight | No | long |
+| endTime | query | endTime | No | long |
+| limit | query | limit | No | integer |
+| offset | query | offset | No | integer |
+| side | query | transaction side | No | string |
+| startTime | query | startTime | No | long |
+| txAsset | query | txAsset | No | string |
+| txType | query | transaction type | No | string |
 
-#### Responses
+**Responses**
 
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|OK|< object > array|
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [TxPage](#txpage) |
+| 400 | Bad Request | [Error](#error) |
+| 404 | Not Found |  |
+| default | Generic error response | [Error](#error) |
 
+### Models
+---
 
-#### Produces
+### Error  
 
-* `application/json`
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| code | long |  | No |
+| message | string |  | Yes |
 
+### Validators  
 
-#### Tags
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| block_height | long | Current block height | No |
+| validators | [  ] |  | No |
 
-* market
+### Peers  
 
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| Peers | array |  |  |
 
-#### Example HTTP response
+### Transaction  
 
-##### Response 200
-```json
-" [[\n1499040000000,      // Open time\n\"0.01634790\",       // Open\n\"0.80000000\",       // High\n\"0.01575800\",       // Low\n\"0.01577100\",       // Close\n\"148976.11427815\",  // Volume\n1499644799999,      // Close time\n\"2434.19055334\",    // Quote asset volume\n308                // Number of trades\n]] "
-```
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| hash | string |  | No |
+| log | string |  | No |
+| data | string |  | No |
+| code | integer |  | No |
 
+### Account  
 
-<a name="getpairs"></a>
-### Get Market Pairs
-```
-GET /api/v1/markets
-```
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| account_number | integer |  | No |
+| address | string (address) |  | No |
+| balances | [  ] |  | No |
+| public_key | [ integer ] | Public key bytes | No |
+| sequence | long |  | No |
 
+### AccountSequence  
 
-#### Description
-Gets the list of market pairs that have been listed.
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| sequence | long |  | No |
 
+### Tokens  
 
-#### Responses
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| Tokens | array |  |  |
 
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|Success|[Markets](#markets)|
-|**400**|Bad Request|[Error](#error)|
-|**404**|Not Found|No Content|
-|**default**|Generic error response|[Error](#error)|
+### Markets  
 
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| Markets | array |  |  |
 
-#### Produces
+### MarketDepth  
 
-* `application/json`
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| asks | [ string (fixed8) ] | Price and qty in decimal form, e.g. 1.00000000 | No |
+| bids | [ string (fixed8) ] | Price and qty in decimal form, e.g. 1.00000000 | No |
 
+### BlockTradePage  
 
-#### Tags
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| blockTrade | [ [BlockTrade](#blocktrade) ] |  | No |
+| total | string |  | No |
 
-* market
+### BlockTrade  
 
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| blockTime | long |  | No |
+| fee | string |  | No |
+| height | long |  | No |
+| trade | [ [Trade](#trade) ] |  | No |
 
-<a name="getnodeinfo"></a>
-### Get Node Information
-```
-GET /api/v1/node-info
-```
+### Candlestick  
 
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| close | number |  | No |
+| closeTime | long |  | No |
+| high | number |  | No |
+| low | number |  | No |
+| numberOfTrades | integer |  | No |
+| open | number |  | No |
+| openTime | long |  | No |
+| quoteAssetVolume | number |  | No |
+| volume | number |  | No |
 
-#### Description
-Gets runtime information about the node.
+### OrderList  
 
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| order | [ [Order](#order) ] |  | No |
+| total | string |  | No |
 
-#### Responses
+### Order  
 
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|Success|object|
-
-
-#### Produces
-
-* `application/json`
-
-
-#### Tags
-
-* info
-* node
-
-
-<a name="getclosedordersusingget"></a>
-### Get Closed Orders
-```
-GET /api/v1/orders/closed
-```
-
-
-#### Description
-Gets closed (filled and cancelled) orders for a given address.
-
-
-#### Parameters
-
-|Type|Name|Description|Schema|Default|
-|---|---|---|---|---|
-|**Query**|**address**  <br>*required*|the sender address|string||
-|**Query**|**end**  <br>*optional*|end time|integer (int64)||
-|**Query**|**limit**  <br>*optional*|default 500; max 1000.|integer (int32)|`500`|
-|**Query**|**offset**  <br>*optional*|start with 0; default 0.|integer (int32)|`0`|
-|**Query**|**side**  <br>*optional*|order side|enum (BUY, SELL)||
-|**Query**|**start**  <br>*optional*|start time|integer (int64)||
-|**Query**|**status**  <br>*optional*|order status list|< string > array(multi)||
-|**Query**|**symbol**  <br>*optional*|symbol|string||
-
-
-#### Responses
-
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|OK|[OrderPageVo](#orderpagevo)|
-
-
-#### Produces
-
-* `application/json`
-
-
-#### Tags
-
-* order
-
-
-<a name="getopenordersusingget"></a>
-### Get Open Orders
-```
-GET /api/v1/orders/open
-```
-
-
-#### Description
-Gets open orders for a given address.
-
-
-#### Parameters
-
-|Type|Name|Description|Schema|Default|
-|---|---|---|---|---|
-|**Query**|**address**  <br>*required*|the sender address|string||
-|**Query**|**limit**  <br>*optional*|default 500; max 1000.|integer (int32)|`500`|
-|**Query**|**offset**  <br>*optional*|start with 0; default 0.|integer (int32)|`0`|
-|**Query**|**symbol**  <br>*optional*|symbol|string||
-
-
-#### Responses
-
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|OK|[OrderPageVo](#orderpagevo)|
-|**400**|Bad Request|[Error](#error)|
-|**404**|Not Found|No Content|
-|**default**|Generic error response|[Error](#error)|
-
-
-#### Produces
-
-* `application/json`
-
-
-#### Tags
-
-* order
-
-
-<a name="getorderusingget"></a>
-### Get Order
-```
-GET /api/v1/orders/{id}
-```
-
-
-#### Description
-Gets metadata for an individual order.
-
-
-#### Parameters
-
-|Type|Name|Description|Schema|
-|---|---|---|---|
-|**Path**|**id**  <br>*required*|order id|string|
-
-
-#### Responses
-
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|OK|[OrderVo](#ordervo)|
-|**400**|Bad Request|[Error](#error)|
-|**404**|Not Found|No Content|
-|**default**|Generic error response|[Error](#error)|
-
-
-#### Produces
-
-* `application/json`
-
-
-#### Tags
-
-* order
-
-
-<a name="getpeers"></a>
-### Get Peers
-```
-GET /api/v1/peers
-```
-
-
-#### Description
-Gets the list of network peers.
-
-
-#### Responses
-
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|Success|[Peers](#peers)|
-|**400**|Bad Request|[Error](#error)|
-|**404**|Not Found|No Content|
-|**default**|Generic error response|[Error](#error)|
-
-
-#### Produces
-
-* `application/json`
-
-
-#### Tags
-
-* info
-* node
-
-
-<a name="get24hrpricestatisticsusingget"></a>
-### Get Ticker
-```
-GET /api/v1/ticker/24hr
-```
-
-
-#### Description
-Gets 24 hour price change statistics for a market pair symbol.
-
-
-#### Parameters
-
-|Type|Name|Description|Schema|
-|---|---|---|---|
-|**Query**|**symbol**  <br>*optional*|symbol|string|
-
-
-#### Responses
-
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|OK|< [TickerStatisticsVo](#tickerstatisticsvo) > array|
-|**400**|Bad Request|[Error](#error)|
-|**404**|Not Found|No Content|
-|**default**|Generic error response|[Error](#error)|
-
-
-#### Produces
-
-* `application/json`
-
-
-#### Tags
-
-* market
-
-
-<a name="gettime"></a>
-### Get Block Time
-```
-GET /api/v1/time
-```
-
-
-#### Description
-Gets the latest block time and the current time according to the HTTP service.
-
-
-#### Responses
-
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|Success|[Times](#times)|
-|**400**|Bad Request|[Error](#error)|
-|**404**|Not Found|No Content|
-|**default**|Generic error response|[Error](#error)|
-
-<a name="times"></a>
-**Times**
-
-|Name|Schema|
-|---|---|
-|**ap_time**  <br>*optional*|string|
-|**block_time**  <br>*optional*|string|
-
-
-#### Produces
-
-* `application/json`
-
-
-#### Tags
-
-* misc
-
-
-<a name="gettokens"></a>
-### Get Tokens
-```
-GET /api/v1/tokens
-```
-
-
-#### Description
-Gets a list of tokens that have been issued.
-
-
-#### Responses
-
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|Success|[Tokens](#tokens)|
-|**400**|Bad Request|[Error](#error)|
-|**404**|Not Found|No Content|
-|**default**|Generic error response|[Error](#error)|
-
-
-#### Produces
-
-* `application/json`
-
-
-#### Tags
-
-* tokens
-
-
-<a name="gettradesusingget"></a>
-### Get Trades
-```
-GET /api/v1/trades
-```
-
-
-#### Description
-Gets a list of historical trades.
-
-
-#### Parameters
-
-|Type|Name|Description|Schema|Default|
-|---|---|---|---|---|
-|**Query**|**address**  <br>*optional*|the sender address|string||
-|**Query**|**baseAsset**  <br>*optional*|base asset|string||
-|**Query**|**buyerOrderId**  <br>*optional*|buyer order id|string||
-|**Query**|**end**  <br>*optional*|end time|integer (int64)||
-|**Query**|**height**  <br>*optional*|block height|integer (int64)||
-|**Query**|**limit**  <br>*optional*|default 500; max 1000.|integer (int32)|`500`|
-|**Query**|**offset**  <br>*optional*|start with 0; default 0.|integer (int32)|`0`|
-|**Query**|**quoteAsset**  <br>*optional*|quote asset|string||
-|**Query**|**sellerOrderId**  <br>*optional*|seller order id|string||
-|**Query**|**side**  <br>*optional*|order side|enum (BUY, SELL)||
-|**Query**|**start**  <br>*optional*|start time|integer (int64)||
-|**Query**|**symbol**  <br>*optional*|symbol|string||
-
-
-#### Responses
-
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|OK|[TradePageVo](#tradepagevo)|
-|**400**|Bad Request|[Error](#error)|
-|**404**|Not Found|No Content|
-|**default**|Generic error response|[Error](#error)|
-
-
-#### Produces
-
-* `application/json`
-
-
-#### Tags
-
-* trade
-
-
-<a name="txnsusingget"></a>
-### Get Transactions
-```
-GET /api/v1/transactions
-```
-
-
-#### Description
-Gets a list of transactions.
-
-
-#### Parameters
-
-|Type|Name|Description|Schema|Default|
-|---|---|---|---|---|
-|**Query**|**address**  <br>*optional*|address|string||
-|**Query**|**blockHeight**  <br>*optional*|blockHeight|integer (int64)||
-|**Query**|**endTime**  <br>*optional*|endTime|integer (int64)||
-|**Query**|**limit**  <br>*optional*|limit|integer (int32)|`500`|
-|**Query**|**offset**  <br>*optional*|offset|integer (int32)|`0`|
-|**Query**|**side**  <br>*optional*|transaction side|enum (RECEIVE, SEND)||
-|**Query**|**startTime**  <br>*optional*|startTime|integer (int64)||
-|**Query**|**txAsset**  <br>*optional*|txAsset|string||
-|**Query**|**txType**  <br>*optional*|transaction type|enum (NEW_ORDER, ISSUE_TOKEN, BURN_TOKEN, LIST_TOKEN, CANCEL_ORDER, FREEZE_TOKEN, UN_FREEZE_TOKEN, TRANSFER)||
-
-
-#### Responses
-
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|OK|[TxPageVo](#txpagevo)|
-|**400**|Bad Request|[Error](#error)|
-|**404**|Not Found|No Content|
-|**default**|Generic error response|[Error](#error)|
-
-
-#### Produces
-
-* `application/json`
-
-
-#### Tags
-
-* transaction
-
-
-<a name="gettransaction"></a>
-### Get Transaction
-```
-GET /api/v1/tx/{hash}
-```
-
-
-#### Description
-Gets transaction metadata by transaction ID.
-
-
-#### Parameters
-
-|Type|Name|Description|Schema|
-|---|---|---|---|
-|**Path**|**hash**  <br>*required*|The transaction hash to query|string|
-
-
-#### Responses
-
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|Success|[Transaction](#transaction)|
-|**400**|Bad Request|[Error](#error)|
-|**404**|Not Found|No Content|
-|**default**|Generic error response|[Error](#error)|
-
-
-#### Produces
-
-* `application/json`
-
-
-#### Tags
-
-* node
-* tx
-
-
-<a name="getvalidators"></a>
-### Get Validators
-```
-GET /api/v1/validators
-```
-
-
-#### Description
-Gets the list of consensus validators.
-
-
-#### Responses
-
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|Success|[Validators](#validators)|
-|**400**|Bad Request|[Error](#error)|
-|**404**|Not Found|No Content|
-|**default**|Generic error response|[Error](#error)|
-
-
-#### Produces
-
-* `application/json`
-
-
-#### Tags
-
-* info
-* node
-
-
-
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| cumulateQuantity | number |  | No |
+| fee | string |  | No |
+| lastExecutedPrice | number |  | No |
+| lastExecutedQuantity | number |  | No |
+| orderCreateTime | dateTime |  | No |
+| orderId | string |  | No |
+| owner | string |  | No |
+| price | number |  | No |
+| quantity | number |  | No |
+| side | string |  | No |
+| status | string |  | No |
+| symbol | string |  | No |
+| timeInForce | string |  | No |
+| tradeId | string |  | No |
+| transactionHash | string |  | No |
+| transactionTime | dateTime |  | No |
+| type | string |  | No |
+
+### TickerStatistics  
+
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| askPrice | string |  | No |
+| askQuantity | string |  | No |
+| bidPrice | string |  | No |
+| bidQuantity | string |  | No |
+| closeTime | long |  | No |
+| count | long |  | No |
+| firstId | string |  | No |
+| highPrice | string |  | No |
+| lastId | string |  | No |
+| lastPrice | string |  | No |
+| lastQuantity | string |  | No |
+| lowPrice | string |  | No |
+| openPrice | string |  | No |
+| openTime | long |  | No |
+| prevClosePrice | string |  | No |
+| priceChange | string |  | No |
+| priceChangePercent | string |  | No |
+| quoteVolume | string |  | No |
+| symbol | string |  | No |
+| volume | string |  | No |
+| weightedAvgPrice | string |  | No |
+
+### TradePage  
+
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| total | string |  | No |
+| trade | [ [Trade](#trade) ] |  | No |
+
+### TradeStatistics  
+
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| avgPrice | number |  | No |
+| high | number |  | No |
+| low | number |  | No |
+| symbol | string |  | No |
+| totalBaseVolume | number |  | No |
+| totalCount | long |  | No |
+| totalQuotaVolume | number |  | No |
+
+### Trade  
+
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| baseAsset | string |  | No |
+| blockHeight | long |  | No |
+| buyFee | string |  | No |
+| buyerId | string |  | No |
+| buyerOrderId | string |  | No |
+| price | number |  | No |
+| quantity | number |  | No |
+| quoteAsset | string |  | No |
+| sellFee | string |  | No |
+| sellerId | string |  | No |
+| sellerOrderId | string |  | No |
+| symbol | string |  | No |
+| time | long |  | No |
+| tradeId | string |  | No |
+
+### TxPage  
+
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| total | string |  | No |
+| tx | [ [Tx](#tx) ] |  | No |
+
+### Tx  
+
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| blockHeight | long |  | No |
+| code | integer |  | No |
+| confirmBlocks | long |  | No |
+| data | string |  | No |
+| fromAddr | string |  | No |
+| orderId | string |  | No |
+| timeStamp | dateTime |  | No |
+| toAddr | string |  | No |
+| txAge | long |  | No |
+| txAsset | string |  | No |
+| txFee | number |  | No |
+| txHash | string |  | No |
+| txType | string |  | No |
+| value | number |  | No |
+
+### ExchangeRate  
+
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| ExchangeRate | object |  |  |
