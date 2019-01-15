@@ -56,7 +56,7 @@ Signature is the evidence to prove the sender owns the transaction. It would be 
     - Structs keys are marshalled in the order defined in the struct
 
 
-3. Sign SHA256 of the encoded byte array, to create an ECDSA signature on curve Secp256k1 and serialize the `R` and `S` result into a 64-byte array. (both `R` and `S` are encoded into 32-byte big endian integers, and then `R` is put into the first 32 bytes and `S` are put into the last 32 bytes of the byte array. In order to break `S` 's malleability, `S` set to `curve.Order(0 - S)` if `S > curnve.Order()/2`.)
+3. Sign SHA256 of the encoded byte array, to create an ECDSA signature on curve Secp256k1 and serialize the `R` and `S` result into a 64-byte array. (both `R` and `S` are encoded into 32-byte big endian integers, and then `R` is put into the first 32 bytes and `S` are put into the last 32 bytes of the byte array. In order to break `S` 's malleability, `S` set to `curve.Order() - S` if `S > curnve.Order()/2`.)
 
 The `signature` would be encoded together with transaction message and sent as `payload` to Binance Chain node via RPC or http REST API, as described in the above section.
 
