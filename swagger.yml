@@ -417,19 +417,7 @@ paths:
           schema:
             type: array
             items:
-              properties:
-                ok:
-                  type: boolean
-                code:
-                  type: integer
-                  format: int32
-                data:
-                  type: string
-                log:
-                  type: string
-                hash:
-                  type: string
-                  title: Hash
+              $ref: '#/definitions/Transaction'
         '400':
           description: 'Bad Request'
           schema:
@@ -1077,8 +1065,10 @@ definitions:
       code:
         type: integer
         format: int64
+        required: true
       message:
         type: string
+        required: true
   Validators:
     type: object
     properties:
@@ -1086,6 +1076,7 @@ definitions:
         type: integer
         description: 'Current block height'
         format: int64
+        required: true
       validators:
         type: array
         items:
@@ -1094,17 +1085,22 @@ definitions:
               type: string
               description: Address
               format: hexaddress
+              required: true
             pub_key:
               type: array
               title: 'Public key'
               description: 'Public key bytes'
+              required: true
               items:
                 type: integer
                 format: int32
             voting_power:
               type: integer
+              required: true
             accum:
               type: integer
+              required: true
+        required: true
   Peers:
     type: array
     items:
@@ -1112,56 +1108,68 @@ definitions:
         id:
           type: string
           description: 'Authenticated identifier'
+          required: true
         original_listen_addr:
           type: string
           description: 'Original listen address before PeersService changed it'
           format: RemoteAddr
+          required: true
         listen_addr:
           type: string
           description: 'Listen address'
           format: RemoteAddr
+          required: true
         access_addr:
           type: string
           description: 'Access address (HTTP)'
           format: RemoteAddr
+          required: true
         stream_addr:
           type: string
           description: 'Stream address (WS)'
           format: RemoteAddr
+          required: true
         network:
           type: string
           description: 'Chain ID'
+          required: true
         version:
           type: string
           description: 'Version'
+          required: true
         moniker:
           type: string
           description: 'Moniker (Name)'
+          required: true
         capabilities:
           type: array
           items:
             type: string
             enum: ['node', 'qs', 'ap', 'ws']
+          required: true
         accelerated:
           type: boolean
           description: 'Is an accelerated path to a validator node'
+    required: true
   Transaction:
     type: object
     properties:
-      hash:
-        type: string
-        title: Hash
+      code:
+        title: Code
+        type: integer
+        format: int32
+        default: 0
       log:
         title: Log
         type: string
       data:
         title: Data
         type: string
-      code:
-        title: Code
-        type: integer
-        format: int32
-        default: 0
+      hash:
+        type: string
+        title: Hash
+      ok:
+        type: boolean
   Account:
     type: object
     properties:
@@ -1169,10 +1177,12 @@ definitions:
         type: integer
         title: 'Account number'
         format: int32
+        required: true
       address:
         type: string
         title: Address
         format: address
+        required: true
       balances:
         type: array
         title: Balances
@@ -1182,16 +1192,19 @@ definitions:
             free: {type: string, title: Free, description: "In decimal form, e.g. 0.00000000", example: "0.00000000", format: fixed8}
             locked: {type: string, title: Locked, description: "In decimal form, e.g. 0.00000000", example: "0.00000000", format: fixed8}
             frozen: {type: string, title: Frozen, description: "In decimal form, e.g. 0.00000000", example: "0.00000000", format: fixed8}
+        required: true
       public_key:
         type: array
         title: 'Public key'
         description: 'Public key bytes'
         items:
           type: integer
+        required: true
       sequence:
         type: integer
         title: Sequence
         format: int64
+        required: true
   AccountSequence:
     type: object
     properties:
@@ -1199,6 +1212,7 @@ definitions:
         type: integer
         title: Sequence
         format: int64
+        required: true
   Tokens:
     type: array
     items:
@@ -1206,21 +1220,26 @@ definitions:
         name:
           type: string
           example: Binance Chain Native Token
+          required: true
         symbol:
           type: string
           example: BTC-000
+          required: true
         original_symbol:
           type: string
           example: BTC
+          required: true
         total_supply:
           type: string
           description: "In decimal form, e.g. 1.00000000"
           example: "0.00000000"
           format: fixed8
+          required: true
         owner:
           type: string
           description: Address
           format: address
+          required: true
   Markets:
     type: array
     items:
@@ -1229,25 +1248,30 @@ definitions:
           type: string
           example: BNB
           format: currency
+          required: true
         quote_asset_symbol:
           type: string
           example: BNB
           format: currency
+          required: true
         price:
           type: string
           description: "In decimal form, e.g. 1.00000000"
           example: "0.00000000"
           format: fixed8
+          required: true
         tick_size:
           type: string
           description: "In decimal form, e.g. 1.00000000"
           example: "0.00000000"
           format: fixed8
+          required: true
         lot_size:
           type: string
           description: "In decimal form, e.g. 1.00000000"
           example: "0.00000000"
           format: fixed8
+          required: true
   MarketDepth:
     type: object
     properties:
@@ -1260,6 +1284,7 @@ definitions:
           format: fixed8
         minItems: 2
         maxItems: 2
+        required: true
       bids:
         type: array
         description: "Price and qty in decimal form, e.g. 1.00000000"
@@ -1269,6 +1294,7 @@ definitions:
           format: fixed8
         minItems: 2
         maxItems: 2
+        required: true
   BlockTradePage:
     type: object
     properties:
@@ -1276,9 +1302,10 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/BlockTrade'
+        required: true
       total:
         type: string
-    title: BlockTradePage
+        required: true
   BlockTrade:
     type: object
     properties:
@@ -1294,7 +1321,6 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/Trade'
-    title: BlockTrade
   Candlestick:
     type: object
     properties:
@@ -1319,7 +1345,6 @@ definitions:
         type: number
       volume:
         type: number
-    title: Candlestick
   OrderList:
     type: object
     properties:
@@ -1329,7 +1354,6 @@ definitions:
           $ref: '#/definitions/Order'
       total:
         type: string
-    title: OrderList
   Order:
     type: object
     properties:
@@ -1447,7 +1471,6 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/Trade'
-    title: TradePage
   TradeStatistics:
     type: object
     properties:
@@ -1466,7 +1489,6 @@ definitions:
         format: int64
       totalQuotaVolume:
         type: number
-    title: TradeStatistics
   Trade:
     type: object
     properties:
@@ -1500,7 +1522,6 @@ definitions:
         format: int64
       tradeId:
         type: string
-    title: Trade
   TxPage:
     type: object
     properties:
@@ -1510,7 +1531,6 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/Tx'
-    title: TxPage
   Tx:
     type: object
     properties:
