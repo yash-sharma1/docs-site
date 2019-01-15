@@ -157,7 +157,7 @@ message StdSignature {
   PubKey pub_key = 1 // public key bytes of the signer address
   bytes signature = 2 // signature bytes, please check chain access section for signature generation
   int64 account_number = 3 // another identifier of signer, which can be read from chain by account REST API or RPC
-  int64 sequence // sequence number for the next transaction of the client, which can be read fro chain by account REST API or RPC. please check chain acces section for details.
+  int64 sequence = 4 // sequence number for the next transaction of the client, which can be read fro chain by account REST API or RPC. please check chain acces section for details.
 }
 
 ```
