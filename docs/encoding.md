@@ -26,11 +26,11 @@ Amino supports JSON encoding natively, which is the same as other usual json mar
 
 Binary encoding is a variant of Google protocol buffer. The bytes are layed out in the below sequence:
 
-1. a [varint](https://developers.google.com/protocol-buffers/docs/encoding#varints) encoded integer - it contains the length of the encoded bytes for the object.
+1. a [varint](https://developers.google.com/protocol-buffers/docs/encoding#varints) encoded integer - it contains the length of the encoded bytes for the object, which is showed as `SIZE-OF-ENCODED` in the below structs. Please note it contains the length of encoded bytes and also the type prefix (below), but not itself, e.g. if the encoded msg is 20 bytes, then the length would be 20+4 = 24, while 4 is the type prefix bytes.
 2. an object type prefix of 4-8 bytes - For different type of objects, there would be different type prefixes, and they are showed as in the below specific objects (data structures).
-3. a binary encoded object - the encoding is mostly the same as protocol buffer encoding mechnism, except the embedded fields of complex type:
-    - to encode array of some specific types, a length in varint and an object type prefix would be added ahead of the real encoding
+3. a binary encoded object - the encoding is mostly the same as protocol buffer encoding mechanism, except the embedded fields of complex type:
     - to encode data field of some specific types, an object type prefix for the field would be added ahead of the real encoding.
+4. repeated (array) Encoding - it is the same as google protocol buffer, while encoding of the object/struct may contain the type prefix as showed below.
 
 ## Binance Chain Encoding Types
 
@@ -44,12 +44,12 @@ Transaction submit are all wraped into the below `Standard Transaction`.
 
 // please note the field name is the JSON name.
 message StdTx {
-  uint64 SIZE-OF-ENCODED // varint encoded length of the structure after encoding
+  uint64 SIZE-OF-ENCODED // varint encoded length of the structure after encoding, please note this includes both the below type prefix (4 bytes) and the all encoding bytes
   0xF0625DEE   // hardcoded, object type prefix in 4 bytes
-  repeated Msg msgs = 1 // array of size 1, containing the transaction message, which are one of the transaction type below
+  repeated Msg msgs = 1 // array of size 1, containing the transaction message, which are one of the transaction type below. please check the above "Array Encoding"
   repeated StdSignature signatures = 2 // array of size 1, containing the standard signature structure of the transaction sender
   string memo = 3 // a short sentence of remark for the transaction. Please only `Transfer` transaction allows 'memo' input, and other transactions with non-empty `Memo` would be rejected.
-  int64 source = 4 // an identifier for tools triggerring this transaction, set to zero if unwilling to disclose.
+  sint64 source = 4 // an identifier for tools triggerring this transaction, set to zero if unwilling to disclose.
   bytes data = 5 //byte array, reserved for future use
 }
 ```
@@ -63,22 +63,21 @@ Transfer is the transaction for transfering fund to different addresses.
 ```go
 // please note the field name is the JSON name.
 message Send {
-  uint64 SIZE-OF-ENCODED // varint encoded length of the structure after encoding
   0x2A2C87FA   // hardcoded, object type prefix in 4 bytes
   message Token {
     string denom = 1
-    int64 amount = 2 
+    sint64 amount = 2 
   }
   message Input {
     bytes address = 1
     repeated Token coins = 2    
   }
-   message Output {
+  message Output {
     bytes address = 1
     repeated Token coins = 2    
   }
-  repeated Input inputs
-  repeated Output outputs
+  repeated Input inputs = 1
+  repeated Output outputs = 2
 }
 ```
 
@@ -88,16 +87,15 @@ NewOrder transaction would create a new order to buy and sell tokens on Binance 
 ```go
 // please note the field name is the JSON name.
 message NewOrder {
-  uint64 SIZE-OF-ENCODED // varint encoded length of the structure after encoding
   0xCE6DC043   // hardcoded, object type prefix in 4 bytes
   bytes sender = 1 // order originating address
   string id = 2 // order id, optional
   string symbol = 3 // symbol for trading pair in full name of the tokens
-  int64 ordertype = 4 // only accept 2 for now, meaning limit order
-  int64  side = 5 // 1 for buy and 2 fory sell
-  int64 price = 6 // price of the order, which is the real price multiplied by 1e8 (10^8) and rounded to integer
-  int64 quantity = 7 // quantity of the order, which is the real price multiplied by 1e8 (10^8) and rounded to integer
-  int64 timeinforce = 8 // 1 for Good Till Expire(GTE) order and 3 for Immediate Or Cancel (IOC)
+  sint64 ordertype = 4 // only accept 2 for now, meaning limit order
+  sint64  side = 5 // 1 for buy and 2 fory sell
+  sint64 price = 6 // price of the order, which is the real price multiplied by 1e8 (10^8) and rounded to integer
+  sint64 quantity = 7 // quantity of the order, which is the real price multiplied by 1e8 (10^8) and rounded to integer
+  sint64 timeinforce = 8 // 1 for Good Till Expire(GTE) order and 3 for Immediate Or Cancel (IOC)
 ```
 
 #### Cancel
@@ -106,7 +104,6 @@ Cancel transactions cancel the outstanding (unfilled) orders from the Binance DE
 ```go
 // please note the field name is the JSON name.
 message CancelOrder {
-  uint64 SIZE-OF-ENCODED // varint encoded length of the structure after encoding
   0x166E681B   // hardcoded, object type prefix in 4 bytes
   bytes sender = 1 // order originating address'
   string symbol = 2 // symbol for trading pair in full name of the tokens
@@ -121,7 +118,6 @@ Freeze transaction would move the amount of the tokens into a `frozen` state, in
 ```go
 // please note the field name is the JSON name.
 message TokenFreeze {
-  uint64 SIZE-OF-ENCODED // varint encoded length of the structure after encoding
   0xE774B32D   // hardcoded, object type prefix in 4 bytes
   bytes from = 1 // owner address
   string symbol = 2 // token symbol, in full name with "-" suffix
@@ -135,7 +131,6 @@ Unfreeze would reversely turn the amount of `frozen` tokens back to free state.
 ```go
 // please note the field name is the JSON name.
 message TokenUnfreeze {
-  uint64 SIZE-OF-ENCODED // varint encoded length of the structure after encoding
   0x6515FF0D   // hardcoded, object type prefix in 4 bytes
   bytes from = 1 // owner address
   string symbol = 2 // token symbol, in full name with "-" suffix
@@ -144,6 +139,8 @@ message TokenUnfreeze {
 ```
 ### Standard Signature Type
 Request senders' signature is stored on the `Standard Transaction` data via a `Standard Signature` as below.
+
+Please note `StdSignature` itself doesn't have type prefix, while the `PubKey` has.
 
 ```go
 
@@ -156,8 +153,8 @@ message StdSignature {
   }
   PubKey pub_key = 1 // public key bytes of the signer address
   bytes signature = 2 // signature bytes, please check chain access section for signature generation
-  int64 account_number = 3 // another identifier of signer, which can be read from chain by account REST API or RPC
-  int64 sequence = 4 // sequence number for the next transaction of the client, which can be read fro chain by account REST API or RPC. please check chain acces section for details.
+  sint64 account_number = 3 // another identifier of signer, which can be read from chain by account REST API or RPC
+  sint64 sequence = 4 // sequence number for the next transaction of the client, which can be read fro chain by account REST API or RPC. please check chain acces section for details.
 }
 
 ```

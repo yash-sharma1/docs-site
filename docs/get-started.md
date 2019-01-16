@@ -3,7 +3,7 @@
 ## Wallet
 The easiest way to use Binance Chain is through a wallet with support for Binance Chain accounts and transfers.
 
-For example, Binance provides a Web Wallet at https://dex.binance.org, which provides the below functions:
+For example, Binance provides a Web Wallet at https://www.binance.org (https://testnet.binance.org for testnet), which provides the below functions:
 
 - Generating crypto keys and addresses, which serves as the base of a wallet
 - Showing the balances of assets on the addresses
