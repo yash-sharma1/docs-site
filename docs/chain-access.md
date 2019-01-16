@@ -39,15 +39,15 @@ types and encoding logic.
 ### Signature
 Signature is the evidence to prove the sender owns the transaction. It would be performed in the below actions:
 
-1. Compose a data structure. please note `Msg`, `Memo`, `Source`, `Data` are the same as in the above `payload`.
+1. Compose a data structure. please note `msgs`, `memo`, `source`, `data` are the same as in the above `payload`.
 
     - `chain_id`: a string, unique ID for the Chain, it stays the same for most time, but may vary as Binance Chain evolves;
-    - `account_number`: a 64-bit integer, an identifier number associated with the signing address
-    - `sequence_number`: a 64-bit integer, please check [the below](#account_and_sequence_number)
+    - `account_number`: a string for a 64-bit integer, an identifier number associated with the signing address
+    - `sequence`: a string for a a 64-bit integer, please check [the below](#account_and_sequence_number)
     - `memo`: a string, a short sentence of remark for the transaction
     - `msgs`: a byte array, **json encoded** transaction messages, please check the [encoding](encoding.md) section.
-    - `Source`: 64 bits integer, which is an identifier for transaction incoming tools
-    - `Data`: byte array, reserved for future use
+    - `source`: a string for a 64 bits integer, which is an identifier for transaction incoming tools
+    - `data`: byte array, reserved for future use
 
 
 2. Encode the above data structure in json, with ordered key,  Specifically:
