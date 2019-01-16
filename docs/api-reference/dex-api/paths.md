@@ -222,6 +222,8 @@ support@binance.org
 
 **Description:** Gets the order book depth data for a given pair symbol.
 
+The given _limit_ must be one of the allowed limits below.
+
 **Destination:** Validator node.
 
 **Rate Limit:** 10 requests per IP per second.
@@ -231,8 +233,8 @@ support@binance.org
 
 | Name | Located in | Description | Required | Schema |
 | ---- | ---------- | ----------- | -------- | ---- |
-| symbol | query | symbol | No | string |
-| limit | query | symbol | No | integer |
+| symbol | query | Market pair symbol, e.g. NNB-0AD_BNB | Yes | string |
+| limit | query | The limit of results. Allowed limits: [5, 10, 20, 50, 100, 500, 1000] | No | integer |
 
 **Responses**
 

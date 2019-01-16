@@ -343,6 +343,8 @@ paths:
       description: |
         Gets the order book depth data for a given pair symbol.
 
+        The given _limit_ must be one of the allowed limits below.
+
         **Destination:** Validator node.
 
         **Rate Limit:** 10 requests per IP per second.
@@ -353,16 +355,24 @@ paths:
       -
         in: query
         name: symbol
-        description: symbol
-        required: false
+        description: Market pair symbol, e.g. NNB-0AD_BNB
+        required: true
         type: string
       -
         in: query
         name: limit
-        description: symbol
+        description: "The limit of results. Allowed limits: [5, 10, 20, 50, 100, 500, 1000]"
         required: false
         type: integer
         format: int32
+        enum:
+          - 5
+          - 10
+          - 20
+          - 50
+          - 100
+          - 500
+          - 1000
       responses:
         '200':
           description: Success
