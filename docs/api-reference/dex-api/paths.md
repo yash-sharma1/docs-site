@@ -306,7 +306,7 @@ The given _limit_ must be one of the allowed limits below.
 
 | Name | Located in | Description | Required | Schema |
 | ---- | ---------- | ----------- | -------- | ---- |
-| address | query | the sender address | No | string |
+| address | query | the seller/buyer address | No | string |
 | end | query | end time | No | long |
 | height | query | block height | No | long |
 | limit | query | default 50; max 100. | No | integer |
@@ -373,9 +373,21 @@ The given _limit_ must be one of the allowed limits below.
 
 **Responses**
 
-| Code | Description | Schema |
-| ---- | ----------- | ------ |
-| 200 | OK | [ [Candlestick](#candlestick) ] |
+```javascript
+[
+  [
+    1499040000000,      // Open time
+    "0.01634790",       // Open
+    "0.80000000",       // High
+    "0.01575800",       // Low
+    "0.01577100",       // Close
+    "148976.11427815",  // Volume
+    1499644799999,      // Close time
+    "2434.19055334",    // Quote asset volume
+    308                // Number of trades
+  ]
+]
+```
 
 ### /api/v1/orders/closed
 ---
@@ -388,14 +400,15 @@ The given _limit_ must be one of the allowed limits below.
 
 | Name | Located in | Description | Required | Schema |
 | ---- | ---------- | ----------- | -------- | ---- |
-| address | query | the sender address | Yes | string |
+| address | query | the owner address | Yes | string |
 | end | query | end time | No | long |
 | limit | query | default 500; max 1000. | No | integer |
 | offset | query | start with 0; default 0. | No | integer |
 | side | query | order side | No | string |
-| start | query | start time | No | long |
+| start | query | start time; The maximum start - end query window is 1 month; Default query window is latest 7 days. | No | long |
 | status | query | order status list | No | [ string ] |
 | symbol | query | symbol | No | string |
+| total | query | If total number needed in response. Default 0, not needed. | No | integer. 1 or 0|
 
 **Responses**
 
@@ -414,7 +427,7 @@ The given _limit_ must be one of the allowed limits below.
 
 | Name | Located in | Description | Required | Schema |
 | ---- | ---------- | ----------- | -------- | ---- |
-| address | query | the sender address | Yes | string |
+| address | query | the owner address | Yes | string |
 | limit | query | default 500; max 1000. | No | integer |
 | offset | query | start with 0; default 0. | No | integer |
 | symbol | query | symbol | No | string |
@@ -483,7 +496,7 @@ The given _limit_ must be one of the allowed limits below.
 
 | Name | Located in | Description | Required | Schema |
 | ---- | ---------- | ----------- | -------- | ---- |
-| address | query | the sender address | No | string |
+| address | query | the buyer/seller address | No | string |
 | baseAsset | query | base asset | No | string |
 | buyerOrderId | query | buyer order id | No | string |
 | end | query | end time | No | long |
@@ -493,8 +506,9 @@ The given _limit_ must be one of the allowed limits below.
 | quoteAsset | query | quote asset | No | string |
 | sellerOrderId | query | seller order id | No | string |
 | side | query | order side | No | string |
-| start | query | start time | No | long |
+| start | query | start time; The maximum start - end query window is 1 month; Default query window is latest 7 days. | No | long |
 | symbol | query | symbol | No | string |
+| total | query | If total number needed in response. Default 0, not needed. | No | integer. 1 or 0|
 
 **Responses**
 
