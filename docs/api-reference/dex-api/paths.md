@@ -373,21 +373,9 @@ The given _limit_ must be one of the allowed limits below.
 
 **Responses**
 
-```javascript
-[
-  [
-    1499040000000,      // Open time
-    "0.01634790",       // Open
-    "0.80000000",       // High
-    "0.01575800",       // Low
-    "0.01577100",       // Close
-    "148976.11427815",  // Volume
-    1499644799999,      // Close time
-    "2434.19055334",    // Quote asset volume
-    308                // Number of trades
-  ]
-]
-```
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [ [Candlestick](#candlestick) ] |
 
 ### /api/v1/orders/closed
 ---
@@ -408,7 +396,7 @@ The given _limit_ must be one of the allowed limits below.
 | start | query | start time; The maximum start - end query window is 1 month; Default query window is latest 7 days. | No | long |
 | status | query | order status list | No | [ string ] |
 | symbol | query | symbol | No | string |
-| total | query | If total number needed in response. Default 0, not needed. | No | integer. 1 or 0|
+| total | query | total number required; default 0, not required. If not required, total=-1 in response | No | integer |
 
 **Responses**
 
@@ -508,7 +496,7 @@ The given _limit_ must be one of the allowed limits below.
 | side | query | order side | No | string |
 | start | query | start time; The maximum start - end query window is 1 month; Default query window is latest 7 days. | No | long |
 | symbol | query | symbol | No | string |
-| total | query | If total number needed in response. Default 0, not needed. | No | integer. 1 or 0|
+| total | query | total number required; default 0, not required. If not required, total=-1 in response | No | integer |
 
 **Responses**
 
@@ -588,7 +576,7 @@ The given _limit_ must be one of the allowed limits below.
 | ---- | ---- | ----------- | -------- |
 | account_number | integer |  | No |
 | address | string (address) |  | No |
-| balances | [  ] |  | No |
+| balances | [ [Balance](#balance) ] |  | No |
 | public_key | [ integer ] | Public key bytes | No |
 | sequence | long |  | No |
 
@@ -597,6 +585,15 @@ The given _limit_ must be one of the allowed limits below.
 | Name | Type | Description | Required |
 | ---- | ---- | ----------- | -------- |
 | sequence | long |  | No |
+
+### Balance  
+
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| symbol | string (currency) |  | No |
+| free | string (fixed8) | In decimal form, e.g. 0.00000000 | No |
+| locked | string (fixed8) | In decimal form, e.g. 0.00000000 | No |
+| frozen | string (fixed8) | In decimal form, e.g. 0.00000000 | No |
 
 ### Tokens  
 
