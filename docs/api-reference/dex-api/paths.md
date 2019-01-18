@@ -367,7 +367,7 @@ The given _limit_ must be one of the allowed limits below.
 | ---- | ---------- | ----------- | -------- | ---- |
 | symbol | query | symbol | Yes | string |
 | interval | query | interval | Yes | string |
-| limit | query | default 500; max 1000. | No | integer |
+| limit | query | default 300; max 1000. | No | integer |
 | startTime | query | start time | No | long |
 | endTime | query | end time | No | long |
 
@@ -530,13 +530,13 @@ The given _limit_ must be one of the allowed limits below.
 
 | Name | Located in | Description | Required | Schema |
 | ---- | ---------- | ----------- | -------- | ---- |
-| address | query | address | No | string |
+| address | query | address | Yes | string |
 | blockHeight | query | blockHeight | No | long |
 | endTime | query | endTime | No | long |
 | limit | query | limit | No | integer |
 | offset | query | offset | No | integer |
 | side | query | transaction side | No | string |
-| startTime | query | startTime | No | long |
+| startTime | query | start time; The maximum start - end query window is 1 month; Default query window is latest 7 days. | No | long |
 | txAsset | query | txAsset | No | string |
 | txType | query | transaction type | No | string |
 
