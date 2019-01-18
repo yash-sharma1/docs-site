@@ -149,6 +149,7 @@ message StdSignature {
   // please note there is no type prefix for StdSignature
   message PubKey {
     0xEB5AE987 // hardcoded, object type prefix in 4 bytes
+    uint64 SIZE-OF-ENCODED // varint encoded length of the bytes below
     bytes // no name or field id, just encode the bytes
   }
   PubKey pub_key = 1 // public key bytes of the signer address
