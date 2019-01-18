@@ -1219,11 +1219,7 @@ definitions:
         type: array
         title: Balances
         items:
-          properties:
-            symbol: {type: string, example: BNB, format: currency}
-            free: {type: string, title: Free, description: "In decimal form, e.g. 0.00000000", example: "0.00000000", format: fixed8}
-            locked: {type: string, title: Locked, description: "In decimal form, e.g. 0.00000000", example: "0.00000000", format: fixed8}
-            frozen: {type: string, title: Frozen, description: "In decimal form, e.g. 0.00000000", example: "0.00000000", format: fixed8}
+          $ref: '#/definitions/Balance'
         required: true
       public_key:
         type: array
@@ -1245,6 +1241,13 @@ definitions:
         title: Sequence
         format: int64
         required: true
+  Balance:
+    type: object
+    properties:
+      symbol: {type: string, example: BNB, format: currency}
+      free: {type: string, title: Free, description: "In decimal form, e.g. 0.00000000", example: "0.00000000", format: fixed8}
+      locked: {type: string, title: Locked, description: "In decimal form, e.g. 0.00000000", example: "0.00000000", format: fixed8}
+      frozen: {type: string, title: Frozen, description: "In decimal form, e.g. 0.00000000", example: "0.00000000", format: fixed8}
   Tokens:
     type: array
     items:
