@@ -367,7 +367,7 @@ The given _limit_ must be one of the allowed limits below.
 | ---- | ---------- | ----------- | -------- | ---- |
 | symbol | query | symbol | Yes | string |
 | interval | query | interval | Yes | string |
-| limit | query | default 500; max 1000. | No | integer |
+| limit | query | default 300; max 1000. | No | integer |
 | startTime | query | start time | No | long |
 | endTime | query | end time | No | long |
 
@@ -393,7 +393,7 @@ The given _limit_ must be one of the allowed limits below.
 | limit | query | default 500; max 1000. | No | integer |
 | offset | query | start with 0; default 0. | No | integer |
 | side | query | order side | No | string |
-| start | query | start time; The maximum start - end query window is 1 month; Default query window is latest 7 days. | No | long |
+| start | query | start time; The maximum start - end query window is 3 months; Default query window is latest 7 days. | No | long |
 | status | query | order status list | No | [ string ] |
 | symbol | query | symbol | No | string |
 | total | query | total number required; default 0, not required. If not required, total=-1 in response | No | integer |
@@ -494,7 +494,7 @@ The given _limit_ must be one of the allowed limits below.
 | quoteAsset | query | quote asset | No | string |
 | sellerOrderId | query | seller order id | No | string |
 | side | query | order side | No | string |
-| start | query | start time; The maximum start - end query window is 1 month; Default query window is latest 7 days. | No | long |
+| start | query | start time; The maximum start - end query window is 3 months; Default query window is latest 7 days. | No | long |
 | symbol | query | symbol | No | string |
 | total | query | total number required; default 0, not required. If not required, total=-1 in response | No | integer |
 
@@ -518,13 +518,13 @@ The given _limit_ must be one of the allowed limits below.
 
 | Name | Located in | Description | Required | Schema |
 | ---- | ---------- | ----------- | -------- | ---- |
-| address | query | address | No | string |
+| address | query | address | Yes | string |
 | blockHeight | query | blockHeight | No | long |
 | endTime | query | endTime | No | long |
 | limit | query | limit | No | integer |
 | offset | query | offset | No | integer |
 | side | query | transaction side | No | string |
-| startTime | query | startTime | No | long |
+| startTime | query | start time; The maximum start - end query window is 3 months; Default query window is latest 7 days. | No | long |
 | txAsset | query | txAsset | No | string |
 | txType | query | transaction type | No | string |
 

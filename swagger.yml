@@ -627,7 +627,7 @@ paths:
         - 1M
       - name: limit
         in: query
-        description: default 500; max 1000.
+        description: default 300; max 1000.
         required: false
         type: integer
         format: int32
@@ -725,7 +725,7 @@ paths:
         - SELL
       - name: start
         in: query
-        description: start time; The maximum start - end query window is 1 month; Default query window is latest 7 days.
+        description: start time; The maximum start - end query window is 3 months; Default query window is latest 7 days.
         required: false
         type: integer
         format: int64
@@ -958,7 +958,7 @@ paths:
         - SELL
       - name: start
         in: query
-        description: start time; The maximum start - end query window is 1 month; Default query window is latest 7 days.
+        description: start time; The maximum start - end query window is 3 months; Default query window is latest 7 days.
         required: false
         type: integer
         format: int64
@@ -1007,7 +1007,7 @@ paths:
       - name: address
         in: query
         description: address
-        required: false
+        required: true
         type: string
       - name: blockHeight
         in: query
@@ -1046,7 +1046,7 @@ paths:
         - SEND
       - name: startTime
         in: query
-        description: startTime
+        description: start time; The maximum start - end query window is 3 months; Default query window is latest 7 days.
         required: false
         type: integer
         format: int64
