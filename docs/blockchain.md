@@ -78,7 +78,7 @@ trades are not stored as state either, because they can be reproduced via balanc
 ## Cryptographic Design
 
 ### Account and Address
-For normal users, all the keys and addresses can be generated via Binance [Web Wallet](wallet.binance.org). 
+For normal users, all the keys and addresses can be generated via Binance [Web Wallet](https://testnet.binance.org/create).
 
 This default wallet would use a similar way to generate keys as Bitcoin, i.e. use 256 bits entropy to generate a 24-word mnemonic based on [BIP39](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki), and then use the mnemonic and an empty passphrase to generate a seed; finally use the seed to generate a master key, and derive the private key using BIP32/BIP44 with HD prefix as `"44'/714'/"`, which is reserved at [SLIP 44](https://github.com/satoshilabs/slips/blob/master/slip-0044.md). 
         
