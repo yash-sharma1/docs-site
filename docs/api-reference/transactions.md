@@ -1,0 +1,93 @@
+# Transaction Data
+A transaction in tendermint is any sequence of bytes. It's up to the ABCI application to accept or reject the transactions. 
+
+On Binance Chain, all kinds of transactions are wrapped in type `StdTx` before marshalling by [Amino](https://github.com/tendermint/go-amino):
+```go
+type StdTx struct {
+    Msg                       `json:"msg"`
+    Fee        StdFee         `json:"fee"`
+    Signatures []StdSignature `json:"signatures"`
+}
+``` 
+
+All kinds of transactions have the same type of Fee and Signatures, the difference is the `msg` part.
+
+Adding new transaction types would not require fork of blockchain, while upgrading transaction would be done via adding new transaction type: e.g. Burn2 vs. Burn.
+
+### Order
+```go
+type Msg struct {
+    From   sdk.Address `json:"from"`
+    Id	   string `json:"id"`
+    Pair   string `json:"pair"`
+    Type   int8   `json:"type"`
+    Side   int8   `json:"side"`
+    Price  int64  `json:price`
+    Quantity int64 `json:"quantity"`
+    TimeInForce int8 `json:"tif"
+}
+```
+
+### Issue Msg
+
+```go
+type Msg struct {
+  From     sdk.Address `json:"from"`
+  Name     string      `json:"name"`
+  Symbol   string      `json:"symbol"`
+  Supply   int64       `json:"supply"`
+  Decimals int8        `json:"decimals"`
+}
+```
+
+### Burn/Freeze/Unfreeze Msg
+
+```go
+type Msg struct {
+  From   sdk.Address `json:"from"`
+  Symbol string      `json:"symbol"`
+  Amount int64       `json:"amount"`
+}
+```
+
+## Amino Types
+
+Amino uses 4-byte type prefixes to encode type information. This list was obtained through `cdc.PrintTypes(os.Stdout)`.
+
+There is an example on how this prefix is used in JavaScript [here](https://github.com/mappum/js-tendermint/blob/51f4a8601e5e1a697c905bb0612be21ad46ec484/src/types.js#L87). We should use [varstruct](https://www.npmjs.com/package/varstruct) to encode binary structures.
+
+[More documentation is available here](https://github.com/tendermint/tendermint/blob/d419fffe18531317c28c29a292ad7d253f6cafdf/docs/spec/blockchain/encoding.md)
+
+[Binance Chain JavaScript SDK Amino API](https://github.com/binance-chain/javascript-sdk/wiki/API-Examples#amino-js-amino)
+
+```
++---------------------+---------------------------------+--------------+------------+--------+
+|        Type         |              Name               |    Prefix    |   Length   |  Notes |
++---------------------+---------------------------------+--------------+------------+--------+
+| PubKeyEd25519       |  tendermint/PubKeyEd25519       |  0x1624DE64  |  0x20      |        |
+| PubKeySecp256k1     |  tendermint/PubKeySecp256k1     |  0xEB5AE987  |  0x21      |        |
+| PrivKeyEd25519      |  tendermint/PrivKeyEd25519      |  0xA3288910  |  0x40      |        |
+| PrivKeySecp256k1    |  tendermint/PrivKeySecp256k1    |  0xE1B0F79B  |  0x20      |        |
+| SignatureEd25519    |  tendermint/SignatureEd25519    |  0x2031EA53  |  0x40      |        |
+| SignatureSecp256k1  |  tendermint/SignatureSecp256k1  |  0x7FC4A495  |  variable  |        |
+| MsgSend             |  cosmos-sdk/Send                |  0x2A2C87FA  |  variable  |        |
+| MsgIssue            |  cosmos-sdk/Issue               |  0xC06ABAD6  |  variable  |        |
+| Genesis             |  dex/Genesis                    |  0xDE082972  |  variable  |        |
+| NewOrderMsg         |  dex/NewOrder                   |  0xCE6DC043  |  variable  |        |
+| CancelOrderMsg      |  dex/CancelOrder                |  0x166E681B  |  variable  |        |
+| NewOrderResponse    |  dex/NewOrderResponse           |  0xD0D4D2B5  |  variable  |        |
+| Msg                 |  dex/ListMsg                    |  0xB41DE13F  |  variable  |        |
+| TradingPair         |  dex/TradingPair                |  0x4F88DF56  |  variable  |        |
+| OrderBookSnapshot   |  dex/OrderBookSnapshot          |  0x48C09C8E  |  variable  |        |
+| ActiveOrders        |  dex/ActiveOrders               |  0xBB70A053  |  variable  |        |
+| TradingGenesis      |  dex/TradingGenesis             |  0x471B6DA5  |  variable  |        |
+| Msg                 |  tokens/IssueMsg                |  0x17EFAB80  |  variable  |        |
+| Msg                 |  tokens/BurnMsg                 |  0x7ED2D2A0  |  variable  |        |
+| FreezeMsg           |  tokens/FreezeMsg               |  0xE774B32D  |  variable  |        |
+| UnfreezeMsg         |  tokens/UnfreezeMsg             |  0x6515FF0D  |  variable  |        |
+| AppAccount          |  bnbchain/Account               |  0x4BDC4C27  |  variable  |        |
+| Token               |  bnbchain/Token                 |  0x140364E6  |  variable  |        |
+| StdTx               |  auth/StdTx                     |  0xF0625DEE  |  variable  |        |
++---------------------+---------------------------------+--------------+------------+--------+
+```
+
