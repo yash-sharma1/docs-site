@@ -22,6 +22,8 @@ support@binance.org
 
 **Rate Limit:** 1 request per IP per second.
 
+**Test URL:** [https://testnet-dex.binance.org/api/v1/time](https://testnet-dex.binance.org/api/v1/time)
+
 
 **Responses**
 
@@ -43,6 +45,8 @@ support@binance.org
 
 **Rate Limit:** 1 request per IP per second.
 
+**Test URL:** [https://testnet-dex.binance.org/api/v1/node-info](https://testnet-dex.binance.org/api/v1/node-info)
+
 
 **Responses**
 
@@ -60,6 +64,8 @@ support@binance.org
 **Destination:** Witness node.
 
 **Rate Limit:** 10 requests per IP per second.
+
+**Test URL:** [https://testnet-dex.binance.org/api/v1/validators](https://testnet-dex.binance.org/api/v1/validators)
 
 
 **Responses**
@@ -82,6 +88,8 @@ support@binance.org
 
 **Rate Limit:** 1 request per IP per second.
 
+**Test URL:** [https://testnet-dex.binance.org/api/v1/peers](https://testnet-dex.binance.org/api/v1/peers)
+
 
 **Responses**
 
@@ -102,6 +110,8 @@ support@binance.org
 **Destination:** Witness node.
 
 **Rate Limit:** 5 requests per IP per second.
+
+**Test URL:** [https://testnet-dex.binance.org/api/v1/account/bnc_prefixed_addr](https://testnet-dex.binance.org/api/v1/account/bnc_prefixed_addr)
 
 
 **Parameters**
@@ -129,6 +139,8 @@ support@binance.org
 **Destination:** Validator node.
 
 **Rate Limit:** 5 requests per IP per second.
+
+**Test URL:** [https://testnet-dex.binance.org/api/v1/account/bnc_prefixed_addr/sequence](https://testnet-dex.binance.org/api/v1/account/bnc_prefixed_addr/sequence)
 
 
 **Parameters**
@@ -184,6 +196,8 @@ support@binance.org
 
 **Rate Limit:** 1 request per IP per second.
 
+**Test URL:** [https://testnet-dex.binance.org/api/v1/tokens](https://testnet-dex.binance.org/api/v1/tokens)
+
 
 **Responses**
 
@@ -204,6 +218,8 @@ support@binance.org
 **Destination:** Witness node.
 
 **Rate Limit:** 1 request per IP per second.
+
+**Test URL:** [https://testnet-dex.binance.org/api/v1/markets](https://testnet-dex.binance.org/api/v1/markets)
 
 
 **Responses**
@@ -227,6 +243,8 @@ The given _limit_ must be one of the allowed limits below.
 **Destination:** Validator node.
 
 **Rate Limit:** 10 requests per IP per second.
+
+**Test URL:** [https://testnet-dex.binance.org/api/v1/depth](https://testnet-dex.binance.org/api/v1/depth)
 
 
 **Parameters**
@@ -255,6 +273,8 @@ The given _limit_ must be one of the allowed limits below.
 **Destination:** Witness node.
 
 **Rate Limit:** 5 requests per IP per second.
+
+**Test URL:** [https://testnet-dex.binance.org/api/v1/broadcast](https://testnet-dex.binance.org/api/v1/broadcast)
 
 
 **Parameters**
@@ -338,6 +358,8 @@ The given _limit_ must be one of the allowed limits below.
 **Summary:** Get candlestick bars.
 
 **Description:** Gets candlestick/kline bars for a symbol. Bars are uniquely identified by their open time.
+
+**Test URL:** [https://testnet-dex.binance.org/api/v1/klines?symbol=NNB-338_BNB&interval=5m](https://testnet-dex.binance.org/api/v1/klines?symbol=NNB-338_BNB&interval=5m)
 
 **Example**
 
