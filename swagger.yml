@@ -438,37 +438,6 @@ paths:
           description: Generic error response
           schema:
             $ref: "#/definitions/Error"
-  /api/trades-statistics:
-    get:
-      tags:
-      - explorer
-      summary: Get trade statistics.
-      description: Gets statistics about market trades for a given pair symbol.
-      operationId: getTradeStatisticsDTO
-      produces:
-      - application/json
-      parameters:
-      - name: symbol
-        in: query
-        description: symbol
-        required: true
-        type: string
-      responses:
-        '200':
-          description: OK
-          schema:
-            $ref: '#/definitions/TradeStatistics'
-        '400':
-          description: 'Bad Request'
-          schema:
-            $ref: "#/definitions/Error"
-        '404':
-          description: 'Not Found'
-        default:
-          description: Generic error response
-          schema:
-            $ref: "#/definitions/Error"
-      deprecated: false
   /api/v1/block-trades:
     get:
       tags:
@@ -482,7 +451,7 @@ paths:
       - name: address
         in: query
         description: the seller/buyer address
-        required: false
+        required: true
         type: string
         allowEmptyValue: false
       - name: end

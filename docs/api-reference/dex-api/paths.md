@@ -273,28 +273,6 @@ The given _limit_ must be one of the allowed limits below.
 | 404 | Not Found |  |
 | default | Generic error response | [Error](#error) |
 
-### /api/trades-statistics
----
-##### ***GET***
-**Summary:** Get trade statistics.
-
-**Description:** Gets statistics about market trades for a given pair symbol.
-
-**Parameters**
-
-| Name | Located in | Description | Required | Schema |
-| ---- | ---------- | ----------- | -------- | ---- |
-| symbol | query | symbol | Yes | string |
-
-**Responses**
-
-| Code | Description | Schema |
-| ---- | ----------- | ------ |
-| 200 | OK | [TradeStatistics](#tradestatistics) |
-| 400 | Bad Request | [Error](#error) |
-| 404 | Not Found |  |
-| default | Generic error response | [Error](#error) |
-
 ### /api/v1/block-trades
 ---
 ##### ***GET***
@@ -306,10 +284,10 @@ The given _limit_ must be one of the allowed limits below.
 
 | Name | Located in | Description | Required | Schema |
 | ---- | ---------- | ----------- | -------- | ---- |
-| address | query | the seller/buyer address | No | string |
+| address | query | the seller/buyer address | Yes | string |
 | end | query | end time | No | long |
 | height | query | block height | No | long |
-| limit | query | default 50; max 100. | No | integer |
+| limit | query | default 20; max 20. | No | integer |
 | offset | query | start with 0; default 0. | No | integer |
 | start | query | start time | No | long |
 
@@ -632,17 +610,19 @@ The given _limit_ must be one of the allowed limits below.
 
 ### Candlestick  
 
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| close | number |  | No |
-| closeTime | long |  | No |
-| high | number |  | No |
-| low | number |  | No |
-| numberOfTrades | integer |  | No |
-| open | number |  | No |
-| openTime | long |  | No |
-| quoteAssetVolume | number |  | No |
-| volume | number |  | No |
+```javascript
+  [
+    1499040000000,      // Open time
+    "0.01634790",       // Open
+    "0.80000000",       // High
+    "0.01575800",       // Low
+    "0.01577100",       // Close
+    "148976.11427815",  // Volume
+    1499644799999,      // Close time
+    "2434.19055334",    // Quote asset volume
+    308                // Number of trades
+  ]
+```
 
 ### OrderList  
 
@@ -705,18 +685,6 @@ The given _limit_ must be one of the allowed limits below.
 | ---- | ---- | ----------- | -------- |
 | total | string |  | No |
 | trade | [ [Trade](#trade) ] |  | No |
-
-### TradeStatistics  
-
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| avgPrice | number |  | No |
-| high | number |  | No |
-| low | number |  | No |
-| symbol | string |  | No |
-| totalBaseVolume | number |  | No |
-| totalCount | long |  | No |
-| totalQuotaVolume | number |  | No |
 
 ### Trade  
 
