@@ -111,7 +111,7 @@ support@binance.org
 
 **Rate Limit:** 5 requests per IP per second.
 
-**Test URL:** [https://testnet-dex.binance.org/api/v1/account/bnc_prefixed_addr](https://testnet-dex.binance.org/api/v1/account/bnc_prefixed_addr)
+**Test URL:** [https://testnet-dex.binance.org/api/v1/account/bnc18hy3dz0lfky74shaatswmuhd2dxyl847fwsvkk](https://testnet-dex.binance.org/api/v1/account/bnc18hy3dz0lfky74shaatswmuhd2dxyl847fwsvkk)
 
 
 **Parameters**
@@ -140,7 +140,7 @@ support@binance.org
 
 **Rate Limit:** 5 requests per IP per second.
 
-**Test URL:** [https://testnet-dex.binance.org/api/v1/account/bnc_prefixed_addr/sequence](https://testnet-dex.binance.org/api/v1/account/bnc_prefixed_addr/sequence)
+**Test URL:** [https://testnet-dex.binance.org/api/v1/account/bnc18hy3dz0lfky74shaatswmuhd2dxyl847fwsvkk/sequence](https://testnet-dex.binance.org/api/v1/account/bnc18hy3dz0lfky74shaatswmuhd2dxyl847fwsvkk/sequence)
 
 
 **Parameters**
