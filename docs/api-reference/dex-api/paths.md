@@ -287,7 +287,7 @@ The given _limit_ must be one of the allowed limits below.
 | address | query | the seller/buyer address | Yes | string |
 | end | query | end time | No | long |
 | height | query | block height | No | long |
-| limit | query | default 50; max 100. | No | integer |
+| limit | query | default 20; max 20. | No | integer |
 | offset | query | start with 0; default 0. | No | integer |
 | start | query | start time | No | long |
 
@@ -339,7 +339,7 @@ The given _limit_ must be one of the allowed limits below.
 
 **Description:** Gets candlestick/kline bars for a symbol. Bars are uniquely identified by their open time.
 
-**Response:**
+**Example**
 
 ```
 [

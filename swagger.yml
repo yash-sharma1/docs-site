@@ -561,7 +561,7 @@ paths:
       description: |
         Gets candlestick/kline bars for a symbol. Bars are uniquely identified by their open time.
 
-        **Response:**
+        **Example**
 
         ```
         [
