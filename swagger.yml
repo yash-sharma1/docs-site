@@ -69,11 +69,7 @@ paths:
         '200':
           description: Success
           schema:
-            type: object
-            title: Times
-            properties:
-              ap_time: {type: string}
-              block_time: {type: string}
+            $ref: "#/definitions/Times"
         '400':
           description: 'Bad Request'
           schema:
@@ -562,7 +558,24 @@ paths:
       tags:
       - market
       summary: Get candlestick bars.
-      description: Gets candlestick/kline bars for a symbol. Bars are uniquely identified by their open time.
+      description: |
+        Gets candlestick/kline bars for a symbol. Bars are uniquely identified by their open time.
+
+        **Response:**
+
+        ```
+        [
+          1499040000000,      // Open time
+          "0.01634790",       // Open
+          "0.80000000",       // High
+          "0.01575800",       // Low
+          "0.01577100",       // Close
+          "148976.11427815",  // Volume
+          1499644799999,      // Close time
+          "2434.19055334",    // Quote asset volume
+          308                // Number of trades
+        ]
+        ```
       operationId: getCandlestickBars
       produces:
       - application/json
@@ -1070,6 +1083,12 @@ definitions:
       message:
         type: string
         required: true
+  Times:
+    type: object
+    title: Times
+    properties:
+      ap_time: {type: string, description: e.g. 2019-01-21T10:30:00Z}
+      block_time: {type: string, description: format as above}
   Validators:
     type: object
     properties:

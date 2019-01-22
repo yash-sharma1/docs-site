@@ -27,7 +27,7 @@ support@binance.org
 
 | Code | Description | Schema |
 | ---- | ----------- | ------ |
-| 200 | Success | object |
+| 200 | Success | [Times](#times) |
 | 400 | Bad Request | [Error](#error) |
 | 404 | Not Found |  |
 | default | Generic error response | [Error](#error) |
@@ -287,7 +287,7 @@ The given _limit_ must be one of the allowed limits below.
 | address | query | the seller/buyer address | Yes | string |
 | end | query | end time | No | long |
 | height | query | block height | No | long |
-| limit | query | default 20; max 20. | No | integer |
+| limit | query | default 50; max 100. | No | integer |
 | offset | query | start with 0; default 0. | No | integer |
 | start | query | start time | No | long |
 
@@ -338,6 +338,23 @@ The given _limit_ must be one of the allowed limits below.
 **Summary:** Get candlestick bars.
 
 **Description:** Gets candlestick/kline bars for a symbol. Bars are uniquely identified by their open time.
+
+**Response:**
+
+```
+[
+  1499040000000,      // Open time
+  "0.01634790",       // Open
+  "0.80000000",       // High
+  "0.01575800",       // Low
+  "0.01577100",       // Close
+  "148976.11427815",  // Volume
+  1499644799999,      // Close time
+  "2434.19055334",    // Quote asset volume
+  308                // Number of trades
+]
+```
+
 
 **Parameters**
 
@@ -525,6 +542,13 @@ The given _limit_ must be one of the allowed limits below.
 | code | long |  | No |
 | message | string |  | Yes |
 
+### Times  
+
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| ap_time | string | e.g. 2019-01-21T10:30:00Z | No |
+| block_time | string | format as above | No |
+
 ### Validators  
 
 | Name | Type | Description | Required |
@@ -610,19 +634,17 @@ The given _limit_ must be one of the allowed limits below.
 
 ### Candlestick  
 
-```javascript
-  [
-    1499040000000,      // Open time
-    "0.01634790",       // Open
-    "0.80000000",       // High
-    "0.01575800",       // Low
-    "0.01577100",       // Close
-    "148976.11427815",  // Volume
-    1499644799999,      // Close time
-    "2434.19055334",    // Quote asset volume
-    308                // Number of trades
-  ]
-```
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| close | number |  | No |
+| closeTime | long |  | No |
+| high | number |  | No |
+| low | number |  | No |
+| numberOfTrades | integer |  | No |
+| open | number |  | No |
+| openTime | long |  | No |
+| quoteAssetVolume | number |  | No |
+| volume | number |  | No |
 
 ### OrderList  
 
@@ -685,6 +707,18 @@ The given _limit_ must be one of the allowed limits below.
 | ---- | ---- | ----------- | -------- |
 | total | string |  | No |
 | trade | [ [Trade](#trade) ] |  | No |
+
+### TradeStatistics  
+
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| avgPrice | number |  | No |
+| high | number |  | No |
+| low | number |  | No |
+| symbol | string |  | No |
+| totalBaseVolume | number |  | No |
+| totalCount | long |  | No |
+| totalQuotaVolume | number |  | No |
 
 ### Trade  
 
