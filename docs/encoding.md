@@ -130,7 +130,7 @@ message TokenFreeze {
   0xE774B32D   // hardcoded, object type prefix in 4 bytes
   bytes from = 1 // owner address
   string symbol = 2 // token symbol, in full name with "-" suffix
-  string amount = 3 // amount of token to freeze
+  sint64 amount = 3 // amount of token to freeze
 }
 ```
 
@@ -143,7 +143,7 @@ message TokenUnfreeze {
   0x6515FF0D   // hardcoded, object type prefix in 4 bytes
   bytes from = 1 // owner address
   string symbol = 2 // token symbol, in full name with "-" suffix
-  string amount = 3 // amount of token to unfreeze
+  sint64 amount = 3 // amount of token to unfreeze
 }
 ```
 ### Standard Signature Type
