@@ -383,7 +383,7 @@ The given _limit_ must be one of the allowed limits below.
 | Name | Located in | Description | Required | Schema |
 | ---- | ---------- | ----------- | -------- | ---- |
 | symbol | query | symbol | Yes | string |
-| interval | query | interval | Yes | string |
+| interval | query | interval. Allowed value: [1m, 3m, 5m, 15m, 30m, 1h, 2h, 4h, 6h, 8h, 12h, 1d, 3d, 1w, 1M] | Yes | string |
 | limit | query | default 300; max 1000. | No | integer |
 | startTime | query | start time | No | long |
 | endTime | query | end time | No | long |
@@ -409,11 +409,11 @@ The given _limit_ must be one of the allowed limits below.
 | end | query | end time | No | long |
 | limit | query | default 500; max 1000. | No | integer |
 | offset | query | start with 0; default 0. | No | integer |
-| side | query | order side | No | string |
+| side | query | order side. 1 for buy and 2 for sell. | No | integer |
 | start | query | start time; The maximum start - end query window is 3 months; Default query window is latest 7 days. | No | long |
-| status | query | order status list | No | [ string ] |
+| status | query | order status list. Allowed value: [ACK, PARTIALLY_FILLED, IOC_NO_FILL, FULLY_FILLED, CANCELED, EXPIRED, FAIL_BLOCKING, FAIL_MATCH] | No | [ string ] |
 | symbol | query | symbol | No | string |
-| total | query | total number required; default 0, not required. If not required, total=-1 in response | No | integer |
+| total | query | total number required, 0 for not required and 1 for required; default not required, return total=-1 in response | No | integer |
 
 **Responses**
 
@@ -510,10 +510,10 @@ The given _limit_ must be one of the allowed limits below.
 | offset | query | start with 0; default 0. | No | integer |
 | quoteAsset | query | quote asset | No | string |
 | sellerOrderId | query | seller order id | No | string |
-| side | query | order side | No | string |
+| side | query | order side. 1 for buy and 2 for sell. | No | integer |
 | start | query | start time; The maximum start - end query window is 3 months; Default query window is latest 7 days. | No | long |
 | symbol | query | symbol | No | string |
-| total | query | total number required; default 0, not required. If not required, total=-1 in response | No | integer |
+| total | query | total number required, 0 for not required and 1 for required; default not required, return total=-1 in response | No | integer |
 
 **Responses**
 
@@ -540,10 +540,10 @@ The given _limit_ must be one of the allowed limits below.
 | endTime | query | endTime | No | long |
 | limit | query | limit | No | integer |
 | offset | query | offset | No | integer |
-| side | query | transaction side | No | string |
+| side | query | transaction side. Allowed value: [ RECEIVE, SEND] | No | string |
 | startTime | query | start time; The maximum start - end query window is 3 months; Default query window is latest 7 days. | No | long |
 | txAsset | query | txAsset | No | string |
-| txType | query | transaction type | No | string |
+| txType | query | transaction type. Allowed value: [ NEW_ORDER,ISSUE_TOKEN,BURN_TOKEN,LIST_TOKEN,CANCEL_ORDER,FREEZE_TOKEN,UN_FREEZE_TOKEN,TRANSFER,PROPOSAL,VOTE] | No | string |
 
 **Responses**
 
@@ -643,7 +643,7 @@ The given _limit_ must be one of the allowed limits below.
 | Name | Type | Description | Required |
 | ---- | ---- | ----------- | -------- |
 | blockTrade | [ [BlockTrade](#blocktrade) ] |  | No |
-| total | string |  | No |
+| total | long |  | No |
 
 ### BlockTrade  
 
@@ -673,29 +673,29 @@ The given _limit_ must be one of the allowed limits below.
 | Name | Type | Description | Required |
 | ---- | ---- | ----------- | -------- |
 | order | [ [Order](#order) ] |  | No |
-| total | string |  | No |
+| total | long |  | No |
 
 ### Order  
 
 | Name | Type | Description | Required |
 | ---- | ---- | ----------- | -------- |
-| cumulateQuantity | number |  | No |
+| cumulateQuantity | string |  | No |
 | fee | string |  | No |
-| lastExecutedPrice | number |  | No |
-| lastExecutedQuantity | number |  | No |
+| lastExecutedPrice | string |  | No |
+| lastExecutedQuantity | string |  | No |
 | orderCreateTime | dateTime |  | No |
 | orderId | string |  | No |
 | owner | string |  | No |
-| price | number |  | No |
-| quantity | number |  | No |
-| side | string |  | No |
-| status | string |  | No |
+| price | string |  | No |
+| quantity | string |  | No |
+| side | integer | 1 for buy and 2 for sell | No |
+| status | string | enum [ACK, PARTIALLY_FILLED, IOC_NO_FILL, FULLY_FILLED, CANCELED, EXPIRED, FAIL_BLOCKING, FAIL_MATCH] | No |
 | symbol | string |  | No |
-| timeInForce | string |  | No |
+| timeInForce | integer | 1 for Good Till Expire(GTE) order and 3 for Immediate Or Cancel (IOC) | No |
 | tradeId | string |  | No |
 | transactionHash | string |  | No |
 | transactionTime | dateTime |  | No |
-| type | string |  | No |
+| type | integer | only 2 is available for now, meaning limit order | No |
 
 ### TickerStatistics  
 
@@ -727,20 +727,8 @@ The given _limit_ must be one of the allowed limits below.
 
 | Name | Type | Description | Required |
 | ---- | ---- | ----------- | -------- |
-| total | string |  | No |
+| total | long |  | No |
 | trade | [ [Trade](#trade) ] |  | No |
-
-### TradeStatistics  
-
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| avgPrice | number |  | No |
-| high | number |  | No |
-| low | number |  | No |
-| symbol | string |  | No |
-| totalBaseVolume | number |  | No |
-| totalCount | long |  | No |
-| totalQuotaVolume | number |  | No |
 
 ### Trade  
 
@@ -751,8 +739,8 @@ The given _limit_ must be one of the allowed limits below.
 | buyFee | string |  | No |
 | buyerId | string |  | No |
 | buyerOrderId | string |  | No |
-| price | number |  | No |
-| quantity | number |  | No |
+| price | string |  | No |
+| quantity | string |  | No |
 | quoteAsset | string |  | No |
 | sellFee | string |  | No |
 | sellerId | string |  | No |
@@ -765,7 +753,7 @@ The given _limit_ must be one of the allowed limits below.
 
 | Name | Type | Description | Required |
 | ---- | ---- | ----------- | -------- |
-| total | string |  | No |
+| total | long |  | No |
 | tx | [ [Tx](#tx) ] |  | No |
 
 ### Tx  
@@ -782,10 +770,10 @@ The given _limit_ must be one of the allowed limits below.
 | toAddr | string |  | No |
 | txAge | long |  | No |
 | txAsset | string |  | No |
-| txFee | number |  | No |
+| txFee | string |  | No |
 | txHash | string |  | No |
 | txType | string |  | No |
-| value | number |  | No |
+| value | string |  | No |
 
 ### ExchangeRate  
 
