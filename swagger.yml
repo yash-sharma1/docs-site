@@ -609,7 +609,7 @@ paths:
         type: string
       - name: interval
         in: query
-        description: interval
+        description: "interval. Allowed value: [1m, 3m, 5m, 15m, 30m, 1h, 2h, 4h, 6h, 8h, 12h, 1d, 3d, 1w, 1M]"
         required: true
         type: string
         allowEmptyValue: false
@@ -720,9 +720,10 @@ paths:
         allowEmptyValue: false
       - name: side
         in: query
-        description: order side
+        description: order side. 1 for buy and 2 for sell.
         required: false
-        type: string
+        type: integer
+        format: int32
         allowEmptyValue: false
         enum:
         - BUY
@@ -736,7 +737,7 @@ paths:
         allowEmptyValue: false
       - name: status
         in: query
-        description: order status list
+        description: "order status list. Allowed value: [ACK, PARTIALLY_FILLED, IOC_NO_FILL, FULLY_FILLED, CANCELED, EXPIRED, FAIL_BLOCKING, FAIL_MATCH]"
         required: false
         type: array
         items:
@@ -750,7 +751,7 @@ paths:
         type: string
       - name: total
         in: query
-        description: 'total number required; default 0, not required. If not required, total=-1 in response'
+        description: 'total number required, 0 for not required and 1 for required; default not required, return total=-1 in response'
         required: false
         type: integer
         format: int32
@@ -953,9 +954,10 @@ paths:
         allowEmptyValue: false
       - name: side
         in: query
-        description: order side
+        description: order side. 1 for buy and 2 for sell.
         required: false
-        type: string
+        type: integer
+        format: int32
         allowEmptyValue: false
         enum:
         - BUY
@@ -974,7 +976,7 @@ paths:
         type: string
       - name: total
         in: query
-        description: 'total number required; default 0, not required. If not required, total=-1 in response'
+        description: 'total number required, 0 for not required and 1 for required; default not required, return total=-1 in response'
         required: false
         type: integer
         format: int32
@@ -1041,7 +1043,7 @@ paths:
         format: int32
       - name: side
         in: query
-        description: transaction side
+        description: "transaction side. Allowed value: [ RECEIVE, SEND]"
         required: false
         type: string
         allowEmptyValue: false
@@ -1061,7 +1063,7 @@ paths:
         type: string
       - name: txType
         in: query
-        description: transaction type
+        description: "transaction type. Allowed value: [ NEW_ORDER,ISSUE_TOKEN,BURN_TOKEN,LIST_TOKEN,CANCEL_ORDER,FREEZE_TOKEN,UN_FREEZE_TOKEN,TRANSFER,PROPOSAL,VOTE]"
         required: false
         type: string
         allowEmptyValue: false
@@ -1349,7 +1351,8 @@ definitions:
           $ref: '#/definitions/BlockTrade'
         required: true
       total:
-        type: string
+        type: integer
+        format: int64
         required: true
   BlockTrade:
     type: object
@@ -1398,18 +1401,19 @@ definitions:
         items:
           $ref: '#/definitions/Order'
       total:
-        type: string
+        type: integer
+        format: int64
   Order:
     type: object
     properties:
       cumulateQuantity:
-        type: number
+        type: string
       fee:
         type: string
       lastExecutedPrice:
-        type: number
+        type: string
       lastExecutedQuantity:
-        type: number
+        type: string
       orderCreateTime:
         type: string
         format: date-time
@@ -1418,16 +1422,19 @@ definitions:
       owner:
         type: string
       price:
-        type: number
-      quantity:
-        type: number
-      side:
         type: string
+      quantity:
+        type: string
+      side:
+        type: integer
+        format: int32
+        description: "1 for buy and 2 for sell"
         enum:
         - BUY
         - SELL
       status:
         type: string
+        description: "enum [ACK, PARTIALLY_FILLED, IOC_NO_FILL, FULLY_FILLED, CANCELED, EXPIRED, FAIL_BLOCKING, FAIL_MATCH]"
         enum:
         - ACK
         - PARTIALLY_FILLED
@@ -1441,7 +1448,9 @@ definitions:
       symbol:
         type: string
       timeInForce:
-        type: string
+        type: integer
+        format: int32
+        description: "1 for Good Till Expire(GTE) order and 3 for Immediate Or Cancel (IOC)"
         enum:
         - GTC
         - IOC
@@ -1454,7 +1463,9 @@ definitions:
         type: string
         format: date-time
       type:
-        type: string
+        type: integer
+        format: int32
+        description: "only 2 is available for now, meaning limit order"
         enum:
         - LIMIT
     title: Order
@@ -1511,29 +1522,12 @@ definitions:
     type: object
     properties:
       total:
-        type: string
+        type: integer
+        format: int64
       trade:
         type: array
         items:
           $ref: '#/definitions/Trade'
-  TradeStatistics:
-    type: object
-    properties:
-      avgPrice:
-        type: number
-      high:
-        type: number
-      low:
-        type: number
-      symbol:
-        type: string
-      totalBaseVolume:
-        type: number
-      totalCount:
-        type: integer
-        format: int64
-      totalQuotaVolume:
-        type: number
   Trade:
     type: object
     properties:
@@ -1549,9 +1543,9 @@ definitions:
       buyerOrderId:
         type: string
       price:
-        type: number
+        type: string
       quantity:
-        type: number
+        type: string
       quoteAsset:
         type: string
       sellFee:
@@ -1571,7 +1565,8 @@ definitions:
     type: object
     properties:
       total:
-        type: string
+        type: integer
+        format: int64
       tx:
         type: array
         items:
@@ -1606,13 +1601,13 @@ definitions:
       txAsset:
         type: string
       txFee:
-        type: number
+        type: string
       txHash:
         type: string
       txType:
         type: string
       value:
-        type: number
+        type: string
     title: Tx
   ExchangeRate:
     type: object
