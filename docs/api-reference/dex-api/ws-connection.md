@@ -22,21 +22,21 @@ Using this method, stream names are specified in the URLs used to connect to the
 
 ```javascript
   // for personal streams, ex: Account & Orders
-  const accountAndOrdersFeeds = new WebSocket("ws://testnet-dex.binance.org/api/ws/<USER_ADDRESS>");
+  const accountAndOrdersFeeds = new WebSocket("wss://testnet-dex.binance.org/api/ws/<USER_ADDRESS>");
 
   // for single streams
-  const tradesFeeds = new WebSocket("ws://testnet-dex.binance.org/api/ws/<symbol>@trades");
-  const marketFeeds = new WebSocket("ws://testnet-dex.binance.org/api/ws/<symbol>@marketDiff");
-  const deltaFeeds = new WebSocket("ws://testnet-dex.binance.org/api/ws/<symbol>@marketDepth");
+  const tradesFeeds = new WebSocket("wss://testnet-dex.binance.org/api/ws/<symbol>@trades");
+  const marketFeeds = new WebSocket("wss://testnet-dex.binance.org/api/ws/<symbol>@marketDiff");
+  const deltaFeeds = new WebSocket("wss://testnet-dex.binance.org/api/ws/<symbol>@marketDepth");
   ... etc
 
   // for all symbols
-  const allTickers = new WebSocket("ws://testnet-dex.binance.org/api/ws/$all@ticker");
-  const allMiniTickers = new WebSocket("ws://testnet-dex.binance.org/api/ws/$all@miniTicker");
-  const blockHeight = new WebSocket("ws://testnet-dex.binance.org/api/ws/$all@blockheight");
+  const allTickers = new WebSocket("wss://testnet-dex.binance.org/api/ws/$all@allTickers");
+  const allMiniTickers = new WebSocket("wss://testnet-dex.binance.org/api/ws/$all@allMiniTickers");
+  const blockHeight = new WebSocket("wss://testnet-dex.binance.org/api/ws/$all@blockheight");
 
   // for combined streams, can combined a mixed symbols and streams
-  const combinedFeeds = new WebSocket("ws://testnet-dex.binance.org/api/stream?streams=<symbol>@trades/<symbol>@marketDepth/<symbol>@marketDiff");
+  const combinedFeeds = new WebSocket("wss://testnet-dex.binance.org/api/stream?streams=<symbol>@trades/<symbol>@marketDepth/<symbol>@marketDiff");
 ```
 
 ### Method 2: Subscribe to streams on demand
@@ -44,7 +44,7 @@ Using this method, stream names are specified in the URLs used to connect to the
 Using this method, streams are be consumed via subscribe and unsubscribe commands, sent through a single WebSocket connection.
 
 ```javascript
-    const conn = new WebSocket("ws://testnet-dex.binance.org/api");
+    const conn = new WebSocket("wss://testnet-dex.binance.org/api");
     conn.onopen = function(evt) {
         // send Subscribe/Unsubscribe messages here (see below)
     }
@@ -61,7 +61,7 @@ After connecting successfully you can subscribe/unsubscribe to different topics.
 **Example:** To subscribe to orders events and market depth updates, you should to send a socket message with the `subscribe` payload as below:
 
 ```javascript
-    const conn = new WebSocket("ws://testnet-dex.binance.org/api");
+    const conn = new WebSocket("wss://testnet-dex.binance.org/api");
     conn.onopen = function(evt) {
         // for private topics such as accounts & orders, a `userAddress` is required
         conn.send(JSON.stringify({ method: "subscribe", topic: "orders", userAddress: "bnc1hp7cves62dzj8n4z8ckna0d3t6zd7z2zcj6gtq" }));
