@@ -24,21 +24,20 @@ Examples are written in JavaScript.
 **Received Payload:**
 
 ```javascript
-[
   {
-    "topic": "orders",
-    "payload": {
+    "stream": "orders",
+    "data": [{
         "e": "executionReport",        // Event type
         "E": 1499405658658,            // Event time
         "s": "ETH_BTC",                // Symbol
-        "S": "BUY",                    // Side
-        "o": "LIMIT",                  // Order type
-        "f": "GTE",                    // Time in force
+        "S": 1,                    // Side, 1 for Buy; 2 for Sell
+        "o": 2,                  // Order type, 2 for LIMIT (only)
+        "f": 1,                    // Time in force,  1 for Good Till Expire (GTE); 3 for Immediate Or Cancel (IOC)
         "q": "1.00000000",             // Order quantity
         "p": "0.10264410",             // Order price
         "x": "NEW",                    // Current execution type
         "X": "NEW",                    // Current order status
-        "i": 4293153,                  // Order ID
+        "i": "917E1846D6B3C40B97465CCF52818471E2C1027C-2317",                  // Order ID
         "l": "0.00000000",             // Last executed quantity
         "z": "0.00000000",             // Cumulative filled quantity
         "L": "0.00000000",             // Last executed price
@@ -51,34 +50,29 @@ Examples are written in JavaScript.
         "Z": "0.00000000"              // Cumulative quote asset transacted quantity
     },
     {
-        "topic": "orders",
-        "payload": {
-            "e": "executionReport",        // Event type
-            "E": 1499405658658,            // Event time
-            "s": "ETH_BNB",                // Symbol
-            "S": "BUY",                    // Side
-            "o": "LIMIT",                  // Order type
-            "f": "GTE",                    // Time in force
-            "q": "1.00000000",             // Order quantity
-            "p": "0.10264410",             // Order price
-            "x": "NEW",                    // Current execution type
-            "X": "NEW",                    // Current order status
-            "i": 4293154,                  // Order ID
-            "l": "0.00000000",             // Last executed quantity
-            "z": "0.00000000",             // Cumulative filled quantity
-            "L": "0.00000000",             // Last executed price
-            "n": "10000BNB",               // Commission amount for all user trades within a given block. Fees will be displayed with each order but will be charged once.
-                                          // Fee can be composed of a single symbol, ex: "10000BNB"
-                                          // or multiple symbols if the available "BNB" balance is not enough to cover the whole fees, ex: "1.00000000BNB;0.00001000BTC;0.00050000ETH"
-            "T": 1499405658657,            // Transaction time
-            "t": "TRD2",                   // Trade ID
-            "O": 1499405658657,            // Order creation time
-            "Z": "0.00000000"              // Cumulative quote asset transacted quantity
-        }
-      },
-      ...
+        "e": "executionReport",        // Event type
+        "E": 1499405658658,            // Event time
+        "s": "ETH_BNB",                // Symbol
+        "S": "BUY",                    // Side
+        "o": "LIMIT",                  // Order type
+        "f": "GTE",                    // Time in force
+        "q": "1.00000000",             // Order quantity
+        "p": "0.10264410",             // Order price
+        "x": "NEW",                    // Current execution type
+        "X": "NEW",                    // Current order status
+        "i": 4293154,                  // Order ID
+        "l": "0.00000000",             // Last executed quantity
+        "z": "0.00000000",             // Cumulative filled quantity
+        "L": "0.00000000",             // Last executed price
+        "n": "10000BNB",               // Commission amount for all user trades within a given block. Fees will be displayed with each order but will be charged once.
+                                        // Fee can be composed of a single symbol, ex: "10000BNB"
+                                        // or multiple symbols if the available "BNB" balance is not enough to cover the whole fees, ex: "1.00000000BNB;0.00001000BTC;0.00050000ETH"
+        "T": 1499405658657,            // Transaction time
+        "t": "TRD2",                   // Trade ID
+        "O": 1499405658657,            // Order creation time
+        "Z": "0.00000000"              // Cumulative quote asset transacted quantity
+      }]
   }
-]
 ```
 
 ### 2. Account
@@ -101,6 +95,8 @@ Return account updates.
 ```
 
 **Received Payload:**
+
+"stream" and "data" wrapper object is ignored here
 
 ```javascript
 {
@@ -151,10 +147,9 @@ Returns individual trade updates.
 **Received Payload:**
 
 ```javascript
-[
-  {
-    "topic": "trades",
-    "payload": {
+{
+    "stream": "trades",
+    "data": [{
         "e": "trade",     // Event type
         "E": 123456789,   // Event time
         "s": "BNB_BTC",    // Symbol
@@ -164,11 +159,8 @@ Returns individual trade updates.
         "b": 88,          // Buyer order ID
         "a": 50,          // Seller order ID
         "T": 123456785,   // Trade time
-    }
-  },
-  {
-    "topic": "trades",
-    "payload": {
+    },
+    {
         "e": "trade",     // Event type
         "E": 123456795,   // Event time
         "s": "BNB_BTC",    // Symbol
@@ -178,10 +170,8 @@ Returns individual trade updates.
         "b": 88,          // Buyer order ID
         "a": 52,          // Seller order ID
         "T": 123456795,   // Trade time
-    }
-  },
-  ...
-]
+    }]
+}
 ```
 
 ### 4. Diff. Depth Stream
@@ -207,8 +197,8 @@ Order book price and quantity depth updates used to locally keep an order book.
 
 ```javascript
 {
-    "topic": "marketDiff",
-    "payload": {
+    "stream": "marketDiff",
+    "data": {
         "e": "depthUpdate",   // Event type
         "E": 123456789,       // Event time
         "s": "BNB_BTC",       // Symbol
@@ -251,8 +241,8 @@ Top 20 levels of bids and asks.
 
 ```javascript
 {
-    "topic": "marketDepth",
-    "payload": {
+    "stream": "marketDepth",
+    "data": {
         "lastUpdateId": 160,  // Last update ID
         "bids": [             // Bids to be updated
             [
@@ -311,6 +301,8 @@ m -> minutes; h -> hours; d -> days; w -> weeks; M -> months
 
 **Received Payload:**
 
+"stream" and "data" wrapper object is ignored here
+
 ```javascript
 {
   "e": "kline",     // Event type
@@ -358,6 +350,8 @@ m -> minutes; h -> hours; d -> days; w -> weeks; M -> months
 ```
 
 **Received Payload:**
+
+"stream" and "data" wrapper object is ignored here
 
 ```javascript
 {
@@ -407,6 +401,8 @@ m -> minutes; h -> hours; d -> days; w -> weeks; M -> months
 ```
 
 **Received Payload:**
+
+"stream" and "data" wrapper object is ignored here
 
 ```javascript
 [
@@ -462,6 +458,8 @@ A ticker for a single symbol is pushed every second.
 
 **Received Payload:**
 
+"stream" and "data" wrapper object is ignored here
+
 ```javascript
 {
   "e": "24hrMiniTicker",  // Event type
@@ -496,6 +494,8 @@ Array of 24hr Mini Ticker statistics for a all symbols pushed every second.
 ```
 
 **Received Payload:**
+
+"stream" and "data" wrapper object is ignored here
 
 ```javascript
 [
@@ -536,6 +536,8 @@ Streams the latest block height.
 ```
 
 **Received Payload:**
+
+"stream" and "data" wrapper object is ignored here
 
 ```javascript
 {
