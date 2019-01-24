@@ -30,14 +30,14 @@ Examples are written in JavaScript.
         "e": "executionReport",        // Event type
         "E": 1499405658658,            // Event time
         "s": "ETH_BTC",                // Symbol
-        "S": 1,                    // Side, 1 for Buy; 2 for Sell
-        "o": 2,                  // Order type, 2 for LIMIT (only)
-        "f": 1,                    // Time in force,  1 for Good Till Expire (GTE); 3 for Immediate Or Cancel (IOC)
+        "S": 1,                        // Side, 1 for Buy; 2 for Sell
+        "o": 2,                        // Order type, 2 for LIMIT (only)
+        "f": 1,                        // Time in force,  1 for Good Till Expire (GTE); 3 for Immediate Or Cancel (IOC)
         "q": "1.00000000",             // Order quantity
         "p": "0.10264410",             // Order price
         "x": "NEW",                    // Current execution type
         "X": "NEW",                    // Current order status
-        "i": "917E1846D6B3C40B97465CCF52818471E2C1027C-2317",                  // Order ID
+        "i": "91D9...7E18-2317",       // Order ID
         "l": "0.00000000",             // Last executed quantity
         "z": "0.00000000",             // Cumulative filled quantity
         "L": "0.00000000",             // Last executed price
