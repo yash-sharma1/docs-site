@@ -73,16 +73,55 @@ the tick size or/and lot size is changed, new orders must stick to the new vaule
 existing orders on the order book can still be traded.
 
 ## Fees
+
 We have five kinds of order operations, each kind has its specific fee calculation logic and collection timing as the table described below.
 
-| Operation    |  calculation  |  collection timing |
+| Operation    |  Calculation  |  Collection Timing |
 |:------------- |:------- |:------- |
 | Place order | free | - |
 | Cancel order| fixed fees | when the `Cancel` transaction executes |
 | Order expire| fixed fees if fully expired, otherwise free| when the scheduled order expiration happenes |
-| IOC order cancel| fixed fees if fully canceled, otherwise free| when the IOC order not fully filled |
+| IOC order cancel| fixed fees if fully canceled, otherwise free| when the IOC order is not fully filled |
 | Order execution | rate based fees | when the order matched |
 
 BNB is the priority in the fee collection and has some discounts. 
 
 DEX would always calculate and collect the fees based on the latest balance and in the best interest of users.
+
+### Current Fees Table
+
+Fees are variable and may change over time as governance proposals are proposed and voted on. The current fees table as of **2019-01-24** is as follows:
+
+Transaction Type | Pay in Non-BNB Asset | Pay in BNB | Exchange (DEX) Related
+-- | -- | -- | --
+New Order | 0 | 0 | Y
+Cancel (No Fill) | Equivalent 0.001 BNB | 0.0002 BNB | Y
+Order Expire (No Fill) | Equivalent 0.001 BNB | 0.0002 BNB | Y
+IOC (No Fill) | Equivalent 0.0005 BNB | 0.0001 BNB | Y
+Transfer | N/A | 0.01 BNB | N
+Issue Asset | N/A | 2000 BNB | N
+Burn Asset | N/A | 0.01 BNB | N
+Freeze/Unfreeze Asset | N/A | 0.01 BNB | N
+List Asset | N/A | 10000 BNB | N
+
+### Trading Fees
+
+Trading fees are subject to complex logic that may mean that individual trades are charged slightly above or below the exact percentage below; this is due to the block-based matching engine in use on the DEX.
+
+The current fee for trades, applied on the settled amounts, is as follows:
+
+Transaction Type | Pay in non-BNB Asset | Pay in BNB
+-- | -- | --
+Trade | 0.05% | 0.025%
+
+**Note:** There will be an API link to view the current trading fee in real-time provided here shortly.
+
+### Notes
+
+- Trade fee is calculated based on trade notional value, while fees for other transactions are fixed. 
+It is free to send new GTE order, cancel a partially filled order, and you will not be charged a fee when the system expires a partially filled order.
+
+- Non-Trade related transactions will be charged a fee when the transactions happen, and can only be paid in BNB. The transaction will be rejected if the address does not have enough BNB.
+
+- Trade related transaction would be charged with fee when an order is filled, or canceled/expired/IOC-expired with no fills. If there is enough BNB to pay, BNB fee structure would be used, otherwise, non-BNB fee structure would be used to charged. 
+- If the whole order value and free balance for the receiving asset are not enough to pay the fee, all the receiving asset and its residual balance would be charged.
