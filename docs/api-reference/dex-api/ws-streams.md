@@ -33,7 +33,7 @@ Examples are written in JavaScript.
         "s": "ETH_BTC",                // Symbol
         "S": "BUY",                    // Side
         "o": "LIMIT",                  // Order type
-        "f": "GTC",                    // Time in force
+        "f": "GTE",                    // Time in force
         "q": "1.00000000",             // Order quantity
         "p": "0.10264410",             // Order price
         "x": "NEW",                    // Current execution type
@@ -58,7 +58,7 @@ Examples are written in JavaScript.
             "s": "ETH_BNB",                // Symbol
             "S": "BUY",                    // Side
             "o": "LIMIT",                  // Order type
-            "f": "GTC",                    // Time in force
+            "f": "GTE",                    // Time in force
             "q": "1.00000000",             // Order quantity
             "p": "0.10264410",             // Order price
             "x": "NEW",                    // Current execution type

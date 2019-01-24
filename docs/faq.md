@@ -63,8 +63,8 @@ In Binance DEX v1.0, the order message contains:
 - Side: buy or sell
 - Price: only limit price orders are supported in Binance Chain v1.0
 Amount
-- Time In Force: Binance DEX supports `Immediate Or Cancel` (IOC) and `Good Till Cancel` (GTC) 
-orders. GTC orders can quote on the exchange until they are filled by the opposite orders satisfying 
+- Time In Force: Binance DEX supports `Immediate Or Cancel` (IOC) and `Good Till Expiry` (GTE) 
+orders. GTE orders can quote on the exchange until they are filled by the opposite orders satisfying 
 the limit price, or canceled by client themselves, or expire after 72 hours after 00:00 (UTC). 
 Check the "What is `Order Expire`" section of the FAQ for more information.
   
@@ -125,7 +125,7 @@ The fee is subject to periodical review and adjustment, after agreement from val
 proposal-vote procedure.
 
 - Trade fee is calculated based on trade notional value, while fees for other transactions are fixed. 
-- It is free to send a new GTC order, cancel a partially filled order, or expire a partially filled order.
+- It is free to send a new GTE order, cancel a partially filled order, or expire a partially filled order.
 - Non-Trade related transactions would be charged with a fee when the transactions happen, and can 
 only be paid in BNB. The transaction will be rejected if the address does not have enough BNB.
 - Trade-related transactions would be charged with a fee when an order is filled, or 
