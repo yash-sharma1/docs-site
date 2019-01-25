@@ -1452,7 +1452,7 @@ definitions:
         format: int32
         description: "1 for Good Till Expire(GTE) order and 3 for Immediate Or Cancel (IOC)"
         enum:
-        - GTC
+        - GTE
         - IOC
         - UNKNOWN
       tradeId:
