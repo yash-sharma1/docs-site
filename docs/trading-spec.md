@@ -90,7 +90,7 @@ DEX would always calculate and collect the fees based on the latest balance and 
 
 ### Current Fees Table
 
-Fees are variable and may change over time as governance proposals are proposed and voted on. The current fees table as of **2019-01-24** is as follows:
+Fees are variable and may change over time as governance proposals are proposed and voted on. The current fees table as of **2019-01-26** is as follows:
 
 Transaction Type | Pay in Non-BNB Asset | Pay in BNB | Exchange (DEX) Related
 -- | -- | -- | --
@@ -98,28 +98,29 @@ New Order | 0 | 0 | Y
 Cancel (No Fill) | Equivalent 0.001 BNB | 0.0002 BNB | Y
 Order Expire (No Fill) | Equivalent 0.001 BNB | 0.0002 BNB | Y
 IOC (No Fill) | Equivalent 0.0005 BNB | 0.0001 BNB | Y
-Transfer | N/A | 0.01 BNB | N
+Transfer | N/A | 0.0025 BNB | N
 Issue Asset | N/A | 2000 BNB | N
-Burn Asset | N/A | 0.01 BNB | N
+Mint Asset | N/A | 200 BNB | N
+Burn Asset | N/A | 1 BNB | N
 Freeze/Unfreeze Asset | N/A | 0.01 BNB | N
 List Asset | N/A | 10000 BNB | N
 
 ### Trading Fees
 
-Trading fees are subject to complex logic that may mean that individual trades are charged slightly above or below the exact percentage below; this is due to the block-based matching engine in use on the DEX.
+Trading fees are subject to complex logic that may mean that individual trades are charged exactly by the rates below, but between them instead; this is due to the block-based matching engine in use on the DEX.
 
 The current fee for trades, applied on the settled amounts, is as follows:
 
 Transaction Type | Pay in non-BNB Asset | Pay in BNB
 -- | -- | --
-Trade | 0.05% | 0.025%
+Trade | 0.1% | 0.04%
 
 **Note:** There will be an API link to view the current trading fee in real-time provided here shortly.
 
 ### Notes
 
 - Trade fee is calculated based on trade notional value, while fees for other transactions are fixed. 
-It is free to send new GTE order, cancel a partially filled order, and you will not be charged a fee when the system expires a partially filled order.
+It is free to send new GTE order, cancel a partially filled order, and you will not be charged a fee when the system expires a partially filled order (GTE or IOC).
 
 - Non-Trade related transactions will be charged a fee when the transactions happen, and can only be paid in BNB. The transaction will be rejected if the address does not have enough BNB.
 
