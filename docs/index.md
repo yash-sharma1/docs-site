@@ -1,5 +1,11 @@
 # Welcome to Binance Chain Docs
 
+Welcome to Binance Chain documentation site! 
+
+Please note both Binance Chain and this document site would keep improving as time goes. Please re-check the sites and community channels from time to time. 
+
+Have fun on Chain! Have fun exchange and trading!
+
 ## What are Binance Chain and Binance DEX?
 
 Binance Chain is a blockchain software system developed by Binance and its community.
