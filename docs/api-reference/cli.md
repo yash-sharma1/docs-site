@@ -14,7 +14,7 @@ balance, transaction detail by transaction hash and etc.
 
 ## Where can I download the Binance Chain CLI?
 
-TODO
+You may download Binance Chain releases here: https://github.com/binance-chain/node/releases
 
 ## Where to connect
 
