@@ -1,4 +1,4 @@
-# Binance Chain Command Line Interface(CLI) Reference
+# Binance Chain Command Line Interface (CLI) Reference
 
 Binance Chain CLI is one of ways to access Binance Chain.
 

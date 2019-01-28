@@ -1,4 +1,4 @@
-# SDK for Binance Chain
+# SDKs for Binance Chain
 
 Here the client SDK is used to connect to Binance Chain and DEX. There are libraries in a few programming languages, including:
 
