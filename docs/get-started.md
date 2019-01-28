@@ -37,5 +37,7 @@ Full node provides RPC interfaces to expose the internal of blockchain. Please r
 A Command Line Interface is available for Linux and Mac platforms. Please refer to the
 [CLI Reference](api-reference/cli.md).
 
+- [Keys](keys.md)
+
 ### Blockchain Details
 Please check the [technical details](index.md#technology-details) for more technical information.
