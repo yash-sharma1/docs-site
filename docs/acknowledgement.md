@@ -1,6 +1,6 @@
 # Acknowledgements
 
-Binance Chain has been through several iterations and evolutions, each time building upon work contributed by the amazing members of the blockchain community. We would like to acknowledge the outstanding work that we have been able to build on during development. Let's build the future together!
+Binance Chain has been through several iterations and evolutions, each time building upon work contributed by members of the blockchain community. We would like to acknowledge the outstanding work that we have been able to build on during development. Let's build the future together!
 
 ## Binance Dexathon
 
