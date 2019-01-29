@@ -8,6 +8,6 @@ The Binance Dexathon concluded in September 2018, receiving prize winning submis
 
 ## Tendermint and Cosmos
 
-Our current implementation is built on forks of Tendermint and Cosmos SDK. We make use of a revised edition of Tendermint consensus and leverage its p2p networking logic, and Cosmos SDK features such as its "bank" is used for basic token transactions.
+Our current implementation is built on forks of Tendermint and Cosmos SDK. We make use of a revised edition of Tendermint consensus and leverage its p2p networking logic, and Cosmos SDK features such as its "bank" is used for basic token transactions. Part of changes have been contributed back to the project as well.
 
 Projects like Binance Chain and Binance DEX are often built as forks of Bitcoin or as smart contracts on platforms like Ethereum. With a foundation of clean, well-structured code from Cosmos SDK, we were able to build on a codebase that we saw as a cleaner and well thought-out alternative. Many thanks to the Cosmos developers and its community for their work (and for being really helpful in our issues and pull requests!)
