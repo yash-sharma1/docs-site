@@ -443,7 +443,6 @@ The given _limit_ must be one of the allowed limits below.
 | Name | Located in | Description | Required | Schema |
 | ---- | ---------- | ----------- | -------- | ---- |
 | address | query | the buyer/seller address | No | string |
-| baseAsset | query | base asset | No | string |
 | buyerOrderId | query | buyer order id | No | string |
 | end | query | end time | No | long |
 | height | query | block height | No | long |
