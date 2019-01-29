@@ -89,9 +89,13 @@ Binance Chain uses the same elliptic curve cryptography as the current [Bitcoin 
 
 #### Address
 
-Essentially addresses on Binance Chain are 20 bytes and calculated via formula: `Address = RIPEMD160(SHA256(public key))`
+Essentially addresses on Binance Chain are 20 bytes and calculated via formula: `Address = RIPEMD160(SHA256(compressed public key))`
 
-The address is presented via [bech32](https://github.com/bitcoin/bips/blob/master/bip-0173.mediawiki) format with a checksum and human-read prefix. For Binance Chain address, the prefix is `bnb` for production network, and `tbnb` for testnet, which is reserved at [SLIP 173](https://github.com/satoshilabs/slips/blob/master/slip-0173.md).
+The address is presented via [bech32](https://github.com/bitcoin/bips/blob/master/bip-0173.mediawiki) format with a checksum and human-read prefix(HRP). However, it doesn't use the `SegWit` address format (because we do not have `SegWit` function anyway, so no `witness program version` etc.). 
+
+`Address_Bech32 = HRP + '1' + bech32.encode(convert8BitsTo5Bits(RIPEMD160(SHA256(compressed public key))))`
+
+For Binance Chain address, the prefix is `bnb` for production network, and `tbnb` for testnet.
 
 #### Signature
 
