@@ -779,12 +779,6 @@ paths:
         required: false
         type: string
         allowEmptyValue: false
-      - name: baseAsset
-        in: query
-        description: base asset
-        required: false
-        type: string
-        allowEmptyValue: false
       - name: buyerOrderId
         in: query
         description: buyer order id
