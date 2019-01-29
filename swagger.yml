@@ -425,7 +425,8 @@ paths:
       parameters:
       - in: query
         name: sync
-        description: Synchronous broadcast (wait for DeliverTx)
+        description: |
+          Synchronous broadcast (wait for [DeliverTx](https://github.com/tendermint/tendermint/wiki/Application-Developers#delivertx))
         required: false
         type: boolean
         default: false
