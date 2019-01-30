@@ -684,6 +684,16 @@ paths:
         description: symbol
         required: false
         type: string
+      - name: total
+        in: query
+        description: 'total number required, 0 for not required and 1 for required; default not required, return total=-1 in response'
+        required: false
+        type: integer
+        format: int32
+        allowEmptyValue: false
+        enum:
+        - 0
+        - 1
       responses:
         '200':
           description: OK
