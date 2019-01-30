@@ -15,7 +15,7 @@ via interfaces.
 
 ## List Transaction
 
-As mentioned before, if you wan to list a trading pair, you need to issue the token you wan to list. Then you have to 
+As mentioned before, if you want to list a trading pair, you need to issue the token you want to list. Then you have to 
 create a proposal first and deposit enough BNB, then you should wait for voting result of validators (so far is two weeks).
 
 But to prevent abuse, if your proposal is rejected by validators, all of your deposit will be distributed to 
@@ -30,10 +30,7 @@ approved before the proposal is expired.
 
 First, you need to issue the token. You have to make sure that there is enough BNB remaining in your account.
 
-```bash
-$  ./bnbcli token issue --home ./testnodecli -s AAA --token-name "Token AAA" --total-supply 10000000000000 \
- --from test --json --node=172.22.41.165:26657 --chain-id chain-bnb
-```
+You can refer to [issue doc](tokens.md) in case you do not know how to do it.
 
 ### Create a proposal
 
@@ -76,6 +73,16 @@ You need to specify the base asset you want to list, quote asset and init price.
 passed, you should use the identical params to list.
 
 And you also have to set expire time after which you will not be able to list even though proposal is passed.
+
+Of course, the coins you deposit will be returned to your account once the proposal is passed. But if the proposal 
+is rejected by the community, the coins will be distributed to validators. So please talk about the proposal in the 
+online forum community before creating it and make sure there is an agreement on your listing proposal, because any 
+new list would affect the whole network efficiency. 
+
+You may notice that the numbers like deposit number and price are very big. The numbers are presented as signed 
+int64 inside the chain data structure and code. The last 8 digits of the integer would represent the fractional-part 
+(digits after the decimal point) by default if the number is presented in a human readable format. For example, 
+10000000000 means 100.00000000 if represented as a human readable number.
 
 ### Deposit
 

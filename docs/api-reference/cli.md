@@ -74,3 +74,4 @@ For detail usage, you can refer to:
 
 - [transfer](../transfer.md)
 - [list](../list.md)
+- [keys](../keys.md)

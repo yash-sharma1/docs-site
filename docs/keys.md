@@ -1,6 +1,6 @@
 ## Introduction
 
-Binance Chain CLI has a sub-command named `keys` to manage private keys. It's kinda like a wallet to manage keys for users.
+Binance Chain CLI has a sub-command named `keys` to manage private keys. It is a key store to manage keys for users.
 
 You can add a new key or import a key from seed. Then you can list the keys added and show the detail info of a 
 specific key. You can also delete the given key or update the password used to protect private key.
@@ -38,7 +38,7 @@ Flags:
 
 Global Flags:
   -e, --encoding string   Binary encoding (hex|b64|btc) (default "hex")
-      --home string       directory for config and data (default "/Users/wuzhenxing/.bnbcli")
+      --home string       directory for config and data (default "/Users/yourname/.bnbcli")
   -o, --output string     Output format (text|json) (default "text")
       --trace             print out full stack trace on errors
 
@@ -55,7 +55,9 @@ uncle mule squirrel cover theory oven rookie dry intact alert right afraid diffe
 
 ### new
 
-`new` is used to generate a new key. You can specify bip44 path and mnemonic. 
+`new` is used to generate a new key. You can specify bip44 path and mnemonic. For Binance Chain, bip44 path is `714`.
+Actually, you do not need to care about this if you do not have special requirement. You can create a new key use `add`
+mentioned below, it is much simpler.
 
 ```bash
 $ ./bnbcli keys new testkey
