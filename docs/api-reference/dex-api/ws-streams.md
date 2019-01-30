@@ -36,7 +36,9 @@ Examples are written in JavaScript.
         "q": "1.00000000",             // Order quantity
         "p": "0.10264410",             // Order price
         "x": "NEW",                    // Current execution type
-        "X": "NEW",                    // Current order status
+        "X": "Ack",                    // Current order status, possible values Ack, Canceled, Expired, IocNoFill, PartialFill, FullyFill, Unknown
+	}
+}
         "i": "91D9...7E18-2317",       // Order ID
         "l": "0.00000000",             // Last executed quantity
         "z": "0.00000000",             // Cumulative filled quantity
