@@ -14,7 +14,7 @@ balance, transaction detail by transaction hash and etc.
 
 ## Where can I download the Binance Chain CLI?
 
-You may download Binance Chain releases here: https://github.com/binance-chain/node/releases
+You can download Binance Chain CLI releases here: https://github.com/binance-chain/node-binary
 
 ## Where to connect
 
@@ -74,3 +74,4 @@ For detail usage, you can refer to:
 
 - [transfer](../transfer.md)
 - [list](../list.md)
+- [keys](../keys.md)
