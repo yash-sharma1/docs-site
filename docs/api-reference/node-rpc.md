@@ -1,6 +1,46 @@
+# Node RPC
+
+RPC endpoints may be used to interact with a node directly over HTTP or websockets. Using RPC, you may perform low-level operations like executing ABCI queries, viewing network/consensus state or broadcasting a transaction.
+
+## Connecting
+
+There are two main ways to connect to a node to send RPC commands.
+
+### Use your own local node
+
+This page assumes that you have your own node running locally, so examples here use `localhost:27146` to represent using RPC commands on a local node.
+
+Alternatively, you are able to use a node that is hosted in the Binance Chain network.
+
+### Use an existing node on the network
+
+The Binance Chain infrastructure deployment contains so-called "seed" nodes, which have their RPC ports available for access. To find a seed node that is available, you can use the [peers](./dex-api/paths.html#apiv1peers) endpoint to get a list of network peers.
+
+Here is an example of a node that is available for RPC access:
+
+```json
+{
+   "capabilities" : [
+      "node"
+   ],
+   "listen_addr" : "aa1e4d0d1243a11e9a951063f6065739-7a82be90a58744b6.elb.ap-northeast-1.amazonaws.com:27147",
+   "network" : "Binance-Chain-Nile",
+   "moniker" : "data-seed-1",
+   "access_addr" : "http://aa1e4d0d1243a11e9a951063f6065739-7a82be90a58744b6.elb.ap-northeast-1.amazonaws.com",
+   "id" : "data-seed-1",
+   "original_listen_addr" : "aa1e4d0d1243a11e9a951063f6065739-7a82be90a58744b6.elb.ap-northeast-1.amazonaws.com:27146",
+   "version" : "0.29.1"
+}
+```
+
+So, using this node, we are able to use raw RPC commands below or the `bnbcli` tool to make a query:
+
+```bash
+$ bnbcli dex show -l NNB-0AB_BNB --chain-id Binance-Chain-Nile --node tcp://aa1e4d0d1243a11e9a951063f6065739-7a82be90a58744b6.elb.ap-northeast-1.amazonaws.com:27147
+```
 
 
-# Introduction
+## Protocols
 
 The following RPC protocols are supported:
 
@@ -15,7 +55,7 @@ See it here: <a href="https://github.com/tendermint/tendermint/tree/master/rpc/l
 
 RPC can be configured by tuning parameters under `[rpc]` table in the `$TMHOME/config/config.toml` file or by using the `--rpc.X` command-line flags.
 
-Default rpc listen address is `tcp://0.0.0.0:26657`. To set another address,  set the `laddr` config parameter to desired value.
+Default rpc listen address is `tcp://0.0.0.0:27147`. To set another address,  set the `laddr` config parameter to desired value.
 CORS (Cross-Origin Resource Sharing) can be enabled by setting `cors_allowed_origins`, `cors_allowed_methods`, `cors_allowed_headers` config parameters.
 
 ## Arguments
@@ -25,7 +65,7 @@ Arguments which expect strings or byte arrays may be passed as quoted strings, l
 ## URI/HTTP
 
 ```bash
-curl 'localhost:26657/broadcast_tx_sync?tx="abc"'
+curl 'localhost:27147/broadcast_tx_sync?tx="abc"'
 ```
 
 > Response:
@@ -49,7 +89,7 @@ curl 'localhost:26657/broadcast_tx_sync?tx="abc"'
 
 ## JSONRPC/HTTP
 
-JSONRPC requests can be POST'd to the root RPC endpoint via HTTP (e.g. `<a href="http://localhost:26657/">http://localhost:26657/</a>`).
+JSONRPC requests can be POST'd to the root RPC endpoint via HTTP (e.g. `<a href="http://localhost:27147/">http://localhost:27147/</a>`).
 
 ```json
 {
@@ -65,7 +105,7 @@ JSONRPC requests can be POST'd to the root RPC endpoint via HTTP (e.g. `<a href=
 
 ## JSONRPC/websockets
 
-JSONRPC requests can be made via websocket. The websocket endpoint is at `/websocket`, e.g. `localhost:26657/websocket`.  Asynchronous RPC functions like event `subscribe` and `unsubscribe` are only available via websockets.
+JSONRPC requests can be made via websocket. The websocket endpoint is at `/websocket`, e.g. `localhost:27147/websocket`.  Asynchronous RPC functions like event `subscribe` and `unsubscribe` are only available via websockets.
 
 ## More Examples
 
@@ -76,7 +116,7 @@ See the various bash tests using curl in `test/`, and examples using the `Go` AP
 An HTTP Get request to the root RPC endpoint shows a list of available endpoints.
 
 ```bash
-curl 'localhost:26657'
+curl 'localhost:27147'
 ```
 
 > Response:
@@ -121,11 +161,11 @@ Endpoints that require arguments:
 Get some info about the application.
 
 ```shell
-curl 'localhost:26657/abci_info'
+curl 'localhost:27147/abci_info'
 ```
 
 ```go
-client := client.NewHTTP("tcp://0.0.0.0:26657", "/websocket")
+client := client.NewHTTP("tcp://0.0.0.0:27147", "/websocket")
 err := client.Start()
 if err != nil {
 
@@ -159,11 +199,11 @@ info, err := client.ABCIInfo()
 Query the application for some information.
 
 ```shell
-curl 'localhost:26657/abci_query?path=""&data="abcd"&prove=false'
+curl 'localhost:27147/abci_query?path=""&data="abcd"&prove=false'
 ```
 
 ```go
-client := client.NewHTTP("tcp://0.0.0.0:26657", "/websocket")
+client := client.NewHTTP("tcp://0.0.0.0:27147", "/websocket")
 err := client.Start()
 if err != nil {
 
@@ -213,11 +253,11 @@ Get block at a given height.
 If no height is provided, it will fetch the latest block.
 
 ```shell
-curl 'localhost:26657/block?height=10'
+curl 'localhost:27147/block?height=10'
 ```
 
 ```go
-client := client.NewHTTP("tcp://0.0.0.0:26657", "/websocket")
+client := client.NewHTTP("tcp://0.0.0.0:27147", "/websocket")
 err := client.Start()
 if err != nil {
 
@@ -329,11 +369,11 @@ Results are for the height of the block containing the txs.
 Thus response.results[5] is the results of executing getBlock(h).Txs[5]
 
 ```shell
-curl 'localhost:26657/block_results?height=10'
+curl 'localhost:27147/block_results?height=10'
 ```
 
 ```go
-client := client.NewHTTP("tcp://0.0.0.0:26657", "/websocket")
+client := client.NewHTTP("tcp://0.0.0.0:27147", "/websocket")
 err := client.Start()
 if err != nil {
 
@@ -371,11 +411,11 @@ Get block headers for minHeight <= height <= maxHeight.
 Block headers are returned in descending order (highest first).
 
 ```shell
-curl 'localhost:26657/blockchain?minHeight=10&maxHeight=10'
+curl 'localhost:27147/blockchain?minHeight=10&maxHeight=10'
 ```
 
 ```go
-client := client.NewHTTP("tcp://0.0.0.0:26657", "/websocket")
+client := client.NewHTTP("tcp://0.0.0.0:27147", "/websocket")
 err := client.Start()
 if err != nil {
 
@@ -437,11 +477,11 @@ info, err := client.BlockchainInfo(10, 10)
 Returns right away, with no response
 
 ```shell
-curl 'localhost:26657/broadcast_tx_async?tx="123"'
+curl 'localhost:27147/broadcast_tx_async?tx="123"'
 ```
 
 ```go
-client := client.NewHTTP("tcp://0.0.0.0:26657", "/websocket")
+client := client.NewHTTP("tcp://0.0.0.0:27147", "/websocket")
 err := client.Start()
 if err != nil {
 
@@ -486,11 +526,11 @@ If CheckTx or DeliverTx fail, no error will be returned, but the returned result
 will contain a non-OK ABCI code.
 
 ```shell
-curl 'localhost:26657/broadcast_tx_commit?tx="789"'
+curl 'localhost:27147/broadcast_tx_commit?tx="789"'
 ```
 
 ```go
-client := client.NewHTTP("tcp://0.0.0.0:26657", "/websocket")
+client := client.NewHTTP("tcp://0.0.0.0:27147", "/websocket")
 err := client.Start()
 if err != nil {
 
@@ -539,11 +579,11 @@ result, err := client.BroadcastTxCommit("789")
 Returns with the response from CheckTx.
 
 ```shell
-curl 'localhost:26657/broadcast_tx_sync?tx="456"'
+curl 'localhost:27147/broadcast_tx_sync?tx="456"'
 ```
 
 ```go
-client := client.NewHTTP("tcp://0.0.0.0:26657", "/websocket")
+client := client.NewHTTP("tcp://0.0.0.0:27147", "/websocket")
 err := client.Start()
 if err != nil {
 
@@ -585,11 +625,11 @@ Get block commit at a given height.
 If no height is provided, it will fetch the commit for the latest block.
 
 ```shell
-curl 'localhost:26657/commit?height=11'
+curl 'localhost:27147/commit?height=11'
 ```
 
 ```go
-client := client.NewHTTP("tcp://0.0.0.0:26657", "/websocket")
+client := client.NewHTTP("tcp://0.0.0.0:27147", "/websocket")
 err := client.Start()
 if err != nil {
 
@@ -668,11 +708,11 @@ Get the consensus parameters  at the given block height.
 If no height is provided, it will fetch the current consensus params.
 
 ```shell
-curl 'localhost:26657/consensus_params'
+curl 'localhost:27147/consensus_params'
 ```
 
 ```go
-client := client.NewHTTP("tcp://0.0.0.0:26657", "/websocket")
+client := client.NewHTTP("tcp://0.0.0.0:27147", "/websocket")
 err := client.Start()
 if err != nil {
 
@@ -713,11 +753,11 @@ ConsensusState returns a concise summary of the consensus state.
 UNSTABLE
 
 ```shell
-curl 'localhost:26657/consensus_state'
+curl 'localhost:27147/consensus_state'
 ```
 
 ```go
-client := client.NewHTTP("tcp://0.0.0.0:26657", "/websocket")
+client := client.NewHTTP("tcp://0.0.0.0:27147", "/websocket")
 err := client.Start()
 if err != nil {
 
@@ -768,11 +808,11 @@ DumpConsensusState dumps consensus state.
 UNSTABLE
 
 ```shell
-curl 'localhost:26657/dump_consensus_state'
+curl 'localhost:27147/dump_consensus_state'
 ```
 
 ```go
-client := client.NewHTTP("tcp://0.0.0.0:26657", "/websocket")
+client := client.NewHTTP("tcp://0.0.0.0:27147", "/websocket")
 err := client.Start()
 if err != nil {
 
@@ -910,11 +950,11 @@ The above command returns JSON structured like this:
 Get genesis file.
 
 ```shell
-curl 'localhost:26657/genesis'
+curl 'localhost:27147/genesis'
 ```
 
 ```go
-client := client.NewHTTP("tcp://0.0.0.0:26657", "/websocket")
+client := client.NewHTTP("tcp://0.0.0.0:27147", "/websocket")
 err := client.Start()
 if err != nil {
 
@@ -961,11 +1001,11 @@ Get node health. Returns empty result (200 OK) on success, no response - in
 case of an error.
 
 ```shell
-curl 'localhost:26657/health'
+curl 'localhost:27147/health'
 ```
 
 ```go
-client := client.NewHTTP("tcp://0.0.0.0:26657", "/websocket")
+client := client.NewHTTP("tcp://0.0.0.0:27147", "/websocket")
 err := client.Start()
 if err != nil {
 
@@ -995,11 +1035,11 @@ result, err := client.Health()
 Get network info.
 
 ```shell
-curl 'localhost:26657/net_info'
+curl 'localhost:27147/net_info'
 ```
 
 ```go
-client := client.NewHTTP("tcp://0.0.0.0:26657", "/websocket")
+client := client.NewHTTP("tcp://0.0.0.0:27147", "/websocket")
 err := client.Start()
 if err != nil {
 
@@ -1036,11 +1076,11 @@ info, err := client.NetInfo()
 Get number of unconfirmed transactions.
 
 ```shell
-curl 'localhost:26657/num_unconfirmed_txs'
+curl 'localhost:27147/num_unconfirmed_txs'
 ```
 
 ```go
-client := client.NewHTTP("tcp://0.0.0.0:26657", "/websocket")
+client := client.NewHTTP("tcp://0.0.0.0:27147", "/websocket")
 err := client.Start()
 if err != nil {
 
@@ -1074,11 +1114,11 @@ Get Tendermint status including node info, pubkey, latest block
 hash, app hash, block height and time.
 
 ```shell
-curl 'localhost:26657/status'
+curl 'localhost:27147/status'
 ```
 
 ```go
-client := client.NewHTTP("tcp://0.0.0.0:26657", "/websocket")
+client := client.NewHTTP("tcp://0.0.0.0:27147", "/websocket")
 err := client.Start()
 if err != nil {
 
@@ -1113,7 +1153,7 @@ result, err := client.Status()
 			"moniker": "ubuntu-xenial",
 			"other": {
 				"tx_index": "on",
-				"rpc_addr": "tcp://0.0.0.0:26657"
+				"rpc_addr": "tcp://0.0.0.0:27147"
 			}
 		},
 		"sync_info": {
@@ -1181,7 +1221,7 @@ For complete query syntax, check out
 import "github.com/tendermint/tendermint/libs/pubsub/query"
 import "github.com/tendermint/tendermint/types"
 
-client := client.NewHTTP("tcp://0.0.0.0:26657", "/websocket")
+client := client.NewHTTP("tcp://0.0.0.0:27147", "/websocket")
 err := client.Start()
 if err != nil {
 
@@ -1234,11 +1274,11 @@ transaction is in the mempool, invalidated, or was not sent in the first
 place.
 
 ```shell
-curl "localhost:26657/tx?hash=0x2B8EC32BA2579B3B8606E42C06DE2F7AFA2556EF"
+curl "localhost:27147/tx?hash=0x2B8EC32BA2579B3B8606E42C06DE2F7AFA2556EF"
 ```
 
 ```go
-client := client.NewHTTP("tcp://0.0.0.0:26657", "/websocket")
+client := client.NewHTTP("tcp://0.0.0.0:27147", "/websocket")
 err := client.Start()
 if err != nil {
 
@@ -1306,11 +1346,11 @@ TxSearch allows you to query for multiple transactions results. It returns a
 list of transactions (maximum ?per_page entries) and the total count.
 
 ```shell
-curl "localhost:26657/tx_search?query=\"account.owner='Ivan'\"&prove=true"
+curl "localhost:27147/tx_search?query=\"account.owner='Ivan'\"&prove=true"
 ```
 
 ```go
-client := client.NewHTTP("tcp://0.0.0.0:26657", "/websocket")
+client := client.NewHTTP("tcp://0.0.0.0:27147", "/websocket")
 err := client.Start()
 if err != nil {
 
@@ -1384,11 +1424,11 @@ tx, err := client.TxSearch(q, true)
 Get unconfirmed transactions (maximum ?limit entries) including their number.
 
 ```shell
-curl 'localhost:26657/unconfirmed_txs'
+curl 'localhost:27147/unconfirmed_txs'
 ```
 
 ```go
-client := client.NewHTTP("tcp://0.0.0.0:26657", "/websocket")
+client := client.NewHTTP("tcp://0.0.0.0:27147", "/websocket")
 err := client.Start()
 if err != nil {
 
@@ -1429,7 +1469,7 @@ result, err := client.UnconfirmedTxs()
 Unsubscribe from events via WebSocket.
 
 ```go
-client := client.NewHTTP("tcp://0.0.0.0:26657", "/websocket")
+client := client.NewHTTP("tcp://0.0.0.0:27147", "/websocket")
 err := client.Start()
 if err != nil {
 
@@ -1467,7 +1507,7 @@ err = client.Unsubscribe("test-client", query)
 Unsubscribe from all events via WebSocket.
 
 ```go
-client := client.NewHTTP("tcp://0.0.0.0:26657", "/websocket")
+client := client.NewHTTP("tcp://0.0.0.0:27147", "/websocket")
 err := client.Start()
 if err != nil {
 
@@ -1500,11 +1540,11 @@ Get the validator set at the given block height.
 If no height is provided, it will fetch the current validator set.
 
 ```shell
-curl 'localhost:26657/validators'
+curl 'localhost:27147/validators'
 ```
 
 ```go
-client := client.NewHTTP("tcp://0.0.0.0:26657", "/websocket")
+client := client.NewHTTP("tcp://0.0.0.0:27147", "/websocket")
 err := client.Start()
 if err != nil {
 
