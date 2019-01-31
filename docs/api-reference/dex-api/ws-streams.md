@@ -1,4 +1,4 @@
-## Streams
+# WebSocket Streams
 
 ### 1. Orders
 
