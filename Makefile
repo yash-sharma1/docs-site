@@ -42,9 +42,6 @@ build-swagger2markup: submodules
 	@echo "--> Building swagger2markup-cli"
 	cd utils/swagger2markup-cli && gradle assemble
 
-build-html-http-docs:
-	swagger-codegen generate -i swagger.yml -l html -o ./docs-html/dex-api
-
 ########################################
 ### Swagger
 swagger-docs: build-swagger2markup
