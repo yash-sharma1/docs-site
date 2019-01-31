@@ -42,16 +42,16 @@ ecosystem matures, this responsibility will be distributed. The decentralized go
 would be introduced and executed. More qualified organization/individual can become Validator.
 
 
-### What is a `Witness Node`?
+### What is a Witness Node?
 
-`Witness Node` are the majority nodes of Binance Chain. Although they do not join consensus process 
-and produce blocks, they do:
+Witness nodes represent the majority nodes in a Binance Chain deployment. Although they do not join the consensus process 
+and produce blocks, they take care of:
 
-- witnes consensus process
-- serve as data replicas and propagate the chain states around
-- receive transactions and broadcast them to all other nodes including `Validator`.
+- The witness consensus process.
+- They serve as data replicas and help to propagate the chain state around the network.
+- They receive transactions and broadcast them to all other nodes including Validator nodes.
 
-### What is `Accelerate Node`?
+### What is an Accelerated Node?
 
 Please check [here](faq.md#what_is_the_accelerated_node).
 
