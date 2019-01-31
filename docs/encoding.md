@@ -189,7 +189,6 @@ message CancelOrder {
   0x166E681B   // hardcoded, object type prefix in 4 bytes
   bytes sender = 1 // order originating address'
   string symbol = 2 // symbol for trading pair in full name of the tokens
-  string id = 3 // order id, optional
   string refid = 4 // order id of the one to cancel
 }
 ```
