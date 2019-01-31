@@ -14,3 +14,9 @@ preview the site via http://127.0.0.1:8000/.
 
 Use the following command to generate the Markdown documentation for the HTTP API:
 `make build-markdown-http-docs`
+
+## Generating RPC Docs Markdown
+
+In bnc-tendermint, use the following command to generate the file, then copy the generated file over the existing `docs/api-reference/node-rpc.md` in this repo:
+`make rpc-docs`
+
