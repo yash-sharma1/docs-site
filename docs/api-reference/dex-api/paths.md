@@ -281,7 +281,7 @@ The given _limit_ must be one of the allowed limits below.
 
 | Name | Located in | Description | Required | Schema |
 | ---- | ---------- | ----------- | -------- | ---- |
-| sync | query | Synchronous broadcast (wait for DeliverTx) | No | boolean |
+| sync | query | Synchronous broadcast (wait for [DeliverTx](https://github.com/tendermint/tendermint/wiki/Application-Developers#delivertx))  | No | boolean |
 | body | body |  | Yes | binary |
 
 **Responses**
@@ -377,6 +377,7 @@ The given _limit_ must be one of the allowed limits below.
 | limit | query | default 500; max 1000. | No | integer |
 | offset | query | start with 0; default 0. | No | integer |
 | symbol | query | symbol | No | string |
+| total | query | total number required, 0 for not required and 1 for required; default not required, return total=-1 in response | No | integer |
 
 **Responses**
 
@@ -443,7 +444,6 @@ The given _limit_ must be one of the allowed limits below.
 | Name | Located in | Description | Required | Schema |
 | ---- | ---------- | ----------- | -------- | ---- |
 | address | query | the buyer/seller address | No | string |
-| baseAsset | query | base asset | No | string |
 | buyerOrderId | query | buyer order id | No | string |
 | end | query | end time | No | long |
 | height | query | block height | No | long |

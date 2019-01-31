@@ -1,4 +1,4 @@
-## WebSocket Connections
+# WebSocket Connections
 
 The DEX exposes several data streams over standard WebSocket connections, which can be consumed by modern web browsers and server-side WebSocket libraries.
 

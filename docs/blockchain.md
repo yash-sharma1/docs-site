@@ -30,7 +30,7 @@ For more information, please have a look at the [Tendermint spec](https://github
 
 ## Node Roles
 
-### What is a `Validator`?
+### What is a Validator Node?
 
 Validators are a group of IT infrastructure who take the responsibility to maintain the Binance 
 Chain/DEX data and validate all the transactions. They would join the consensus procedure and 
@@ -42,16 +42,16 @@ ecosystem matures, this responsibility will be distributed. The decentralized go
 would be introduced and executed. More qualified organization/individual can become Validator.
 
 
-### What is a `Witness Node`?
+### What is a Witness Node?
 
-`Witness Node` are the majority nodes of Binance Chain. Although they do not join consensus process 
-and produce blocks, they do:
+Witness nodes represent the majority nodes in a Binance Chain deployment. Although they do not join the consensus process 
+and produce blocks, they take care of:
 
-- witnes consensus process
-- serve as data replicas and propagate the chain states around
-- receive transactions and broadcast them to all other nodes including `Validator`.
+- The witness consensus process.
+- They serve as data replicas and help to propagate the chain state around the network.
+- They receive transactions and broadcast them to all other nodes including Validator nodes.
 
-### What is `Accelerate Node`?
+### What is an Accelerated Node?
 
 Please check [here](faq.md#what_is_the_accelerated_node).
 
@@ -89,11 +89,19 @@ Binance Chain uses the same elliptic curve cryptography as the current [Bitcoin 
 
 #### Address
 
-Essentially addresses on Binance Chain are 20 bytes and calculated via formula: `Address = RIPEMD160(SHA256(compressed public key))`
+Addresses on Binance Chain are 20 bytes and may be expressed as: 
+```
+Address = RIPEMD160(SHA256(compressed public key))
+```
 
-The address is presented via [bech32](https://github.com/bitcoin/bips/blob/master/bip-0173.mediawiki) format with a checksum and human-read prefix(HRP). However, it doesn't use the `SegWit` address format (because we do not have `SegWit` function anyway, so no `witness program version` etc.). 
+Typically, an address is encoded in the [bech32](https://github.com/bitcoin/bips/blob/master/bip-0173.mediawiki) format which includes a checksum and human-readable prefix (HRP). However, it doesn't use the `SegWit` address format (because we do not have `SegWit` function anyway, so no `witness program version` etc.). 
 
-`Address_Bech32 = HRP + '1' + bech32.encode(convert8BitsTo5Bits(RIPEMD160(SHA256(compressed public key))))`
+A Binance Chain address is therefore more similar to a [Bitcoin Cash address](https://github.com/bitcoincashorg/bitcoincash.org/blob/master/spec/cashaddr.md), which does not include a SegWit program script.
+
+Address format pseudo-code: 
+```
+Address_Bech32 = HRP + '1' + bech32.encode(convert8BitsTo5Bits(RIPEMD160(SHA256(compressed public key))))
+```
 
 For Binance Chain address, the prefix is `bnb` for production network, and `tbnb` for testnet.
 
