@@ -30,7 +30,7 @@ For more information, please have a look at the [Tendermint spec](https://github
 
 ## Node Roles
 
-### What is a `Validator`?
+### What is a Validator Node?
 
 Validators are a group of IT infrastructure who take the responsibility to maintain the Binance 
 Chain/DEX data and validate all the transactions. They would join the consensus procedure and 
