@@ -27,7 +27,7 @@
 
 * [client](#module_client)
     * [.BncClient](#module_client.BncClient)
-        * [new exports.BncClient(Binance)](#new_module_client.BncClient_new)
+        * [new exports.BncClient(server)](#new_module_client.BncClient_new)
         * [.transfer(fromAddress, toAddress, amount, asset, memo, sequence)](#module_client.BncClient+transfer)
         * [.placeOrder(address, symbol, side, price, quantity, sequence, timeinforce)](#module_client.BncClient+placeOrder)
         * [._sendTransaction(concrete, stdSignMsg, address, sequence, memo, sync)](#module_client.BncClient+_sendTransaction) ⇒ <code>Object</code>
@@ -51,7 +51,7 @@ The Binance Chain client.
 **Kind**: static class of [<code>client</code>](#module_client)  
 
 * [.BncClient](#module_client.BncClient)
-    * [new exports.BncClient(Binance)](#new_module_client.BncClient_new)
+    * [new exports.BncClient(server)](#new_module_client.BncClient_new)
     * [.transfer(fromAddress, toAddress, amount, asset, memo, sequence)](#module_client.BncClient+transfer)
     * [.placeOrder(address, symbol, side, price, quantity, sequence, timeinforce)](#module_client.BncClient+placeOrder)
     * [._sendTransaction(concrete, stdSignMsg, address, sequence, memo, sync)](#module_client.BncClient+_sendTransaction) ⇒ <code>Object</code>
@@ -67,11 +67,11 @@ The Binance Chain client.
 
 <a name="new_module_client.BncClient_new"></a>
 
-#### new exports.BncClient(Binance)
+#### new exports.BncClient(server)
 
 | Param | Type | Description |
 | --- | --- | --- |
-| Binance | <code>string</code> | Chain public url |
+| server | <code>string</code> | Binance Chain public url |
 
 <a name="module_client.BncClient+transfer"></a>
 
