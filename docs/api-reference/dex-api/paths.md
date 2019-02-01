@@ -289,7 +289,7 @@ The given _limit_ must be one of the allowed limits below.
 ##### ***POST***
 **Summary:** Broadcast a transaction.
 
-**Description:** Broadcasts a signed transaction. A single transaction must be sent in hex format in plain text.
+**Description:** Broadcasts a signed transaction. A single transaction must be sent hex-encoded in with a `content-type` of `text/plain`.
 
 **Destination:** Witness node.
 

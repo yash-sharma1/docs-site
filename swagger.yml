@@ -445,7 +445,7 @@ paths:
       operationId: broadcastTx
       summary: Broadcast a transaction.
       description: |
-        Broadcasts a signed transaction. A single transaction must be sent in hex format in plain text.
+        Broadcasts a signed transaction. A single transaction must be sent hex-encoded in with a `content-type` of `text/plain`.
 
         **Destination:** Witness node.
 
