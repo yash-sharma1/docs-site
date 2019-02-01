@@ -1,6 +1,8 @@
-Repository is dedicated for all BinanceChain Documentation
+# Binance Chain Documentation
 
-The main documentation is stored in `docs` folder, and developed with [Mkdocs](https://www.mkdocs.org/).
+This documentation site is automatically deployed to [https://binance-chain.github.io](https://binance-chain.github.io).
+
+The main documentation is stored in the `docs` folder and is generated with [Mkdocs](https://www.mkdocs.org/).
 
 ## How to Change the Docs
 
