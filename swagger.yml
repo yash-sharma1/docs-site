@@ -127,7 +127,9 @@ paths:
         '200':
           description: Success
           schema:
-            $ref: '#/definitions/Validators'
+            type: array
+            items:
+              $ref: '#/definitions/Validator'
         '400':
           description: 'Bad Request'
           schema:
@@ -159,7 +161,9 @@ paths:
         '200':
           description: Success
           schema:
-            $ref: '#/definitions/Peers'
+            type: array
+            items:
+              $ref: '#/definitions/Peer'
         '400':
           description: 'Bad Request'
           schema:
@@ -305,7 +309,9 @@ paths:
         '200':
           description: Success
           schema:
-            $ref: '#/definitions/Tokens'
+            type: array
+            items:
+              $ref: '#/definitions/Token'
         '400':
           description: 'Bad Request'
           schema:
@@ -336,13 +342,43 @@ paths:
         '200':
           description: Success
           schema:
-            $ref: '#/definitions/Markets'
+            type: array
+            items:
+              $ref: '#/definitions/Market'
         '400':
           description: 'Bad Request'
           schema:
             $ref: "#/definitions/Error"
         '404':
           description: 'Not Found'
+        default:
+          description: Generic error response
+          schema:
+            $ref: "#/definitions/Error"
+  /api/v1/fees:
+    get:
+      summary: Obtain trading fees information.
+      description: |
+        Gets the current trading fees settings.
+
+        **Destination:** Witness node.
+
+        **Rate Limit:** 1 request per IP per second.
+
+        **Test URL:** [https://testnet-dex.binance.org/api/v1/fees](https://testnet-dex.binance.org/api/v1/fees)
+      operationId: getFees
+      produces:
+        - application/json
+      tags:
+        - info
+        - market
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Fee'
         default:
           description: Generic error response
           schema:
@@ -999,7 +1035,7 @@ definitions:
     properties:
       ap_time: {type: string, description: e.g. 2019-01-21T10:30:00Z}
       block_time: {type: string, description: format as above}
-  Validators:
+  Validator:
     type: object
     properties:
       block_height:
@@ -1009,6 +1045,7 @@ definitions:
         required: true
       validators:
         type: array
+        required: true
         items:
           properties:
             address:
@@ -1030,57 +1067,54 @@ definitions:
             accum:
               type: integer
               required: true
+  Peer:
+    type: object
+    properties:
+      id:
+        type: string
+        description: 'Authenticated identifier'
         required: true
-  Peers:
-    type: array
-    items:
-      properties:
-        id:
+      original_listen_addr:
+        type: string
+        description: 'Original listen address before PeersService changed it'
+        format: RemoteAddr
+        required: true
+      listen_addr:
+        type: string
+        description: 'Listen address'
+        format: RemoteAddr
+        required: true
+      access_addr:
+        type: string
+        description: 'Access address (HTTP)'
+        format: RemoteAddr
+        required: true
+      stream_addr:
+        type: string
+        description: 'Stream address (WS)'
+        format: RemoteAddr
+        required: true
+      network:
+        type: string
+        description: 'Chain ID'
+        required: true
+      version:
+        type: string
+        description: 'Version'
+        required: true
+      moniker:
+        type: string
+        description: 'Moniker (Name)'
+        required: true
+      capabilities:
+        type: array
+        items:
           type: string
-          description: 'Authenticated identifier'
-          required: true
-        original_listen_addr:
-          type: string
-          description: 'Original listen address before PeersService changed it'
-          format: RemoteAddr
-          required: true
-        listen_addr:
-          type: string
-          description: 'Listen address'
-          format: RemoteAddr
-          required: true
-        access_addr:
-          type: string
-          description: 'Access address (HTTP)'
-          format: RemoteAddr
-          required: true
-        stream_addr:
-          type: string
-          description: 'Stream address (WS)'
-          format: RemoteAddr
-          required: true
-        network:
-          type: string
-          description: 'Chain ID'
-          required: true
-        version:
-          type: string
-          description: 'Version'
-          required: true
-        moniker:
-          type: string
-          description: 'Moniker (Name)'
-          required: true
-        capabilities:
-          type: array
-          items:
-            type: string
-            enum: ['node', 'qs', 'ap', 'ws']
-          required: true
-        accelerated:
-          type: boolean
-          description: 'Is an accelerated path to a validator node'
-    required: true
+          enum: ['node', 'qs', 'ap', 'ws']
+        required: true
+      accelerated:
+        type: boolean
+        description: 'Is an accelerated path to a validator node'
   Transaction:
     type: object
     properties:
@@ -1146,65 +1180,78 @@ definitions:
       free: {type: string, title: Free, description: "In decimal form, e.g. 0.00000000", example: "0.00000000", format: fixed8}
       locked: {type: string, title: Locked, description: "In decimal form, e.g. 0.00000000", example: "0.00000000", format: fixed8}
       frozen: {type: string, title: Frozen, description: "In decimal form, e.g. 0.00000000", example: "0.00000000", format: fixed8}
-  Tokens:
-    type: array
-    items:
-      properties:
-        name:
-          type: string
-          example: Binance Chain Native Token
-          required: true
-        symbol:
-          type: string
-          example: BTC-000
-          required: true
-        original_symbol:
-          type: string
-          example: BTC
-          required: true
-        total_supply:
-          type: string
-          description: "In decimal form, e.g. 1.00000000"
-          example: "0.00000000"
-          format: fixed8
-          required: true
-        owner:
-          type: string
-          description: Address
-          format: address
-          required: true
-  Markets:
-    type: array
-    items:
-      properties:
-        base_asset_symbol:
-          type: string
-          example: BNB
-          format: currency
-          required: true
-        quote_asset_symbol:
-          type: string
-          example: BNB
-          format: currency
-          required: true
-        price:
-          type: string
-          description: "In decimal form, e.g. 1.00000000"
-          example: "0.00000000"
-          format: fixed8
-          required: true
-        tick_size:
-          type: string
-          description: "In decimal form, e.g. 1.00000000"
-          example: "0.00000000"
-          format: fixed8
-          required: true
-        lot_size:
-          type: string
-          description: "In decimal form, e.g. 1.00000000"
-          example: "0.00000000"
-          format: fixed8
-          required: true
+  Token:
+    type: object
+    properties:
+      name:
+        type: string
+        example: Binance Chain Native Token
+        required: true
+      symbol:
+        type: string
+        example: BTC-000
+        required: true
+      original_symbol:
+        type: string
+        example: BTC
+        required: true
+      total_supply:
+        type: string
+        description: "In decimal form, e.g. 1.00000000"
+        example: "0.00000000"
+        format: fixed8
+        required: true
+      owner:
+        type: string
+        description: Address
+        format: address
+        required: true
+  Market:
+    type: object
+    properties:
+      base_asset_symbol:
+        type: string
+        example: BNB
+        format: currency
+        required: true
+      quote_asset_symbol:
+        type: string
+        example: BNB
+        format: currency
+        required: true
+      price:
+        type: string
+        description: "In decimal form, e.g. 1.00000000"
+        example: "0.00000000"
+        format: fixed8
+        required: true
+      tick_size:
+        type: string
+        description: "In decimal form, e.g. 1.00000000"
+        example: "0.00000000"
+        format: fixed8
+        required: true
+      lot_size:
+        type: string
+        description: "In decimal form, e.g. 1.00000000"
+        example: "0.00000000"
+        format: fixed8
+        required: true
+  Fee:
+    type: object
+    properties:
+      fee_for:
+        type: integer
+        description: e.g. 1
+        example: 1
+      fee:
+        type: number
+        description: e.g. 1000000000
+        example: 1000000000
+      msg_type:
+        type: string
+        description: e.g. "submit_proposal"
+        example: submit_proposal
   MarketDepth:
     type: object
     properties:
