@@ -397,7 +397,7 @@ paths:
 
         **Rate Limit:** 10 requests per IP per second.
 
-        **Test URL:** [https://testnet-dex.binance.org/api/v1/depth](https://testnet-dex.binance.org/api/v1/depth)
+        **Test URL:** [https://testnet-dex.binance.org/api/v1/depth?symbol=xxx-000_BNB](https://testnet-dex.binance.org/api/v1/depth?symbol=xxx-000_BNB)
       operationId: getDepth
       produces:
       - application/json
