@@ -21,14 +21,15 @@ $ make build-markdown-http-docs
 
 ## Generating RPC Docs Markdown
 
-From the **bnc-tendermint** directory cloned in this repo's parent directory, use the `make rpc-docs` command to generate the file, then copy the generated file over the existing `docs/api-reference/node-rpc.md`:
+In a **bnc-tendermint** directory cloned in this repo's parent directory, use the `make rpc-docs` command to generate the file, then copy the generated file over the existing `docs/api-reference/node-rpc.md`:
 ```bash
  $ cp ./index.html.md ../docs-site/docs/api-reference/node-rpc.md
  ```
 
 ## Generating JavaScript SDK Markdown
 
-From the **javascript-sdk** directory cloned in this repo's parent directory, use the `yarn build:docs` command to generate the file, then copy the generated file in `docs/jsdoc.md` over the existing `docs/api-reference/js-sdk/jsdoc.md`:
+In a javascript-sdk dir cloned in this repo's parent directory, use the `yarn build:docs` command to generate the file, then copy the generated file in `docs/jsdoc.md` over the existing `docs/api-reference/js-sdk/jsdoc.md`:
+
 ```bash
 $ cp ./docs/jsdoc.md ../docs-site/docs/api-reference/js-sdk/jsdoc.md
 ```
