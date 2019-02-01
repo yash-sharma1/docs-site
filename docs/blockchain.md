@@ -1,4 +1,4 @@
-# Binance Chain's Blockchain
+# The Binance Chain Blockchain
 
 The purpose of the new blockchain and DEX is to create an alternative marketplace for issuing and exchanging digital assets in a decentralized manner.
 
@@ -107,4 +107,4 @@ For Binance Chain address, the prefix is `bnb` for production network, and `tbnb
 
 #### Signature
 
-Binance Chain uses ECDSA signature on curve Secp256k1 against `SHA256` hash of the byte array of encoded transaction, in the same way as the current Bitcoin, according to RFC 6979 and BIP 62.
+Binance Chain uses an ECDSA signature on curve secp256k1 against a `SHA256` hash of the byte array of a JSON-encoded canonical representation of the transaction. For more information, please see [this page](./encoding.md#canonical-bytes-for-signing).
