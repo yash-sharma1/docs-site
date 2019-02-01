@@ -72,7 +72,7 @@ support@binance.org
 
 | Code | Description | Schema |
 | ---- | ----------- | ------ |
-| 200 | Success | [Validators](#validators) |
+| 200 | Success | [ [Validator](#validator) ] |
 | 400 | Bad Request | [Error](#error) |
 | 404 | Not Found |  |
 | default | Generic error response | [Error](#error) |
@@ -95,7 +95,7 @@ support@binance.org
 
 | Code | Description | Schema |
 | ---- | ----------- | ------ |
-| 200 | Success | [Peers](#peers) |
+| 200 | Success | [ [Peer](#peer) ] |
 | 400 | Bad Request | [Error](#error) |
 | 404 | Not Found |  |
 | default | Generic error response | [Error](#error) |
@@ -203,7 +203,7 @@ support@binance.org
 
 | Code | Description | Schema |
 | ---- | ----------- | ------ |
-| 200 | Success | [Tokens](#tokens) |
+| 200 | Success | [ [Token](#token) ] |
 | 400 | Bad Request | [Error](#error) |
 | 404 | Not Found |  |
 | default | Generic error response | [Error](#error) |
@@ -226,9 +226,30 @@ support@binance.org
 
 | Code | Description | Schema |
 | ---- | ----------- | ------ |
-| 200 | Success | [Markets](#markets) |
+| 200 | Success | [ [Market](#market) ] |
 | 400 | Bad Request | [Error](#error) |
 | 404 | Not Found |  |
+| default | Generic error response | [Error](#error) |
+
+### /api/v1/fees
+---
+##### ***GET***
+**Summary:** Obtain trading fees information.
+
+**Description:** Gets the current trading fees settings.
+
+**Destination:** Witness node.
+
+**Rate Limit:** 1 request per IP per second.
+
+**Test URL:** [https://testnet-dex.binance.org/api/v1/fees](https://testnet-dex.binance.org/api/v1/fees)
+
+
+**Responses**
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | Success | [ [Fee](#fee) ] |
 | default | Generic error response | [Error](#error) |
 
 ### /api/v1/depth
@@ -512,18 +533,27 @@ The given _limit_ must be one of the allowed limits below.
 | ap_time | string | e.g. 2019-01-21T10:30:00Z | No |
 | block_time | string | format as above | No |
 
-### Validators  
+### Validator  
 
 | Name | Type | Description | Required |
 | ---- | ---- | ----------- | -------- |
 | block_height | long | Current block height | No |
 | validators | [  ] |  | No |
 
-### Peers  
+### Peer  
 
 | Name | Type | Description | Required |
 | ---- | ---- | ----------- | -------- |
-| Peers | array |  |  |
+| id | string | Authenticated identifier | No |
+| original_listen_addr | string (RemoteAddr) | Original listen address before PeersService changed it | No |
+| listen_addr | string (RemoteAddr) | Listen address | No |
+| access_addr | string (RemoteAddr) | Access address (HTTP) | No |
+| stream_addr | string (RemoteAddr) | Stream address (WS) | No |
+| network | string | Chain ID | No |
+| version | string | Version | No |
+| moniker | string | Moniker (Name) | No |
+| capabilities | [ string ] |  | No |
+| accelerated | boolean | Is an accelerated path to a validator node | No |
 
 ### Transaction  
 
@@ -560,17 +590,33 @@ The given _limit_ must be one of the allowed limits below.
 | locked | string (fixed8) | In decimal form, e.g. 0.00000000 | No |
 | frozen | string (fixed8) | In decimal form, e.g. 0.00000000 | No |
 
-### Tokens  
+### Token  
 
 | Name | Type | Description | Required |
 | ---- | ---- | ----------- | -------- |
-| Tokens | array |  |  |
+| name | string |  | No |
+| symbol | string |  | No |
+| original_symbol | string |  | No |
+| total_supply | string (fixed8) | In decimal form, e.g. 1.00000000 | No |
+| owner | string (address) | Address | No |
 
-### Markets  
+### Market  
 
 | Name | Type | Description | Required |
 | ---- | ---- | ----------- | -------- |
-| Markets | array |  |  |
+| base_asset_symbol | string (currency) |  | No |
+| quote_asset_symbol | string (currency) |  | No |
+| price | string (fixed8) | In decimal form, e.g. 1.00000000 | No |
+| tick_size | string (fixed8) | In decimal form, e.g. 1.00000000 | No |
+| lot_size | string (fixed8) | In decimal form, e.g. 1.00000000 | No |
+
+### Fee  
+
+| Name | Type | Description | Required |
+| ---- | ---- | ----------- | -------- |
+| fee_for | integer | e.g. 1 | No |
+| fee | number | e.g. 1000000000 | No |
+| msg_type | string | e.g. "submit_proposal" | No |
 
 ### MarketDepth  
 
