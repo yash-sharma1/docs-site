@@ -17,8 +17,12 @@ Use the following command to generate the Markdown documentation for the HTTP AP
 
 ## Generating RPC Docs Markdown
 
-In bnc-tendermint, use the `make rpc-docs` to generate the file, then copy the generated file over the existing `docs/api-reference/node-rpc.md`:
+In bnc-tendermint, use the `make rpc-docs` command to generate the file, then copy the generated file over the existing `docs/api-reference/node-rpc.md`:
+
+## Generating JavaScript SDK Markdown
+
+In javascript-sdk, use the `yarn build:docs` command to generate the file, then copy the generated file in `docs/jsdoc.md` over the existing `docs/api-reference/js-sdk/jsdoc.md`:
 
 ```bash
-$ cp ./index.html.md ../docs-site/docs/api-reference/node-rpc.md
+$ cp ./docs/jsdoc.md ../docs-site/docs/api-reference/js-sdk/jsdoc.md
 ```
