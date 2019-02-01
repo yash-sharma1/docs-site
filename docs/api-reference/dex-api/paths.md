@@ -521,249 +521,249 @@ The given _limit_ must be one of the allowed limits below.
 
 ### Error  
 
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| code | long |  | No |
-| message | string |  | Yes |
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| code | long |  |  |
+| message | string |  |  |
 
 ### Times  
 
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| ap_time | string | e.g. 2019-01-21T10:30:00Z | No |
-| block_time | string | format as above | No |
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| ap_time | string | e.g. 2019-01-21T10:30:00Z |  |
+| block_time | string | format as above |  |
 
 ### Validator  
 
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| block_height | long | Current block height | No |
-| validators | [  ] |  | No |
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| block_height | long | Current block height |  |
+| validators | [  ] |  |  |
 
 ### Peer  
 
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| id | string | Authenticated identifier | No |
-| original_listen_addr | string (RemoteAddr) | Original listen address before PeersService changed it | No |
-| listen_addr | string (RemoteAddr) | Listen address | No |
-| access_addr | string (RemoteAddr) | Access address (HTTP) | No |
-| stream_addr | string (RemoteAddr) | Stream address (WS) | No |
-| network | string | Chain ID | No |
-| version | string | Version | No |
-| moniker | string | Moniker (Name) | No |
-| capabilities | [ string ] |  | No |
-| accelerated | boolean | Is an accelerated path to a validator node | No |
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| id | string | Authenticated identifier |  |
+| original_listen_addr | string (RemoteAddr) | Original listen address before PeersService changed it |  |
+| listen_addr | string (RemoteAddr) | Listen address |  |
+| access_addr | string (RemoteAddr) | Access address (HTTP) |  |
+| stream_addr | string (RemoteAddr) | Stream address (WS) |  |
+| network | string | Chain ID |  |
+| version | string | Version |  |
+| moniker | string | Moniker (Name) |  |
+| capabilities | [ string ] |  |  |
+| accelerated | boolean | Is an accelerated path to a validator node |  |
 
 ### Transaction  
 
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| code | integer |  | No |
-| log | string |  | No |
-| data | string |  | No |
-| hash | string |  | No |
-| ok | boolean |  | No |
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| code | integer |  |  |
+| log | string |  |  |
+| data | string |  |  |
+| hash | string |  |  |
+| ok | boolean |  |  |
 
 ### Account  
 
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| account_number | integer |  | No |
-| address | string (address) |  | No |
-| balances | [ [Balance](#balance) ] |  | No |
-| public_key | [ integer ] | Public key bytes | No |
-| sequence | long |  | No |
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| account_number | integer |  |  |
+| address | string (address) |  |  |
+| balances | [ [Balance](#balance) ] |  |  |
+| public_key | [ integer ] | Public key bytes |  |
+| sequence | long |  |  |
 
 ### AccountSequence  
 
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| sequence | long |  | No |
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| sequence | long |  |  |
 
 ### Balance  
 
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| symbol | string (currency) |  | No |
-| free | string (fixed8) | In decimal form, e.g. 0.00000000 | No |
-| locked | string (fixed8) | In decimal form, e.g. 0.00000000 | No |
-| frozen | string (fixed8) | In decimal form, e.g. 0.00000000 | No |
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| symbol | string (currency) |  | BNB |
+| free | string (fixed8) | In decimal form, e.g. 0.00000000 | 0.00000000 |
+| locked | string (fixed8) | In decimal form, e.g. 0.00000000 | 0.00000000 |
+| frozen | string (fixed8) | In decimal form, e.g. 0.00000000 | 0.00000000 |
 
 ### Token  
 
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| name | string |  | No |
-| symbol | string |  | No |
-| original_symbol | string |  | No |
-| total_supply | string (fixed8) | In decimal form, e.g. 1.00000000 | No |
-| owner | string (address) | Address | No |
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| name | string |  | Binance Chain Native Token |
+| symbol | string |  | BTC-000 |
+| original_symbol | string |  | BTC |
+| total_supply | string (fixed8) | In decimal form, e.g. 1.00000000 | 0.00000000 |
+| owner | string (address) | Address |  |
 
 ### Market  
 
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| base_asset_symbol | string (currency) |  | No |
-| quote_asset_symbol | string (currency) |  | No |
-| price | string (fixed8) | In decimal form, e.g. 1.00000000 | No |
-| tick_size | string (fixed8) | In decimal form, e.g. 1.00000000 | No |
-| lot_size | string (fixed8) | In decimal form, e.g. 1.00000000 | No |
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| base_asset_symbol | string (currency) |  | BNB |
+| quote_asset_symbol | string (currency) |  | BNB |
+| price | string (fixed8) | In decimal form, e.g. 1.00000000 | 0.00000000 |
+| tick_size | string (fixed8) | In decimal form, e.g. 1.00000000 | 0.00000000 |
+| lot_size | string (fixed8) | In decimal form, e.g. 1.00000000 | 0.00000000 |
 
 ### Fee  
 
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| fee_for | integer | e.g. 1 | No |
-| fee | number | e.g. 1000000000 | No |
-| msg_type | string | e.g. "submit_proposal" | No |
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| fee_for | integer | e.g. 1 | 1 |
+| fee | number | e.g. 1000000000 | 1000000000 |
+| msg_type | string | e.g. "submit_proposal" | submit_proposal |
 
 ### MarketDepth  
 
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| asks | [ string (fixed8) ] | Price and qty in decimal form, e.g. 1.00000000 | No |
-| bids | [ string (fixed8) ] | Price and qty in decimal form, e.g. 1.00000000 | No |
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| asks | [ string (fixed8) ] | Price and qty in decimal form, e.g. 1.00000000 | ["1.00000000","800.00000000"] |
+| bids | [ string (fixed8) ] | Price and qty in decimal form, e.g. 1.00000000 | ["1.00000000","800.00000000"] |
 
 ### BlockTradePage  
 
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| blockTrade | [ [BlockTrade](#blocktrade) ] |  | No |
-| total | long |  | No |
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| blockTrade | [ [BlockTrade](#blocktrade) ] |  |  |
+| total | long |  |  |
 
 ### BlockTrade  
 
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| blockTime | long |  | No |
-| fee | string |  | No |
-| height | long |  | No |
-| trade | [ [Trade](#trade) ] |  | No |
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| blockTime | long |  |  |
+| fee | string |  |  |
+| height | long |  |  |
+| trade | [ [Trade](#trade) ] |  |  |
 
 ### Candlestick  
 
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| close | number |  | No |
-| closeTime | long |  | No |
-| high | number |  | No |
-| low | number |  | No |
-| numberOfTrades | integer |  | No |
-| open | number |  | No |
-| openTime | long |  | No |
-| quoteAssetVolume | number |  | No |
-| volume | number |  | No |
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| close | number |  |  |
+| closeTime | long |  |  |
+| high | number |  |  |
+| low | number |  |  |
+| numberOfTrades | integer |  |  |
+| open | number |  |  |
+| openTime | long |  |  |
+| quoteAssetVolume | number |  |  |
+| volume | number |  |  |
 
 ### OrderList  
 
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| order | [ [Order](#order) ] |  | No |
-| total | long |  | No |
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| order | [ [Order](#order) ] |  |  |
+| total | long |  |  |
 
 ### Order  
 
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| cumulateQuantity | string |  | No |
-| fee | string |  | No |
-| lastExecutedPrice | string |  | No |
-| lastExecutedQuantity | string |  | No |
-| orderCreateTime | dateTime |  | No |
-| orderId | string |  | No |
-| owner | string |  | No |
-| price | string |  | No |
-| quantity | string |  | No |
-| side | integer | 1 for buy and 2 for sell | No |
-| status | string | enum [ACK, PARTIALLY_FILLED, IOC_NO_FILL, FULLY_FILLED, CANCELED, EXPIRED, FAIL_BLOCKING, FAIL_MATCH] | No |
-| symbol | string |  | No |
-| timeInForce | integer | 1 for Good Till Expire(GTE) order and 3 for Immediate Or Cancel (IOC) | No |
-| tradeId | string |  | No |
-| transactionHash | string |  | No |
-| transactionTime | dateTime |  | No |
-| type | integer | only 2 is available for now, meaning limit order | No |
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| cumulateQuantity | string |  |  |
+| fee | string |  |  |
+| lastExecutedPrice | string |  |  |
+| lastExecutedQuantity | string |  |  |
+| orderCreateTime | dateTime |  |  |
+| orderId | string |  |  |
+| owner | string |  |  |
+| price | string |  |  |
+| quantity | string |  |  |
+| side | integer | 1 for buy and 2 for sell |  |
+| status | string | enum [ACK, PARTIALLY_FILLED, IOC_NO_FILL, FULLY_FILLED, CANCELED, EXPIRED, FAIL_BLOCKING, FAIL_MATCH] |  |
+| symbol | string |  |  |
+| timeInForce | integer | 1 for Good Till Expire(GTE) order and 3 for Immediate Or Cancel (IOC) |  |
+| tradeId | string |  |  |
+| transactionHash | string |  |  |
+| transactionTime | dateTime |  |  |
+| type | integer | only 2 is available for now, meaning limit order |  |
 
 ### TickerStatistics  
 
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| askPrice | string |  | No |
-| askQuantity | string |  | No |
-| bidPrice | string |  | No |
-| bidQuantity | string |  | No |
-| closeTime | long |  | No |
-| count | long |  | No |
-| firstId | string |  | No |
-| highPrice | string |  | No |
-| lastId | string |  | No |
-| lastPrice | string |  | No |
-| lastQuantity | string |  | No |
-| lowPrice | string |  | No |
-| openPrice | string |  | No |
-| openTime | long |  | No |
-| prevClosePrice | string |  | No |
-| priceChange | string |  | No |
-| priceChangePercent | string |  | No |
-| quoteVolume | string |  | No |
-| symbol | string |  | No |
-| volume | string |  | No |
-| weightedAvgPrice | string |  | No |
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| askPrice | string |  |  |
+| askQuantity | string |  |  |
+| bidPrice | string |  |  |
+| bidQuantity | string |  |  |
+| closeTime | long |  |  |
+| count | long |  |  |
+| firstId | string |  |  |
+| highPrice | string |  |  |
+| lastId | string |  |  |
+| lastPrice | string |  |  |
+| lastQuantity | string |  |  |
+| lowPrice | string |  |  |
+| openPrice | string |  |  |
+| openTime | long |  |  |
+| prevClosePrice | string |  |  |
+| priceChange | string |  |  |
+| priceChangePercent | string |  |  |
+| quoteVolume | string |  |  |
+| symbol | string |  |  |
+| volume | string |  |  |
+| weightedAvgPrice | string |  |  |
 
 ### TradePage  
 
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| total | long |  | No |
-| trade | [ [Trade](#trade) ] |  | No |
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| total | long |  |  |
+| trade | [ [Trade](#trade) ] |  |  |
 
 ### Trade  
 
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| baseAsset | string |  | No |
-| blockHeight | long |  | No |
-| buyFee | string |  | No |
-| buyerId | string |  | No |
-| buyerOrderId | string |  | No |
-| price | string |  | No |
-| quantity | string |  | No |
-| quoteAsset | string |  | No |
-| sellFee | string |  | No |
-| sellerId | string |  | No |
-| sellerOrderId | string |  | No |
-| symbol | string |  | No |
-| time | long |  | No |
-| tradeId | string |  | No |
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| baseAsset | string |  |  |
+| blockHeight | long |  |  |
+| buyFee | string |  |  |
+| buyerId | string |  |  |
+| buyerOrderId | string |  |  |
+| price | string |  |  |
+| quantity | string |  |  |
+| quoteAsset | string |  |  |
+| sellFee | string |  |  |
+| sellerId | string |  |  |
+| sellerOrderId | string |  |  |
+| symbol | string |  |  |
+| time | long |  |  |
+| tradeId | string |  |  |
 
 ### TxPage  
 
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| total | long |  | No |
-| tx | [ [Tx](#tx) ] |  | No |
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| total | long |  |  |
+| tx | [ [Tx](#tx) ] |  |  |
 
 ### Tx  
 
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| blockHeight | long |  | No |
-| code | integer |  | No |
-| confirmBlocks | long |  | No |
-| data | string |  | No |
-| fromAddr | string |  | No |
-| orderId | string |  | No |
-| timeStamp | dateTime |  | No |
-| toAddr | string |  | No |
-| txAge | long |  | No |
-| txAsset | string |  | No |
-| txFee | string |  | No |
-| txHash | string |  | No |
-| txType | string |  | No |
-| value | string |  | No |
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| blockHeight | long |  |  |
+| code | integer |  | 0 |
+| confirmBlocks | long |  |  |
+| data | string |  |  |
+| fromAddr | string |  |  |
+| orderId | string |  |  |
+| timeStamp | dateTime |  |  |
+| toAddr | string |  |  |
+| txAge | long |  |  |
+| txAsset | string |  |  |
+| txFee | string |  |  |
+| txHash | string |  |  |
+| txType | string |  |  |
+| value | string |  |  |
 
 ### ExchangeRate  
 
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
 | ExchangeRate | object |  |  |
