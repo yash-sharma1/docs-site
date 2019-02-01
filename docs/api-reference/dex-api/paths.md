@@ -619,7 +619,7 @@ The given _limit_ must be one of the allowed limits below.
 | fee_for | integer | 1 = proposer, 2 = all, 3 = free | 1 |
 | multi_transfer_fee | string | Fee for multi-transfer | 200000 |
 | lower_limit_as_multi | string | e.g. 2 | 2 |
-| FixedFeeParams | [FixedFeeParams](#fixedfeeparams) | Set if the fee is fixed |  |
+| fixed_fee_params | [FixedFeeParams](#fixedfeeparams) | Set if the fee is fixed |  |
 
 ### FixedFeeParams  
 
