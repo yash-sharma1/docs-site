@@ -614,9 +614,20 @@ The given _limit_ must be one of the allowed limits below.
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
-| fee_for | integer | e.g. 1 | 1 |
-| fee | number | e.g. 1000000000 | 1000000000 |
-| msg_type | string | e.g. "submit_proposal" | submit_proposal |
+| msg_type | string | Transaction msg type that this fee applies to | submit_proposal |
+| fee | number | The fee amount | 1000000000 |
+| fee_for | integer | 1 = proposer, 2 = all, 3 = free | 1 |
+| multi_transfer_fee | string | Fee for multi-transfer | 200000 |
+| lower_limit_as_multi | string | e.g. 2 | 2 |
+| FixedFeeParams | [FixedFeeParams](#fixedfeeparams) |  |  |
+
+### FixedFeeParams  
+
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| msg_type | string | Transaction msg type that this fee applies to | submit_proposal |
+| fee | number | The fixed fee amount | 1000000000 |
+| fee_for | integer | 1 = proposer, 2 = all, 3 = free | 1 |
 
 ### MarketDepth  
 

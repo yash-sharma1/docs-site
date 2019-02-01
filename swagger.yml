@@ -1242,18 +1242,43 @@ definitions:
   Fee:
     type: object
     properties:
-      fee_for:
-        type: integer
-        description: e.g. 1
-        example: 1
-      fee:
-        type: number
-        description: e.g. 1000000000
-        example: 1000000000
       msg_type:
         type: string
-        description: e.g. "submit_proposal"
+        description: Transaction msg type that this fee applies to
         example: submit_proposal
+      fee:
+        type: number
+        description: The fee amount
+        example: 1000000000
+      fee_for:
+        type: integer
+        description: 1 = proposer, 2 = all, 3 = free
+        example: 1
+      multi_transfer_fee:
+        type: string
+        description: Fee for multi-transfer
+        example: "200000"
+      lower_limit_as_multi:
+        type: string
+        description: e.g. 2
+        example: "2"
+      FixedFeeParams:
+        $ref: '#/definitions/FixedFeeParams'
+  FixedFeeParams:
+    type: object
+    properties:
+      msg_type:
+        type: string
+        description: Transaction msg type that this fee applies to
+        example: submit_proposal
+      fee:
+        type: number
+        description: The fixed fee amount
+        example: 1000000000
+      fee_for:
+        type: integer
+        description: 1 = proposer, 2 = all, 3 = free
+        example: 1
   MarketDepth:
     type: object
     properties:
