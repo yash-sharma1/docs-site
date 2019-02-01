@@ -289,7 +289,7 @@ The given _limit_ must be one of the allowed limits below.
 ##### ***POST***
 **Summary:** Broadcast a transaction.
 
-**Description:** Broadcasts a signed transaction. A single transaction must be sent hex-encoded in with a `content-type` of `text/plain`.
+**Description:** Broadcasts a signed transaction. A single transaction must be sent hex-encoded with a `content-type` of `text/plain`.
 
 **Destination:** Witness node.
 
@@ -302,7 +302,7 @@ The given _limit_ must be one of the allowed limits below.
 
 | Name | Located in | Description | Required | Schema |
 | ---- | ---------- | ----------- | -------- | ---- |
-| sync | query | Synchronous broadcast (wait for [DeliverTx](https://github.com/tendermint/tendermint/wiki/Application-Developers#delivertx))  | No | boolean |
+| sync | query | Synchronous broadcast (wait for [DeliverTx](https://github.com/tendermint/tendermint/wiki/Application-Developers#delivertx))?  | No | boolean |
 | body | body |  | Yes | binary |
 
 **Responses**

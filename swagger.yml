@@ -445,7 +445,7 @@ paths:
       operationId: broadcastTx
       summary: Broadcast a transaction.
       description: |
-        Broadcasts a signed transaction. A single transaction must be sent hex-encoded in with a `content-type` of `text/plain`.
+        Broadcasts a signed transaction. A single transaction must be sent hex-encoded with a `content-type` of `text/plain`.
 
         **Destination:** Witness node.
 
@@ -462,7 +462,7 @@ paths:
       - in: query
         name: sync
         description: |
-          Synchronous broadcast (wait for [DeliverTx](https://github.com/tendermint/tendermint/wiki/Application-Developers#delivertx))
+          Synchronous broadcast (wait for [DeliverTx](https://github.com/tendermint/tendermint/wiki/Application-Developers#delivertx))?
         required: false
         type: boolean
         default: false
