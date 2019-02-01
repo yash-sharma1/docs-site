@@ -1263,6 +1263,7 @@ definitions:
         description: e.g. 2
         example: "2"
       FixedFeeParams:
+        description: Set if the fee is fixed
         $ref: '#/definitions/FixedFeeParams'
   FixedFeeParams:
     type: object

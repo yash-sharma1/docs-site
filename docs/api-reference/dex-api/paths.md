@@ -265,7 +265,7 @@ The given _limit_ must be one of the allowed limits below.
 
 **Rate Limit:** 10 requests per IP per second.
 
-**Test URL:** [https://testnet-dex.binance.org/api/v1/depth](https://testnet-dex.binance.org/api/v1/depth)
+**Test URL:** [https://testnet-dex.binance.org/api/v1/depth?symbol=xxx-000_BNB](https://testnet-dex.binance.org/api/v1/depth?symbol=xxx-000_BNB)
 
 
 **Parameters**
@@ -619,7 +619,7 @@ The given _limit_ must be one of the allowed limits below.
 | fee_for | integer | 1 = proposer, 2 = all, 3 = free | 1 |
 | multi_transfer_fee | string | Fee for multi-transfer | 200000 |
 | lower_limit_as_multi | string | e.g. 2 | 2 |
-| FixedFeeParams | [FixedFeeParams](#fixedfeeparams) |  |  |
+| FixedFeeParams | [FixedFeeParams](#fixedfeeparams) | Set if the fee is fixed |  |
 
 ### FixedFeeParams  
 
