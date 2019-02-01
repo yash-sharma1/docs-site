@@ -1108,6 +1108,8 @@ definitions:
         required: true
       capabilities:
         type: array
+        description: "Array of capability tags: node, qs, ap, ws"
+        example: ["node", "ap"]
         items:
           type: string
           enum: ['node', 'qs', 'ap', 'ws']

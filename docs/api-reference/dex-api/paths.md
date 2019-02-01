@@ -552,7 +552,7 @@ The given _limit_ must be one of the allowed limits below.
 | network | string | Chain ID |  |
 | version | string | Version |  |
 | moniker | string | Moniker (Name) |  |
-| capabilities | [ string ] |  |  |
+| capabilities | [ string ] | Array of capability tags: node, qs, ap, ws | node,ap |
 | accelerated | boolean | Is an accelerated path to a validator node |  |
 
 ### Transaction  
