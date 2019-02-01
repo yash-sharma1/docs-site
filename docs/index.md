@@ -4,7 +4,7 @@ Welcome to the Binance Chain documentation site!
 
 Please note that both the Binance Chain software and this documentation site will improve over time and is still a work-in-progress. Be sure to engage with our community channels to stay updated.
 
-Have fun in exchanging and trading and see you on chain!
+Have fun exchanging and trading and see you on chain!
 
 ## What are Binance Chain and Binance DEX?
 
