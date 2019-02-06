@@ -55,14 +55,14 @@ any wallet that supports Binance Chain. Then you can trade BNB or other assets s
 On Binance DEX, you can send "new order" messages to  buy or sell certain assets. You can also 
 send "cancel" messages to cancel existing open orders.
 
-You can use a wallet to send new orders and cancels. Binance DEX also provides API for automatic trading.
+You can use a wallet to send new orders and cancels. Binance DEX also provides API for automated trading.
 
 In Binance DEX v1.0, the order message contains:
 
 - Symbol: trading pair on the chain
 - Side: buy or sell
 - Price: only limit price orders are supported in Binance Chain v1.0
-Amount
+- Amount
 - Time In Force: Binance DEX supports `Immediate Or Cancel` (IOC) and `Good Till Expiry` (GTE) 
 orders. GTE orders can quote on the exchange until they are filled by the opposite orders satisfying 
 the limit price, or canceled by client themselves, or expire after 72 hours after 00:00 (UTC). 
