@@ -3,10 +3,6 @@ info:
   title: 'HTTP API'
   version: 1.0.0
   description: 'The Binance Chain HTTP API provides access to a Binance Chain node deployment and market data services.'
-  contact:
-    name: 'Binance Support'
-    email: 'support@binance.org'
-    url: 'https://support.binance.org'
   license:
     name: 'Apache 2.0'
     url: 'http://www.apache.org/licenses/LICENSE-2.0.html'

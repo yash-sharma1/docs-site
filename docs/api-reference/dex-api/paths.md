@@ -4,11 +4,6 @@ The Binance Chain HTTP API provides access to a Binance Chain node deployment an
 
 **Version:** 1.0.0
 
-**Contact information:**  
-Binance Support  
-https://support.binance.org  
-support@binance.org  
-
 **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.html)
 
 ### /api/v1/time
