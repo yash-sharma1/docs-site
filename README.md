@@ -28,7 +28,7 @@ In a **bnc-tendermint** directory cloned in this repo's parent directory, use th
 
 ## Generating JavaScript SDK Markdown
 
-In a javascript-sdk dir cloned in this repo's parent directory, use the `yarn build:docs` command to generate the file, then copy the generated file in `docs/jsdoc.md` over the existing `docs/api-reference/js-sdk/jsdoc.md`:
+In a **javascript-sdk** directory cloned in this repo's parent directory, use the `yarn build:docs` command to generate the file, then copy the generated file in `docs/jsdoc.md` over the existing `docs/api-reference/js-sdk/jsdoc.md`:
 
 ```bash
 $ cp ./docs/jsdoc.md ../docs-site/docs/api-reference/js-sdk/jsdoc.md
