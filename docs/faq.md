@@ -251,7 +251,7 @@ network, Binance Chain only list assets against BNB and other widely accepted ma
 After an asset is issued, which costs a small fee,
 anyone can "propose" to all validators to list it against particular quote assets. 
 Validators then vote to accept the proposal. 
-A fee is charged to prevent network abuse and to incentivize voting.
+A deposit is taken to prevent network abuse.
 Once the proposal is accepted, the owner of the base asset can list the trading pair.
 
 For more information about this process please check the [listing guide](list.md).
