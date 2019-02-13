@@ -88,9 +88,9 @@ You may notice that the numbers like deposit number and price are very large. Th
 
 ### The deposit
 
-Before validators can vote on the proposal you created, you need to deposit enough BNB (like 2000 BNB). You 
+Before validators can vote on the proposal you created, you need to deposit enough BNB (at least 2000 BNB). You 
 may have already deposit a number of BNB when you propose, in the upper case, it is 100 BNB. So now you still 
-need to deposit another 1900 BNB. Check the [fees table](trading-spec.md) for the current deposit requirements.
+need to deposit another 1900 BNB.
 
 ```bash
 $  ./bnbcli gov deposit --deposit 190000000000:BNB --from test --proposal-id 14 
