@@ -1,4 +1,4 @@
-# Binance Chain FAQ v0.3
+# Binance Chain FAQ v0.4
 
 ## What is Binance Chain, or Binance DEX?
 
@@ -240,12 +240,12 @@ asset from other block chains.
 
 ## How is a trading pair created on Binance DEX?
 
-So far Binance DEX still adheres to the idea that the most efficient and low cost way to perform trading and 
+The design philosophy of Binance DEX adheres to the idea that the most efficient and low cost way to perform trading and 
 price-discovery is still to use single order book. This single order book is managed and replicated across all 
 full nodes with the same, deterministic matching logic.
 
 Simply allowing trading between two assets seems easy enough, however it is expensive for not only the network 
-runners but also the users in long term (liquidity cost can be much larger). In order to efficiently use the 
+but also its users in long term (and liquidity costs can be much larger). In order to efficiently use the 
 network, Binance Chain only list assets against BNB and other widely accepted market quote assets. 
 
 After an asset is issued, which costs a small fee,
