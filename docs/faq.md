@@ -101,7 +101,7 @@ accepted and booked into a block in 1-3 seconds. If the order price is marketabl
 would be filled and trades would come back in about similar time. If you send from a far-way 
 self-setup full node, or there is heavy network traffic, the order may take longer to reach 
 a Validator (block producer).
-
+
 ## Can I see others' orders or balances or can other people see my orders or balances?
 
 Yes, anyone can see anyone's orders and balances if they know the corresponding addresses. 
@@ -237,7 +237,25 @@ Native inter-chain mechanism is not supported in Binance Chain in the initial ve
 be in the future. Binance.com may serve as a bridge to trade across tokens between Binance 
 Chain and other chains. Peg Token may be issued on Binance Chain to facilitate trading digital 
 asset from other block chains.
-
+
+## How is a trading pair created on Binance DEX?
+
+So far Binance DEX still adheres to the idea that the most efficient and low cost way to perform trading and 
+price-discovery is still to use single order book. This single order book is managed and replicated across all 
+full nodes with the same, deterministic matching logic.
+
+Simply allowing trading between two assets seems easy enough, however it is expensive for not only the network 
+runners but also the users in long term (liquidity cost can be much larger). In order to efficiently use the 
+network, Binance Chain only list assets against BNB and other widely accepted market quote assets. 
+
+After an asset is issued, which costs a small fee,
+anyone can "propose" to all validators to list it against particular quote assets. 
+Validators then vote to accept the proposal. 
+A fee is charged to prevent network abuse and to incentivize voting.
+Once the proposal is accepted, the owner of the base asset can list the trading pair.
+
+For more information about this process please check the [listing guide](list.md).
+
 ## How would a third-party integrate with Binance Chain and Binance DEX?
 
 A wallet provider may choose to only support the feature set of Binance Chain, which would just 
