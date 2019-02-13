@@ -23,7 +23,7 @@ nav:
     - Node RPC: api-reference/node-rpc.md
     - SDK: api-reference/sdk.md
     - Commands: api-reference/cli.md
-    - Transactions: api-reference/transactions.md
+    - Transactions: encoding.md
   - More Help: resources.md
   - Binance DEX TestNet: https://testnet.binance.org
   - Chain Explorer TestNet: https://testnet-explorer.binance.org

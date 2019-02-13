@@ -89,7 +89,7 @@ curl 'localhost:27147/broadcast_tx_sync?tx="abc"'
 
 ## JSONRPC/HTTP
 
-JSONRPC requests can be POST'd to the root RPC endpoint via HTTP (e.g. `<a href="http://localhost:27147/">http://localhost:27147/</a>`).
+JSONRPC requests can be POST'd to the root RPC endpoint via HTTP (e.g. <a href="http://localhost:27147">http://localhost:27147</a>).
 
 ```json
 {
@@ -106,10 +106,6 @@ JSONRPC requests can be POST'd to the root RPC endpoint via HTTP (e.g. `<a href=
 ## JSONRPC/websockets
 
 JSONRPC requests can be made via websocket. The websocket endpoint is at `/websocket`, e.g. `localhost:27147/websocket`.  Asynchronous RPC functions like event `subscribe` and `unsubscribe` are only available via websockets.
-
-## More Examples
-
-See the various bash tests using curl in `test/`, and examples using the `Go` API in `rpc/client/`.
 
 ## Get the list
 
@@ -910,7 +906,7 @@ The above command returns JSON structured like this:
 	  },
 	  "peers": [
 	    {
-	      "node_address": "30ad1854af22506383c3f0e57fb3c7f90984c5e8@172.16.63.221:26656",
+	      "node_address": "30ad1854af22506383c3f0e57fb3c7f90984c5e8@172.16.63.221:27146",
 	      "peer_state": {
 	        "round_state": {
 	          "height": "7185",
@@ -1062,7 +1058,7 @@ info, err := client.NetInfo()
 		"n_peers": "0",
 		"peers": [],
 		"listeners": [
-			"Listener(@10.0.2.15:26656)"
+			"Listener(@10.0.2.15:27146)"
 		],
 		"listening": true
 	},
@@ -1146,7 +1142,7 @@ result, err := client.Status()
 				"app": "0"
 			},
 			"id": "53729852020041b956e86685e24394e0bee4373f",
-			"listen_addr": "10.0.2.15:26656",
+			"listen_addr": "10.0.2.15:27146",
 			"network": "test-chain-Y1OHx6",
 			"version": "0.24.0-2ce1abc2",
 			"channels": "4020212223303800",

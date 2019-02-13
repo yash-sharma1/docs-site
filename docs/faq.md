@@ -1,4 +1,4 @@
-# Binance Chain FAQ v0.3
+# Binance Chain FAQ v0.4
 
 ## What is Binance Chain, or Binance DEX?
 
@@ -55,14 +55,14 @@ any wallet that supports Binance Chain. Then you can trade BNB or other assets s
 On Binance DEX, you can send "new order" messages to  buy or sell certain assets. You can also 
 send "cancel" messages to cancel existing open orders.
 
-You can use a wallet to send new orders and cancels. Binance DEX also provides API for automatic trading.
+You can use a wallet to send new orders and cancels. Binance DEX also provides API for automated trading.
 
 In Binance DEX v1.0, the order message contains:
 
 - Symbol: trading pair on the chain
 - Side: buy or sell
 - Price: only limit price orders are supported in Binance Chain v1.0
-Amount
+- Amount
 - Time In Force: Binance DEX supports `Immediate Or Cancel` (IOC) and `Good Till Expiry` (GTE) 
 orders. GTE orders can quote on the exchange until they are filled by the opposite orders satisfying 
 the limit price, or canceled by client themselves, or expire after 72 hours after 00:00 (UTC). 
@@ -101,7 +101,7 @@ accepted and booked into a block in 1-3 seconds. If the order price is marketabl
 would be filled and trades would come back in about similar time. If you send from a far-way 
 self-setup full node, or there is heavy network traffic, the order may take longer to reach 
 a Validator (block producer).
-
+
 ## Can I see others' orders or balances or can other people see my orders or balances?
 
 Yes, anyone can see anyone's orders and balances if they know the corresponding addresses. 
@@ -237,7 +237,25 @@ Native inter-chain mechanism is not supported in Binance Chain in the initial ve
 be in the future. Binance.com may serve as a bridge to trade across tokens between Binance 
 Chain and other chains. Peg Token may be issued on Binance Chain to facilitate trading digital 
 asset from other block chains.
-
+
+## How is a trading pair created on Binance DEX?
+
+The design philosophy of Binance DEX adheres to the idea that the most efficient and low cost way to perform trading and 
+price-discovery is still to use single order book. This single order book is managed and replicated across all 
+full nodes with the same, deterministic matching logic.
+
+Simply allowing trading between two assets seems easy enough, however it is expensive for not only the network 
+but also its users in long term (and liquidity costs can be much larger). In order to efficiently use the 
+network, Binance Chain only list assets against BNB and other widely accepted market quote assets. 
+
+After an asset is issued, which costs a small fee,
+anyone can "propose" to all validators to list it against particular quote assets. 
+Validators then vote to accept the proposal. 
+A deposit is taken to prevent network abuse.
+Once the proposal is accepted, the owner of the base asset can list the trading pair.
+
+For more information about this process please check the [listing guide](list.md).
+
 ## How would a third-party integrate with Binance Chain and Binance DEX?
 
 A wallet provider may choose to only support the feature set of Binance Chain, which would just 

@@ -1,10 +1,10 @@
-# Welcome to Binance Chain Docs
+# Binance Chain Documentation
 
-Welcome to Binance Chain documentation site! 
+Welcome to the Binance Chain documentation site!
 
-Please note both Binance Chain and this document site would keep improving as time goes. Please re-check the sites and community channels from time to time. 
+Please note that both the Binance Chain software and this documentation site will improve over time and is still a work-in-progress. Be sure to engage with our community channels to stay updated.
 
-Have fun on Chain! Have fun in exchanging and trading!
+Have fun trading and see you on chain!
 
 ## What are Binance Chain and Binance DEX?
 

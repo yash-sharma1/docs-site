@@ -1,19 +1,22 @@
-# List a Trading Pair
+# Listing a Trading Pair
 
-## How can a trading pair be created?
-So far Binance DEX still adheres to the idea that the most efficient and low cost way to perform trading and 
+## How is a trading pair created on Binance DEX?
+
+The design philosophy of Binance DEX adheres to the idea that the most efficient and low cost way to perform trading and 
 price-discovery is still to use single order book. This single order book is managed and replicated across all 
 full nodes with the same, deterministic matching logic.
 
-Simply allowing trading between two assets sounds 'perfect', however it is expensive for not only the network 
-runners but also the users in long term (liquidity cost can be much larger). In order to efficiently use the 
-network, Binance Chain only list assets against BNB and other widely accepted market benchmark assets. After 
-an asset is issued, anyone can "propose" to all validators to list it against particular benchmark assets. 
-Validators would vote to accept the proposal. Fee would be charged to prevent abuse of the proposing and 
-endorse the asset. Once the proposal is accepted, the owner of the base asset can list the trading pair 
-via interfaces.
+Simply allowing trading between two assets seems easy enough, however it is expensive for not only the network 
+but also its users in long term (and liquidity costs can be much larger). In order to efficiently use the 
+network, Binance Chain only list assets against BNB and other widely accepted market quote assets. 
 
-## List Transaction
+After an asset is issued, which costs a small fee,
+anyone can "propose" to all validators to list it against particular quote assets. 
+Validators then vote to accept the proposal. 
+A deposit is taken to prevent network abuse.
+Once the proposal is accepted, the owner of the base asset can list the trading pair.
+
+## The "List" transaction
 
 As mentioned before, if you want to list a trading pair, you need to issue the token you want to list. Then you have to 
 create a proposal first and deposit enough BNB, then you should wait for voting result of validators (so far is two weeks).
@@ -26,15 +29,15 @@ will be returned to your account.
 Then the owner of the asset to be listed can list the trading pair via command line according to the proposal 
 approved before the proposal is expired.
 
-### Issue token
+### Issuing the token
 
 First, you need to issue the token. You have to make sure that there is enough BNB remaining in your account.
 
 You can refer to [issue doc](tokens.md) in case you do not know how to do it.
 
-### Create a proposal
+### Creating a listing proposal (to list a trading pair)
 
-After issuing the token, you need to create a proposal to list this token against one benchmark asset.
+After issuing the token, you need to create a proposal to list this token against a quote asset.
 
 ```bash
 $  ./bnbcli gov submit-list-proposal --from test --deposit 10000000000:BNB \
@@ -79,14 +82,13 @@ is rejected by the community, the coins will be distributed to validators. So pl
 online forum community before creating it and make sure there is an agreement on your listing proposal, because any 
 new list would affect the whole network efficiency. 
 
-You may notice that the numbers like deposit number and price are very big. The numbers are presented as signed 
-int64 inside the chain data structure and code. The last 8 digits of the integer would represent the fractional-part 
+You may notice that the numbers like deposit number and price are very large. The numbers are presented as integers in the chain data structure and codebase. The last 8 digits of the integer represent the fractional-part 
 (digits after the decimal point) by default if the number is presented in a human readable format. For example, 
 10000000000 means 100.00000000 if represented as a human readable number.
 
-### Deposit
+### The deposit
 
-Before validators can vote on the proposal you created, you need to deposit enough BNB (like 2000 BNB). You 
+Before validators can vote on the proposal you created, you need to deposit enough BNB (at least 2000 BNB). You 
 may have already deposit a number of BNB when you propose, in the upper case, it is 100 BNB. So now you still 
 need to deposit another 1900 BNB.
 
@@ -160,7 +162,7 @@ $  ./bnbcli gov proposal --proposal-id 15 --chain-id=chain-bnb --node=172.22.41.
 }
 ```
 
-### List 
+### When the proposal passes
 
 When proposal is passed, the owner of the token to be listed can list the token before `expire_time` specified.
 
@@ -213,3 +215,4 @@ $  ./bnbcli dex list -s AAA-254 --quote-asset-symbol BNB --from test \
 }
 ```
 
+We will consider making this easier by adding a user friendly interface for tracking proposals in the future.

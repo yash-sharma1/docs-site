@@ -2,6 +2,9 @@
 
 Binance Chain has been through several iterations and evolutions, each time building upon work contributed by members of the blockchain community. We would like to acknowledge the outstanding work that we have been able to build on during development. Let's build the future together!
 
+## Bitcoin and Ethereum 
+No doubt. These two projects and their communities enable us from day one with countless creativities. They are the root of ground-zero thought and keep providing brilliant utilities and ideas.
+
 ## Binance Dexathon
 
 The Binance Dexathon concluded in September 2018, receiving prize winning submissions from teams that sent in some really impressive projects. Our internal work on Binance Chain was taking place in parallel to this and we are delighted to say that many of the projects helped to improve the final product.

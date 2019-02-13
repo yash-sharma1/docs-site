@@ -4,11 +4,6 @@ The Binance Chain HTTP API provides access to a Binance Chain node deployment an
 
 **Version:** 1.0.0
 
-**Contact information:**  
-Binance Support  
-https://support.binance.org  
-support@binance.org  
-
 **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.html)
 
 ### /api/v1/time
@@ -72,7 +67,7 @@ support@binance.org
 
 | Code | Description | Schema |
 | ---- | ----------- | ------ |
-| 200 | Success | [Validators](#validators) |
+| 200 | Success | [ [Validator](#validator) ] |
 | 400 | Bad Request | [Error](#error) |
 | 404 | Not Found |  |
 | default | Generic error response | [Error](#error) |
@@ -95,7 +90,7 @@ support@binance.org
 
 | Code | Description | Schema |
 | ---- | ----------- | ------ |
-| 200 | Success | [Peers](#peers) |
+| 200 | Success | [ [Peer](#peer) ] |
 | 400 | Bad Request | [Error](#error) |
 | 404 | Not Found |  |
 | default | Generic error response | [Error](#error) |
@@ -203,7 +198,7 @@ support@binance.org
 
 | Code | Description | Schema |
 | ---- | ----------- | ------ |
-| 200 | Success | [Tokens](#tokens) |
+| 200 | Success | [ [Token](#token) ] |
 | 400 | Bad Request | [Error](#error) |
 | 404 | Not Found |  |
 | default | Generic error response | [Error](#error) |
@@ -226,9 +221,30 @@ support@binance.org
 
 | Code | Description | Schema |
 | ---- | ----------- | ------ |
-| 200 | Success | [Markets](#markets) |
+| 200 | Success | [ [Market](#market) ] |
 | 400 | Bad Request | [Error](#error) |
 | 404 | Not Found |  |
+| default | Generic error response | [Error](#error) |
+
+### /api/v1/fees
+---
+##### ***GET***
+**Summary:** Obtain trading fees information.
+
+**Description:** Gets the current trading fees settings.
+
+**Destination:** Witness node.
+
+**Rate Limit:** 1 request per IP per second.
+
+**Test URL:** [https://testnet-dex.binance.org/api/v1/fees](https://testnet-dex.binance.org/api/v1/fees)
+
+
+**Responses**
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | Success | [ [Fee](#fee) ] |
 | default | Generic error response | [Error](#error) |
 
 ### /api/v1/depth
@@ -244,7 +260,7 @@ The given _limit_ must be one of the allowed limits below.
 
 **Rate Limit:** 10 requests per IP per second.
 
-**Test URL:** [https://testnet-dex.binance.org/api/v1/depth](https://testnet-dex.binance.org/api/v1/depth)
+**Test URL:** [https://testnet-dex.binance.org/api/v1/depth?symbol=xxx-000_BNB](https://testnet-dex.binance.org/api/v1/depth?symbol=xxx-000_BNB)
 
 
 **Parameters**
@@ -268,7 +284,7 @@ The given _limit_ must be one of the allowed limits below.
 ##### ***POST***
 **Summary:** Broadcast a transaction.
 
-**Description:** Broadcasts a signed transaction. A single transaction must be sent in hex format in plain text.
+**Description:** Broadcasts a signed transaction. A single transaction must be sent hex-encoded with a `content-type` of `text/plain`.
 
 **Destination:** Witness node.
 
@@ -281,7 +297,7 @@ The given _limit_ must be one of the allowed limits below.
 
 | Name | Located in | Description | Required | Schema |
 | ---- | ---------- | ----------- | -------- | ---- |
-| sync | query | Synchronous broadcast (wait for [DeliverTx](https://github.com/tendermint/tendermint/wiki/Application-Developers#delivertx))  | No | boolean |
+| sync | query | Synchronous broadcast (wait for [DeliverTx](https://github.com/tendermint/tendermint/wiki/Application-Developers#delivertx))?  | No | boolean |
 | body | body |  | Yes | binary |
 
 **Responses**
@@ -500,224 +516,260 @@ The given _limit_ must be one of the allowed limits below.
 
 ### Error  
 
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| code | long |  | No |
-| message | string |  | Yes |
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| code | long |  |  |
+| message | string |  |  |
 
 ### Times  
 
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| ap_time | string | e.g. 2019-01-21T10:30:00Z | No |
-| block_time | string | format as above | No |
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| ap_time | string | e.g. 2019-01-21T10:30:00Z |  |
+| block_time | string | format as above |  |
 
-### Validators  
+### Validator  
 
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| block_height | long | Current block height | No |
-| validators | [  ] |  | No |
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| block_height | long | Current block height |  |
+| validators | [  ] |  |  |
 
-### Peers  
+### Peer  
 
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| Peers | array |  |  |
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| id | string | Authenticated identifier |  |
+| original_listen_addr | string (RemoteAddr) | Original listen address before PeersService changed it |  |
+| listen_addr | string (RemoteAddr) | Listen address |  |
+| access_addr | string (RemoteAddr) | Access address (HTTP) |  |
+| stream_addr | string (RemoteAddr) | Stream address (WS) |  |
+| network | string | Chain ID |  |
+| version | string | Version |  |
+| moniker | string | Moniker (Name) |  |
+| capabilities | [ string ] | Array of capability tags: node, qs, ap, ws | node,ap |
+| accelerated | boolean | Is an accelerated path to a validator node |  |
 
 ### Transaction  
 
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| code | integer |  | No |
-| log | string |  | No |
-| data | string |  | No |
-| hash | string |  | No |
-| ok | boolean |  | No |
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| code | integer |  |  |
+| log | string |  |  |
+| data | string |  |  |
+| hash | string |  |  |
+| ok | boolean |  |  |
 
 ### Account  
 
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| account_number | integer |  | No |
-| address | string (address) |  | No |
-| balances | [ [Balance](#balance) ] |  | No |
-| public_key | [ integer ] | Public key bytes | No |
-| sequence | long |  | No |
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| account_number | integer |  |  |
+| address | string (address) |  |  |
+| balances | [ [Balance](#balance) ] |  |  |
+| public_key | [ integer ] | Public key bytes |  |
+| sequence | long |  |  |
 
 ### AccountSequence  
 
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| sequence | long |  | No |
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| sequence | long |  |  |
 
 ### Balance  
 
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| symbol | string (currency) |  | No |
-| free | string (fixed8) | In decimal form, e.g. 0.00000000 | No |
-| locked | string (fixed8) | In decimal form, e.g. 0.00000000 | No |
-| frozen | string (fixed8) | In decimal form, e.g. 0.00000000 | No |
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| symbol | string (currency) |  | BNB |
+| free | string (fixed8) | In decimal form, e.g. 0.00000000 | 0.00000000 |
+| locked | string (fixed8) | In decimal form, e.g. 0.00000000 | 0.00000000 |
+| frozen | string (fixed8) | In decimal form, e.g. 0.00000000 | 0.00000000 |
 
-### Tokens  
+### Token  
 
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| Tokens | array |  |  |
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| name | string |  | Binance Chain Native Token |
+| symbol | string |  | BTC-000 |
+| original_symbol | string |  | BTC |
+| total_supply | string (fixed8) | In decimal form, e.g. 1.00000000 | 0.00000000 |
+| owner | string (address) | Address |  |
 
-### Markets  
+### Market  
 
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| Markets | array |  |  |
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| base_asset_symbol | string (currency) |  | BNB |
+| quote_asset_symbol | string (currency) |  | BNB |
+| price | string (fixed8) | In decimal form, e.g. 1.00000000 | 0.00000000 |
+| tick_size | string (fixed8) | In decimal form, e.g. 1.00000000 | 0.00000000 |
+| lot_size | string (fixed8) | In decimal form, e.g. 1.00000000 | 0.00000000 |
+
+### Fee  
+
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| msg_type | string | Transaction msg type that this fee applies to | submit_proposal |
+| fee | number | The fee amount | 1000000000 |
+| fee_for | integer | 1 = proposer, 2 = all, 3 = free | 1 |
+| multi_transfer_fee | string | Fee for multi-transfer | 200000 |
+| lower_limit_as_multi | string | e.g. 2 | 2 |
+| fixed_fee_params | [FixedFeeParams](#fixedfeeparams) | Set if the fee is fixed |  |
+
+### FixedFeeParams  
+
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| msg_type | string | Transaction msg type that this fee applies to | submit_proposal |
+| fee | number | The fixed fee amount | 1000000000 |
+| fee_for | integer | 1 = proposer, 2 = all, 3 = free | 1 |
 
 ### MarketDepth  
 
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| asks | [ string (fixed8) ] | Price and qty in decimal form, e.g. 1.00000000 | No |
-| bids | [ string (fixed8) ] | Price and qty in decimal form, e.g. 1.00000000 | No |
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| asks | [ string (fixed8) ] | Price and qty in decimal form, e.g. 1.00000000 | ["1.00000000","800.00000000"] |
+| bids | [ string (fixed8) ] | Price and qty in decimal form, e.g. 1.00000000 | ["1.00000000","800.00000000"] |
 
 ### BlockTradePage  
 
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| blockTrade | [ [BlockTrade](#blocktrade) ] |  | No |
-| total | long |  | No |
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| blockTrade | [ [BlockTrade](#blocktrade) ] |  |  |
+| total | long |  |  |
 
 ### BlockTrade  
 
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| blockTime | long |  | No |
-| fee | string |  | No |
-| height | long |  | No |
-| trade | [ [Trade](#trade) ] |  | No |
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| blockTime | long |  |  |
+| fee | string |  |  |
+| height | long |  |  |
+| trade | [ [Trade](#trade) ] |  |  |
 
 ### Candlestick  
 
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| close | number |  | No |
-| closeTime | long |  | No |
-| high | number |  | No |
-| low | number |  | No |
-| numberOfTrades | integer |  | No |
-| open | number |  | No |
-| openTime | long |  | No |
-| quoteAssetVolume | number |  | No |
-| volume | number |  | No |
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| close | number |  |  |
+| closeTime | long |  |  |
+| high | number |  |  |
+| low | number |  |  |
+| numberOfTrades | integer |  |  |
+| open | number |  |  |
+| openTime | long |  |  |
+| quoteAssetVolume | number |  |  |
+| volume | number |  |  |
 
 ### OrderList  
 
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| order | [ [Order](#order) ] |  | No |
-| total | long |  | No |
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| order | [ [Order](#order) ] |  |  |
+| total | long |  |  |
 
 ### Order  
 
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| cumulateQuantity | string |  | No |
-| fee | string |  | No |
-| lastExecutedPrice | string |  | No |
-| lastExecutedQuantity | string |  | No |
-| orderCreateTime | dateTime |  | No |
-| orderId | string |  | No |
-| owner | string |  | No |
-| price | string |  | No |
-| quantity | string |  | No |
-| side | integer | 1 for buy and 2 for sell | No |
-| status | string | enum [ACK, PARTIALLY_FILLED, IOC_NO_FILL, FULLY_FILLED, CANCELED, EXPIRED, FAIL_BLOCKING, FAIL_MATCH] | No |
-| symbol | string |  | No |
-| timeInForce | integer | 1 for Good Till Expire(GTE) order and 3 for Immediate Or Cancel (IOC) | No |
-| tradeId | string |  | No |
-| transactionHash | string |  | No |
-| transactionTime | dateTime |  | No |
-| type | integer | only 2 is available for now, meaning limit order | No |
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| cumulateQuantity | string |  |  |
+| fee | string |  |  |
+| lastExecutedPrice | string |  |  |
+| lastExecutedQuantity | string |  |  |
+| orderCreateTime | dateTime |  |  |
+| orderId | string |  |  |
+| owner | string |  |  |
+| price | string |  |  |
+| quantity | string |  |  |
+| side | integer | 1 for buy and 2 for sell |  |
+| status | string | enum [ACK, PARTIALLY_FILLED, IOC_NO_FILL, FULLY_FILLED, CANCELED, EXPIRED, FAIL_BLOCKING, FAIL_MATCH] |  |
+| symbol | string |  |  |
+| timeInForce | integer | 1 for Good Till Expire(GTE) order and 3 for Immediate Or Cancel (IOC) |  |
+| tradeId | string |  |  |
+| transactionHash | string |  |  |
+| transactionTime | dateTime |  |  |
+| type | integer | only 2 is available for now, meaning limit order |  |
 
 ### TickerStatistics  
 
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| askPrice | string |  | No |
-| askQuantity | string |  | No |
-| bidPrice | string |  | No |
-| bidQuantity | string |  | No |
-| closeTime | long |  | No |
-| count | long |  | No |
-| firstId | string |  | No |
-| highPrice | string |  | No |
-| lastId | string |  | No |
-| lastPrice | string |  | No |
-| lastQuantity | string |  | No |
-| lowPrice | string |  | No |
-| openPrice | string |  | No |
-| openTime | long |  | No |
-| prevClosePrice | string |  | No |
-| priceChange | string |  | No |
-| priceChangePercent | string |  | No |
-| quoteVolume | string |  | No |
-| symbol | string |  | No |
-| volume | string |  | No |
-| weightedAvgPrice | string |  | No |
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| askPrice | string |  |  |
+| askQuantity | string |  |  |
+| bidPrice | string |  |  |
+| bidQuantity | string |  |  |
+| closeTime | long |  |  |
+| count | long |  |  |
+| firstId | string |  |  |
+| highPrice | string |  |  |
+| lastId | string |  |  |
+| lastPrice | string |  |  |
+| lastQuantity | string |  |  |
+| lowPrice | string |  |  |
+| openPrice | string |  |  |
+| openTime | long |  |  |
+| prevClosePrice | string |  |  |
+| priceChange | string |  |  |
+| priceChangePercent | string |  |  |
+| quoteVolume | string |  |  |
+| symbol | string |  |  |
+| volume | string |  |  |
+| weightedAvgPrice | string |  |  |
 
 ### TradePage  
 
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| total | long |  | No |
-| trade | [ [Trade](#trade) ] |  | No |
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| total | long |  |  |
+| trade | [ [Trade](#trade) ] |  |  |
 
 ### Trade  
 
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| baseAsset | string |  | No |
-| blockHeight | long |  | No |
-| buyFee | string |  | No |
-| buyerId | string |  | No |
-| buyerOrderId | string |  | No |
-| price | string |  | No |
-| quantity | string |  | No |
-| quoteAsset | string |  | No |
-| sellFee | string |  | No |
-| sellerId | string |  | No |
-| sellerOrderId | string |  | No |
-| symbol | string |  | No |
-| time | long |  | No |
-| tradeId | string |  | No |
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| baseAsset | string |  |  |
+| blockHeight | long |  |  |
+| buyFee | string |  |  |
+| buyerId | string |  |  |
+| buyerOrderId | string |  |  |
+| price | string |  |  |
+| quantity | string |  |  |
+| quoteAsset | string |  |  |
+| sellFee | string |  |  |
+| sellerId | string |  |  |
+| sellerOrderId | string |  |  |
+| symbol | string |  |  |
+| time | long |  |  |
+| tradeId | string |  |  |
 
 ### TxPage  
 
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| total | long |  | No |
-| tx | [ [Tx](#tx) ] |  | No |
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| total | long |  |  |
+| tx | [ [Tx](#tx) ] |  |  |
 
 ### Tx  
 
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
-| blockHeight | long |  | No |
-| code | integer |  | No |
-| confirmBlocks | long |  | No |
-| data | string |  | No |
-| fromAddr | string |  | No |
-| orderId | string |  | No |
-| timeStamp | dateTime |  | No |
-| toAddr | string |  | No |
-| txAge | long |  | No |
-| txAsset | string |  | No |
-| txFee | string |  | No |
-| txHash | string |  | No |
-| txType | string |  | No |
-| value | string |  | No |
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| blockHeight | long |  |  |
+| code | integer |  | 0 |
+| confirmBlocks | long |  |  |
+| data | string |  |  |
+| fromAddr | string |  |  |
+| orderId | string |  |  |
+| timeStamp | dateTime |  |  |
+| toAddr | string |  |  |
+| txAge | long |  |  |
+| txAsset | string |  |  |
+| txFee | string |  |  |
+| txHash | string |  |  |
+| txType | string |  |  |
+| value | string |  |  |
 
 ### ExchangeRate  
 
-| Name | Type | Description | Required |
-| ---- | ---- | ----------- | -------- |
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
 | ExchangeRate | object |  |  |
