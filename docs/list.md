@@ -1,18 +1,20 @@
 # List a Trading Pair
 
-## How can a trading pair be created?
+## How is a trading pair created on Binance DEX?
 
-So far Binance DEX still adheres to the idea that the most efficient and low cost way to perform trading and 
+The design philosophy of Binance DEX adheres to the idea that the most efficient and low cost way to perform trading and 
 price-discovery is still to use single order book. This single order book is managed and replicated across all 
 full nodes with the same, deterministic matching logic.
 
-Simply allowing trading between two assets sounds 'perfect', however it is expensive for not only the network 
-runners but also the users in long term (liquidity cost can be much larger). In order to efficiently use the 
-network, Binance Chain only list assets against BNB and other widely accepted market quote assets. After 
-an asset is issued, anyone can "propose" to all validators to list it against particular quote assets. 
-Validators would vote to accept the proposal. Fee would be charged to prevent abuse of the proposing and 
-endorse the asset. Once the proposal is accepted, the owner of the base asset can list the trading pair 
-via interfaces.
+Simply allowing trading between two assets seems easy enough, however it is expensive for not only the network 
+but also its users in long term (and liquidity costs can be much larger). In order to efficiently use the 
+network, Binance Chain only list assets against BNB and other widely accepted market quote assets. 
+
+After an asset is issued, which costs a small fee,
+anyone can "propose" to all validators to list it against particular quote assets. 
+Validators then vote to accept the proposal. 
+A fee is charged to prevent network abuse and to incentivize voting.
+Once the proposal is accepted, the owner of the base asset can list the trading pair.
 
 ## The "List" transaction
 
@@ -88,7 +90,7 @@ You may notice that the numbers like deposit number and price are very large. Th
 
 Before validators can vote on the proposal you created, you need to deposit enough BNB (like 2000 BNB). You 
 may have already deposit a number of BNB when you propose, in the upper case, it is 100 BNB. So now you still 
-need to deposit another 1900 BNB. Check the [trading-spec.md](fees table) for the current deposit requirements.
+need to deposit another 1900 BNB. Check the [fees table](trading-spec.md) for the current deposit requirements.
 
 ```bash
 $  ./bnbcli gov deposit --deposit 190000000000:BNB --from test --proposal-id 14 
