@@ -495,6 +495,8 @@ paths:
       description: |
         Gets candlestick/kline bars for a symbol. Bars are uniquely identified by their open time.
 
+        **Rate Limit:** 10 requests per IP per second.
+
         **Test URL:** [https://testnet-dex.binance.org/api/v1/klines?symbol=NNB-338_BNB&interval=5m](https://testnet-dex.binance.org/api/v1/klines?symbol=NNB-338_BNB&interval=5m)
 
         **Example**
@@ -598,7 +600,10 @@ paths:
       tags:
       - order
       summary: Get closed orders.
-      description: Gets closed (filled and cancelled) orders for a given address.
+      description: |
+        Gets closed (filled and cancelled) orders for a given address.
+
+        **Rate Limit:** 5 requests per IP per second.
       operationId: getClosedOrders
       produces:
       - application/json
@@ -684,7 +689,10 @@ paths:
       tags:
       - order
       summary: Get open orders.
-      description: Gets open orders for a given address.
+      description: |
+        Gets open orders for a given address.
+
+        **Rate Limit:** 5 requests per IP per second.
       operationId: getOpenOrders
       produces:
       - application/json
@@ -747,7 +755,10 @@ paths:
       tags:
       - order
       summary: Get an order.
-      description: Gets metadata for an individual order by its ID.
+      description: |
+        Gets metadata for an individual order by its ID.
+
+        **Rate Limit:** 5 requests per IP per second.
       operationId: getOrder
       produces:
       - application/json
@@ -778,7 +789,10 @@ paths:
       tags:
       - market
       summary: Get a market ticker.
-      description: Gets 24 hour price change statistics for a market pair symbol.
+      description: |
+        Gets 24 hour price change statistics for a market pair symbol.
+
+        **Rate Limit:** 5 requests per IP per second.
       operationId: get24HrPriceStatistics
       produces:
       - application/json
@@ -811,7 +825,10 @@ paths:
       tags:
       - trade
       summary: Get market trades.
-      description: Gets a list of historical trades.
+      description: |
+        Gets a list of historical trades.
+
+        **Rate Limit:** 5 requests per IP per second.
       operationId: getTrades
       produces:
       - application/json
@@ -923,7 +940,10 @@ paths:
       tags:
       - transaction
       summary: Get transactions.
-      description: Gets a list of transactions.
+      description: |
+        Gets a list of transactions.
+
+        **Rate Limit:** 60 requests per IP per minute.
       operationId: txns
       produces:
       - application/json
@@ -1391,17 +1411,7 @@ definitions:
         - SELL
       status:
         type: string
-        description: "enum [ACK, PARTIALLY_FILLED, IOC_NO_FILL, FULLY_FILLED, CANCELED, EXPIRED, FAIL_BLOCKING, FAIL_MATCH]"
-        enum:
-        - ACK
-        - PARTIALLY_FILLED
-        - IOC_NO_FILL
-        - FULLY_FILLED
-        - CANCELED
-        - EXPIRED
-        - FAIL_BLOCKING
-        - FAIL_MATCH
-        - UNKNOWN
+        description: "enum [Ack, PartialFill, IocNoFill, FullyFill, Canceled, Expired, FailBlocking, FailMatch]"
       symbol:
         type: string
       timeInForce:
