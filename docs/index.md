@@ -40,6 +40,8 @@ In the future you may also be able to stake your BNB to join Chain Governance, i
 
 Want to try it out? Just give a peek at the first few of pages of the [getting started guide](get-started.md).
 
+You could also have a read through the [FAQ](faq.md).
+
 ## Asset Management
 
 Binance Chain essentially is a digital asset creation and exchange platform. The features listed below are currently supported on Binance Chain:
