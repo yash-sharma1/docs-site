@@ -36,10 +36,6 @@ and node RPC interfaces.
 
 In the future you may also be able to stake your BNB to join Chain Governance, if you so wish.
 
-## FAQ
-
-The quickest way to understand Binance Chain/DEX basics is to read [FAQ](faq.md).
-
 ## Get Started
 
 Want to try it out? Just give a peek at the first few of pages of the [getting started guide](get-started.md).
