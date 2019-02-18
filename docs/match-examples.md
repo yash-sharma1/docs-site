@@ -92,7 +92,7 @@ SUM    SELL    PRICE    BUY    SUM    EXECUTION    IMBALANCE
 50     50      95              20     20           -30*
 
 5.2 choose the lowest for all the same value of sell surplus imbalance, reference price is 100 
-and 5% upper limit (Step 3)
+and 5% lower limit (Step 3)
 --------------------------------------------------------------
 SUM    SELL    PRICE    BUY    SUM    EXECUTION    IMBALANCE
 50             99       10     10     10           -40
@@ -118,7 +118,7 @@ SUM    SELL    PRICE    BUY    SUM    EXECUTION    IMBALANCE
 50     50      92              100    50           50
 
 5.4 choose the lowest for all the same value of sell surplus imbalance, reference price is 100 
-and 5% upper limit (Step 3)
+and 5% lower limit (Step 3)
 --------------------------------------------------------------
 SUM    SELL    PRICE    BUY    SUM    EXECUTION    IMBALANCE
 50             101      10     10     10           -40
