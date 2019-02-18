@@ -180,6 +180,91 @@ The Binance Chain HTTP API provides access to a Binance Chain node deployment an
 | 404 | Not Found |  |
 | default | Generic error response | [Error](#error) |
 
+### /api/v1/tx-json/{hash}
+---
+##### ***GET***
+**Summary:** Gets detail for an individual transaction
+
+**Description:** Gets transaction detail by transaction ID.
+
+**Destination:** Seed node.
+
+**Rate Limit:** 10 requests per IP per second.
+
+**Example:**
+
+Below is a response of a send transaction.
+```
+{
+    "hash": "E81BAB8E555819E4211D62E2E536B6D5812D3D91C105F998F5C6EB3AB8136482",
+    "height": "754",
+    "tx": {
+        "type": "auth/StdTx", // fixed, type of transaction
+        "value": {            // fixed, detail of the transaction
+            "data": null,     // fixed, data of the transaction
+            "memo": "",       // fixed, memo
+            "msg": [          // fixed, msgs of the transaction
+                {
+                    "type": "cosmos-sdk/Send",  // vary with msg type
+                    "value": {                  // value content vary with mst type
+                        "inputs": [
+                            {
+                                "address": "bnb1vt4zwu5hy7tyryktud6mpcu8h2ehh6xw66gzwp",
+                                "coins": [
+                                    {
+                                        "amount": "100000000000000",
+                                        "denom": "BNB"
+                                    }
+                                ]
+                            }
+                        ],
+                        "outputs": [
+                            {
+                                "address": "bnb1kg8mh20tndur9d9rry4wjunhpfzcud30qzf0qv",
+                                "coins": [
+                                    {
+                                        "amount": "100000000000000",
+                                        "denom": "BNB"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ],
+            "signatures": [ // fixed, signatures of the transaction
+                {
+                    "account_number": "0",
+                    "pub_key": {
+                        "type": "tendermint/PubKeySecp256k1",
+                        "value": "AoWY3eWBOnnvLPTz4RsUlX1pWCkLLPewu1vAAoTEzxzR"
+                    },
+                    "sequence": "1",
+                    "signature": "6O2TQAgleFNPw4zIWBLaNvOf5dR7DHNSr2DwAPeFK6lokRqZd2KR2BD+WlmaWj4LdLo5N+utN1JtY41E91N0uw=="
+                }
+            ],
+            "source": "0"  // fixed, source of the transaction
+        }
+    }
+}
+```
+
+
+**Parameters**
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| hash | path | The transaction hash to query | Yes | string |
+
+**Responses**
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | Success | [Transaction](#transaction) |
+| 400 | Bad Request | [Error](#error) |
+| 404 | Not Found |  |
+| default | Generic error response | [Error](#error) |
+
 ### /api/v1/tokens
 ---
 ##### ***GET***
@@ -316,6 +401,8 @@ The given _limit_ must be one of the allowed limits below.
 
 **Description:** Gets candlestick/kline bars for a symbol. Bars are uniquely identified by their open time.
 
+**Rate Limit:** 10 requests per IP per second.
+
 **Test URL:** [https://testnet-dex.binance.org/api/v1/klines?symbol=NNB-338_BNB&interval=5m](https://testnet-dex.binance.org/api/v1/klines?symbol=NNB-338_BNB&interval=5m)
 
 **Example**
@@ -358,6 +445,9 @@ The given _limit_ must be one of the allowed limits below.
 
 **Description:** Gets closed (filled and cancelled) orders for a given address.
 
+**Rate Limit:** 5 requests per IP per second.
+
+
 **Parameters**
 
 | Name | Located in | Description | Required | Schema |
@@ -385,6 +475,9 @@ The given _limit_ must be one of the allowed limits below.
 
 **Description:** Gets open orders for a given address.
 
+**Rate Limit:** 5 requests per IP per second.
+
+
 **Parameters**
 
 | Name | Located in | Description | Required | Schema |
@@ -411,6 +504,9 @@ The given _limit_ must be one of the allowed limits below.
 
 **Description:** Gets metadata for an individual order by its ID.
 
+**Rate Limit:** 5 requests per IP per second.
+
+
 **Parameters**
 
 | Name | Located in | Description | Required | Schema |
@@ -433,6 +529,9 @@ The given _limit_ must be one of the allowed limits below.
 
 **Description:** Gets 24 hour price change statistics for a market pair symbol.
 
+**Rate Limit:** 5 requests per IP per second.
+
+
 **Parameters**
 
 | Name | Located in | Description | Required | Schema |
@@ -454,6 +553,9 @@ The given _limit_ must be one of the allowed limits below.
 **Summary:** Get market trades.
 
 **Description:** Gets a list of historical trades.
+
+**Rate Limit:** 5 requests per IP per second.
+
 
 **Parameters**
 
@@ -487,6 +589,9 @@ The given _limit_ must be one of the allowed limits below.
 **Summary:** Get transactions.
 
 **Description:** Gets a list of transactions.
+
+**Rate Limit:** 60 requests per IP per minute.
+
 
 **Parameters**
 
@@ -554,10 +659,67 @@ The given _limit_ must be one of the allowed limits below.
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
-| code | integer |  |  |
-| log | string |  |  |
-| data | string |  |  |
-| hash | string |  |  |
+| hash | string | Hash of transaction |  |
+| log | string | Log of transaction |  |
+| data | string | Data of transaction |  |
+| tx | object | Detail of transaction, like transaction type, messages and signature
+
+For example, below is the detail of a send transaction. Most of the fields are fixed, but the detail of msg
+varies with msg type.
+
+```
+{
+    "type": "auth/StdTx", // fixed, type of transaction
+    "value": {            // fixed, detail of the transaction
+        "data": null,     // fixed, data of the transaction
+        "memo": "",       // fixed, memo
+        "msg": [          // fixed, msgs of the transaction
+            {
+                "type": "cosmos-sdk/Send",  // vary with msg type
+                "value": {                  // value content vary with mst type
+                    "inputs": [
+                        {
+                            "address": "bnb1vt4zwu5hy7tyryktud6mpcu8h2ehh6xw66gzwp",
+                            "coins": [
+                                {
+                                    "amount": "100000000000000",
+                                    "denom": "BNB"
+                                }
+                            ]
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "address": "bnb1kg8mh20tndur9d9rry4wjunhpfzcud30qzf0qv",
+                            "coins": [
+                                {
+                                    "amount": "100000000000000",
+                                    "denom": "BNB"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        ],
+        "signatures": [ // fixed, signatures of the transaction
+            {
+                "account_number": "0",
+                "pub_key": {
+                    "type": "tendermint/PubKeySecp256k1",
+                    "value": "AoWY3eWBOnnvLPTz4RsUlX1pWCkLLPewu1vAAoTEzxzR"
+                },
+                "sequence": "1",
+                "signature": "6O2TQAgleFNPw4zIWBLaNvOf5dR7DHNSr2DwAPeFK6lokRqZd2KR2BD+WlmaWj4LdLo5N+utN1JtY41E91N0uw=="
+            }
+        ],
+        "source": "0"  // fixed, source of the transaction
+    }
+}
+```
+ |  |
+| height | string | Height of transaction |  |
+| code | integer | Result code of transaction |  |
 | ok | boolean |  |  |
 
 ### Account  
@@ -682,7 +844,7 @@ The given _limit_ must be one of the allowed limits below.
 | price | string |  |  |
 | quantity | string |  |  |
 | side | integer | 1 for buy and 2 for sell |  |
-| status | string | enum [ACK, PARTIALLY_FILLED, IOC_NO_FILL, FULLY_FILLED, CANCELED, EXPIRED, FAIL_BLOCKING, FAIL_MATCH] |  |
+| status | string | enum [Ack, PartialFill, IocNoFill, FullyFill, Canceled, Expired, FailBlocking, FailMatch] |  |
 | symbol | string |  |  |
 | timeInForce | integer | 1 for Good Till Expire(GTE) order and 3 for Immediate Or Cancel (IOC) |  |
 | tradeId | string |  |  |
