@@ -60,6 +60,8 @@ Binance Chain is ready for other projects to migrate their tokens to take advant
 
 Binance DEX is the native marketplace on Binance Chain allowing you to exchange digital assets issued and listed on it. The matching happens within the blockchain nodes and all of the transactions are recorded on-chain, therefore forming a complete, auditable ledger of activity.
 
+ATTENTION: The match logic on DEX is quite different from normal centralized exchange. Please go over the trading and match spec below to get the best interests for your orders.
+
 - [Trading Spec](trading-spec.md)
 - [Match Logic](match.md)
 - [Anti-front-running](anti-frontrun.md)
