@@ -285,6 +285,102 @@ paths:
           description: Generic error response
           schema:
             $ref: "#/definitions/Error"
+  /api/v1/tx-json/{hash}:
+    get:
+      summary: 'Gets detail for an individual transaction'
+      description: |
+        Gets transaction detail by transaction ID.
+
+        **Destination:** Seed node.
+
+        **Rate Limit:** 10 requests per IP per second.
+
+        **Example:**
+
+        Below is a response of a send transaction.
+        ```
+        {
+            "hash": "E81BAB8E555819E4211D62E2E536B6D5812D3D91C105F998F5C6EB3AB8136482",
+            "height": "754",
+            "tx": {
+                "type": "auth/StdTx", // fixed, type of transaction
+                "value": {            // fixed, detail of the transaction
+                    "data": null,     // fixed, data of the transaction
+                    "memo": "",       // fixed, memo
+                    "msg": [          // fixed, msgs of the transaction
+                        {
+                            "type": "cosmos-sdk/Send",  // vary with msg type
+                            "value": {                  // value content vary with mst type
+                                "inputs": [
+                                    {
+                                        "address": "bnb1vt4zwu5hy7tyryktud6mpcu8h2ehh6xw66gzwp",
+                                        "coins": [
+                                            {
+                                                "amount": "100000000000000",
+                                                "denom": "BNB"
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "outputs": [
+                                    {
+                                        "address": "bnb1kg8mh20tndur9d9rry4wjunhpfzcud30qzf0qv",
+                                        "coins": [
+                                            {
+                                                "amount": "100000000000000",
+                                                "denom": "BNB"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        }
+                    ],
+                    "signatures": [ // fixed, signatures of the transaction
+                        {
+                            "account_number": "0",
+                            "pub_key": {
+                                "type": "tendermint/PubKeySecp256k1",
+                                "value": "AoWY3eWBOnnvLPTz4RsUlX1pWCkLLPewu1vAAoTEzxzR"
+                            },
+                            "sequence": "1",
+                            "signature": "6O2TQAgleFNPw4zIWBLaNvOf5dR7DHNSr2DwAPeFK6lokRqZd2KR2BD+WlmaWj4LdLo5N+utN1JtY41E91N0uw=="
+                        }
+                    ],
+                    "source": "0"  // fixed, source of the transaction
+                }
+            }
+        }
+        ```
+
+      operationId: getJsonTransaction
+      produces:
+        - application/json
+      tags:
+        - node
+        - tx
+      parameters:
+        -
+          name: hash
+          in: path
+          type: string
+          description: 'The transaction hash to query'
+          required: true
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/Transaction'
+        '400':
+          description: 'Bad Request'
+          schema:
+            $ref: "#/definitions/Error"
+        '404':
+          description: 'Not Found'
+        default:
+          description: Generic error response
+          schema:
+            $ref: "#/definitions/Error"
   /api/v1/tokens:
     get:
       tags:
@@ -1136,20 +1232,87 @@ definitions:
   Transaction:
     type: object
     properties:
+      hash:
+        type: string
+        title: Hash
+        description: 'Hash of transaction'
+      log:
+        title: Log
+        type: string
+        description: 'Log of transaction'
+      data:
+        title: Data
+        type: string
+        description: 'Data of transaction'
+      tx:
+        title: Tx
+        type: object
+        description: |
+          Detail of transaction, like transaction type, messages and signature
+
+          For example, below is the detail of a send transaction. Most of the fields are fixed, but the detail of msg
+          varies with msg type.
+
+          ```
+          {
+              "type": "auth/StdTx", // fixed, type of transaction
+              "value": {            // fixed, detail of the transaction
+                  "data": null,     // fixed, data of the transaction
+                  "memo": "",       // fixed, memo
+                  "msg": [          // fixed, msgs of the transaction
+                      {
+                          "type": "cosmos-sdk/Send",  // vary with msg type
+                          "value": {                  // value content vary with mst type
+                              "inputs": [
+                                  {
+                                      "address": "bnb1vt4zwu5hy7tyryktud6mpcu8h2ehh6xw66gzwp",
+                                      "coins": [
+                                          {
+                                              "amount": "100000000000000",
+                                              "denom": "BNB"
+                                          }
+                                      ]
+                                  }
+                              ],
+                              "outputs": [
+                                  {
+                                      "address": "bnb1kg8mh20tndur9d9rry4wjunhpfzcud30qzf0qv",
+                                      "coins": [
+                                          {
+                                              "amount": "100000000000000",
+                                              "denom": "BNB"
+                                          }
+                                      ]
+                                  }
+                              ]
+                          }
+                      }
+                  ],
+                  "signatures": [ // fixed, signatures of the transaction
+                      {
+                          "account_number": "0",
+                          "pub_key": {
+                              "type": "tendermint/PubKeySecp256k1",
+                              "value": "AoWY3eWBOnnvLPTz4RsUlX1pWCkLLPewu1vAAoTEzxzR"
+                          },
+                          "sequence": "1",
+                          "signature": "6O2TQAgleFNPw4zIWBLaNvOf5dR7DHNSr2DwAPeFK6lokRqZd2KR2BD+WlmaWj4LdLo5N+utN1JtY41E91N0uw=="
+                      }
+                  ],
+                  "source": "0"  // fixed, source of the transaction
+              }
+          }
+          ```
+      height:
+        title: Height
+        type: string
+        description: 'Height of transaction'
       code:
         title: Code
         type: integer
         format: int32
         default: 0
-      log:
-        title: Log
-        type: string
-      data:
-        title: Data
-        type: string
-      hash:
-        type: string
-        title: Hash
+        description: 'Result code of transaction'
       ok:
         type: boolean
   Account:
