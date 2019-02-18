@@ -182,7 +182,7 @@ Node provides more secure and faster lines to access Binance Chain.
 Accelerated Node is special infrastructure built around Validator to facilitate accelerated transaction 
 routing and provide richer, faster user interfaces. There are always several Accelerated Nodes running 
 at the same time around the world ( owned by different organizations) and you are encouraged to choose 
-one of them to use, or allow Wallet / API Lib to choose one randomly.
+one of them to use, or allow Wallet choose one randomly; for rapid API access, you'd better stay with one Accelerated Node to get better performance.
 
 ## What are the tick size and lot size? Are they fixed?
 
