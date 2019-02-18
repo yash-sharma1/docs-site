@@ -98,7 +98,7 @@ New Order | 0 | 0 | Y
 Cancel (No Fill) | Equivalent 0.001 BNB | 0.0002 BNB | Y
 Order Expire (No Fill) | Equivalent 0.001 BNB | 0.0002 BNB | Y
 IOC (No Fill) | Equivalent 0.0005 BNB | 0.0001 BNB | Y
-Transfer | N/A | 0.0025 BNB | N
+Transfer | N/A | 0.00125 BNB | N
 Issue Asset | N/A | 2000 BNB | N
 Mint Asset | N/A | 200 BNB | N
 Burn Asset | N/A | 1 BNB | N
