@@ -285,6 +285,102 @@ paths:
           description: Generic error response
           schema:
             $ref: "#/definitions/Error"
+  /api/v1/tx-json/{hash}:
+    get:
+      summary: 'Gets detail for an individual transaction'
+      description: |
+        Gets transaction detail by transaction ID.
+
+        **Destination:** Seed node.
+
+        **Rate Limit:** 10 requests per IP per second.
+
+        **Example:**
+
+        Below is a response of a send transaction.
+        ```
+        {
+            "hash": "E81BAB8E555819E4211D62E2E536B6D5812D3D91C105F998F5C6EB3AB8136482",
+            "height": "754",
+            "tx": {
+                "type": "auth/StdTx", // fixed, type of transaction
+                "value": {            // fixed, detail of the transaction
+                    "data": null,     // fixed, data of the transaction
+                    "memo": "",       // fixed, memo
+                    "msg": [          // fixed, msgs of the transaction
+                        {
+                            "type": "cosmos-sdk/Send",  // vary with msg type
+                            "value": {                  // value content vary with mst type
+                                "inputs": [
+                                    {
+                                        "address": "bnb1vt4zwu5hy7tyryktud6mpcu8h2ehh6xw66gzwp",
+                                        "coins": [
+                                            {
+                                                "amount": "100000000000000",
+                                                "denom": "BNB"
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "outputs": [
+                                    {
+                                        "address": "bnb1kg8mh20tndur9d9rry4wjunhpfzcud30qzf0qv",
+                                        "coins": [
+                                            {
+                                                "amount": "100000000000000",
+                                                "denom": "BNB"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        }
+                    ],
+                    "signatures": [ // fixed, signatures of the transaction
+                        {
+                            "account_number": "0",
+                            "pub_key": {
+                                "type": "tendermint/PubKeySecp256k1",
+                                "value": "AoWY3eWBOnnvLPTz4RsUlX1pWCkLLPewu1vAAoTEzxzR"
+                            },
+                            "sequence": "1",
+                            "signature": "6O2TQAgleFNPw4zIWBLaNvOf5dR7DHNSr2DwAPeFK6lokRqZd2KR2BD+WlmaWj4LdLo5N+utN1JtY41E91N0uw=="
+                        }
+                    ],
+                    "source": "0"  // fixed, source of the transaction
+                }
+            }
+        }
+        ```
+
+      operationId: getJsonTransaction
+      produces:
+        - application/json
+      tags:
+        - node
+        - tx
+      parameters:
+        -
+          name: hash
+          in: path
+          type: string
+          description: 'The transaction hash to query'
+          required: true
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/Transaction'
+        '400':
+          description: 'Bad Request'
+          schema:
+            $ref: "#/definitions/Error"
+        '404':
+          description: 'Not Found'
+        default:
+          description: Generic error response
+          schema:
+            $ref: "#/definitions/Error"
   /api/v1/tokens:
     get:
       tags:
@@ -495,6 +591,8 @@ paths:
       description: |
         Gets candlestick/kline bars for a symbol. Bars are uniquely identified by their open time.
 
+        **Rate Limit:** 10 requests per IP per second.
+
         **Test URL:** [https://testnet-dex.binance.org/api/v1/klines?symbol=NNB-338_BNB&interval=5m](https://testnet-dex.binance.org/api/v1/klines?symbol=NNB-338_BNB&interval=5m)
 
         **Example**
@@ -598,7 +696,10 @@ paths:
       tags:
       - order
       summary: Get closed orders.
-      description: Gets closed (filled and cancelled) orders for a given address.
+      description: |
+        Gets closed (filled and cancelled) orders for a given address.
+
+        **Rate Limit:** 5 requests per IP per second.
       operationId: getClosedOrders
       produces:
       - application/json
@@ -684,7 +785,10 @@ paths:
       tags:
       - order
       summary: Get open orders.
-      description: Gets open orders for a given address.
+      description: |
+        Gets open orders for a given address.
+
+        **Rate Limit:** 5 requests per IP per second.
       operationId: getOpenOrders
       produces:
       - application/json
@@ -747,7 +851,10 @@ paths:
       tags:
       - order
       summary: Get an order.
-      description: Gets metadata for an individual order by its ID.
+      description: |
+        Gets metadata for an individual order by its ID.
+
+        **Rate Limit:** 5 requests per IP per second.
       operationId: getOrder
       produces:
       - application/json
@@ -778,7 +885,10 @@ paths:
       tags:
       - market
       summary: Get a market ticker.
-      description: Gets 24 hour price change statistics for a market pair symbol.
+      description: |
+        Gets 24 hour price change statistics for a market pair symbol.
+
+        **Rate Limit:** 5 requests per IP per second.
       operationId: get24HrPriceStatistics
       produces:
       - application/json
@@ -811,7 +921,10 @@ paths:
       tags:
       - trade
       summary: Get market trades.
-      description: Gets a list of historical trades.
+      description: |
+        Gets a list of historical trades.
+
+        **Rate Limit:** 5 requests per IP per second.
       operationId: getTrades
       produces:
       - application/json
@@ -923,7 +1036,10 @@ paths:
       tags:
       - transaction
       summary: Get transactions.
-      description: Gets a list of transactions.
+      description: |
+        Gets a list of transactions.
+
+        **Rate Limit:** 60 requests per IP per minute.
       operationId: txns
       produces:
       - application/json
@@ -1116,20 +1232,87 @@ definitions:
   Transaction:
     type: object
     properties:
+      hash:
+        type: string
+        title: Hash
+        description: 'Hash of transaction'
+      log:
+        title: Log
+        type: string
+        description: 'Log of transaction'
+      data:
+        title: Data
+        type: string
+        description: 'Data of transaction'
+      tx:
+        title: Tx
+        type: object
+        description: |
+          Detail of transaction, like transaction type, messages and signature
+
+          For example, below is the detail of a send transaction. Most of the fields are fixed, but the detail of msg
+          varies with msg type.
+
+          ```
+          {
+              "type": "auth/StdTx", // fixed, type of transaction
+              "value": {            // fixed, detail of the transaction
+                  "data": null,     // fixed, data of the transaction
+                  "memo": "",       // fixed, memo
+                  "msg": [          // fixed, msgs of the transaction
+                      {
+                          "type": "cosmos-sdk/Send",  // vary with msg type
+                          "value": {                  // value content vary with mst type
+                              "inputs": [
+                                  {
+                                      "address": "bnb1vt4zwu5hy7tyryktud6mpcu8h2ehh6xw66gzwp",
+                                      "coins": [
+                                          {
+                                              "amount": "100000000000000",
+                                              "denom": "BNB"
+                                          }
+                                      ]
+                                  }
+                              ],
+                              "outputs": [
+                                  {
+                                      "address": "bnb1kg8mh20tndur9d9rry4wjunhpfzcud30qzf0qv",
+                                      "coins": [
+                                          {
+                                              "amount": "100000000000000",
+                                              "denom": "BNB"
+                                          }
+                                      ]
+                                  }
+                              ]
+                          }
+                      }
+                  ],
+                  "signatures": [ // fixed, signatures of the transaction
+                      {
+                          "account_number": "0",
+                          "pub_key": {
+                              "type": "tendermint/PubKeySecp256k1",
+                              "value": "AoWY3eWBOnnvLPTz4RsUlX1pWCkLLPewu1vAAoTEzxzR"
+                          },
+                          "sequence": "1",
+                          "signature": "6O2TQAgleFNPw4zIWBLaNvOf5dR7DHNSr2DwAPeFK6lokRqZd2KR2BD+WlmaWj4LdLo5N+utN1JtY41E91N0uw=="
+                      }
+                  ],
+                  "source": "0"  // fixed, source of the transaction
+              }
+          }
+          ```
+      height:
+        title: Height
+        type: string
+        description: 'Height of transaction'
       code:
         title: Code
         type: integer
         format: int32
         default: 0
-      log:
-        title: Log
-        type: string
-      data:
-        title: Data
-        type: string
-      hash:
-        type: string
-        title: Hash
+        description: 'Result code of transaction'
       ok:
         type: boolean
   Account:
@@ -1391,17 +1574,7 @@ definitions:
         - SELL
       status:
         type: string
-        description: "enum [ACK, PARTIALLY_FILLED, IOC_NO_FILL, FULLY_FILLED, CANCELED, EXPIRED, FAIL_BLOCKING, FAIL_MATCH]"
-        enum:
-        - ACK
-        - PARTIALLY_FILLED
-        - IOC_NO_FILL
-        - FULLY_FILLED
-        - CANCELED
-        - EXPIRED
-        - FAIL_BLOCKING
-        - FAIL_MATCH
-        - UNKNOWN
+        description: "enum [Ack, PartialFill, IocNoFill, FullyFill, Canceled, Expired, FailBlocking, FailMatch]"
       symbol:
         type: string
       timeInForce:

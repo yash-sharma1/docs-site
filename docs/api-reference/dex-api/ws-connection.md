@@ -9,6 +9,8 @@ The DEX exposes several data streams over standard WebSocket connections, which 
 
 Stream names may be provided in the URL **or** there is a mechanism to `subscribe` to consume streams on demand through one connection.
 
+Note: Once the connection is established, websocket server would send ping frame to client every 30 seconds. Client should response pong frame in time (this has already implemented by most mordern browers, but programmatical users need be aware of whether your websocket library support this), otherwise, the connection might be closed.
+
 Examples for each of these methods are provided below in JavaScript:
 
 ### Method 1: Connect with stream names in the URL
