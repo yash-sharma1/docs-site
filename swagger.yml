@@ -1086,7 +1086,7 @@ paths:
         - SEND
       - name: startTime
         in: query
-        description: start time; The maximum start - end query window is 3 months; Default query window is latest 7 days.
+        description: start time; The maximum start - end query window is 3 months; Default query window is latest 24 hours.
         required: false
         type: integer
         format: int64
