@@ -603,7 +603,7 @@ The given _limit_ must be one of the allowed limits below.
 | limit | query | limit | No | integer |
 | offset | query | offset | No | integer |
 | side | query | transaction side. Allowed value: [ RECEIVE, SEND] | No | string |
-| startTime | query | start time; The maximum start - end query window is 3 months; Default query window is latest 7 days. | No | long |
+| startTime | query | start time; The maximum start - end query window is 3 months; Default query window is latest 24 hours. | No | long |
 | txAsset | query | txAsset | No | string |
 | txType | query | transaction type. Allowed value: [ NEW_ORDER,ISSUE_TOKEN,BURN_TOKEN,LIST_TOKEN,CANCEL_ORDER,FREEZE_TOKEN,UN_FREEZE_TOKEN,TRANSFER,PROPOSAL,VOTE] | No | string |
 
