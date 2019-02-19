@@ -22,6 +22,9 @@ You might point out, the validators, they have chance to get information of 3) w
 
 Due to the fast blocking, the bad validator have to prepare well and earlier in order to front-run the price. However, he cannot be too fast, because he cannot be sure the execution price of the last block until the last block is concluded, and the last execution price has direct impact to the execution price according to the match logic. What is more, any validator ahead of the bad validator's proposer turn can have issues and increase the consensus round, which makes it very hard to pre-determine the exact proposal sequence. So early preparation is extremely hard.
 
+## Decentralized, Transparent Match Engine
+It is for sure hard to argue the exchange itself is not front-running if it has a centralized match engine. Binance DEX have decentralized match engines running on every block producers and full nodes. So that everyone can replay the match manually with the transactions in the latest block and the current order book, and can see the order matching in real-time if they run a full node.
+
 ## Potential Improvement
 With the above description, you may see that the front-running chance on Binance DEX is much less than centralized exchanges and most of decentralized ones. However, you may still argue that for a very powerful, sophisticated validator, there is still chance to front-run client orders (if they can do every hard things in a blink time).
 
