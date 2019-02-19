@@ -458,7 +458,7 @@ The given _limit_ must be one of the allowed limits below.
 | offset | query | start with 0; default 0. | No | integer |
 | side | query | order side. 1 for buy and 2 for sell. | No | integer |
 | start | query | start time; The maximum start - end query window is 3 months; Default query window is latest 7 days. | No | long |
-| status | query | order status list. Allowed value: [ACK, PARTIALLY_FILLED, IOC_NO_FILL, FULLY_FILLED, CANCELED, EXPIRED, FAIL_BLOCKING, FAIL_MATCH] | No | [ string ] |
+| status | query | order status list. Allowed value: [Ack, PartialFill, IocNoFill, FullyFill, Canceled, Expired, FailedBlocking, FailedMatching] | No | [ string ] |
 | symbol | query | symbol | No | string |
 | total | query | total number required, 0 for not required and 1 for required; default not required, return total=-1 in response | No | integer |
 
@@ -844,7 +844,7 @@ varies with msg type.
 | price | string |  |  |
 | quantity | string |  |  |
 | side | integer | 1 for buy and 2 for sell |  |
-| status | string | enum [Ack, PartialFill, IocNoFill, FullyFill, Canceled, Expired, FailBlocking, FailMatch] |  |
+| status | string | enum [Ack, PartialFill, IocNoFill, FullyFill, Canceled, Expired, FailedBlocking, FailedMatching] |  |
 | symbol | string |  |  |
 | timeInForce | integer | 1 for Good Till Expire(GTE) order and 3 for Immediate Or Cancel (IOC) |  |
 | tradeId | string |  |  |
