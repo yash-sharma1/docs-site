@@ -8,9 +8,9 @@ in a secure and decentralized manner without having to sync the full blockchain.
 - Light client do not store blocks or states so that it need less disk space(50 megabytes will be enough).
 - Light client do not join p2p network and it do not produce any network cost when it is idle. The network 
 overhead depends on how many requests the light client handles concurrently. 
-- Light do not replay state of the chain so that there is not cpu cost when idle. The cpu cost also 
+- Light client do not replay state of the chain so that there is not cpu cost when idle. The cpu cost also 
 depends on how many requests the light client handles concurrently.
-- Light is more fast than full node even it lagged behind the core network monthly. It only need a few seconds 
+- Light client is more fast than full node even it lagged behind the core network monthly. It only need a few seconds 
 to catch up with core network.
 
 ## Platforms and System Requirement
@@ -45,7 +45,9 @@ Start the light client node according to the Platform. Replace the `platform` va
 ```
 
 There are two parameters you need to figure out to start a light client node: `chain id` and `full node addr`.
-The `chain id` of the network that you want join in. The `full node addr` can be any full nodes you have deployed. You can 
+The `chain id` of the network that you want join in. You can find chain id at [genesis file in test network](https://github.com/binance-chain/node-binary/blob/master/fullnode/testnet/node/config/genesis.json)
+or [genesis file in prod network](https://github.com/binance-chain/node-binary/blob/master/fullnode/prod/node/config/genesis.json).
+ The `full node addr` can be any full nodes you have deployed. You can 
 refer to [Run a Binance Chain full node](fullnode.md) to get more detailed. We supply a bunch of full nodes that you can 
 connect in testnet.
 You cat get full nodes info through a simple python script(notice to replace domain according to different network):

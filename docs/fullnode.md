@@ -57,18 +57,18 @@ seeds = ",".join([ (seed["id"]+"@"+seed["original_listen_addr"]) for seed in l i
 print seeds
 ```
 
-If you want add or decrease seed node, please feel free to edit the field `seeds` of `node-binary/fullnode/{network}/node/config.yaml`.
+If you want add or remove seed node, please feel free to edit the field `seeds` of `node-binary/fullnode/{network}/node/config.yaml`.
 
 
 ## More configuration
 
 - Log: The log file is under `home`- the directory specified when start `bnbchaind`. The latest log file is `bnc.log`. The process will create 
 a new log file every one hour. To make sure you have sufficient disk space to keep the log, we strongly recommend you to change the log location 
-by changing `logFileRoot` option in `app.toml`.
+by changing `logFileRoot` option in `{home}/config/app.toml`.
 - Service Port: RPC service listen on port 27147 and P2P service listen on port 27146 by default. Make sure these two ports 
 are free before start a full node, else the full node have to listen on other ports.
 - Store: All the state and block data will store under `{home}/data`, do not delete or edit any of these files.
-- More detailed configuration options please visit `node-binary/fullnode/{network}/node/config.yaml` and `node-binary/fullnode/{network}/node/app.toml`
+- More detailed configuration options please visit `node-binary/fullnode/{network}/node/config.toml` and `node-binary/fullnode/{network}/node/app.toml`
 
 ## Upgrading a full node
 
@@ -78,7 +78,7 @@ we may be release both the data and binary, but is is still in discuss. More det
 
 ## Monitor
 
-Prometheus is enabled on port 26660 by default. 
+Prometheus is enabled on port 26660 by default, and the endpoint is `/metrics`.
 
 ## Work with full node
 

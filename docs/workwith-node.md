@@ -1,7 +1,7 @@
  # Work with full node 
  
  This document is for developer who is very interested in transactions in every block, or order book, or account changes 
- or block fee charge and would like to built own down stream of full node. Please refer to [run a full node](fullnode.md)
+ or block fee charge and would like to built own down stream services of full node. Please refer to [run a full node](fullnode.md)
  if you still have't deploy a full node.
  
  
