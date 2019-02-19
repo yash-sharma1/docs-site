@@ -752,7 +752,7 @@ paths:
         allowEmptyValue: false
       - name: status
         in: query
-        description: "order status list. Allowed value: [ACK, PARTIALLY_FILLED, IOC_NO_FILL, FULLY_FILLED, CANCELED, EXPIRED, FAIL_BLOCKING, FAIL_MATCH]"
+        description: "order status list. Allowed value: [Ack, PartialFill, IocNoFill, FullyFill, Canceled, Expired, FailedBlocking, FailedMatching]"
         required: false
         type: array
         items:
@@ -1574,7 +1574,7 @@ definitions:
         - SELL
       status:
         type: string
-        description: "enum [Ack, PartialFill, IocNoFill, FullyFill, Canceled, Expired, FailBlocking, FailMatch]"
+        description: "enum [Ack, PartialFill, IocNoFill, FullyFill, Canceled, Expired, FailedBlocking, FailedMatching]"
       symbol:
         type: string
       timeInForce:
