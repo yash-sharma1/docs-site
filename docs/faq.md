@@ -238,9 +238,14 @@ Chain and other chains. "Pegged Token" may be issued on Binance Chain to facilit
 asset from other block chains.
 
 For example, on the Binance Chain testnet, you can see `BTC.B`, which is a pegged (tethered) token for the real BTC running on Bitcoin network.
-`BTC.B` runs on Binance Chain, and cannot be directly transferred/deposited/withdrawed to Bitcoin network directly (coming soon). 
+`BTC.B` runs on Binance Chain, and cannot be directly transferred/deposited/withdrawed to Bitcoin network directly. 
 
-When the real mainnet comes in, these pegged tokens can be deposited back to Binance.com. For example, when you withdraw `BTC.B` or Bitcoin BTC from Binance.com accounts, you would have a choice to withdraw it as the Bitcoin BTC or Binance Chain `BTC.B`. So can be the case for other coins, especially the ERC20 ones.
+When the real mainnet comes in, there can be 2 ways for these pegged tokens to be deposited/withdrawed:
+
+1. via interoperability among different chains. This would be done via Atomic Swap, which may be very slow, so users may have to deposit onto/withdraw into Binance Chain.
+2. via Binance.com, which is slow but a bit faster than Atomic Swap. For example, when you withdraw `BTC.B` or Bitcoin BTC from Binance.com accounts, you would have a choice to withdraw it as the Bitcoin BTC or Binance Chain `BTC.B`. So can be the case for other coins, especially the ERC20 ones.
+
+Either of the two are not available yet, but on their way to come. Your feedback during testnet phase would be heard.
 
 Please do __NOT__ try to transfer anything on existing network to Binance Chain testnet, you may experience loss by doing so, because testnet doesn't run with real coins. 
 
