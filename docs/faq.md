@@ -233,10 +233,16 @@ If you have certain must-have features, it might be added as a native implementa
 
 ## How can I transfer tokens, such as Bitcoin, from other block chains onto Binance Chain?
 
-Native inter-chain mechanism is not supported in Binance Chain in the initial version, but may 
-be in the future. Binance.com may serve as a bridge to trade across tokens between Binance 
-Chain and other chains. Peg Token may be issued on Binance Chain to facilitate trading digital 
+Native inter-chain mechanism is not supported in Binance Chain in the initial version, i.e. you cannot transfer coins between Binance Chain and other chains, such as Bitcoin or Ethereum  network directly, but it may come in the future soon. Binance.com may serve as a bridge to trade across tokens between Binance 
+Chain and other chains. "Pegged Token" may be issued on Binance Chain to facilitate trading digital 
 asset from other block chains.
+
+For example, on the Binance Chain testnet, you can see `BTC.B`, which is a pegged (tethered) token for the real BTC running on Bitcoin network.
+`BTC.B` runs on Binance Chain, and cannot be directly transferred/deposited/withdrawed to Bitcoin network directly (coming soon). 
+
+When the real mainnet comes in, these pegged tokens can be deposited back to Binance.com. For example, when you withdraw `BTC.B` or Bitcoin BTC from Binance.com accounts, you would have a choice to withdraw it as the Bitcoin BTC or Binance Chain `BTC.B`. So can be the case for other coins, especially the ERC20 ones.
+
+Please do __NOT__ try to transfer anything on existing network to Binance Chain testnet, you may experience loss by doing so, because testnet doesn't run with real coins. 
 
 ## How is a trading pair created on Binance DEX?
 
