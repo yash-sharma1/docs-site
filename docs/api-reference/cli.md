@@ -16,6 +16,8 @@ balance, transaction detail by transaction hash and etc.
 
 You can download Binance Chain CLI releases here: [https://github.com/binance-chain/node-binary](https://github.com/binance-chain/node-binary)
 
+Source code will be released soon after pending security audits have been completed.
+
 ## Where to connect
 
 You can manage you keys locally without connecting to any node. But if you want to interact with Binance Chain, 
