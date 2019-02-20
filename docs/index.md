@@ -73,7 +73,8 @@ Read on below if you are more interested in what is happening under the hood!
 
 - [Connect to Binance Chain](chain-access.md): how to connect to Binance Chain and DEX via different ways.
 
-- [Run a Binance Chain full node](fullnode.md): how to run a full node and become part of the p2p network of Binance Chain
+- [Run a Binance Chain full node](fullnode.md): how to run a full node and become part of the p2p network of Binance Chain.
+- [Run a Binance Chain light client](light-client.md): how to run a light client.
 
 - [Binance Chain Governance](governance.md): about proposal, vote, and join as a validator.
 
