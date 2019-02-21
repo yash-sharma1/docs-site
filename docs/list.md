@@ -42,7 +42,7 @@ After issuing the token, you need to create a proposal to list this token agains
 ```bash
 $  ./bnbcli gov submit-list-proposal --from test --deposit 10000000000:BNB \
 --base-asset-symbol AAA-254 --quote-asset-symbol BNB --init-price 100000000 --title "list AAA-254/BNB" \
---description "list AAA-254/BNB" --expire-time 1570665600 --chain-id=chain-bnb --node=172.22.41.165:26657 --json
+--description "list AAA-254/BNB" --expire-time 1570665600 --chain-id=Binance-Chain-Nile --node=data-seed-pre-2-s1.binance.org:80 --json
 Password to sign with 'test':
 {  
    "Height":"281822",
@@ -94,7 +94,7 @@ need to deposit another 1900 BNB.
 
 ```bash
 $  ./bnbcli gov deposit --deposit 190000000000:BNB --from test --proposal-id 14 
---chain-id=chain-bnb --node=172.22.41.165:26657 --json
+--chain-id=Binance-Chain-Nile --node=data-seed-pre-2-s1.binance.org:80 --json
 Password to sign with 'test':
 {  
    "Height":"282059",
@@ -135,7 +135,7 @@ If proposal is passed, BNB you have deposited will be returned.
 You can query proposal status via CLI.
 
 ```bash
-$  ./bnbcli gov proposal --proposal-id 15 --chain-id=chain-bnb --node=172.22.41.165:26657
+$  ./bnbcli gov proposal --proposal-id 15 --chain-id=Binance-Chain-Nile --node=data-seed-pre-2-s1.binance.org:80
 {
   "type": "gov/TextProposal",
   "value": {
@@ -199,7 +199,7 @@ proposal.
 
 ```bash
 $  ./bnbcli dex list -s AAA-254 --quote-asset-symbol BNB --from test \
---init-price 100000000 --proposal-id 15 --chain-id=chain-bnb --node=172.22.41.165:26657 --json
+--init-price 100000000 --proposal-id 15 --chain-id=Binance-Chain-Nile --node=data-seed-pre-2-s1.binance.org:80 --json
 {  
    "Height":"282409",
    "TxHash":"77AE3D190F430FE6E4B1A9659BEBB3F022CF7631",
