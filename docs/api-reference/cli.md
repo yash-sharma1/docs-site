@@ -18,6 +18,20 @@ You can download Binance Chain CLI releases here: [https://github.com/binance-ch
 
 Source code will be released soon after pending security audits have been completed.
 
+### CLI installation
+
+Once you have downloaded the binary for your platform, you may drop it into any folder you like. Open a terminal window or `cmd.exe` in that folder, and then follow the examples on the documentation site.
+
+```bash
+$  ./bnbcli
+```
+
+On Windows you would most likely use this instead:
+
+```bash
+C:\> bnbcli.exe
+```
+
 ## Where to connect
 
 You can manage you keys locally without connecting to any node. But if you want to interact with Binance Chain, 
