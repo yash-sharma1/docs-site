@@ -70,6 +70,10 @@ Flags:
 Use "bnbcli [command] --help" for more information about a command.
 ```
 
+**Notice**: there is one special flag `--trust-node` of most sub commands, if not enabled which is by default the CLI 
+will take extra 2-4 seconds to verify blockchain proof at current height. You can enable that flag if the peer is trustful 
+so that most commands will accomplish in 500 millisecond。
+
 ## CLI Reference
 
 For detail usage, you can refer to:
