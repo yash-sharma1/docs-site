@@ -2,11 +2,11 @@
 
 Assets are stored as `tokens` on Binance Chain, and the below management actions are available.
 
-Please note the fees must be paid first in BNB before the transaction can be executed.
+All of the [fees](trading-spec.md#fees) that are due must be paid in BNB before the transaction can be executed.
 
-Before you run any command examples on this page, and if you have not done so already, you must [generate or add a key to bnbcli](./keys.md).
+**Please note:** Before you run any command examples on this page, and if you have not done so already, you must [generate or add a key to bnbcli](./keys.md).
 
-The `chain-id` and `node` parameters passed to bnbcli may vary, and may be removed completely if you are running a local full node. To find the latest list of chain IDs and endpoints for the testnet, please check [the peers list](https://testnet-dex.binance.org/api/v1/peers).
+**Also remember:** The `chain-id` and `node` parameters passed to bnbcli may vary, and may be removed completely if you are running a local full node. To find the latest list of chain IDs and endpoints for the testnet, please check [the peers list](https://testnet-dex.binance.org/api/v1/peers).
 
 ## Issue
 
