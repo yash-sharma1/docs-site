@@ -2,7 +2,7 @@
 
 Assets are stored as `tokens` on Binance Chain, and the below management actions are available.
 
-All of the [fees](trading-spec.md#fees) that are due must be paid in BNB before the transaction can be executed.
+The [fees](trading-spec.md#fees) that are due must be paid in BNB before any of these operations can be executed.
 
 **Please note:** Before you run any command examples on this page, and if you have not done so already, you must [generate or add a key to bnbcli](./keys.md).
 
