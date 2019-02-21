@@ -106,7 +106,7 @@ The Binance Chain HTTP API provides access to a Binance Chain node deployment an
 
 **Rate Limit:** 5 requests per IP per second.
 
-**Test URL:** [https://testnet-dex.binance.org/api/v1/account/bnc18hy3dz0lfky74shaatswmuhd2dxyl847fwsvkk](https://testnet-dex.binance.org/api/v1/account/bnc18hy3dz0lfky74shaatswmuhd2dxyl847fwsvkk)
+**Test URL:** [https://testnet-dex.binance.org/api/v1/account/tbnb185tqzq3j6y7yep85lncaz9qeectjxqe5054cgn](https://testnet-dex.binance.org/api/v1/account/tbnb185tqzq3j6y7yep85lncaz9qeectjxqe5054cgn)
 
 
 **Parameters**
@@ -135,7 +135,7 @@ The Binance Chain HTTP API provides access to a Binance Chain node deployment an
 
 **Rate Limit:** 5 requests per IP per second.
 
-**Test URL:** [https://testnet-dex.binance.org/api/v1/account/bnc18hy3dz0lfky74shaatswmuhd2dxyl847fwsvkk/sequence](https://testnet-dex.binance.org/api/v1/account/bnc18hy3dz0lfky74shaatswmuhd2dxyl847fwsvkk/sequence)
+**Test URL:** [https://testnet-dex.binance.org/api/v1/account/tbnb185tqzq3j6y7yep85lncaz9qeectjxqe5054cgn/sequence](https://testnet-dex.binance.org/api/v1/account/tbnb185tqzq3j6y7yep85lncaz9qeectjxqe5054cgn/sequence)
 
 
 **Parameters**
@@ -158,34 +158,7 @@ The Binance Chain HTTP API provides access to a Binance Chain node deployment an
 ##### ***GET***
 **Summary:** Get a transaction.
 
-**Description:** Gets transaction metadata by transaction ID.
-
-**Destination:** Seed node.
-
-**Rate Limit:** 10 requests per IP per second.
-
-
-**Parameters**
-
-| Name | Located in | Description | Required | Schema |
-| ---- | ---------- | ----------- | -------- | ---- |
-| hash | path | The transaction hash to query | Yes | string |
-
-**Responses**
-
-| Code | Description | Schema |
-| ---- | ----------- | ------ |
-| 200 | Success | [Transaction](#transaction) |
-| 400 | Bad Request | [Error](#error) |
-| 404 | Not Found |  |
-| default | Generic error response | [Error](#error) |
-
-### /api/v1/tx-json/{hash}
----
-##### ***GET***
-**Summary:** Gets detail for an individual transaction
-
-**Description:** Gets transaction detail by transaction ID.
+**Description:** Gets transaction metadata by transaction ID. By default, transactions are returned in a raw format. You may add `?format=json` to the end of the path to obtain a more readable response.
 
 **Destination:** Seed node.
 
@@ -193,7 +166,7 @@ The Binance Chain HTTP API provides access to a Binance Chain node deployment an
 
 **Example:**
 
-Below is a response of a send transaction.
+Below is an example response of a send transaction when `?format=json` is used.
 ```
 {
     "hash": "E81BAB8E555819E4211D62E2E536B6D5812D3D91C105F998F5C6EB3AB8136482",
@@ -255,6 +228,7 @@ Below is a response of a send transaction.
 | Name | Located in | Description | Required | Schema |
 | ---- | ---------- | ----------- | -------- | ---- |
 | hash | path | The transaction hash to query | Yes | string |
+| format | query | Response format (`json` or omit) | No | string |
 
 **Responses**
 
