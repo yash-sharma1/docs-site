@@ -29,6 +29,10 @@ will be returned to your account.
 Then the owner of the asset to be listed can list the trading pair via command line according to the proposal 
 approved before the proposal is expired.
 
+**Please note:** Before you run any command examples on this page, and if you have not done so already, you must [generate or add a key to bnbcli](./keys.md).
+
+**Also remember:** The `chain-id` and `node` parameters passed to bnbcli may vary, and may be removed completely if you are running a local full node. To find the latest list of chain IDs and endpoints for the testnet, please check [the peers list](https://testnet-dex.binance.org/api/v1/peers).
+
 ### Issuing the token
 
 First, you need to issue the token. You have to make sure that there is enough BNB remaining in your account.
