@@ -82,7 +82,7 @@ $  ./bnbcli account bnc17kwznuljsy4n89wcjd6esx2j5t0w326c03xhyr --trust-node --no
 Then you can send token.
 
 ```bash
-➜  build git:(master) ✗ ./bnbcli send --from test --to=bnc1l7kr35dgj3jezjvw6nt6zyqcmyt2jh7rs2v4n9 --amount=200000000:BNB --chain-id chain-bnb --node 172.22.41.165:26657 --json --memo "Test transfer"
+➜  build git:(master) ✗ ./bnbcli send --from test --to=bnc1l7kr35dgj3jezjvw6nt6zyqcmyt2jh7rs2v4n9 --amount=200000000:BNB --chain-id=Binance-Chain-Nile --node=data-seed-pre-2-s1.binance.org:80 --json --memo "Test transfer"
 Password to sign with 'test':
 {  
    "Height":"272155",
