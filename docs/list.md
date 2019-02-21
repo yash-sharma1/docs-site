@@ -86,6 +86,20 @@ You may notice that the numbers like deposit number and price are very large. Th
 (digits after the decimal point) by default if the number is presented in a human readable format. For example, 
 10000000000 means 100.00000000 if represented as a human readable number.
 
+### Finding your proposal ID
+
+Each proposal is assigned a unique ID, but this is not included in the transaction that you send yourself. You must query for the list of proposals to find the one that you have sent to the blockchain:
+
+```bash
+$  ./bnbcli gov proposals --chain-id=Binance-Chain-Nile --node=data-seed-pre-2-s1.binance.org:80
+  1 - list BNB/BTC.B-9CE
+  2 - list XRP.B-2A4/BNB
+  ...
+  14 - list AAA-254/BNB
+```
+
+In this case, `14` is your proposal ID, and you should then use it in the `--proposal-id` parameter in the next steps.
+
 ### The deposit
 
 Before validators can vote on the proposal you created, you need to deposit enough BNB (at least 2000 BNB). You 
