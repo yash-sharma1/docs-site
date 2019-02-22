@@ -144,7 +144,7 @@ Password to sign with 'test':
 ### Wait for voting result
 
 When you have deposited enough BNB, the proposal's status will switch to `VotingPeriod`. Then you should wait
-for voting result from validators (for now is two weeks).
+for voting result from validators (for now is 4 hours in the testnet).
 
 If proposal is rejected by validator, the money you have deposited will be distribute to validators.
 
