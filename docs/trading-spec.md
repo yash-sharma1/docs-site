@@ -115,7 +115,9 @@ Transaction Type | Pay in non-BNB Asset | Pay in BNB
 -- | -- | --
 Trade | 0.1% | 0.04%
 
-**Note:** There will be an API link to view the current trading fee in real-time provided here shortly.
+### Fees API
+
+View system fees updated in real time [here](https://testnet-dex.binance.org/api/v1/fees).
 
 ### Notes
 

@@ -271,6 +271,4 @@ For more information about this process please check the [listing guide](list.md
 
 A wallet provider may choose to only support the feature set of Binance Chain, which would just 
 cover wallets, addresses, balances and transfers. To improve their implementation further, 
-they could choose to integrate Binance DEX which would add trading, order history, cancellations, 
-trading, charts, etc.
-
+they could choose to integrate Binance DEX which would add trading (order placement and cancellation), historical order and trade views, charts, etc.

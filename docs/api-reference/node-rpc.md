@@ -36,7 +36,7 @@ Here is an example of a node that is available for RPC access:
 So, using this node, we are able to use raw RPC commands below or the `bnbcli` tool to make a query:
 
 ```bash
-$ bnbcli dex show -l NNB-0AB_BNB --chain-id Binance-Chain-Nile --node tcp://aa1e4d0d1243a11e9a951063f6065739-7a82be90a58744b6.elb.ap-northeast-1.amazonaws.com:27147
+$ ./bnbcli dex show -l NNB-0AB_BNB --chain-id Binance-Chain-Nile --node tcp://aa1e4d0d1243a11e9a951063f6065739-7a82be90a58744b6.elb.ap-northeast-1.amazonaws.com:27147
 ```
 
 

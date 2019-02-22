@@ -18,6 +18,20 @@ You can download Binance Chain CLI releases here: [https://github.com/binance-ch
 
 Source code will be released soon after pending security audits have been completed.
 
+### CLI installation
+
+Once you have downloaded the binary for your platform, you may drop it into any folder you like. Open a terminal window or `cmd.exe` in that folder, and then follow the examples on the documentation site.
+
+```bash
+$  ./bnbcli
+```
+
+On Windows you would most likely use this instead:
+
+```bash
+C:\> bnbcli.exe
+```
+
 ## Where to connect
 
 You can manage you keys locally without connecting to any node. But if you want to interact with Binance Chain, 
@@ -69,6 +83,10 @@ Flags:
 
 Use "bnbcli [command] --help" for more information about a command.
 ```
+
+**Notice**: there is one special flag `--trust-node` of most sub commands, if not enabled which is by default the CLI 
+will take extra 2-4 seconds to verify blockchain proof at current height. You can enable that flag if the peer is trustful 
+so that most commands will accomplish in 500 millisecond。
 
 ## CLI Reference
 

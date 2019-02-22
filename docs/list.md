@@ -29,6 +29,10 @@ will be returned to your account.
 Then the owner of the asset to be listed can list the trading pair via command line according to the proposal 
 approved before the proposal is expired.
 
+**Please note:** Before you run any command examples on this page, and if you have not done so already, you must [generate or add a key to bnbcli](./keys.md).
+
+**Also remember:** The `chain-id` and `node` parameters passed to bnbcli may vary, and may be removed completely if you are running a local full node. To find the latest list of chain IDs and endpoints for the testnet, please check [the peers list](https://testnet-dex.binance.org/api/v1/peers).
+
 ### Issuing the token
 
 First, you need to issue the token. You have to make sure that there is enough BNB remaining in your account.
@@ -42,7 +46,7 @@ After issuing the token, you need to create a proposal to list this token agains
 ```bash
 $  ./bnbcli gov submit-list-proposal --from test --deposit 10000000000:BNB \
 --base-asset-symbol AAA-254 --quote-asset-symbol BNB --init-price 100000000 --title "list AAA-254/BNB" \
---description "list AAA-254/BNB" --expire-time 1570665600 --chain-id=chain-bnb --node=172.22.41.165:26657 --json
+--description "list AAA-254/BNB" --expire-time 1570665600 --chain-id=Binance-Chain-Nile --node=data-seed-pre-2-s1.binance.org:80 --json
 Password to sign with 'test':
 {  
    "Height":"281822",
@@ -86,6 +90,20 @@ You may notice that the numbers like deposit number and price are very large. Th
 (digits after the decimal point) by default if the number is presented in a human readable format. For example, 
 10000000000 means 100.00000000 if represented as a human readable number.
 
+### Finding your proposal ID
+
+Each proposal is assigned a unique ID, but this is not included in the transaction that you send yourself. You must query for the list of proposals to find the one that you have sent to the blockchain:
+
+```bash
+$  ./bnbcli gov proposals --chain-id=Binance-Chain-Nile --node=data-seed-pre-2-s1.binance.org:80
+  1 - list BNB/BTC.B-9CE
+  2 - list XRP.B-2A4/BNB
+  ...
+  14 - list AAA-254/BNB
+```
+
+In this case, `14` is your proposal ID, and you should then use it in the `--proposal-id` parameter in the next steps.
+
 ### The deposit
 
 Before validators can vote on the proposal you created, you need to deposit enough BNB (at least 2000 BNB). You 
@@ -94,7 +112,7 @@ need to deposit another 1900 BNB.
 
 ```bash
 $  ./bnbcli gov deposit --deposit 190000000000:BNB --from test --proposal-id 14 
---chain-id=chain-bnb --node=172.22.41.165:26657 --json
+--chain-id=Binance-Chain-Nile --node=data-seed-pre-2-s1.binance.org:80 --json
 Password to sign with 'test':
 {  
    "Height":"282059",
@@ -135,7 +153,7 @@ If proposal is passed, BNB you have deposited will be returned.
 You can query proposal status via CLI.
 
 ```bash
-$  ./bnbcli gov proposal --proposal-id 15 --chain-id=chain-bnb --node=172.22.41.165:26657
+$  ./bnbcli gov proposal --proposal-id 15 --chain-id=Binance-Chain-Nile --node=data-seed-pre-2-s1.binance.org:80
 {
   "type": "gov/TextProposal",
   "value": {
@@ -199,7 +217,7 @@ proposal.
 
 ```bash
 $  ./bnbcli dex list -s AAA-254 --quote-asset-symbol BNB --from test \
---init-price 100000000 --proposal-id 15 --chain-id=chain-bnb --node=172.22.41.165:26657 --json
+--init-price 100000000 --proposal-id 15 --chain-id=Binance-Chain-Nile --node=data-seed-pre-2-s1.binance.org:80 --json
 {  
    "Height":"282409",
    "TxHash":"77AE3D190F430FE6E4B1A9659BEBB3F022CF7631",

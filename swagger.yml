@@ -219,7 +219,7 @@ paths:
 
         **Rate Limit:** 5 requests per IP per second.
 
-        **Test URL:** [https://testnet-dex.binance.org/api/v1/account/tbnb185tqzq3j6y7yep85lncaz9qeectjxqe5054cgn/sequence](https://testnet-dex.binance.org/api/v1/account/tbnb185tqzq3j6y7yep85lncaz9qeectjxqe5054cgn/sequence)
+        **Test URL:** [https://testnet-dex.binance.org/api/v1/account/tbnb13g2le062t340klgm2l2khzr57y3qxlekuhfuch/sequence](https://testnet-dex.binance.org/api/v1/account/tbnb13g2le062t340klgm2l2khzr57y3qxlekuhfuch/sequence)
       operationId: getAccountSequence
       produces:
       - application/json
@@ -252,52 +252,15 @@ paths:
     get:
       summary: Get a transaction.
       description: |
-        Gets transaction metadata by transaction ID.
+        Gets transaction metadata by transaction ID. By default, transactions are returned in a raw format. You may add `?format=json` to the end of the path to obtain a more readable response.
 
         **Destination:** Seed node.
 
         **Rate Limit:** 10 requests per IP per second.
-      operationId: getTransaction
-      produces:
-      - application/json
-      tags:
-      - node
-      - tx
-      parameters:
-      -
-        name: hash
-        in: path
-        description: 'The transaction hash to query'
-        required: true
-        type: string
-      responses:
-        '200':
-          description: Success
-          schema:
-            $ref: '#/definitions/Transaction'
-        '400':
-          description: 'Bad Request'
-          schema:
-            $ref: "#/definitions/Error"
-        '404':
-          description: 'Not Found'
-        default:
-          description: Generic error response
-          schema:
-            $ref: "#/definitions/Error"
-  /api/v1/tx-json/{hash}:
-    get:
-      summary: 'Gets detail for an individual transaction'
-      description: |
-        Gets transaction detail by transaction ID.
-
-        **Destination:** Seed node.
-
-        **Rate Limit:** 10 requests per IP per second.
-
+        
         **Example:**
 
-        Below is a response of a send transaction.
+        Below is an example response of a send transaction when `?format=json` is used.
         ```
         {
             "hash": "E81BAB8E555819E4211D62E2E536B6D5812D3D91C105F998F5C6EB3AB8136482",
@@ -352,20 +315,25 @@ paths:
             }
         }
         ```
-
-      operationId: getJsonTransaction
+      operationId: getTransaction
       produces:
-        - application/json
+      - application/json
       tags:
-        - node
-        - tx
+      - node
+      - tx
       parameters:
-        -
-          name: hash
-          in: path
-          type: string
-          description: 'The transaction hash to query'
-          required: true
+      -
+        name: hash
+        in: path
+        description: 'The transaction hash to query'
+        required: true
+        type: string
+      -
+        name: format
+        in: query
+        description: 'Response format (`json` or omit)'
+        required: false
+        type: string
       responses:
         '200':
           description: Success

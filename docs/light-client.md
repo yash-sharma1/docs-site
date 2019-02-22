@@ -61,6 +61,11 @@ print fullnodes
 
 example:
 ```bash
-./lightd --chain-id "chain-bnb"    --node tcp://data-seed-pre-0-s1.binance.org:80  > node.log  & 
+./lightd --chain-id "Binance-Chain-Nile"    --node tcp://data-seed-pre-0-s1.binance.org:80  > node.log  & 
 ```
 
+
+## Work with light client
+
+Light client has the same RPC interface as the list here [rpc-api](api-reference/node-rpc.md), through the default port of light 
+client is `8888`.
