@@ -95,7 +95,7 @@ You may notice that the numbers like deposit number and price are very large. Th
 Each proposal is assigned a unique ID, but this is not included in the transaction that you send yourself. You must query for the list of proposals to find the one that you have sent to the blockchain:
 
 ```bash
-$  ./bnbcli gov proposals --chain-id=Binance-Chain-Nile --node=data-seed-pre-2-s1.binance.org:80
+$  ./bnbcli gov query-proposals --chain-id=Binance-Chain-Nile --node=data-seed-pre-2-s1.binance.org:80
   1 - list BNB/BTC.B-9CE
   2 - list XRP.B-2A4/BNB
   ...
@@ -153,7 +153,7 @@ If proposal is passed, BNB you have deposited will be returned.
 You can query proposal status via CLI.
 
 ```bash
-$  ./bnbcli gov proposal --proposal-id 15 --chain-id=Binance-Chain-Nile --node=data-seed-pre-2-s1.binance.org:80
+$  ./bnbcli gov query-proposal --proposal-id 15 --chain-id=Binance-Chain-Nile --node=data-seed-pre-2-s1.binance.org:80
 {
   "type": "gov/TextProposal",
   "value": {
