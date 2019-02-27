@@ -135,7 +135,7 @@ The Binance Chain HTTP API provides access to a Binance Chain node deployment an
 
 **Rate Limit:** 5 requests per IP per second.
 
-**Test URL:** [https://testnet-dex.binance.org/api/v1/account/tbnb185tqzq3j6y7yep85lncaz9qeectjxqe5054cgn/sequence](https://testnet-dex.binance.org/api/v1/account/tbnb185tqzq3j6y7yep85lncaz9qeectjxqe5054cgn/sequence)
+**Test URL:** [https://testnet-dex.binance.org/api/v1/account/tbnb13g2le062t340klgm2l2khzr57y3qxlekuhfuch/sequence](https://testnet-dex.binance.org/api/v1/account/tbnb13g2le062t340klgm2l2khzr57y3qxlekuhfuch/sequence)
 
 
 **Parameters**
