@@ -28,7 +28,7 @@ nav:
   - More Help: resources.md
   - Binance DEX TestNet: https://testnet.binance.org
   - Chain Explorer TestNet: https://testnet-explorer.binance.org
-  - Get Testnet Funds: https://www.binance.vision/tutorials/binance-chain-explorer-guide
+  - Get Testnet Funds: https://www.binance.vision/tutorials/binance-dex-funding-your-testnet-account
 
 markdown_extensions:
     - toc:
