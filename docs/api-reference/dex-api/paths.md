@@ -375,6 +375,8 @@ The given _limit_ must be one of the allowed limits below.
 
 **Description:** Gets candlestick/kline bars for a symbol. Bars are uniquely identified by their open time.
 
+If the time window is bigger than limits, only the first n klines will return. In this case, please either shrink the window or increase the limit to get proper amount of klines.
+
 **Rate Limit:** 10 requests per IP per second.
 
 **Test URL:** [https://testnet-dex.binance.org/api/v1/klines?symbol=NNB-338_BNB&interval=5m](https://testnet-dex.binance.org/api/v1/klines?symbol=NNB-338_BNB&interval=5m)
