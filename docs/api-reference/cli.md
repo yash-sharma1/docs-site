@@ -1,4 +1,4 @@
-# Binance Chain Command Line Interface (CLI) Reference
+# Command Line Interface (CLI)
 
 Binance Chain CLI is one of ways to access Binance Chain.
 
@@ -14,7 +14,23 @@ balance, transaction detail by transaction hash and etc.
 
 ## Where can I download the Binance Chain CLI?
 
-You may download Binance Chain releases here: https://github.com/binance-chain/node/releases
+You can download Binance Chain CLI releases here: [https://github.com/binance-chain/node-binary](https://github.com/binance-chain/node-binary)
+
+Source code will be released soon after pending security audits have been completed.
+
+### CLI installation
+
+Once you have downloaded the binary for your platform, you may drop it into any folder you like. Open a terminal window or `cmd.exe` in that folder, and then follow the examples on the documentation site.
+
+```bash
+$  ./bnbcli
+```
+
+On Windows you would most likely use this instead:
+
+```bash
+C:\> bnbcli.exe
+```
 
 ## Where to connect
 
@@ -68,9 +84,14 @@ Flags:
 Use "bnbcli [command] --help" for more information about a command.
 ```
 
+**Notice**: there is one special flag `--trust-node` of most sub commands, if not enabled which is by default the CLI 
+will take extra 2-4 seconds to verify blockchain proof at current height. You can enable that flag if the peer is trustful 
+so that most commands will accomplish in 500 millisecond。
+
 ## CLI Reference
 
 For detail usage, you can refer to:
 
 - [transfer](../transfer.md)
 - [list](../list.md)
+- [keys](../keys.md)

@@ -1,10 +1,10 @@
-# Welcome to Binance Chain Docs
+# Binance Chain Documentation
 
-Welcome to Binance Chain documentation site! 
+Welcome to the Binance Chain documentation site!
 
-Please note both Binance Chain and this document site would keep improving as time goes. Please re-check the sites and community channels from time to time. 
+Please note that both the Binance Chain software and this documentation site will improve over time and is still a work-in-progress. Be sure to engage with our community channels to stay updated.
 
-Have fun on Chain! Have fun in exchanging and trading!
+Have fun trading and see you on chain!
 
 ## What are Binance Chain and Binance DEX?
 
@@ -36,13 +36,11 @@ and node RPC interfaces.
 
 In the future you may also be able to stake your BNB to join Chain Governance, if you so wish.
 
-## FAQ
-
-The quickest way to understand Binance Chain/DEX basics is to read [FAQ](faq.md).
-
 ## Get Started
 
 Want to try it out? Just give a peek at the first few of pages of the [getting started guide](get-started.md).
+
+You could also have a read through the [FAQ](faq.md).
 
 ## Asset Management
 
@@ -62,6 +60,8 @@ Binance Chain is ready for other projects to migrate their tokens to take advant
 
 Binance DEX is the native marketplace on Binance Chain allowing you to exchange digital assets issued and listed on it. The matching happens within the blockchain nodes and all of the transactions are recorded on-chain, therefore forming a complete, auditable ledger of activity.
 
+ATTENTION: The match logic on DEX is quite different from normal centralized exchange. Please go over the trading and match spec below to get the best interests for your orders.
+
 - [Trading Spec](trading-spec.md)
 - [Match Logic](match.md)
 - [Anti-front-running](anti-frontrun.md)
@@ -73,7 +73,8 @@ Read on below if you are more interested in what is happening under the hood!
 
 - [Connect to Binance Chain](chain-access.md): how to connect to Binance Chain and DEX via different ways.
 
-- [Run a Binance Chain full node](fullnode.md): how to run a full node and become part of the p2p network of Binance Chain
+- [Run a Binance Chain full node](fullnode.md): how to run a full node and become part of the p2p network of Binance Chain.
+- [Run a Binance Chain light client](light-client.md): how to run a light client.
 
 - [Binance Chain Governance](governance.md): about proposal, vote, and join as a validator.
 

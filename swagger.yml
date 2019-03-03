@@ -3,10 +3,6 @@ info:
   title: 'HTTP API'
   version: 1.0.0
   description: 'The Binance Chain HTTP API provides access to a Binance Chain node deployment and market data services.'
-  contact:
-    name: 'Binance Support'
-    email: 'support@binance.org'
-    url: 'https://support.binance.org'
   license:
     name: 'Apache 2.0'
     url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
@@ -127,7 +123,9 @@ paths:
         '200':
           description: Success
           schema:
-            $ref: '#/definitions/Validators'
+            type: array
+            items:
+              $ref: '#/definitions/Validator'
         '400':
           description: 'Bad Request'
           schema:
@@ -159,7 +157,9 @@ paths:
         '200':
           description: Success
           schema:
-            $ref: '#/definitions/Peers'
+            type: array
+            items:
+              $ref: '#/definitions/Peer'
         '400':
           description: 'Bad Request'
           schema:
@@ -180,7 +180,7 @@ paths:
 
         **Rate Limit:** 5 requests per IP per second.
 
-        **Test URL:** [https://testnet-dex.binance.org/api/v1/account/bnc18hy3dz0lfky74shaatswmuhd2dxyl847fwsvkk](https://testnet-dex.binance.org/api/v1/account/bnc18hy3dz0lfky74shaatswmuhd2dxyl847fwsvkk)
+        **Test URL:** [https://testnet-dex.binance.org/api/v1/account/tbnb185tqzq3j6y7yep85lncaz9qeectjxqe5054cgn](https://testnet-dex.binance.org/api/v1/account/tbnb185tqzq3j6y7yep85lncaz9qeectjxqe5054cgn)
       operationId: getAccount
       produces:
       - application/json
@@ -219,7 +219,7 @@ paths:
 
         **Rate Limit:** 5 requests per IP per second.
 
-        **Test URL:** [https://testnet-dex.binance.org/api/v1/account/bnc18hy3dz0lfky74shaatswmuhd2dxyl847fwsvkk/sequence](https://testnet-dex.binance.org/api/v1/account/bnc18hy3dz0lfky74shaatswmuhd2dxyl847fwsvkk/sequence)
+        **Test URL:** [https://testnet-dex.binance.org/api/v1/account/tbnb13g2le062t340klgm2l2khzr57y3qxlekuhfuch/sequence](https://testnet-dex.binance.org/api/v1/account/tbnb13g2le062t340klgm2l2khzr57y3qxlekuhfuch/sequence)
       operationId: getAccountSequence
       produces:
       - application/json
@@ -252,11 +252,69 @@ paths:
     get:
       summary: Get a transaction.
       description: |
-        Gets transaction metadata by transaction ID.
+        Gets transaction metadata by transaction ID. By default, transactions are returned in a raw format. You may add `?format=json` to the end of the path to obtain a more readable response.
 
         **Destination:** Seed node.
 
         **Rate Limit:** 10 requests per IP per second.
+        
+        **Example:**
+
+        Below is an example response of a send transaction when `?format=json` is used.
+        ```
+        {
+            "hash": "E81BAB8E555819E4211D62E2E536B6D5812D3D91C105F998F5C6EB3AB8136482",
+            "height": "754",
+            "tx": {
+                "type": "auth/StdTx", // fixed, type of transaction
+                "value": {            // fixed, detail of the transaction
+                    "data": null,     // fixed, data of the transaction
+                    "memo": "",       // fixed, memo
+                    "msg": [          // fixed, msgs of the transaction
+                        {
+                            "type": "cosmos-sdk/Send",  // vary with msg type
+                            "value": {                  // value content vary with mst type
+                                "inputs": [
+                                    {
+                                        "address": "bnb1vt4zwu5hy7tyryktud6mpcu8h2ehh6xw66gzwp",
+                                        "coins": [
+                                            {
+                                                "amount": "100000000000000",
+                                                "denom": "BNB"
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "outputs": [
+                                    {
+                                        "address": "bnb1kg8mh20tndur9d9rry4wjunhpfzcud30qzf0qv",
+                                        "coins": [
+                                            {
+                                                "amount": "100000000000000",
+                                                "denom": "BNB"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        }
+                    ],
+                    "signatures": [ // fixed, signatures of the transaction
+                        {
+                            "account_number": "0",
+                            "pub_key": {
+                                "type": "tendermint/PubKeySecp256k1",
+                                "value": "AoWY3eWBOnnvLPTz4RsUlX1pWCkLLPewu1vAAoTEzxzR"
+                            },
+                            "sequence": "1",
+                            "signature": "6O2TQAgleFNPw4zIWBLaNvOf5dR7DHNSr2DwAPeFK6lokRqZd2KR2BD+WlmaWj4LdLo5N+utN1JtY41E91N0uw=="
+                        }
+                    ],
+                    "source": "0"  // fixed, source of the transaction
+                }
+            }
+        }
+        ```
       operationId: getTransaction
       produces:
       - application/json
@@ -269,6 +327,12 @@ paths:
         in: path
         description: 'The transaction hash to query'
         required: true
+        type: string
+      -
+        name: format
+        in: query
+        description: 'Response format (`json` or omit)'
+        required: false
         type: string
       responses:
         '200':
@@ -305,7 +369,9 @@ paths:
         '200':
           description: Success
           schema:
-            $ref: '#/definitions/Tokens'
+            type: array
+            items:
+              $ref: '#/definitions/Token'
         '400':
           description: 'Bad Request'
           schema:
@@ -336,13 +402,43 @@ paths:
         '200':
           description: Success
           schema:
-            $ref: '#/definitions/Markets'
+            type: array
+            items:
+              $ref: '#/definitions/Market'
         '400':
           description: 'Bad Request'
           schema:
             $ref: "#/definitions/Error"
         '404':
           description: 'Not Found'
+        default:
+          description: Generic error response
+          schema:
+            $ref: "#/definitions/Error"
+  /api/v1/fees:
+    get:
+      summary: Obtain trading fees information.
+      description: |
+        Gets the current trading fees settings.
+
+        **Destination:** Witness node.
+
+        **Rate Limit:** 1 request per IP per second.
+
+        **Test URL:** [https://testnet-dex.binance.org/api/v1/fees](https://testnet-dex.binance.org/api/v1/fees)
+      operationId: getFees
+      produces:
+        - application/json
+      tags:
+        - info
+        - market
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Fee'
         default:
           description: Generic error response
           schema:
@@ -361,7 +457,7 @@ paths:
 
         **Rate Limit:** 10 requests per IP per second.
 
-        **Test URL:** [https://testnet-dex.binance.org/api/v1/depth](https://testnet-dex.binance.org/api/v1/depth)
+        **Test URL:** [https://testnet-dex.binance.org/api/v1/depth?symbol=xxx-000_BNB](https://testnet-dex.binance.org/api/v1/depth?symbol=xxx-000_BNB)
       operationId: getDepth
       produces:
       - application/json
@@ -409,7 +505,7 @@ paths:
       operationId: broadcastTx
       summary: Broadcast a transaction.
       description: |
-        Broadcasts a signed transaction. A single transaction must be sent in hex format in plain text.
+        Broadcasts a signed transaction. A single transaction must be sent hex-encoded with a `content-type` of `text/plain`.
 
         **Destination:** Witness node.
 
@@ -426,7 +522,7 @@ paths:
       - in: query
         name: sync
         description: |
-          Synchronous broadcast (wait for [DeliverTx](https://github.com/tendermint/tendermint/wiki/Application-Developers#delivertx))
+          Synchronous broadcast (wait for [DeliverTx](https://github.com/tendermint/tendermint/wiki/Application-Developers#delivertx))?
         required: false
         type: boolean
         default: false
@@ -464,6 +560,8 @@ paths:
         Gets candlestick/kline bars for a symbol. Bars are uniquely identified by their open time.
 
         If the time window is bigger than limits, only the first n klines will return. In this case, please either shrink the window or increase the limit to get proper amount of klines.
+
+        **Rate Limit:** 10 requests per IP per second.
 
         **Test URL:** [https://testnet-dex.binance.org/api/v1/klines?symbol=NNB-338_BNB&interval=5m](https://testnet-dex.binance.org/api/v1/klines?symbol=NNB-338_BNB&interval=5m)
 
@@ -568,7 +666,10 @@ paths:
       tags:
       - order
       summary: Get closed orders.
-      description: Gets closed (filled and cancelled) orders for a given address.
+      description: |
+        Gets closed (filled and cancelled) orders for a given address.
+
+        **Rate Limit:** 5 requests per IP per second.
       operationId: getClosedOrders
       produces:
       - application/json
@@ -621,7 +722,7 @@ paths:
         allowEmptyValue: false
       - name: status
         in: query
-        description: "order status list. Allowed value: [ACK, PARTIALLY_FILLED, IOC_NO_FILL, FULLY_FILLED, CANCELED, EXPIRED, FAIL_BLOCKING, FAIL_MATCH]"
+        description: "order status list. Allowed value: [Ack, PartialFill, IocNoFill, FullyFill, Canceled, Expired, FailedBlocking, FailedMatching]"
         required: false
         type: array
         items:
@@ -654,7 +755,10 @@ paths:
       tags:
       - order
       summary: Get open orders.
-      description: Gets open orders for a given address.
+      description: |
+        Gets open orders for a given address.
+
+        **Rate Limit:** 5 requests per IP per second.
       operationId: getOpenOrders
       produces:
       - application/json
@@ -717,7 +821,10 @@ paths:
       tags:
       - order
       summary: Get an order.
-      description: Gets metadata for an individual order by its ID.
+      description: |
+        Gets metadata for an individual order by its ID.
+
+        **Rate Limit:** 5 requests per IP per second.
       operationId: getOrder
       produces:
       - application/json
@@ -748,7 +855,10 @@ paths:
       tags:
       - market
       summary: Get a market ticker.
-      description: Gets 24 hour price change statistics for a market pair symbol.
+      description: |
+        Gets 24 hour price change statistics for a market pair symbol.
+
+        **Rate Limit:** 5 requests per IP per second.
       operationId: get24HrPriceStatistics
       produces:
       - application/json
@@ -781,7 +891,10 @@ paths:
       tags:
       - trade
       summary: Get market trades.
-      description: Gets a list of historical trades.
+      description: |
+        Gets a list of historical trades.
+
+        **Rate Limit:** 5 requests per IP per second.
       operationId: getTrades
       produces:
       - application/json
@@ -893,7 +1006,10 @@ paths:
       tags:
       - transaction
       summary: Get transactions.
-      description: Gets a list of transactions.
+      description: |
+        Gets a list of transactions.
+
+        **Rate Limit:** 60 requests per IP per minute.
       operationId: txns
       produces:
       - application/json
@@ -940,7 +1056,7 @@ paths:
         - SEND
       - name: startTime
         in: query
-        description: start time; The maximum start - end query window is 3 months; Default query window is latest 7 days.
+        description: start time; The maximum start - end query window is 3 months; Default query window is latest 24 hours.
         required: false
         type: integer
         format: int64
@@ -1001,7 +1117,7 @@ definitions:
     properties:
       ap_time: {type: string, description: e.g. 2019-01-21T10:30:00Z}
       block_time: {type: string, description: format as above}
-  Validators:
+  Validator:
     type: object
     properties:
       block_height:
@@ -1011,6 +1127,7 @@ definitions:
         required: true
       validators:
         type: array
+        required: true
         items:
           properties:
             address:
@@ -1032,74 +1149,140 @@ definitions:
             accum:
               type: integer
               required: true
+  Peer:
+    type: object
+    properties:
+      id:
+        type: string
+        description: 'Authenticated identifier'
         required: true
-  Peers:
-    type: array
-    items:
-      properties:
-        id:
+      original_listen_addr:
+        type: string
+        description: 'Original listen address before PeersService changed it'
+        format: RemoteAddr
+        required: true
+      listen_addr:
+        type: string
+        description: 'Listen address'
+        format: RemoteAddr
+        required: true
+      access_addr:
+        type: string
+        description: 'Access address (HTTP)'
+        format: RemoteAddr
+        required: true
+      stream_addr:
+        type: string
+        description: 'Stream address (WS)'
+        format: RemoteAddr
+        required: true
+      network:
+        type: string
+        description: 'Chain ID'
+        required: true
+      version:
+        type: string
+        description: 'Version'
+        required: true
+      moniker:
+        type: string
+        description: 'Moniker (Name)'
+        required: true
+      capabilities:
+        type: array
+        description: "Array of capability tags: node, qs, ap, ws"
+        example: ["node", "ap"]
+        items:
           type: string
-          description: 'Authenticated identifier'
-          required: true
-        original_listen_addr:
-          type: string
-          description: 'Original listen address before PeersService changed it'
-          format: RemoteAddr
-          required: true
-        listen_addr:
-          type: string
-          description: 'Listen address'
-          format: RemoteAddr
-          required: true
-        access_addr:
-          type: string
-          description: 'Access address (HTTP)'
-          format: RemoteAddr
-          required: true
-        stream_addr:
-          type: string
-          description: 'Stream address (WS)'
-          format: RemoteAddr
-          required: true
-        network:
-          type: string
-          description: 'Chain ID'
-          required: true
-        version:
-          type: string
-          description: 'Version'
-          required: true
-        moniker:
-          type: string
-          description: 'Moniker (Name)'
-          required: true
-        capabilities:
-          type: array
-          items:
-            type: string
-            enum: ['node', 'qs', 'ap', 'ws']
-          required: true
-        accelerated:
-          type: boolean
-          description: 'Is an accelerated path to a validator node'
-    required: true
+          enum: ['node', 'qs', 'ap', 'ws']
+        required: true
+      accelerated:
+        type: boolean
+        description: 'Is an accelerated path to a validator node'
   Transaction:
     type: object
     properties:
+      hash:
+        type: string
+        title: Hash
+        description: 'Hash of transaction'
+      log:
+        title: Log
+        type: string
+        description: 'Log of transaction'
+      data:
+        title: Data
+        type: string
+        description: 'Data of transaction'
+      tx:
+        title: Tx
+        type: object
+        description: |
+          Detail of transaction, like transaction type, messages and signature
+
+          For example, below is the detail of a send transaction. Most of the fields are fixed, but the detail of msg
+          varies with msg type.
+
+          ```
+          {
+              "type": "auth/StdTx", // fixed, type of transaction
+              "value": {            // fixed, detail of the transaction
+                  "data": null,     // fixed, data of the transaction
+                  "memo": "",       // fixed, memo
+                  "msg": [          // fixed, msgs of the transaction
+                      {
+                          "type": "cosmos-sdk/Send",  // vary with msg type
+                          "value": {                  // value content vary with mst type
+                              "inputs": [
+                                  {
+                                      "address": "bnb1vt4zwu5hy7tyryktud6mpcu8h2ehh6xw66gzwp",
+                                      "coins": [
+                                          {
+                                              "amount": "100000000000000",
+                                              "denom": "BNB"
+                                          }
+                                      ]
+                                  }
+                              ],
+                              "outputs": [
+                                  {
+                                      "address": "bnb1kg8mh20tndur9d9rry4wjunhpfzcud30qzf0qv",
+                                      "coins": [
+                                          {
+                                              "amount": "100000000000000",
+                                              "denom": "BNB"
+                                          }
+                                      ]
+                                  }
+                              ]
+                          }
+                      }
+                  ],
+                  "signatures": [ // fixed, signatures of the transaction
+                      {
+                          "account_number": "0",
+                          "pub_key": {
+                              "type": "tendermint/PubKeySecp256k1",
+                              "value": "AoWY3eWBOnnvLPTz4RsUlX1pWCkLLPewu1vAAoTEzxzR"
+                          },
+                          "sequence": "1",
+                          "signature": "6O2TQAgleFNPw4zIWBLaNvOf5dR7DHNSr2DwAPeFK6lokRqZd2KR2BD+WlmaWj4LdLo5N+utN1JtY41E91N0uw=="
+                      }
+                  ],
+                  "source": "0"  // fixed, source of the transaction
+              }
+          }
+          ```
+      height:
+        title: Height
+        type: string
+        description: 'Height of transaction'
       code:
         title: Code
         type: integer
         format: int32
         default: 0
-      log:
-        title: Log
-        type: string
-      data:
-        title: Data
-        type: string
-      hash:
-        type: string
-        title: Hash
+        description: 'Result code of transaction'
       ok:
         type: boolean
   Account:
@@ -1148,65 +1331,104 @@ definitions:
       free: {type: string, title: Free, description: "In decimal form, e.g. 0.00000000", example: "0.00000000", format: fixed8}
       locked: {type: string, title: Locked, description: "In decimal form, e.g. 0.00000000", example: "0.00000000", format: fixed8}
       frozen: {type: string, title: Frozen, description: "In decimal form, e.g. 0.00000000", example: "0.00000000", format: fixed8}
-  Tokens:
-    type: array
-    items:
-      properties:
-        name:
-          type: string
-          example: Binance Chain Native Token
-          required: true
-        symbol:
-          type: string
-          example: BTC-000
-          required: true
-        original_symbol:
-          type: string
-          example: BTC
-          required: true
-        total_supply:
-          type: string
-          description: "In decimal form, e.g. 1.00000000"
-          example: "0.00000000"
-          format: fixed8
-          required: true
-        owner:
-          type: string
-          description: Address
-          format: address
-          required: true
-  Markets:
-    type: array
-    items:
-      properties:
-        base_asset_symbol:
-          type: string
-          example: BNB
-          format: currency
-          required: true
-        quote_asset_symbol:
-          type: string
-          example: BNB
-          format: currency
-          required: true
-        price:
-          type: string
-          description: "In decimal form, e.g. 1.00000000"
-          example: "0.00000000"
-          format: fixed8
-          required: true
-        tick_size:
-          type: string
-          description: "In decimal form, e.g. 1.00000000"
-          example: "0.00000000"
-          format: fixed8
-          required: true
-        lot_size:
-          type: string
-          description: "In decimal form, e.g. 1.00000000"
-          example: "0.00000000"
-          format: fixed8
-          required: true
+  Token:
+    type: object
+    properties:
+      name:
+        type: string
+        example: Binance Chain Native Token
+        required: true
+      symbol:
+        type: string
+        example: BTC-000
+        required: true
+      original_symbol:
+        type: string
+        example: BTC
+        required: true
+      total_supply:
+        type: string
+        description: "In decimal form, e.g. 1.00000000"
+        example: "0.00000000"
+        format: fixed8
+        required: true
+      owner:
+        type: string
+        description: Address
+        format: address
+        required: true
+  Market:
+    type: object
+    properties:
+      base_asset_symbol:
+        type: string
+        example: BNB
+        format: currency
+        required: true
+      quote_asset_symbol:
+        type: string
+        example: BNB
+        format: currency
+        required: true
+      price:
+        type: string
+        description: "In decimal form, e.g. 1.00000000"
+        example: "0.00000000"
+        format: fixed8
+        required: true
+      tick_size:
+        type: string
+        description: "In decimal form, e.g. 1.00000000"
+        example: "0.00000000"
+        format: fixed8
+        required: true
+      lot_size:
+        type: string
+        description: "In decimal form, e.g. 1.00000000"
+        example: "0.00000000"
+        format: fixed8
+        required: true
+  Fee:
+    type: object
+    properties:
+      msg_type:
+        type: string
+        description: Transaction msg type that this fee applies to
+        example: submit_proposal
+      fee:
+        type: number
+        description: The fee amount
+        example: 1000000000
+      fee_for:
+        type: integer
+        description: 1 = proposer, 2 = all, 3 = free
+        example: 1
+      multi_transfer_fee:
+        type: string
+        description: Fee for multi-transfer
+        example: "200000"
+      lower_limit_as_multi:
+        type: string
+        description: e.g. 2
+        example: "2"
+      fixed_fee_params:
+        description: Set if the fee is fixed
+        $ref: '#/definitions/FixedFeeParams'
+  FixedFeeParams:
+    type: object
+    properties:
+      msg_type:
+        type: string
+        description: Transaction msg type that this fee applies to
+        example: submit_proposal
+      fee:
+        type: number
+        description: The fixed fee amount
+        example: 1000000000
+      fee_for:
+        type: integer
+        description: 1 = proposer, 2 = all, 3 = free
+        example: 1
   MarketDepth:
     type: object
     properties:
@@ -1322,17 +1544,7 @@ definitions:
         - SELL
       status:
         type: string
-        description: "enum [ACK, PARTIALLY_FILLED, IOC_NO_FILL, FULLY_FILLED, CANCELED, EXPIRED, FAIL_BLOCKING, FAIL_MATCH]"
-        enum:
-        - ACK
-        - PARTIALLY_FILLED
-        - IOC_NO_FILL
-        - FULLY_FILLED
-        - CANCELED
-        - EXPIRED
-        - FAIL_BLOCKING
-        - FAIL_MATCH
-        - UNKNOWN
+        description: "enum [Ack, PartialFill, IocNoFill, FullyFill, Canceled, Expired, FailedBlocking, FailedMatching]"
       symbol:
         type: string
       timeInForce:

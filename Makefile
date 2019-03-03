@@ -36,14 +36,11 @@ serve: build-markdown-http-docs
 
 build-markdown-http-docs:
 	@echo "--> Generating markdown from swagger.yml"
-	npx swagger-markdown -i swagger.yml -o docs/api-reference/dex-api/paths.md
+	npx binance-chain/swagger-markdown -i swagger.yml -o docs/api-reference/dex-api/paths.md
 
 build-swagger2markup: submodules
 	@echo "--> Building swagger2markup-cli"
 	cd utils/swagger2markup-cli && gradle assemble
-
-build-html-http-docs:
-	swagger-codegen generate -i swagger.yml -l html -o ./docs-html/dex-api
 
 ########################################
 ### Swagger

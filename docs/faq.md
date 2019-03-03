@@ -1,4 +1,4 @@
-# Binance Chain FAQ v0.3
+# Binance Chain FAQ v0.4
 
 ## What is Binance Chain, or Binance DEX?
 
@@ -55,14 +55,14 @@ any wallet that supports Binance Chain. Then you can trade BNB or other assets s
 On Binance DEX, you can send "new order" messages to  buy or sell certain assets. You can also 
 send "cancel" messages to cancel existing open orders.
 
-You can use a wallet to send new orders and cancels. Binance DEX also provides API for automatic trading.
+You can use a wallet to send new orders and cancels. Binance DEX also provides API for automated trading.
 
 In Binance DEX v1.0, the order message contains:
 
 - Symbol: trading pair on the chain
 - Side: buy or sell
 - Price: only limit price orders are supported in Binance Chain v1.0
-Amount
+- Amount
 - Time In Force: Binance DEX supports `Immediate Or Cancel` (IOC) and `Good Till Expiry` (GTE) 
 orders. GTE orders can quote on the exchange until they are filled by the opposite orders satisfying 
 the limit price, or canceled by client themselves, or expire after 72 hours after 00:00 (UTC). 
@@ -101,7 +101,7 @@ accepted and booked into a block in 1-3 seconds. If the order price is marketabl
 would be filled and trades would come back in about similar time. If you send from a far-way 
 self-setup full node, or there is heavy network traffic, the order may take longer to reach 
 a Validator (block producer).
-
+
 ## Can I see others' orders or balances or can other people see my orders or balances?
 
 Yes, anyone can see anyone's orders and balances if they know the corresponding addresses. 
@@ -182,7 +182,7 @@ Node provides more secure and faster lines to access Binance Chain.
 Accelerated Node is special infrastructure built around Validator to facilitate accelerated transaction 
 routing and provide richer, faster user interfaces. There are always several Accelerated Nodes running 
 at the same time around the world ( owned by different organizations) and you are encouraged to choose 
-one of them to use, or allow Wallet / API Lib to choose one randomly.
+one of them to use, or allow Wallet choose one randomly; for rapid API access, you'd better stay with one Accelerated Node to get better performance.
 
 ## What are the tick size and lot size? Are they fixed?
 
@@ -233,15 +233,42 @@ If you have certain must-have features, it might be added as a native implementa
 
 ## How can I transfer tokens, such as Bitcoin, from other block chains onto Binance Chain?
 
-Native inter-chain mechanism is not supported in Binance Chain in the initial version, but may 
-be in the future. Binance.com may serve as a bridge to trade across tokens between Binance 
-Chain and other chains. Peg Token may be issued on Binance Chain to facilitate trading digital 
+Native inter-chain mechanism is not supported in Binance Chain in the initial version, i.e. you cannot transfer coins between Binance Chain and other chains, such as Bitcoin or Ethereum  network directly, but it may come in the future soon. Binance.com may serve as a bridge to trade across tokens between Binance 
+Chain and other chains. "Pegged Token" may be issued on Binance Chain to facilitate trading digital 
 asset from other block chains.
-
+
+For example, on the Binance Chain testnet, you can see `BTC.B`, which is a pegged (tethered) token for the real BTC running on Bitcoin network.
+`BTC.B` runs on Binance Chain, and cannot be directly transferred/deposited/withdrawed to Bitcoin network directly. 
+
+When the real mainnet comes in, there can be 2 ways for these pegged tokens to be deposited/withdrawed:
+
+1. via interoperability among different chains. This would be done via Atomic Swap, which may be very slow, so users may have to deposit onto/withdraw into Binance Chain.
+2. via Binance.com, which is slow but a bit faster than Atomic Swap. For example, when you withdraw `BTC.B` or Bitcoin BTC from Binance.com accounts, you would have a choice to withdraw it as the Bitcoin BTC or Binance Chain `BTC.B`. So can be the case for other coins, especially the ERC20 ones.
+
+Either of the two are not available yet, but on their way to come. Your feedback during testnet phase would be heard.
+
+Please do __NOT__ try to transfer anything on existing network to Binance Chain testnet, you may experience loss by doing so, because testnet doesn't run with real coins. 
+
+## How is a trading pair created on Binance DEX?
+
+The design philosophy of Binance DEX adheres to the idea that the most efficient and low cost way to perform trading and 
+price-discovery is still to use single order book. This single order book is managed and replicated across all 
+full nodes with the same, deterministic matching logic.
+
+Simply allowing trading between two assets seems easy enough, however it is expensive for not only the network 
+but also its users in long term (and liquidity costs can be much larger). In order to efficiently use the 
+network, Binance Chain only list assets against BNB and other widely accepted market quote assets. 
+
+After an asset is issued, which costs a small fee,
+anyone can "propose" to all validators to list it against particular quote assets. 
+Validators then vote to accept the proposal. 
+A deposit is taken to prevent network abuse.
+Once the proposal is accepted, the owner of the base asset can list the trading pair.
+
+For more information about this process please check the [listing guide](list.md).
+
 ## How would a third-party integrate with Binance Chain and Binance DEX?
 
 A wallet provider may choose to only support the feature set of Binance Chain, which would just 
 cover wallets, addresses, balances and transfers. To improve their implementation further, 
-they could choose to integrate Binance DEX which would add trading, order history, cancellations, 
-trading, charts, etc.
-
+they could choose to integrate Binance DEX which would add trading (order placement and cancellation), historical order and trade views, charts, etc.

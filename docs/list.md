@@ -1,22 +1,25 @@
-# List a Trading Pair
+# Listing a Trading Pair
 
-## How can a trading pair be created?
-So far Binance DEX still adheres to the idea that the most efficient and low cost way to perform trading and 
+## How is a trading pair created on Binance DEX?
+
+The design philosophy of Binance DEX adheres to the idea that the most efficient and low cost way to perform trading and 
 price-discovery is still to use single order book. This single order book is managed and replicated across all 
 full nodes with the same, deterministic matching logic.
 
-Simply allowing trading between two assets sounds 'perfect', however it is expensive for not only the network 
-runners but also the users in long term (liquidity cost can be much larger). In order to efficiently use the 
-network, Binance Chain only list assets against BNB and other widely accepted market benchmark assets. After 
-an asset is issued, anyone can "propose" to all validators to list it against particular benchmark assets. 
-Validators would vote to accept the proposal. Fee would be charged to prevent abuse of the proposing and 
-endorse the asset. Once the proposal is accepted, the owner of the base asset can list the trading pair 
-via interfaces.
+Simply allowing trading between two assets seems easy enough, however it is expensive for not only the network 
+but also its users in long term (and liquidity costs can be much larger). In order to efficiently use the 
+network, Binance Chain only list assets against BNB and other widely accepted market quote assets. 
 
-## List Transaction
+After an asset is issued, which costs a small fee,
+anyone can "propose" to all validators to list it against particular quote assets. 
+Validators then vote to accept the proposal. 
+A deposit is taken to prevent network abuse.
+Once the proposal is accepted, the owner of the base asset can list the trading pair.
 
-As mentioned before, if you wan to list a trading pair, you have to create a proposal first and deposit 
-enough BNB, then you should wait for voting result of validators (so far is two weeks).
+## The "List" transaction
+
+As mentioned before, if you want to list a trading pair, you need to issue the token you want to list. Then you have to 
+create a proposal first and deposit enough BNB, then you should wait for voting result of validators (so far is two weeks).
 
 But to prevent abuse, if your proposal is rejected by validators, all of your deposit will be distributed to 
 validators. So please make sure you are creating **reasonable** proposals, and you are encouraged to talk with 
@@ -26,15 +29,24 @@ will be returned to your account.
 Then the owner of the asset to be listed can list the trading pair via command line according to the proposal 
 approved before the proposal is expired.
 
-### Create a proposal
+**Please note:** Before you run any command examples on this page, and if you have not done so already, you must [generate or add a key to bnbcli](./keys.md).
 
-Assume that the token you want to list already exists. Then you need to create a proposal to list this token
-against one benchmark asset.
+**Also remember:** The `chain-id` and `node` parameters passed to bnbcli may vary, and may be removed completely if you are running a local full node. To find the latest list of chain IDs and endpoints for the testnet, please check [the peers list](https://testnet-dex.binance.org/api/v1/peers).
+
+### Issuing the token
+
+First, you need to issue the token. You have to make sure that there is enough BNB remaining in your account.
+
+You can refer to [issue doc](tokens.md) in case you do not know how to do it.
+
+### Creating a listing proposal (to list a trading pair)
+
+After issuing the token, you need to create a proposal to list this token against a quote asset.
 
 ```bash
 $  ./bnbcli gov submit-list-proposal --from test --deposit 10000000000:BNB \
 --base-asset-symbol AAA-254 --quote-asset-symbol BNB --init-price 100000000 --title "list AAA-254/BNB" \
---description "list AAA-254/BNB" --expire-time 1570665600 --chain-id=chain-bnb --node=172.22.41.165:26657 --json
+--description "list AAA-254/BNB" --expire-time 1570665600 --chain-id=Binance-Chain-Nile --node=data-seed-pre-2-s1.binance.org:80 --json
 Password to sign with 'test':
 {  
    "Height":"281822",
@@ -69,15 +81,38 @@ passed, you should use the identical params to list.
 
 And you also have to set expire time after which you will not be able to list even though proposal is passed.
 
-### Deposit
+Of course, the coins you deposit will be returned to your account once the proposal is passed. But if the proposal 
+is rejected by the community, the coins will be distributed to validators. So please talk about the proposal in the 
+online forum community before creating it and make sure there is an agreement on your listing proposal, because any 
+new list would affect the whole network efficiency. 
 
-Before validators can vote on the proposal you created, you need to deposit enough BNB (like 2000 BNB). You 
+You may notice that the numbers like deposit number and price are very large. The numbers are presented as integers in the chain data structure and codebase. The last 8 digits of the integer represent the fractional-part 
+(digits after the decimal point) by default if the number is presented in a human readable format. For example, 
+10000000000 means 100.00000000 if represented as a human readable number.
+
+### Finding your proposal ID
+
+Each proposal is assigned a unique ID, but this is not included in the transaction that you send yourself. You must query for the list of proposals to find the one that you have sent to the blockchain:
+
+```bash
+$  ./bnbcli gov query-proposals --chain-id=Binance-Chain-Nile --node=data-seed-pre-2-s1.binance.org:80
+  1 - list BNB/BTC.B-9CE
+  2 - list XRP.B-2A4/BNB
+  ...
+  14 - list AAA-254/BNB
+```
+
+In this case, `14` is your proposal ID, and you should then use it in the `--proposal-id` parameter in the next steps.
+
+### The deposit
+
+Before validators can vote on the proposal you created, you need to deposit enough BNB (at least 2000 BNB). You 
 may have already deposit a number of BNB when you propose, in the upper case, it is 100 BNB. So now you still 
 need to deposit another 1900 BNB.
 
 ```bash
 $  ./bnbcli gov deposit --deposit 190000000000:BNB --from test --proposal-id 14 
---chain-id=chain-bnb --node=172.22.41.165:26657 --json
+--chain-id=Binance-Chain-Nile --node=data-seed-pre-2-s1.binance.org:80 --json
 Password to sign with 'test':
 {  
    "Height":"282059",
@@ -109,7 +144,7 @@ Password to sign with 'test':
 ### Wait for voting result
 
 When you have deposited enough BNB, the proposal's status will switch to `VotingPeriod`. Then you should wait
-for voting result from validators (for now is two weeks).
+for voting result from validators (for now is 4 hours in the testnet).
 
 If proposal is rejected by validator, the money you have deposited will be distribute to validators.
 
@@ -118,7 +153,7 @@ If proposal is passed, BNB you have deposited will be returned.
 You can query proposal status via CLI.
 
 ```bash
-$  ./bnbcli gov proposal --proposal-id 15 --chain-id=chain-bnb --node=172.22.41.165:26657
+$  ./bnbcli gov query-proposal --proposal-id 15 --chain-id=Binance-Chain-Nile --node=data-seed-pre-2-s1.binance.org:80
 {
   "type": "gov/TextProposal",
   "value": {
@@ -145,7 +180,7 @@ $  ./bnbcli gov proposal --proposal-id 15 --chain-id=chain-bnb --node=172.22.41.
 }
 ```
 
-### List 
+### When the proposal passes
 
 When proposal is passed, the owner of the token to be listed can list the token before `expire_time` specified.
 
@@ -182,7 +217,7 @@ proposal.
 
 ```bash
 $  ./bnbcli dex list -s AAA-254 --quote-asset-symbol BNB --from test \
---init-price 100000000 --proposal-id 15 --chain-id=chain-bnb --node=172.22.41.165:26657 --json
+--init-price 100000000 --proposal-id 15 --chain-id=Binance-Chain-Nile --node=data-seed-pre-2-s1.binance.org:80 --json
 {  
    "Height":"282409",
    "TxHash":"77AE3D190F430FE6E4B1A9659BEBB3F022CF7631",
@@ -198,3 +233,4 @@ $  ./bnbcli dex list -s AAA-254 --quote-asset-symbol BNB --from test \
 }
 ```
 
+We will consider making this easier by adding a user friendly interface for tracking proposals in the future.

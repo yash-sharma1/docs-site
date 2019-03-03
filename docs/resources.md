@@ -1,7 +1,7 @@
-# Channels
+# Community Channels
 
-Please find more helpful resources from below:
+Please find a few suggested ways to connect with the community below:
 
-- Online Forum: this is the main portal to get community support.
-- Telegram Group
+- [Online Forum](https://community.binance.org): this is the main portal to get community support. 
+- The Binance Chain Telegram Group [English](https://t.me/BinanceDEXchange) [Chinese](https://t.me/BinanceDEXchangeCN)
 - [Twitter](https://twitter.com/binance_dex)

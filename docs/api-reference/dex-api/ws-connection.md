@@ -1,4 +1,4 @@
-## WebSocket Connections
+# WebSocket Connections
 
 The DEX exposes several data streams over standard WebSocket connections, which can be consumed by modern web browsers and server-side WebSocket libraries.
 
@@ -8,6 +8,8 @@ The DEX exposes several data streams over standard WebSocket connections, which 
 - All symbols in stream names are lowercase.
 
 Stream names may be provided in the URL **or** there is a mechanism to `subscribe` to consume streams on demand through one connection.
+
+Note: Once the connection is established, websocket server would send ping frame to client every 30 seconds. Client should response pong frame in time (this has already implemented by most mordern browers, but programmatical users need be aware of whether your websocket library support this), otherwise, the connection might be closed.
 
 Examples for each of these methods are provided below in JavaScript:
 
@@ -58,7 +60,7 @@ Using this method, streams are be consumed via subscribe and unsubscribe command
 
 After connecting successfully you can subscribe/unsubscribe to different topics.
 
-**Example:** To subscribe to orders events and market depth updates, you should to send a socket message with the `subscribe` payload as below:
+**Example:** To subscribe to orders events and market depth updates, you should send a socket message with the `subscribe` payload as below:
 
 ```javascript
     const conn = new WebSocket("wss://testnet-dex.binance.org/api");
@@ -72,7 +74,7 @@ After connecting successfully you can subscribe/unsubscribe to different topics.
     }
 ```
 
-**Example:** To unsubscribe from orders events, you should to send a socket message with payloads as below:
+**Example:** To unsubscribe from orders events, you should send a socket message with payloads as below:
 
 ```javascript
     // unsubscribe from topic
@@ -82,7 +84,7 @@ After connecting successfully you can subscribe/unsubscribe to different topics.
     conn.send(JSON.stringify({ method: "unsubscribe", topic: "marketDepth", symbols: ["BNB_BTC"] }));
 ```
 
-**Example:** To extend connection life, you should to send a a message with a payload using the `keepAlive` method:
+**Example:** To extend connection life, you should send a a message with a payload using the `keepAlive` method:
 
 ```javascript
     // This will extend the connection time to another 60 minutes
@@ -90,7 +92,7 @@ After connecting successfully you can subscribe/unsubscribe to different topics.
     conn.send(JSON.stringify({ method: "keepAlive" }));
 ```
 
-**Example:** To close a connection, you should to send a socket message with a payload as below:
+**Example:** To close a connection, you should send a socket message with a payload as below:
 
 ```javascript
     // Connections will auto close after 60 minutes by default if no "keepAlive" messages received

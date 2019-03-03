@@ -1,4 +1,4 @@
-# Binance Chain's Blockchain
+# The Binance Chain Blockchain
 
 The purpose of the new blockchain and DEX is to create an alternative marketplace for issuing and exchanging digital assets in a decentralized manner.
 
@@ -30,7 +30,7 @@ For more information, please have a look at the [Tendermint spec](https://github
 
 ## Node Roles
 
-### What is a `Validator`?
+### What is a Validator Node?
 
 Validators are a group of IT infrastructure who take the responsibility to maintain the Binance 
 Chain/DEX data and validate all the transactions. They would join the consensus procedure and 
@@ -42,18 +42,25 @@ ecosystem matures, this responsibility will be distributed. The decentralized go
 would be introduced and executed. More qualified organization/individual can become Validator.
 
 
-### What is a `Witness Node`?
+### What is a Witness Node?
 
-`Witness Node` are the majority nodes of Binance Chain. Although they do not join consensus process 
-and produce blocks, they do:
+Witness nodes represent the majority nodes in a Binance Chain deployment. Although they do not join the consensus process 
+and produce blocks, they take care of:
 
-- witnes consensus process
-- serve as data replicas and propagate the chain states around
-- receive transactions and broadcast them to all other nodes including `Validator`.
+- The witness consensus process.
+- They serve as data replicas and help to propagate the chain state around the network.
+- They receive transactions and broadcast them to all other nodes including Validator nodes.
 
-### What is `Accelerate Node`?
+### What is an Accelerated Node?
 
-Please check [here](faq.md#what_is_the_accelerated_node).
+Please check [here](faq.md#what-is-the-accelerated-node). 
+
+For testnet, there are 2 accelerated nodes setup as below. API users should try to use them directly. 
+- testnet-dex-atlantic.binance.org
+- testnet-dex-asiapacific.binance.org
+
+For mainnet, there would be more accelerated nodes.
+
 
 ## Blocking
 
@@ -107,4 +114,4 @@ For Binance Chain address, the prefix is `bnb` for production network, and `tbnb
 
 #### Signature
 
-Binance Chain uses ECDSA signature on curve Secp256k1 against `SHA256` hash of the byte array of encoded transaction, in the same way as the current Bitcoin, according to RFC 6979 and BIP 62.
+Binance Chain uses an ECDSA signature on curve secp256k1 against a `SHA256` hash of the byte array of a JSON-encoded canonical representation of the transaction. For more information, please see [this page](./encoding.md#canonical-bytes-for-signing).

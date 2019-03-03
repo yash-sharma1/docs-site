@@ -90,7 +90,7 @@ DEX would always calculate and collect the fees based on the latest balance and 
 
 ### Current Fees Table
 
-Fees are variable and may change over time as governance proposals are proposed and voted on. The current fees table as of **2019-01-26** is as follows:
+Fees are variable and may change over time as governance proposals are proposed and voted on. The current fees table for Tetnet as of **2019-02-26** is as follows:
 
 Transaction Type | Pay in Non-BNB Asset | Pay in BNB | Exchange (DEX) Related
 -- | -- | -- | --
@@ -98,12 +98,12 @@ New Order | 0 | 0 | Y
 Cancel (No Fill) | Equivalent 0.001 BNB | 0.0002 BNB | Y
 Order Expire (No Fill) | Equivalent 0.001 BNB | 0.0002 BNB | Y
 IOC (No Fill) | Equivalent 0.0005 BNB | 0.0001 BNB | Y
-Transfer | N/A | 0.0025 BNB | N
-Issue Asset | N/A | 2000 BNB | N
+Transfer | N/A | 0.00125 BNB | N
+Issue Asset | N/A | 1000 BNB | N
 Mint Asset | N/A | 200 BNB | N
 Burn Asset | N/A | 1 BNB | N
 Freeze/Unfreeze Asset | N/A | 0.01 BNB | N
-List Asset | N/A | 10000 BNB | N
+List Asset | N/A | 2000 BNB | N
 
 ### Trading Fees
 
@@ -115,7 +115,9 @@ Transaction Type | Pay in non-BNB Asset | Pay in BNB
 -- | -- | --
 Trade | 0.1% | 0.04%
 
-**Note:** There will be an API link to view the current trading fee in real-time provided here shortly.
+### Fees API
+
+View system fees updated in real time [here](https://testnet-dex.binance.org/api/v1/fees).
 
 ### Notes
 

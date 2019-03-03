@@ -50,7 +50,7 @@ message StdTx {
   repeated Msg msgs = 1 // array of size 1, containing the transaction message, which are one of the transaction type below. please check the above "Array Encoding"
   repeated StdSignature signatures = 2 // array of size 1, containing the standard signature structure of the transaction sender
   string memo = 3 // a short sentence of remark for the transaction. Please only `Transfer` transaction allows 'memo' input, and other transactions with non-empty `Memo` would be rejected.
-  sint64 source = 4 // an identifier for tools triggerring this transaction, set to zero if unwilling to disclose.
+  int64 source = 4 // an identifier for tools triggerring this transaction, set to zero if unwilling to disclose.
   bytes data = 5 //byte array, reserved for future use
 }
 ```
@@ -121,8 +121,8 @@ message StdSignature {
   }
   PubKey pub_key = 1 // public key bytes of the signer address
   bytes signature = 2 // signature bytes, please check chain access section for signature generation
-  sint64 account_number = 3 // another identifier of signer, which can be read from chain by account REST API or RPC
-  sint64 sequence = 4 // sequence number for the next transaction of the client, which can be read fro chain by account REST API or RPC. please check chain acces section for details.
+  int64 account_number = 3 // another identifier of signer, which can be read from chain by account REST API or RPC
+  int64 sequence = 4 // sequence number for the next transaction of the client, which can be read fro chain by account REST API or RPC. please check chain acces section for details.
 }
 
 ```
@@ -139,7 +139,7 @@ message Send {
   0x2A2C87FA   // hardcoded, object type prefix in 4 bytes
   message Token {
     string denom = 1
-    sint64 amount = 2 
+    int64 amount = 2 
   }
   message Input {
     bytes address = 1
@@ -164,11 +164,11 @@ message NewOrder {
   bytes sender = 1 // order originating address
   string id = 2 // order id, this is much, please check the details below Order ID section.
   string symbol = 3 // symbol for trading pair in full name of the tokens
-  sint64 ordertype = 4 // only accept 2 for now, meaning limit order
-  sint64  side = 5 // 1 for buy and 2 fory sell
-  sint64 price = 6 // price of the order, which is the real price multiplied by 1e8 (10^8) and rounded to integer
-  sint64 quantity = 7 // quantity of the order, which is the real price multiplied by 1e8 (10^8) and rounded to integer
-  sint64 timeinforce = 8 // 1 for Good Till Expire(GTE) order and 3 for Immediate Or Cancel (IOC)
+  int64 ordertype = 4 // only accept 2 for now, meaning limit order
+  int64  side = 5 // 1 for buy and 2 fory sell
+  int64 price = 6 // price of the order, which is the real price multiplied by 1e8 (10^8) and rounded to integer
+  int64 quantity = 7 // quantity of the order, which is the real price multiplied by 1e8 (10^8) and rounded to integer
+  int64 timeinforce = 8 // 1 for Good Till Expire(GTE) order and 3 for Immediate Or Cancel (IOC)
 ```
 
 ##### Order ID
@@ -189,7 +189,6 @@ message CancelOrder {
   0x166E681B   // hardcoded, object type prefix in 4 bytes
   bytes sender = 1 // order originating address'
   string symbol = 2 // symbol for trading pair in full name of the tokens
-  string id = 3 // order id, optional
   string refid = 4 // order id of the one to cancel
 }
 ```
@@ -203,7 +202,7 @@ message TokenFreeze {
   0xE774B32D   // hardcoded, object type prefix in 4 bytes
   bytes from = 1 // owner address
   string symbol = 2 // token symbol, in full name with "-" suffix
-  sint64 amount = 3 // amount of token to freeze
+  int64 amount = 3 // amount of token to freeze
 }
 ```
 
@@ -216,7 +215,7 @@ message TokenUnfreeze {
   0x6515FF0D   // hardcoded, object type prefix in 4 bytes
   bytes from = 1 // owner address
   string symbol = 2 // token symbol, in full name with "-" suffix
-  sint64 amount = 3 // amount of token to unfreeze
+  int64 amount = 3 // amount of token to unfreeze
 }
 ```
 
