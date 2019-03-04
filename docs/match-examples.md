@@ -19,13 +19,11 @@ sign indicates sell side pressure.
     - For scenarios that all the the equivalent surplus amounts are positive, if all the prices are 
     below the reference price plus an upper limit percentage (e.g. 5%), then algorithm uses the highest 
     of the potential equilibrium prices. If all the prices are above the reference price plus an upper 
-    limit, use the lowest price; for other cases, use min(the reference price plus the upper limit, 
-    the highest price with the equivalent surplus). 
+    limit, use the lowest price; for other cases, use the reference price plus the upper limit.
     - Conversely, if market pressure is on the sell side, if all prices are above the reference price
     minus a lower percentage limit, then the algorithm uses the lowest of the potential prices. 
     If all the price are below the reference price minus the lower percentage limit, use the highest 
-    price, otherwise use max (the reference price minus the lower percentage limit, the lowest price 
-    with the equivalent surplus)
+    price, otherwise use the reference price minus the lower percentage limit.
 
     If both positive and negative surplus amounts exist, precede to Step 4.
 
@@ -79,7 +77,7 @@ SUM    SELL    PRICE    BUY    SUM    EXECUTION    IMBALANCE
 50     50      95              105    50           55
 
 5.1 choose the lowest for all the same value of sell surplus imbalance, reference price is 80 
-and 5% upper limit (Step 3)
+and 5% lower limit (Step 3)
 --------------------------------------------------------------
 SUM    SELL    PRICE    BUY    SUM    EXECUTION    IMBALANCE
 50             102      10     10     10           -40
@@ -91,7 +89,7 @@ SUM    SELL    PRICE    BUY    SUM    EXECUTION    IMBALANCE
 50             96              20     20           -30
 50     50      95              20     20           -30*
 
-5.2 choose the lowest for all the same value of sell surplus imbalance, reference price is 100 
+5.2 choose the highest for all the same value of sell surplus imbalance, reference price is 100 
 and 5% lower limit (Step 3)
 --------------------------------------------------------------
 SUM    SELL    PRICE    BUY    SUM    EXECUTION    IMBALANCE
@@ -104,7 +102,7 @@ SUM    SELL    PRICE    BUY    SUM    EXECUTION    IMBALANCE
 50             93              20     20           -30
 50     50      92              20     20           -30
 
-5.3 choose the lowest for all the same value of sell surplus imbalance, reference price is 90 
+5.3 choose the reference price for all the same value of buy surplus imbalance, reference price is 90 
 and 5% upper limit (Step 3)
 --------------------------------------------------------------
 SUM    SELL    PRICE    BUY    SUM    EXECUTION    IMBALANCE
@@ -117,7 +115,7 @@ SUM    SELL    PRICE    BUY    SUM    EXECUTION    IMBALANCE
 50             93              100    50           50
 50     50      92              100    50           50
 
-5.4 choose the lowest for all the same value of sell surplus imbalance, reference price is 100 
+5.4 choose the reference price for all the same value of sell surplus imbalance, reference price is 100 
 and 5% lower limit (Step 3)
 --------------------------------------------------------------
 SUM    SELL    PRICE    BUY    SUM    EXECUTION    IMBALANCE
