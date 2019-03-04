@@ -141,3 +141,125 @@ Global Flags:
   -o, --output string     Output format (text|json) (default "text")
       --trace             print out full stack trace on errors
 ```
+
+### Multi-send
+
+Sometimes, you may want to transfer tokens to multiple people. So `bnbcli` also provides you a `multi-send` command.
+
+You can use `-h` to get helps:
+```bash
+$ ./bnbcli token multi-send -h
+Create and sign a multi send tx
+
+Usage:
+  bnbcli token multi-send [flags]
+
+Flags:
+      --account-number int      AccountNumber number to sign the tx
+      --async                   broadcast transactions asynchronously
+      --chain-id string         Chain ID of tendermint node
+      --dry-run                 ignore the perform a simulation of a transaction, but don't broadcast it
+      --from string             Name or address of private key with which to sign
+      --generate-only           build an unsigned transaction and write it to STDOUT
+  -h, --help                    help for multi-send
+      --indent                  Add indent to JSON response
+      --json                    return output in json format
+      --ledger                  Use a connected Ledger device
+      --memo string             Memo to send along with transaction
+      --node string             <host>:<port> to tendermint rpc interface for this chain (default "tcp://localhost:26657")
+      --print-response          return tx response (only works with async = false) (default true)
+      --sequence int            Sequence number to sign the tx
+      --source int              Source of tx
+      --transfers string        Transfers details, format: [{"to": "addr", "amount": "1:BNB,2:BTC"}, ...]
+      --transfers-file string   File of transfers details, if transfers-file is not empty, --transfers will be ignored
+      --trust-node              Trust connected full node (don't verify proofs for responses) (default true)
+
+Global Flags:
+  -e, --encoding string   Binary encoding (hex|b64|btc) (default "hex")
+      --home string       directory for config and data (default "/Users/wuzhenxing/.bnbcli")
+  -o, --output string     Output format (text|json) (default "text")
+      --trace             print out full stack trace on errors
+```
+
+The difference here is you have to construct the transfer detail by yourself. You have to specify `--transfers` flag and 
+format is showed above. In the same time, you can write the transaction detail in a file and specify `--transfers-file`
+flag and read from the file contains transaction.
+
+Example, you can specify `--transfers`:
+
+```bash
+$ ./bnbcli token multi-send --home ./testnodecli --from test --chain-id=Binance-Chain-Nile --node=data-seed-pre-2-s1.binance.org:80 --transfers "[{\"to\":\"bnb1g5p04snezgpky203fq6da9qyjsy2k9kzr5yuhl\",\"amount\":\"100000000000000:BNB\"},{\"to\":\"bnb1l86xty0m55ryct9pnypz6chvtsmpyewmhrqwxw\",\"amount\":\"100000000000000:BNB\"}]" --json
+Password to sign with 'test':
+{  
+   "Height":"1412",
+   "TxHash":"A238C3C33625B5398FE648BD3FE9822CB7A07A2DB7778376546916F81C634138",
+   "Response":{  
+      "log":"Msg 0: ",
+      "tags":[  
+         {  
+            "key":"c2VuZGVy",
+            "value":"Ym5iMXFnOTRzMnYzM3NyNTVrNDAybnN2M3NmY3ozMmVtdGF3NmRjeTk2"
+         },
+         {  
+            "key":"cmVjaXBpZW50",
+            "value":"Ym5iMWc1cDA0c25lemdwa3kyMDNmcTZkYTlxeWpzeTJrOWt6cjV5dWhs"
+         },
+         {  
+            "key":"cmVjaXBpZW50",
+            "value":"Ym5iMWw4Nnh0eTBtNTVyeWN0OXBueXB6NmNodnRzbXB5ZXdtaHJxd3h3"
+         },
+         {  
+            "key":"YWN0aW9u",
+            "value":"c2VuZA=="
+         }
+      ]
+   }
+}
+```
+
+And you can also try `--transfers-file`.
+
+Assume that you have a file named `transaction.json` in your current path and content is :
+```json
+[  
+   {  
+      "to":"bnb1g5p04snezgpky203fq6da9qyjsy2k9kzr5yuhl",
+      "amount":"100000000000000:BNB"
+   },
+   {  
+      "to":"bnb1l86xty0m55ryct9pnypz6chvtsmpyewmhrqwxw",
+      "amount":"100000000000000:BNB"
+   }
+]
+```
+
+Then you can specify `--transfers-file`:
+```bash
+$ ./bnbcli token multi-send --home ./testnodecli --from test --chain-id=Binance-Chain-Nile --node=data-seed-pre-2-s1.binance.org:80 --transfers-file ./transaction.json --json
+Password to sign with 'test':
+{  
+   "Height":"1412",
+   "TxHash":"A238C3C33625B5398FE648BD3FE9822CB7A07A2DB7778376546916F81C634138",
+   "Response":{  
+      "log":"Msg 0: ",
+      "tags":[  
+         {  
+            "key":"c2VuZGVy",
+            "value":"Ym5iMXFnOTRzMnYzM3NyNTVrNDAybnN2M3NmY3ozMmVtdGF3NmRjeTk2"
+         },
+         {  
+            "key":"cmVjaXBpZW50",
+            "value":"Ym5iMWc1cDA0c25lemdwa3kyMDNmcTZkYTlxeWpzeTJrOWt6cjV5dWhs"
+         },
+         {  
+            "key":"cmVjaXBpZW50",
+            "value":"Ym5iMWw4Nnh0eTBtNTVyeWN0OXBueXB6NmNodnRzbXB5ZXdtaHJxd3h3"
+         },
+         {  
+            "key":"YWN0aW9u",
+            "value":"c2VuZA=="
+         }
+      ]
+   }
+}
+```
