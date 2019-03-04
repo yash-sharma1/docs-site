@@ -67,5 +67,5 @@ example:
 
 ## Work with light client
 
-Light client has the same RPC interface as the list here [rpc-api](api-reference/node-rpc.md), through the default port of light 
-client is `8888`.
+Light client has the same RPC interface as the list here [rpc-api](api-reference/node-rpc.md), also the default port of light 
+client is `27147`.
