@@ -25,7 +25,6 @@ Usage:
 
 Available Commands:
   mnemonic    Compute the bip39 mnemonic for some input entropy
-  new         Interactive command to derive a new private key, encrypt it, and save to disk
   add         Create a new key, or import from seed
   list        List all keys
   show        Show key info for the given name
@@ -53,33 +52,12 @@ $ ./bnbcli keys mnemonic
 uncle mule squirrel cover theory oven rookie dry intact alert right afraid differ ability mule struggle spray usual must purity social ball flat short
 ```
 
-### new
-
-`new` is used to generate a new key. You can specify bip44 path and mnemonic. For Binance Chain, bip44 path is `714`.
-Actually, you do not need to care about this if you do not have special requirement. You can create a new key use `add`
-mentioned below, it is much simpler.
-
-```bash
-$ ./bnbcli keys new testkey
-> -------------------------------------
-> Enter your bip44 path. Default is 44'/714'/0'/0/0
-
-
-> Enter your bip39 mnemonic, or hit enter to generate one.
-
-> -------------------------------------
-> Enter your bip39 passphrase. This is combined with the mnemonic to derive the seed
-> Most users should just hit enter to use the default, ""
-
-> -------------------------------------
-> Enter a passphrase to encrypt your key to disk:
-> Repeat the passphrase:
-```
-
 ### add 
 
 You can use `add` to create a new key or import from seed (mnemonic). You have to specify the name for the key you want
 to create.
+
+To import with a mnemonic phrase, you should include the `--recover` flag in the command.
 
 #### create a new key
 
