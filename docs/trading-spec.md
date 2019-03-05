@@ -104,6 +104,8 @@ Mint Asset | N/A | 200 BNB | N
 Burn Asset | N/A | 1 BNB | N
 Freeze/Unfreeze Asset | N/A | 0.01 BNB | N
 List Asset | N/A | 2000 BNB | N
+Submit Proposal | N/A | 10 BNB | N
+Deposit | N/A | 0.00125 BNB | N
 
 ### Trading Fees
 
