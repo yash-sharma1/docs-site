@@ -1007,7 +1007,7 @@ paths:
       - transaction
       summary: Get transactions.
       description: |
-        Gets a list of transactions.
+        Gets a list of transactions. Multisend transaction is not available in this api.
 
         **Rate Limit:** 60 requests per IP per minute.
       operationId: txns
@@ -1067,7 +1067,7 @@ paths:
         type: string
       - name: txType
         in: query
-        description: "transaction type. Allowed value: [ NEW_ORDER,ISSUE_TOKEN,BURN_TOKEN,LIST_TOKEN,CANCEL_ORDER,FREEZE_TOKEN,UN_FREEZE_TOKEN,TRANSFER,PROPOSAL,VOTE]"
+        description: "transaction type. Allowed value: [ NEW_ORDER,ISSUE_TOKEN,BURN_TOKEN,LIST_TOKEN,CANCEL_ORDER,FREEZE_TOKEN,UN_FREEZE_TOKEN,TRANSFER,PROPOSAL,VOTE,MINT,DEPOSIT]"
         required: false
         type: string
         allowEmptyValue: false
@@ -1082,6 +1082,8 @@ paths:
         - TRANSFER
         - PROPOSAL
         - VOTE
+        - MINT
+        - DEPOSIT
       responses:
         '200':
           description: OK
