@@ -29,8 +29,9 @@
     * [.BncClient](#module_client.BncClient)
         * [new exports.BncClient(server)](#new_module_client.BncClient_new)
         * [.transfer(fromAddress, toAddress, amount, asset, memo, sequence)](#module_client.BncClient+transfer)
+        * [.cancelOrder(fromAddress, symbol, refid, sequence)](#module_client.BncClient+cancelOrder)
         * [.placeOrder(address, symbol, side, price, quantity, sequence, timeinforce)](#module_client.BncClient+placeOrder)
-        * [._sendTransaction(concrete, stdSignMsg, address, sequence, memo, sync)](#module_client.BncClient+_sendTransaction) ⇒ <code>Object</code>
+        * [._sendTransaction(msg, stdSignMsg, address, sequence, memo, sync)](#module_client.BncClient+_sendTransaction) ⇒ <code>Object</code>
         * [.getBalance(address)](#module_client.BncClient+getBalance)
         * [.getAccount(address)](#module_client.BncClient+getAccount)
         * [.createAccount()](#module_client.BncClient+createAccount) ⇒ <code>Object</code>
@@ -54,8 +55,9 @@ The Binance Chain client.
 * [.BncClient](#module_client.BncClient)
     * [new exports.BncClient(server)](#new_module_client.BncClient_new)
     * [.transfer(fromAddress, toAddress, amount, asset, memo, sequence)](#module_client.BncClient+transfer)
+    * [.cancelOrder(fromAddress, symbol, refid, sequence)](#module_client.BncClient+cancelOrder)
     * [.placeOrder(address, symbol, side, price, quantity, sequence, timeinforce)](#module_client.BncClient+placeOrder)
-    * [._sendTransaction(concrete, stdSignMsg, address, sequence, memo, sync)](#module_client.BncClient+_sendTransaction) ⇒ <code>Object</code>
+    * [._sendTransaction(msg, stdSignMsg, address, sequence, memo, sync)](#module_client.BncClient+_sendTransaction) ⇒ <code>Object</code>
     * [.getBalance(address)](#module_client.BncClient+getBalance)
     * [.getAccount(address)](#module_client.BncClient+getAccount)
     * [.createAccount()](#module_client.BncClient+createAccount) ⇒ <code>Object</code>
@@ -78,6 +80,8 @@ The Binance Chain client.
 <a name="module_client.BncClient+transfer"></a>
 
 #### bncClient.transfer(fromAddress, toAddress, amount, asset, memo, sequence)
+Transfer tokens from one address to another. Returns a Promise.
+
 **Kind**: instance method of [<code>BncClient</code>](#module_client.BncClient)  
 
 | Param | Type |
@@ -89,44 +93,58 @@ The Binance Chain client.
 | memo | <code>String</code> | 
 | sequence | <code>Number</code> | 
 
+<a name="module_client.BncClient+cancelOrder"></a>
+
+#### bncClient.cancelOrder(fromAddress, symbol, refid, sequence)
+Cancel an order. Returns a Promise.
+
+**Kind**: instance method of [<code>BncClient</code>](#module_client.BncClient)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| fromAddress | <code>String</code> |  |
+| symbol | <code>String</code> | the market pair |
+| refid | <code>String</code> | the order ID of the order to cancel |
+| sequence | <code>Number</code> |  |
+
 <a name="module_client.BncClient+placeOrder"></a>
 
 #### bncClient.placeOrder(address, symbol, side, price, quantity, sequence, timeinforce)
-placeOrder
+Place an order. Returns a Promise.
 
 **Kind**: instance method of [<code>BncClient</code>](#module_client.BncClient)  
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | address | <code>String</code> |  |  |
-| symbol | <code>String</code> |  |  |
-| side | <code>String</code> |  |  |
+| symbol | <code>String</code> |  | the market pair |
+| side | <code>Number</code> |  | 1-Buy, 2-Sell |
 | price | <code>Number</code> |  |  |
 | quantity | <code>Number</code> |  |  |
 | sequence | <code>Number</code> |  |  |
-| timeinforce | <code>Number</code> | <code>1</code> | (1-GTC(Good Till Expire), 3-IOC(Immediate or Cancel)) |
+| timeinforce | <code>Number</code> | <code>1</code> | 1-GTC(Good Till Expire), 3-IOC(Immediate or Cancel) |
 
 <a name="module_client.BncClient+_sendTransaction"></a>
 
-#### bncClient.\_sendTransaction(concrete, stdSignMsg, address, sequence, memo, sync) ⇒ <code>Object</code>
-send single transaction to binance chain
+#### bncClient.\_sendTransaction(msg, stdSignMsg, address, sequence, memo, sync) ⇒ <code>Object</code>
+Broadcast a raw transaction to the blockchain. Returns a Promise.
 
 **Kind**: instance method of [<code>BncClient</code>](#module_client.BncClient)  
 **Returns**: <code>Object</code> - response (success or fail)  
 
-| Param | Type | Description |
-| --- | --- | --- |
-| concrete | <code>Object</code> | msg type |
-| stdSignMsg | <code>Object</code> |  |
-| address | <code>String</code> |  |
-| sequence | <code>Number</code> |  |
-| memo | <code>String</code> |  |
-| sync | <code>Boolean</code> |  |
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| msg | <code>Object</code> |  | the msg object |
+| stdSignMsg | <code>Object</code> |  | the sign doc object used to generate a signature |
+| address | <code>String</code> |  |  |
+| sequence | <code>Number</code> | <code></code> | the account sequence (optional, fetched if not given) |
+| memo | <code>String</code> |  | transaction memo, optional |
+| sync | <code>Boolean</code> | <code>true</code> | use synchronous mode, optional |
 
 <a name="module_client.BncClient+getBalance"></a>
 
 #### bncClient.getBalance(address)
-get balance
+Get an address balance. Returns a Promise.
 
 **Kind**: instance method of [<code>BncClient</code>](#module_client.BncClient)  
 
@@ -306,7 +324,12 @@ Encodes an address from input data bytes.
 Generates 32 bytes of random entropy
 
 **Kind**: static constant of [<code>crypto</code>](#module_crypto)  
-**Returns**: <code>string</code> - entropy hexstring  
+**Returns**: <code>string</code> - entropy bytes hexstring  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| len | <code>number</code> | output length (default: 32 bytes) |
+
 <a name="module_crypto.generateRandomArray"></a>
 
 ### crypto.generateRandomArray ⇒ <code>ArrayBuffer</code>
@@ -455,7 +478,7 @@ Get a private key from mnemonic words.
 | Param | Type | Description |
 | --- | --- | --- |
 | mnemonic | <code>string</code> | the mnemonic phrase words |
-| derive | <code>bool</code> | derive a private key using the default HD path, default: true |
+| derive | <code>bool</code> | derive a private key using the default HD path (default: true) |
 
 <a name="module_amino"></a>
 
