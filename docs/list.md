@@ -18,8 +18,10 @@ Once the proposal is accepted, the owner of the base asset can list the trading 
 
 ## The "List" transaction
 
-As mentioned before, if you want to list a trading pair, you need to issue the token you want to list. Then you have to 
-create a proposal first and deposit enough BNB, then you should wait for voting result of validators (so far is two weeks).
+As mentioned before, if you want to list a trading pair, you need to issue the token you want to list. 
+
+Then you have to create a proposal first and deposit enough BNB, then you should wait for voting result of validators util
+voting period ends.
 
 But to prevent abuse, if your proposal is rejected by validators, all of your deposit will be distributed to 
 validators. So please make sure you are creating **reasonable** proposals, and you are encouraged to talk with 
@@ -29,9 +31,13 @@ will be returned to your account.
 Then the owner of the asset to be listed can list the trading pair via command line according to the proposal 
 approved before the proposal is expired.
 
+**About fees:** Fees will be charge when issuing a token, creating a proposal, depositing and listing. You can refer to [fee table in trading spec](./trading-spec.md).
+
 **Please note:** Before you run any command examples on this page, and if you have not done so already, you must [generate or add a key to bnbcli](./keys.md).
 
-**Also remember:** The `chain-id` and `node` parameters passed to bnbcli may vary, and may be removed completely if you are running a local full node. To find the latest list of chain IDs and endpoints for the testnet, please check [the peers list](https://testnet-dex.binance.org/api/v1/peers).
+**Also remember:** The `chain-id` and `node` parameters passed to bnbcli may vary, and may be removed completely 
+if you are running a local full node. To find the latest list of chain IDs and endpoints for the testnet, 
+please check [the peers list](https://testnet-dex.binance.org/api/v1/peers).
 
 ### Issuing the token
 
