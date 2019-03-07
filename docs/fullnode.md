@@ -1,6 +1,6 @@
 # Run a full node to join Binance Chain
 
-A `full node` of Binance Chain is a `witness node`, which observes the consensus messaging, 
+A `full node` of Binance Chain is a `witness node`, which observes the consensus messaging,
 downloads blocks and executes logics to achieve the consistent state as `validator node` (and other `witness node`).
 Full nodes also help the network by accepting transactions from other nodes, and then relaying them to core Binance network.
 
@@ -11,7 +11,7 @@ Full nodes also help the network by accepting transactions from other nodes, and
 We support running full node on `Mac OS X` and `Linux`.
 
 ### Minimum Requirements
-The hardware must meet certain requirements to run a full node. 
+The hardware must meet certain requirements to run a full node.
 
 - Desktop or laptop hardware running recent versions of Mac OS X, or Linux.
 - 500 gigabytes of free disk space, accessible at a minimum read/write speed of 100 MB/s.
@@ -22,7 +22,7 @@ More hours would be better, and best of all would be if you can run your node co
 
 ## Run a full node
 
-Download: 
+Download:
 ```bash
 git clone https://github.com/binance-chain/node-binary.git
 ```
@@ -38,14 +38,14 @@ Start the full node according to the platform. Replace the `platform` var with `
 ./{{platform}}/bnbchaind start --home ./node  &
 ```
 
-**Notice**: For now, it may takes long time to sync blocks from Binance Chain. The actual time depends on how long your full
-node are lagged behind the core network. But we are working on fast sync mode can set you up in minutes. 
+**Notice**: For now, it may takes long time to sync blocks from Binance Chain. If you are not interested in sync historical blocks, you can  change `state_sync` option in `{home}/config/app.toml` to true, it will catch up with chain on most recent height after today's UTC 0:00. (so if now is 23:59, wait one more minute will get much more faster sync up speed)
+
 Only after catch up with Binance Chain, the full node can handle request correctly.
 
 ## Network and Seeding
 
-For a full node, it must connect to one or more known nodes to join Binance Chain. There are several famous `seed node` that 
-offer known nodes address of the network to newly joined full nodes. 
+For a full node, it must connect to one or more known nodes to join Binance Chain. There are several famous `seed node` that
+offer known nodes address of the network to newly joined full nodes.
 
 You cat get seeds info through a simple python script(notice to replace domain according to different network):
 
@@ -62,19 +62,17 @@ If you want add or remove seed node, please feel free to edit the field `seeds` 
 
 ## More configuration
 
-- Log: The log file is under `home`- the directory specified when start `bnbchaind`. The latest log file is `bnc.log`. The process will create 
-a new log file every one hour. To make sure you have sufficient disk space to keep the log, we strongly recommend you to change the log location 
+- Log: The log file is under `home`- the directory specified when start `bnbchaind`. The latest log file is `bnc.log`. The process will create
+a new log file every one hour. To make sure you have sufficient disk space to keep the log, we strongly recommend you to change the log location
 by changing `logFileRoot` option in `{home}/config/app.toml`.
-- Service Port: RPC service listen on port 27147 and P2P service listen on port 27146 by default. Make sure these two ports 
+- Service Port: RPC service listen on port 27147 and P2P service listen on port 27146 by default. Make sure these two ports
 are free before start a full node, else the full node have to listen on other ports.
 - Store: All the state and block data will store under `{home}/data`, do not delete or edit any of these files.
 - More detailed configuration options please visit `node-binary/fullnode/{network}/node/config.toml` and `node-binary/fullnode/{network}/node/app.toml`
 
 ## Upgrading a full node
 
-For most case, download new binary and replace it, then restart the full node will work. If we release a incompatible version, 
-we may be release both the data and binary, but is is still in discuss. More detail will come out later.
-
+For most case, download the new binary and replace it, then restart the full node will work. For the special case, you may have to run some extra step for an incompatible version (hard fork).
 
 ## Monitor
 
@@ -82,7 +80,7 @@ Prometheus is enabled on port 26660 by default, and the endpoint is `/metrics`.
 
 ## Work with full node
 
-Full node has the same RPC interface as the list here [rpc-api](api-reference/node-rpc.md) 
+Full node has the same RPC interface as the list here [rpc-api](api-reference/node-rpc.md)
 
-If you are very interested in transactions in every block, or order book, or account changes or block fee charge, 
-please refer to [work with full node](workwith-node.md). 
+If you are very interested in transactions in every block, or order book, or account changes or block fee charge,
+please refer to [work with full node](workwith-node.md).
