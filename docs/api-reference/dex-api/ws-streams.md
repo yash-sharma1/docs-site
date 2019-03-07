@@ -12,7 +12,7 @@ Examples are written in JavaScript.
 
 ```javascript
     // URL connection
-    const accountAndOrders = new WebSocket("wss://testnet-dex.binance.org/api/ws/bnc1hp7cves62dzj8n4z8ckna0d3t6zd7z2zcj6gtq");
+    const accountAndOrderAndTransfers = new WebSocket("wss://testnet-dex.binance.org/api/ws/bnc1hp7cves62dzj8n4z8ckna0d3t6zd7z2zcj6gtq");
 
     // Or Subscribe method
     const conn = new WebSocket("wss://testnet-dex.binance.org/api");
@@ -28,7 +28,7 @@ Examples are written in JavaScript.
     "stream": "orders",
     "data": [{
         "e": "executionReport",        // Event type
-        "E": 1499405658658,            // Event time
+        "E": 1499405658658,            // Event height
         "s": "ETH_BTC",                // Symbol
         "S": 1,                        // Side, 1 for Buy; 2 for Sell
         "o": 2,                        // Order type, 2 for LIMIT (only)
@@ -50,7 +50,7 @@ Examples are written in JavaScript.
     },
     {
         "e": "executionReport",        // Event type
-        "E": 1499405658658,            // Event time
+        "E": 1499405658658,            // Event height
         "s": "ETH_BNB",                // Symbol
         "S": "BUY",                    // Side
         "o": "LIMIT",                  // Order type
@@ -83,7 +83,7 @@ Return account updates.
 
 ```javascript
     // URL connection
-    const accountAndOrders = new WebSocket("wss://testnet-dex.binance.org/api/ws/bnc1hp7cves62dzj8n4z8ckna0d3t6zd7z2zcj6gtq");
+    const accountAndOrderAndTransfers = new WebSocket("wss://testnet-dex.binance.org/api/ws/bnc1hp7cves62dzj8n4z8ckna0d3t6zd7z2zcj6gtq");
 
     // Or Subscribe method
     const conn = new WebSocket("wss://testnet-dex.binance.org/api");
@@ -94,36 +94,78 @@ Return account updates.
 
 **Received Payload:**
 
-"stream" and "data" wrapper object is ignored here
-
 ```javascript
 {
-  "e": "outboundAccountInfo",   // Event type
-  "E": 1499405658849,           // Event time
-  "B": [                        // Balances array
-    {
-      "a": "LTC",               // Asset
-      "f": "17366.18538083",    // Free amount
-      "l": "0.00000000",        // Locked amount
-      "r": "0.00000000"         // Frozen amount
-    },
-    {
-      "a": "BTC",
-      "f": "10537.85314051",
-      "l": "2.19464093",
-      "r": "0.00000000"
-    },
-    {
-      "a": "ETH",
-      "f": "17902.35190619",
-      "l": "0.00000000",
-      "r": "0.00000000"
-    }
-  ]
+    "stream": "accounts",
+    "data": [{
+      "e": "outboundAccountInfo",   // Event type
+      "E": 1499405658849,           // Event height
+      "B": [                        // Balances array
+        {
+          "a": "LTC",               // Asset
+          "f": "17366.18538083",    // Free amount
+          "l": "0.00000000",        // Locked amount
+          "r": "0.00000000"         // Frozen amount
+        },
+        {
+          "a": "BTC",
+          "f": "10537.85314051",
+          "l": "2.19464093",
+          "r": "0.00000000"
+        },
+        {
+          "a": "ETH",
+          "f": "17902.35190619",
+          "l": "0.00000000",
+          "r": "0.00000000"
+        }
+      ]
+    }]
 }
 ```
 
-### 3. Trades
+### 3. Transfer
+
+Return transfer updates if userAddress is involved (as sender or receiver) in a transfer. Multisend is also covered
+
+**Topic Name:** transfers | Stream: /ws/userAddress
+
+**Connection Example:**
+
+```javascript
+    // URL connection
+    const accountAndOrderAndTransfers = new WebSocket("wss://testnet-dex.binance.org/api/ws/bnb1z220ps26qlwfgz5dew9hdxe8m5malre3qy6zr9");
+
+    // Or Subscribe method
+    const conn = new WebSocket("wss://testnet-dex.binance.org/api");
+    conn.onopen = function(evt) {
+        conn.send(JSON.stringify({ method: "subscribe", topic: "transfers", userAddress: "bnb1z220ps26qlwfgz5dew9hdxe8m5malre3qy6zr9" }));
+    }
+```
+
+**Received Payload:**
+
+```javascript
+{
+  "stream": "transfers",
+  "data": {
+    "e":"outboundTransferInfo",   // Event type
+    "E":12893,                    // Event height
+    "f":"bnb1z220ps26qlwfgz5dew9hdxe8m5malre3qy6zr9", // From addr
+    "t":
+      [{
+        "o":"bnb1xngdalruw8g23eqvpx9klmtttwvnlk2x4lfccu", // To addr
+        "c":[{                                            // Coins
+          "a":"BNB",                                      // Asset
+          "A":"100.00000000"                              // Amount
+          }]
+      }]
+  }
+}
+
+```
+
+### 4. Trades
 
 Returns individual trade updates.
 
@@ -149,7 +191,7 @@ Returns individual trade updates.
     "stream": "trades",
     "data": [{
         "e": "trade",       // Event type
-        "E": 123456789,     // Event time
+        "E": 123456789,     // Event height
         "s": "BNB_BTC",     // Symbol
         "t": "12345",       // Trade ID
         "p": "0.001",       // Price
@@ -176,7 +218,7 @@ Returns individual trade updates.
 }
 ```
 
-### 4. Diff. Depth Stream
+### 5. Diff. Depth Stream
 
 Order book price and quantity depth updates used to locally keep an order book.
 
@@ -220,7 +262,7 @@ Order book price and quantity depth updates used to locally keep an order book.
 }
 ```
 
-### 5. Book Depth Streams
+### 6. Book Depth Streams
 
 Top 20 levels of bids and asks.
 
@@ -263,7 +305,7 @@ Top 20 levels of bids and asks.
 }
 ```
 
-### 6. Kline/Candlestick Streams
+### 7. Kline/Candlestick Streams
 
 The kline/candlestick stream pushes updates to the current klines/candlestick every second.
 
@@ -304,33 +346,34 @@ m -> minutes; h -> hours; d -> days; w -> weeks; M -> months
 
 **Received Payload:**
 
-"stream" and "data" wrapper object is ignored here
-
 ```javascript
 {
-  "e": "kline",         // Event type
-  "E": 123456789,       // Event time
-  "s": "BNBBTC",        // Symbol
-  "k": {
-    "t": 123400000,     // Kline start time
-    "T": 123460000,     // Kline close time
-    "s": "BNBBTC",      // Symbol
-    "i": "1m",          // Interval
-    "f": "100",         // First trade ID
-    "L": "200",         // Last trade ID
-    "o": "0.0010",      // Open price
-    "c": "0.0020",      // Close price
-    "h": "0.0025",      // High price
-    "l": "0.0015",      // Low price
-    "v": "1000",        // Base asset volume
-    "n": 100,           // Number of trades
-    "x": false,         // Is this kline closed?
-    "q": "1.0000",      // Quote asset volume
+  "stream": "kline_1m",
+  "data": {
+    "e": "kline",         // Event type
+    "E": 123456789,       // Event time
+    "s": "BNBBTC",        // Symbol
+    "k": {
+      "t": 123400000,     // Kline start time
+      "T": 123460000,     // Kline close time
+      "s": "BNBBTC",      // Symbol
+      "i": "1m",          // Interval
+      "f": "100",         // First trade ID
+      "L": "200",         // Last trade ID
+      "o": "0.0010",      // Open price
+      "c": "0.0020",      // Close price
+      "h": "0.0025",      // High price
+      "l": "0.0015",      // Low price
+      "v": "1000",        // Base asset volume
+      "n": 100,           // Number of trades
+      "x": false,         // Is this kline closed?
+      "q": "1.0000",      // Quote asset volume
+    }
   }
 }
 ```
 
-### 7. Individual Symbol Ticker Streams
+### 8. Individual Symbol Ticker Streams
 
 24hr Ticker statistics for a single symbol are pushed every second.
 
@@ -355,58 +398,8 @@ m -> minutes; h -> hours; d -> days; w -> weeks; M -> months
 
 ```javascript
 {
-  "e": "24hrTicker",  // Event type
-  "E": 123456789,     // Event time
-  "s": "BNBBTC",      // Symbol
-  "p": "0.0015",      // Price change
-  "P": "250.00",      // Price change percent
-  "w": "0.0018",      // Weighted average price
-  "x": "0.0009",      // Previous day's close price
-  "c": "0.0025",      // Current day's close price
-  "Q": "10",          // Close trade's quantity
-  "b": "0.0024",      // Best bid price
-  "B": "10",          // Best bid quantity
-  "a": "0.0026",      // Best ask price
-  "A": "100",         // Best ask quantity
-  "o": "0.0010",      // Open price
-  "h": "0.0025",      // High price
-  "l": "0.0010",      // Low price
-  "v": "10000",       // Total traded base asset volume
-  "q": "18",          // Total traded quote asset volume
-  "O": 0,             // Statistics open time
-  "C": 86400000,      // Statistics close time
-  "F": "0",           // First trade ID
-  "L": "18150",       // Last trade Id
-  "n": 18151          // Total number of trades
-}
-```
-
-### 8. All Symbols Ticker Streams
-
-24hr Ticker statistics for a all symbols are pushed every second.
-
-**Topic Name:** allTickers | Stream: $all@allTickers
-
-**Connection Example:**
-
-```javascript
-    // URL connection
-    const allTickers = new WebSocket("wss://testnet-dex.binance.org/api/ws/$all@allTickers");
-
-    // Or Subscribe method
-    const conn = new WebSocket("wss://testnet-dex.binance.org/api");
-    conn.onopen = function(evt) {
-        conn.send(JSON.stringify({ method: "subscribe", topic: "allTickers", symbols: ["$all"] }));
-    }
-```
-
-**Received Payload:**
-
-"stream" and "data" wrapper object is ignored here
-
-```javascript
-[
-  {
+  "stream": "ticker",
+  "data": {
     "e": "24hrTicker",  // Event type
     "E": 123456789,     // Event time
     "s": "BNBBTC",      // Symbol
@@ -430,14 +423,67 @@ m -> minutes; h -> hours; d -> days; w -> weeks; M -> months
     "F": "0",           // First trade ID
     "L": "18150",       // Last trade Id
     "n": 18151          // Total number of trades
-  },
-  {
-    ...
   }
-]
+}
 ```
 
-### 9. Individual Symbol Mini Ticker Streams
+### 9. All Symbols Ticker Streams
+
+24hr Ticker statistics for a all symbols are pushed every second.
+
+**Topic Name:** allTickers | Stream: $all@allTickers
+
+**Connection Example:**
+
+```javascript
+    // URL connection
+    const allTickers = new WebSocket("wss://testnet-dex.binance.org/api/ws/$all@allTickers");
+
+    // Or Subscribe method
+    const conn = new WebSocket("wss://testnet-dex.binance.org/api");
+    conn.onopen = function(evt) {
+        conn.send(JSON.stringify({ method: "subscribe", topic: "allTickers", symbols: ["$all"] }));
+    }
+```
+
+**Received Payload:**
+
+```javascript
+{
+  "stream": "allTickers",
+  "data": [
+    {
+      "e": "24hrTicker",  // Event type
+      "E": 123456789,     // Event time
+      "s": "BNBBTC",      // Symbol
+      "p": "0.0015",      // Price change
+      "P": "250.00",      // Price change percent
+      "w": "0.0018",      // Weighted average price
+      "x": "0.0009",      // Previous day's close price
+      "c": "0.0025",      // Current day's close price
+      "Q": "10",          // Close trade's quantity
+      "b": "0.0024",      // Best bid price
+      "B": "10",          // Best bid quantity
+      "a": "0.0026",      // Best ask price
+      "A": "100",         // Best ask quantity
+      "o": "0.0010",      // Open price
+      "h": "0.0025",      // High price
+      "l": "0.0010",      // Low price
+      "v": "10000",       // Total traded base asset volume
+      "q": "18",          // Total traded quote asset volume
+      "O": 0,             // Statistics open time
+      "C": 86400000,      // Statistics close time
+      "F": "0",           // First trade ID
+      "L": "18150",       // Last trade Id
+      "n": 18151          // Total number of trades
+    },
+    {
+      ...
+    }]
+}
+```
+
+### 10. Individual Symbol Mini Ticker Streams
 
 A ticker for a single symbol is pushed every second.
 
@@ -458,23 +504,24 @@ A ticker for a single symbol is pushed every second.
 
 **Received Payload:**
 
-"stream" and "data" wrapper object is ignored here
-
 ```javascript
 {
-  "e": "24hrMiniTicker",    // Event type
-  "E": 123456789,           // Event time
-  "s": "BNBBTC",            // Symbol
-  "c": "0.0025",            // Current day's close price
-  "o": "0.0010",            // Open price
-  "h": "0.0025",            // High price
-  "l": "0.0010",            // Low price
-  "v": "10000",             // Total traded base asset volume
-  "q": "18",                // Total traded quote asset volume
+  "stream": "miniTicker",
+  "data": {
+    "e": "24hrMiniTicker",    // Event type
+    "E": 123456789,           // Event time
+    "s": "BNBBTC",            // Symbol
+    "c": "0.0025",            // Current day's close price
+    "o": "0.0010",            // Open price
+    "h": "0.0025",            // High price
+    "l": "0.0010",            // Low price
+    "v": "10000",             // Total traded base asset volume
+    "q": "18",                // Total traded quote asset volume
+  }
 }
 ```
 
-### 10. All Symbols Mini Ticker Streams
+### 11. All Symbols Mini Ticker Streams
 
 Array of 24hr Mini Ticker statistics for a all symbols pushed every second.
 
@@ -495,28 +542,28 @@ Array of 24hr Mini Ticker statistics for a all symbols pushed every second.
 
 **Received Payload:**
 
-"stream" and "data" wrapper object is ignored here
-
 ```javascript
-[
-  {
-    "e": "24hrMiniTicker",      // Event type
-    "E": 123456789,             // Event time
-    "s": "BNBBTC",              // Symbol
-    "c": "0.0025",              // Current day's close price
-    "o": "0.0010",              // Open price
-    "h": "0.0025",              // High price
-    "l": "0.0010",              // Low price
-    "v": "10000",               // Total traded base asset volume
-    "q": "18",                  // Total traded quote asset volume
-  },
-  {
-    ...
-  }
-]
+{
+  "stream": "allMiniTickers",
+  "data": [
+    {
+      "e": "24hrMiniTicker",      // Event type
+      "E": 123456789,             // Event time
+      "s": "BNBBTC",              // Symbol
+      "c": "0.0025",              // Current day's close price
+      "o": "0.0010",              // Open price
+      "h": "0.0025",              // High price
+      "l": "0.0010",              // Low price
+      "v": "10000",               // Total traded base asset volume
+      "q": "18",                  // Total traded quote asset volume
+    },
+    {
+      ...
+    }]
+}
 ```
 
-### 11. Blockheight
+### 12. Blockheight
 
 Streams the latest block height.
 
@@ -537,10 +584,11 @@ Streams the latest block height.
 
 **Received Payload:**
 
-"stream" and "data" wrapper object is ignored here
-
 ```javascript
 {
-  "h": 123456789,     // Block height
+  "stream": "blockheight",
+  "data": {
+    "h": 123456789,     // Block height
+  }
 }
 ```

@@ -23,7 +23,7 @@ Using this method, stream names are specified in the URLs used to connect to the
 **Example:** Various methods of connecting to streams where stream names are provided in URLs:
 
 ```javascript
-  // for personal streams, ex: Account & Orders
+  // for personal streams, ex: Account & Orders & Transfers
   const accountAndOrdersFeeds = new WebSocket("wss://testnet-dex.binance.org/api/ws/<USER_ADDRESS>");
 
   // for single streams
@@ -87,7 +87,7 @@ After connecting successfully you can subscribe/unsubscribe to different topics.
 **Example:** To extend connection life, you should send a a message with a payload using the `keepAlive` method:
 
 ```javascript
-    // This will extend the connection time to another 60 minutes
+    // This will extend the connection time to another 30 minutes
     // It's good to send this message every 30 minutes to maintain the connection life
     conn.send(JSON.stringify({ method: "keepAlive" }));
 ```
@@ -95,7 +95,7 @@ After connecting successfully you can subscribe/unsubscribe to different topics.
 **Example:** To close a connection, you should send a socket message with a payload as below:
 
 ```javascript
-    // Connections will auto close after 60 minutes by default if no "keepAlive" messages received
+    // Connections will auto close after 30 - 60 minutes if no "keepAlive" messages received
     // Connections with no subscriptions will be closed, regardless the keepAlive messages.
     conn.send(JSON.stringify({ method: "close" }));
 ```
