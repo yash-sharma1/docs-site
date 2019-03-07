@@ -8,6 +8,10 @@ instruction here.
 First of all, you need to have a key to do all these steps. There are two ways to create a key: creating a key in 
 web wallet and creating a key via `bnbcli`.
 
+Now you can only issue and list your token via Command Line Interface, i.e. `bnbcli`. You can check the below instruction 
+to create a new key or load your key created from Web Wallet or other Wallet into your CLI key store. Please make 
+sure you backup your mnemonic.
+
 ### Web Wallet
 
 1. You can create a key via [web wallet](https://testnet.binance.org/create)
@@ -27,7 +31,7 @@ Choose `Mnenomic Phrase`, paste the mnemonic you get above and set you session p
 
 ![create key](./assets/create_key_3.png)
 
-Your key will be unlocked and you can get you address(for this example is `tbnb14m2gcdjq7aqkdtu2m9qrqrl8eevzpqfj9xc0uu`) here:
+Your wallet will be unlocked and you can get you address(for this example is `tbnb14m2gcdjq7aqkdtu2m9qrqrl8eevzpqfj9xc0uu`) here:
 
 ![create key](./assets/create_key_4.png)
 
@@ -69,23 +73,26 @@ napkin degree boring custom differ smart bundle ball length lyrics auto forest j
 
 You can get test BNB [here](https://www.binance.com/login.html?callback=/en/dex/testnet/address). 
 
-Once you get your test BNB, you can aggregate them to one address for listing a token will cost more than 200 BNB. Fees related
-are showed in [fee table](./trading-spec.md).
+Each address will get 200 BNB from the above testnet faucet. You can get more from your friends or register more addresses 
+and centralize all BNB to one address via Transfer. You need certain amount of BNB to issue and list your token, p
+lease check fees at [fee table](./trading-spec.md).
 
-For transferring tokens, you can refer to [doc](./transfer.md).
+You can refer to [doc](./transfer.md) for how to transfer tokens.
 
 ## Issue token
 
-Assume that you have enough BNB, you can issue you token now.
+Assume that you have enough BNB, you can issue you token now. 400BNB of fee will be charged.
 
 ```bash
-# To issue a NNB token with total-supply 1 billion
+# To issue a AAA token with total-supply 1 billion
+# please note all the numbers have 8 trailing digits (usually zero) for decimal part
+
 > ./bnbcli token issue --token-name "AAA token" --total-supply 100000000000000000 --symbol AAA --mintable --from alice --chain-id=Binance-Chain-Nile --node=data-seed-pre-2-s1.binance.org:80 --trust-node
 
 Committed at block 1887 (tx hash: B90A055DDD570AE42A7050182993A0B4DBC81A0D, ... Issued AAA-254...)
 ```
 
-Then you will get you token and it's `NNB-B90`. 
+Then you will get you token and it's `AAA-254`. 
 
 For details about issuing token, you can refer to [here](./tokens.md).
 
@@ -93,11 +100,22 @@ For details about issuing token, you can refer to [here](./tokens.md).
 
 What you need to do now is to create a proposal. 
 
+A proposal is a step to notify the validators your request of listing and allow them to vote. You can only run list
+command with success after the proposal is voted as "pass".
+
+Please note:
+
++ `--init-price` must be 100000000, i.e. 1 BNB for Trading Competition. otherwise your proposal will be rejected.
++ `--from test`: test is your local name for the address / key, you can only list with the owner address of your token.
++ `--expire-time 1553126400`: expire time is after when you will not be able to list your token though your proposal is passed. 
+here is `2019/03/21`, two weeks from now.
+
+Fee(10 BNB) will be charged for each proposal.
 
 ```bash
 $  ./bnbcli gov submit-list-proposal --from test --deposit 10000000000:BNB \
 --base-asset-symbol AAA-254 --quote-asset-symbol BNB --init-price 100000000 --title "list AAA-254/BNB" \
---description "list AAA-254/BNB" --expire-time 1570665600 --chain-id=Binance-Chain-Nile --node=data-seed-pre-2-s1.binance.org:80 --json
+--description "list AAA-254/BNB" --expire-time 1553126400 --chain-id=Binance-Chain-Nile --node=data-seed-pre-2-s1.binance.org:80 --json
 Password to sign with 'test':
 {  
    "Height":"281822",
@@ -127,8 +145,7 @@ Password to sign with 'test':
 }
 ```
 
-You need to specify the base asset you want to list, quote asset and init price. What you need to notice here is that 
-init price should be 1BNB(100000000), otherwise, your proposal will be rejected. And when the proposal is 
+You need to specify the base asset you want to list, quote asset and init price. And when the proposal is 
 passed, you should use the identical params to list. 
 
 And you also have to set expire time after which you will not be able to list even though proposal is passed.
@@ -140,7 +157,7 @@ new list would affect the whole network efficiency.
 
 You may notice that the numbers like deposit number and price are very large. The numbers are presented as integers 
 in the chain data structure and codebase. The last 8 digits of the integer represent the fractional-part 
-(digits after the decimal point) by default if the number is presented in a human readable format. For example, 
+(digits after the decimal point) by default if the number is presented in a real decimal number. For example, 
 10000000000 means 100.00000000 if represented as a human readable number.
 
 ## Find your proposal ID
@@ -201,7 +218,8 @@ Password to sign with 'test':
 When you have deposited enough BNB, the proposal's status will switch to `VotingPeriod`. Then you should wait
 for voting result from validators (for now is 4 hours in the testnet).
 
-If proposal is rejected by validator, the money you have deposited will be distribute to validators.
+If proposal is rejected by validator, the money you have deposited will be distribute to validators. If you think it is 
+mistake, please talk on the [community](https://community.binance.org/).
 
 If proposal is passed, BNB you have deposited will be returned.
 
@@ -214,7 +232,7 @@ $  ./bnbcli gov query-proposal --proposal-id 15 --chain-id=Binance-Chain-Nile --
   "value": {
     "proposal_id": "15",
     "title": "list AAA-254/BNB",
-    "description": "{\"base_asset_symbol\":\"AAA-254\",\"quote_asset_symbol\":\"BNB\",\"init_price\":100000000,\"description\":\"list AAA-254/BNB\",\"expire_time\":\"2019-10-10T00:00:00Z\"}",
+    "description": "{\"base_asset_symbol\":\"AAA-254\",\"quote_asset_symbol\":\"BNB\",\"init_price\":100000000,\"description\":\"list AAA-254/BNB\",\"expire_time\":\"2019-03-21T00:00:00Z\"}",
     "proposal_type": "ListTradingPair",
     "proposal_status": "Passed",
     "tally_result": {
@@ -237,7 +255,8 @@ $  ./bnbcli gov query-proposal --proposal-id 15 --chain-id=Binance-Chain-Nile --
 
 ### When the proposal passes
 
-When proposal is passed, the owner of the token to be listed can list the token before `expire_time` specified.
+When proposal is passed, the owner of the token to be listed can list the token before `expire_time` specified. 800BNB 
+of fee will be charged.
 
 If you forget the symbol name of the token you issued, you can query your account info for detail.
 ```bash
