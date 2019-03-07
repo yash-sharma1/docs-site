@@ -14,7 +14,7 @@ sure you backup your mnemonic.
 
 ### Web Wallet
 
-1. You can create a key via [web wallet](https://testnet.binance.org/create)
++ You can create a key via [web wallet](https://testnet.binance.org/create)
 
 Follow the instructions and set your password here(password is used to unlock the keystore file you will get here):
 
@@ -25,7 +25,7 @@ mnemonic here and it will be used to restore your key.
 
 ![create key](./assets/create_key_2.png)
 
-2. You can restore you key [here](https://testnet.binance.org/unlock)
++ You can restore you key [here](https://testnet.binance.org/unlock)
 
 Choose `Mnenomic Phrase`, paste the mnemonic you get above and set you session password:
 
@@ -42,7 +42,7 @@ You can get `bnbcli` by following instructions [here](./api-reference/cli.md).
 
 You should get mnemonic if you follow the instructions above. You can restore you key via `bnbcli` or create a new key.
 
-1. Restore your key
++ Restore your key
 
 ```bash
 $ ./bnbcli keys add test --recover
@@ -54,7 +54,7 @@ NAME:	TYPE:	ADDRESS:						PUBKEY:
 test	local	tbnb14m2gcdjq7aqkdtu2m9qrqrl8eevzpqfj9xc0uu	bnbp1addwnpepqt7nf2dwgfxv6kmzgwhzlp556yhdfeakfdejc6lp8xcddsv83kq552m63s9
 ```
 
-2. Create a new key
++ Create a new key
 
 You can also create a new key and you will get a new mnemonic.
 ```bash
