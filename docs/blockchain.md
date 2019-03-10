@@ -56,8 +56,9 @@ and produce blocks, they take care of:
 Please check [here](faq.md#what-is-the-accelerated-node). 
 
 For testnet, there are 2 accelerated nodes setup as below. API users should try to use them directly. 
-- testnet-dex-atlantic.binance.org
-- testnet-dex-asiapacific.binance.org
+
+- `testnet-dex-atlantic.binance.org`
+- `testnet-dex-asiapacific.binance.org`
 
 For mainnet, there would be more accelerated nodes.
 
