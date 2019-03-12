@@ -421,6 +421,8 @@ If the time window is larger than limits, only the first n klines will return. I
 
 **Description:** Gets closed (filled and cancelled) orders for a given address.
 
+**Query Window:** Default query window is latest 7 days; The maximum start - end query window is 3 months.
+
 **Rate Limit:** 5 requests per IP per second.
 
 
@@ -433,7 +435,7 @@ If the time window is larger than limits, only the first n klines will return. I
 | limit | query | default 500; max 1000. | No | integer |
 | offset | query | start with 0; default 0. | No | integer |
 | side | query | order side. 1 for buy and 2 for sell. | No | integer |
-| start | query | start time; The maximum start - end query window is 3 months; Default query window is latest 7 days. | No | long |
+| start | query | start time; | No | long |
 | status | query | order status list. Allowed value: [Ack, PartialFill, IocNoFill, FullyFill, Canceled, Expired, FailedBlocking, FailedMatching] | No | [ string ] |
 | symbol | query | symbol | No | string |
 | total | query | total number required, 0 for not required and 1 for required; default not required, return total=-1 in response | No | integer |
@@ -530,6 +532,8 @@ If the time window is larger than limits, only the first n klines will return. I
 
 **Description:** Gets a list of historical trades.
 
+**Query Window:** Default query window is latest 7 days; The maximum start - end query window is 3 months.
+
 **Rate Limit:** 5 requests per IP per second.
 
 
@@ -546,7 +550,7 @@ If the time window is larger than limits, only the first n klines will return. I
 | quoteAsset | query | quote asset | No | string |
 | sellerOrderId | query | seller order id | No | string |
 | side | query | order side. 1 for buy and 2 for sell. | No | integer |
-| start | query | start time; The maximum start - end query window is 3 months; Default query window is latest 7 days. | No | long |
+| start | query | start time; | No | long |
 | symbol | query | symbol | No | string |
 | total | query | total number required, 0 for not required and 1 for required; default not required, return total=-1 in response | No | integer |
 
@@ -564,7 +568,9 @@ If the time window is larger than limits, only the first n klines will return. I
 ##### ***GET***
 **Summary:** Get transactions.
 
-**Description:** Gets a list of transactions.
+**Description:** Gets a list of transactions. Multisend transaction is not available in this API.
+
+**Query Window:** Default query window is latest 24 hours; The maximum start - end query window is 3 months.
 
 **Rate Limit:** 60 requests per IP per minute.
 
@@ -579,9 +585,9 @@ If the time window is larger than limits, only the first n klines will return. I
 | limit | query | limit | No | integer |
 | offset | query | offset | No | integer |
 | side | query | transaction side. Allowed value: [ RECEIVE, SEND] | No | string |
-| startTime | query | start time; The maximum start - end query window is 3 months; Default query window is latest 24 hours. | No | long |
+| startTime | query | start time; | No | long |
 | txAsset | query | txAsset | No | string |
-| txType | query | transaction type. Allowed value: [ NEW_ORDER,ISSUE_TOKEN,BURN_TOKEN,LIST_TOKEN,CANCEL_ORDER,FREEZE_TOKEN,UN_FREEZE_TOKEN,TRANSFER,PROPOSAL,VOTE] | No | string |
+| txType | query | transaction type. Allowed value: [ NEW_ORDER,ISSUE_TOKEN,BURN_TOKEN,LIST_TOKEN,CANCEL_ORDER,FREEZE_TOKEN,UN_FREEZE_TOKEN,TRANSFER,PROPOSAL,VOTE,MINT,DEPOSIT] | No | string |
 
 **Responses**
 
