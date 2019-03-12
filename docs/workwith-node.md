@@ -1,32 +1,16 @@
- # Work with full node 
- 
- This document is for developer who is very interested in transactions in every block, or order book, or account changes 
- or block fee charge and would like to built own down stream services of full node. Please refer to [run a full node](fullnode.md)
- if you still have't deploy a full node.
- 
- 
- You can enable the `publishKafka` or  `publishLocal` option in  `node-binary/fullnode/{network}/node/app.toml`. 
- The full node will publish messages that you are interested to local file or kafka, and you can consume them in your own
- apps. 
+# Get Extra Data From Your Full Node
 
- The supported messages: 
- 
- - executionResult: The trades that been filled, orders that changed and proposals that been submitted in this blocks.
- - books: the order book after this block ends.
- - account: the changed accounts after this blocks.
- - blockfee:  the block fee charged in this block.
- - transfers: the transfer transaction in this block.
- 
- Accordingly, you need enable `publishOrderUpdates`, `publishOrderBook`, `publishAccountBalance`, `publishBlockFee`, `publishTransfer` 
- to choose your interested messages.  
+This document is for developer who is very interested in transactions in every block, or order book, or account changes or block fee charge and would like to build his own downstream services of the full node. Please refer to [run a full node](fullnode.md), if you still haven't deploy a full node.
 
- 
-## Publish to local file 
-Enable the `publishLocal` option in `node-binary/fullnode/{network}/node/app.toml` to publish message to local file.
-The output file is `{fullnode home}`/marketdata/marketdata.json. 
-Each line of marketdata.json represents a message. All message is is encoded based on json.
+## Publish Different Messages to Local Files 
 
-- executionResult: 
+You can set  the  `publishLocal` option to `true` in `nodebinary/fullnode/{network}/node/app.toml`.  Then, the full node will save the messages that you are interested to local files, and you can consume them in your own apps. The messages types are explained below.
+
+### 1. OrderUpdates
+You can set  the  `publishOrderUpdates` option to `true` in `nodebinary/fullnode/{network}/node/app.toml`.  Then, the full node will save all the trades that been filled, orders that changed and proposals that been submitted in this blocks.
+
+
+* Example:
 ```
 {
 	Height:    int64,
@@ -80,7 +64,31 @@ Each line of marketdata.json represents a message. All message is is encoded bas
 }
 
 ```
-- books:
+
+
+### 2. AccountBalance
+
+You can set  the  `publishAccountBalance` option to `true` in `nodebinary/fullnode/{network}/node/app.toml`.  Then, the full node will save all the changed accounts after this blocks.
+
+* Example
+
+```
+{
+	Owner:    string,
+	Fee:      string,
+	Balances: []{
+	    Asset:  string,
+        Free:   int64,
+        Frozen: int64,
+        Locked: int64
+	}
+
+}
+```
+### 3. OrderbBook
+
+You can set  the  `publishOrderBook` option to `true` in `nodebinary/fullnode/{network}/node/app.toml`.  Then, the full node will save all the  the order book changes after this block ends.
+* Example
 ```
 {
     Height:    int64,
@@ -100,22 +108,10 @@ Each line of marketdata.json represents a message. All message is is encoded bas
 }
 ```
 
-- account:
-```
-{
-	Owner:    string,
-	Fee:      string,
-	Balances: []{
-	    Asset:  string,
-        Free:   int64,
-        Frozen: int64,
-        Locked: int64
-	}
+### 4. BlockFee
 
-}
-```
-
-- blockfee
+You can set  the  `publishBlockFee` option to `true` in `nodebinary/fullnode/{network}/node/app.toml`.  Then, the full node will save all thethe block fee charged in this block.
+* Example
 ```
 {
     	Height:     int64,
@@ -124,7 +120,12 @@ Each line of marketdata.json represents a message. All message is is encoded bas
 }
 ```
 
-- transfers
+
+### 5. Transfers
+You can set  the  `publishTransfer` option to `true` in `nodebinary/fullnode/{network}/node/app.toml`.  Then, the full node will save all the transfer transactions in this block.
+
+* Example
+
 ```
 {
 	Height:    int64,
@@ -145,12 +146,10 @@ Each line of marketdata.json represents a message. All message is is encoded bas
 
 
 
- 
-## Publish to Kafka 
-The message is encoded based on `Avro` serialization system.
-The schemas are shown as below: 
+## Publish  Different Messages to Kafka 
+You can set  the  `publishKafka` option to `true` in `nodebinary/fullnode/{network}/node/app.toml`.  Then, the full node will save the messages that you are interested to Kafka, and you can consume them in your own apps. The message is encoded based on `Avro` serialization system. Their schemas are shown as below: 
 
-- executionResult:
+- **OrderUpdates**:
 ```
 {
     "type": "record",
@@ -254,7 +253,7 @@ The schemas are shown as below:
 }
 ```
 
-- booksSchema:
+- **OrderBooksSchema**:
 ```
 {
     "type": "record",
@@ -297,7 +296,7 @@ The schemas are shown as below:
 }
 ```
 
-- accountSchema:
+- **AccountBalanceSchema**:
 ```
 {
     "type": "record",
@@ -339,9 +338,9 @@ The schemas are shown as below:
 }
 
 ```
-   
 
-- blockfeeSchema: 
+
+- **BlockFeeSchema**: 
 ```
 {
     "type": "record",
@@ -355,7 +354,7 @@ The schemas are shown as below:
 }
 ```
 
-- transfersSchema: 
+- **TransfersSchema**: 
 ```
 {
     "type": "record",

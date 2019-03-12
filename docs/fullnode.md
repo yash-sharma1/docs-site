@@ -67,7 +67,7 @@ If you want to add or remove seed node, please feel free to edit the field `seed
 - Store: All the state and block data will store under `{home}/data`, do not delete or edit any of these files.
 - More detailed configuration options please visit `node-binary/fullnode/{network}/node/config.toml` and `node-binary/fullnode/{network}/node/app.toml`
 
-## Upgrading a Full Node
+## Upgrade a Full Node
 
 For most cases, download the new binary and replace it, then restart the full node will work. For the special case, you may have to run some extra steps for an incompatible version (hard fork).
 
@@ -79,4 +79,4 @@ Prometheus is enabled on port 26660 by default, and the endpoint is `/metrics`.
 
 Full node has the same RPC interface as the list here [rpc-api](api-reference/node-rpc.md)
 
-If you are very interested in transactions in every block, or order book, or account changes or block fee charge, please refer to [work with full node](workwith-node.md).
+If you want to get extra information aboutorder book, balance changes or block fee changes from blocks, please refer to [work with full node](workwith-node.md).
