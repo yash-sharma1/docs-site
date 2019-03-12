@@ -669,6 +669,8 @@ paths:
       description: |
         Gets closed (filled and cancelled) orders for a given address.
 
+        **Query Window:** Default query window is latest 7 days; The maximum start - end query window is 3 months.
+
         **Rate Limit:** 5 requests per IP per second.
       operationId: getClosedOrders
       produces:
@@ -715,7 +717,7 @@ paths:
         - SELL
       - name: start
         in: query
-        description: start time; The maximum start - end query window is 3 months; Default query window is latest 7 days.
+        description: start time;
         required: false
         type: integer
         format: int64
@@ -894,6 +896,8 @@ paths:
       description: |
         Gets a list of historical trades.
 
+        **Query Window:** Default query window is latest 7 days; The maximum start - end query window is 3 months.
+
         **Rate Limit:** 5 requests per IP per second.
       operationId: getTrades
       produces:
@@ -965,7 +969,7 @@ paths:
         - SELL
       - name: start
         in: query
-        description: start time; The maximum start - end query window is 3 months; Default query window is latest 7 days.
+        description: start time;
         required: false
         type: integer
         format: int64
@@ -1007,7 +1011,9 @@ paths:
       - transaction
       summary: Get transactions.
       description: |
-        Gets a list of transactions. Multisend transaction is not available in this api.
+        Gets a list of transactions. Multisend transaction is not available in this API.
+
+        **Query Window:** Default query window is latest 24 hours; The maximum start - end query window is 3 months.
 
         **Rate Limit:** 60 requests per IP per minute.
       operationId: txns
@@ -1056,7 +1062,7 @@ paths:
         - SEND
       - name: startTime
         in: query
-        description: start time; The maximum start - end query window is 3 months; Default query window is latest 24 hours.
+        description: start time;
         required: false
         type: integer
         format: int64
