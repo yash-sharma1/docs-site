@@ -1,5 +1,7 @@
 # Run a Full Node to Join Binance Chain
 
+>  Note:  Please take a note that this is a pre-alpha version and the software is not stablized. Many changes and upgrades are expected to come.
+
 A `full node` of Binance Chain is a `witness node`, which observes the consensus messaging,
 downloads blocks and executes business logic to achieve the consistent state as `validator node` (and other `witness node`).
 Full nodes also help the network by accepting transactions from other nodes  and then relaying them to the core Binance network.
@@ -39,6 +41,8 @@ Start the full node according to the platform. Replace the `platform` var with `
 ```
 
 **Notice**: For now, it may take a long time to sync blocks from Binance Chain. If you are not interested in sync historical blocks, you can change `state_sync` option in `{home}/config/app.toml` to true, it will catch up with the chain on most recent height after today's UTC 0:00. (so if now is 23:59, wait one more minute will get much faster sync up speed)
+
+> Please note the `state sync` function is just usable and many improvements are still needed to be done, so it is not  encouraged to enable `state sync` for now.
 
 Only after catching up with Binance Chain, the full node can handle requests correctly.
 
