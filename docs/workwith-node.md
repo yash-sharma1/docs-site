@@ -4,7 +4,7 @@ This document is for developer who is very interested in transactions in every b
 
 ## Publish Different Messages to Local Files 
 
-You can set  the  `publishLocal` option to `true` in `nodebinary/fullnode/{network}/node/app.toml`.  Then, the full node will save the messages that you are interested to local files, and you can consume them in your own apps. The messages types are explained below.
+You can set  the  `publishLocal` option to `true` in `nodebinary/fullnode/{network}/node/app.toml`.  Then, the full node will save the messages that you are interested under `{fullnode home}`/marketdata/marketdata.json, and you can consume them in your own apps. The messages types are explained below.
 
 ### 1. OrderUpdates
 You can set  the  `publishOrderUpdates` option to `true` in `nodebinary/fullnode/{network}/node/app.toml`.  Then, the full node will save all the trades that been filled, orders that changed and proposals that been submitted in this blocks.
