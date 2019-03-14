@@ -4,22 +4,13 @@
 
 Please note the fees must be paid first in BNB before the transaction can be executed.
 
-## Account and Balance
 
-Whenever a new address receives any asset, the corresponding transaction would create an 
-`Account` for that address, which contains balances across all assets that are owned on this address.
-
-The balance (the amount of token) of each asset is composed of 3 different parts:
-
-- Available: the amount of token can be transferred, and spent to swap (buy) other assets
-- Locked: the amount of token has been used in any outstanding orders. Once the order terminates 
-(either filled, canceled or expired), the locked amount would decrease.
-- Frozen: the amount of token has been frozen via `Freeze` transactions.
+If you want to read more about the idea of account and balance, please refer to this [doc](accounts.md).
 
 ## Simple Transfer and Memo
 
-Before transferring token to someone else, please make sure that you have an account with enough balance
-and have unlocked your wallet on web wallet or restored your key via CLI.
+Before transferring tokens to someone else, please make sure that you have an account with enough balance
+and have unlocked your wallet on browser or restored your key via CLI.
 
 You can always input a "memo" sentence as extra information to be recorded on the blockchain, though it has a limit on the length.
 
@@ -49,7 +40,7 @@ test	local	bnc17kwznuljsy4n89wcjd6esx2j5t0w326c03xhyr	bncp1addwnpepq2gudmfe0dqqa
 You can query your balance before send tokens.
 
 ```bash
-$  ./bnbcli account bnc17kwznuljsy4n89wcjd6esx2j5t0w326c03xhyr --trust-node --node tcp://172.22.41.165:26657
+$  ./bnbcli account bnc17kwznuljsy4n89wcjd6esx2j5t0w326c03xhyr --chain-id=Binance-Chain-Nile --node=data-seed-pre-2-s1.binance.org:80
 {  
    "type":"bnbchain/Account",
    "value":{  
@@ -77,7 +68,7 @@ $  ./bnbcli account bnc17kwznuljsy4n89wcjd6esx2j5t0w326c03xhyr --trust-node --no
       "locked":null
    }
 }
-``` 
+```
 
 Then you can send token.
 
@@ -263,3 +254,12 @@ Password to sign with 'test':
    }
 }
 ```
+
+## Verify Transfer Transaction
+To confirm that your transaction went through, you can use the following queries:
+```json
+{"hash":"E79DE52B7D8F6BA93787C5B0389AF26C0C29C03BC84DAE42317965797E38076E","height":"1412766","tx":{"type":"auth/StdTx","value":{"msg":[{"type":"cosmos-sdk/Send","value":{"inputs":[{"address":"tbnb1sylyjw032eajr9cyllp26n04300qzzre38qyv5","coins":[{"denom":"BNB","amount":"20"}]}],"outputs":[{"address":"tbnb1qq559fkes779t3q9p9aegnjplvtc53yg9vusah","coins":[{"denom":"BNB","amount":"20"}]}]}}],"signatures":[{"pub_key":{"type":"tendermint/PubKeySecp256k1","value":"AhOb3ZXecsIqwqKw+HhTscyi6K35xYpKaJx10yYwE0Qa"},"signature":"AlpHUBlC/V0cR7YNm5G46aAjmeRIxjkX9Vg8EtTKkfgPso+snT3/r2nRNjsphtjTonub3VYfE4lwOnjpY+Jwcg==","account_number":"406226","sequence":"27"}],"memo":"Test transfer","source":"0","data":null}},"result":{"log":"Msg 0: ","tags":[{"key":"c2VuZGVy","value":"dGJuYjFzeWx5ancwMzJlYWpyOWN5bGxwMjZuMDQzMDBxenpyZTM4cXl2NQ=="},{"key":"cmVjaXBpZW50","value":"dGJuYjFxcTU1OWZrZXM3Nzl0M3E5cDlhZWduanBsdnRjNTN5Zzl2dXNhaA=="},{"key":"YWN0aW9u","value":"c2VuZA=="}]}}
+```
+As you can see from the example output, this transaction is executed at block height 1412766 and you could read about the details.
+Double check with blockchain explorer if you interact with the network through a  full-node.
+
