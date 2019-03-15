@@ -34,14 +34,13 @@ C:\> bnbcli.exe
 
 ## Where to connect
 
-You can manage you keys locally without connecting to any node. But if you want to interact with Binance Chain, 
-you need to connect to one of Binance Chain full nodes. 
+You can manage you keys locally without connecting to any node. But if you want to interact with Binance Chain, you need to connect to one of Binance Chain full nodes.
 
-You can run your own full node, which may automatically connect to Binance Chain, and you can run your CLI there 
-with your own full node. In the mean time, you can connect to any full nodes provided by other people. Please 
-check [here](https://binance-chain.github.io/fullnode.html#network-and-seeding) for a list.
+You can run your own full node, which may automatically connect to Binance Chain, and you can run your CLI there with your own full node. In the mean time, you can connect to any full nodes provided by other people. Please You could query this API for for a list of full node: <https://testnet-dex.binance.org/api/v1/peers>.
 
-Full nodes will be denoted as the format of `ip:port`.
+Full nodes will be denoted as the format of `ip:port`, you could use `access_addr` as your peer to get connected.
+
+Please note that there are two types of nodes that offer RPC services. Some support TLS and others don't.
 
 ## How to use
 
@@ -95,3 +94,7 @@ For detailed usage, you can refer to:
 - [trade](../trade.md)
 - [list](../list.md)
 - [keys](../keys.md)
+
+## Use CLI for Different Blockchain
+
+`bnbcli` will save data about validatorset changes at home of `bnbcli`. Once you want to use `bnbcli` for different blockchains, for example, you want to use it change to different chain or we rebuild the chain, the data will be stale. In order to swtich between blockchains, you need clean data folder or create a new home folder for bnbcli with `--home` flag.
