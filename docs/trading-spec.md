@@ -110,10 +110,27 @@ Deposit | N/A | 0.00125 BNB | N
 
 ### Multi-send Fees
 `bnbcli`  offers you a multi-send command to transfer multiple tokens to multiple people. 20% discount is available for `multi-send` transactions. For now, `multi-send` transaction will send some tokens from one address to multiple output addresses. If the count of output address is bigger than the threshold, currently it's 2, then the total transaction fee is  0.001 BNB per token per address.  
-For example, if you send 10 ABC token and 10 BNB to 10 different addresses, you will pay 
+For example, if you send 10 ABC token,10 SAT token and 10 BNB to 10 different addresses.
+```json
+[  
+   {  
+      "to":"bnb1g5p04snezgpky203fq6da9qyjsy2k9kzr5yuhl",
+      "amount":"100000000:BNB,100000000:ABC"
+   },
+   {
+      "to":"bnb1l86xty0m55ryct9pnypz6chvtsmpyewmhrqwxw",
+      "amount":"100000000:BNB"
+   },
+   {
+      "to":"bnb1l86xty0maxdgst9pnypz6chvtsmpydkjflfioe",
+      "amount":"100000000:BNB,100000000:SAT"
+   }
+]
+```
+You will pay 
 
 ```
-0.001 BNB * 10 * 2 = 0.02 BNB
+0.001 BNB * 10 * 3 = 0.03 BNB
 ```
 
 ### Trading Fees

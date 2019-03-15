@@ -252,6 +252,18 @@ Below is an example response of a send transaction when `?format=json` is used.
 
 **Test URL:** [https://testnet-dex.binance.org/api/v1/tokens](https://testnet-dex.binance.org/api/v1/tokens)
 
+**Example:**
+
+Below is an example response of  token query:
+```json
+[{"name":"100K TOKEN Not Mintable","symbol":"100K-9BC","original_symbol":"100K","total_supply":"100000.00000000","owner":"tbnb1228u39qa7gv5373dg00d2m4y7aypupx2cp66mc","mintable":false},{"name":"Only 10000 Tokens NOT MINTABLE","symbol":"10KONLY-2C1","original_symbol":"10KONLY","total_supply":"10000.00000000","owner":"tbnb19m70v0u2ppdnklpv607l3cgm5fqn2j9n3r4j09","mintable":false},{"name":"Only 10000 Tokens NOT MINTABLE","symbol":"10KONLY-351","original_symbol":"10KONLY","total_supply":"1000.00000000","owner":"tbnb19m70v0u2ppdnklpv607l3cgm5fqn2j9n3r4j09","mintable":false},{"name":"xuNsh1ne","symbol":"1337-1A9","original_symbol":"1337","total_supply":"1000000000.00000000","owner":"tbnb1vdvrpze3rt6r0fhchwnzpsnpjqnmh4nw09m94a","mintable":true},{"name":"Elite Will Moon Last","symbol":"1337MOON-B51","original_symbol":"1337MOON","total_supply":"90000000000.00000000","owner":"tbnb17ynkkkxh92fqn9p9upd4nd5d0u9yal8lpxqa0d","mintable":false},{"name":"1k Supply Experiment Volume Coin","symbol":"1KVOLUME-736","original_symbol":"1KVOLUME","total_supply":"1000.00000000","owner":"tbnb18t67xvg9jwjl4v02akpusak05fhq2qf4qc2w5t","mintable":false},{"name":"1k Supply Experiment Volume Coin","symbol":"1KVOLUME-D65","original_symbol":"1KVOLUME","total_supply":"80000001000.00000000","owner":"tbnb18t67xvg9jwjl4v02akpusak05fhq2qf4qc2w5t","mintable":true},{"name":"80DASHOU","symbol":"80DASHOU-729","original_symbol":"80DASHOU","total_supply":"10000.00000000","owner":"tbnb1hjvyltdgc5kks6a9fatd89au2j6hhtev3c225a","mintable":true},{"name":"81JIANJUN","symbol":"81JIAN-3E8","original_symbol":"81JIAN","total_supply":"10000.00000000","owner":"tbnb1wcs3tcn3hh4q9mvjhq5e5x7glrqsw9cxedjgh7","mintable":true},{"name":"82XIYOU","symbol":"82XIYOU-34D","original_symbol":"82XIYOU","total_supply":"10000.00000000","owner":"tbnb1qzpyce084aj9eguqyqwdmz7kvs8fqz90lu0d56","mintable":true},{"name":"83SHUIHU","symbol":"83SHUIHU-AC4","original_symbol":"83SHUIHU","total_supply":"10000.00000000","owner":"tbnb1lguzx55tkn94kyjkcpvkav78zj50cv7qdzm9al","mintable":true},{"name":"83SHEDIAO","symbol":"84SHEDAO-F6F","original_symbol":"84SHEDAO","total_supply":"10000.00000000","owner":"tbnb10crx0zx58atrz8gu9qf5dtt08hp0r4cx2qj7fy","mintable":true},{"name":"85SHEDIAO","symbol":"85DUC-800","original_symbol":"85DUC","total_supply":"10000.00000000","owner":"tbnb1gwv738uvydscqffqgqw4rsfn50sm8ypsu2k6yq","mintable":true},{"name":"MEIWENTI","symbol":"86OK-B90","original_symbol":"86OK","total_supply":"10000.00000000","owner":"tbnb1ahkt4q2wfrquyfpjju6uc2t0hkak72wp9qhktq","mintable":true},{"name":"MEIWENTI","symbol":"87KEYI-248","original_symbol":"87KEYI","total_supply":"10000.00000000","owner":"tbnb15ekcrp2cs54sce7re8jhrmzhfu42nh5rnn32hu","mintable":true},{"name":"MEIWENTI","symbol":"8888-E6D","original_symbol":"8888","total_supply":"10000.00000000","owner":"tbnb17zvfykec227d8rxteymxqmnff3rahdmtlrsf2f","mintable":true},{"name":"8989","symbol":"8989-4DC","original_symbol":"8989","total_supply":"10000.00000000","owner":"tbnb1wu2a2yg6d3fd9h7reetel07eg5xgcs5k42nz4f","mintable":true},{"name":"AAA","symbol":"AAA-25F","original_symbol":"AAA","total_supply":"1000000000.00000000","owner":"tbnb1jyyl59pnduzadyx28fv9ed3jqeczzeskqrchkg","mintable":true},{"name":"“BATTERY”","symbol":"AAA-B50","original_symbol":"AAA","total_supply":"1000000000.00000000","owner":"tbnb1ejfew3fqula4cj9tux7kzm9mc7we8qfu94ess5","mintable":true},{"name":"AAA insurance coin","symbol":"AAA-EB8","original_symbol":"AAA","total_supply":"200000000.00000000","owner":"tbnb1zkpj55vl8ntc849wgr2x6cw8rw5jq52e582fry","mintable":false}]
+```
+**Parameters**
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| limit | query | default 500; max 1000. | No | integer |
+| offset | query | start with 0; default 0. | No | integer |
 
 **Responses**
 
@@ -274,7 +286,22 @@ Below is an example response of a send transaction when `?format=json` is used.
 **Rate Limit:** 1 request per IP per second.
 
 **Test URL:** [https://testnet-dex.binance.org/api/v1/markets](https://testnet-dex.binance.org/api/v1/markets)
+**Example:**
 
+Below is an example response of market query:
+
+```json
+[{"base_asset_symbol":"1KVOLUME-D65","quote_asset_symbol":"BNB","price":"1.00000000","tick_size":"0.00010000","lot_size":"0.00010000"},{"base_asset_symbol":"80DASHOU-729","quote_asset_symbol":"BNB","price":"1.00000000","tick_size":"0.00001000","lot_size":"0.00100000"},{"base_asset_symbol":"81JIAN-3E8","quote_asset_symbol":"BNB","price":"1.00000000","tick_size":"0.00001000","lot_size":"0.00100000"},{"base_asset_symbol":"82XIYOU-34D","quote_asset_symbol":"BNB","price":"1.00000000","tick_size":"0.00001000","lot_size":"0.00100000"},{"base_asset_symbol":"83SHUIHU-AC4","quote_asset_symbol":"BNB","price":"1.00000000","tick_size":"0.00001000","lot_size":"0.00100000"},{"base_asset_symbol":"84SHEDAO-F6F","quote_asset_symbol":"BNB","price":"1.00000000","tick_size":"0.00001000","lot_size":"0.00100000"},{"base_asset_symbol":"85DUC-800","quote_asset_symbol":"BNB","price":"1.00000000","tick_size":"0.00001000","lot_size":"0.00100000"},{"base_asset_symbol":"86OK-B90","quote_asset_symbol":"BNB","price":"1.00000000","tick_size":"0.00001000","lot_size":"0.00100000"},{"base_asset_symbol":"87KEYI-248","quote_asset_symbol":"BNB","price":"1.00000000","tick_size":"0.00001000","lot_size":"0.00100000"},{"base_asset_symbol":"8888-E6D","quote_asset_symbol":"BNB","price":"1.00000000","tick_size":"0.00001000","lot_size":"0.00100000"}]
+```
+
+
+
+**Parameters**
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| limit | query | default 500; max 1000. | No | integer |
+| offset | query | start with 0; default 0. | No | integer |
 
 **Responses**
 
