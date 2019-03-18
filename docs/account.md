@@ -11,7 +11,7 @@ The balance (the amount of token) of each asset is composed of 3 different parts
 You could query the account info with the following command:
 
 ```shell
-./bnbcli account <your-account-address> --chain-id=Binance-Chain-Nile --node=data-seed-pre-2-s1.binance.org:80
+./bnbcli account <your-account-address> --chain-id=Binance-Chain-Nile --node=data-seed-pre-2-s1.binance.org:80 --indent
 ```
 
 Example output:

@@ -97,4 +97,4 @@ For detailed usage, you can refer to:
 
 ## Use CLI for Different Blockchain
 
-`bnbcli` will save data about validatorset changes at home of `bnbcli`. Once you want to use `bnbcli` for different blockchains, for example, you want to use it change to different chain or we rebuild the chain, the data will be stale. In order to swtich between blockchains, you need clean data folder or create a new home folder for bnbcli with `--home` flag.
+`bnbcli` will save data about validatorset changes at home of `bnbcli`. Once you want to use `bnbcli` for different blockchains, for example, you want to use it change to different chain or we rebuild the chain, the data will be stale. In order to swtich between blockchains, you need clean data folder `rm -rf ~/.bnbcli/.bnblite/`  or create a new home folder for bnbcli with `--home` flag.
