@@ -365,6 +365,23 @@ paths:
       operationId: getTokens
       produces:
       - application/json
+      parameters:
+      - name: limit
+        in: query
+        description: default 500; max 1000.
+        required: false
+        type: integer
+        default: 500
+        format: int32
+        allowEmptyValue: false
+      - name: offset
+        in: query
+        description: start with 0; default 0.
+        required: false
+        type: integer
+        default: 0
+        format: int32
+        allowEmptyValue: false
       responses:
         '200':
           description: Success
@@ -398,6 +415,23 @@ paths:
       operationId: getPairs
       produces:
       - application/json
+      parameters:
+      - name: limit
+        in: query
+        description: default 500; max 1000.
+        required: false
+        type: integer
+        default: 500
+        format: int32
+        allowEmptyValue: false
+      - name: offset
+        in: query
+        description: start with 0; default 0.
+        required: false
+        type: integer
+        default: 0
+        format: int32
+        allowEmptyValue: false
       responses:
         '200':
           description: Success
