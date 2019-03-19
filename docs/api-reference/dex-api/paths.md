@@ -253,6 +253,13 @@ Below is an example response of a send transaction when `?format=json` is used.
 **Test URL:** [https://testnet-dex.binance.org/api/v1/tokens](https://testnet-dex.binance.org/api/v1/tokens)
 
 
+**Parameters**
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| limit | query | default 500; max 1000. | No | integer |
+| offset | query | start with 0; default 0. | No | integer |
+
 **Responses**
 
 | Code | Description | Schema |
@@ -275,6 +282,13 @@ Below is an example response of a send transaction when `?format=json` is used.
 
 **Test URL:** [https://testnet-dex.binance.org/api/v1/markets](https://testnet-dex.binance.org/api/v1/markets)
 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| limit | query | default 500; max 1000. | No | integer |
+| offset | query | start with 0; default 0. | No | integer |
 
 **Responses**
 

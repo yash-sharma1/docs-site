@@ -1,26 +1,28 @@
-# Run a full node to join Binance Chain
+# Run a Full Node to Join Binance Chain
+
+>  Note:  Please take a note that this is a pre-alpha version and the software is not stablized. Many changes and upgrades are expected to come.
 
 A `full node` of Binance Chain is a `witness node`, which observes the consensus messaging,
-downloads blocks and executes logics to achieve the consistent state as `validator node` (and other `witness node`).
-Full nodes also help the network by accepting transactions from other nodes, and then relaying them to core Binance network.
+downloads blocks and executes business logic to achieve the consistent state as `validator node` (and other `witness node`).
+Full nodes also help the network by accepting transactions from other nodes  and then relaying them to the core Binance network.
 
 ## Platforms and System Requirement
 
-### Platforms
+### Platforms Requirements
 
-We support running full node on `Mac OS X` and `Linux`.
+We support running a full node on `Mac OS X` and `Linux`.
 
-### Minimum Requirements
+### Minimum System Requirements
 The hardware must meet certain requirements to run a full node.
 
 - Desktop or laptop hardware running recent versions of Mac OS X, or Linux.
 - 500 gigabytes of free disk space, accessible at a minimum read/write speed of 100 MB/s.
 - 4 cores of CPU and 8 gigabytes of memory (RAM).
 - A broadband Internet connection with upload/download speeds of at least 1 megabytes per second
-- You full node has to run at least 4 hours per 24 hours in order to catch up with Binance Chain.
+- Your full node has to run at least 4 hours per 24 hours in order to catch up with Binance Chain.
 More hours would be better, and best of all would be if you can run your node continuously.
 
-## Run a full node
+## Run a Full Node
 
 Download:
 ```bash
@@ -38,9 +40,11 @@ Start the full node according to the platform. Replace the `platform` var with `
 ./{{platform}}/bnbchaind start --home ./node  &
 ```
 
-**Notice**: For now, it may takes long time to sync blocks from Binance Chain. If you are not interested in sync historical blocks, you can  change `state_sync` option in `{home}/config/app.toml` to true, it will catch up with chain on most recent height after today's UTC 0:00. (so if now is 23:59, wait one more minute will get much more faster sync up speed)
+**Notice**: For now, it may take a long time to sync blocks from Binance Chain. If you are not interested in sync historical blocks, you can change `state_sync` option in `{home}/config/app.toml` to true, it will catch up with the chain on most recent height after today's UTC 0:00. (so if now is 23:59, wait one more minute will get much faster sync up speed)
 
-Only after catch up with Binance Chain, the full node can handle request correctly.
+> Please note the `state sync` function is just usable and many improvements are still needed to be done, so it is not  encouraged to enable `state sync` for now.
+
+Only after catching up with Binance Chain, the full node can handle requests correctly.
 
 ## Network and Seeding
 
@@ -57,30 +61,27 @@ seeds = ",".join([ (seed["id"]+"@"+seed["original_listen_addr"]) for seed in l i
 print seeds
 ```
 
-If you want add or remove seed node, please feel free to edit the field `seeds` of `node-binary/fullnode/{network}/node/config.yaml`.
+If you want to add or remove seed node, please feel free to edit the field `seeds` of `node-binary/fullnode/{network}/node/config.yaml`.
 
 
-## More configuration
+## More Configurations
 
-- Log: The log file is under `home`- the directory specified when start `bnbchaind`. The latest log file is `bnc.log`. The process will create
-a new log file every one hour. To make sure you have sufficient disk space to keep the log, we strongly recommend you to change the log location
-by changing `logFileRoot` option in `{home}/config/app.toml`.
-- Service Port: RPC service listen on port 27147 and P2P service listen on port 27146 by default. Make sure these two ports
-are free before start a full node, else the full node have to listen on other ports.
+- Log: The log file is under `home`- the directory specified when starting `bnbchaind`. The latest log file is `bnc.log`. The process will create a new log file every one hour. To make sure you have sufficient disk space to keep the log, we strongly recommend you to change the log location by changing `logFileRoot` option in `{home}/config/app.toml`.
+- Service Port: RPC service listen on port 27147 and P2P service listens on port 27146 by default. Make sure these two ports are open before starting a full node, unless the full node has to listen on other ports.
 - Store: All the state and block data will store under `{home}/data`, do not delete or edit any of these files.
 - More detailed configuration options please visit `node-binary/fullnode/{network}/node/config.toml` and `node-binary/fullnode/{network}/node/app.toml`
 
-## Upgrading a full node
+## Upgrade a Full Node
 
-For most case, download the new binary and replace it, then restart the full node will work. For the special case, you may have to run some extra step for an incompatible version (hard fork).
+For most cases, download the new binary and replace it, then restart the full node will work. For the special case, you may have to run some extra steps for an incompatible version (hard fork).
 
 ## Monitor
 
 Prometheus is enabled on port 26660 by default, and the endpoint is `/metrics`.
 
-## Work with full node
+## Get Extra Data From Your Full Node
 
 Full node has the same RPC interface as the list here [rpc-api](api-reference/node-rpc.md)
 
-If you are very interested in transactions in every block, or order book, or account changes or block fee charge,
-please refer to [work with full node](workwith-node.md).
+If you want to get extra information about order book, balance changes or block fee changes from blocks, please refer to [get extra data from fullnode](get-extra-data-from-fullnoder.md).
+

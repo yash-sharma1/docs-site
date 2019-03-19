@@ -1,11 +1,11 @@
 # Command Line Interface (CLI)
 
-Binance Chain CLI is one of ways to access Binance Chain.
+Binance Chain CLI is one of several ways to interact with Binance Chain.
 
 Binance Chain CLI can be used as a local wallet, you can manage your keys via Binance CLI. You can add a new
 key or restore your key from mnemonic words. And you can list your keys and show specified key info. 
 
-With Binance Chain CLI, you can send transactions to Binance Chain, like placing order, transferring token, 
+With Binance Chain CLI, you can send transactions to Binance Chain, like placing an order, transferring token, 
 issuing token and so on. Actually you can do almost everything you can do with Binance Chain web wallet. What is
 more, you can propose to list trading pairs and join chain governance.
 
@@ -34,18 +34,17 @@ C:\> bnbcli.exe
 
 ## Where to connect
 
-You can manage you keys locally without connecting to any node. But if you want to interact with Binance Chain, 
-you need to connect to one of Binance Chain full nodes. 
+You can manage you keys locally without connecting to any node. But if you want to interact with Binance Chain, you need to connect to one of Binance Chain full nodes.
 
-You can run your own full node, which may automatically connect to Binance Chain, and you can run your CLI there 
-with your own full node. In the mean time, you can connect to any full nodes provided by other people. Please 
-check [here] (dataseed_list.md) for a list.
+You can run your own full node, which may automatically connect to Binance Chain, and you can run your CLI there with your own full node. In the mean time, you can connect to any full nodes provided by other people. Please You could query this API for for a list of full node: <https://testnet-dex.binance.org/api/v1/peers>.
 
-Full nodes will be denoted as the format of `ip:port`.
+Full nodes will be denoted as the format of `ip:port`, you could use `access_addr` as your peer to get connected.
+
+Please note that there are two types of nodes that offer RPC services. Some support TLS and others don't.
 
 ## How to use
 
-When you have downloaded Binance Chain CLI, you can use `help` sub command to show all the available commands:
+When you have downloaded Binance Chain CLI, you can use `help` subcommand to see all the available commands:
 
 ```bash
 $  ./bnbcli help
@@ -84,14 +83,19 @@ Flags:
 Use "bnbcli [command] --help" for more information about a command.
 ```
 
-**Notice**: there is one special flag `--trust-node` of most sub commands, if not enabled which is by default the CLI 
-will take extra 2-4 seconds to verify blockchain proof at current height. You can enable that flag if the peer is trustful 
-so that most commands will accomplish in 500 millisecond。
+**Notice**:there is one special flag `--trust-node` of most subcommands, if not enabled which is by default the CLI 
+will take an extra 2-4 seconds to verify blockchain proof at current height. You can enable that flag if the peer is trustful so that most commands will accomplish in 500 milliseconds 
 
 ## CLI Reference
 
-For detail usage, you can refer to:
+For detailed usage, you can refer to:
 
 - [transfer](../transfer.md)
+- [trade](../trade.md)
 - [list](../list.md)
 - [keys](../keys.md)
+
+## Use CLI for Different Blockchain
+
+`bnbcli` will save data about validatorset changes at home of `bnbcli`. Once you want to use `bnbcli` for different blockchains, for example, you want to use it change to different chain or we rebuild the chain, the data will be stale. In order to swtich between blockchains, you need clean data folder `rm -rf ~/.bnbcli/.bnblite/`  or create a new home folder for bnbcli with `--home` flag.
+If you forget to specify different home folder path, then you will not be able to make queries with `bnbcli`.
