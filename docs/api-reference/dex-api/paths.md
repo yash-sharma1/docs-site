@@ -713,10 +713,6 @@ varies with msg type.
     }
 }
 ```
- |  |
-| height | string | Height of transaction |  |
-| code | integer | Result code of transaction |  |
-| ok | boolean |  |  |
 
 ### Account  
 
