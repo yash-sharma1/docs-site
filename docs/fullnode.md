@@ -83,5 +83,5 @@ Prometheus is enabled on port 26660 by default, and the endpoint is `/metrics`.
 
 Full node has the same RPC interface as the list here [rpc-api](api-reference/node-rpc.md)
 
-If you want to get extra information about order book, balance changes or block fee changes from blocks, please refer to [get extra data from fullnode](get-extra-data-from-fullnoder.md).
+If you want to get extra information about order book, balance changes or block fee changes from blocks, please refer to [get extra data from fullnode](get-extra-data-from-fullnode.md).
 
