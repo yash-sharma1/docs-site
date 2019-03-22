@@ -654,14 +654,14 @@ paths:
         allowEmptyValue: false
       - name: startTime
         in: query
-        description: start time
+        description: start time in Milliseconds
         required: false
         type: integer
         format: int64
         allowEmptyValue: false
       - name: endTime
         in: query
-        description: end time
+        description: end time in Milliseconds
         required: false
         type: integer
         format: int64
@@ -718,7 +718,7 @@ paths:
         allowEmptyValue: false
       - name: end
         in: query
-        description: end time
+        description: end time in Milliseconds
         required: false
         type: integer
         format: int64
@@ -751,7 +751,7 @@ paths:
         - SELL
       - name: start
         in: query
-        description: start time;
+        description: start time in Milliseconds
         required: false
         type: integer
         format: int64
@@ -951,7 +951,7 @@ paths:
         allowEmptyValue: false
       - name: end
         in: query
-        description: end time
+        description: end time in Milliseconds
         required: false
         type: integer
         format: int64
@@ -1003,7 +1003,7 @@ paths:
         - SELL
       - name: start
         in: query
-        description: start time;
+        description: start time in Milliseconds
         required: false
         type: integer
         format: int64
@@ -1067,7 +1067,7 @@ paths:
         format: int64
       - name: endTime
         in: query
-        description: endTime
+        description: endTime in Milliseconds
         required: false
         type: integer
         format: int64
@@ -1096,7 +1096,7 @@ paths:
         - SEND
       - name: startTime
         in: query
-        description: start time;
+        description: start time in Milliseconds
         required: false
         type: integer
         format: int64
