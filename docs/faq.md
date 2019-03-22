@@ -68,6 +68,7 @@ orders. GTE orders can quote on the exchange until they are filled by the opposi
 the limit price, or canceled by client themselves, or expire after 72 hours after 00:00 (UTC). 
 Check the "What is `Order Expire`" section of the FAQ for more information.
   
+
 Network nodes examine orders to ensure they are valid. Once the orders are accepted, they are 
 booked on the next block, and get matched accordingly.
 
@@ -216,13 +217,14 @@ proper information for the below, and then run through the command line or http 
 
 Binance Chain uses BFT and PoS (upcoming) based consensus mechanism to produce blocks among 
 a series of qualified Validators. This is similar to the architectures of several existing 
-popular blockchain platforms such as EOS and NEO.
+popular blockchain platforms such as EOS and NEO. 
+The process for setting up validators among different entities on Binance Chain is currently being defined. More details will be shared at a later date.
 
 ## Can I run a full node for Binance Chain?
 
 Yes, you can. A full node contains all the information and application logics for Binance Chain. 
 It can receive and broadcast blocks and transactions with other full nodes and even validators. 
-The only exception is it would not participate consensus if the full node is not a Validator.
+The only exception is it would not participate consensus if the full node is not a Validator. 
 
 ## Does Binance Chain support Smart Contracts?
 
