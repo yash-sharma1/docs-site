@@ -598,10 +598,6 @@ If the time window is larger than limits, only the first n klines will return. I
 | endTime | query | endTime in Milliseconds | No | long |
 | limit | query | limit | No | integer |
 | offset | query | offset | No | integer |
-<<<<<<< HEAD
-| side | query | transaction side. Allowed value: [ RECEIVE, SEND] | No | enum string |
-| startTime | query | start time; | No | long |
-=======
 | side | query | transaction side. Allowed value: [ RECEIVE, SEND] | No | string |
 | startTime | query | start time in Milliseconds | No | long |
 >>>>>>> ff99207405e94edcf1d10f3bd3493d65718a058f
