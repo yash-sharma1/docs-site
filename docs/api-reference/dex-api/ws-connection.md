@@ -65,9 +65,9 @@ After connecting successfully you can subscribe/unsubscribe to different topics.
 ```javascript
     const conn = new WebSocket("wss://testnet-dex.binance.org/api/ws/bnc1hp7cves62dzj8n4z8ckna0d3t6zd7z2zcj6gtq");
     conn.onopen = function(evt) {
-        // for personal topics such as accounts & orders & transfers , a `userAddress` is required
-        // Note: one connection is only allowed to subscribe one userAddress.
-        // If you subscribe new address, (no matter whether the topic is new) previous userAddress subscriptions would be removed
+        // for personal topics such as accounts & orders & transfers, an `address` is required
+        // Note: one connection is only allowed to subscribe to one address.
+        // If you subscribe to a new address, regardless of whether the topic is new, the subscriptions for the previous addresses will be removed.
         conn.send(JSON.stringify({ method: "subscribe", topic: "orders", address: "bnc1hp7cves62dzj8n4z8ckna0d3t6zd7z2zcj6gtq" }));
 
         // for data topics such as marketDepth, marketDelta, trades and ticker;
