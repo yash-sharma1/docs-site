@@ -450,7 +450,7 @@ If the time window is larger than limits, only the first n klines will return. I
 | offset | query | start with 0; default 0. | No | integer |
 | side | query | order side. 1 for buy and 2 for sell. | No | integer |
 | start | query | start time in Milliseconds | No | long |
-| status | query | order status list. Allowed value: [Ack, PartialFill, IocNoFill, FullyFill, Canceled, Expired, FailedBlocking, FailedMatching] | No | [ string ] |
+| status | query | order status list. Allowed value: [Ack, PartialFill, IocNoFill, FullyFill, Canceled, Expired, FailedBlocking, FailedMatching] | No | enum string |
 | symbol | query | symbol | No | string |
 | total | query | total number required, 0 for not required and 1 for required; default not required, return total=-1 in response | No | integer |
 
@@ -598,9 +598,8 @@ If the time window is larger than limits, only the first n klines will return. I
 | endTime | query | endTime in Milliseconds | No | long |
 | limit | query | limit | No | integer |
 | offset | query | offset | No | integer |
-| side | query | transaction side. Allowed value: [ RECEIVE, SEND] | No | string |
+| side | query | transaction side. Allowed value: [ RECEIVE, SEND] | No | enum string |
 | startTime | query | start time in Milliseconds | No | long |
->>>>>>> ff99207405e94edcf1d10f3bd3493d65718a058f
 | txAsset | query | txAsset | No | string |
 | txType | query | transaction type. Allowed value: [ NEW_ORDER,ISSUE_TOKEN,BURN_TOKEN,LIST_TOKEN,CANCEL_ORDER,FREEZE_TOKEN,UN_FREEZE_TOKEN,TRANSFER,PROPOSAL,VOTE,MINT,DEPOSIT] | No | enum string |
 
@@ -714,6 +713,10 @@ varies with msg type.
     }
 }
 ```
+ |  |
+| height | string | Height of transaction |  |
+| code | integer | Result code of transaction |  |
+| ok | boolean |  |  |
 
 ### Account  
 
