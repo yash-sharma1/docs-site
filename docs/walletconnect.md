@@ -102,9 +102,9 @@ Note that:
 
 * `id` and `jsonrpc` are usually pre-filled by the client SDK, so there should be no need to set this in the object yourself.
 
-* `signature` should be 64 bytes in length
+* `signature` should be 64 bytes in length (128 hex chars)
 
-* `publicKey` should be 65 bytes in length (non-compressed form, prefixed with `0x04`)
+* `publicKey` should be 65 bytes in length (130 hex chars, non-compressed form, prefixed with `0x04`)
 
 ### Example: bnb_tx_confirmation
 
