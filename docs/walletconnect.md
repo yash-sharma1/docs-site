@@ -6,6 +6,10 @@ WalletConnect allows the user to scan a QR code from the wallet app to unlock an
 
 In order for this to work, some modifications to the standard WalletConnect protocol are used in the Binance Chain wallet's implementation.
 
+## Connecting via WalletConnect
+
+Wallet providers should make use of the [WalletConnect Client SDK](https://docs.walletconnect.org/client-sdk) for their target programming language and OS. There are implementations [on GitHub](https://github.com/walletconnect) for iOS, Android, React Native, etc.
+
 ## Protocol Differences
 
 Since we do not use Ethereum transactions, there are some differences:
