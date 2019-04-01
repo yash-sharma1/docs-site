@@ -4,7 +4,7 @@ The Binance Chain Web Wallet supports connecting with external wallet providers 
 
 WalletConnect allows the user to scan a QR code from the wallet app to unlock and use their wallet seamlessly in the web UI.
 
-In order for this to work, some modificiations to the standard WalletConnect protocol are used in the Binance Chain wallet's implementation.
+In order for this to work, some modifications to the standard WalletConnect protocol are used in the Binance Chain wallet's implementation.
 
 ## Protocol Differences
 
