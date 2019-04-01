@@ -41,12 +41,10 @@ We have two custom call request formats, here are examples of them:
 
 ```json
 {
-  "id": 1553682007906047,
-  "jsonrpc": "2.0",
   "method": "bnb_sign",
   "params": [
     {
-      "account_number": '34',
+      "account_number": "34",
       "chain_id": "Binance-Chain-Nile",
       "data": null,
       "memo": "test",
@@ -108,8 +106,6 @@ Note that:
 
 ```json
 {
-  "id": 1553682007906050,
-  "jsonrpc": "2.0",
   "method": "bnb_tx_confirmation",
   "params": [
     {
@@ -131,6 +127,6 @@ A response like this should be sent back from the wallet app:
 ```json
 {
   "id": 1553682007906050,
-  "result": "{}"
+  "result": ""
 }
 ```
