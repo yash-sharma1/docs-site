@@ -85,7 +85,7 @@ We have two custom call request formats, here are examples of them:
 }
 ```
 
-#### Response
+#### Response (approveRequest)
 
 A response like this should be sent back from the wallet app:
 
@@ -124,7 +124,7 @@ Receipt of the `bnb_tx_confirmation` should be confirmed by the app with `approv
 
 For this response, `result` may be empty or contain an empty JSON-encoded object:
 
-#### Response
+#### Response (approveRequest)
 
 A response like this should be sent back from the wallet app:
 
