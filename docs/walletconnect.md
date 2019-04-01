@@ -14,7 +14,7 @@ Wallet providers should make use of the [WalletConnect Client SDK](https://docs.
 
 Since we do not use Ethereum transactions, there are some differences:
 
-* Typically the `sendTransaction` is called with Ethereum transaction parameters in WalletConnect dApp integrations. But in Binance Chain's case, instead of invoking `sendTransaction` in the WalletConnect flow, the new [`sendCustomRequest`](https://docs.walletconnect.org/client-sdk#send-custom-request) call is used instead with a method called `bnb_sign` (see below).
+* Typically `sendTransaction` is used with Ethereum transaction parameters in WalletConnect dApp integrations. But in Binance Chain's case, instead of invoking `sendTransaction` in the WalletConnect flow, the new [`sendCustomRequest`](https://docs.walletconnect.org/client-sdk#send-custom-request) call is used instead with a method called `bnb_sign` (see below).
 
 * The external wallet provider is responsible for sending back the signature and public key of the transaction but should _not_ broadcast the transaction itself. This means that we have defined a custom `result` format in the form of stringified JSON containing the signature and public key. The reason for this is that the wallet app probably does not have access to the complete serialized binary form of the transaction (as this requires Amino encoding).
 
