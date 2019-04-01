@@ -120,9 +120,9 @@ Note that:
 }
 ```
 
-Receipt of the `bnb_tx_confirmation` should be confirmed by the app as per the WalletConnect protocol flow.
+Receipt of the `bnb_tx_confirmation` should be confirmed by the app with `approveRequest` as per the WalletConnect protocol flow.
 
-In this case, `result` may be empty or contain an empty JSON-encoded object:
+For this response, `result` may be empty or contain an empty JSON-encoded object:
 
 #### Response
 
