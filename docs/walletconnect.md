@@ -14,11 +14,11 @@ Wallet providers should make use of the [WalletConnect Client SDK](https://docs.
 
 Since we do not use Ethereum transactions, there are some differences:
 
-* Instead of invoking `sendTransaction` in the WalletConnect flow, the new [`sendCustomRequest` call](https://docs.walletconnect.org/client-sdk#send-custom-request) is used instead with a method called `bnb_sign` (see below).
+* Typically the `sendTransaction` is called with Ethereum transaction parameters in WalletConnect dApp integrations. But in Binance Chain's case, instead of invoking `sendTransaction` in the WalletConnect flow, the new [`sendCustomRequest`](https://docs.walletconnect.org/client-sdk#send-custom-request) call is used instead with a method called `bnb_sign` (see below).
 
-* The external wallet provider is responsible for sending back the signature and public key of the transaction but should _not_ broadcast the transaction itself. This differs from a usual implementation of WalletConnect, which would rely on the wallet app to do the broadcasting. This means that we have defined a custom `result` format in the form of stringified JSON.
+* The external wallet provider is responsible for sending back the signature and public key of the transaction but should _not_ broadcast the transaction itself. This means that we have defined a custom `result` format in the form of stringified JSON containing the signature and public key. The reason for this is that the wallet app probably does not have access to the complete serialized binary form of the transaction (as this requires Amino encoding).
 
-* The web wallet will send back a second custom call (after `bnb_sign`) called `bnb_tx_confirmation`, which contains the boolean result of the transaction build/broadcast and any error message encountered by the web wallet during broadcasting.
+* The web wallet will send back a second custom call (after `bnb_sign`) called `bnb_tx_confirmation`, which contains the boolean result of the transaction build/broadcast and any error message encountered by the web wallet during broadcasting. In a complete implementation, this confirmation callback should be responded to with a call to `approveRequest`.
 
 ## Sequence Diagram
 
