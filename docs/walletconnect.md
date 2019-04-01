@@ -134,3 +134,9 @@ A response like this should be sent back from the wallet app:
   "result": ""
 }
 ```
+
+## Ending the Session
+
+Remember to call `killSession()` when the user has finished using the integration from your app!
+
+This will redirect the user back to the unlock screen in the web wallet.
