@@ -15,7 +15,7 @@ Examples are written in JavaScript.
     const accountAndOrderAndTransfers = new WebSocket("wss://testnet-dex.binance.org/api/ws/bnc1hp7cves62dzj8n4z8ckna0d3t6zd7z2zcj6gtq");
 
     // Or Subscribe method
-    const conn = new WebSocket("wss://testnet-dex.binance.org/api");
+    const conn = new WebSocket("wss://testnet-dex.binance.org/api/ws");
     conn.onopen = function(evt) {
         conn.send(JSON.stringify({ method: "subscribe", topic: "orders", userAddress: "bnc1hp7cves62dzj8n4z8ckna0d3t6zd7z2zcj6gtq" }));
     }
@@ -86,7 +86,7 @@ Return account updates.
     const accountAndOrderAndTransfers = new WebSocket("wss://testnet-dex.binance.org/api/ws/bnc1hp7cves62dzj8n4z8ckna0d3t6zd7z2zcj6gtq");
 
     // Or Subscribe method
-    const conn = new WebSocket("wss://testnet-dex.binance.org/api");
+    const conn = new WebSocket("wss://testnet-dex.binance.org/api/ws");
     conn.onopen = function(evt) {
         conn.send(JSON.stringify({ method: "subscribe", topic: "accounts", userAddress: "bnc1hp7cves62dzj8n4z8ckna0d3t6zd7z2zcj6gtq" }));
     }
@@ -137,7 +137,7 @@ Return transfer updates if userAddress is involved (as sender or receiver) in a 
     const accountAndOrderAndTransfers = new WebSocket("wss://testnet-dex.binance.org/api/ws/bnb1z220ps26qlwfgz5dew9hdxe8m5malre3qy6zr9");
 
     // Or Subscribe method
-    const conn = new WebSocket("wss://testnet-dex.binance.org/api");
+    const conn = new WebSocket("wss://testnet-dex.binance.org/api/ws");
     conn.onopen = function(evt) {
         conn.send(JSON.stringify({ method: "subscribe", topic: "transfers", userAddress: "bnb1z220ps26qlwfgz5dew9hdxe8m5malre3qy6zr9" }));
     }
@@ -149,15 +149,16 @@ Return transfer updates if userAddress is involved (as sender or receiver) in a 
 {
   "stream": "transfers",
   "data": {
-    "e":"outboundTransferInfo",   // Event type
-    "E":12893,                    // Event height
-    "f":"bnb1z220ps26qlwfgz5dew9hdxe8m5malre3qy6zr9", // From addr
+    "e":"outboundTransferInfo",                                                // Event type
+    "E":12893,                                                                 // Event height
+    "H":"0434786487A1F4AE35D49FAE3C6F012A2AAF8DD59EC860DC7E77123B761DD91B",    // Transaction hash
+    "f":"bnb1z220ps26qlwfgz5dew9hdxe8m5malre3qy6zr9",                          // From addr
     "t":
       [{
-        "o":"bnb1xngdalruw8g23eqvpx9klmtttwvnlk2x4lfccu", // To addr
-        "c":[{                                            // Coins
-          "a":"BNB",                                      // Asset
-          "A":"100.00000000"                              // Amount
+        "o":"bnb1xngdalruw8g23eqvpx9klmtttwvnlk2x4lfccu",                      // To addr
+        "c":[{                                                                 // Coins
+          "a":"BNB",                                                           // Asset
+          "A":"100.00000000"                                                   // Amount
           }]
       }]
   }
@@ -178,7 +179,7 @@ Returns individual trade updates.
     const trades = new WebSocket("wss://testnet-dex.binance.org/api/ws/BNB_BTC@trades");
 
     // Or Subscribe method
-    const conn = new WebSocket("wss://testnet-dex.binance.org/api");
+    const conn = new WebSocket("wss://testnet-dex.binance.org/api/ws");
     conn.onopen = function(evt) {
         conn.send(JSON.stringify({ method: "subscribe", topic: "trades", symbols: ["BNB_BTC"] }));
     }
@@ -231,7 +232,7 @@ Order book price and quantity depth updates used to locally keep an order book.
     const marketDiff = new WebSocket("wss://testnet-dex.binance.org/api/ws/BNB_BTC@marketDiff");
 
     // Or Subscribe method
-    const conn = new WebSocket("wss://testnet-dex.binance.org/api");
+    const conn = new WebSocket("wss://testnet-dex.binance.org/api/ws");
     conn.onopen = function(evt) {
         conn.send(JSON.stringify({ method: "subscribe", topic: "marketDiff", symbols: ["BNB_BTC"] }));
     }
@@ -275,7 +276,7 @@ Top 20 levels of bids and asks.
     const marketDepth = new WebSocket("wss://testnet-dex.binance.org/api/ws/BNB_BTC@marketDepth");
 
     // Or Subscribe method
-    const conn = new WebSocket("wss://testnet-dex.binance.org/api");
+    const conn = new WebSocket("wss://testnet-dex.binance.org/api/ws");
     conn.onopen = function(evt) {
         conn.send(JSON.stringify({ method: "subscribe", topic: "marketDepth", symbols: ["BNB_BTC"] }));
     }
@@ -338,7 +339,7 @@ m -> minutes; h -> hours; d -> days; w -> weeks; M -> months
     const kline = new WebSocket("wss://testnet-dex.binance.org/api/ws/BNB_BTC@kline_1h");
 
     // Or Subscribe method
-    const conn = new WebSocket("wss://testnet-dex.binance.org/api");
+    const conn = new WebSocket("wss://testnet-dex.binance.org/api/ws");
     conn.onopen = function(evt) {
         conn.send(JSON.stringify({ method: "subscribe", topic: "kline_1h", symbols: ["BNB_BTC"] }));
     }
@@ -386,7 +387,7 @@ m -> minutes; h -> hours; d -> days; w -> weeks; M -> months
     const ticker = new WebSocket("wss://testnet-dex.binance.org/api/ws/BNB_BTC@ticker");
 
     // Or Subscribe method
-    const conn = new WebSocket("wss://testnet-dex.binance.org/api");
+    const conn = new WebSocket("wss://testnet-dex.binance.org/api/ws");
     conn.onopen = function(evt) {
         conn.send(JSON.stringify({ method: "subscribe", topic: "ticker", symbols: ["BNB_BTC"] }));
     }
@@ -440,7 +441,7 @@ m -> minutes; h -> hours; d -> days; w -> weeks; M -> months
     const allTickers = new WebSocket("wss://testnet-dex.binance.org/api/ws/$all@allTickers");
 
     // Or Subscribe method
-    const conn = new WebSocket("wss://testnet-dex.binance.org/api");
+    const conn = new WebSocket("wss://testnet-dex.binance.org/api/ws");
     conn.onopen = function(evt) {
         conn.send(JSON.stringify({ method: "subscribe", topic: "allTickers", symbols: ["$all"] }));
     }
@@ -496,7 +497,7 @@ A ticker for a single symbol is pushed every second.
     const miniTicker = new WebSocket("wss://testnet-dex.binance.org/api/ws/BNB_BTC@miniTicker");
 
     // Or Subscribe method
-    const conn = new WebSocket("wss://testnet-dex.binance.org/api");
+    const conn = new WebSocket("wss://testnet-dex.binance.org/api/ws");
     conn.onopen = function(evt) {
         conn.send(JSON.stringify({ method: "subscribe", topic: "miniTicker", symbols: ["BNB_BTC"] }));
     }
@@ -534,7 +535,7 @@ Array of 24hr Mini Ticker statistics for a all symbols pushed every second.
     const miniTickers = new WebSocket("wss://testnet-dex.binance.org/api/ws/$all@allMiniTickers");
 
     // Or Subscribe method
-    const conn = new WebSocket("wss://testnet-dex.binance.org/api");
+    const conn = new WebSocket("wss://testnet-dex.binance.org/api/ws");
     conn.onopen = function(evt) {
         conn.send(JSON.stringify({ method: "subscribe", topic: "allMiniTickers", symbols: ["$all"] }));
     }
@@ -576,7 +577,7 @@ Streams the latest block height.
     const blockHeights = new WebSocket("wss://testnet-dex.binance.org/api/ws/$all@blockheight");
 
     // Or Subscribe method
-    const conn = new WebSocket("wss://testnet-dex.binance.org/api");
+    const conn = new WebSocket("wss://testnet-dex.binance.org/api/ws");
     conn.onopen = function(evt) {
         conn.send(JSON.stringify({ method: "subscribe", topic: "blockheight", symbols: ["$all"] }));
     }
