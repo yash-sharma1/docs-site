@@ -46,7 +46,7 @@ Using this method, stream names are specified in the URLs used to connect to the
 Using this method, streams are be consumed via subscribe and unsubscribe commands, sent through a single WebSocket connection.
 
 ```javascript
-    const conn = new WebSocket("<whatever valid ws url>");
+    const conn = new WebSocket("wss://testnet-dex.binance.org/api/ws");
     conn.onopen = function(evt) {
         // send Subscribe/Unsubscribe messages here (see below)
     }
