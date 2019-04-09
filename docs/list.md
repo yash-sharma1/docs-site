@@ -50,7 +50,7 @@ You can refer to [issue doc](tokens.md) in case you do not know how to do it.
 After issuing the token, you need to create a proposal to list this token against a quote asset.
 
 ```bash
-$ ./bnbcli gov submit-list-proposal --chain-id=Binance-Chain-Nile --from test --deposit 200000000000:BNB --base-asset-symbol BTC-F20 --quote-asset-symbol bnb --init-price 100000000 --title list BTC/BNB --description list BTC/BNB  --expire-time 1570087547 --voting-period 14400 --json
+$ ./bnbcli gov submit-list-proposal --chain-id=Binance-Chain-Nile --from test --deposit 200000000000:BNB --base-asset-symbol BTC-F20 --quote-asset-symbol bnb --init-price 100000000 --title list BTC/BNB --description list BTC/BNB  --expire-time 1570087547 --voting-period 604800 --json
 Password to sign with 'test':
 {  
    "Height":"281822",
