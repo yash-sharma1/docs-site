@@ -3,7 +3,7 @@
 Light client is a program that connect to a full node to help users access and interact with Binance chain 
 in a secure and decentralized manner without having to sync the full blockchain. 
 
-## Versus Full Node
+## Light Client Versus Full Node
 
 - Light client do not store blocks or states so that it need less disk space(50 megabytes will be enough).
 - Light client do not join p2p network and it do not produce any network cost when it is idle. The network 

@@ -365,6 +365,23 @@ paths:
       operationId: getTokens
       produces:
       - application/json
+      parameters:
+      - name: limit
+        in: query
+        description: default 500; max 1000.
+        required: false
+        type: integer
+        default: 500
+        format: int32
+        allowEmptyValue: false
+      - name: offset
+        in: query
+        description: start with 0; default 0.
+        required: false
+        type: integer
+        default: 0
+        format: int32
+        allowEmptyValue: false
       responses:
         '200':
           description: Success
@@ -398,6 +415,23 @@ paths:
       operationId: getPairs
       produces:
       - application/json
+      parameters:
+      - name: limit
+        in: query
+        description: default 500; max 1000.
+        required: false
+        type: integer
+        default: 500
+        format: int32
+        allowEmptyValue: false
+      - name: offset
+        in: query
+        description: start with 0; default 0.
+        required: false
+        type: integer
+        default: 0
+        format: int32
+        allowEmptyValue: false
       responses:
         '200':
           description: Success
@@ -593,7 +627,7 @@ paths:
         in: query
         description: "interval. Allowed value: [1m, 3m, 5m, 15m, 30m, 1h, 2h, 4h, 6h, 8h, 12h, 1d, 3d, 1w, 1M]"
         required: true
-        type: string
+        type: enum string
         allowEmptyValue: false
         enum:
         - 1m
@@ -726,7 +760,7 @@ paths:
         in: query
         description: "order status list. Allowed value: [Ack, PartialFill, IocNoFill, FullyFill, Canceled, Expired, FailedBlocking, FailedMatching]"
         required: false
-        type: array
+        type: enum string
         items:
           type: string
         collectionFormat: multi
@@ -1010,7 +1044,12 @@ paths:
       tags:
       - trading fee
       summary: Trading fee grouped by block
-      description: Get historical trading fees. Order by block height DESC.
+      description: |
+        Get historical trading fees. Order by block height DESC.
+
+        **Query Window:** Default query window is latest 7 days; The maximum start - end query window is 3 months.
+
+        **Rate Limit:** 5 requests per IP per second.
       operationId: getBlockExchangeFee
       produces:
       - application/json
@@ -1117,7 +1156,7 @@ paths:
         in: query
         description: "transaction side. Allowed value: [ RECEIVE, SEND]"
         required: false
-        type: string
+        type: enum string
         allowEmptyValue: false
         enum:
         - RECEIVE
@@ -1137,7 +1176,7 @@ paths:
         in: query
         description: "transaction type. Allowed value: [ NEW_ORDER,ISSUE_TOKEN,BURN_TOKEN,LIST_TOKEN,CANCEL_ORDER,FREEZE_TOKEN,UN_FREEZE_TOKEN,TRANSFER,PROPOSAL,VOTE,MINT,DEPOSIT]"
         required: false
-        type: string
+        type: enum string
         allowEmptyValue: false
         enum:
         - NEW_ORDER
@@ -1167,7 +1206,7 @@ paths:
           description: Generic error response
           schema:
             $ref: "#/definitions/Error"
-      deprecated: false
+acc      deprecated: false
 definitions:
   Error:
     type: object
@@ -1178,15 +1217,18 @@ definitions:
         type: integer
         format: int64
         required: true
+        description: error code
+        example: 400
       message:
         type: string
         required: true
+        description: error message
   Times:
     type: object
     title: Times
     properties:
-      ap_time: {type: string, description: e.g. 2019-01-21T10:30:00Z}
-      block_time: {type: string, description: format as above}
+      ap_time: {type: string, description: event time , example: e.g. 2019-01-21T10:30:00Z}
+      block_time: {type: string, description: block height, example: 12345678}
   Validator:
     type: object
     properties:
@@ -1195,6 +1237,7 @@ definitions:
         description: 'Current block height'
         format: int64
         required: true
+        example: 12345
       validators:
         type: array
         required: true
@@ -1226,6 +1269,7 @@ definitions:
         type: string
         description: 'Authenticated identifier'
         required: true
+        example: 8c379d4d3b9995c712665dc9a9414dbde5b30483
       original_listen_addr:
         type: string
         description: 'Original listen address before PeersService changed it'
@@ -1250,14 +1294,17 @@ definitions:
         type: string
         description: 'Chain ID'
         required: true
+        example: Binance-Chain-Nile
       version:
         type: string
         description: 'Version'
         required: true
+        example: 0.30.1
       moniker:
         type: string
         description: 'Moniker (Name)'
         required: true
+        example: data-seed-1
       capabilities:
         type: array
         description: "Array of capability tags: node, qs, ap, ws"
@@ -1386,6 +1433,7 @@ definitions:
         title: Sequence
         format: int64
         required: true
+        description: 'sequence is for preventing replay attack'
   AccountSequence:
     type: object
     properties:
@@ -1394,10 +1442,12 @@ definitions:
         title: Sequence
         format: int64
         required: true
+        description: number used for preventing replay attack
+        example: 1
   Balance:
     type: object
     properties:
-      symbol: {type: string, example: BNB, format: currency}
+      symbol: {type: string,description: asset symbol, example: BNB, format: currency}
       free: {type: string, title: Free, description: "In decimal form, e.g. 0.00000000", example: "0.00000000", format: fixed8}
       locked: {type: string, title: Locked, description: "In decimal form, e.g. 0.00000000", example: "0.00000000", format: fixed8}
       frozen: {type: string, title: Frozen, description: "In decimal form, e.g. 0.00000000", example: "0.00000000", format: fixed8}
@@ -1406,25 +1456,28 @@ definitions:
     properties:
       name:
         type: string
+        description: token name
         example: Binance Chain Native Token
         required: true
       symbol:
         type: string
+        description: unique token trade symbol
         example: BTC-000
         required: true
       original_symbol:
         type: string
+        description: token symbol
         example: BTC
         required: true
       total_supply:
         type: string
-        description: "In decimal form, e.g. 1.00000000"
+        description: "total token supply in decimal form, e.g. 1.00000000"
         example: "0.00000000"
         format: fixed8
         required: true
       owner:
         type: string
-        description: Address
+        description: Address which issue the token
         format: address
         required: true
   Market:
@@ -1432,12 +1485,14 @@ definitions:
     properties:
       base_asset_symbol:
         type: string
+        description: symbol of base asset
         example: BNB
         format: currency
         required: true
       quote_asset_symbol:
         type: string
-        example: BNB
+        description: symbol of quote asset
+        example: ABC
         format: currency
         required: true
       price:
@@ -1448,14 +1503,14 @@ definitions:
         required: true
       tick_size:
         type: string
-        description: "In decimal form, e.g. 1.00000000"
-        example: "0.00000000"
+        description: "Minimium price change in decimal form, e.g. 1.00000000"
+        example: "0.00000001"
         format: fixed8
         required: true
       lot_size:
         type: string
-        description: "In decimal form, e.g. 1.00000000"
-        example: "0.00000000"
+        description: "Minimium trading quantity in decimal form, e.g. 1.00000000"
+        example: "0.000001"
         format: fixed8
         required: true
   Fee:
@@ -1539,11 +1594,14 @@ definitions:
     properties:
       blockTime:
         type: integer
+        description: timestamp of a block
         format: int64
       fee:
         type: string
+        description: total fee collected
       height:
         type: integer
+        description: block height
         format: int64
       trade:
         type: array
@@ -1554,21 +1612,26 @@ definitions:
     properties:
       close:
         type: number
+        description: closing price
       closeTime:
         type: integer
         format: int64
       high:
         type: number
+        description: the highest price
       low:
         type: number
+        description: the lowest price
       numberOfTrades:
         type: integer
         format: int32
       open:
         type: number
+        description: open price
       openTime:
         type: integer
         format: int64
+        description: time of open trade
       quoteAssetVolume:
         type: number
       volume:
@@ -1578,6 +1641,7 @@ definitions:
     properties:
       order:
         type: array
+        description: list of orders
         items:
           $ref: '#/definitions/Order'
       total:
@@ -1592,19 +1656,26 @@ definitions:
         type: string
       lastExecutedPrice:
         type: string
+        description: price of last execution
       lastExecutedQuantity:
         type: string
+        description: quantity of last execution
       orderCreateTime:
         type: string
+        description: time of order creation
         format: date-time
       orderId:
         type: string
+        description: order ID
       owner:
         type: string
+        description: order issuer
       price:
         type: string
+        description: order price
       quantity:
         type: string
+        description: order quantity
       side:
         type: integer
         format: int32
@@ -1627,10 +1698,12 @@ definitions:
         - UNKNOWN
       tradeId:
         type: string
+        description: trade ID
       transactionHash:
         type: string
       transactionTime:
         type: string
+        description: time of transaction
         format: date-time
       type:
         type: integer
@@ -1644,17 +1717,23 @@ definitions:
     properties:
       askPrice:
         type: string
+        description: ask price
       askQuantity:
         type: string
+        description: ask quantity
       bidPrice:
         type: string
+        description: bid price
       bidQuantity:
         type: string
+        description: bid quantity
       closeTime:
         type: integer
+        description: time of closing
         format: int64
       count:
         type: integer
+        description: total count
         format: int64
       firstId:
         type: string
@@ -1703,34 +1782,48 @@ definitions:
     properties:
       baseAsset:
         type: string
+        description: base asset
       blockHeight:
         type: integer
+        description: block height
         format: int64
       buyFee:
         type: string
+        description: fees for buyer
       buyerId:
         type: string
+        description: id of buyer
       buyerOrderId:
         type: string
+        description: order id for buyer
       price:
         type: string
+        description: trade price
       quantity:
         type: string
+        description: trade quantity
       quoteAsset:
         type: string
+        description: quote asset
       sellFee:
         type: string
+        description: fees for seller
       sellerId:
         type: string
+        description: seller ID
       sellerOrderId:
         type: string
+        description: seller order ID
       symbol:
         type: string
+        description: asset symbol
       time:
         type: integer
+        description: trade time
         format: int64
       tradeId:
         type: string
+        description: trade ID
   BlockExchangeFeePage:
     type: object
     properties:
@@ -1764,6 +1857,7 @@ definitions:
     properties:
       total:
         type: integer
+        description: total sum of transactions
         format: int64
       tx:
         type: array
@@ -1774,9 +1868,11 @@ definitions:
     properties:
       blockHeight:
         type: integer
+        description: block height
         format: int64
       code:
         type: integer
+        description: transaction result code
         format: int32
         example: 0
       confirmBlocks:
@@ -1786,13 +1882,17 @@ definitions:
         type: string
       fromAddr:
         type: string
+        description: from address
       orderId:
         type: string
+        description: order ID
       timeStamp:
         type: string
+        description: time of transaction
         format: date-time
       toAddr:
         type: string
+        description: to address
       txAge:
         type: integer
         format: int64
@@ -1802,10 +1902,13 @@ definitions:
         type: string
       txHash:
         type: string
+        description: hash of transaction
       txType:
         type: string
+        description: type of transaction
       value:
         type: string
+        description: value of transaction
     title: Tx
   ExchangeRate:
     type: object

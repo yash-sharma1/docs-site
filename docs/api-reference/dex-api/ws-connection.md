@@ -4,7 +4,6 @@ The DEX exposes several data streams over standard WebSocket connections, which 
 
 - The base endpoint is: **wss://testnet-dex.binance.org/api/**.
 - Each connection can consume a single stream or multiple streams may be multiplexed through one connection for more complex apps.
-- A single connection to **wss://testnet-dex.binance.org/api/** is only valid for 24 hours, so expect to be disconnected at around the 24 hour mark. Your app should handle this with reconnection logic.
 - All symbols in stream names are lowercase.
 
 Stream names may be provided in the URL **or** there is a mechanism to `subscribe` to consume streams on demand through one connection.
@@ -46,7 +45,7 @@ Using this method, stream names are specified in the URLs used to connect to the
 Using this method, streams are be consumed via subscribe and unsubscribe commands, sent through a single WebSocket connection.
 
 ```javascript
-    const conn = new WebSocket("wss://testnet-dex.binance.org/api");
+    const conn = new WebSocket("wss://testnet-dex.binance.org/api/ws");
     conn.onopen = function(evt) {
         // send Subscribe/Unsubscribe messages here (see below)
     }
@@ -63,10 +62,12 @@ After connecting successfully you can subscribe/unsubscribe to different topics.
 **Example:** To subscribe to orders events and market depth updates, you should send a socket message with the `subscribe` payload as below:
 
 ```javascript
-    const conn = new WebSocket("wss://testnet-dex.binance.org/api");
+    const conn = new WebSocket("wss://testnet-dex.binance.org/api/ws/bnc1hp7cves62dzj8n4z8ckna0d3t6zd7z2zcj6gtq");
     conn.onopen = function(evt) {
-        // for private topics such as accounts & orders, a `userAddress` is required
-        conn.send(JSON.stringify({ method: "subscribe", topic: "orders", userAddress: "bnc1hp7cves62dzj8n4z8ckna0d3t6zd7z2zcj6gtq" }));
+        // for personal topics such as accounts & orders & transfers, an `address` is required
+        // Note: one connection is only allowed to subscribe to one address.
+        // If you subscribe to a new address, regardless of whether the topic is new, the subscriptions for the previous addresses will be removed.
+        conn.send(JSON.stringify({ method: "subscribe", topic: "orders", address: "bnc1hp7cves62dzj8n4z8ckna0d3t6zd7z2zcj6gtq" }));
 
         // for data topics such as marketDepth, marketDelta, trades and ticker;
         // a list of symbols is required. Same message can be used to append new topic and/or symbols

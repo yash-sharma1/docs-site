@@ -18,11 +18,11 @@ in the range of int64.
 4. Side: buy or sell
 5. Time: entry time of the order, which is the block number(height) the order gets booked in.
 6. TimeInForce:
-    
-    1. GTE: Good Till Expire. Order would stay effective until expire time. Order may expire in the UTC midnight after more than 259, 200 blocks, which is 72 hours in term of blocking time. 
-    1. IOC: Immediate or Cancel. Orders would be executed as much as it can in the booking block 
-    round and then got canceled back if there is still quantity left.
    
+    * GTE: Good Till Expire. Order would stay effective until expire time. Order may expire in the UTC midnight after more than 259, 200 blocks, which is 72 hours in term of blocking time. 
+    * IOC: Immediate or Cancel. Orders would be executed as much as it can in the booking block 
+    round and then got canceled back if there is still quantity left.
+
 Orders would be rejected when:
 
 0. user address cannot be located with asset
@@ -99,6 +99,7 @@ Cancel (No Fill) | Equivalent 0.001 BNB | 0.0002 BNB | Y
 Order Expire (No Fill) | Equivalent 0.001 BNB | 0.0002 BNB | Y
 IOC (No Fill) | Equivalent 0.0005 BNB | 0.0001 BNB | Y
 Transfer | N/A | 0.00125 BNB | N
+Multi-send | N/A | 0.001 BNB | N
 Issue Asset | N/A | 1000 BNB | N
 Mint Asset | N/A | 200 BNB | N
 Burn Asset | N/A | 1 BNB | N
@@ -106,6 +107,32 @@ Freeze/Unfreeze Asset | N/A | 0.01 BNB | N
 List Asset | N/A | 2000 BNB | N
 Submit Proposal | N/A | 10 BNB | N
 Deposit | N/A | 0.00125 BNB | N
+
+### Multi-send Fees
+`bnbcli`  offers you a multi-send command to transfer multiple tokens to multiple people. 20% discount is available for `multi-send` transactions. For now, `multi-send` transaction will send some tokens from one address to multiple output addresses. If the count of output address is bigger than the threshold, currently it's 2, then the total transaction fee is  0.001 BNB per token per address.  
+For example, if you send 3 ABC token,1 SAT token and 1 ABC to 3 different addresses.
+
+```json
+[  
+   {  
+      "to":"bnb1g5p04snezgpky203fq6da9qyjsy2k9kzr5yuhl",
+      "amount":"100000000:BNB,100000000:ABC"
+   },
+   {
+      "to":"bnb1l86xty0m55ryct9pnypz6chvtsmpyewmhrqwxw",
+      "amount":"100000000:BNB"
+   },
+   {
+      "to":"bnb1l86xty0maxdgst9pnypz6chvtsmpydkjflfioe",
+      "amount":"100000000:BNB,100000000:SAT"
+   }
+]
+```
+You will pay 
+
+```
+0.001 BNB * 5 = 0.05 BNB
+```
 
 ### Trading Fees
 

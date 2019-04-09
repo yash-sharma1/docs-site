@@ -253,6 +253,13 @@ Below is an example response of a send transaction when `?format=json` is used.
 **Test URL:** [https://testnet-dex.binance.org/api/v1/tokens](https://testnet-dex.binance.org/api/v1/tokens)
 
 
+**Parameters**
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| limit | query | default 500; max 1000. | No | integer |
+| offset | query | start with 0; default 0. | No | integer |
+
 **Responses**
 
 | Code | Description | Schema |
@@ -275,6 +282,13 @@ Below is an example response of a send transaction when `?format=json` is used.
 
 **Test URL:** [https://testnet-dex.binance.org/api/v1/markets](https://testnet-dex.binance.org/api/v1/markets)
 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| limit | query | default 500; max 1000. | No | integer |
+| offset | query | start with 0; default 0. | No | integer |
 
 **Responses**
 
@@ -403,10 +417,10 @@ If the time window is larger than limits, only the first n klines will return. I
 | Name | Located in | Description | Required | Schema |
 | ---- | ---------- | ----------- | -------- | ---- |
 | symbol | query | symbol | Yes | string |
-| interval | query | interval. Allowed value: [1m, 3m, 5m, 15m, 30m, 1h, 2h, 4h, 6h, 8h, 12h, 1d, 3d, 1w, 1M] | Yes | string |
+| interval | query | interval. Allowed value: [1m, 3m, 5m, 15m, 30m, 1h, 2h, 4h, 6h, 8h, 12h, 1d, 3d, 1w, 1M] | Yes | enum string |
 | limit | query | default 300; max 1000. | No | integer |
-| startTime | query | start time | No | long |
-| endTime | query | end time | No | long |
+| startTime | query | start time in Milliseconds | No | long |
+| endTime | query | end time in Milliseconds | No | long |
 
 **Responses**
 
@@ -431,12 +445,12 @@ If the time window is larger than limits, only the first n klines will return. I
 | Name | Located in | Description | Required | Schema |
 | ---- | ---------- | ----------- | -------- | ---- |
 | address | query | the owner address | Yes | string |
-| end | query | end time | No | long |
+| end | query | end time in Milliseconds | No | long |
 | limit | query | default 500; max 1000. | No | integer |
 | offset | query | start with 0; default 0. | No | integer |
 | side | query | order side. 1 for buy and 2 for sell. | No | integer |
-| start | query | start time; | No | long |
-| status | query | order status list. Allowed value: [Ack, PartialFill, IocNoFill, FullyFill, Canceled, Expired, FailedBlocking, FailedMatching] | No | [ string ] |
+| start | query | start time in Milliseconds | No | long |
+| status | query | order status list. Allowed value: [Ack, PartialFill, IocNoFill, FullyFill, Canceled, Expired, FailedBlocking, FailedMatching] | No | enum string |
 | symbol | query | symbol | No | string |
 | total | query | total number required, 0 for not required and 1 for required; default not required, return total=-1 in response | No | integer |
 
@@ -543,14 +557,14 @@ If the time window is larger than limits, only the first n klines will return. I
 | ---- | ---------- | ----------- | -------- | ---- |
 | address | query | the buyer/seller address | No | string |
 | buyerOrderId | query | buyer order id | No | string |
-| end | query | end time | No | long |
+| end | query | end time in Milliseconds | No | long |
 | height | query | block height | No | long |
 | limit | query | default 500; max 1000. | No | integer |
 | offset | query | start with 0; default 0. | No | integer |
 | quoteAsset | query | quote asset | No | string |
 | sellerOrderId | query | seller order id | No | string |
 | side | query | order side. 1 for buy and 2 for sell. | No | integer |
-| start | query | start time; | No | long |
+| start | query | start time in Milliseconds | No | long |
 | symbol | query | symbol | No | string |
 | total | query | total number required, 0 for not required and 1 for required; default not required, return total=-1 in response | No | integer |
 
@@ -581,13 +595,13 @@ If the time window is larger than limits, only the first n klines will return. I
 | ---- | ---------- | ----------- | -------- | ---- |
 | address | query | address | Yes | string |
 | blockHeight | query | blockHeight | No | long |
-| endTime | query | endTime | No | long |
+| endTime | query | endTime in Milliseconds | No | long |
 | limit | query | limit | No | integer |
 | offset | query | offset | No | integer |
-| side | query | transaction side. Allowed value: [ RECEIVE, SEND] | No | string |
-| startTime | query | start time; | No | long |
+| side | query | transaction side. Allowed value: [ RECEIVE, SEND] | No | enum string |
+| startTime | query | start time in Milliseconds | No | long |
 | txAsset | query | txAsset | No | string |
-| txType | query | transaction type. Allowed value: [ NEW_ORDER,ISSUE_TOKEN,BURN_TOKEN,LIST_TOKEN,CANCEL_ORDER,FREEZE_TOKEN,UN_FREEZE_TOKEN,TRANSFER,PROPOSAL,VOTE,MINT,DEPOSIT] | No | string |
+| txType | query | transaction type. Allowed value: [ NEW_ORDER,ISSUE_TOKEN,BURN_TOKEN,LIST_TOKEN,CANCEL_ORDER,FREEZE_TOKEN,UN_FREEZE_TOKEN,TRANSFER,PROPOSAL,VOTE,MINT,DEPOSIT] | No | enum string |
 
 **Responses**
 
@@ -605,35 +619,35 @@ If the time window is larger than limits, only the first n klines will return. I
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
-| code | long |  |  |
-| message | string |  |  |
+| code | long | error code | 400 |
+| message | string | error message |  |
 
 ### Times  
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
-| ap_time | string | e.g. 2019-01-21T10:30:00Z |  |
-| block_time | string | format as above |  |
+| ap_time | string | event time | e.g. 2019-01-21T10:30:00Z |
+| block_time | string | block height | 12345678 |
 
 ### Validator  
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
-| block_height | long | Current block height |  |
+| block_height | long | Current block height | 12345 |
 | validators | [  ] |  |  |
 
 ### Peer  
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
-| id | string | Authenticated identifier |  |
+| id | string | Authenticated identifier | 8c379d4d3b9995c712665dc9a9414dbde5b30483 |
 | original_listen_addr | string (RemoteAddr) | Original listen address before PeersService changed it |  |
 | listen_addr | string (RemoteAddr) | Listen address |  |
 | access_addr | string (RemoteAddr) | Access address (HTTP) |  |
 | stream_addr | string (RemoteAddr) | Stream address (WS) |  |
-| network | string | Chain ID |  |
-| version | string | Version |  |
-| moniker | string | Moniker (Name) |  |
+| network | string | Chain ID | Binance-Chain-Nile |
+| version | string | Version | 0.30.1 |
+| moniker | string | Moniker (Name) | data-seed-1 |
 | capabilities | [ string ] | Array of capability tags: node, qs, ap, ws | node,ap |
 | accelerated | boolean | Is an accelerated path to a validator node |  |
 
@@ -712,19 +726,19 @@ varies with msg type.
 | address | string (address) |  |  |
 | balances | [ [Balance](#balance) ] |  |  |
 | public_key | [ integer ] | Public key bytes |  |
-| sequence | long |  |  |
+| sequence | long | sequence is for preventing replay attack |  |
 
 ### AccountSequence  
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
-| sequence | long |  |  |
+| sequence | long | number used for preventing replay attack | 1 |
 
 ### Balance  
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
-| symbol | string (currency) |  | BNB |
+| symbol | string (currency) | asset symbol | BNB |
 | free | string (fixed8) | In decimal form, e.g. 0.00000000 | 0.00000000 |
 | locked | string (fixed8) | In decimal form, e.g. 0.00000000 | 0.00000000 |
 | frozen | string (fixed8) | In decimal form, e.g. 0.00000000 | 0.00000000 |
@@ -733,21 +747,21 @@ varies with msg type.
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
-| name | string |  | Binance Chain Native Token |
-| symbol | string |  | BTC-000 |
-| original_symbol | string |  | BTC |
-| total_supply | string (fixed8) | In decimal form, e.g. 1.00000000 | 0.00000000 |
-| owner | string (address) | Address |  |
+| name | string | token name | Binance Chain Native Token |
+| symbol | string | unique token trade symbol | BTC-000 |
+| original_symbol | string | token symbol | BTC |
+| total_supply | string (fixed8) | total token supply in decimal form, e.g. 1.00000000 | 0.00000000 |
+| owner | string (address) | Address which issue the token |  |
 
 ### Market  
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
-| base_asset_symbol | string (currency) |  | BNB |
-| quote_asset_symbol | string (currency) |  | BNB |
+| base_asset_symbol | string (currency) | symbol of base asset | BNB |
+| quote_asset_symbol | string (currency) | symbol of quote asset | ABC |
 | price | string (fixed8) | In decimal form, e.g. 1.00000000 | 0.00000000 |
-| tick_size | string (fixed8) | In decimal form, e.g. 1.00000000 | 0.00000000 |
-| lot_size | string (fixed8) | In decimal form, e.g. 1.00000000 | 0.00000000 |
+| tick_size | string (fixed8) | Minimium price change in decimal form, e.g. 1.00000000 | 0.00000001 |
+| lot_size | string (fixed8) | Minimium trading quantity in decimal form, e.g. 1.00000000 | 0.000001 |
 
 ### Fee  
 
@@ -786,22 +800,22 @@ varies with msg type.
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
-| blockTime | long |  |  |
-| fee | string |  |  |
-| height | long |  |  |
+| blockTime | long | timestamp of a block |  |
+| fee | string | total fee collected |  |
+| height | long | block height |  |
 | trade | [ [Trade](#trade) ] |  |  |
 
 ### Candlestick  
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
-| close | number |  |  |
+| close | number | closing price |  |
 | closeTime | long |  |  |
-| high | number |  |  |
-| low | number |  |  |
+| high | number | the highest price |  |
+| low | number | the lowest price |  |
 | numberOfTrades | integer |  |  |
-| open | number |  |  |
-| openTime | long |  |  |
+| open | number | open price |  |
+| openTime | long | time of open trade |  |
 | quoteAssetVolume | number |  |  |
 | volume | number |  |  |
 
@@ -809,7 +823,7 @@ varies with msg type.
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
-| order | [ [Order](#order) ] |  |  |
+| order | [ [Order](#order) ] | list of orders |  |
 | total | long |  |  |
 
 ### Order  
@@ -818,32 +832,32 @@ varies with msg type.
 | ---- | ---- | ----------- | ------- |
 | cumulateQuantity | string |  |  |
 | fee | string |  |  |
-| lastExecutedPrice | string |  |  |
-| lastExecutedQuantity | string |  |  |
-| orderCreateTime | dateTime |  |  |
-| orderId | string |  |  |
-| owner | string |  |  |
-| price | string |  |  |
-| quantity | string |  |  |
+| lastExecutedPrice | string | price of last execution |  |
+| lastExecutedQuantity | string | quantity of last execution |  |
+| orderCreateTime | dateTime | time of order creation |  |
+| orderId | string | order ID |  |
+| owner | string | order issuer |  |
+| price | string | order price |  |
+| quantity | string | order quantity |  |
 | side | integer | 1 for buy and 2 for sell |  |
 | status | string | enum [Ack, PartialFill, IocNoFill, FullyFill, Canceled, Expired, FailedBlocking, FailedMatching] |  |
 | symbol | string |  |  |
 | timeInForce | integer | 1 for Good Till Expire(GTE) order and 3 for Immediate Or Cancel (IOC) |  |
-| tradeId | string |  |  |
+| tradeId | string | trade ID |  |
 | transactionHash | string |  |  |
-| transactionTime | dateTime |  |  |
+| transactionTime | dateTime | time of transaction |  |
 | type | integer | only 2 is available for now, meaning limit order |  |
 
 ### TickerStatistics  
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
-| askPrice | string |  |  |
-| askQuantity | string |  |  |
-| bidPrice | string |  |  |
-| bidQuantity | string |  |  |
-| closeTime | long |  |  |
-| count | long |  |  |
+| askPrice | string | ask price |  |
+| askQuantity | string | ask quantity |  |
+| bidPrice | string | bid price |  |
+| bidQuantity | string | bid quantity |  |
+| closeTime | long | time of closing |  |
+| count | long | total count |  |
 | firstId | string |  |  |
 | highPrice | string |  |  |
 | lastId | string |  |  |
@@ -871,46 +885,46 @@ varies with msg type.
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
-| baseAsset | string |  |  |
-| blockHeight | long |  |  |
-| buyFee | string |  |  |
-| buyerId | string |  |  |
-| buyerOrderId | string |  |  |
-| price | string |  |  |
-| quantity | string |  |  |
-| quoteAsset | string |  |  |
-| sellFee | string |  |  |
-| sellerId | string |  |  |
-| sellerOrderId | string |  |  |
-| symbol | string |  |  |
-| time | long |  |  |
-| tradeId | string |  |  |
+| baseAsset | string | base asset |  |
+| blockHeight | long | block height |  |
+| buyFee | string | fees for buyer |  |
+| buyerId | string | id of buyer |  |
+| buyerOrderId | string | order id for buyer |  |
+| price | string | trade price |  |
+| quantity | string | trade quantity |  |
+| quoteAsset | string | quote asset |  |
+| sellFee | string | fees for seller |  |
+| sellerId | string | seller ID |  |
+| sellerOrderId | string | seller order ID |  |
+| symbol | string | asset symbol |  |
+| time | long | trade time |  |
+| tradeId | string | trade ID |  |
 
 ### TxPage  
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
-| total | long |  |  |
+| total | long | total sum of transactions |  |
 | tx | [ [Tx](#tx) ] |  |  |
 
 ### Tx  
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
-| blockHeight | long |  |  |
-| code | integer |  | 0 |
+| blockHeight | long | block height |  |
+| code | integer | transaction result code | 0 |
 | confirmBlocks | long |  |  |
 | data | string |  |  |
-| fromAddr | string |  |  |
-| orderId | string |  |  |
-| timeStamp | dateTime |  |  |
-| toAddr | string |  |  |
+| fromAddr | string | from address |  |
+| orderId | string | order ID |  |
+| timeStamp | dateTime | time of transaction |  |
+| toAddr | string | to address |  |
 | txAge | long |  |  |
 | txAsset | string |  |  |
 | txFee | string |  |  |
-| txHash | string |  |  |
-| txType | string |  |  |
-| value | string |  |  |
+| txHash | string | hash of transaction |  |
+| txType | string | type of transaction |  |
+| value | string | value of transaction |  |
 
 ### ExchangeRate  
 
