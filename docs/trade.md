@@ -5,7 +5,7 @@ Binance DEX is the native marketplace which allows you to exchange digital asset
 ## Place Order
 You could place a new order with the following command:
 ```
-$ bnbcli dex order  --symbol ZEBRA-16D_BNB  --side 1 --price 1000000 --quantity 1000 --from guest --chain-id Binance-Chain-Nile --node=data-seed-pre-2-s1.binance.org:80 -t gte
+$ bnbcli dex order  --symbol ZEBRA-16D_BNB  --side 1 --price 1000000 --qty 1000 --from guest --chain-id Binance-Chain-Nile --node=data-seed-pre-2-s1.binance.org:80 -t gte
 ```
 For `side`, you need to put 1 as buy or 2 as sell.
 
