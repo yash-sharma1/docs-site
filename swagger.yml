@@ -1005,6 +1005,68 @@ paths:
           schema:
             $ref: "#/definitions/Error"
       deprecated: false
+  /api/v1/block-exchange-fee:
+    get:
+      tags:
+      - trading fee
+      summary: Trading fee grouped by block
+      description: Get historical trading fees. Order by block height DESC.
+      operationId: getBlockExchangeFee
+      produces:
+      - application/json
+      parameters:
+      - name: address
+        in: query
+        description: the seller/buyer address
+        required: false
+        type: string
+        allowEmptyValue: false
+      - name: end
+        in: query
+        description: end time
+        required: false
+        type: integer
+        format: int64
+        allowEmptyValue: false
+      - name: limit
+        in: query
+        description: default 50; max 1000.
+        required: false
+        type: integer
+        default: 50
+        format: int32
+        allowEmptyValue: false
+      - name: offset
+        in: query
+        description: start with 0; default 0.
+        required: false
+        type: integer
+        default: 0
+        format: int32
+        allowEmptyValue: false
+      - name: start
+        in: query
+        description: start time
+        required: false
+        type: integer
+        format: int64
+        allowEmptyValue: false
+      - name: total
+        in: query
+        description: 'total number required, 0 for not required and 1 for required; default not required, return total=-1 in response'
+        required: false
+        type: integer
+        format: int32
+        allowEmptyValue: false
+        enum:
+        - 0
+        - 1
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/BlockExchangeFeePage'
+      deprecated: false
   /api/v1/transactions:
     get:
       tags:
@@ -1669,6 +1731,34 @@ definitions:
         format: int64
       tradeId:
         type: string
+  BlockExchangeFeePage:
+    type: object
+    properties:
+      blockExchangeFee:
+        type: array
+        items:
+          $ref: '#/definitions/BlockExchangeFee'
+      total:
+        type: integer
+        format: int64
+    title: BlockExchangeFeePage
+  BlockExchangeFee:
+    type: object
+    properties:
+      address:
+        type: string
+      blockHeight:
+        type: integer
+        format: int64
+      blockTime:
+        type: integer
+        format: int64
+      fee:
+        type: string
+      tradeCount:
+        type: integer
+        format: int64
+    title: BlockExchangeFee
   TxPage:
     type: object
     properties:
