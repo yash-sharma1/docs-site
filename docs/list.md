@@ -85,7 +85,7 @@ passed, you should use the identical params to list.
 
 And you also have to set expire time after which you will not be able to list even though proposal is passed.
 
-The voting period for validators is specified in the `voting-period`. The unit is second and the default voting period is 4 hours before. The max voting period is two weeks. The votes from validators will be tallied after the voting period. 
+The voting period for validators is specified in the `voting-period`. The unit is second and the default voting period is one week now. The max voting period is two weeks. The votes from validators will be tallied after the voting period. 
 
 Of course, the coins you deposit will be returned to your account once the proposal is passed. But if the proposal 
 is rejected by the community, the coins will be distributed to validators. So please talk about the proposal in the 
