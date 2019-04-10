@@ -114,8 +114,8 @@ Fee(10 BNB) will be charged for each proposal.
 
 ```bash
 $  ./bnbcli gov submit-list-proposal --from test --deposit 10000000000:BNB \
---base-asset-symbol AAA-254 --quote-asset-symbol BNB --init-price 100000000 --title "list AAA-254/BNB" \
---description "list AAA-254/BNB" --expire-time 1553126400 --chain-id=Binance-Chain-Nile --node=data-seed-pre-2-s1.binance.org:80 --json
+--base-asset-symbol AAA-254 --quote-asset-symbol BNB --init-price 100000000 --title "list AAA-254/BNB" \ 
+--voting-period 604800 --description "list AAA-254/BNB" --expire-time 1553126400 --chain-id=Binance-Chain-Nile --node=data-seed-pre-2-s1.binance.org:80 --json
 Password to sign with 'test':
 {  
    "Height":"281822",
@@ -147,6 +147,8 @@ Password to sign with 'test':
 
 You need to specify the base asset you want to list, quote asset and init price. And when the proposal is 
 passed, you should use the identical params to list. 
+
+The voting period for validators is specified in the `voting-period`. The unit is second and the default voting period is one week. The max voting period is two weeks. The votes from validators will be tallied after the voting period.
 
 And you also have to set expire time after which you will not be able to list even though proposal is passed.
 
