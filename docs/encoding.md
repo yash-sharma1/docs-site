@@ -219,4 +219,26 @@ message TokenUnfreeze {
 }
 ```
 
+#### Vote
+
+Vote transactions vote for proposals. 
+
+```go
+// please note the field name is the JSON name.
+message Vote {
+  0xA1CADD36	    // hardcoded, object type prefix in 4 bytes
+  int64 proposal_id = 1     // ID of the proposal
+  bytes voter = 2           // address of the voter
+  uint64 option = 3         // option from OptionSet chosen by the voter,
+}
+```
+
+Below are options for `option`:
+```go
+OptionYes           = 0x01  // yes
+OptionAbstain       = 0x02  // abstain
+OptionNo            = 0x03  // no
+OptionNoWithVeto    = 0x04  // no with veto
+```
+
 
