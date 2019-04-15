@@ -1043,9 +1043,9 @@ paths:
     get:
       tags:
       - trading fee
-      summary: Trading fee grouped by block
+      summary: Trading fee of the address grouped by block
       description: |
-        Get historical trading fees. Order by block height DESC.
+        Get historical trading fees of the address, including fees of trade/canceled order/expired order. Transfer and other transaction fees are not included. Order by block height DESC.
 
         **Query Window:** Default query window is latest 7 days; The maximum start - end query window is 3 months.
 
@@ -1656,7 +1656,7 @@ definitions:
         - SELL
       status:
         type: string
-        description: "enum [Ack, PartialFill, IocNoFill, FullyFill, Canceled, Expired, FailedBlocking, FailedMatching]"
+        description: "enum [Ack, PartialFill, IocNoFill, FullyFill, Canceled, Expired, FailedBlocking, FailedMatching, IocExpire]"
       symbol:
         type: string
       timeInForce:
