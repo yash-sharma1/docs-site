@@ -577,6 +577,35 @@ If the time window is larger than limits, only the first n klines will return. I
 | 404 | Not Found |  |
 | default | Generic error response | [Error](#error) |
 
+### /api/v1/block-exchange-fee
+---
+##### ***GET***
+**Summary:** Trading fee grouped by block
+
+**Description:** Get historical trading fees. Order by block height DESC.
+
+**Query Window:** Default query window is latest 7 days; The maximum start - end query window is 3 months.
+
+**Rate Limit:** 5 requests per IP per second.
+
+
+**Parameters**
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| address | query | the seller/buyer address | No | string |
+| end | query | end time | No | long |
+| limit | query | default 50; max 1000. | No | integer |
+| offset | query | start with 0; default 0. | No | integer |
+| start | query | start time | No | long |
+| total | query | total number required, 0 for not required and 1 for required; default not required, return total=-1 in response | No | integer |
+
+**Responses**
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [BlockExchangeFeePage](#blockexchangefeepage) |
+
 ### /api/v1/transactions
 ---
 ##### ***GET***
@@ -789,22 +818,6 @@ varies with msg type.
 | asks | [ string (fixed8) ] | Price and qty in decimal form, e.g. 1.00000000 | ["1.00000000","800.00000000"] |
 | bids | [ string (fixed8) ] | Price and qty in decimal form, e.g. 1.00000000 | ["1.00000000","800.00000000"] |
 
-### BlockTradePage  
-
-| Name | Type | Description | Example |
-| ---- | ---- | ----------- | ------- |
-| blockTrade | [ [BlockTrade](#blocktrade) ] |  |  |
-| total | long |  |  |
-
-### BlockTrade  
-
-| Name | Type | Description | Example |
-| ---- | ---- | ----------- | ------- |
-| blockTime | long | timestamp of a block |  |
-| fee | string | total fee collected |  |
-| height | long | block height |  |
-| trade | [ [Trade](#trade) ] |  |  |
-
 ### Candlestick  
 
 | Name | Type | Description | Example |
@@ -831,7 +844,7 @@ varies with msg type.
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
 | cumulateQuantity | string |  |  |
-| fee | string |  |  |
+| fee | string | trading fee on the block of this order |  |
 | lastExecutedPrice | string | price of last execution |  |
 | lastExecutedQuantity | string | quantity of last execution |  |
 | orderCreateTime | dateTime | time of order creation |  |
@@ -887,18 +900,35 @@ varies with msg type.
 | ---- | ---- | ----------- | ------- |
 | baseAsset | string | base asset |  |
 | blockHeight | long | block height |  |
-| buyFee | string | fees for buyer |  |
+| buyFee | string | trading fee for the buyer address on the block of this trade |  |
 | buyerId | string | id of buyer |  |
 | buyerOrderId | string | order id for buyer |  |
 | price | string | trade price |  |
 | quantity | string | trade quantity |  |
 | quoteAsset | string | quote asset |  |
-| sellFee | string | fees for seller |  |
+| sellFee | string | trading fee for the seller address on the block of this trade |  |
 | sellerId | string | seller ID |  |
 | sellerOrderId | string | seller order ID |  |
 | symbol | string | asset symbol |  |
 | time | long | trade time |  |
 | tradeId | string | trade ID |  |
+
+### BlockExchangeFeePage  
+
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| blockExchangeFee | [ [BlockExchangeFee](#blockexchangefee) ] |  |  |
+| total | long |  |  |
+
+### BlockExchangeFee  
+
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| address | string |  |  |
+| blockHeight | long |  |  |
+| blockTime | long | timestamp of a block |  |
+| fee | string | total fee collected |  |
+| tradeCount | long | trade count of the address on the block |  |
 
 ### TxPage  
 
