@@ -50,7 +50,7 @@ You can refer to [issue doc](tokens.md) in case you do not know how to do it.
 After issuing the token, you need to create a proposal to list this token against a quote asset.
 
 ```bash
-$ ./bnbcli gov submit-list-proposal --chain-id=Binance-Chain-Nile --from test --deposit 200000000000:BNB --base-asset-symbol BTC-F20 --quote-asset-symbol bnb --init-price 100000000 --title list BTC/BNB --description list BTC/BNB  --expire-time 1570087547 --voting-period 14400 --json
+$ ./bnbcli gov submit-list-proposal --chain-id=Binance-Chain-Nile --from test --deposit 200000000000:BNB --base-asset-symbol BTC-F20 --quote-asset-symbol bnb --init-price 100000000 --title list BTC/BNB --description list BTC/BNB  --expire-time 1570087547 --voting-period 604800 --json
 Password to sign with 'test':
 {  
    "Height":"281822",
@@ -156,32 +156,34 @@ If proposal is rejected by validator, the money you have deposited will be distr
 
 If proposal is passed, BNB you have deposited will be returned.
 
-You can query proposal status via CLI.
+You can query proposal status via CLI. Please note that the  `voting period` is in nanosecond.  
 
 ```bash
-$  ./bnbcli gov query-proposal --proposal-id 15 --chain-id=Binance-Chain-Nile --node=data-seed-pre-2-s1.binance.org:80
+$  ./bnbcli gov query-proposal --proposal-id 375 --chain-id=Binance-Chain-Nile --node=data-seed-pre-2-s1.binance.org:80
 {
   "type": "gov/TextProposal",
   "value": {
-    "proposal_id": "15",
-    "title": "list AAA-254/BNB",
-    "description": "{\"base_asset_symbol\":\"AAA-254\",\"quote_asset_symbol\":\"BNB\",\"init_price\":100000000,\"description\":\"list AAA-254/BNB\",\"expire_time\":\"2019-10-10T00:00:00Z\"}",
+    "proposal_id": "375",
+    "title": "list ELLIPAL-CCA/BNB",
+    "description": "{\"base_asset_symbol\":\"ELLIPAL-CCA\",\"quote_asset_symbol\":\"BNB\",\"init_price\":100000000,\"description\":\"list ELLIPAL-CCA/BNB\",\"expire_time\":\"2020-04-30T00:00:00+08:00\"}",
     "proposal_type": "ListTradingPair",
-    "proposal_status": "Passed",
+    "voting_period": "604800000000000",
+    "proposal_status": "VotingPeriod",
     "tally_result": {
-      "yes": "100000000000",
+      "yes": "0",
       "abstain": "0",
       "no": "0",
-      "no_with_veto": "0"
+      "no_with_veto": "0",
+      "total": "0"
     },
-    "submit_time": "2018-12-25T09:17:56.128860238Z",
+    "submit_time": "2019-04-13T07:01:29.828166198Z",
     "total_deposit": [
       {
         "denom": "BNB",
         "amount": "200000000000"
       }
     ],
-    "voting_start_time": "2018-12-25T09:21:14.282127201Z"
+    "voting_start_time": "2019-04-13T07:01:29.828166198Z"
   }
 }
 ```
