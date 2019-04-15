@@ -156,7 +156,7 @@ If proposal is rejected by validator, the money you have deposited will be distr
 
 If proposal is passed, BNB you have deposited will be returned.
 
-You can query proposal status via CLI. Please note that the  `voting period` is in nanosecond.  
+You can query proposal status via CLI. Please note that the  `voting period` is in nanosecond and the default period is one week. .  
 
 ```bash
 $  ./bnbcli gov query-proposal --proposal-id 375 --chain-id=Binance-Chain-Nile --node=data-seed-pre-2-s1.binance.org:80
