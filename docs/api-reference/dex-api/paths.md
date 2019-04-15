@@ -580,9 +580,9 @@ If the time window is larger than limits, only the first n klines will return. I
 ### /api/v1/block-exchange-fee
 ---
 ##### ***GET***
-**Summary:** Trading fee grouped by block
+**Summary:** Trading fee of the address grouped by block
 
-**Description:** Get historical trading fees. Order by block height DESC.
+**Description:** Get historical trading fees of the address, including fees of trade/canceled order/expired order. Transfer and other transaction fees are not included. Order by block height DESC.
 
 **Query Window:** Default query window is latest 7 days; The maximum start - end query window is 3 months.
 
@@ -853,7 +853,7 @@ varies with msg type.
 | price | string | order price |  |
 | quantity | string | order quantity |  |
 | side | integer | 1 for buy and 2 for sell |  |
-| status | string | enum [Ack, PartialFill, IocNoFill, FullyFill, Canceled, Expired, FailedBlocking, FailedMatching] |  |
+| status | string | enum [Ack, PartialFill, IocNoFill, FullyFill, Canceled, Expired, FailedBlocking, FailedMatching, IocExpire] |  |
 | symbol | string |  |  |
 | timeInForce | integer | 1 for Good Till Expire(GTE) order and 3 for Immediate Or Cancel (IOC) |  |
 | tradeId | string | trade ID |  |
