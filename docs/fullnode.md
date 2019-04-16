@@ -86,24 +86,50 @@ To download genesis file for Binance Chain, please remove the auto generated gen
 ```
 curl http://data-seed-pre-2-s1.binance.org/genesis > $BNCHOME/config/genesis.json
 ```
-3. Start your node
+
+4. Start your node
+
 Start the full node according to the platform. Replace the `platform` var with `mac` or `linux` in the following command:
 ```bash
 ./{{platform}}/bnbchaind start --home ./node  &
 ```
 
-**Notice**: For now, it may take a long time to sync blocks from Binance Chain. If you are not interested in sync historical blocks, you can change `state_sync` option in `{home}/config/app.toml` to true, it will catch up with the chain on most recent height after today's UTC 0:00. (so if now is 23:59, wait one more minute will get much faster sync up speed)
-
-> Please note the `state sync` function is just usable and many improvements are still needed to be done, so it is not  encouraged to enable `state sync` for now.
-
 Only after catching up with Binance Chain, the full node can handle requests correctly.
 
+## State sync
 
+Caution: this function is under redesign.
 
+It may take a long time (30 blocks/second, would be improved soon) to sync blocks from Binance Chain. If you are *not interested in syncing historical blocks*, you can turn on state sync and tweak related options listed below in `$BNCHOME/config/config.yaml`. Enable state sync need more memory - 16G and above is suggested.
 
+* `state_sync_reactor` Must be set to `true`
+* `state_sync` Must be set to `true`
+* `ping_interval` Suggest set to `10m30s`
+* `pong_interval` Suggest set to `450s`
+* `recv_rate` Suggest set to `102428800`
 
+State sync can help fullnode in same status with other peers within short time (according to our test, a one month ~800M db snapshot in binance chain testnet can be synced within 20 minutes) so that you can receive latest blocks/transactions and query latest status of orderbook, account balances etc.. But state sync DOES NOT download historical blocks before state sync height, if you start your node with state sync and it synced at height 10000, then your local database would only have blocks after height 10000.
 
+If full node has already started, suggested way is delete (after backup) `$BNCHOME/data` directory and `$BNCHOME/config/priv_validator_key.json` before enable state sync.
 
+You can verify whether state sync is done by `curl localhost:26657/status` several times and see whether `latest_block_height` is incresing in response.
+
+```
+"sync_info": {
+  ...
+  "latest_block_height": "878092",
+  "latest_block_time": "2019-04-15T00:01:22.610803768Z",
+  ...
+}
+```
+
+If state sync is not success, please repeat deletion of `$BNCHOME/data` directory and `$BNCHOME/config/priv_validator_key.json` before start full node next time in case data inconsistency.
+
+Once state sync is succeed, later full node restart would not state sync anymore (in case the local blocks are not continuous). But if you do want state sync again (don't care missing blocks between last stop and latest state sync snapshot) and keep already synced blocks, you can just delete `$BNCHOME/data/STATESYNC.LOCK`.
+
+For example, you start your full node at Jan 1st with state sync at height 10000 and after play a while shutdown it at height 22000 on Feb 10th. Now its Mar 1st, latest synable block height is 50000, you don't care blocks between 22000 and 50000, you can delete `$BNCHOME/data/STATESYNC.LOCK` before start your node. Then the full node would continue state sync from height 50000.
+
+Turning off `state_sync_reactor` and `state_sync` can save your memory after you successfully state synced.
 
 ## Upgrade a Full Node
 
