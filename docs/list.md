@@ -188,6 +188,9 @@ $  ./bnbcli gov query-proposal --proposal-id 375 --chain-id=Binance-Chain-Nile -
 }
 ```
 
+When voting period is end, you can query the voting result and you will see `proposal_status` in query result. For 
+more details of `tally_result`, you can refer to [governance doc](./governance.md).
+
 ### When the proposal passes
 
 When proposal is passed, the owner of the token to be listed can list the token before `expire_time` specified.
