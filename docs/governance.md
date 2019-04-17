@@ -133,8 +133,9 @@ There are four vote options:
 - `NoWithVeto` 
 - `Abstain` 
 
-`NoWithVeto` counts as `No` but also adds a `Veto` vote. `Abstain` option allows voters to signal 
-that they do not intend to vote in favor or against the proposal but accept the result of the vote. 
+`No` represents the validator is against this proposal and `NoWithVeto` suggests the validator is strongly against 
+this proposal. `Abstain` option allows voters to signal that they do not intend to vote in favor or against 
+the proposal but accept the result of the vote. 
 
 #### Quorum
 
@@ -205,4 +206,4 @@ We can get `tally result` and `proposal_status`. For options in `tally result`:
 - `total` denotes total voting power when voting period end
 
 So we can calculate proportion of each vote option easily. In this case, total voting power is 1100000000000 and voting
-power of `Yes` is 1100000000000, so the proportion of `Yes` is 100% and the proposal should be passed.
+power of `Yes` is 1100000000000, so the proportion of `Yes` is 100% and the proposal should be passed and and 2000 BNB will be returned.
