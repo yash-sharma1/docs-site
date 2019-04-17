@@ -144,7 +144,7 @@ be valid, which is 0.5(50%) now.
 If voting power does not reach quorum at the end of the voting period, the proposal will be rejected and all deposits 
 will be returned to depositors' addresses.
 
-**Note**: There is a special case that if all votes all `Abstain` and voting power is superior to 50%, the proposal will
+**Note**: There is a special case that if all votes are `Abstain` and voting power is superior to 50%, the proposal will
 be rejected and all deposits will be returned.
 
 #### Veto
