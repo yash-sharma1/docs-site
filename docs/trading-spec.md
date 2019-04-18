@@ -88,9 +88,35 @@ BNB is the priority in the fee collection and has some discounts.
 
 DEX would always calculate and collect the fees based on the latest balance and in the best interest of users.
 
-### Current Fees Table
 
-Fees are variable and may change over time as governance proposals are proposed and voted on. The current fees table for Tetnet as of **2019-02-26** is as follows:
+### Current Fees Table on Mainnet
+
+Fees are variable and may change over time as governance proposals are proposed and voted on. The current fees table for **Mainnet** is as follows:
+
+Transaction Type | Pay in Non-BNB Asset | Pay in BNB | Exchange (DEX) Related
+-- | -- | -- | --
+New Order | 0 | 0 | Y
+Cancel (No Fill) | Equivalent 0.0005 BNB | 0.0001 BNB | Y
+Order Expire (No Fill) | Equivalent 0.0005 BNB | 0.0001 BNB | Y
+IOC (No Fill) | Equivalent 0.00025 BNB | 0.00005 BNB | Y
+Transfer | N/A | 0.000625 BNB | N
+Multi-send | N/A | 0.0005 BNB | N
+Issue Asset | N/A | 1000 BNB | N
+Mint Asset | N/A | 200 BNB | N
+Burn Asset | N/A | 1 BNB | N
+Freeze/Unfreeze Asset | N/A | 0.01 BNB | N
+List Asset | N/A | 2000 BNB | N
+Submit Proposal | N/A | 10 BNB | N
+Deposit | N/A | 0.00125 BNB | N
+
+### Mainnet Fees API
+
+View system fees updated in real time [TBD].
+
+
+### Current Fees Table on Testnet
+
+Fees are variable and may change over time as governance proposals are proposed and voted on. The current fees table for Tetnet as of **2019-04-17** is as follows:
 
 Transaction Type | Pay in Non-BNB Asset | Pay in BNB | Exchange (DEX) Related
 -- | -- | -- | --
@@ -100,11 +126,11 @@ Order Expire (No Fill) | Equivalent 0.001 BNB | 0.0002 BNB | Y
 IOC (No Fill) | Equivalent 0.0005 BNB | 0.0001 BNB | Y
 Transfer | N/A | 0.00125 BNB | N
 Multi-send | N/A | 0.001 BNB | N
-Issue Asset | N/A | 1000 BNB | N
+Issue Asset | N/A | 400 BNB | N
 Mint Asset | N/A | 200 BNB | N
 Burn Asset | N/A | 1 BNB | N
 Freeze/Unfreeze Asset | N/A | 0.01 BNB | N
-List Asset | N/A | 2000 BNB | N
+List Asset | N/A | 800 BNB | N
 Submit Proposal | N/A | 10 BNB | N
 Deposit | N/A | 0.00125 BNB | N
 
@@ -144,7 +170,7 @@ Transaction Type | Pay in non-BNB Asset | Pay in BNB
 -- | -- | --
 Trade | 0.1% | 0.04%
 
-### Fees API
+### Testnet Fees API
 
 View system fees updated in real time [here](https://testnet-dex.binance.org/api/v1/fees).
 
