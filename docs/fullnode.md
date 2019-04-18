@@ -4,7 +4,7 @@
 
 A `full node` of Binance Chain is a `witness node`, which observes the consensus messaging,
 downloads blocks and executes business logic to achieve the consistent state as `validator node` (and other `witness node`).
-Full nodes also help the network by accepting transactions from other nodes  and then relaying them to the core Binance network.
+Full nodes also help the network by accepting transactions from other nodes and then relaying them to the core Binance network.
 
 ## Platforms and System Requirement
 
@@ -35,27 +35,16 @@ cd node-binary/fullnode/{network}/{version}
 ```
 2. Initialize Home Folder
 
-First you need to choose a home folder`$BNCHOME`  for Binance Chain. The default home path is `~/.bnbchaind`. Then, run the following command to initialize your home:
-```
-bnbchaind init --moniker=<your-moniker>
-```
-> Please note that `moniker` is just a name for your node, there is no constrain for that.
+First you need to choose a home folder `$BNCHOME` for Binance Chain. You can setup this by:
 
-Example output:
 ```
-{
-  "moniker": "test",
-  "chain_id": "test-chain-SfIQar",
-  "node_id": "6c652aae153a04af1561107873622afb0aa2e6ec",
-  "app_message": {
-    "secret": "voice interest voyage early blade illegal valley liar various rude fabric lock champion reason shop tenant siege open fabric member eye rapid wood accuse"
-  }
-}
+mkdir ~/.bnbchaind
+mkdir ~/.bnbchaind/config
 ```
-Under your `$BNCHOME`, there will be two newly created folders: `config` and `data`. All configuration files will be saved at `config` and blockchain data will be saved at `data`.
-
 
 3. Setup Configuration
+
+Put `app.toml`, `config.toml` and `genesis.json` from `node-binary/fullnode/{network}/{version}/config/` into `$BNCHOME/config`
 
 * Add Seed Nodes
 
@@ -70,25 +59,19 @@ seeds = ",".join([ (seed["id"]+"@"+seed["original_listen_addr"]) for seed in l i
 print seeds
 ```
 
-If you want to add  seed nodes, please feel free to edit the field `seeds` of `$BNCHOME/config/config.yaml`with returned seed node info from previous request.
+If you want to add  seed nodes, please feel free to edit the field `seeds` of `$BNCHOME/config/config.yaml` with returned seed node info from previous request.
 
 * More Configurations
 
     - Log: The log file is under `home`- the directory specified when starting `bnbchaind`. The latest log file is `bnc.log`. The process will create a new log file every one hour. To make sure you have sufficient disk space to keep the log, we strongly recommend you to change the log location by changing `logFileRoot` option in `$BNCHOME/config/app.toml`.
     - Service Port: RPC service listen on port 27147 and P2P service listens on port 27146 by default. Make sure these two ports are open before starting a full node, unless the full node has to listen on other ports.
     - Store: All the state and block data will store under `$BNCHOME/data`, do not delete or edit any of these files.
-    - More detailed configuration options please visit `node-binary/fullnode/{network}/{version}/config/config.toml` and `node-binary/fullnode/{network}/{version}/config/app.toml`
-
-* Download Genesis File
-
-The Genesis file is the basis for the entire network initialization, which contains  information for creating a Genesis block (such as ChainID, consensus params,app state), initialize account balances, parameters for each module, and validators info. Each genesis state starts with a list of account balances.
-To download genesis file for Binance Chain, please replace the auto generated genesis file under `$BNCHOME/config` with `node-binary/fullnode/{network}/{version}/config/genesis.json`
 
 4. Start your node
 
 Start the full node according to the platform. Replace the `platform` var with `mac` or `linux` in the following command:
 ```bash
-./{{platform}}/bnbchaind start --home ./node  &
+./{{platform}}/bnbchaind start --home ./node &
 ```
 
 Only after catching up with Binance Chain, the full node can handle requests correctly.
@@ -101,9 +84,9 @@ It may take a long time (30 blocks/second, would be improved soon) to sync block
 
 * `state_sync_reactor` Must be set to `true`
 * `state_sync` Must be set to `true`
+* `recv_rate` Must set to `102428800`
 * `ping_interval` Suggest set to `10m30s`
 * `pong_interval` Suggest set to `450s`
-* `recv_rate` Suggest set to `102428800`
 
 State sync can help fullnode in same status with other peers within short time (according to our test, a one month ~800M db snapshot in binance chain testnet can be synced around 45 minutes) so that you can receive latest blocks/transactions and query latest status of orderbook, account balances etc.. But state sync DOES NOT download historical blocks before state sync height, if you start your node with state sync and it synced at height 10000, then your local database would only have blocks after height 10000.
 
@@ -142,3 +125,6 @@ Full node has the same RPC interface as the list here [rpc-api](api-reference/no
 
 If you want to get extra information about order book, balance changes or block fee changes from blocks, please refer to [get extra data from fullnode](get-extra-data-from-fullnode.md).
 
+## Error Logs expected
+* `E[2019-04-17|23:57:21.191] Failed to load the latest breathe block height from module=dexkeeper` - this is expected if full node is started without keep running for a whole UTC day
+* `E[2019-04-17|23:57:21.228] failed to load immutable tree                module=main err="version does not exist"` - this is expected if `state_sync_reactor` is set to `true`
