@@ -35,7 +35,7 @@ cd node-binary/fullnode/{network}/{version}
 ```
 2. Initialize Home Folder
 
-First you need to choose a home folder `$BNCHOME` for Binance Chain. You can setup this by:
+First you need to choose a home folder `$BNCHOME` (i.e. ~/.bnbchaind) for Binance Chain. You can setup this by:
 
 ```
 mkdir ~/.bnbchaind
@@ -71,7 +71,7 @@ If you want to add  seed nodes, please feel free to edit the field `seeds` of `$
 
 Start the full node according to the platform. Replace the `platform` var with `mac` or `linux` in the following command:
 ```bash
-./{{platform}}/bnbchaind start --home ./node &
+./{{platform}}/bnbchaind start --home $BNCHOME &
 ```
 
 Only after catching up with Binance Chain, the full node can handle requests correctly.
