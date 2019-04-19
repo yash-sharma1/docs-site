@@ -111,7 +111,7 @@ Deposit | N/A | 0.00125 BNB | N
 
 ### Mainnet Fees API
 
-View system fees updated in real time [TBD].
+View system fees updated in real time [here](https://dex.binance.org/api/v1/fees).
 
 
 ### Current Fees Table on Testnet
