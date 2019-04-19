@@ -162,7 +162,7 @@ You will pay
 
 ### Trading Fees
 
-Trading fees are subject to complex logic that may mean that individual trades are charged exactly by the rates below, but between them instead; this is due to the block-based matching engine in use on the DEX.
+Trading fees are subject to complex logic that may mean that individual trades are not charged exactly by the rates below, but between them instead; this is due to the block-based matching engine in use on the DEX.
 
 The current fee for trades, applied on the settled amounts, is as follows:
 
