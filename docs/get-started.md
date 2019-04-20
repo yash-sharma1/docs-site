@@ -11,10 +11,22 @@ For example, Binance provides a Web Wallet at https://www.binance.org (https://t
 
 Binance Chain Web Wallet also presents a trading UI similar to Binance.com, where you can examine market data and manage your orders to trade among the listed assets.
 
-There are also other wallets that support Binance Chain, with more to come in the future:
+* List of Wallets Supporting Binance Chain Mainnet
 
-- [Hardware wallets](hardware-wallets.md)
-- [Other software wallets](software-wallets.md)
+| Number | Wallet Name              | Website                          |
+| ------ | ------------------------ | -------------------------------- |
+| 1      | Ledger (Hardware Wallet) | <https://www.ledger.com/>        |
+| 2      | Trust Wallet             | <https://trustwallet.com/>       |
+| 3      | Enjin                    | <https://enjinwallet.io/>        |
+| 4      | Magnum Wallet            | <https://magnumwallet.co/>       |
+| 5      | CoolWallet               | <https://coolwallet.io/>         |
+| 6      | Coinomi Wallet           | <http://coinomi.io/>             |
+| 7      | Atomic Wallet            | <https://atomicwallet.io/>       |
+| 8      | ZelCore Wallet           | <https://zeltrez.io/>            |
+| 9      | InfinitoWallet           | <https://www.infinitowallet.io/> |
+| 10     | MathWallet               | <https://www.mathwallet.org/en/> |
+| 11     | Ellipal Wallet           | <https://www.ellipal.com/>       |
+| 12     | Exodus                   | https://www.exodus.io/           |
 
 ## Chain Explorer
 Chain Explorer provides a portal to explore blocks and transaction details. On Binance Chain Explorer, 
