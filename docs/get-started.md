@@ -1,6 +1,8 @@
 # Get Started with Binance Chain
 
+
 ## Wallet
+
 The easiest way to use Binance Chain is through a wallet with support for Binance Chain accounts and transfers.
 
 For example, Binance provides a Web Wallet at https://www.binance.org (https://testnet.binance.org for testnet), which provides the below functions:
@@ -9,33 +11,41 @@ For example, Binance provides a Web Wallet at https://www.binance.org (https://t
 - Showing the balances of assets on the addresses
 - Sending and receiving assets
 
-Binance Chain Web Wallet also presents a trading UI similar to Binance.com, where you can examine market data and manage your orders to trade among the listed assets.
+Binance Chain Web Wallet also presents a trading UI similar to Binance.com, where you can examine market data and manage your orders to trade among the listed assets. Learn about the list of wallet available [here](wallets.md).
 
-There are also other wallets that support Binance Chain, with more to come in the future:
-
-- [Hardware wallets](hardware-wallets.md)
-- [Other software wallets](software-wallets.md)
 
 ## Chain Explorer
-Chain Explorer provides a portal to explore blocks and transaction details. On Binance Chain Explorer, 
-you can also check different types assets, the distribution of their ownerships, and owners' transactions.
+Chain Explorer provides a portal to explore blocks and transaction details. On Binance Chain Explorer, you can also check different types assets, the distribution of their ownerships, and owners' transactions.
 
 ## API
-Similar to Binance.com, you can access Binance Chain and DEX via APIs. There are http REST APIs, Websocket interface for market data and user data, node rpc for transactions and blockchain information. Please refer to the [API Reference](api-reference/dex-api.md) for detailed specifications. For programmers interested in developing light wallets and other custom integrations, [SDKs](api-reference/sdk.md) are also provided as a starting point for your apps.
+Similar to Binance.com, you can access Binance Chain and DEX via APIs. There are http REST APIs, Websocket interface for market data and user data, node rpc for transactions and blockchain information. The Binance Chain HTTP API provides data services. Here is a list of all the API information it provides: <https://docs.binance.org/api-reference/dex-api/paths.html> . For programmers interested in developing light wallets and other custom integrations,
 
-## Advanced Usage
+### Use Public Node RPC Service 
+RPC endpoints may be used to interact with a node directly over HTTP or websockets. Using RPC, you may perform low-level operations like executing ABCI queries, viewing network/consensus state or broadcasting a transaction. Read more about RPC in this [doc](api-reference/node-rpc.md)
 
-### Run a Full Node
+## Advanced Ways To Use Blockchain
+### Run your own full node
 
-Please refer to [our guide](fullnode.md) on how to set up a local full node.
+Please refer to this guide about [how to run your own node](fullnode.md).
+### Run your own light client
 
-### Access via Node RPCs
-Full node provides RPC interfaces to expose the internal of blockchain. Please refer to the 
-[RPC reference](api-reference/node-rpc.md).
+Please refer to this guide about [how to run your own light client](light-client.md).
 
 ### Access via Node Command Line Interface (CLI)
+
 A Command Line Interface is available for Linux and Mac platforms. Please refer to the
 [CLI Reference](api-reference/cli.md).
 
-### Blockchain Details
+### Use SDKs
+
+SDKs are also provided as a starting point for your apps. There are two advanced sdk solutions for Binance chain: [Java](<https://github.com/binance-chain/java-sdk>) and [Golang](<https://github.com/binance-chain/go-sdk>). Both solutions provide functions for:
+* Create wallets and manage keys
+* Encode/sign transactions and submit to Binance Chain/DEX, including Transfer, New Order, Cancel Order, etc.
+* Communicate with Binance Chain/DEX Node RPC calls through public node RPC services or your own private full nodes
+
+Please refer to its documents for more informations:
+
+* <https://github.com/binance-chain/go-sdk/wiki>
+* <https://github.com/binance-chain/java-sdk/wiki>
+## Blockchain Details
 Please check the [technical details](index.md#technology-details) for more technical information.
