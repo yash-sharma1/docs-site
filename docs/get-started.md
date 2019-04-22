@@ -13,7 +13,6 @@ For example, Binance provides a Web Wallet at https://www.binance.org (https://t
 
 Binance Chain Web Wallet also presents a trading UI similar to Binance.com, where you can examine market data and manage your orders to trade among the listed assets. Learn about the list of wallet available [here](wallets.md).
 
-
 ## Chain Explorer
 Chain Explorer provides a portal to explore blocks and transaction details. On Binance Chain Explorer, you can also check different types assets, the distribution of their ownerships, and owners' transactions.
 
