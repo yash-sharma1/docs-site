@@ -37,7 +37,6 @@
       - [6.3.2 Unsubscribe](#632-unsubscribe)
       - [6.3.3 UnsubscribeAll](#633-unsubscribeall)
 
-
 RPC endpoints may be used to interact with a node directly over HTTP or websockets. Using RPC, you may perform low-level operations like executing ABCI queries, viewing network/consensus state or broadcasting a transaction.
 
 ## 1. Connecting
@@ -233,7 +232,7 @@ type ResponseInfo struct {
 }
 ```
 
-**Example: **
+**Example**
 
 ```shell
 curl 'localhost:27147/abci_info'
@@ -483,6 +482,7 @@ The above command returns JSON structured like this:
 #### 6.1.4 Query NetInfo
 
 Get network info.
+
 **Return Parameters**
 
 ```
@@ -646,7 +646,9 @@ info, err := client.NetInfo()
 #### 6.1.5 Query Genesis File
 
 Get genesis file.
+
 **Return Parameters**
+
 return round states
 
 ```
@@ -1507,6 +1509,7 @@ genesis, err := client.Genesis()
 
 Get node health. Returns empty result (200 OK) on success, no response - in
 case of an error.
+
 **Return Parameters**
 
 ```json
@@ -1546,6 +1549,7 @@ result, err := client.Health()
 #### 6.1.7 Query NumUnconfirmedTxs
 
 Get number of unconfirmed transactions.
+
 **Query Parameters**
 
 | Parameter | Type | Default | Required | Description                          |
@@ -1598,6 +1602,7 @@ result, err := client.UnconfirmedTxs()
 
 Get Tendermint status including node info, pubkey, latest block
 hash, app hash, block height and time.
+
 **Return Parameters**
 
 ```
@@ -1674,6 +1679,7 @@ result, err := client.Status()
 
 #### 6.1.9 ABCIQuery
 Query the application for some information.
+
 **Query Parameters**
 
 | Parameter | Type   | Default | Required | Description                                    |
@@ -1684,13 +1690,16 @@ Query the application for some information.
 | prove     | bool   | false   | false    | Includes proof if true                         |
 
 **Available Query Path**
+
 * `/store/acc/key` 
 *  `/tokens/info`
 *  `/tokens/list`
 *  `/dex/pairs`
 *  `/dex/orderbook`
 *  `/param/fees`
-**Return Type:**
+
+**Return Type**
+
 ```
 type ResponseQuery struct {
 	Code                 uint32
@@ -1704,7 +1713,8 @@ type ResponseQuery struct {
 	Codespace            string
 }
 ```
-**Example: **
+**Example**
+
 In this example, we will explain how to query account info with `abci_query`.
 1. Generate query key
     To get the correct key you need to ：
@@ -1758,7 +1768,9 @@ If no height is provided, it will fetch the latest block.
 | Parameter | Type   | Default | Required | Description                                    |
 |-----------|--------|---------|----------|------------------------------------------------|
 | height      | int64 | false   | false    | height of blockchain|
+
 **Return Type:**
+
 ```
 type ResultBlock struct {
 	BlockMeta *types.BlockMeta 
@@ -1779,7 +1791,8 @@ type Block struct {
 }
 ```
 
-**Example: **
+**Example**
+
 ```shell
 curl 'localhost:27147/block?height=10'
 ```
@@ -1852,11 +1865,13 @@ Results are for the height of the block containing the txs.
 Thus response.results[5] is the results of executing getBlock(h).Txs[5]
 
 **Query Parameters**
+
 | Parameter | Type   | Default | Required | Description                                    |
 |-----------|--------|---------|----------|------------------------------------------------|
 | height      | int64 | false   | false    | height of blockchain|
 
 **Return Type:**
+
 ```
 type ResultBlockResults struct {
 	Height  int64                
@@ -1864,7 +1879,8 @@ type ResultBlockResults struct {
 }
 ```
 
-**Example: **
+**Example**
+
 ```shell
 curl 'localhost:27147/block_results?height=10'
 ```
@@ -1914,6 +1930,7 @@ info, err := client.BlockResults(10)
 #### 6.1.12 Query BlockchainInfo
 Get block headers for minHeight <= height <= maxHeight.
 Block headers are returned in descending order (highest first).
+
 **Query Parameters**
 
 | Parameter | Type   | Default | Required | Description                                    |
@@ -1922,6 +1939,7 @@ Block headers are returned in descending order (highest first).
 | maxHeight      | int64 | false   | true    | height of blockchain|
 
 **Return Type:**
+
 List of blocks
 ```
 type ResultBlockchainInfo struct {
@@ -1929,7 +1947,8 @@ type ResultBlockchainInfo struct {
 	BlockMetas []*types.BlockMeta 
 }
 ```
-**Example: **
+**Example**
+
 ```shell
 curl 'localhost:27147/blockchain?minHeight=10&maxHeight=10'
 ```
@@ -1998,6 +2017,7 @@ info, err := client.BlockchainInfo(10, 10)
 #### 6.1.13 Query Commit
 Get block commit at a given height.
 If no height is provided, it will fetch the commit for the latest block.
+
 **Transaction Parameters**
 
 | Parameter | Type | Default | Required | Description     |
@@ -2006,12 +2026,14 @@ If no height is provided, it will fetch the commit for the latest block.
 
 
 **Return Parameters**
+
 ```
 type ResultCommit struct {
 	types.SignedHeader 
 	CanonicalCommit    bool 
 }
 ```
+
 **Example**
 ```shell
 curl 'localhost:27147/commit?height=10'
@@ -2217,6 +2239,7 @@ info, err := client.Commit(100)
 Tx allows you to query the transaction results. `nil` could mean the
 transaction is in the mempool, invalidated, or was not sent in the first
 place.
+
 **Query Parameters**
 
 | Parameter | Type   | Default | Required | Description                                               |
@@ -2225,6 +2248,7 @@ place.
 | prove     | bool   | false   | false    | Include a proof of the transaction inclusion in the block |
 
 **Returns Parameters**
+
 Returns a transaction matching the given transaction hash.
 
 ```
@@ -2238,7 +2262,8 @@ type ResultTx struct {
 	Proof    types.TxProof          //the `types.TxProof` object
 }
 ```
-**Example: **
+
+**Example**
 
 ```shell
 curl "localhost:27147/tx?hash=0xAB1B84C7C0B0B195941DCE9CFE1A54214B72D5DB54AD388D8B146A6B62911E8E"
@@ -2306,7 +2331,8 @@ Tx filed is:
 #### 6.1.15 Query TxSearch
 TxSearch allows you to query for multiple transactions results.You could search transaction by its index.  It returns a
 list of transactions (maximum ?per_page entries) and the total count.
-** Query Parameters**
+
+**Query Parameters**
 
 | Parameter | Type   | Default | Required | Description                                               |
 |-----------|--------|---------|----------|-----------------------------------------------------------|
@@ -2315,7 +2341,7 @@ list of transactions (maximum ?per_page entries) and the total count.
 | page      | int    | 1       | false    | Page number (1-based)                                     |
 | per_page  | int    | 30      | false    | Number of entries per page (max: 100)                     |
 
-** Returns Parameters**
+**Returns Parameters**
 
 - `proof`: the `types.TxProof` object
 - `tx`: `[]byte` - the transaction
@@ -2325,9 +2351,11 @@ list of transactions (maximum ?per_page entries) and the total count.
 - `hash`: `[]byte` - hash of the transaction
 
 **Available Query Path**
+
 For now, you could only query by transaction height: `tx.height`.
 
 **Example**
+
 For example, if you want to search all the transations happened on height 10000.
 
 ```shell
@@ -2427,6 +2455,7 @@ tx, err := client.TxSearch(q, true)
 ### 6.2 Tx APIs
 #### 6.2.1   BroadcastTxAsync
 This method just return transaction hash right away and there is no return from CheckTx or DeliverTx. 
+
 **Transaction Parameters**
 
 | Parameter | Type | Default | Required | Description     |
@@ -2434,7 +2463,9 @@ This method just return transaction hash right away and there is no return from 
 | tx        | Tx   | nil     | true     | The transaction info bytes in hex|
 
 **Return Parameters**
-Checktx Result
+
+CheckTx Result
+
 ```
 type ResultBroadcastTx struct {
 	Code uint32      
@@ -2444,6 +2475,7 @@ type ResultBroadcastTx struct {
 }
 ```
 **Example**
+
 1. Query the account number and sequence of your address
 ```
 bnbcli account your-address  --chain-id=Binance-Chain-Nile --node=data-seed-pre-2-s1.binance.org:80
@@ -2516,13 +2548,17 @@ waiting for tx to commit.
 
 If CheckTx or DeliverTx fail, no error will be returned, but the returned result
 will contain a non-OK ABCI code.
+
 **Transaction Parameters**
+
 | Parameter | Type | Default | Required | Description     |
 |-----------|------|---------|----------|-----------------|
 | tx        | Tx   | nil     | true     | The transaction info bytes in hex|
 
 **Return Parameters**
+
 CheckTx and DeliverTx results
+
 ```
 type ResultBroadcastTxCommit struct {
 	CheckTx   abci.ResponseCheckTx   
@@ -2532,6 +2568,7 @@ type ResultBroadcastTxCommit struct {
 }
 ```
 **Example**
+
 1. Query the account number and sequence of your address
 ```
 bnbcli account your-address  --chain-id=Binance-Chain-Nile --node=data-seed-pre-2-s1.binance.org:80
@@ -2607,12 +2644,15 @@ To understand the output data, you could decode these data information of base64
 
 #### 6.2.3  BroadcastTxSync
 The transaction will be broadcasted and returns with the response from CheckTx.
+
 **Transaction Parameters**
+
 | Parameter | Type | Default | Required | Description     |
 |-----------|------|---------|----------|-----------------|
 | tx        | Tx   | nil     | true     | The transaction info bytes in hex|
 
 **Return Parameters**
+
 CheckTx results
 
 ```
@@ -2776,7 +2816,8 @@ go func() {
 #### 6.3.2 Unsubscribe
 
 Unsubscribe from events via WebSocket.
-** Query Parameters**
+
+**Query Parameters**
 
 | Parameter | Type   | Default | Required | Description |
 | --------- | ------ | ------- | -------- | ----------- |
