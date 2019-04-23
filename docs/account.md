@@ -8,13 +8,16 @@ The balance (the amount of token) of each asset is composed of 3 different parts
 - Locked: the amount of token has been used in any outstanding orders. Once the order terminates (either filled, canceled or expired), the locked amount would decrease.
 - Frozen: the amount of token has been frozen via `Freeze` transactions.
 
-You could query the account info with the following command:
+You could query the account info with the following command on mainnet:
 
 ```shell
-./bnbcli account <your-account-address> --chain-id=Binance-Chain-Nile --node=data-seed-pre-2-s1.binance.org:80 --indent
+./bnbcli account <your-address> --chain-id Binance-Chain-Tigris   --node  https://dataseed5.defibit.io:443 --indent --trust-node
 ```
 
 Example output:
+
+Pleas note that the number is boosted by **e^8**.
+
 
 ```json
 {"type":"bnbchain/Account","value":{"base":{"address":"tbnb1sylyjw032eajr9cyllp26n04300qzzre38qyv5","coins":[{"denom":"000-0E1","amount":"10530"},{"denom":"BNB","amount":"247349863800"},{"denom":"BTC.B-918","amount":"113218800"},{"denom":"COSMOS-587","amount":"50000101983748977"},{"denom":"EDU-DD0","amount":"139885964"},{"denom":"MFH-9B5","amount":"1258976083286"},{"denom":"NASC-137","amount":"0"},{"denom":"PPC-00A","amount":"205150260"},{"denom":"TGT-9FC","amount":"33251102828"},{"denom":"UCX-CC8","amount":"1398859649"},{"denom":"USDT.B-B7C","amount":"140456966268"},{"denom":"YLC-D8B","amount":"210572645"},{"denom":"ZZZ-21E","amount":"13988596"}],"public_key":{"type":"tendermint/PubKeySecp256k1","value":"AhOb3ZXecsIqwqKw+HhTscyi6K35xYpKaJx10yYwE0Qa"},"account_number":"406226","sequence":"29"},"name":"","frozen":null,"locked":[{"denom":"KOGE48-35D","amount":"10000000000"}]}}
