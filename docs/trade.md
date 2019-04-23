@@ -3,10 +3,12 @@
 Binance DEX is the native marketplace which allows you to exchange digital assets issued and listed on it. The matching happens within the blockchain nodes and all of the transactions are recorded on-chain, therefore forming a complete, auditable ledger of activity. The following commands are available for trading:
 
 ## Place Order
-You could place a new order with the following command:
+You could place a new order with the following command on testnet:
 ```
 $ bnbcli dex order  --symbol ZEBRA-16D_BNB  --side 1 --price 1000000 --qty 1000 --from guest --chain-id Binance-Chain-Nile --node=data-seed-pre-2-s1.binance.org:80 -t gte
 ```
+You will be able to place order on mainnet by replaceing `chain-id` and `node`. 
+
 For `side`, you need to put 1 as buy or 2 as sell.
 
 Please note that quantity should be rounded to `lotSize`. Otherwise your order could not be valid. 
@@ -19,14 +21,14 @@ Msg [NewOrderMsg{Sender: 813E4939F1567B219704FFC2AD4DF58BDE010879, Id: 813E4939F
 The order id is needed if you want to cancel this order later.
 
 ## Cancel Order
-To cancel an order, you could use the following command:
+To cancel an order, you could use the following command to cencel order on testnet:
 ```
 bnbcli dex cancel --symbol ZEBRA-16D_BNB   --chain-id Binance-Chain-Nile --node=data-seed-pre-2-s1.binance.org:80 --refid  813E4939F1567B219704FFC2AD4DF58BDE010879-30 --from guest
 ```
 Please note that `refid` is what you got from `order` command. 
 ## View Orders
 
-To veryfy that your commands are executed as expected, you could query the orderbook. 
+To veryfy that your commands are executed as expected, you could query the orderbook of testnet. 
 
 ```
 bnbcli dex show -l ZEBRA-16D_BNB   --chain-id Binance-Chain-Nile --node=data-seed-pre-2-s1.binance.org:80
