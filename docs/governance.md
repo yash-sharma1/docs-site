@@ -1,17 +1,58 @@
 # Governance
+- [Governance](#governance)
+  * [Primer on Governance](#primer-on-governance)
+  * [Proposal Workflow](#proposal-workflow)
+    + [Global Parameters](#global-parameters)
+    + [Proposal Parameters](#proposal-parameters)
+    + [Participate in Governance](#participate-in-governance)
+      - [Submit a List Proposal](#submit-a-list-proposal)
+      - [Add deposit for a Proposal](#add-deposit-for-a-proposal)
+      - [Query Information of a Proposal](#query-information-of-a-proposal)
+      - [Query votes of a Proposal](#query-votes-of-a-proposal)
+  * [Key Notions](#key-notions)
+      - [Vote options](#vote-options)
+      - [Quorum](#quorum)
+      - [Veto](#veto)
+      - [Threshold](#threshold)
+      - [Tally Result Example](#tally-result-example)
 
-### Primer on Governance
+
+## Primer on Governance
 
 Binance Chain has its own built-in governance module that lets BNB holders submit proposals for adding trade pairs.  In order for the proposal to be open for voting, it needs to come with a `deposit` that is greater than a parameter called `Deposit`. The `deposit` need not be provided in its entirety by the submitter. If the initial proposer's `deposit` is not sufficient, the proposal enters the `deposit_period` status. Then, any BNB holder can increase the deposit by sending a `depositTx`. 
 
-### Query Parameters
-* `Deposit` is updated in real time and you could view the latest data [here](https://testnet-dex.binance.org/api/v1/fees).
-* `deposit_period`
+## Proposal Workflow
+![workflow](./assets/workflow.jpg)
+
+### Global Parameters
+* `min-deposit`: The threshold for submitting a proposal on mainnet is **1000BNB**
+* `deposit_period`: This is a global parameter and the value for both mainnet and testnet is two week. It means the time to deposit enough BNB tokens is two weeks.
+* `fee`: Chekout the fee of governance-related transactions [here](trading-spec.md/#### Current Fees Table on Mainnet)
+
+### Proposal Parameters
+* `deposit` :  your input must be larger than `min-depost`.
+* `voting-period`: This is the time for validators to vote, your input in seconds, if you ommit this field, the default voting period is one week. 
+* `expire-time`: This is the time for you to send list transaction if your proposal is passed. This time cannot be ealry than current time.
+
+
 
 ### Participate in Governance
 
-####  Submit a Proposal
-To add a new trading pairs, you could run the following command:
+####  Submit a List Proposal
+To add a new trading pairs, you could run the following command :
+
+Please note the amount is  boosted by **1e8** for decimal part. 
+
+Example on **mainnet**:
+
+```shell
+./bnbcli gov submit-list-proposal --from test --deposit 10000000000:BNB 
+--base-asset-symbol AAA-254 --quote-asset-symbol BNB --init-price 100000000 --title "list AAA-254/BNB" 
+--description "list AAA-254/BNB" --expire-time 1570665600  --chain-id Binance-Chain-Tigris   --node  https://dataseed5.defibit.io:443  --json
+```
+
+Example on **testnet**:
+
 ```shell
 ./bnbcli gov submit-list-proposal --from test --deposit 10000000000:BNB 
 --base-asset-symbol AAA-254 --quote-asset-symbol BNB --init-price 100000000 --title "list AAA-254/BNB" 
@@ -19,13 +60,34 @@ To add a new trading pairs, you could run the following command:
 ```
 
 #### Add deposit for a Proposal
-In current Binance Chain Testnet, the max deposit period is **two weeks**. After submitting a proposal, you have two weeks to increase your deposit, otherwise your proposal will not go tp voting period and get rejected directly.  
+In current Binance Chain Testnet, the max deposit period is **two weeks**. After submitting a proposal, you have two weeks to increase your deposit, otherwise your proposal will not go to voting period and get rejected directly. 
+
+Please note the amount is  boosted by **1e8** for decimal part. 
+
+
+Example on **mainnet**:
+
+```shell
+./bnbcli gov deposit --from name --proposal-id <proposl-ID> --deposit <amount>：BNB  --chain-id Binance-Chain-Tigris   --node  https://dataseed5.defibit.io:443 
+```
+
+Example on **testnet**:
+
 ```shell
 ./bnbcli gov deposit --from name --proposal-id <proposl-ID> --deposit <amount>：BNB --chain-id=Binance-Chain-Nile --node=data-seed-pre-2-s1.binance.org:80 
 ```
 
 #### Query Information of a Proposal
 To see detailed information of some proposla, you could run the following command:
+
+Example on **mainnet**:
+
+```shell
+./bnbcli gov query-proposal --proposal-id <proposal-ID>  --chain-id Binance-Chain-Tigris   --node  https://dataseed5.defibit.io:443 
+```
+
+Example on **testnet**:
+
 ```shell
 ./bnbcli gov query-proposal --proposal-id <proposal-ID> --chain-id=Binance-Chain-Nile --node=data-seed-pre-2-s1.binance.org:80
 ```
@@ -60,6 +122,15 @@ You could get the information about the proposal's status and its tally result c
 
 #### Query votes of a Proposal
 You could track the votes for your proposal with the following command；
+
+Example on **mainnet**:
+
+```shell
+./bnbcli gov query-votes --proposal-id 272 --chain-id Binance-Chain-Tigris   --node  https://dataseed5.defibit.io:443 
+```
+
+Example on **testnet**:
+
 ```shell
 ./bnbcli gov query-votes --proposal-id 272 --chain-id=Binance-Chain-Nile --node=data-seed-pre-2-s1.binance.org:80
 ```
@@ -124,7 +195,7 @@ Example output:
 ]
 ```
 
-### Tally
+##  Key Notions
 
 #### Vote options
 There are four vote options:
@@ -145,25 +216,19 @@ be valid, which is 0.5(50%) now.
 If voting power does not reach quorum at the end of the voting period, the proposal will be rejected and all deposits 
 will be returned to depositors' addresses.
 
-**Note**: There is a special case that if all votes are `Abstain` and voting power is superior to 50%, the proposal will
-be rejected and all deposits will be returned.
+**Note**: There is a special case that if all votes are `Abstain` and voting power is superior to 50%, the proposal will be rejected and all deposits will be refunded.
 
 #### Veto
 
-Veto is defined as the minimum proportion of `NoWithVeto` votes for the proposal to be rejected, which is 0.334(1/3) now.
-
-If more than 1/3 voters veto, the proposal will be rejected and all deposits will be distributed to validator.
+Veto is defined as the minimum proportion of `NoWithVeto` votes for the proposal to be rejected, which is 0.334(1/3) now. If more than 1/3 voters veto, the proposal will be rejected and all deposits will be distributed to validator.
 
 #### Threshold
 
-Threshold is defined as the minimum proportion of `Yes` votes (excluding `Abstain` votes) for the proposal to be 
-accepted, which is 0.5(50%) now.
+Threshold is defined as the minimum proportion of `Yes` votes (excluding `Abstain` votes) for the proposal to be accepted, which is 0.5(50%) now.
 
-If the proportion of `NoWithVeto` votes is inferior to 1/3 and the proportion of `Yes` votes (excluding `Abstain` votes)
-is superior to 50%, the proposal will be accepted and all deposits will be returned. Otherwise, the proposal will be 
-rejected and all deposits will be distributed to validator.
+If the proportion of `NoWithVeto` votes is inferior to 1/3 and the proportion of `Yes` votes (excluding `Abstain` votes) is superior to 50%, the proposal will be accepted and all deposits will be returned. Otherwise, the proposal will be rejected and all deposits will be distributed to validator.
 
-#### Example
+#### Tally Result Example
 
 We can query a proposal via `bnbcli`.
 
