@@ -107,16 +107,21 @@ There are two ways for you to get synced with other peers in blockchain network:
 
 #####  Fast Sync
 The default way for syncing with other data seed node is fast sync. In fast sync, you need to download all the blocks from your peers and execute all the transansaction in every block. The sync speed is about 20 blocks/s, which is slower than state sync.
+
 Configuration for `$BNCHOME/config/config.toml`:
+
 * `fast_sync` Must be set to `true`
 * `state_sync_reactor` Must be set to `false`
 * `state_sync` Must be set to `false`
+
 #####  State Sync
 
 > Caution: this function is under refactoring.
 
 State sync will get the application state of your full node to be up to date without downloading all the blocks.  The sync speed is faster than fast sync. But, you need to allocate more than 16 GB memory to your full node for this feature.
+
 Configuration for `$BNCHOME/config/config.toml`:
+
 * `state_sync_reactor` Must be set to `true`
 * `state_sync` Must be set to `true`
 * `recv_rate` Must set to `102428800`
