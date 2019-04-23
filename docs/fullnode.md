@@ -51,7 +51,7 @@ git clone https://github.com/binance-chain/node-binary.git
 
 Go to directory according to the network you want to join in. Replace the `network` var with `testnet` or `prod` in the following command:
 
-> Please go to https://github.com/binance-chain/node-binary/blob/master/fullnode/Changelog.md  to get the information about the latest release of full node version. 
+> Please go to https://github.com/binance-chain/node-binary/blob/master/fullnode/Changelog.md  to get the information about the latest release of full node version.
 
 ```bash
 cd node-binary/fullnode/{network}/{version}
@@ -76,7 +76,7 @@ For a full node, it must connect to one or more known nodes to join Binance Chai
 You cat also get seeds info through a simple python script(notice to replace domain according to different network):
 ```python
 import requests, json
-d = requests.get('https://testnet-dex.binance.org/api/v1/peers').text
+d = requests.get('https://dex.binance.org/api/v1/peers').text # replace dex.binance.org with testnet-dex.binance.org for testnet
 l = json.loads(d)
 seeds = ",".join([ (seed["id"]+"@"+seed["original_listen_addr"]) for seed in l if "accelerated" not in seed ])
 print seeds
@@ -106,7 +106,7 @@ There are two ways for you to get synced with other peers in blockchain network:
 * State Sync
 
 #####  Fast Sync
-The default way for syncing with other data seed node is fast sync. In fast sync, you need to download all the blocks from your peers and execute all the transansaction in every block. The sync speed is about 20 blocks/s, which is slower than state sync. 
+The default way for syncing with other data seed node is fast sync. In fast sync, you need to download all the blocks from your peers and execute all the transansaction in every block. The sync speed is about 20 blocks/s, which is slower than state sync.
 Configuration for `$BNCHOME/config/config.toml`:
 * `fast_sync` Must be set to `true`
 * `state_sync_reactor` Must be set to `false`
@@ -115,8 +115,8 @@ Configuration for `$BNCHOME/config/config.toml`:
 
 > Caution: this function is under refactoring.
 
-State sync will get the application state of your full node to be up to date without downloading all the blocks.  The sync speed is faster than fast sync. But, you need to allocate more than 16 GB memory to your full node for this feature.  
-Configuration for `$BNCHOME/config/config.toml`: 
+State sync will get the application state of your full node to be up to date without downloading all the blocks.  The sync speed is faster than fast sync. But, you need to allocate more than 16 GB memory to your full node for this feature.
+Configuration for `$BNCHOME/config/config.toml`:
 * `state_sync_reactor` Must be set to `true`
 * `state_sync` Must be set to `true`
 * `recv_rate` Must set to `102428800`
@@ -127,7 +127,7 @@ State sync can help fullnode in same status with other peers within short time (
 
 If full node has already started, suggested way is delete (after backup) `$BNCHOME/data` directory and `$BNCHOME/config/priv_validator_key.json` before enable state sync.
 ##### Monitor Syncing Process
-You can verify whether state sync is done by `curl localhost:26657/status` several times and see whether `latest_block_height` is incresing in response.
+You can verify whether state sync is done by `curl localhost:27147/status` several times and see whether `latest_block_height` is incresing in response.
 
 ```
 "sync_info": {
@@ -162,5 +162,5 @@ If you want to get extra information about order book, balance changes or block 
 
 ## Common Issues and Solutions
 
-Please refer to this [doc](fullnodeissue.md) to find answers to common issues. 
+Please refer to this [doc](fullnodeissue.md) to find answers to common issues.
 
