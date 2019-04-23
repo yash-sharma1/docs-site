@@ -114,26 +114,6 @@ Deposit | N/A | 0.00125 BNB | N
 View system fees updated in real time [here](https://dex.binance.org/api/v1/fees).
 
 
-### Current Fees Table on Testnet
-
-Fees are variable and may change over time as governance proposals are proposed and voted on. The current fees table for Tetnet as of **2019-04-17** is as follows:
-
-Transaction Type | Pay in Non-BNB Asset | Pay in BNB | Exchange (DEX) Related
--- | -- | -- | --
-New Order | 0 | 0 | Y
-Cancel (No Fill) | Equivalent 0.001 BNB | 0.0002 BNB | Y
-Order Expire (No Fill) | Equivalent 0.001 BNB | 0.0002 BNB | Y
-IOC (No Fill) | Equivalent 0.0005 BNB | 0.0001 BNB | Y
-Transfer | N/A | 0.00125 BNB | N
-Multi-send | N/A | 0.001 BNB | N
-Issue Asset | N/A | 400 BNB | N
-Mint Asset | N/A | 200 BNB | N
-Burn Asset | N/A | 1 BNB | N
-Freeze/Unfreeze Asset | N/A | 0.01 BNB | N
-List Asset | N/A | 800 BNB | N
-Submit Proposal | N/A | 10 BNB | N
-Deposit | N/A | 0.00125 BNB | N
-
 ### Multi-send Fees
 `bnbcli`  offers you a multi-send command to transfer multiple tokens to multiple people. 20% discount is available for `multi-send` transactions. For now, `multi-send` transaction will send some tokens from one address to multiple output addresses. If the count of output address is bigger than the threshold, currently it's 2, then the total transaction fee is  0.001 BNB per token per address.  
 For example, if you send 3 ABC token,1 SAT token and 1 ABC to 3 different addresses.
@@ -159,7 +139,6 @@ You will pay
 ```
 0.001 BNB * 5 = 0.05 BNB
 ```
-
 ### Trading Fees
 
 Trading fees are subject to complex logic that may mean that individual trades are not charged exactly by the rates below, but between them instead; this is due to the block-based matching engine in use on the DEX.
@@ -169,6 +148,28 @@ The current fee for trades, applied on the settled amounts, is as follows:
 Transaction Type | Pay in non-BNB Asset | Pay in BNB
 -- | -- | --
 Trade | 0.1% | 0.04%
+
+Trading fee can be queried at [here](https://dex.binance.org/api/v1/fees?format=amino). It's under the "params/DexFeeParam/".  "FeeRate" and "FeeRateNative" are both under unit of 10^-6. 
+
+### Current Fees Table on Testnet
+
+Fees are variable and may change over time as governance proposals are proposed and voted on. The current fees table for Tetnet as of **2019-04-17** is as follows:
+
+Transaction Type | Pay in Non-BNB Asset | Pay in BNB | Exchange (DEX) Related
+-- | -- | -- | --
+New Order | 0 | 0 | Y
+Cancel (No Fill) | Equivalent 0.001 BNB | 0.0002 BNB | Y
+Order Expire (No Fill) | Equivalent 0.001 BNB | 0.0002 BNB | Y
+IOC (No Fill) | Equivalent 0.0005 BNB | 0.0001 BNB | Y
+Transfer | N/A | 0.00125 BNB | N
+Multi-send | N/A | 0.001 BNB | N
+Issue Asset | N/A | 400 BNB | N
+Mint Asset | N/A | 200 BNB | N
+Burn Asset | N/A | 1 BNB | N
+Freeze/Unfreeze Asset | N/A | 0.01 BNB | N
+List Asset | N/A | 800 BNB | N
+Submit Proposal | N/A | 10 BNB | N
+Deposit | N/A | 0.00125 BNB | N
 
 ### Testnet Fees API
 

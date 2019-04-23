@@ -498,11 +498,11 @@ type ResultNetInfo struct {
 **Example**
 
 ```shell
-curl 'localhost:26657/net_info'
+curl 'localhost:27147/net_info'
 ```
 
 ```go
-client := client.NewHTTP("tcp://0.0.0.0:26657", "/websocket")
+client := client.NewHTTP("tcp://0.0.0.0:27147", "/websocket")
 err := client.Start()
 if err != nil {
 
@@ -670,11 +670,11 @@ type GenesisDoc struct {
 **Example**
 
 ```shell
-curl 'localhost:26657/genesis'
+curl 'localhost:27147/genesis'
 ```
 
 ```go
-client := client.NewHTTP("tcp://0.0.0.0:26657", "/websocket")
+client := client.NewHTTP("tcp://0.0.0.0:27147", "/websocket")
 err := client.Start()
 if err != nil {
 
