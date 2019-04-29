@@ -5,7 +5,7 @@
 Please note the fees must be paid first in BNB before the transaction can be executed.
 
 
-If you want to read more about the idea of account and balance, please refer to this [doc](accounts.md).
+If you want to read more about the idea of account and balance, please refer to this [doc](account.md).
 
 ## Simple Transfer and Memo
 
@@ -40,10 +40,9 @@ test	local	bnb17kwznuljsy4n89wcjd6esx2j5t0w326c03xhyr	bncp1addwnpepq2gudmfe0dqqa
 Query your addresses on testnet
 
 ```bash
- ./tbnbcli keys list	PUBKEY:
+$  ./tbnbcli keys list	PUBKEY:
 test	local	tbnb1sylyjw032eajr9cyllp26n04300qzzre38qyv5	bnbp1addwnpepqgfehhv4meevy2kz52c0s7znk8x2969dl8zc5jngn36axf3szdzp5efearf
 ```
-
 
 You can query your balance on mainnet before send tokens.
 
@@ -75,6 +74,7 @@ You can query your balance on testnet before send tokens.
 
 ```bash
 ./tbnbcli account tbnb1sylyjw032eajr9cyllp26n04300qzzre38qyv5 --chain-id Binance-Chain-Nile --node=data-seed-pre-2-s1.binance.org:80 --indent
+
 {
   "type": "bnbchain/Account",
   "value": {
@@ -132,6 +132,7 @@ Password to sign with 'test':
 Example on **testnet**:
 ```bash
 ./tbnbcli send --from from-key-name --to to-address --amount 200000000:BNB --chain-id=Binance-Chain-Nile --node=data-seed-pre-2-s1.binance.org:80 --json --memo "Test transfer"
+
 Password to sign with 'test':
 {
    "Height":"272155",
@@ -269,7 +270,9 @@ Password to sign with 'test':
 Example on **testnet**:
 
 ```bash
+
 ./tbnbcli token multi-send --home ./testnodecli --from test --chain-id=Binance-Chain-Nile --node=data-seed-pre-2-s1.binance.org:80  --transfers "[{\"to\":\"tbnb1sylyjw032eajr9cyllp26n04300qzzre38qyv5\",\"amount\":\"100000000000000:BNB\"},{\"to\":\"tbnb1e244vmvym7g6cn9lk4hmhf9p2f9jaf0x9hxmwc\",\"amount\":\"100000000000000:BNB\"}]" --json
+
 Password to sign with 'test':
 {
    "Height":"1412",
@@ -348,6 +351,7 @@ Password to sign with 'test':
 Example on **testnet**:
 ```bash
  ./tbnbcli token multi-send --home ./testnodecli --from test--chain-id=Binance-Chain-Nile --node=data-seed-pre-2-s1.binance.org:80  --transfers-file ./transaction.json --json
+
 Password to sign with 'test':
 {
    "Height":"1412",
