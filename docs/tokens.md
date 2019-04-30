@@ -16,7 +16,7 @@ The [fees](trading-spec.md#fees) that are due must be paid in BNB before any of 
 An issuance transaction contains:
 
 * Source Address: the sender address of the transaction and it will become the `owner` of the token, all created tokens will be in this account.
-* Token Name: it is the long official name, such as "Binance Coin". It is limited to 20 characters.
+* Token Name: it is the long official name, such as "Binance Coin". It is limited to 32 characters.
 * Symbol: identifier of the token, limited to 8 alphanumeric characters and is case insensitive, for example, "BNB". ".B" suffixed symbol is also allowed for migrating these tokens already exist on other chains. The symbol do not need to be unique, a random 3 letters would be appended, after a "-", to the provided symbol to avoid uniqueness constraint. for example, "NNB-B90". Only BNB does not have this suffix.
 * Total Supply: an int64 boosted by **1e8** for decimal part. The max total supply is 90 billion.
 * Mintable: that means whether this token can be minted in the future. Default is false.
