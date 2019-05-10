@@ -15,7 +15,7 @@ Please refer to this [governance doc](governance.md) to learn about how to creat
 
 > Please ensure that you test EVERYTHING on our testnet (multiple times at least) before you officially execute this on the mainnet.
 
-## 3. Send List Transactopm
+## 3. Send List Transaction
 
 Please refer to this [list doc](list.md) to learn about how to send a list transaction and finish listing process on Binance Chain. 
 
