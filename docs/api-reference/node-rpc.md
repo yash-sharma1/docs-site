@@ -7,35 +7,35 @@
   * [2. Protocols](#2-protocols)
   * [3. Configuration](#3-configuration)
   * [4. Arguments](#4-arguments)
-    + [4.1 URI/HTTP](#41-uri-http)
-    + [4.2  JSONRPC/HTTP](#42--jsonrpc-http)
-    + [4.3  JSONRPC/websockets](#43--jsonrpc-websockets)
+    + [4.1 URI/HTTP](#41-urihttp)
+    + [4.2 JSONRPC/HTTP](#42-jsonrpchttp)
+    + [4.3 JSONRPC/websockets](#43-jsonrpcwebsockets)
   * [5. RPC Endpoint List](#5-rpc-endpoint-list)
   * [6. APIs](#6-apis)
     + [6.1 Query APIs](#61-query-apis)
-      - [6.1.1 Query ABCIInfo](#611-query-abciinfo)
-      - [6.1.2 Query ConsensusState](#612-query-consensusstate)
-      - [6.1.3 Query DumpConsensusState](#613-query-dumpconsensusstate)
-      - [6.1.4 Query NetInfo](#614-query-netinfo)
-      - [6.1.5 Query Genesis File](#615-query-genesis-file)
-      - [6.1.6 Query Health](#616-query-health)
-      - [6.1.7 Query NumUnconfirmedTxs](#617-query-numunconfirmedtxs)
-      - [6.1.8 Query Status](#618-query-status)
-      - [6.1.9 ABCIQuery](#619-abciquery)
-      - [6.1.10  Query Block](#6110--query-block)
-      - [6.1.11 Query BlockResults](#6111-query-blockresults)
-      - [6.1.12 Query BlockchainInfo](#6112-query-blockchaininfo)
-      - [6.1.13 Query Commit](#6113-query-commit)
-      - [6.1.14 Query Tx](#6114-query-tx)
-      - [6.1.15 Query TxSearch](#6115-query-txsearch)
+        - [6.1.1 Query ABCIInfo](#611-query-abciinfo)
+        - [6.1.2 Query ConsensusState](#612-query-consensusstate)
+        - [6.1.3 Query DumpConsensusState](#613-query-dumpconsensusstate)
+        - [6.1.4 Query NetInfo](#614-query-netinfo)
+        - [6.1.5 Query Genesis File](#615-query-genesis-file)
+        - [6.1.6 Query Health](#616-query-health)
+        - [6.1.7 Query NumUnconfirmedTxs](#617-query-numunconfirmedtxs)
+        - [6.1.8 Query Status](#618-query-status)
+        - [6.1.9 ABCIQuery](#619-abciquery)
+        - [6.1.10 Query Block](#6110-query-block)
+        - [6.1.11 Query BlockResults](#6111-query-blockresults)
+        - [6.1.12 Query BlockchainInfo](#6112-query-blockchaininfo)
+        - [6.1.13 Query Commit](#6113-query-commit)
+        - [6.1.14 Query Tx](#6114-query-tx)
+        - [6.1.15 Query TxSearch](#6115-query-txsearch)
     + [6.2 Tx APIs](#62-tx-apis)
-      - [6.2.1   BroadcastTxAsync](#621---broadcasttxasync)
-      - [6.2.2  BroadcastTxCommit](#622--broadcasttxcommit)
-      - [6.2.3  BroadcastTxSync](#623--broadcasttxsync)
+        - [6.2.1 BroadcastTxAsync](#621-broadcasttxasync)
+        - [6.2.2 BroadcastTxCommit](#622-broadcasttxcommit)
+        - [6.2.3 BroadcastTxSync](#623-broadcasttxsync)
     + [6.3 Websocket APIs](#63-websocket-apis)
-      - [6.3.1  Subscribe](#631--subscribe)
-      - [6.3.2 Unsubscribe](#632-unsubscribe)
-      - [6.3.3 UnsubscribeAll](#633-unsubscribeall)
+        - [6.3.1 Subscribe](#631-subscribe)
+        - [6.3.2 Unsubscribe](#632-unsubscribe)
+        - [6.3.3 UnsubscribeAll](#633-unsubscribeall)
 
 RPC endpoints may be used to interact with a node directly over HTTP or websockets. Using RPC, you may perform low-level operations like executing ABCI queries, viewing network/consensus state or broadcasting a transaction.
 
@@ -51,7 +51,7 @@ Alternatively, you are able to use a node that is hosted in the Binance Chain ne
 
 ### 1.2 Use an existing node on the network
 
-The Binance Chain infrastructure deployment contains so-called "data seed" nodes, which have their RPC ports available for access. To find a seed node that is available, you can use the [peers](./dex-api/paths.html#apiv1peers) endpoint to get a list of network peers.
+The Binance Chain infrastructure deployment contains so-called "data seed" nodes, which have their RPC ports available for access. To find a seed node that is available, you can use the [peers](/api-reference/dex-api/paths.html#apiv1peers) endpoint to get a list of network peers.
 
 Here is an example of a node that is available for RPC access. The following is the output of `localhost:27147/status`:
 
@@ -145,7 +145,7 @@ curl 'localhost:27147/broadcast_tx_sync?tx=0xdb01f0625dee0a63ce6dc0430a14813e493
 }
 ```
 
-### 4.2  JSONRPC/HTTP
+### 4.2 JSONRPC/HTTP
 
 JSONRPC requests can be POST'd to the root RPC endpoint via HTTP (e.g. <a href="http://localhost:27147/">http://localhost:27147/</a>).
 
@@ -160,7 +160,7 @@ JSONRPC requests can be POST'd to the root RPC endpoint via HTTP (e.g. <a href="
 }
 ```
 
-### 4.3  JSONRPC/websockets
+### 4.3 JSONRPC/websockets
 
 JSONRPC requests can be made via websocket. The websocket endpoint is at `/websocket`, e.g. `localhost:27147/websocket`.  Asynchronous RPC functions like event `subscribe` and `unsubscribe` are only available via websockets.
 
@@ -2453,7 +2453,7 @@ tx, err := client.TxSearch(q, true)
 ```
 
 ### 6.2 Tx APIs
-#### 6.2.1   BroadcastTxAsync
+#### 6.2.1 BroadcastTxAsync
 This method just return transaction hash right away and there is no return from CheckTx or DeliverTx.
 
 **Transaction Parameters**
@@ -2540,7 +2540,7 @@ It returns the height which it was committed:
 ```
 
 
-#### 6.2.2  BroadcastTxCommit
+#### 6.2.2 BroadcastTxCommit
 The transaction will be broadcasted and returns with the response from CheckTx and DeliverTx.
 
 This method will waitCONTRACT: only returns error if mempool.CheckTx() errs or if we timeout
@@ -2642,7 +2642,7 @@ The above command returns JSON structured like this. Please note that the return
 To understand the output data, you could decode these data information of base64 encoding: "{"order_id":"813E4939F1567B219704FFC2AD4DF58BDE010879-46"}"
 
 
-#### 6.2.3  BroadcastTxSync
+#### 6.2.3 BroadcastTxSync
 The transaction will be broadcasted and returns with the response from CheckTx.
 
 **Transaction Parameters**
@@ -2722,7 +2722,7 @@ To understand the output data, you could decode these data information of hex.: 
 
 ### 6.3 Websocket APIs
 
-#### 6.3.1  Subscribe
+#### 6.3.1 Subscribe
 
 Subscribe for events via WebSocket.
 
