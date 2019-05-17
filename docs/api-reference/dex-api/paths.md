@@ -681,7 +681,7 @@ If the time window is larger than limits, only the first n klines will return. I
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
 | ap_time | string | event time | e.g. 2019-01-21T10:30:00Z |
-| block_time | string | block height | 12345678 |
+| block_time | string | the time of latest block | e.g. 2019-01-21T10:30:00Z |
 
 ### Validators
 
