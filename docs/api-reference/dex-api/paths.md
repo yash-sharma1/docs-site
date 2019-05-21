@@ -240,7 +240,7 @@ Below is an example response of a send transaction when `?format=json` is used.
 | Name | Located in | Description | Required | Schema |
 | ---- | ---------- | ----------- | -------- | ---- |
 | hash | path | The transaction hash to query | Yes | string |
-| format | query | Response format (`json` or omit) | No | string |
+| format | query | Response format (`json` or amino) | No | string |
 
 **Responses**
 
