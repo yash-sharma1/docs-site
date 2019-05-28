@@ -75,13 +75,13 @@ Please note the amount is  boosted by **1e8** for decimal part.
 Example on **mainnet**:
 
 ```shell
-./bnbcli gov deposit --from name --proposal-id <proposl-ID> --deposit <amount>：BNB  --chain-id Binance-Chain-Tigris   --node  https://dataseed5.defibit.io:443
+./bnbcli gov deposit --from name --proposal-id <proposl-ID> --deposit <amount>:BNB  --chain-id Binance-Chain-Tigris   --node  https://dataseed5.defibit.io:443
 ```
 
 Example on **testnet**:
 
 ```shell
-./tbnbcli gov deposit --from name --proposal-id <proposl-ID> --deposit <amount>：BNB --chain-id=Binance-Chain-Nile --node=data-seed-pre-2-s1.binance.org:80
+./tbnbcli gov deposit --from name --proposal-id <proposl-ID> --deposit <amount>:BNB --chain-id=Binance-Chain-Nile --node=data-seed-pre-2-s1.binance.org:80
 ```
 
 #### Query Information of a Proposal
