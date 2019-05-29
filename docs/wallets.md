@@ -1,4 +1,4 @@
-# Wallets Supports
+# Wallet Support
 
 * List of Wallets Supporting Binance Chain Mainnet
 
