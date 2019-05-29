@@ -51,7 +51,7 @@ The Binance Chain HTTP API provides access to a Binance Chain node deployment an
 
 | Code | Description | Schema |
 | ---- | ----------- | ------ |
-| 200 | Success | object |
+| 200 | Success | [ResultStatus](#resultstatus) |
 
 ### /api/v1/validators
 ---
@@ -180,58 +180,72 @@ The Binance Chain HTTP API provides access to a Binance Chain node deployment an
 
 Below is an example response of a send transaction when `?format=json` is used.
 ```
-{
-    "hash": "E81BAB8E555819E4211D62E2E536B6D5812D3D91C105F998F5C6EB3AB8136482",
-    "height": "754",
-    "tx": {
-        "type": "auth/StdTx", // fixed, type of transaction
-        "value": {            // fixed, detail of the transaction
-            "data": null,     // fixed, data of the transaction
-            "memo": "",       // fixed, memo
-            "msg": [          // fixed, msgs of the transaction
-                {
-                    "type": "cosmos-sdk/Send",  // vary with msg type
-                    "value": {                  // value content vary with mst type
-                        "inputs": [
-                            {
-                                "address": "bnb1vt4zwu5hy7tyryktud6mpcu8h2ehh6xw66gzwp",
-                                "coins": [
-                                    {
-                                        "amount": "100000000000000",
-                                        "denom": "BNB"
-                                    }
-                                ]
-                            }
-                        ],
-                        "outputs": [
-                            {
-                                "address": "bnb1kg8mh20tndur9d9rry4wjunhpfzcud30qzf0qv",
-                                "coins": [
-                                    {
-                                        "amount": "100000000000000",
-                                        "denom": "BNB"
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                }
-            ],
-            "signatures": [ // fixed, signatures of the transaction
-                {
-                    "account_number": "0",
-                    "pub_key": {
-                        "type": "tendermint/PubKeySecp256k1",
-                        "value": "AoWY3eWBOnnvLPTz4RsUlX1pWCkLLPewu1vAAoTEzxzR"
-                    },
-                    "sequence": "1",
-                    "signature": "6O2TQAgleFNPw4zIWBLaNvOf5dR7DHNSr2DwAPeFK6lokRqZd2KR2BD+WlmaWj4LdLo5N+utN1JtY41E91N0uw=="
-                }
-            ],
-            "source": "0"  // fixed, source of the transaction
-        }
-    }
-}
+    {
+     code:0,
+     hash:"433806D6A4AB6359CB56EC55BA99896DFAB2AF11326B74881A2ABA7049C492D3",
+     height:"7850389",
+     log:"Msg 0: ",
+     ok:true,
+     tx:{
+        type:"auth/StdTx",
+        value:{
+           data:null,
+           memo:"101192150",
+           msg:[
+              {
+                 type:"cosmos-sdk/Send",
+                 value:{
+                    inputs:[
+                       {
+                          address:"bnb1jafs33u9u6f7w7wzfmm4rr9rzy2cgqzp78kwaw",
+                          coins:[
+                             {
+                                amount:"496429373",
+                                denom:"BNB",
+
+                             }
+                          ],
+
+                       }
+                    ],
+                    outputs:[
+                       {
+                          address:"bnb136ns6lfw4zs5hg4n85vdthaad7hq5m4gtkgf23",
+                          coins:[
+                             {
+                                amount:"496429373",
+                                denom:"BNB",
+
+                             }
+                          ],
+
+                       }
+                    ],
+
+                 },
+
+              }
+           ],
+           signatures:[
+              {
+                 account_number:"438",
+                 pub_key:{
+                    type:"tendermint/PubKeySecp256k1",
+                    value:"A3mfgg/i12XNyy9esqCjI7yrkrOs9dngP7c9cDUEJly5",
+
+                 },
+                 sequence:"0",
+                 signature:"VvvGz3qbyirJ7vv01Df8tuAd7K4I+HK+yEBfep+qwtMKuHWQQH3XtMB9Pqtc2jlia0AtDe+BUEMtIyh3/N66IQ==",
+
+              }
+           ],
+           source:"1",
+
+        },
+
+     },
+
+  }
 ```
 
 
@@ -246,9 +260,9 @@ Below is an example response of a send transaction when `?format=json` is used.
 
 | Code | Description | Schema |
 | ---- | ----------- | ------ |
-| 200 | Success | [Transaction](#transaction) |
-| 400 | Bad Request | [Error](#error) |
+| 0 | Success | [Transaction](#transaction) |
 | 404 | Not Found |  |
+| 500 | Bad Request | [Error](#error) |
 | default | Generic error response | [Error](#error) |
 
 ### /api/v1/tokens
@@ -719,7 +733,7 @@ If the time window is larger than limits, only the first n klines will return. I
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
-| hash | string | Hash of transaction |  |
+| hash | string (hex) | Hash of transaction, it returned as bytes before, and now it returns as hex string |  |
 | log | string | Log of transaction |  |
 | data | string | Data of transaction |  |
 | height | string | Height of transaction |  |
@@ -728,7 +742,7 @@ If the time window is larger than limits, only the first n klines will return. I
 | tx | object | Detail of transaction, like transaction type, messages and signature
 
 For example, below is the detail of a send transaction. Most of the fields are fixed, but the detail of msg
-varies with msg type.
+varies with msg type, if you query with --format=json.
 
 ```
 {
@@ -1004,3 +1018,59 @@ varies with msg type.
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
 | ExchangeRate | object |  |  |
+
+### ResultStatus  
+
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| validator_info | [ [ValidatorInfo](#validatorinfo) ] |  |  |
+| sync_info | [ [SyncInfo](#syncinfo) ] |  |  |
+| node_info | [ [NodeInfo](#nodeinfo) ] |  |  |
+
+### NodeInfo  
+
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| Protocol_Version | [ [ProtocolVersion](#protocolversion) ] |  |  |
+| ID | string |  |  |
+| listen_addr | string |  |  |
+| network | string |  |  |
+| version | string |  |  |
+| channels | string |  |  |
+| moniker | string |  |  |
+| other | object |  |  |
+
+### SyncInfo  
+
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| latest_block_hash | string (hex) |  |  |
+| latest_app_hash | string (hex) |  |  |
+| latest_block_height | long |  |  |
+| latest_block_time | time |  |  |
+| catching_up | boolean |  |  |
+
+### Validator  
+
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| address | string | hex address |  |
+| pub_key | string | hex-encoded |  |
+| proposer_priority | long |  |  |
+| voting_power | long |  |  |
+
+### ProtocolVersion  
+
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| P2P | integer (uint64) |  |  |
+| block | integer (uint64) |  |  |
+| app | integer (uint64) |  |  |
+
+### ValidatorInfo  
+
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| address | string | hex address |  |
+| pub_key | string | hex-encoded |  |
+| voting_power | long |  |  |
