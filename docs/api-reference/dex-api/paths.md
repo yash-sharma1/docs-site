@@ -837,7 +837,7 @@ varies with msg type, if you query with --format=json.
 | ---- | ---- | ----------- | ------- |
 | base_asset_symbol | string (currency) | symbol of base asset | BNB |
 | quote_asset_symbol | string (currency) | symbol of quote asset | ABC-5CA |
-| price | string (fixed8) | In decimal form, e.g. 1.00000000 | 0.00000000 |
+| list_price | string (fixed8) | In decimal form, e.g. 1.00000000 | 0.00000000 |
 | tick_size | string (fixed8) | Minimium price change in decimal form, e.g. 1.00000000 | 0.00000001 |
 | lot_size | string (fixed8) | Minimium trading quantity in decimal form, e.g. 1.00000000 | 0.000001 |
 
@@ -1019,7 +1019,7 @@ varies with msg type, if you query with --format=json.
 | ---- | ---- | ----------- | ------- |
 | ExchangeRate | object |  |  |
 
-### ResultStatus  
+### ResultStatus
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
@@ -1027,7 +1027,7 @@ varies with msg type, if you query with --format=json.
 | sync_info | [ [SyncInfo](#syncinfo) ] |  |  |
 | node_info | [ [NodeInfo](#nodeinfo) ] |  |  |
 
-### NodeInfo  
+### NodeInfo
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
@@ -1040,7 +1040,7 @@ varies with msg type, if you query with --format=json.
 | moniker | string |  |  |
 | other | object |  |  |
 
-### SyncInfo  
+### SyncInfo
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
@@ -1050,16 +1050,7 @@ varies with msg type, if you query with --format=json.
 | latest_block_time | time |  |  |
 | catching_up | boolean |  |  |
 
-### Validator  
-
-| Name | Type | Description | Example |
-| ---- | ---- | ----------- | ------- |
-| address | string | hex address |  |
-| pub_key | string | hex-encoded |  |
-| proposer_priority | long |  |  |
-| voting_power | long |  |  |
-
-### ProtocolVersion  
+### ProtocolVersion
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
@@ -1067,7 +1058,7 @@ varies with msg type, if you query with --format=json.
 | block | integer (uint64) |  |  |
 | app | integer (uint64) |  |  |
 
-### ValidatorInfo  
+### ValidatorInfo
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
