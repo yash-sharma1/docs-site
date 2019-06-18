@@ -280,10 +280,14 @@ For example, on the Binance Chain testnet, you can see `BTC.B`, which is a pegge
 
 When the real mainnet comes in, there can be 2 ways for these pegged tokens to be deposited/withdrawn:
 
-1. via interoperability among different chains. This would be done via Atomic Swap, which may be very slow, so users may have to deposit onto/withdraw into Binance Chain.
-2. via Binance.com, which is slow but a bit faster than Atomic Swap. For example, when you withdraw `BTC.B` or Bitcoin BTC from Binance.com accounts, you would have a choice to withdraw it as the Bitcoin BTC or Binance Chain `BTC.B`. This can also be the case for other coins, especially the ERC20 ones.
+1. via interoperability among different chains. This would be done via Atomic Swap, which may be very slow, so users may have to deposit onto/withdraw into Binance Chain. Both Binance Chain and Cosmos plan to build the cross-chain bridging part. But right now they are still under development.
+2. via Binance.com, a number of crypto-pegged tokens on Binance Chain (BEP2 token format) will be issued on Binance Chain. This has a higher degree of ease-of-use to most traders. This is the current solution for Binance Chain.
 
-Either of the two are not available yet, but on their way to come. Your feedback during testnet phase will be heard.
+Pegged tokens such as BTCB, are 100% backed by the native coin in reserve. The reserve addresses are published for anyone to audit. A trading pair will be created on Binance.com between the pegged token and the native coin, e.g., [BTCB/BTC](https://www.binance.com/en/trade/BTCB_BTC).
+
+Large buy orders will be maintained on the trading pair on Binance.com. Anyone to convert between the pegged token and the native coin on Binance.com. If a buy order is filled, a new order will be placed while an equal amount of funds will be deposited from the reserve address into Binance.com. All BTCB supply is 100% backed by BTC.
+
+This centralized approach is not exclusive to cross-chain atomic swaps or other decentralized approaches, which can also be implemented in parallel. There are many atomic swap solutions being developed and we are very interested in those.
 
 Please do __NOT__ try to transfer anything on existing network to Binance Chain testnet, you may experience loss by doing so, because testnet doesn't run with real coins.
 
