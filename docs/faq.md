@@ -285,7 +285,7 @@ When the real mainnet comes in, there can be 2 ways for these pegged tokens to b
 
 Pegged tokens such as BTCB, are 100% backed by the native coin in reserve. The reserve addresses are published for anyone to audit. A trading pair will be created on Binance.com between the pegged token and the native coin, e.g., [BTCB/BTC](https://www.binance.com/en/trade/BTCB_BTC).
 
-Large buy orders will be maintained on the trading pair on Binance.com. Anyone to convert between the pegged token and the native coin on Binance.com. If a buy order is filled, a new order will be placed while an equal amount of funds will be deposited from the reserve address into Binance.com. All BTCB supply is 100% backed by BTC.
+Large buy orders will be maintained on the trading pair on Binance.com. Anyone can convert between the pegged token and the native coin on Binance.com. If a buy order is filled, a new order will be placed while an equal amount of funds will be deposited from the reserve address into Binance.com. All BTCB supply is 100% backed by BTC.
 
 This centralized approach is not exclusive to cross-chain atomic swaps or other decentralized approaches, which can also be implemented in parallel. There are many atomic swap solutions being developed and we are very interested in those.
 
