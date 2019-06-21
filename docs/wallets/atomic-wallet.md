@@ -9,8 +9,8 @@ Exchange your assets via non-custodial Atomic Swap with decentralized order book
 
 ## Instruction
 
-* Downloads:  https://atomicwallet.io/#download
+* Downloads: <https://atomicwallet.io/#download>
 
 ## Resource
 
-https://atomicwallet.io
+<https://atomicwallet.io>

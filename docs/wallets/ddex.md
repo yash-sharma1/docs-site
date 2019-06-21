@@ -5,7 +5,7 @@ DDEX Wallet is a mobile native decentralized multi-chain exchange app for [iOS](
 
 ## Instruction
 
-* Downloads:  <https://ddex.io/>
+* Downloads: <https://ddex.io/>
 
 ## Resource
 

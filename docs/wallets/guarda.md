@@ -5,7 +5,7 @@ Guarda is here to solve the daily multitasking issue – store all your currenci
 
 ## Instruction
 
-* Downloads:  <https://guarda.co/mobile-wallet>
+* Downloads: <https://guarda.co/mobile-wallet>
 
 ## Resource
 

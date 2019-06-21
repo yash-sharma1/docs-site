@@ -6,8 +6,8 @@ Math Wallet is the most powerful and secure universal crypto wallet that enables
 
 ## Instructions
 
-* Downloads:  http://www.mathwallet.org/en/
+* Downloads: <http://www.mathwallet.org/en/>
 
 ## Resource
 
-http://blog.mathwallet.org/?p=390
+<http://blog.mathwallet.org/?p=390>

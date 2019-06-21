@@ -6,8 +6,8 @@ ZelCore is a multi asset platform and wallet, free-to-use by all, with top quick
 
 ## Instructions
 
-* Downloads:  https://zel.network/project/zelcore/download.html
+* Downloads: <https://zel.network/project/zelcore/download.html>
 
 ## Resource
 
-https://zel.network/project/zelcore/
+<https://zel.network/project/zelcore/>

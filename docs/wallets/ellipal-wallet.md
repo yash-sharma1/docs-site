@@ -5,8 +5,8 @@
 
 ## Instruction
 
-* Downloads: https://www.ellipal.com/pages/ellipal-wallet-app
+* Downloads: <https://www.ellipal.com/pages/ellipal-wallet-app>
 
 ## Resource
 
-https://www.ellipal.com/
+<https://www.ellipal.com/>

@@ -6,7 +6,7 @@ An EOS Wallet which works as a DAPP Entrance and EOS News
 
 ## Instruction
 
-* Downloads:  https://meet.one/download
+* Downloads: <https://meet.one/download>
 
 ## Resource
 

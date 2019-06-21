@@ -6,8 +6,8 @@ This April, Infinito Wallet is collaborating with Binance to integrate support f
 
 ## Instructions
 
-* Downloads:  https://www.infinitowallet.io/download/
+* Downloads: <https://www.infinitowallet.io/download/>
 
 ## Resource
 
-https://www.infinitowallet.io/infinito-wallet-to-welcome-blockchain-titan-binances-bnb-coin-and-dex/
+<https://www.infinitowallet.io/infinito-wallet-to-welcome-blockchain-titan-binances-bnb-coin-and-dex/>

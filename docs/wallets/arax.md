@@ -6,7 +6,7 @@ Arax Wallet allows you to securely store, send/receive crypto via GPS using Near
 
 ## Instruction
 
-* Downloads:  <https://arax.io>
+* Downloads: <https://arax.io>
 
 ## Resource
 
