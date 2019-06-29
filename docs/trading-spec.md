@@ -105,10 +105,8 @@ Issue Asset | N/A | 500 BNB | N
 Mint Asset | N/A | 5 BNB | N
 Burn Asset | N/A | 0.5 BNB | N
 Freeze/Unfreeze Asset | N/A | 0.005 BNB | N
-Lock/unlock/relock Asset | N/A | 0.01 BNB | N
 List Asset | N/A | 1000 BNB | N
-Submit List Proposal | N/A | 5 BNB | N
-Submit Deist Proposal | N/A | 1000 BNB | N
+Submit Proposal | N/A | 5 BNB | N
 Deposit | N/A | 0.000625 BNB | N
 
 
@@ -159,6 +157,7 @@ Trading fee can be queried at [here](https://dex.binance.org/api/v1/fees?format=
 
 Fees are variable and may change over time as governance proposals are proposed and voted on. The current fees table for Tetnet as of **2019-04-17** is as follows:
 
+
 Transaction Type | Pay in Non-BNB Asset | Pay in BNB | Exchange (DEX) Related
 -- | -- | -- | --
 New Order | 0 | 0 | Y
@@ -171,8 +170,10 @@ Issue Asset | N/A | 500 BNB | N
 Mint Asset | N/A | 5 BNB | N
 Burn Asset | N/A | 0.5 BNB | N
 Freeze/Unfreeze Asset | N/A | 0.005 BNB | N
+Lock/unlock/relock Asset | N/A | 0.01 BNB | N
 List Asset | N/A | 1000 BNB | N
-Submit Proposal | N/A | 5 BNB | N
+Submit List Proposal | N/A | 5 BNB | N
+Submit Delist Proposal | N/A | 1000 BNB | N
 Deposit | N/A | 0.000625 BNB | N
 
 ### Testnet Fees API
