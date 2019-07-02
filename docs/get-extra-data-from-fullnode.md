@@ -6,11 +6,13 @@ Please refer to [Running Full Node](fullnode.md), if you still haven't deployed 
 ## Publish Different Messages to Local Files
 
 You can set the `publishLocal` option to `true` in `nodebinary/fullnode/{network}/node/app.toml`.<br/>
-The full node will now save the messages that you are interested under `{fullnode home}`/marketdata/marketdata.json, and you can consume them in your own apps. The messages types are explained below.
+The full node will append the messages each block published to `{fullnode home}/marketdata/marketdata.json` (each line is a json object for a topic and height), and you can consume them in your own apps. The messages types are explained below. 
+
+Note: only block messages after this option get turned on can be saved. This function won't make up messages for already saved blocks.
 
 ### 1. OrderUpdates
 You can set  the `publishOrderUpdates` option to `true` in `nodebinary/fullnode/{network}/node/app.toml`.<br/>
-Then, the full node will save all the trades that have been filled, orders that changed and proposals that been submitted in these blocks.
+Then, the full node will save all the trades that have been filled, orders that changed and proposals that been submitted.
 
 * Example:
 ```
@@ -70,7 +72,7 @@ Then, the full node will save all the trades that have been filled, orders that 
 ### 2. AccountBalance
 
 You can set the `publishAccountBalance` option to `true` in `nodebinary/fullnode/{network}/node/app.toml`.<br/>
-Then, the full node will save all the changed accounts after this blocks.
+Then, the full node will save all the changed accounts.
 
 * Example
 
@@ -91,7 +93,7 @@ Then, the full node will save all the changed accounts after this blocks.
 ### 3. OrderBook
 
 You can set the `publishOrderBook` option to `true` in `nodebinary/fullnode/{network}/node/app.toml`.<br/>
-Then, the full node will save all order book changes after this block ends.
+Then, the full node will save all order book changes.
 
 * Example
 
@@ -117,7 +119,7 @@ Then, the full node will save all order book changes after this block ends.
 ### 4. BlockFee
 
 You can set the `publishBlockFee` option to `true` in `nodebinary/fullnode/{network}/node/app.toml`.<br/>
-Then, the full node will save all the block fee charged in this block.
+Then, the full node will save all the block fee charged.
 
 * Example
 
@@ -132,7 +134,7 @@ Then, the full node will save all the block fee charged in this block.
 
 ### 5. Transfers
 You can set the `publishTransfer` option to `true` in `nodebinary/fullnode/{network}/node/app.toml`.<br/>
-Then, the full node will save all the transfer transactions in this block.
+Then, the full node will save all the transfer transactions.
 
 * Example
 
