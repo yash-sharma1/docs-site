@@ -2543,7 +2543,9 @@ It returns the height which it was committed:
 #### 6.2.2 BroadcastTxCommit
 The transaction will be broadcasted and returns with the response from CheckTx and DeliverTx.
 
-This method will waitCONTRACT: only returns error if mempool.CheckTx() errs or if we timeout
+This method will wait for both CheckTx and DeliverTx, so it is the slowest way to broadcast through RPC but offers the most accurate success/failure response.
+
+CONTRACT: only returns error if mempool.CheckTx() errs or if we timeout
 waiting for tx to commit.
 
 If CheckTx or DeliverTx fail, no error will be returned, but the returned result
