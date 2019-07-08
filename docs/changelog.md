@@ -202,8 +202,7 @@ For example:
             "TransactionTime":1560927932877738000,
             "TimeInForce":1,
             "CurrentExecutionType":0,
-            "TxHash":"A120FAA19A3448119E7F32B986540B21A5927616C73F95ACD1626FB54A74A865",
-            "SingleFee":""
+            "TxHash":"A120FAA19A3448119E7F32B986540B21A5927616C73F95ACD1626FB54A74A865"
          },
          {
             "Symbol":"NNB-811_BNB",
@@ -223,8 +222,7 @@ For example:
             "TransactionTime":1560927932877738000,
             "TimeInForce":1,
             "CurrentExecutionType":0,
-            "TxHash":"A120FAA19A3448119E7F32B986540B21A5927616C73F95ACD1626FB54A74A865",
-            "SingleFee":""
+            "TxHash":"A120FAA19A3448119E7F32B986540B21A5927616C73F95ACD1626FB54A74A865"
          },
          {
             "Symbol":"NNB-811_BNB",
@@ -244,8 +242,7 @@ For example:
             "TransactionTime":1560927932877738000,
             "TimeInForce":1,
             "CurrentExecutionType":0,
-            "TxHash":"617565ECA6464E1B7435819A8154BCF5FC773FE1C5982A833DBEEDBE78E660C6",
-            "SingleFee":""
+            "TxHash":"617565ECA6464E1B7435819A8154BCF5FC773FE1C5982A833DBEEDBE78E660C6"
          }
       ]
    },
