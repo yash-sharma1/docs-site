@@ -8,7 +8,7 @@
 | 2      | [Trust Wallet](wallets/trust-wallet.md)                | <https://trustwallet.com/>       |True|
 | 3      | [Enjin](wallets/enjin.md)                              | <https://enjinwallet.io/>        |False|
 | 4      | [Magnum Wallet](wallets/magnum.md)                     | <https://magnumwallet.co/>       |True|
-| 5      | [CoolWallet](wallets/cool-wallet.md) (Hardware Wallet) | <https://coolwallet.io/>         |True|
+| 5      | [CoolWallet](wallets/cool-wallet.md) (Hardware Wallet) | <https://coolwallet.io/>         |False|
 | 6      | [Coinomi Wallet](wallets/coinomi-wallet.md)            | <http://coinomi.com/>            |True|
 | 7      | [Atomic Wallet](wallets/atomic-wallet.md)              | <https://atomicwallet.io/>       |False|
 | 8      | [ZelCore Wallet](wallets/zelcore-wallet.md)            | <https://zeltrez.io/>            |True|
