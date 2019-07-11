@@ -283,7 +283,7 @@ When the real mainnet comes in, there can be 2 ways for these pegged tokens to b
 1. via interoperability among different chains. This would be done via Atomic Swap, which may be very slow, so users may have to deposit onto/withdraw into Binance Chain. Both Binance Chain and Cosmos plan to build the cross-chain bridging part. But right now they are still under development.
 2. via Binance.com, a number of crypto-pegged tokens on Binance Chain (BEP2 token format) will be issued on Binance Chain. This has a higher degree of ease-of-use to most traders. This is the current solution for Binance Chain.
 
-Pegged tokens such as BTCB, are 100% backed by the native coin in reserve. The reserve addresses are published for anyone to audit. A trading pair will be created on Binance.com between the pegged token and the native coin, e.g., [BTCB/BTC](https://www.binance.com/en/trade/BTCB_BTC).
+Pegged tokens such as BTCB, are 100% backed by the native coin in reserve. The reserve addresses are published for anyone to audit. Read this [blog](https://www.binance.com/en/blog/347360878904684544/Introducing-BitcoinPegged-Token-on-Binance-Chain) to learn about the reserved address. A trading pair will be created on Binance.com between the pegged token and the native coin, e.g., [BTCB/BTC](https://www.binance.com/en/trade/BTCB_BTC).
 
 Large buy orders will be maintained on the trading pair on Binance.com. Anyone can convert between the pegged token and the native coin on Binance.com. If a buy order is filled, a new order will be placed while an equal amount of funds will be deposited from the reserve address into Binance.com. All BTCB supply is 100% backed by BTC.
 
