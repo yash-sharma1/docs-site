@@ -111,7 +111,7 @@ Start the full node according to the platform.<br/>
 Replace the `platform` variable with `mac` `windows` or `linux` in the following command:
 
 ```bash
-./{{platform}}/bnbchaind start --home $BNCHOME --pruning breathe &
+./{{platform}}/bnbchaind start --home $BNCHOME&
 ```
 
 Only after catching up with Binance Chain, the full node can handle requests correctly.
