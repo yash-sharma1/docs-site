@@ -684,37 +684,37 @@ If the time window is larger than limits, only the first n klines will return. I
 ### Models
 ---
 
-### Error
+### Error  
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
 | code | long | error code | 400 |
 | message | string | error message |  |
 
-### Times
+### Times  
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
 | ap_time | string | event time | e.g. 2019-01-21T10:30:00Z |
 | block_time | string | the time of latest block | e.g. 2019-01-21T10:30:00Z |
 
-### Validators
+### Validators  
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
 | block_height | long | Current block height | 12345 |
 | validators | [ [Validator](#validator) ] |  |  |
 
-### Validator
+### Validator  
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
 | address | string (hex address) | Address |  |
 | pub_key | [ integer ] | Public key bytes |  |
-| voting_power | integer |  |  |
-| accum | integer |  |  |
+| voting_power | integer | validator's voting power |  |
+| accum | integer | validator's accumulated voting power |  |
 
-### Peer
+### Peer  
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
@@ -729,7 +729,7 @@ If the time window is larger than limits, only the first n klines will return. I
 | capabilities | [ string ] | Array of capability tags: node, qs, ap, ws | node,ap |
 | accelerated | boolean | Is an accelerated path to a validator node |  |
 
-### Transaction
+### Transaction  
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
@@ -796,7 +796,7 @@ varies with msg type, if you query with --format=json.
 ```
  |  |
 
-### Account
+### Account  
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
@@ -806,13 +806,13 @@ varies with msg type, if you query with --format=json.
 | public_key | [ integer ] | Public key bytes |  |
 | sequence | long | sequence is for preventing replay attack |  |
 
-### AccountSequence
+### AccountSequence  
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
 | sequence | long | number used for preventing replay attack | 1 |
 
-### Balance
+### Balance  
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
@@ -821,7 +821,7 @@ varies with msg type, if you query with --format=json.
 | locked | string (fixed8) | In decimal form, e.g. 0.00000000 | 0.00000000 |
 | frozen | string (fixed8) | In decimal form, e.g. 0.00000000 | 0.00000000 |
 
-### Token
+### Token  
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
@@ -831,7 +831,7 @@ varies with msg type, if you query with --format=json.
 | total_supply | string (fixed8) | total token supply in decimal form, e.g. 1.00000000 | 0.00000000 |
 | owner | string (address) | Address which issue the token |  |
 
-### Market
+### Market  
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
@@ -841,7 +841,7 @@ varies with msg type, if you query with --format=json.
 | tick_size | string (fixed8) | Minimium price change in decimal form | 0.00000001 |
 | lot_size | string (fixed8) | Minimium trading quantity in decimal form | 1.00000000 |
 
-### Fee
+### Fee  
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
@@ -853,7 +853,7 @@ varies with msg type, if you query with --format=json.
 | fixed_fee_params | [FixedFeeParams](#fixedfeeparams) | Set if the fee is fixed |  |
 | dex_fee_fields | [DexFeeFieldParams](#dexfeefieldparams) | dex fee |  |
 
-### FixedFeeParams
+### FixedFeeParams  
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
@@ -861,47 +861,47 @@ varies with msg type, if you query with --format=json.
 | fee | number | The fixed fee amount | 1000000000 |
 | fee_for | integer | 1 = proposer, 2 = all, 3 = free | 1 |
 
-### DexFeeFieldParams
+### DexFeeFieldParams  
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
 | fee_name | string | fee name |  |
 | fee_value | integer | fee value |  |
 
-### MarketDepth
+### MarketDepth  
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
 | asks | [ string (fixed8) ] | Price and qty in decimal form, e.g. 1.00000000 | ["1.00000000","800.00000000"] |
 | bids | [ string (fixed8) ] | Price and qty in decimal form, e.g. 1.00000000 | ["1.00000000","800.00000000"] |
 
-### Candlestick
+### Candlestick  
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
 | close | number | closing price |  |
-| closeTime | long |  |  |
+| closeTime | long | time of closing trade |  |
 | high | number | the highest price |  |
 | low | number | the lowest price |  |
-| numberOfTrades | integer |  |  |
+| numberOfTrades | integer | total trades |  |
 | open | number | open price |  |
 | openTime | long | time of open trade |  |
-| quoteAssetVolume | number |  |  |
-| volume | number |  |  |
+| quoteAssetVolume | number | the total trading volume in quote asset |  |
+| volume | number | the total trading volume |  |
 
-### OrderList
+### OrderList  
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
 | order | [ [Order](#order) ] | list of orders |  |
 | total | long |  |  |
 
-### Order
+### Order  
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
-| cumulateQuantity | string |  |  |
-| fee | string | trading fee on the block of this order |  |
+| cumulateQuantity | string | total amount of trades that have made |  |
+| fee | string | trading fee on the latest updated block of this order. Multiple assets are split by semicolon. |  |
 | lastExecutedPrice | string | price of last execution |  |
 | lastExecutedQuantity | string | quantity of last execution |  |
 | orderCreateTime | dateTime | time of order creation |  |
@@ -910,95 +910,94 @@ varies with msg type, if you query with --format=json.
 | price | string | order price |  |
 | quantity | string | order quantity |  |
 | side | integer | 1 for buy and 2 for sell |  |
-| singleFee | string | trading fee of this order |  |
 | status | string | enum [Ack, PartialFill, IocNoFill, FullyFill, Canceled, Expired, FailedBlocking, FailedMatching, IocExpire] |  |
-| symbol | string |  |  |
+| symbol | string | trading pair symbol |  |
 | timeInForce | integer | 1 for Good Till Expire(GTE) order and 3 for Immediate Or Cancel (IOC) |  |
 | tradeId | string | trade ID |  |
-| transactionHash | string |  |  |
+| transactionHash | string | hash of transaction |  |
 | transactionTime | dateTime | time of transaction |  |
 | type | integer | only 2 is available for now, meaning limit order |  |
 
-### TickerStatistics
+### TickerStatistics  
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
-| askPrice | string | ask price |  |
-| askQuantity | string | ask quantity |  |
-| bidPrice | string | bid price |  |
-| bidQuantity | string | bid quantity |  |
+| askPrice | string | sell price |  |
+| askQuantity | string | sell quantity |  |
+| bidPrice | string | buy price |  |
+| bidQuantity | string | buy quantity |  |
 | closeTime | long | time of closing |  |
-| count | long | total count |  |
-| firstId | string |  |  |
-| highPrice | string |  |  |
-| lastId | string |  |  |
-| lastPrice | string |  |  |
-| lastQuantity | string |  |  |
-| lowPrice | string |  |  |
-| openPrice | string |  |  |
-| openTime | long |  |  |
-| prevClosePrice | string |  |  |
-| priceChange | string |  |  |
-| priceChangePercent | string |  |  |
-| quoteVolume | string |  |  |
-| symbol | string |  |  |
-| volume | string |  |  |
-| weightedAvgPrice | string |  |  |
+| count | long | total trade count |  |
+| firstId | string | ID of first trade |  |
+| highPrice | string | highest price |  |
+| lastId | string | ID of last trade |  |
+| lastPrice | string | last price |  |
+| lastQuantity | string | last quantity |  |
+| lowPrice | string | lowest price |  |
+| openPrice | string | open price |  |
+| openTime | long | open time |  |
+| prevClosePrice | string | last close price |  |
+| priceChange | string | change of price |  |
+| priceChangePercent | string | change of price in percentage |  |
+| quoteVolume | string | trading volume in quote asset |  |
+| symbol | string | trading symbol |  |
+| volume | string | trading volume |  |
+| weightedAvgPrice | string | weighted average price |  |
 
-### TradePage
+### TradePage  
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
-| total | long |  |  |
+| total | long | total number of trades |  |
 | trade | [ [Trade](#trade) ] |  |  |
 
-### Trade
+### Trade  
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
-| baseAsset | string | base asset |  |
+| baseAsset | string | base asset symbol |  |
 | blockHeight | long | block height |  |
 | buyFee | string | trading fee for the buyer address on the block of this trade |  |
 | buyerId | string | id of buyer |  |
 | buyerOrderId | string | order id for buyer |  |
-| buySingleFee | string | trading fee for the buyer address on this single trade |  |
+| buySingleFee | string | trading fee for the buyer address on this single trade | BNB:0.00000172; |
 | price | string | trade price |  |
 | quantity | string | trade quantity |  |
-| quoteAsset | string | quote asset |  |
+| quoteAsset | string | quote asset symbol |  |
 | sellFee | string | trading fee for the seller address on the block of this trade |  |
 | sellerId | string | seller ID |  |
 | sellerOrderId | string | seller order ID |  |
-| sellSingleFee | string | trading fee for the seller address on this single trade |  |
+| sellSingleFee | string | trading fee for the seller address on this single trade | BNB:0.00000216; |
 | symbol | string | asset symbol |  |
 | tickType | string | enum [Unknown,SellTaker,BuyTaker,BuySurplus,SellSurplus,Neutral] |  |
 | time | long | trade time |  |
 | tradeId | string | trade ID |  |
 
-### BlockExchangeFeePage
+### BlockExchangeFeePage  
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
 | blockExchangeFee | [ [BlockExchangeFee](#blockexchangefee) ] |  |  |
 | total | long |  |  |
 
-### BlockExchangeFee
+### BlockExchangeFee  
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
 | address | string |  |  |
 | blockHeight | long |  |  |
 | blockTime | long | timestamp of a block |  |
-| fee | string | total fee collected |  |
+| fee | string | total fee collected. Multiple assets are split by semicolon. |  |
 | tradeCount | long | trade count of the address on the block |  |
 
-### TxPage
+### TxPage  
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
 | total | long | total sum of transactions |  |
 | tx | [ [Tx](#tx) ] |  |  |
 
-### Tx
+### Tx  
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
@@ -1017,13 +1016,13 @@ varies with msg type, if you query with --format=json.
 | txType | string | type of transaction |  |
 | value | string | value of transaction |  |
 
-### ExchangeRate
+### ExchangeRate  
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
 | ExchangeRate | object |  |  |
 
-### ResultStatus
+### ResultStatus  
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
@@ -1031,7 +1030,7 @@ varies with msg type, if you query with --format=json.
 | sync_info | [ [SyncInfo](#syncinfo) ] |  |  |
 | node_info | [ [NodeInfo](#nodeinfo) ] |  |  |
 
-### NodeInfo
+### NodeInfo  
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
@@ -1044,7 +1043,7 @@ varies with msg type, if you query with --format=json.
 | moniker | string |  |  |
 | other | object |  |  |
 
-### SyncInfo
+### SyncInfo  
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
@@ -1054,7 +1053,7 @@ varies with msg type, if you query with --format=json.
 | latest_block_time | time |  |  |
 | catching_up | boolean |  |  |
 
-### ProtocolVersion
+### ProtocolVersion  
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
@@ -1062,7 +1061,7 @@ varies with msg type, if you query with --format=json.
 | block | integer (uint64) |  |  |
 | app | integer (uint64) |  |  |
 
-### ValidatorInfo
+### ValidatorInfo  
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
