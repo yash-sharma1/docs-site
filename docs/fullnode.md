@@ -137,10 +137,8 @@ Configuration is located in `$BNCHOME/config/config.toml`:
 
 ##### State Sync
 
-`Caution: this function is under refactoring.`
-
-State sync will get the application state of your full node to be up to date without downloading all of the blocks.The sync speed is faster than fast sync.<br/>
-But, you need to allocate more than `16 GB memory` to your full node for this feature to work.
+As explained in [BEP18](https://github.com/binance-chain/BEPs/blob/master/BEP18.md), State sync will get the application state of your full node to be up to date without downloading all of the blocks.The sync speed is faster than fast sync.<br/>
+Now you do not need to allocate more memories to your full node for this feature to work.
 
 Configuration is located in `$BNCHOME/config/config.toml`:
 
@@ -153,6 +151,11 @@ Configuration is located in `$BNCHOME/config/config.toml`:
 State sync can help fullnode in same status with other peers within short time (according to our test, a one month ~800M DB snapshot in binance chain testnet can be synced in around 45 minutes) so that you can receive latest blocks/transactions and query latest status of orderbook, account balances etc.. But state sync DOES NOT download historical blocks before state sync height, if you start your node with state sync and it synced at height 10000, then your local database would only have blocks after height 10000.
 
 If full node has already started, suggested way is to delete the (after backup) `$BNCHOME/data` directory and `$BNCHOME/config/priv_validator_key.json` before enabling state sync.
+
+State sync will run only once after you start your full node. Once state sync succeeds, later fullnode restart would not state sync anymore. But if you do want state sync again, you need to delete `$BNCHOME/data/STATESYNC.LOCK`.
+
+
+If you turn on the `state_sync_reactor`, the snapshots of heights will be saved at `$HOME/data/snapshot/<height>` automatically. To save disk space, you can delete the directory or turn off the  `state_sync_reactor`.
 
 ##### Monitor Syncing Process
 
