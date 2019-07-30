@@ -1302,7 +1302,7 @@ definitions:
             pub_key:
               type: array
               title: 'Public key'
-              description: 'Public key bytes'
+              description: Public key bytes
               required: true
               items:
                 type: integer
@@ -1310,9 +1310,11 @@ definitions:
             voting_power:
               type: integer
               required: true
+              description: validator's voting power
             accum:
               type: integer
               required: true
+              description: validator's accumulated voting power
 
 
 
@@ -1655,6 +1657,7 @@ definitions:
       closeTime:
         type: integer
         format: int64
+        description: time of closing trade
       high:
         type: number
         description: the highest price
@@ -1664,6 +1667,7 @@ definitions:
       numberOfTrades:
         type: integer
         format: int32
+        description: total trades
       open:
         type: number
         description: open price
@@ -1673,8 +1677,11 @@ definitions:
         description: time of open trade
       quoteAssetVolume:
         type: number
+        description: the total trading volume in quote asset
       volume:
         type: number
+        description: the total trading volume
+
   OrderList:
     type: object
     properties:
@@ -1691,6 +1698,7 @@ definitions:
     properties:
       cumulateQuantity:
         type: string
+        description: total amount of trades that have made
       fee:
         type: string
         description: trading fee on the latest updated block of this order. Multiple assets are split by semicolon.
@@ -1728,6 +1736,7 @@ definitions:
         description: "enum [Ack, PartialFill, IocNoFill, FullyFill, Canceled, Expired, FailedBlocking, FailedMatching, IocExpire]"
       symbol:
         type: string
+        description: trading pair symbol
       timeInForce:
         type: integer
         format: int32
@@ -1741,6 +1750,7 @@ definitions:
         description: trade ID
       transactionHash:
         type: string
+        description: hash of transaction
       transactionTime:
         type: string
         description: time of transaction
@@ -1757,55 +1767,70 @@ definitions:
     properties:
       askPrice:
         type: string
-        description: ask price
+        description: sell price
       askQuantity:
         type: string
-        description: ask quantity
+        description: sell quantity
       bidPrice:
         type: string
-        description: bid price
+        description: buy price
       bidQuantity:
         type: string
-        description: bid quantity
+        description: buy quantity
       closeTime:
         type: integer
         description: time of closing
         format: int64
       count:
         type: integer
-        description: total count
+        description: total trade count
         format: int64
       firstId:
         type: string
+        description: ID of first trade
       highPrice:
         type: string
+        description: highest price
       lastId:
         type: string
+        description: ID of last trade
       lastPrice:
         type: string
+        description: last price
       lastQuantity:
         type: string
+        description: last quantity
       lowPrice:
         type: string
+        description: lowest price
       openPrice:
         type: string
+        description: open price
       openTime:
         type: integer
         format: int64
+        description: open time
       prevClosePrice:
         type: string
+        description: last close price
       priceChange:
         type: string
+        description: change of price
       priceChangePercent:
         type: string
+        description: change of price in percentage
       quoteVolume:
         type: string
+        description: trading volume in quote asset
       symbol:
         type: string
+        description: trading symbol
       volume:
         type: string
+        description: trading volume
       weightedAvgPrice:
         type: string
+        description: weighted average price
     title: TickerStatistics
   TradePage:
     type: object
@@ -1813,6 +1838,7 @@ definitions:
       total:
         type: integer
         format: int64
+        description: total number of trades
       trade:
         type: array
         items:
@@ -1822,7 +1848,7 @@ definitions:
     properties:
       baseAsset:
         type: string
-        description: base asset
+        description: base asset symbol
       blockHeight:
         type: integer
         description: block height
@@ -1848,7 +1874,7 @@ definitions:
         description: trade quantity
       quoteAsset:
         type: string
-        description: quote asset
+        description: quote asset symbol
       sellFee:
         type: string
         description: trading fee for the seller address on the block of this trade
