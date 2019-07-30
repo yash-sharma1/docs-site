@@ -285,7 +285,7 @@ Below is an example response of a send transaction when `?format=json` is used.
 
 | Name | Located in | Description | Required | Schema |
 | ---- | ---------- | ----------- | -------- | ---- |
-| limit | query | default 500; max 1000. | No | integer |
+| limit | query | default 100. | No | integer |
 | offset | query | start with 0; default 0. | No | integer |
 
 **Responses**
