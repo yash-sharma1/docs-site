@@ -651,7 +651,7 @@ If the time window is larger than limits, only the first n klines will return. I
 ##### ***GET***
 **Summary:** Get transactions.
 
-**Description:** Gets a list of transactions. Multisend transaction is not available in this API.
+**Description:** Gets a list of transactions. Multisend transaction is not available in this API. Currently 'confirmBlocks' and 'txAge' are not supported.
 
 **Query Window:** Default query window is latest 24 hours; The maximum start - end query window is 3 months.
 
@@ -670,7 +670,7 @@ If the time window is larger than limits, only the first n klines will return. I
 | side | query | transaction side. Allowed value: [ RECEIVE, SEND] | No | enum string |
 | startTime | query | start time in Milliseconds | No | long |
 | txAsset | query | txAsset | No | string |
-| txType | query | transaction type. Allowed value: [ NEW_ORDER,ISSUE_TOKEN,BURN_TOKEN,LIST_TOKEN,CANCEL_ORDER,FREEZE_TOKEN,UN_FREEZE_TOKEN,TRANSFER,PROPOSAL,VOTE,MINT,DEPOSIT] | No | enum string |
+| txType | query | transaction type. Allowed value: [ NEW_ORDER,ISSUE_TOKEN,BURN_TOKEN,LIST_TOKEN,CANCEL_ORDER,FREEZE_TOKEN,UN_FREEZE_TOKEN,TRANSFER,PROPOSAL,VOTE,MINT,DEPOSIT,CREATE_VALIDATOR,REMOVE_VALIDATOR,TIME_LOCK,TIME_UNLOCK,TIME_RELOCK,SET_ACCOUNT_FLAG] | No | enum string |
 
 **Responses**
 
@@ -678,6 +678,31 @@ If the time window is larger than limits, only the first n klines will return. I
 | ---- | ----------- | ------ |
 | 200 | OK | [TxPage](#txpage) |
 | 400 | Bad Request | [Error](#error) |
+| 404 | Not Found |  |
+| default | Generic error response | [Error](#error) |
+
+### /api/v1/transactions-in-block/{blockHeight}
+---
+##### ***GET***
+**Summary:** Get transactions in the specific block.
+
+**Description:** Get transactions in a specific block. Currently 'confirmBlocks' and 'txAge' are not supported.
+
+**Rate Limit:** 60 requests per IP per minute.
+
+
+**Parameters**
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| blockHeight | path | block height | Yes | string |
+
+**Responses**
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [BlockTxVo](#blocktxvo) |
+| 400 | Bad Request. The block to query is higher than current highest block. | [Error](#error) |
 | 404 | Not Found |  |
 | default | Generic error response | [Error](#error) |
 
@@ -997,6 +1022,13 @@ varies with msg type, if you query with --format=json.
 | total | long | total sum of transactions |  |
 | tx | [ [Tx](#tx) ] |  |  |
 
+### BlockTxVo
+
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| blockHeight | long | block height |  |
+| tx | [ [Tx](#tx) ] |  |  |
+
 ### Tx
 
 | Name | Type | Description | Example |
@@ -1015,6 +1047,9 @@ varies with msg type, if you query with --format=json.
 | txHash | string | hash of transaction |  |
 | txType | string | type of transaction |  |
 | value | string | value of transaction |  |
+| source | long |  |  |
+| sequence | long |  |  |
+| proposalId | string |  |  |
 
 ### ExchangeRate
 
