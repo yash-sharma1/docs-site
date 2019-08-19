@@ -42,8 +42,7 @@ func memoValiation(addr, tx) error {
 ```
 ### Fee
 
-1 BNB will be charged on memo validation transactions.
-
+1 BNB will be charged on enabling  memo validation of transactions.
 
 ## Command Line
 
