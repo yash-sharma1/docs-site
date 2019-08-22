@@ -34,8 +34,6 @@ The execution price would be selected as the below logic, in order to:
 
 Please check [this article](match-examples.md) with detailed examples for this if you are interested.
 
-**WARNING: For aggressive orders onto a not-so-liquid market, this match methodology would provide much worse average trade price, because all the trades would be marked with one final prices, instead of prices on all the waiting orders from the market.** If you want the same result as continuous match, the best effort you can do is to sweep the opposite side of the market one level after another.
-
 ## Order Matches
 After the execution price is concluded. Order match would happen in sequence of the price and time, i.e.
 
