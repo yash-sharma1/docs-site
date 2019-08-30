@@ -42,7 +42,7 @@ Let’s take a look at the major steps in TSS:
 * **Signing**: this step involves a signature generation function. The input of each party will be its own secret share, created as output of the distributed key generation in the previous step. There is also public input known to all, which is the message to be signed. The output will be a digital signature, and the property of privacy ensures that no leakage of secret shares occurred during the computation.
 
 * **Verification**: the verification algorithm remains as it is in the classical setting. To be compatible with single key signatures, Binance Chain validator nodes can be able to verify the signature with the public key. The transaction will be no different from others.
-* **Vault Regroup**:  Regrouop will reset secret share and configs between all parties.It's recommend to switch the configuration periodically, say once a month. If some party lost his key, it's also necessory to reset the distribution once some party lost their key. Regroup will generate new_n secrete share with new_t threshold. At least old_t + 1 should participant
+* **Vault Regroup**:  Regroup will reset secret share and configs between all parties.It's recommend to switch the configuration periodically, say once a month. If some party lost his key, it's also necessory to reset the distribution once some party lost their key. Regroup will generate new_n secrete share with new_t threshold. At least old_t + 1 should participant
 
 
 ##  Where can I download the Binance TSS CLI?
