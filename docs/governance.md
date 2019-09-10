@@ -79,7 +79,7 @@ Please note:<br/>
 + `--from`: put your key name for the address key, you can only list with the owners address of your token.
 + `--voting-period`: The voting period is for validators to vote. The unit is in seconds and the default voting period is one week. The max voting period is two weeks. The votes from validators will be tallied after the voting period ends.
 + `--justification`: reason for proposal
-+ `--depodit`: this field will indicate how much tokens will be used as deposit for this proposal. Governance module will transfer deposit tokens to a purely-code-controlled escrow account and before the lock time expires. The account for mainnet is:*bnb1j725qk29cv4kwpers4addy9x93ukhw7czfkjaj*  and the account for testnet is: *tbnb1j725qk29cv4kwpers4addy9x93ukhw7cvulkar* 
++ `--depodit`: this field will indicate how much tokens will be used as deposit for this proposal. Governance module will transfer deposit tokens to a purely-code-controlled escrow account and before the lock time expires. The account for mainnet is:*bnb1vu5max8wqn997ayhrrys0drpll2rlz4dh39s3h*  and the account for testnet is: *tbnb1vu5max8wqn997ayhrrys0drpll2rlz4deyv53x* 
 
 Example on **mainnet**:
 
