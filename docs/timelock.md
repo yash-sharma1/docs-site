@@ -26,7 +26,7 @@ As explained in [BEP9](https://github.com/binance-chain/BEPs/blob/master/BEP9.md
 
 ## TimeLock
 
-You can only lock tokens on your own account. TimeLock will transfer locked tokens to a purely-code-controlled escrow account and before the lock time expires. The account for mainnet is: *bnb1hn8ym9xht925jkncjpf7lhjnax6z8nv24fv2yq* and the accoubt for testnet is: *tbnb1hn8ym9xht925jkncjpf7lhjnax6z8nv2mu9wy3* 
+You can only lock tokens on your own account. TimeLock will transfer locked tokens to a purely-code-controlled escrow account and before the lock time expires. The account for mainnet is: *bnb1hn8ym9xht925jkncjpf7lhjnax6z8nv24fv2yq* and the account for testnet is: *tbnb1hn8ym9xht925jkncjpf7lhjnax6z8nv2mu9wy3* 
 The specific user will not be able to claim them back, including restrictions where they cannot use, transfer or spend these tokens.
 
 ### Command line
