@@ -1,5 +1,37 @@
 # Atomic Swap
-
+- [Atomic Swap](#atomic-swap)
+  * [Introduction](#introduction)
+  * [Commands](#commands)
+    + [Hash Timer Locked Transfer](#hash-timer-locked-transfer)
+      - [Parameters](#parameters)
+      - [Outputs](#outputs)
+      - [Examples](#examples)
+    + [Deposit HTLT](#deposit-htlt)
+      - [Parameters](#parameters-1)
+      - [Examples](#examples-1)
+    + [Claim HTLT](#claim-htlt)
+      - [Parameters](#parameters-2)
+      - [Examples](#examples-2)
+    + [Refund HTLT](#refund-htlt)
+      - [Parameters](#parameters-3)
+      - [Examples](#examples-3)
+    + [Query Atomic Swap](#query-atomic-swap)
+      - [Parameters](#parameters-4)
+      - [Examples](#examples-4)
+    + [Query Atomic Swap ID By Recipient](#query-atomic-swap-id-by-recipient)
+      - [Parameters](#parameters-5)
+      - [Examples](#examples-5)
+    + [Query Atomic Swap ID By Creator](#query-atomic-swap-id-by-creator)
+      - [Parameters](#parameters-6)
+      - [Examples](#examples-6)
+  * [Fees](#fees)
+  * [Workflows](#workflows)
+    + [Preparations](#preparations)
+    + [Swap Tokens from Ethereum to Binance Chain](#swap-tokens-from-ethereum-to-binance-chain)
+    + [Swap Tokens from Binance Chain to Ethereum](#swap-tokens-from-binance-chain-to-ethereum)
+    + [Swap between Several BEP2 tokens](#swap-between-several-bep2-tokens)
+    + [Swap between Several BEP2 tokens fails](#swap-between-several-bep2-tokens-fails)
+    
 ## Introduction
 As explained in [BEP3](https://github.com/binance-chain/BEPs/blob/master/BEP3.md), Hash Timer Locked Contract(HTLC) has been used for Atomic Swap and cross payment channels between different blockchains. BEP3 defines native transactions to support HTLC on Binance Chain and also proposes the standard infrastructure and procedure to use HTLC for inter-chain atomic swap to easily create and use pegged token.
 During the swap process, the related fund will be locked to a purely-code-controlled escrow account. The account for mainnet is: **bnb1wxeplyw7x8aahy93w96yhwm7xcq3ke4f8ge93u** and the account for testnet is: **tbnb1wxeplyw7x8aahy93w96yhwm7xcq3ke4ffasp3d**. Once the swap is claimed or refunded, the fund will be transfered from the purely-code-controlled escrow account to client accounts.
