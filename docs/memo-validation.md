@@ -34,6 +34,9 @@ func memoValiation(addr, tx) error {
     if  tx.memo.length == 0 {
         return err(“tx memo is empty”)
     }
+    if  tx.memo.length > 100 {
+        return err(“tx memo is too long”)
+    }
     if !isAllDigital(tx.memo) {
         return err(“tx memo contains non digital character”)
     }
