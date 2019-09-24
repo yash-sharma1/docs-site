@@ -187,12 +187,12 @@ QueryTimeLocks will query all lock records of a given address.
 On testnet, you can query lock history by address:
 
 ```
-./tbnbcli token query-time-lock --address <your-address> --chain-id Binance-Chain-Nile --trust-node --node http://data-seed-pre-0-s3.binance.org:80
+./tbnbcli token query-time-locks --address <your-address> --chain-id Binance-Chain-Nile --trust-node --node http://data-seed-pre-0-s3.binance.org:80
 ```
 On mainnet, you can query lock history by address:
 
 ```
-./bnbcli token query-time-lock --address <your-address> --chain-id Binance-Chain-Tigris --trust-node --node http://dataseed1.binance.org:80
+./bnbcli token query-time-locks --address <your-address> --chain-id Binance-Chain-Tigris --trust-node --node http://dataseed1.binance.org:80
 ```
 Example output:
 
