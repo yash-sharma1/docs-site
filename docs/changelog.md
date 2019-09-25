@@ -1,7 +1,7 @@
 - [Upcoming Changes in Binance Chain API v0.6.2](#upcoming-changes-in-binance-chain-api-v062)
   * [HTTP API](#http-api)
     + [/api/v2/transactions-in-block/{blockHeight}](#-api-v2-transactions-in-block--blockheight-)
-    + [/api/v1/timelock/{account_addr}](#-api-v1-timelock--account-addr)
+    + [/api/v1/timelocks/{account_addr}](#-api-v1-timelocks--account-addr)
     + [/api/v1/timelock/{account_addr}?(id={recordid})](#-api-v1-timelock--account-addr---id--recordid--)
 - [Upcoming Changes in Binance Chain API v0.6.1](#upcoming-changes-in-binance-chain-api-v061)
   * [HTTP API](#http-api)
