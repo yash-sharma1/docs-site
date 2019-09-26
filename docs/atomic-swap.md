@@ -288,7 +288,7 @@ refundHTLT | N/A |  0.000375 BNB | Y
 ### Preparations
 
 1. Deploy smart-contract which supports Atomic Peg Swap (APS), there is  already [one example](https://github.com/binance-chain/bep3-smartcontracts) for Ethereum
-2. Deploy `deputy` process for handling swap activities by token owners
+2. Deploy `deputy` process for handling swap activities by token owners, there is an existing open-source solution here: <https://github.com/binance-chain/bep3-deputy>
 3. Issue and transfer enough tokens
 
 
