@@ -338,10 +338,10 @@ Go to: https://ropsten.etherscan.io/address/0xd93395b2771914e1679155f3ea58c41d89
 
 > Note: Please approve more than 1token.  In the following example, 100 PPC token was approved:
 
-Example of approve 100 PPC: <https://ropsten.etherscan.io/tx/0xfa640b382d3842cf508ac347090d2550e35e2193804d2a9318fbbdcdd54c846b>
+Example of approve 100 PPC on [ropsten testnet](https://ropsten.etherscan.io/tx/0xfa640b382d3842cf508ac347090d2550e35e2193804d2a9318fbbdcdd54c846b)
 #### 2. Call `HTLT` function From Ethereum
 
-Go to: https://ropsten.etherscan.io/address/0xd93395b2771914e1679155f3ea58c41d89d96098#writeContract and call `HTLT` function
+Go to [smartcontract](https://ropsten.etherscan.io/address/0xd93395b2771914e1679155f3ea58c41d89d96098#writeContract) and call `HTLT` function
 
  * Function: *htlt*
  * Prameters:
@@ -357,7 +357,7 @@ Go to: https://ropsten.etherscan.io/address/0xd93395b2771914e1679155f3ea58c41d89
 Example of `htlt`: <https://ropsten.etherscan.io/tx/0xa2444cc1e52e09027ec68bf8955e7084235255f9f18d9b837a12fd63e6f0145c>
 
 #### 3. Deputy Call HTLT on Binance Chain
-Then, Deputy will send `HTLT` transaction here: <https://testnet-explorer.binance.org/tx/99CBC2896F0CF14DDAB0684BDA0A3E9FF2271056E68EC3559AB7FB24E0EE97DE>
+Then, Deputy will send `HTLT` transaction [here](https://testnet-explorer.binance.org/tx/99CBC2896F0CF14DDAB0684BDA0A3E9FF2271056E68EC3559AB7FB24E0EE97DE)
 
 #### 4. Claim HTLT on Binance Chain
 
@@ -410,7 +410,7 @@ Then, Deputy will send `HTLT` transaction here: <https://testnet-explorer.binanc
 ./tbnbcli token claim --swap-id  12aacc3bdc2cef97e8e45cc9b409796df57904a4e9c76863ad8420ff75f13128  --random-number <random-number> --from <from-key>  --chain-id Binance-Chain-Nile --trust-node --node http://data-seed-pre-0-s3.binance.org:80
 ```
 
-Example of `claim` tx on testnet: <https://testnet-dex.binance.org/api/v1/tx/6BA714E6D107F1D9634DDC159F560A1FB61393B8E15723EFD70B9EA8B0B1AA9A?format=json>
+Example of `claim` tx on [testnet](https://testnet-dex.binance.org/api/v1/tx/6BA714E6D107F1D9634DDC159F560A1FB61393B8E15723EFD70B9EA8B0B1AA9A?format=json)
 
 #### 5. Deputy Claim ERC20 Token
 
@@ -440,7 +440,7 @@ Committed at block 634510 (
 
 Please write down the `random number`, `random number hash`, `swapID` and `timestamp` for next steps.
 
-Example is here: <https://testnet-explorer.binance.org/tx/9ECECE9E0F08EE78583CFA37FD4C3F03521289F0F229A612886B8B21B9C62D7F>
+Example is [here](https://testnet-explorer.binance.org/tx/9ECECE9E0F08EE78583CFA37FD4C3F03521289F0F229A612886B8B21B9C62D7F)
 
 Then, you can query the the swap by `SwapID`:
 
@@ -456,9 +456,9 @@ You should see that **Deputy** has approve enough amount of tokens for atomic sw
 
 #### 3. Deputy Send HTLT on Ethereum
 
-You should see that **Deputy** has sent the `htlt` transaction afterwards: <https://ropsten.etherscan.io/tx/0x142fb8db7eb66feb241ca710a028678e36595fc8aea03858672288fcac8e4494>
+You should see that **Deputy** has sent the `htlt` [transaction](https://ropsten.etherscan.io/tx/0x142fb8db7eb66feb241ca710a028678e36595fc8aea03858672288fcac8e4494) afterwards
 
-To get the `swapID` on Ethereum, you can check this page: <https://ropsten.etherscan.io/tx/0x142fb8db7eb66feb241ca710a028678e36595fc8aea03858672288fcac8e4494#eventlog>
+To get the `swapID` on Ethereum, you can check this [page](https://ropsten.etherscan.io/tx/0x142fb8db7eb66feb241ca710a028678e36595fc8aea03858672288fcac8e4494#eventlog)
 **0xd3bacf63906af5459ead39f27cae189e2f3e76fda34523714a4c61d76c79ee4e** is the `swapID` on Ethereum.
 
 #### 4. Claim ERC20 Tokens on Ethereum
@@ -480,11 +480,11 @@ Then, you can call the `claim` function:
     * _swapID: this is get from event, you can also calculate it from `calSwapID` function. calSwapID(randomNumberHash, {deputy ethereum address}, {hex encoding client binance address})
     * _randomNumber: reveal your secret
 
-Example: https://ropsten.etherscan.io/tx/0x9cf7cc7891b86987c4eef59e3b4950324d656e6937a38b91786894f52c76f41b
+Example is [here](https://ropsten.etherscan.io/tx/0x9cf7cc7891b86987c4eef59e3b4950324d656e6937a38b91786894f52c76f41b)
 
 #### 5. Deputy Claim on Binance Chain
 
-`Claim HTLT` transaction from **Deputy** is sent afterwards: <https://testnet-explorer.binance.org/tx/8C616DEFD2EAA41E13D2DC4844B218DFF8CFE24B4C7A693AAD700381B5FF7B48>
+`Claim HTLT` transaction from **Deputy** is [sent](https://testnet-explorer.binance.org/tx/8C616DEFD2EAA41E13D2DC4844B218DFF8CFE24B4C7A693AAD700381B5FF7B48) afterwards:
 
 ### Swap between Several BEP2 tokens
 
