@@ -12,11 +12,21 @@
   * [Fees](#fees)
   * [Workflows](#workflows)
     + [Preparations](#preparations)
-    + [Swap Tokens from Ethereum to Binance Chain](#swap-tokens-from-ethereum-to-binance-chain)
+      + [Swap Tokens from Ethereum to Binance Chain](#swap-tokens-from-ethereum-to-binance-chain)
+      - [1.  Approve Swap Transaction](#1--approve-swap-transaction)
+      - [2. Call `HTLT` function From Ethereum](#2-call--htlt--function-from-ethereum)
+      - [3. Deputy Call HTLT on Binance Chain](#3-deputy-call-htlt-on-binance-chain)
+      - [4. Claim HTLT on Binance Chain](#4-claim-htlt-on-binance-chain)
+      - [5. Deputy Claim ERC20 Token](#5-deputy-claim-erc20-token)
     + [Swap Tokens from Binance Chain to Ethereum](#swap-tokens-from-binance-chain-to-ethereum)
+      - [1. Send `HTLT` Transaction from Binance Chain](#1-send--htlt--transaction-from-binance-chain)
+      - [2.  Deputy Approve Tokens](#2--deputy-approve-tokens)
+      - [3. Deputy Send HTLT on Ethereum](#3-deputy-send-htlt-on-ethereum)
+      - [4. Claim ERC20 Tokens on Ethereum](#4-claim-erc20-tokens-on-ethereum)
+      - [5. Deputy Claim on Binance Chain](#5-deputy-claim-on-binance-chain)
     + [Swap between Several BEP2 tokens](#swap-between-several-bep2-tokens)
     + [Swap between Several BEP2 tokens fails](#swap-between-several-bep2-tokens-fails)
-    
+
 ## Introduction
 As explained in [BEP3](https://github.com/binance-chain/BEPs/blob/master/BEP3.md), Hash Timer Locked Contract(HTLC) has been used for Atomic Swap and cross payment channels between different blockchains. BEP3 defines native transactions to support HTLC on Binance Chain and also proposes the standard infrastructure and procedure to use HTLC for inter-chain atomic swap to easily create and use pegged token.
 During the swap process, the related fund will be locked to a purely-code-controlled escrow account. The account for mainnet is: **bnb1wxeplyw7x8aahy93w96yhwm7xcq3ke4f8ge93u** and the account for testnet is: **tbnb1wxeplyw7x8aahy93w96yhwm7xcq3ke4ffasp3d**. Once the swap is claimed or refunded, the fund will be transfered from the purely-code-controlled escrow account to client accounts.
@@ -56,38 +66,53 @@ Hash Timer Locked Transfer (HTLT) is a new transaction type on Binance Chain, to
 * On *testnet*:
 
 ```shell
-./tbnbcli token HTLT --recipient-addr <recipient-addr> --amount 100:BNB --expected-income <expectedIncome> --height-span <span> --from <from-addr> --chain-id Binance-Chain-Nile --trust-node --node http://data-seed-pre-0-s3.binance.org:80
+./tbnbcli token HTLT --recipient-addr <recipient-addr> --amount 100:BNB --expected-income <expectedIncome> --height-span <heightSpan> --from <from-addr> --chain-id Binance-Chain-Nile --trust-node --node http://data-seed-pre-0-s3.binance.org:80
 ```
 
 **Example output:**
 
-Please take a note of returned `swap ID`. This
+Please take a note of returned `swapID`:
+
 ```
 Random number: 927c1ac33100bdbb001de19c626a05a7c3c11304fc825f5eabb22e741507711b
 Timestamp: 1568792486
 Random number hash: 5768702259ee55983378d7b8207890c666648264524b9dada551386f832ba6b1
 Password to sign with 'guest':
-Committed at block 39984169 (tx hash: B5A3DD92A40E98745BBE9F608944FE5511B81071B34E9947A754A04A5F378A85, response: {Code:0 Data:[77 137 139 200 85 141 170 77 129 116 134 215 169 59 119 178 200 47 206 194 18 58 191 74 30 183 210 82 18 55 236 205] Log:Msg 0: swapID: 4d898bc8558daa4d817486d7a93b77b2c82fcec2123abf4a1eb7d2521237eccd Info: GasWanted:0 GasUsed:0 Tags:[{Key:[115 101 110 100 101 114] Value:[116 98 110 98 49 103 57 114 122 99 48 101 50 106 102 56 101 102 51 113 112 57 97 120 56 104 48 112 109 112 109 118 106 122 119 109 116 113 52 106 120 102 114] XXX_NoUnkeyedLiteral:{} XXX_unrecognized:[] XXX_sizecache:0} {Key:[114 101 99 105 112 105 101 110 116] Value:[116 98 110 98 49 119 120 101 112 108 121 119 55 120 56 97 97 104 121 57 51 119 57 54 121 104 119 109 55 120 99 113 51 107 101 52 102 102 97 115 112 51 100] XXX_NoUnkeyedLiteral:{} XXX_unrecognized:[] XXX_sizecache:0} {Key:[97 99 116 105 111 110] Value:[72 84 76 84] XXX_NoUnkeyedLiteral:{} XXX_unrecognized:[] XXX_sizecache:0}] Codespace: XXX_NoUnkeyedLiteral:{} XXX_unrecognized:[] XXX_sizecache:0})
+Committed at block 39984169 (
+tx hash: B5A3DD92A40E98745BBE9F608944FE5511B81071B34E9947A754A04A5F378A85, 
+response: {
+	Code:0 
+	Data:[77 137 139 200 85 141 170 77 129 116 134 215 169 59 119 178 200 47 206 194 18 58 191 74 30 183 210 82 18 55 236 205] 
+	Log:Msg 0: swapID: 4d898bc8558daa4d817486d7a93b77b2c82fcec2123abf4a1eb7d2521237eccd 
+	Info: GasWanted:0 GasUsed:0 
+	...
+)
+```
+
+Besides, the `Data` field in the committed result is the byte array of `swapID`:
+
+```
+Data:[77 137 139 200 85 141 170 77 129 116 134 215 169 59 119 178 200 47 206 194 18 58 191 74 30 183 210 82 18 55 236 205]
+
+swapID: 4d898bc8558daa4d817486d7a93b77b2c82fcec2123abf4a1eb7d2521237eccd
 ```
 
 2. Swap from Binance Chain to Ethereum
 
-* On *testnet*:
-
+* Clients send HTLT on Binance Chain on *testnet*:
 
 ```shell
-./tbnbcli token HTLT --from <from-addr> --chain-id Binance-Chain-Nile  --height-span <heightSpan> --amount <amount> --expected-income <expectedIncome> --recipient-addr <recipient-addr>  --recipient-other-chain [client ethereum address]  --cross-chain --trust-node --node http://data-seed-pre-0-s3.binance.org:80
+./tbnbcli token HTLT --from <from-addr> --chain-id Binance-Chain-Nile  --height-span <heightSpan> --amount <amount> --expected-income <expectedIncome> --recipient-addr <deputy-bep2-addr>  --recipient-other-chain <client ethereum address>  --cross-chain --trust-node --node http://data-seed-pre-0-s3.binance.org:80
 ```
 
 3. Swap from Ethereum to Binance Chain
 
 > Note: Once cross-chain is true, --recipient-other-chain must not be empty
 
-* On *testnet*:
-
+* Deputy send HTLT on Binance Chain on *testnet*:
 
 ```shell
-./tbnbcli token HTLT --from  <from-addr> --chain-id Binance-Chain-Nile --height-span  <heightSpan>  --amount  <amount> --expected-income <expectedIncome> --recipient-other-chain [deputy ethereum address] --sender-other-chain [client ethereum address] --recipient-addr --cross-chain --trust-node --node http://data-seed-pre-0-s3.binance.org:80
+./tbnbcli token HTLT --from  <from-addr> --chain-id Binance-Chain-Nile --height-span  <heightSpan>  --amount <amount> --expected-income <expectedIncome> --recipient-other-chain <deputy ethereum address> --sender-other-chain <client ethereum address> --recipient-addr <client bep2 address> --cross-chain --trust-node --node http://data-seed-pre-0-s3.binance.org:80
 ```
 
 ### Deposit HTLT
@@ -107,15 +132,16 @@ Deposit Hash Timer Locked Transfer is to lock new BEP2 asset to an existed HTLT 
 * On testnet:
 
 ```shell
-./tbnbcli token deposit --swap-id <swap-id>  --amount 10000:TEST-599 --from <from-key> --chain-id Binance-Chain-Nile --trust-node --node http://data-seed-pre-0-s3.binance.org:80
+./tbnbcli token deposit --swap-id <swapID>  --amount 10000:TEST-599 --from <from-key> --chain-id Binance-Chain-Nile --trust-node --node http://data-seed-pre-0-s3.binance.org:80
 ```
 
 Example output
+
 ```
 Committed at block 39984686 (tx hash: AA118F7CFCB3FFF86EF5EED8D2B9ADEAC5D9F242497910DAA232BDE5F6A84C1E, response: {Code:0 Data:[] Log:Msg 0:  Info: GasWanted:0 GasUsed:0 Tags:[{Key:[115 101 110 100 101 114] Value:[116 98 110 98 49 110 107 120 57 57 52 113 118 113 109 113 103 107 53 55 118 103 117 113 104 54 122 106 108 97 99 113 122 120 100 107 117 101 53 122 106 121 120] XXX_NoUnkeyedLiteral:{} XXX_unrecognized:[] XXX_sizecache:0} {Key:[114 101 99 105 112 105 101 110 116] Value:[116 98 110 98 49 119 120 101 112 108 121 119 55 120 56 97 97 104 121 57 51 119 57 54 121 104 119 109 55 120 99 113 51 107 101 52 102 102 97 115 112 51 100] XXX_NoUnkeyedLiteral:{} XXX_unrecognized:[] XXX_sizecache:0} {Key:[97 99 116 105 111 110] Value:[100 101 112 111 115 105 116 72 84 76 84] XXX_NoUnkeyedLiteral:{} XXX_unrecognized:[] XXX_sizecache:0}] Codespace: XXX_NoUnkeyedLiteral:{} XXX_unrecognized:[] XXX_sizecache:0})
 ```
 
-After the deposit, you may observe that the balance of sender is decreased.
+After the deposit, you may observe that the balance of sender is decreased. The amount in deposit transaction must be positive. Besides, you can query the swap by `swapID` and the `in_amount` must equal to the amount that you balance decreased.
 
 ### Claim HTLT
 
@@ -134,10 +160,11 @@ Claim Hash Timer Locked Transfer is to claim the locked asset by showing the ran
 * On testnet:
 
 ```shell
-./tbnbcli token claim --swap-id  <swap-id> --random-number <random-number> --from <from-key> --chain-id Binance-Chain-Nile --trust-node --node http://data-seed-pre-0-s3.binance.org:80
+./tbnbcli token claim --swap-id  <swapID> --random-number <random-number> --from <from-key> --chain-id Binance-Chain-Nile --trust-node --node http://data-seed-pre-0-s3.binance.org:80
 ```
 
 Example output:
+
 ```
 Committed at block 39984971 (tx hash: 15B8625E0247DE54700D3C5C110BE0CE279D33CC13A73845F3E0305758A40902, response: {Code:0 Data:[] Log:Msg 0:  Info: GasWanted:0 GasUsed:0 Tags:[{Key:[115 101 110 100 101 114] Value:[116 98 110 98 49 119 120 101 112 108 121 119 55 120 56 97 97 104 121 57 51 119 57 54 121 104 119 109 55 120 99 113 51 107 101 52 102 102 97 115 112 51 100] XXX_NoUnkeyedLiteral:{} XXX_unrecognized:[] XXX_sizecache:0} {Key:[114 101 99 105 112 105 101 110 116] Value:[116 98 110 98 49 110 107 120 57 57 52 113 118 113 109 113 103 107 53 55 118 103 117 113 104 54 122 106 108 97 99 113 122 120 100 107 117 101 53 122 106 121 120] XXX_NoUnkeyedLiteral:{} XXX_unrecognized:[] XXX_sizecache:0} {Key:[115 101 110 100 101 114] Value:[116 98 110 98 49 119 120 101 112 108 121 119 55 120 56 97 97 104 121 57 51 119 57 54 121 104 119 109 55 120 99 113 51 107 101 52 102 102 97 115 112 51 100] XXX_NoUnkeyedLiteral:{} XXX_unrecognized:[] XXX_sizecache:0} {Key:[114 101 99 105 112 105 101 110 116] Value:[116 98 110 98 49 103 57 114 122 99 48 101 50 106 102 56 101 102 51 113 112 57 97 120 56 104 48 112 109 112 109 118 106 122 119 109 116 113 52 106 120 102 114] XXX_NoUnkeyedLiteral:{} XXX_unrecognized:[] XXX_sizecache:0} {Key:[97 99 116 105 111 110] Value:[99 108 97 105 109 72 84 76 84] XXX_NoUnkeyedLiteral:{} XXX_unrecognized:[] XXX_sizecache:0}] Codespace: XXX_NoUnkeyedLiteral:{} XXX_unrecognized:[] XXX_sizecache:0})
 ```
@@ -158,7 +185,7 @@ Refund Hash Timer Locked Transfer is to refund the locked asset after timelock i
 * On testnet:
 
 ```shell
-./tbnbcli token refund --swap-id <swap-id> --from <from-key>  --chain-id Binance-Chain-Nile --trust-node --node http://data-seed-pre-0-s3.binance.org:80
+./tbnbcli token refund --swap-id <swapID> --from <from-key>  --chain-id Binance-Chain-Nile --trust-node --node http://data-seed-pre-0-s3.binance.org:80
 ```
 
 Common error:
@@ -174,7 +201,7 @@ ERROR: {"codespace":8,"code":8,"abci_code":524296,"message":"Current block heigh
 
 ### Query Atomic Swap
 
-Query atomic swap allows you to search swap information by `swap-ID`
+Query atomic swap allows you to search swap information by `swapID`
 
 #### Parameters
 
@@ -186,7 +213,7 @@ Query atomic swap allows you to search swap information by `swap-ID`
 
 * On testnet:
 ```
-./tbnbcli token query-swap --swap-id <swap-id> --chain-id Binance-Chain-Nile --trust-node --node http://data-seed-pre-0-s3.binance.org:80
+./tbnbcli token query-swap --swap-id <swapID> --chain-id Binance-Chain-Nile --trust-node --node http://data-seed-pre-0-s3.binance.org:80
 ```
 Expected output
 ```json
@@ -219,13 +246,13 @@ Expected output
 ```
 ### Query Atomic Swap ID By Recipient
 
-Query atomic swap ID allows you to search swap history of an address
+Query atomic swap ID allows you to search swap history of an recipient. As this is a heavy query interface, some public nodes might close this query interface.
 
 #### Parameters
 
 | Name | Type | Description | Optional |
 | -----| ---- | ----------- | -------- |
-| recipient-addr | Address | Receiver address, where the asset is to, if the proper condition meets. | No |
+| recipient-addr | Address | Swap recipient address | No |
 
 #### Examples
 
@@ -244,13 +271,13 @@ Example output:
 
 ### Query Atomic Swap ID By Creator
 
-Query atomic swap ID allows you to search swap history of an initiator
+Query atomic swap ID allows you to search swap history of an initiator. As this is a heavy query interface, some public nodes might close this query interface.
 
 #### Parameters
 
 | Name | Type | Description | Optional |
 | -----| ---- | ----------- | -------- |
-| creator-addr | Address | Receiver address, where the asset is to, if the proper condition meets. | No |
+| creator-addr | Address | Swap creator address | No |
 
 #### Examples
 
@@ -291,13 +318,173 @@ refundHTLT | N/A |  0.000375 BNB | Y
 2. Deploy `deputy` process for handling swap activities by token owners, there is an existing open-source solution here: <https://github.com/binance-chain/bep3-deputy>
 3. Issue and transfer enough tokens
 
+### Testnet Deployment
 
+* ERC20 contract has been deployed here: <https://ropsten.etherscan.io/address/0xd93395b2771914e1679155f3ea58c41d89d96098>
+* Token Symbol: **PPC**
+* SmartContract has been deployed here:  <https://ropsten.etherscan.io/address/0x12dcbf79be178479870a473a99d91f535ed960ad>
+* Its corresponding address on testnet is: `tbnb1pk45lc2k7lmf0pnfa59l0uhwrvpk8shsema7gr`on Binance Chain and `0xD93395B2771914E1679155F3EA58C41d89D96098` on Ethereum testnet
 
 ### Swap Tokens from Ethereum to Binance Chain
 ![image-20190918193751444](assets/eth2bnc.png)
+#### 1.  Approve Swap Transaction
+
+Go to: https://ropsten.etherscan.io/address/0xd93395b2771914e1679155f3ea58c41d89d96098#writeContract and approve some amount of tokens.
+
+ * Function: *Approve*
+ * Prameters:
+     * _spender: address of smartcontract, which is `0x12DCBf79BE178479870A473A99d91f535ed960AD`
+     * _value: approved amount, should be bumped by e^10
+
+> Note: Please approve more than 1token.  In the following example, 100 PPC token was approved:
+
+Example of approve 100 PPC: <https://ropsten.etherscan.io/tx/0xfa640b382d3842cf508ac347090d2550e35e2193804d2a9318fbbdcdd54c846b>
+#### 2. Call `HTLT` function From Ethereum
+
+Go to: https://ropsten.etherscan.io/address/0xd93395b2771914e1679155f3ea58c41d89d96098#writeContract and call `HTLT` function
+
+ * Function: *htlt*
+ * Prameters:
+      * _randomNumberHash: SHA256(secret||timestamp), your secret should be 32 bytes,
+      * _timestamp: it should be about 10 mins span around current timestamp
+      * _heightSpan: it's a customized filed for deputy operator. it should be more than 200 for this deputy.
+      * _recipientAddr: deputy address on Ethereum, it's `0x1C002969Fe201975eD8F054916b071672326858e` for this one
+      * _bep2SenderAddr: omit this field with `0x0`
+      * _bep2RecipientAddr: Decode your testnet address from bech32 encoded to hex, for example: 0xc41f2a85e1d3629637de1222017dce46c6c8e4b9
+      * _outAmount:  approved amount, should be bumped by e^10
+      * _bep2Amount: _outAmount * exchange rate, the default rate is 1
+
+Example of `htlt`: <https://ropsten.etherscan.io/tx/0xa2444cc1e52e09027ec68bf8955e7084235255f9f18d9b837a12fd63e6f0145c>
+
+#### 3. Deputy Call HTLT on Binance Chain
+Then, Deputy will send `HTLT` transaction here: <https://testnet-explorer.binance.org/tx/99CBC2896F0CF14DDAB0684BDA0A3E9FF2271056E68EC3559AB7FB24E0EE97DE>
+
+#### 4. Claim HTLT on Binance Chain
+
+* Get the `swapID` on Binance Chain
+
+```
+./tbnbcli token query-swapIDs-by-recipient  --recipient-addr tbnb1cs0j4p0p6d3fvd77zg3qzlwwgmrv3e9e63423w --chain-id Binance-Chain-Nile --trust-node --node http://data-seed-pre-0-s3.binance.org:80
+[
+  "12aacc3bdc2cef97e8e45cc9b409796df57904a4e9c76863ad8420ff75f13128"
+]
+```
+
+* Query the swap by `swapID`
+
+```
+{
+  "from": "tbnb1pk45lc2k7lmf0pnfa59l0uhwrvpk8shsema7gr",
+  "to": "tbnb1cs0j4p0p6d3fvd77zg3qzlwwgmrv3e9e63423w",
+  "out_amount": [
+    {
+      "denom": "PPC-00A",
+      "amount": "9999999000"
+    }
+  ],
+  "in_amount": null,
+  "expected_income": "",
+  "recipient_other_chain": "0x1C002969Fe201975eD8F054916b071672326858e",
+  "random_number_hash": "5a3728a8f4ecb8b4cb0b983a9441b7d69f95229c4aa531e6e3827d7c19beac82",
+  "random_number": "",
+  "timestamp": "1569497984",
+  "cross_chain": true,
+  "expire_height": "41380567",
+  "index": "1947",
+  "closed_time": "",
+  "status": "Open"
+}
+```
+
+* Verify parameters in the swap:
+	
+	- `random_number_hash` must equal to the randomNumberHash in client HTLT transaction on ethereum
+	- `to` must equals to client wallet address
+	- `timestamp` must equal to the timestamp in client HTLT transaction on ethereum
+	- `out_amount` should be reasonable. Please note that the decimals of bep2 tokens is 8, the out_amount should be something around 10000000000:PPC, deputy will deduct some fees. 
+	- `expire_height` must not be passed and should be enough for send claim transaction
+	
+* Send claim transaction on Binance Chain
+
+```
+./tbnbcli token claim --swap-id  12aacc3bdc2cef97e8e45cc9b409796df57904a4e9c76863ad8420ff75f13128  --random-number <random-number> --from <from-key>  --chain-id Binance-Chain-Nile --trust-node --node http://data-seed-pre-0-s3.binance.org:80
+```
+
+Example of `claim` tx on testnet: <https://testnet-dex.binance.org/api/v1/tx/6BA714E6D107F1D9634DDC159F560A1FB61393B8E15723EFD70B9EA8B0B1AA9A?format=json>
+
+#### 5. Deputy Claim ERC20 Token
+
+Deputy will claim ERC20 tokens afterwards: <https://ropsten.etherscan.io/tx/0x3a422bdb273d4eb4d112ae8e51e8acd3ad706b2af67af20a5f15a18e4acc70fc>
 
 ### Swap Tokens from Binance Chain to Ethereum
 ![image-20190918193910521](assets/bnc2eth.png)
+
+#### 1. Send `HTLT` Transaction from Binance Chain
+
+Please read this [section](#hash-timer-locked-transfer) to generate a valid `HTLT` transaction. Please write down the `secret` and `secret hash`.
+
+```
+./tbnbcli token HTLT --from atomic --recipient-addr tbnb1pk45lc2k7lmf0pnfa59l0uhwrvpk8shsema7gr  --chain-id Binance-Chain-Nile  --height-span 10000 --amount  9900000000:PPC-00A  --expected-income 9900000000:PPC  --recipient-other-chain 0x133D144F52705cEb3f5801B63b9EBcCF4102f5Ed  --cross-chain --trust-node --node http://data-seed-pre-0-s3.binance.org:80
+Random number: 4811959406ea3e69721d944d308880ec41323b7f89e51a78df3693348779315e
+Timestamp: 1569578936
+Random number hash: b03f256c9efdb97b9815faa1417e1da4cca7672e0bb26e4e7d9bfc82d0f1f15e
+Committed at block 634510 (
+	tx hash: 9DEF124E12DE123BA1CC75AA6E68F20CC48EBBE9D7693CE4D0416267C6C0F159, 
+	response: {
+		Code:0 Data:[229 50 241 60 76 91 112 146 93 68 100 222 83 84 180 133 181 151 241 174 93 125 132 82 245 198 5 66 0 123 32 113] 
+		Log:Msg 0: swapID: f85dd907df0a5897927b949c0f9e2563d453ba698ff9941fed1ce91f8057afc2 
+		...
+)
+```
+> Note: the swap amount must be positive.
+
+Please write down the `random number`, `random number hash`, `swapID` and `timestamp` for next steps.
+
+Example is here: <https://testnet-explorer.binance.org/tx/9ECECE9E0F08EE78583CFA37FD4C3F03521289F0F229A612886B8B21B9C62D7F>
+
+Then, you can query the the swap by `SwapID`:
+
+```
+./tbnbcli token query-swap --swap-id f85dd907df0a5897927b949c0f9e2563d453ba698ff9941fed1ce91f8057afc2 --chain-id Binance-Chain-Nile --trust-node --node http://data-seed-pre-0-s3.binance.org:80
+```
+
+You can use this `swapID` for refund if the deputy doesn't send htlt transaction on ethereum with proper parameters.
+
+#### 2.  Deputy Approve Tokens
+
+You should see that **Deputy** has approve enough amount of tokens for atomic swap.
+
+#### 3. Deputy Send HTLT on Ethereum
+
+You should see that **Deputy** has sent the `htlt` transaction afterwards: <https://ropsten.etherscan.io/tx/0x142fb8db7eb66feb241ca710a028678e36595fc8aea03858672288fcac8e4494>
+
+To get the `swapID` on Ethereum, you can check this page: <https://ropsten.etherscan.io/tx/0x142fb8db7eb66feb241ca710a028678e36595fc8aea03858672288fcac8e4494#eventlog>
+**0xd3bacf63906af5459ead39f27cae189e2f3e76fda34523714a4c61d76c79ee4e** is the `swapID` on Ethereum.
+
+#### 4. Claim ERC20 Tokens on Ethereum
+
+You should see that **Deputy** has already approved enough tokens and
+
+In its (event log)[https://ropsten.etherscan.io/tx/0x142fb8db7eb66feb241ca710a028678e36595fc8aea03858672288fcac8e4494#eventlog], you should see the `swapID`. Before calling `claim` function on ethereum, clients should verify the parameters in the `HTLT` event.
+
+- `_randomNumberHash` must equal to the randomNumberHash in client HTLT transaction on Binance Chain
+- `_recipientAddr` must equal to client ethereum wallet address
+- `_timestamp` must equal to the timestamp in client HTLT transaction on Binance Chain
+- `_outAmount` should be reasonable. Please note that the decimals erc20 contract and deputy will deduct some fees.
+- `_expireHeight` must not be passed and should be enough for send claim transaction
+
+Then, you can call the `claim` function:
+
+ * Function: *claim*
+ * Prameters:
+    * _swapID: this is get from event, you can also calculate it from `calSwapID` function. calSwapID(randomNumberHash, {deputy ethereum address}, {hex encoding client binance address})
+    * _randomNumber: reveal your secret
+
+Example: https://ropsten.etherscan.io/tx/0x9cf7cc7891b86987c4eef59e3b4950324d656e6937a38b91786894f52c76f41b
+
+#### 5. Deputy Claim on Binance Chain
+
+`Claim HTLT` transaction from **Deputy** is sent afterwards: <https://testnet-explorer.binance.org/tx/8C616DEFD2EAA41E13D2DC4844B218DFF8CFE24B4C7A693AAD700381B5FF7B48>
 
 ### Swap between Several BEP2 tokens
 
