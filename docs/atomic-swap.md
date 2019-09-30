@@ -329,7 +329,7 @@ refundHTLT | N/A |  0.000375 BNB | Y
 ![image-20190918193751444](assets/eth2bnc.png)
 #### 1.  Approve Swap Transaction
 
-Go to: https://ropsten.etherscan.io/address/0xd93395b2771914e1679155f3ea58c41d89d96098#writeContract and approve some amount of tokens.
+Go to [this page](https://ropsten.etherscan.io/address/0xd93395b2771914e1679155f3ea58c41d89d96098#writeContract) and approve some amount of tokens.
 
  * Function: *Approve*
  * Prameters:
@@ -354,7 +354,7 @@ Go to [smartcontract](https://ropsten.etherscan.io/address/0xd93395b2771914e1679
       * _outAmount:  approved amount, should be bumped by e^10
       * _bep2Amount: _outAmount * exchange rate, the default rate is 1
 
-Example of `htlt`: <https://ropsten.etherscan.io/tx/0xa2444cc1e52e09027ec68bf8955e7084235255f9f18d9b837a12fd63e6f0145c>
+Example of `htlt` [transaction](https://ropsten.etherscan.io/tx/0xa2444cc1e52e09027ec68bf8955e7084235255f9f18d9b837a12fd63e6f0145c)
 
 #### 3. Deputy Call HTLT on Binance Chain
 Then, Deputy will send `HTLT` transaction [here](https://testnet-explorer.binance.org/tx/99CBC2896F0CF14DDAB0684BDA0A3E9FF2271056E68EC3559AB7FB24E0EE97DE)
@@ -422,7 +422,7 @@ Example of `claim` tx on [testnet](https://testnet-dex.binance.org/api/v1/tx/6BA
 
 #### 5. Deputy Claim ERC20 Token
 
-Deputy will claim ERC20 tokens afterwards: <https://ropsten.etherscan.io/tx/0x3a422bdb273d4eb4d112ae8e51e8acd3ad706b2af67af20a5f15a18e4acc70fc>
+Deputy will claim ERC20 tokens afterwards with [claim transaction]( <https://ropsten.etherscan.io/tx/0x3a422bdb273d4eb4d112ae8e51e8acd3ad706b2af67af20a5f15a18e4acc70fc)
 
 ### Swap Tokens from Binance Chain to Ethereum
 ![image-20190918193910521](assets/bnc2eth.png)
@@ -473,7 +473,7 @@ To get the `swapID` on Ethereum, you can check this [page](https://ropsten.ether
 
 You should see that **Deputy** has already approved enough tokens and
 
-In its (event log)[https://ropsten.etherscan.io/tx/0x142fb8db7eb66feb241ca710a028678e36595fc8aea03858672288fcac8e4494#eventlog], you should see the `swapID`. Before calling `claim` function on ethereum, clients should verify the parameters in the `HTLT` event.
+In its [event log](https://ropsten.etherscan.io/tx/0x142fb8db7eb66feb241ca710a028678e36595fc8aea03858672288fcac8e4494#eventlog), you should see the `swapID`. Before calling `claim` function on ethereum, clients should verify the parameters in the `HTLT` event.
 
 - `_randomNumberHash` must equal to the randomNumberHash in client HTLT transaction on Binance Chain
 - `_recipientAddr` must equal to client ethereum wallet address
