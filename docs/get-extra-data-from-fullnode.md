@@ -29,7 +29,7 @@ In `trade` data structure, there are five new fields: `SSrc`,`BSrc`,`SSingleFee`
 
 In `Order` data structure, there is a new field: `singlefee`. This is used to show the fee of this order.
 
-
+`Status` is used to indicate the current status of this order. Namely there are 9 status:  0 for Acknowledge; 1 for Canceled ; 2 for Expired , 3 for IocNoFill, 4 for IocExpire, 5 for PartialFill, 6 for FullyFill, 7 for FailedBlocking, 8 for FailedMatching.
 
 For example:
 
