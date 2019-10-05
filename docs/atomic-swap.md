@@ -422,7 +422,7 @@ Example of `claim` tx on [testnet](https://testnet-dex.binance.org/api/v1/tx/6BA
 
 #### 5. Deputy Claim ERC20 Token
 
-Deputy will claim ERC20 tokens afterwards with [claim transaction]( <https://ropsten.etherscan.io/tx/0x3a422bdb273d4eb4d112ae8e51e8acd3ad706b2af67af20a5f15a18e4acc70fc)
+Deputy will claim ERC20 tokens afterwards with [claim transaction](https://ropsten.etherscan.io/tx/0x3a422bdb273d4eb4d112ae8e51e8acd3ad706b2af67af20a5f15a18e4acc70fc)
 
 ### Swap Tokens from Binance Chain to Ethereum
 ![image-20190918193910521](assets/bnc2eth.png)
