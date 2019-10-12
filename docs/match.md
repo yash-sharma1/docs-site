@@ -78,8 +78,8 @@ Among all the orders to be allocated,
 1. For maker side:
 
     * all the maker orders are executed at their limit price
-    * all the taker orders on the maker side are executed at the concluded price P
+    * all the taker orders on the maker side are executed at the concluded price `P`
 
 2. For taker side, all the orders are executed at the average execution price from the above #1
 
-If no maker side in this match, all the orders are executed at price P.
+If no maker side in this match, all the orders are executed at price `P`.
