@@ -6,6 +6,7 @@ Binance DEX uses periodic auction to match all available orders. Maker/Taker con
 ## Match Candidates
 
 Orders meet any of the below conditions would be considered as the candidates of next match round:
+
 - New orders that come in just now and get confirmed by being accepted into the latest block
 - Existing orders that come in the past blocks before the latest, and have not been filled or expired
 
@@ -51,7 +52,7 @@ After the execution price `P` is concluded, buy orders with price equal to or la
 - All the executed price will honor the order limit price;
 - All the executed price for the new orders will be equal to or better than the concluded auction price `P`, so no front-running from the opposite side.
 
-For other orders that have arrived in the previous blocks, they will join match together with the new orders from the new block, and be considered as "Maker" role. The detailed explanation of `Maker/Taker` is as below:`
+For other orders that have arrived in the previous blocks, they will join match together with the new orders from the new block, and be considered as "Maker" role. The detailed explanation of `Maker/Taker` is as below:
 
 ### Definition of Maker and Taker
 
@@ -74,11 +75,11 @@ In each round of match, for all the orders that can be filled with the concluded
 ### Execution Pricing
 Among all the orders to be allocated,
 
-1. For maker side,
+1. For maker side:
 
-* all the maker orders are executed at their limit price
-* all the taker orders on the maker side are executed at the concluded price P
+    * all the maker orders are executed at their limit price
+    * all the taker orders on the maker side are executed at the concluded price `P`
 
 2. For taker side, all the orders are executed at the average execution price from the above #1
 
-If no maker side in this match, all the orders are executed at price P.
+If no maker side in this match, all the orders are executed at price `P`.
