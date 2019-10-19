@@ -4,12 +4,12 @@
 
 | Number | Wallet Name                                            | Website                          |DEX Feature Available|
 | ------ | ------------------------------------------------------ | -------------------------------- |-----|
-| 1      | [Ledger](wallets/ledger.md) (Hardware Wallet)          | <https://www.ledger.com/>        |Yes, via Binance.org and Trubi|
-| 2      | [Trust Wallet](wallets/trust-wallet.md)                | <https://trustwallet.com/>       |Yes|
-| 3      | [Trubi Wallet](wallets/trubi.md)                       | <https://trubi.io/>              |Yes|
-| 4      | [Enjin](wallets/enjin.md)                              | <https://enjinwallet.io/>        |No|
-| 5      | [Magnum Wallet](wallets/magnum.md)                     | <https://magnumwallet.co/>       |Yes|
-| 6      | [CoolWallet](wallets/cool-wallet.md) (Hardware Wallet) | <https://coolwallet.io/>         |Yes, via Binance.org and Trubi|
+| 1      | [Trust Wallet](wallets/trust-wallet.md)                | <https://trustwallet.com/>       |Yes|
+| 2      | [Trubi Wallet](wallets/trubi.md)                       | <https://trubi.io/>              |Yes|
+| 3      | [Ledger](wallets/ledger.md) (Hardware Wallet)          | <https://www.ledger.com/>        |Yes, via Binance.org and Trubi|
+| 4      | [CoolWallet](wallets/cool-wallet.md) (Hardware Wallet) | <https://coolwallet.io/>         |Yes, via Binance.org and Trubi|
+| 5      | [Enjin](wallets/enjin.md)                              | <https://enjinwallet.io/>        |No|
+| 6      | [Magnum Wallet](wallets/magnum.md)                     | <https://magnumwallet.co/>       |Yes|
 | 7      | [Coinomi Wallet](wallets/coinomi-wallet.md)            | <http://coinomi.com/>            |Yes|
 | 8      | [Atomic Wallet](wallets/atomic-wallet.md)              | <https://atomicwallet.io/>       |No|
 | 9      | [ZelCore Wallet](wallets/zelcore-wallet.md)            | <https://zeltrez.io/>            |Yes|
