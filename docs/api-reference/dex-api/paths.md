@@ -712,8 +712,8 @@ If the time window is larger than limits, only the first n klines will return. I
 **Summary:** transactions in Block
 
 **Description:** Get transactions in the block. Multi-send and multi-coin transactions are included as sub-transactions.
-
 **Rate Limit:** 5 request per IP per second.
+
 
 **Parameters**
 
@@ -734,28 +734,28 @@ If the time window is larger than limits, only the first n klines will return. I
 **Summary:** AtomicSwap
 
 **Description:** Get atomic swaps by address.
-**Rate Limit:** 5 request per IP per second.
 
 **Rate Limit:** 5 request per IP per second.
 
 **Rate Limit:** 60 requests per IP per minute.
 
+
 **Parameters**
 
 | Name | Located in | Description | Required | Schema |
 | ---- | ---------- | ----------- | -------- | ---- |
-| endTime | query | end time | No | long |
+| endTime | query | end time of blockTimestamp | No | long |
 | fromAddress | query | At least one of toAddress and fromAddress should be provided as parameter | No | string |
-| limit | query | limit | No | integer |
-| offset | query | offset | No | integer |
-| startTime | query | start time; The maximum start - end query window is 3 months; Default query window is the latest 30 days. | No | long |
+| limit | query | default 25; max 1000. | No | integer |
+| offset | query | start with 0; default 0. | No | integer |
+| startTime | query | start time of blockTimestamp; The maximum start - end query window is 3 months; Default query window is the latest 30 days. | No | long |
 | toAddress | query | At least one of toAddress and fromAddress should be provided as parameter | No | string |
 
 **Responses**
 
 | Code | Description | Schema |
 | ---- | ----------- | ------ |
-| 200 | OK | [AtomicSwapPageVo](#atomicswappagevo) |
+| 200 | OK | [AtomicSwapPage](#atomicswappage) |
 
 ### /api/v1/atomic-swaps/{id}
 ---
@@ -768,6 +768,7 @@ If the time window is larger than limits, only the first n klines will return. I
 
 **Rate Limit:** 60 request per IP per minute.
 
+
 **Parameters**
 
 | Name | Located in | Description | Required | Schema |
@@ -778,7 +779,7 @@ If the time window is larger than limits, only the first n klines will return. I
 
 | Code | Description | Schema |
 | ---- | ----------- | ------ |
-| 200 | OK | [AtomicSwapVo](#atomicswapvo) |
+| 200 | OK | [AtomicSwap](#atomicswap) |
 
 ### /api/v1/timelocks/{address}
 ---
@@ -806,8 +807,8 @@ If the time window is larger than limits, only the first n klines will return. I
 **Summary:** Get timelock records of an address.
 
 **Description:** Get the timelock history of an address.
-
 **Rate Limit:** 60 requests per IP per minute.
+
 
 **Parameters**
 
@@ -1062,6 +1063,19 @@ varies with msg type, if you query with --format=json.
 | transactionTime | dateTime | time of latest order update, for example, cancel, expire |  |
 | type | integer | only 2 is available for now, meaning limit order |  |
 
+### SubTx
+
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| blockHeight | long |  |  |
+| fromAddr | string |  |  |
+| toAddr | string |  |  |
+| txAsset | string |  |  |
+| txFee | string |  |  |
+| txHash | string |  |  |
+| txType | string |  |  |
+| value | string |  |  |
+
 ### TickerStatistics
 
 | Name | Type | Description | Example |
@@ -1231,19 +1245,19 @@ varies with msg type, if you query with --format=json.
 | pub_key | string | hex-encoded |  |
 | voting_power | long |  |  |
 
-### AtomicSwapPageVo
+### AtomicSwapPage
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
-| atomicSwaps | [ [AtomicSwapVo](#atomicswapvo) ] |  |  |
+| atomicSwaps | [ [AtomicSwap](#atomicswap) ] |  |  |
 | total | long |  |  |
 
-### AtomicSwapVo
+### AtomicSwap
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
-| closedTime | dateTime |  |  |
-| createTime | dateTime |  |  |
+| blockTimestamp | string (int64) | Timestamp of block in which the swap is initiated. The unit is millisecond. |  |
+| closedTime | string (int64) |  |  |
 | crossChain | integer |  |  |
 | expectedIncome | string |  |  |
 | expireHeight | long |  |  |
@@ -1255,9 +1269,8 @@ varies with msg type, if you query with --format=json.
 | recipientOtherChain | string |  |  |
 | status | integer |  |  |
 | swapId | string |  |  |
-| timestamp | dateTime |  |  |
+| timestamp | string (int64) | The timestamp for randomNumberHash calculation, randomNumberHash=sha256(randomNumber, timestamp). The unit is second. |  |
 | toAddr | string |  |  |
-| updateTime | dateTime |  |  |
 
 ### TxV2
 
@@ -1272,7 +1285,7 @@ varies with msg type, if you query with --format=json.
 | proposalId | string | Optional. Available when the transaction type is PROPOSAL |  |
 | sequence | long |  |  |
 | source | long |  |  |
-| subTransactions | [ [SubTxVo](#subtxvo) ] | Optional. Available when the transaction has sub-transactions, such as multi-send transaction or a transaction have multiple assets |  |
+| subTransactions | [ [SubTx](#subtx) ] | Optional. Available when the transaction has sub-transactions, such as multi-send transaction or a transaction have multiple assets |  |
 | swapId | string | Optional. Available when the transaction type is one of HTL_TRANSFER, CLAIM_HTL, REFUND_HTL, DEPOSIT_HTL |  |
 | timeStamp | dateTime |  |  |
 | toAddr | string |  |  |
