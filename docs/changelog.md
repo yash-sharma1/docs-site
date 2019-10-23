@@ -40,11 +40,11 @@ In the `AtomicSwap` data structure:
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
-| blockTimestamp | string (int64) | Timestamp of block in which the swap is initiated. The unit is millisecond. |  |
-| closedTime | string (int64) |  |  |
+| blockTimestamp | long | Timestamp of block in which the swap is initiated. The unit is millisecond. |  |
+| closedTime | long |  |  |
 | crossChain | integer |  |  |
 | expectedIncome | string |  |  |
-| expireHeight | long |  |  |
+| expireHeight | long|  |  |
 | fromAddr | string |  |  |
 | inAmount | string |  |  |
 | outAmount | string |  |  |
@@ -53,7 +53,7 @@ In the `AtomicSwap` data structure:
 | recipientOtherChain | string |  |  |
 | status | integer |  |  |
 | swapId | string |  |  |
-| timestamp | string (int64) | The timestamp for randomNumberHash calculation, randomNumberHash=sha256(randomNumber, timestamp). The unit is second. |  |
+| timestamp | long | The timestamp for randomNumberHash calculation, randomNumberHash=sha256(randomNumber, timestamp). The unit is second. |  |
 | toAddr | string |  |  |
 
 

@@ -2380,11 +2380,11 @@ definitions:
         type: object
         properties:
           blockTimestamp:
-            type: string
+            type: integer
             format: int64
             description: Timestamp of block in which the swap is initiated. The unit is millisecond.
           closedTime:
-            type: string
+            type: integer
             format: int64
           crossChain:
             type: integer

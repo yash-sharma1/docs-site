@@ -1256,8 +1256,8 @@ varies with msg type, if you query with --format=json.
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
-| blockTimestamp | string (int64) | Timestamp of block in which the swap is initiated. The unit is millisecond. |  |
-| closedTime | string (int64) |  |  |
+| blockTimestamp | long | Timestamp of block in which the swap is initiated. The unit is millisecond. |  |
+| closedTime | long |  |  |
 | crossChain | integer |  |  |
 | expectedIncome | string |  |  |
 | expireHeight | long |  |  |
