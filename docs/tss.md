@@ -4,7 +4,7 @@
   * [Introduction](#introduction)
   * [Motivation](#motivation)
   * [Workflow](#workflow)
-  * [Where can I download the Binance TSS CLI?](#where-can-i-download-the-binance-tss-cli-)
+  * [Where can I download the Binance TSS CLI?](#where-can-i-download-the-binance-tss-cli)
   * [How to Use](#how-to-use)
   * [Changes to `bnbcli/tbnbcli`](#changes-to--bnbcli-tbnbcli-)
   * [Example](#example)
