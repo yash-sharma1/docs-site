@@ -12,6 +12,7 @@ Fees will be charge when issuing a token, creating a proposal, depositing and li
 * `quote-asset-symbol`: For now, only support BNB as quote asset.
 * `init-price`: the initial price for your asset, it is boosted by **1e8**
 * `proposal-id`: this corresponds to the listing proposal that is passed
+* `from`: this address should be the issuer of base asset
 
 
 Example on **mainnet**:
