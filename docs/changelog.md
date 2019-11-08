@@ -1,4 +1,5 @@
 - [Upcoming Changes in Binance Chain API v0.6.3](#upcoming-changes-in-binance-chain-api-v063)
+  * [Node RPC](#node-rpc)
   * [HTTP API](#http-api)
     + [/api/v1/atomic-swaps](#-api-v1-atomic-swaps-)
   * [WebSocket](#websocket)
