@@ -2377,7 +2377,7 @@ list of transactions (maximum ?per_page entries) and the total count.
 
 **Enable Indexer**
 
-You need to enable indexer in `config.tml`. You can modify the `index_tags` to `tx.height`, which is the only tag we support now. In this way, you can index transactions by height by adding "tx.height" tag here.
+You need to enable indexer in `config.tml`. You can modify the `index_tags` to include `tx.height`, which is the only tag we support now. In this way, you can index transactions by height by adding "tx.height" tag here.
 
 **Query Parameters**
 
