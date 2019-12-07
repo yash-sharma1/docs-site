@@ -1,24 +1,16 @@
 # Run Full Node to Join Binance Chain
-- [Run Full Node to Join Binance Chain](#run-full-node-to-join-binance-chain)
-- [Supported Platforms](#supported-platforms)
-- [Minimum System Requirements](#minimum-system-requirements)
-- [Steps to Run a Full Node](#steps-to-run-a-full-node)
-    + [Download Binary:](#download-binary)
+  * [Supported Platforms](#supported-platforms)
+  * [Minimum System Requirements](#minimum-system-requirements)
+  * [Steps to Run a Full Node](#steps-to-run-a-full-node)
+    + [Option One: Installation Script](#option-one--installation-script)
+    + [Option Two: Manual Installation](#option-two--manual-installation)
     + [Initialize Home Folder](#initialize-home-folder)
     + [Setup Configuration](#setup-configuration)
     + [Add Seed Nodes](#add-seed-nodes)
-        - [Additional Configuration](#additional-configuration)
-        - [Start your node](#start-your-node)
-        - [Sync Data](#sync-data)
-            * [Fast Sync](#fast-sync)
-            * [State Sync](#state-sync)
-            * [Hot Sync](#hot-sync)
-            * [Monitor Syncing Process](#monitor-syncing-process)
   * [Upgrading Full Node](#upgrading-full-node)
   * [Monitoring](#monitoring)
   * [Get Extra Data From Your Full Node](#get-extra-data-from-your-full-node)
   * [Common Issues and Solutions](#common-issues-and-solutions)
-
 
 >Note: Please take a note that this is a pre-alpha version and the software is not stabilized.<br/>
 Many changes and upgrades are expected to come.
@@ -44,13 +36,32 @@ More hours will be better, run your node continuously for best results.
 
 ## Steps to Run a Full Node
 
-### Install Git LFS
+### Option One: Installation Script
+
+We have a community-maintained installer script (`install.sh`) that takes care of chain directory setup. This uses the following defaults:
+
+* Home folder in `~/.bnbchaind`
+* Client executables stored in `/usr/local/bin` (i.e. `light` or `bnbchaind`)
+
+```shell
+# One-line install
+sh <(wget -qO- https://raw.githubusercontent.com/binance-chain/node-binary/compress/install.sh)
+```
+
+> In the future, we may release an official installer script  
+> e.g. `sh <(wget -qO- https://get.binance.org)`
+
+### Option Two: Manual Installation
+
+We currently use this repo to store historical versions of the compiled `node-binaries`.
+
+1. Install Git LFS
 
 Git Large File Storage (LFS) replaces large files such as audio samples, videos, datasets, and graphics with text pointers inside Git, while storing the file contents on a remote server like GitHub.com or GitHub Enterprise.
 
 Please go to <https://git-lfs.github.com/> and install `git lfs`.
 
-### Download Binary with Git LFS:
+2. Download Binary with Git LFS:
 
 ```bash
 git lfs clone https://github.com/binance-chain/node-binary.git
