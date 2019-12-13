@@ -3,9 +3,8 @@
 * List of Wallets Supporting Binance Chain Mainnet
 
 | Number | Wallet Name                                            | Website                          |DEX Feature Available|Testnet Support|WalletConnect Supprt|
-
-| ------ | ------------------------------------------------------ | -------------------------------- |-----| -----|
-| 1      | [Trust Wallet](wallets/trust-wallet.md)                | <https://trustwallet.com/>       |Yes| Yes|Yes|
+| ------ | ------------------------------------------------------ | -------------------------------- |-----| -----|-----|
+| 1      | [Trust Wallet](wallets/trust-wallet.md)                | <https://trustwallet.com/>       |Yes  | Yes|Yes|
 | 2      | [Trubi Wallet](wallets/trubi.md)                       | <https://trubi.io/>              |Yes| No|Yes|
 | 3      | [Ledger](wallets/ledger.md) (Hardware Wallet)          | <https://www.ledger.com/>        |Yes, via Binance.org and Trubi|Yes, via Binance.org and Trubi|Yes, via Binance.org and Trubi|Yes, via Binance.org and Trubi|
 | 4      | [CoolWallet](wallets/cool-wallet.md) (Hardware Wallet) | <https://coolwallet.io/>         |Yes, via Binance.org and Trubi|Yes, via Binance.org and Trubi|Yes, via Binance.org and Trubi|Yes, via Binance.org and Trubi|
