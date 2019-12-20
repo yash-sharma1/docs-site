@@ -3,11 +3,13 @@
 + [How to monitor your full node syncing process?](#how-to-monitor-your-full-node-syncing-process)
 + [Common Issues](#common-issues)
     - [AppHash Confliction](#apphash-confliction)
-        - [Peer connection error](#peer-connection-error)
-        - [Connection Timeout](#connection-timeout)
-        - [Out of memory](#out-of-memory)
-        - [No priv_validator_state.json after reset](#no-priv_validator_statejson-after-reset)
-        - [bnbchaind crashing due to too many open files](#bnbchaind-crashes-because-of-too-many-open-files)
+    - [Peer connection error](#peer-connection-error)
+    - [Connection Timeout](#connection-timeout)
+    - [Out of memory](#out-of-memory)
+    - [No priv_validator_state.json after reset](#no-priv-validator-statejson-after-reset)
+    - [`bnbchaind` crashes because of `too many open files`](#-bnbchaind--crashes-because-of--too-many-open-files-)
+    - [Forget to Upgrade](#forget-to-upgrade)
+    - [`bnbchaind` is not properly killed](#-bnbchaind--is-not-properly-killed)
 
 
 ### How to monitor your full node syncing process?
@@ -148,4 +150,18 @@ To recover from the `state` conflict error, you need to:
 
 ```
 bnbchaind start &
+```
+
+#### `bnbchaind` is not properly killed
+
+If you started your `bnbchaind` process after it was not properly killed. You will see the following error:
+```
+panic: ERROR:
+Codespace: 5
+Code: 9
+Message: "Initial ProposalID already set"
+```
+To recover, please reset your node and restart:
+```
+bnbchaind unsafe-reset-all --home<your-home-dir>
 ```
