@@ -105,7 +105,7 @@ If you haven't received anything after a couple of blocks, resend the transactio
 
 ### The Recommended Way (via WebSocket)
 
-If you want to be sure that the transaction is included in a block, you can subscribe for the result using JSONRPC via a websocket. See [Subscribing to Events via WebSocket](https://tendermint.com/docs/app-dev/subscribing-to-events-via-websocket.html).
+If you want to be sure that the transaction is included in a block, you can subscribe for the result using JSONRPC via a websocket. See [Subscribing to Events via WebSocket](https://docs.binance.org/api-reference/node-rpc.html#631-subscribe).
 
 ### The Alternative Way (via RPC Polling)
 
