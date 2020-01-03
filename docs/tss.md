@@ -54,11 +54,11 @@ Let’s take a look at the major steps in TSS:
 ##  Where can I download the Binance TSS CLI?
 
 You can download tss client and Binance Chain Commandline here:
-* Mainnet: <https://github.com/binance-chain/node-binary/tree/master/cli/prod/0.6.2-TSS-0.1.2>
-* Testnet: <https://github.com/binance-chain/node-binary/tree/master/cli/testnet/0.6.2-TSS-0.1.2>
+* Mainnet: <https://github.com/binance-chain/node-binary/tree/master/cli/prod/0.6.3>
+* Testnet: <https://github.com/binance-chain/node-binary/tree/master/cli/testnet/0.6.3>
 
 ## How to Use
-* **Warning**: Please note that TSS is still an experimental function and please do not test this on mainnet.
+* **Warning**: Please test your TSS setup before use this on mainnet.
 
 > Please backup your bnbcli home before use this tool:
 
