@@ -1304,7 +1304,11 @@ paths:
       summary: transactions in Block
       description: |
          Get transactions in the block. Multi-send and multi-coin transactions are included as sub-transactions.
+         
          **Rate Limit:** 5 request per IP per second.
+         
+         **Rate Limit:** 60 requests per IP per minute.
+
       operationId: getTransactionsInBlockV2
       produces:
         - application/json
