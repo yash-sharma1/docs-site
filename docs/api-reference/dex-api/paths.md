@@ -635,7 +635,7 @@ If the time window is larger than limits, only the first n klines will return. I
 | end | query | end time | No | long |
 | limit | query | default 50; max 1000. | No | integer |
 | offset | query | start with 0; default 0. | No | integer |
-| start | query | start time | No | long |
+| start | query | start time in Milliseconds | No | long |
 | total | query | total number required, 0 for not required and 1 for required; default not required, return total=-1 in response | No | integer |
 
 **Responses**
@@ -712,8 +712,10 @@ If the time window is larger than limits, only the first n klines will return. I
 **Summary:** transactions in Block
 
 **Description:** Get transactions in the block. Multi-send and multi-coin transactions are included as sub-transactions.
+
 **Rate Limit:** 5 request per IP per second.
 
+**Rate Limit:** 60 requests per IP per minute.
 
 **Parameters**
 
@@ -748,7 +750,7 @@ If the time window is larger than limits, only the first n klines will return. I
 | fromAddress | query | At least one of toAddress and fromAddress should be provided as parameter | No | string |
 | limit | query | default 25; max 1000. | No | integer |
 | offset | query | start with 0; default 0. | No | integer |
-| startTime | query | start time of blockTimestamp; The maximum start - end query window is 3 months; Default query window is the latest 30 days. | No | long |
+| startTime | query | start time of blockTimestamp in Milliseconds; The maximum start - end query window is 3 months; Default query window is the latest 30 days. | No | long |
 | toAddress | query | At least one of toAddress and fromAddress should be provided as parameter | No | string |
 
 **Responses**

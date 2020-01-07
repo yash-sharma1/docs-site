@@ -753,6 +753,7 @@ paths:
         **Query Window:** Default query window is latest 7 days; The maximum start - end query window is 3 months.
 
         **Rate Limit:** 5 requests per IP per second.
+
       operationId: getClosedOrders
       produces:
       - application/json
@@ -1130,7 +1131,7 @@ paths:
         allowEmptyValue: false
       - name: start
         in: query
-        description: start time
+        description: start time in Milliseconds
         required: false
         type: integer
         format: int64
@@ -1304,9 +1305,9 @@ paths:
       summary: transactions in Block
       description: |
          Get transactions in the block. Multi-send and multi-coin transactions are included as sub-transactions.
-         
+
          **Rate Limit:** 5 request per IP per second.
-         
+
          **Rate Limit:** 60 requests per IP per minute.
 
       operationId: getTransactionsInBlockV2
@@ -1381,7 +1382,7 @@ paths:
           format: int32
         - name: startTime
           in: query
-          description: start time of blockTimestamp; The maximum start - end query window is 3 months; Default query window is the latest 30 days.
+          description: start time of blockTimestamp in Milliseconds; The maximum start - end query window is 3 months; Default query window is the latest 30 days.
           required: false
           type: integer
           format: int64
