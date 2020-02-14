@@ -1,16 +1,16 @@
 # Common Issues When Running a Full Node
 
-+ [How to monitor your full node syncing process?](#how-to-monitor-your-full-node-syncing-process)
-+ [Common Issues](#common-issues)
-    - [AppHash Confliction](#apphash-confliction)
-    - [Peer connection error](#peer-connection-error)
-    - [Connection Timeout](#connection-timeout)
-    - [Out of memory](#out-of-memory)
-    - [No priv_validator_state.json after reset](#no-priv-validator-statejson-after-reset)
-    - [`bnbchaind` crashes because of `too many open files`](#-bnbchaind--crashes-because-of--too-many-open-files-)
-    - [Forget to Upgrade](#forget-to-upgrade)
-    - [`bnbchaind` is not properly killed](#-bnbchaind--is-not-properly-killed)
-
+- [Common Issues](#common-issues)
+  * [AppHash Confliction](#apphash-confliction)
+  * [Peer connection error](#peer-connection-error)
+  * [Connection Timeout](#connection-timeout)
+  * [Out of memory](#out-of-memory)
+  * [No priv_validator_state.json after reset](#no-priv-validator-statejson-after-reset)
+  * [`bnbchaind` crashes because of `too many open files`](#-bnbchaind--crashes-because-of--too-many-open-files-)
+  * [Forget to Upgrade](#forget-to-upgrade)
+  * [`bnbchaind` is not properly killed](#-bnbchaind--is-not-properly-killed)
+  * [Cannot start `bnbchaind`](#cannot-start--bnbchaind-)
+  * [Cannot query a specific block](#cannot-query-a-specific-block)
 
 ### How to monitor your full node syncing process?
 
@@ -34,7 +34,7 @@ This error is caused by a consensus issue and thus bnbchaind will panic.
 
 * Solution
 
-To solve this issue, make sure that you have downloaded the correct genesis file.<br/>
+To solve this issue, make sure that you have downloaded the correct `genesis file`, `config.toml` and `app.toml`.<br/>
 If you replaced the genesis file, then you need to do a node reset.<br/>
 To reset node:
 ```
@@ -78,7 +78,7 @@ fatal error: out of memory
 
 * Solution
 
-Your machine must have more than `16 GB of memory`, otherwise, it will not handle DB restoration during state sync.
+Your machine must have more than `8 GB of memory`, otherwise, it will not handle DB restoration during state sync.
 
 #### No priv_validator_state.json after reset
 
@@ -165,3 +165,23 @@ To recover, please reset your node and restart:
 ```
 bnbchaind unsafe-reset-all --home<your-home-dir>
 ```
+
+#### Cannot start `bnbchaind`
+
+If you do not download the binaries completely, you will see the following message:
+```
+./bnbchaind: line 1: version: command not found ./bnbchaind: line 2: oid: command not found /Library/Developer/CommandLineTools/usr/bin/size: 45160816 No such file or directory
+```
+
+Since all the binaries are stored in `git lfs`, you will see this error is the binary is not complete. Please use this [script](https://github.com/binance-chain/node-binary/blob/master/install.sh) to download the binaries or use `git lfs clone`.
+
+#### Cannot query a specific block
+
+Once you have your own node running, you can start querying from it. But sometimes you may not be ablt to get the information you want. For example:
+```
+curl 'localhost:27147/block?height=10'
+```
+
+The reason is because your node is using `statesync` to catch up. In this way, it will not store all the history blocks before the snapshot height it got. You can only query blocks after that snapshot height.
+
+To enable query history blocks, you need to use `fast-sync`
