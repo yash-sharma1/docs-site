@@ -30,6 +30,8 @@ nav:
     - Changelog: changelog.md
   - FAQ: faq.md
   - Exchange Integration: exchange-integration.md
+  - RPC Swagger: rpc-swagger/index.html
+  - API Swagger: api-swagger/index.html
   - List Instructions: list_instruction.md
   - Wallets: wallets.md
   - Tutorials: tutorials.md
