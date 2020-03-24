@@ -8,6 +8,9 @@ use_directory_urls: false
 
 theme:
   name: 'material'
+  font:
+    text: Roboto
+    code: Roboto Mono
   palette:
     primary: 'yellow'
     accent: 'grey'
@@ -15,6 +18,10 @@ theme:
     icon: 'build'
   feature:
     tabs: true
+extra_css:
+  - stylesheets/dark_theme.css
+  - stylesheets/codehilite.css
+
 
 nav:
   - Home: index.md
@@ -30,7 +37,13 @@ nav:
     - Transactions: encoding.md
     - WalletConnect: walletconnect.md
     - Changelog: changelog.md
-  - FAQ: faq.md
+  - Guides:
+    -  Concepts:
+       - Architecture: guides/concepts/architecture.md
+       - Accounts: guides/concepts/accounts.md
+       - Address: guides/concepts/address.md
+  - FAQ:
+      - FAQ: faq/faq.md
   - Exchange Integration: exchange-integration.md
   - RPC Swagger: rpc-swagger/index.html
   - API Swagger: api-swagger/index.html
@@ -47,6 +60,8 @@ markdown_extensions:
         permalink: 
     - admonition
     - def_list
+    - codehilite
+
 
 plugins:
   - search:
