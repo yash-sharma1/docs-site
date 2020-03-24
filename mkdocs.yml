@@ -7,12 +7,14 @@ edit_uri: ""
 use_directory_urls: false
 
 theme:
-  name: readthedocs
-  highlightjs: true
-  hljs_languages:
-    - go
-    - java
-    - javascript
+  name: 'material'
+  palette:
+    primary: 'yellow'
+    accent: 'grey'
+  logo:
+    icon: 'build'
+  feature:
+    tabs: true
 
 nav:
   - Home: index.md
@@ -49,3 +51,15 @@ markdown_extensions:
 plugins:
   - search:
       prebuild_index: true
+
+repo_name: 'binance-chain/docs-site'
+repo_url: 'https://github.com/binance-chain/docs-site'
+
+extra:
+  social:
+    - type: 'github'
+      link: 'binance-chain/docs-site'
+    - type: 'twitter'
+      link: 'https://twitter.com/Binance_DEX'
+    - type: 'website'
+      link: 'https://www.binance.org'

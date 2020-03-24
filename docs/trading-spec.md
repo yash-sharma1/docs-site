@@ -1,6 +1,3 @@
-
-
-
 # Binance DEX Trading Specification
 
 ## Orders

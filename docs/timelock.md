@@ -1,26 +1,5 @@
 # TimeLock
 
-- [TimeLock](#timelock)
-    * [Command line](#command-line)
-    * [Parameters](#parameters)
-    * [Fee](#fee)
-    * [Example](#example)
-- [TimeUnlock](#timeunlock)
-    * [Parameters](#parameters_1)
-    * [Fee](#fee_1)
-    * [Example](#example_1)
-- [TimeRelock](#timerelock)
-    * [Parameters](#parameters_2)
-    * [Fee](#fee_2)
-    * [Example](#example_2)
-- [QueryTimeLock](#querytimelock)
-    * [Parameters](#parameters_3)
-    * [Example](#example_3)
-- [QueryTimeLocks](#querytimelocks)
-    * [QueryTimeLock Parameters](#querytimelock-parameters)
-    * [Example](#example_4)
-
-
 As explained in [BEP9](https://github.com/binance-chain/BEPs/blob/master/BEP9.md), some business plans decide to lock certain amount tokens for pre-defined periods of time, and the only vest in the future according to the schedules. For example, some projects may lock some allocation of the issued tokens as a commitment by the founding team; some business scenarios also need to lock some tokens as collateral for value.
 
 
