@@ -1,7 +1,4 @@
----
-id: encoding-example
-title: Encoding Examples
----
+# Encoding Examples
 
 ## Encoding Output
 
@@ -56,8 +53,6 @@ Then, use the unmarshal method to get the returned result.
 ```
 
 ### Binary Marshal
-
-**[Please note the below binary encoding logic is subjected to future changes. Please watch out for the community news](resources.md).**
 
 Binary encoding is a variant of Google protocol buffer. The bytes are layed out in the below sequence:
 

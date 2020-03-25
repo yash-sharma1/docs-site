@@ -19,10 +19,8 @@ theme:
   feature:
     tabs: true
 extra_css:
-  - stylesheets/dark_theme.css
-  - stylesheets/codehilite.css
-
-
+       - stylesheets/dark_theme.css
+       - stylesheets/codehilite.css
 nav:
   - Home: index.md
   - API Reference:
@@ -36,31 +34,56 @@ nav:
     - Commands: api-reference/cli.md
     - Transactions: encoding.md
     - WalletConnect: walletconnect.md
+    - RPC Swagger: rpc-swagger/index.html
+    - Accelerated Node API Swagger: api-swagger/index.html
     - Changelog: changelog.md
   - Guides:
     -  Concepts:
-       - Architecture: guides/concepts/architecture.md
-       - Accounts: guides/concepts/accounts.md
-       - Address: guides/concepts/address.md
+       - Blockchain Concepts:
+          - Architecture: guides/concepts/architecture.md
+          - Accounts: guides/concepts/accounts.md
+          - Assets: guides/concepts/assets.md
+          - Transaction: guides/concepts/transaction.md
+          - Genesis File: guides/concepts/genesis.md
+          - Signature: guides/concepts/signature.md
+          - Encoding:
+            - Encoding: guides/concepts/encoding/encoding.md
+            - Amino Encoding: guides/concepts/encoding/amino-example.md
+       - Binance Chain and DEX:
+         - Fees: guides/concepts/fees.md
+         - Binance Chain Governance: governance.md
+         - Match Engine: trading-spec.md
+         - Threshold Signature Scheme: guides/concepts/threshold-signature-scheme.md
+         - Atomic Swap: atomic-swap.md
+         - WalletConnect: guides/concepts/walletconnect.md
+    - Get Started:
+      - Introduction: guides/intro.md
+      - Create Address: guides/create-address.md
+      - Binance DEX Ttrading: guides/trading-interface.md
+      - Binance Chain Testnet: guides/testnet.md
   - FAQ:
       - FAQ: faq/faq.md
+  - Wallets:
+    - Binance Chain Walletsupport: wallets/wallets.md
+    - Wallet Tutorial:
+      - Trust Wallet User Guide: wallets/tutorial/how-to-create-a-wallet-on-trustwallet.md
+      - Ledger Wallet Guide: wallets/tutorial/ledger-nano-s-usage-guide.md
+      - Trezor Wallet Guide: wallets/tutorial/trezor-model-t-user-guide.md
+    - WalletConnectSupport: wallets/walletconnect-support.md
   - Exchange Integration: exchange-integration.md
-  - RPC Swagger: rpc-swagger/index.html
-  - API Swagger: api-swagger/index.html
   - List Instructions: list_instruction.md
   - Wallets: wallets.md
-  - Tutorials: tutorials.md
   - More Help: resources.md
   - Binance DEX TestNet: https://testnet.binance.org
   - Chain Explorer TestNet: https://testnet-explorer.binance.org
   - Get Testnet Funds: https://www.binance.vision/tutorials/binance-dex-funding-your-testnet-account
 
 markdown_extensions:
-    - toc:
-        permalink: 
     - admonition
-    - def_list
+    - pymdownx.arithmatex
+    - pymdownx.superfences
     - codehilite
+
 
 
 plugins:

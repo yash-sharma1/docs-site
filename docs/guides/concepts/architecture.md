@@ -82,4 +82,4 @@ For Binance Chain address, the prefix is `bnb` for production network, and `tbnb
 
 #### Signature
 
-Binance Chain uses an ECDSA signature on curve secp256k1 against a `SHA256` hash of the byte array of a JSON-encoded canonical representation of the transaction. For more information, please see [this page](./encoding.md#canonical-bytes-for-signing).
+Binance Chain uses an ECDSA signature on curve secp256k1 against a `SHA256` hash of the byte array of a JSON-encoded canonical representation of the transaction. For more information, please see [this page](encoding/encoding.md#canonical-bytes-for-signing).

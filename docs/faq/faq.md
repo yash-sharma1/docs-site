@@ -47,7 +47,7 @@ Binance Chain native coins will be sent to their new wallets.
 ## How can I register on Binance Chain/DEX and start trading?
 
 There is no need to register. All you need is a Binance Chain address, which can be generated with
-any [wallet](./wallets.md) that supports Binance Chain. Then you can trade BNB or other assets stored on that address.
+any [wallet](../wallets.md) that supports Binance Chain. Then you can trade BNB or other assets stored on that address.
 
 ## How can I send orders on Binance DEX?
 ### Order
@@ -124,7 +124,7 @@ in order to pay for the network usage and prevent abuse and attack. Since all us
 include transfer, new order, cancel etc, they are all recorded in blocks and chain state, the fee will be
 shared among different transactions. New orders are exempt from fees to encourage usage and larger
 trades will be charged more for their benefits from the liquidity provided in the network.
-Order Expire and Cancel are also charged with a fee if they fail to provide any liquidity. The current fee table is [here](./trading-spec.md)
+Order Expire and Cancel are also charged with a fee if they fail to provide any liquidity. The current fee table is [here](../trading-spec.md)
 
 Besides the fees, **no other gas will be charged.**
 
@@ -246,7 +246,7 @@ Right now, there are 2 ways to transfer tokens cross-chain:
 
 Any developer is welcome to test the solutions in testnet and then use them in mainnet.
 
-2. via Binance.com. [Binance](binance.com),the largest cryptocurrency exchange, has issued a number of crypto-pegged tokens on Binance Chain (BEP2 token format): [BEP2 Bitcoin](https://explorer.binance.org/asset/BTCB-1DE), [BEP2 BCH](https://explorer.binance.org/asset/BCH-1FD),[BEP2 XRP](https://explorer.binance.org/asset/XRP-BF2), [BEP2 LTC](https://explorer.binance.org/asset/LTC-F07). Pegged tokens such as [BEP2 Bitcoin](https://explorer.binance.org/asset/BTCB-1DE), are 100% backed by the native coin in [reserve](https://btc.com/3LYJfcfHPXYJreMsASk2jkn69LWEYKzexb). The reserve addresses are published for anyone to audit. Read this [blog](https://www.binance.com/en/blog/347360878904684544/Introducing-BitcoinPegged-Token-on-Binance-Chain) to learn about the reserved address. Users are free to convert between native and BEP2 Bitcoin via deposit/withdrawal. This has a higher degree of ease-of-use for most traders. More swap channels will be provided on partner wallets soon.
+2. via Binance.com. [Binance](https://wwww.binance.com),the largest cryptocurrency exchange, has issued a number of crypto-pegged tokens on Binance Chain (BEP2 token format): [BEP2 Bitcoin](https://explorer.binance.org/asset/BTCB-1DE), [BEP2 BCH](https://explorer.binance.org/asset/BCH-1FD),[BEP2 XRP](https://explorer.binance.org/asset/XRP-BF2), [BEP2 LTC](https://explorer.binance.org/asset/LTC-F07). Pegged tokens such as [BEP2 Bitcoin](https://explorer.binance.org/asset/BTCB-1DE), are 100% backed by the native coin in [reserve](https://btc.com/3LYJfcfHPXYJreMsASk2jkn69LWEYKzexb). The reserve addresses are published for anyone to audit. Read this [blog](https://www.binance.com/en/blog/347360878904684544/Introducing-BitcoinPegged-Token-on-Binance-Chain) to learn about the reserved address. Users are free to convert between native and BEP2 Bitcoin via deposit/withdrawal. This has a higher degree of ease-of-use for most traders. More swap channels will be provided on partner wallets soon.
 
 Atomic swap and this centralized approach are not exclusive to other decentralized approaches, which can also be implemented in parallel. There are many cross-chain solutions being developed and we are very interested in them.
 
@@ -268,7 +268,7 @@ Validators then vote to accept the proposal.
 A deposit is taken to prevent network abuse.
 Once the proposal is accepted, the owner of the base asset can list the trading pair.
 
-For more information about this process please check the [listing guide](list.md).
+For more information about this process please check the [listing guide](../list.md).
 
 ## How would a third-party integrate with Binance Chain and Binance DEX?
 

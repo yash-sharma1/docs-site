@@ -40,7 +40,7 @@ In the future you may also be able to stake your BNB to join Chain Governance, i
 ## Get Started
 
 Want to try it out? Just give a peek at the first few of pages of the [getting started guide](get-started.md).<br/>
-You could also have a read through the [FAQ](faq.md).
+You could also have a read through the [FAQ](faq/faq.md).
 
 ## Asset Management
 

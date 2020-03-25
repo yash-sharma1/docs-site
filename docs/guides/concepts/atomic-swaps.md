@@ -1,9 +1,4 @@
----
-id: cross-chain-atomic-swaps
-title: Cross-chain Atomic Swaps
----
-
-
+# Cross-chain Atomic Swaps
 
 ## Atomic Swap
 
@@ -421,7 +416,7 @@ refundHTLT | N/A |  0.000375 BNB | Y
 * Its corresponding address on testnet is: `tbnb1pk45lc2k7lmf0pnfa59l0uhwrvpk8shsema7gr`on Binance Chain and `0xD93395B2771914E1679155F3EA58C41d89D96098` on Ethereum testnet
 
 ### Swap Tokens from Ethereum to Binance Chain
-![image-20190918193751444](assets/eth2bnc.png)
+![image-20190918193751444](../../assets/eth2bnc.png)
 #### 1.  Approve Swap Transaction
 
 Go to [this page](https://ropsten.etherscan.io/address/0xd93395b2771914e1679155f3ea58c41d89d96098#writeContract) and approve some amount of tokens.
@@ -630,7 +625,7 @@ This is a javascript implementation for client app to swap [PPC](https://ropsten
 ```
 
 ### Swap Tokens from Binance Chain to Ethereum
-![image-20190918193910521](assets/bnc2eth.png)
+![image-20190918193910521](../../assets/bnc2eth.png)
 
 #### 1. Send `HTLT` Transaction from Binance Chain
 
@@ -793,8 +788,8 @@ This is a javascript implementation for client app to swap  [PPC-00A](https://te
 
 ### Swap between Several BEP2 tokens
 
-![image-20190918193422062](assets/same-chain.png)
+![image-20190918193422062](../../assets/same-chain.png)
 
 ### Swap between Several BEP2 tokens fails
 
-![image-20190918193518929](assets/samechain-fail.png)
+![image-20190918193518929](../../assets/samechain-fail.png)

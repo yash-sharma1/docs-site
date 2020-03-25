@@ -1,9 +1,4 @@
----
-id: signatures
-title: Signatures
----
-
-- [ ] https://docs.binance.org/chain-access.html#signature
+# Signatures
 
 Signature is the evidence to prove the sender owns the transaction. It will be created from the actions outlined below:
 
@@ -13,7 +8,7 @@ Signature is the evidence to prove the sender owns the transaction. It will be c
     - `account_number`: a string for a 64-bit integer, an identifier number associated with the signing address
     - `sequence`: a string for a a 64-bit integer, please check [accounts](accounts.md)
     - `memo`: a string, a short sentence of remark for the transaction
-    - `msgs`: a byte array, **json encoded** transaction messages, please check the [encoding](encoding.md) doc.
+    - `msgs`: a byte array, **json encoded** transaction messages, please check the [encoding](encoding/encoding.md) doc.
     - `source`: a string for a 64 bits integer, which is an identifier for transaction incoming tools
     - `data`: byte array, reserved for future use
 

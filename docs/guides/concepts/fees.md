@@ -22,8 +22,7 @@ Trading fee can be queried at [here](https://dex.binance.org/api/v1/fees?format=
 The difference between Binance Chain and Ethereum is that there is no notion of `gas`. As a result,
 fees for the rest transactions are fixed. The details are showned in the table below:
 
-<!--DOCUSAURUS_CODE_TABS-->
-<!--Mainnet-->
+
 Transaction Type | Pay in Non-BNB Asset | Pay in BNB | Exchange (DEX) Related
 -- | -- | -- | --
 New Order | 0 | 0 | Y
@@ -46,7 +45,7 @@ HTLT | N/A | 0.000375 BNB | N
 depositHTLT | N/A | 0.000375 BNB | N
 claimHTLT | N/A | 0.000375 BNB | N
 refundHTLT | N/A | 0.000375 BNB | N
-<!--Testnet-->
+
 Transaction Type | Pay in Non-BNB Asset | Pay in BNB | Exchange (DEX) Related
 -- | -- | -- | --
 New Order | 0 | 0 | Y
@@ -69,8 +68,6 @@ HTLT | N/A | 0.000375 BNB | N
 depositHTLT | N/A |  0.000375 BNB | Y
 claimHTLT | N/A |  0.000375 BNB | Y
 refundHTLT | N/A |  0.000375 BNB | Y
-
-<!--END_DOCUSAURUS_CODE_TABS-->
 
 ### How to calculate multisend fee
 `bnbcli`  offers you a multi-send command to transfer multiple tokens to multiple people. 20% discount is available for `multi-send` transactions. For now, `multi-send` transaction will send some tokens from one address to multiple output addresses. If the count of output address is bigger than the threshold, currently it's 2, then the total transaction fee is  0.001 BNB per token per address.

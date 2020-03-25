@@ -53,7 +53,7 @@ and produce blocks, they take care of:
 
 ### What is an Accelerated Node?
 
-Please check [here](faq.md#what-is-the-accelerated-node).
+Please check [here](faq/faq.md#what-is-the-accelerated-node).
 
 For testnet, there are 2 accelerated nodes setup as below. API users should try to use them directly.
 

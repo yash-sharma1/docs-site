@@ -18,14 +18,14 @@ WalletConnect is a simple infrastructure that can be setup by any developer. Usi
 
 | Number | Wallet Name                                            | Network                          |
 | ------ | ------------------------------------------------------ | -------------------------------- |
-| 1      | [Trust Wallet](wallets/trust-wallet.md)                | Mainnet                          |
-| 2      | [Math Wallet](wallets/math-wallet.md)                  | Mainnet                          |
-| 3      | [Meet.One Wallet](wallets/meet-wallet.md)              | Mainnet                          |
-| 4      | [Equal Wallet](wallets/equal.md)                       | Mainnet&Testnet                  |
-| 5      | [SafePal Wallet](wallets/safepal.md)                   | Mainnet                          |
-| 6      | [CoolWallet](wallets/cool-wallet.md)                   | Mainnet                          |
-| 7      | [XWallet](wallets/xwallet.md)                          | Mainnet                          |
-| 8      | [Atomic Wallet](wallets/atomic-wallet.md)              | Mainnet                          |
+| 1      | [Trust Wallet](../../wallets/trust-wallet.md)                | Mainnet                          |
+| 2      | [Math Wallet](../../wallets/math-wallet.md)                  | Mainnet                          |
+| 3      | [Meet.One Wallet](../../wallets/meet.md)              | Mainnet                          |
+| 4      | [Equal Wallet](../../wallets/equal.md)                       | Mainnet&Testnet                  |
+| 5      | [SafePal Wallet](../../wallets/safepal.md)                   | Mainnet                          |
+| 6      | [CoolWallet](../../wallets/cool-wallet.md)                   | Mainnet                          |
+| 7      | [XWallet](../../wallets/xwallet.md)                          | Mainnet                          |
+| 8      | [Atomic Wallet](../../wallets/atomic-wallet.md)              | Mainnet                          |
 
 
 ## Get Started
@@ -40,7 +40,7 @@ WalletConnect allows the user to scan a QR code from the wallet app to unlock an
 
 In order for this to work, some modifications to the standard WalletConnect protocol are used in the Binance Chain wallet's implementation.
 
-See the list of wallets which support WalletConnect on Binance Chain [here](walletconnect-support.md)
+See the list of wallets which support WalletConnect on Binance Chain [here](../../wallets/walletconnect-support.md)
 
 ## Connecting via WalletConnect
 
@@ -60,7 +60,7 @@ Since we do not use Ethereum transactions, there are some differences:
 
 This sequence diagram shows the flow of messages when the web wallet interacts with an external wallet provider via WalletConnect.
 
-![WalletConnect Protocol Sequence](./assets/walletconnect_sequence.png)
+![WalletConnect Protocol Sequence](../../assets/walletconnect_sequence.png)
 
 ## Custom Requests
 

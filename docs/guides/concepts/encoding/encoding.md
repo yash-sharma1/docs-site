@@ -1,10 +1,4 @@
----
-id: encoding
-title: Encoding
----
-
-- [ ] https://docs.binance.org/encoding.html
-
+# Encoding
 
 The Cosmos SDK utilizes two binary wire encoding protocols, [Binance Chain Amino](https://github.com/binance-chain/bnc-go-amino)
 and [Protocol Buffers](https://developers.google.com/protocol-buffers), where Amino is an object encoding specification. It is a subset of Proto3 with an extension for interface support. See the [Proto3 spec](https://developers.google.com/protocol-buffers/docs/proto3)
@@ -43,7 +37,7 @@ typically used for when the data needs to be streamed or grouped together
 (e.g. `ResponseDeliverTx.Data`)
 
 Another important use of the Amino is the encoding and decoding of
-[transactions](./transactions.md). Transactions are defined by the application or
+[transactions](../transaction.md). Transactions are defined by the application or
 the SDK, but passed to the underlying consensus engine in order to be relayed to
 other peers. Since the underlying consensus engine is agnostic to the application,
 it only accepts transactions in the form of raw bytes. The encoding is done by an

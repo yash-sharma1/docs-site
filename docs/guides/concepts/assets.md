@@ -1,7 +1,4 @@
----
-id: assets
-title: Assets
----
+# Assets
 
 Assets are stored as `tokens` on Binance Chain, and the below management actions are available. All the assets are complied with [BEP2 standard](https://github.com/binance-chain/BEPs/blob/master/BEP2.md). [BEP](https://github.com/binance-chain/BEPs/blob/master/BEP1.md) stands for Binance Chain Evolution Proposal. Each BEP will be a proposal document providing information to the Binance Chain/DEX community. The BEP should provide a concise technical specification of the feature or improvement and the rationale behind it. Each BEP proposer is responsible for building consensus within the community and documenting dissenting opinions. Each BEP has a unique index number.
 

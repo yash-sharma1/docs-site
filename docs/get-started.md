@@ -20,7 +20,7 @@ Chain Explorer provides a portal to explore blocks and transaction details.<br/>
 On Binance Chain Explorer, you can also check different asset types, the distribution of their ownerships, and owners' transactions.
 
 ## REST API
-There are [Accelerated Nodes](./faq.md#what-is-the-accelerated-node) which provide advanced API services for the public.<br/>
+There are [Accelerated Nodes](faq/faq.md#what-is-the-accelerated-node) which provide advanced API services for the public.<br/>
 Here is a list of all the Rest API information Accelerated Node provides: [paths](./api-reference/dex-api/paths.md)
 
 ### Node RPC
