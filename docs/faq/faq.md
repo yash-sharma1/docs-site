@@ -1,37 +1,4 @@
 # Binance Chain FAQ v0.5
-- [Binance Chain and Binance DEX](#what-is-binance-chain-or-binance-dex)
-- [Design Principles](#what-is-the-design-principle-of-binance-chain)
-- [Current Features](#what-can-you-do-on-binance-chain)
-- [Future Enhancements](#will-binance-chain-introduce-more-features-and-transaction-types-in-the-future)
-- [Native Coin](#what-is-the-native-coin-on-binance-chain)
-- [Registration](#how-can-i-register-on-binance-chaindex-and-start-trading)
-- [Trading on Binance DEX](#how-can-i-send-orders-on-binance-dex)
-    - [New Orders](#order)
-    - [Immediate or Cancel Orders](#what-is-immediate-or-cancel-order)
-    - [Order Matching](#match)
-    - [Trades](#trade)
-    - [Order Expiry](#what-is-order-expire)
-    - [Assets and Trade Information](#where-can-i-see-my-assets-and-trades)
-    - [Order Information](#when-can-i-see-my-order-on-the-blockchain-after-i-send-it)
-    - [Fee Structure](#what-is-the-fee-structure)
-- [Balance and Order Information Visibility](#can-i-see-ordersbalances-of-others-or-can-other-people-see-my-ordersbalances)
-- [API Information and Usage](#informations-provided-through-api-and-their-usage)
-    - [API Rate Limits](#is-there-any-limit-to-using-the-api-to-send-orders-or-check-market-data)
-    - [Wallet and API usage costs](#what-does-wallet-and-api-cost-to-use)
-    - [API Market Data](#what-market-data-can-i-get)
-    - [Tick Size and Lot Size](#what-are-the-tick-size-and-lot-size-are-they-fixed)
-    - [Order Notional Value](#are-there-limits-on-notional-value-of-an-order)
-    - [Decimal precision on Binance Chain and Binance DEX](#what-is-the-decimal-precision-for-prices-and-quantities-on-binance-chaindex)
-- [Private Key Recovery](#i-forgot-the-private-key-for-my-address-how-can-i-get-it-back)
-- [Stolen Private Key Assets Recovery](#my-private-key-got-stolen-by-hackers-how-can-i-recover-my-assets)
-- [Accelerated Node](#what-is-the-accelerated-node)
-- [Asset Issuance](#how-can-i-issue-an-asset)
-- [Consensus Algorithm](#what-is-the-consensus-algorithm-used-on-binance-chain)
-- [Full Node](#can-i-run-a-full-node-for-binance-chain)
-- [Smart Contracts](#does-binance-chain-support-smart-contracts)
-- [Cross-Chain Transfers](#how-can-i-transfer-tokens-such-as-bitcoin-from-other-block-chains-onto-binance-chain)
-- [Trading Pair Creation](#how-is-a-trading-pair-created-on-binance-dex)
-- [Third Party Integration](#how-would-a-third-party-integrate-with-binance-chain-and-binance-dex)
 
 ## What is Binance Chain, or Binance DEX?
 
@@ -80,7 +47,7 @@ Binance Chain native coins will be sent to their new wallets.
 ## How can I register on Binance Chain/DEX and start trading?
 
 There is no need to register. All you need is a Binance Chain address, which can be generated with
-any [wallet](./wallets.md) that supports Binance Chain. Then you can trade BNB or other assets stored on that address.
+any [wallet](../wallets.md) that supports Binance Chain. Then you can trade BNB or other assets stored on that address.
 
 ## How can I send orders on Binance DEX?
 ### Order
@@ -157,7 +124,7 @@ in order to pay for the network usage and prevent abuse and attack. Since all us
 include transfer, new order, cancel etc, they are all recorded in blocks and chain state, the fee will be
 shared among different transactions. New orders are exempt from fees to encourage usage and larger
 trades will be charged more for their benefits from the liquidity provided in the network.
-Order Expire and Cancel are also charged with a fee if they fail to provide any liquidity. The current fee table is [here](./trading-spec.md)
+Order Expire and Cancel are also charged with a fee if they fail to provide any liquidity. The current fee table is [here](../trading-spec.md)
 
 Besides the fees, **no other gas will be charged.**
 
@@ -279,7 +246,7 @@ Right now, there are 2 ways to transfer tokens cross-chain:
 
 Any developer is welcome to test the solutions in testnet and then use them in mainnet.
 
-2. via Binance.com. [Binance](binance.com),the largest cryptocurrency exchange, has issued a number of crypto-pegged tokens on Binance Chain (BEP2 token format): [BEP2 Bitcoin](https://explorer.binance.org/asset/BTCB-1DE), [BEP2 BCH](https://explorer.binance.org/asset/BCH-1FD),[BEP2 XRP](https://explorer.binance.org/asset/XRP-BF2), [BEP2 LTC](https://explorer.binance.org/asset/LTC-F07). Pegged tokens such as [BEP2 Bitcoin](https://explorer.binance.org/asset/BTCB-1DE), are 100% backed by the native coin in [reserve](https://btc.com/3LYJfcfHPXYJreMsASk2jkn69LWEYKzexb). The reserve addresses are published for anyone to audit. Read this [blog](https://www.binance.com/en/blog/347360878904684544/Introducing-BitcoinPegged-Token-on-Binance-Chain) to learn about the reserved address. Users are free to convert between native and BEP2 Bitcoin via deposit/withdrawal. This has a higher degree of ease-of-use for most traders. More swap channels will be provided on partner wallets soon.
+2. via Binance.com. [Binance](https://wwww.binance.com),the largest cryptocurrency exchange, has issued a number of crypto-pegged tokens on Binance Chain (BEP2 token format): [BEP2 Bitcoin](https://explorer.binance.org/asset/BTCB-1DE), [BEP2 BCH](https://explorer.binance.org/asset/BCH-1FD),[BEP2 XRP](https://explorer.binance.org/asset/XRP-BF2), [BEP2 LTC](https://explorer.binance.org/asset/LTC-F07). Pegged tokens such as [BEP2 Bitcoin](https://explorer.binance.org/asset/BTCB-1DE), are 100% backed by the native coin in [reserve](https://btc.com/3LYJfcfHPXYJreMsASk2jkn69LWEYKzexb). The reserve addresses are published for anyone to audit. Read this [blog](https://www.binance.com/en/blog/347360878904684544/Introducing-BitcoinPegged-Token-on-Binance-Chain) to learn about the reserved address. Users are free to convert between native and BEP2 Bitcoin via deposit/withdrawal. This has a higher degree of ease-of-use for most traders. More swap channels will be provided on partner wallets soon.
 
 Atomic swap and this centralized approach are not exclusive to other decentralized approaches, which can also be implemented in parallel. There are many cross-chain solutions being developed and we are very interested in them.
 
@@ -301,7 +268,7 @@ Validators then vote to accept the proposal.
 A deposit is taken to prevent network abuse.
 Once the proposal is accepted, the owner of the base asset can list the trading pair.
 
-For more information about this process please check the [listing guide](list.md).
+For more information about this process please check the [listing guide](../list.md).
 
 ## How would a third-party integrate with Binance Chain and Binance DEX?
 

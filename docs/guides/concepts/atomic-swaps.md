@@ -1,4 +1,20 @@
-## Introduction
+# Cross-chain Atomic Swaps
+
+## Atomic Swap
+
+The problem of an atomic swap is one where (at least) two parties, Alice and Bob, own coins, and want to exchange them without having to trust a third party (centralized exchange).
+
+A non-atomic trivial solution would have Alice send her coins to Bob, and then have Bob send other coins to Alice - but Bob has the option of going back on his end of the bargain and simply not following through with the protocol, ending up with both sets of coins.
+
+Atomic swaps can be used for trading between BEP2 tokens, or for trading crosss different blockchains.
+
+## Hash Timer Locked Contract
+
+[HTLC](https://en.bitcoin.it/wiki/Hash_Time_Locked_Contracts) has been used for Atomic Swap and cross payment channel for a few years on Bitcoin and its variant blockchains, and also Ethereum. This BEP defines native transactions to support HTLC on Binance Chain, and also proposes the standard infrastructure and procedure to use HTLC for inter-chain atomic swap to easily create and use pegged token, which is called `Atomic Peg`.
+
+## HTLC on Binance Chain
+
+
 As explained in [BEP3](https://github.com/binance-chain/BEPs/blob/master/BEP3.md), Hash Timer Locked Contract(HTLC) has been used for Atomic Swap and cross payment channels between different blockchains. BEP3 defines native transactions to support HTLC on Binance Chain and also proposes the standard infrastructure and procedure to use HTLC for inter-chain atomic swap to easily create and use pegged token.
 During the swap process, the related fund will be locked to a purely-code-controlled escrow account.
 A purely-code-controlled escrow account is a kind of account which is derived from a hard-coded string in binance chain protocol. This kind of account has no its own private key and it's only controled by code in protocol. The code for calculating escrow account is the same as how it's done in [cosmos-sdk](https://github.com/cosmos/cosmos-sdk/blob/82a2c5d6d86ffd761f0162b93f0aaa57b7f66fe7/x/supply/internal/types/account.go#L40):
@@ -7,7 +23,6 @@ AtomicSwapCoinsAccAddr = sdk.AccAddress(crypto.AddressHash([]byte("BinanceChainA
 ```
 The account for mainnet is: **bnb1wxeplyw7x8aahy93w96yhwm7xcq3ke4f8ge93u** and the account for testnet is: **tbnb1wxeplyw7x8aahy93w96yhwm7xcq3ke4ffasp3d**. Once the swap is claimed or refunded, the fund will be transfered from the purely-code-controlled escrow account to client accounts.
 
-## Commands
 
 ### Hash Timer Locked Transfer
 
@@ -401,7 +416,7 @@ refundHTLT | N/A |  0.000375 BNB | Y
 * Its corresponding address on testnet is: `tbnb1pk45lc2k7lmf0pnfa59l0uhwrvpk8shsema7gr`on Binance Chain and `0xD93395B2771914E1679155F3EA58C41d89D96098` on Ethereum testnet
 
 ### Swap Tokens from Ethereum to Binance Chain
-![image-20190918193751444](assets/eth2bnc.png)
+![image-20190918193751444](../../assets/eth2bnc.png)
 #### 1.  Approve Swap Transaction
 
 Go to [this page](https://ropsten.etherscan.io/address/0xd93395b2771914e1679155f3ea58c41d89d96098#writeContract) and approve some amount of tokens.
@@ -610,7 +625,7 @@ This is a javascript implementation for client app to swap [PPC](https://ropsten
 ```
 
 ### Swap Tokens from Binance Chain to Ethereum
-![image-20190918193910521](assets/bnc2eth.png)
+![image-20190918193910521](../../assets/bnc2eth.png)
 
 #### 1. Send `HTLT` Transaction from Binance Chain
 
@@ -773,9 +788,8 @@ This is a javascript implementation for client app to swap  [PPC-00A](https://te
 
 ### Swap between Several BEP2 tokens
 
-![image-20190918193422062](assets/same-chain.png)
+![image-20190918193422062](../../assets/same-chain.png)
 
 ### Swap between Several BEP2 tokens fails
 
-![image-20190918193518929](assets/samechain-fail.png)
-
+![image-20190918193518929](../../assets/samechain-fail.png)

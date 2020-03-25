@@ -1,12 +1,3 @@
-# Exchange Integration
-- [Public Services](#public-services)
-    - [REST API](#rest-api)
-    - [Node RPC](#node-rpc)
-- [Full Node](#full-node)
-- [Access via Node Command Line Interface (CLI)](#access-via-node-command-line-interface-cli)
-- [SDKs](#sdks)
-- [Important: Ensuring Transaction Finality](#important-ensuring-transaction-finality)
-
 ## Public Services
 There are public nodes running by Binance Chain community which will allow you to interact with the blockchain.
 

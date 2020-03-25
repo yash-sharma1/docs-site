@@ -6,7 +6,7 @@ Hardware wallet is a special type of security device allowing users to store the
 
 ## Instructions
 
-Please read this [tutorial](../tutorial/trezor-model-t-user-guide.md).
+Please read this [tutorial](tutorial/trezor-model-t-user-guide.md).
 
 ## Resource
 <https://trezor.io/>
