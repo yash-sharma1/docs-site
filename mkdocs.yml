@@ -23,21 +23,13 @@ extra_css:
        - stylesheets/codehilite.css
 nav:
   - Home: index.md
-  - API Reference:
-    - HTTP API - Paths and Models: api-reference/dex-api/paths.md
-    - WebSockets - Connecting: api-reference/dex-api/ws-connection.md
-    - WebSockets - Streams: api-reference/dex-api/ws-streams.md
-    - Node RPC: api-reference/node-rpc.md
-    - API Server: api-reference/api-server.md
-    - Light Client: light-client.md
-    - SDK: api-reference/sdk.md
-    - Commands: api-reference/cli.md
-    - Transactions: encoding.md
-    - WalletConnect: walletconnect.md
-    - RPC Swagger: rpc-swagger/index.html
-    - Accelerated Node API Swagger: api-swagger/index.html
-    - Changelog: changelog.md
-  - Guides:
+  - Get Started:
+    - Introduction: guides/intro.md
+    - Create Address: guides/create-address.md
+    - Binance DEX Trading: guides/trading-interface.md
+    - Chain Explorer Mainnet: https://explorer.binance.org
+    - Binance Chain Testnet: guides/testnet.md
+    - Chain Explorer Testnet: https://testnet-explorer.binance.org
     -  Concepts:
        - Blockchain Concepts:
           - Architecture: guides/concepts/architecture.md
@@ -52,17 +44,43 @@ nav:
        - Binance Chain and DEX:
          - Fees: guides/concepts/fees.md
          - Binance Chain Governance: governance.md
-         - Match Engine: trading-spec.md
+         - Binance DEX Match Engine Design:
+           - Trading Spec: trading-spec.md
+           - Match Engine: match.md
+           - Match examples: match-examples.md
+         - Binance Chain Evolution Proposal: https://github.com/binance-chain/BEPs/blob/master/BEP1.md
          - Threshold Signature Scheme: guides/concepts/threshold-signature-scheme.md
          - Atomic Swap: atomic-swap.md
          - WalletConnect: guides/concepts/walletconnect.md
-    - Get Started:
-      - Introduction: guides/intro.md
-      - Create Address: guides/create-address.md
-      - Binance DEX Ttrading: guides/trading-interface.md
-      - Binance Chain Testnet: guides/testnet.md
-  - FAQ:
-      - FAQ: faq/faq.md
+  - Developers:
+    - Binance Chain Fullnode:
+      - Install: guides/node/install.md
+      - Join Mainnet: guides/node/join-mainnet.md
+      - Join Testnet: guides/node/join-testnet.md
+      - Diffferet Syncing Modes: guides/node/synctypes.md
+      - Get Extra Details from Your Fullnode: guides/node/extra-info.md
+      - Different Fullnodes in network: guides/node/nodetypes.md
+      - Upgrade: guides/node/upgrade.md
+      - Local Network: guides/node/localnetwork.md
+    - Binance Chain Client: api-reference/cli.md
+    - Light Client: light-client.md
+    - Simple API Server: api-reference/api-server.md
+    - Binance Chain SDK:
+      - GoLang: https://github.com/binance-chain/go-sdk/wiki
+      - JavaScript: https://github.com/binance-chain/javascript-sdk/wiki
+      - Python: https://github.com/binance-chain/python-sdk
+      - Java: https://github.com/binance-chain/java-sdk/wiki
+      - Swift: https://github.com/binance-chain/swift-sdk/blob/master/README.md
+      - C++: https://github.com/binance-chain/cplusplus-sdk/wiki
+      - C#: https://github.com/binance-chain/csharp-sdk
+    - API Reference:
+      - HTTP API - Paths and Models: api-reference/dex-api/paths.md
+      - WebSockets - Connecting: api-reference/dex-api/ws-connection.md
+      - WebSockets - Streams: api-reference/dex-api/ws-streams.md
+      - Node RPC: api-reference/node-rpc.md
+      - RPC Swagger: rpc-swagger/index.html
+      - Accelerated Node API Swagger: api-swagger/index.html
+      - CHANGELOG: changelog.md
   - Wallets:
     - Binance Chain Walletsupport: wallets/wallets.md
     - Wallet Tutorial:
@@ -74,9 +92,20 @@ nav:
   - List Instructions: list_instruction.md
   - Wallets: wallets.md
   - More Help: resources.md
-  - Binance DEX TestNet: https://testnet.binance.org
-  - Chain Explorer TestNet: https://testnet-explorer.binance.org
+  - Chain Explorer Mainnet: https://explorer.binance.org
+  - Binance Chain Forum: https://community.binance.org/
+  - Binance DEX Testnet: https://testnet.binance.org
+  - Chain Explorer Testnet: https://testnet-explorer.binance.org
   - Get Testnet Funds: https://www.binance.vision/tutorials/binance-dex-funding-your-testnet-account
+  - The Binance Chain Telegram Group : https://t.me/BinanceDEXchange
+  - Twitter: https://twitter.com/binance_dex
+  - Telegram Announcement Channel English: https://t.me/Binance_DEX_Announcement)
+  - 币安DEX中文群: https://t.me/BinanceDEXchangeCN)
+  - 币安链公告频道: https://t.me/Binance_DEX_ChineseAnnouncements)
+  - FAQ:
+    - v0.5: faq/faq.md
+  - Contributing: CONTRIBUTING.md
+
 
 markdown_extensions:
     - admonition

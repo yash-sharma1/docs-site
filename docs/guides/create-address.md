@@ -6,10 +6,9 @@ The first thing you’ll need to do anything on the Binance Chain is an account.
 
 Because the private key must be kept secret, you can generate the private key with the following command:
 
-<!--DOCUSAURUS_CODE_TABS-->
-<!--JavaScript-->
+* JavaScript Example
 
-```js
+``` javascript tab="JavaScript"
 // generate key entropy
 const privateKey = crypto.generatePrivateKey();
 // get an address
@@ -28,9 +27,7 @@ const address = bnbClient.getClientKeyAddress();
 console.log("address: ", address);
 ```
 
-<!--Go-->
-
-```Go
+```Go tab="GoLang"
 //-----   Init KeyManager  -------------
 km, _ := NewKeyManager()
 //-----   Init sdk  -------------
@@ -40,9 +37,7 @@ accn,_:=client.GetAccount(client.GetKeyManager().GetAddr().String())
 fmt.Println(accn)
 ```
 
-<!--Python-->
-
-```py
+```python tab="Python"
 from binance_chain.wallet import Wallet
 from binance_chain.environment import BinanceEnvironment
 
@@ -51,4 +46,3 @@ wallet = Wallet.create_random_wallet(env=env)
 print(wallet.address)
 ```
 
-<!--END_DOCUSAURUS_CODE_TABS-->

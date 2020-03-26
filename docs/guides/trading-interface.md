@@ -1,14 +1,17 @@
 #  Binance DEX Trading Interface
 
-## How to trade on Binance DEX Video link
 
 Binance DEX trading page is designed to provide a user-friendly trading interface to everyone. To get started, go to the trading page first at https://www.binance.org/trade. The trading page is composed of the following part:
+
 * Tradig Pairs info
 * TradingView Chart
 * Trade history and orderbook
 * Your Trading Activities
 * Order Form
+
 ![img](../assets/trading-interface/trading-page.png)
+
+[Trading Video on Youtube](https://www.youtube.com/watch?v=cZmEOpMQ_k0)
 
 ### Trading Pairs Info
 ![img](../assets/trading-interface/pairs.png)
