@@ -1,17 +1,5 @@
 # Command Line Interface (CLI)
 
-- [Command Line Interface (CLI)](#command-line-interface--cli-)
-  * [Where can I download the Binance Chain CLI?](#where-can-i-download-the-binance-chain-cli-)
-    + [CLI installation](#cli-installation)
-  * [Where to connect](#where-to-connect)
-  * [Which Chain-ID to use](#which-chain-id-to-use)
-  * [Key manager](#key-manager)
-    + [Local key](#local-key)
-    + [Ledger key](#ledger-key)
-  * [How to use](#how-to-use)
-  * [CLI Reference](#cli-reference)
-  * [Use CLI for Different Blockchains](#use-cli-for-different-blockchains)
-
 Binance Chain CLI is one of several ways to interact with Binance Chain.
 
 Binance Chain CLI can be used as a local wallet, you can manage your keys via Binance CLI. You can add a new
