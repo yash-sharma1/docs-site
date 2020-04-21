@@ -93,6 +93,7 @@ nav:
   - Exchange Integration: exchange-integration.md
   - List Instructions: list_instruction.md
   - Wallets: wallets.md
+  - Binance Smart Chain White Paper: https://github.com/binance-chain/whitepaper/blob/master/WHITEPAPER.md
   - Chain Explorer Mainnet: https://explorer.binance.org
   - Binance Chain Forum: https://community.binance.org/
   - Binance DEX Testnet: https://testnet.binance.org
@@ -100,9 +101,9 @@ nav:
   - Get Testnet Funds: https://www.binance.vision/tutorials/binance-dex-funding-your-testnet-account
   - The Binance Chain Telegram Group : https://t.me/BinanceDEXchange
   - Twitter: https://twitter.com/binance_dex
-  - Telegram Announcement Channel English: https://t.me/Binance_DEX_Announcement)
-  - 币安DEX中文群: https://t.me/BinanceDEXchangeCN)
-  - 币安链公告频道: https://t.me/Binance_DEX_ChineseAnnouncements)
+  - Telegram Announcement Channel English: https://t.me/Binance_DEX_Announcement
+  - 币安DEX中文群: https://t.me/BinanceDEXchangeCN
+  - 币安链公告频道: https://t.me/Binance_DEX_ChineseAnnouncements
   - FAQ:
     - v0.5: faq/faq.md
   - More Help: resources.md

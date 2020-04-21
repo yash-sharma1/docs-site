@@ -60,7 +60,8 @@ Example on **testnet**:
 #### Submit a Delist Proposal
 In testnet, only validators can make a delist proposal. To add a new delist pairs, a validator can run the following command:<br/>
 
-Please note:<br/>
+Please note:
+
 + `--quote-asset-symbol`: the base asset symbol
 + `--base-asset-symbol`: the asset symbol you want to delist
 + `--from`: put your key name for the address key, you can only list with the owners address of your token.
@@ -70,14 +71,14 @@ Please note:<br/>
 
 Example on **mainnet**:
 
-```
+```shell
 bnbcli gov submit-delist-proposal --title "delist EDD-0AC" --voting-period 7200 --deposit "200000000000:BNB" --justification " justification " --base-asset-symbol EDD-0AC --quote-asset-symbol BNB --from <your-key-name> --chain-id Binance-Chain-Tigris --node https://dataseed5.defibit.io:443 --trust-node
 ```
 
 
 Example on **testnet**:
 
-```
+```shell
 tbnbcli gov submit-delist-proposal --title "delist EDD-0AC" --voting-period 7200 --deposit "200000000000:BNB" --justification " justification " --base-asset-symbol EDD-0AC --quote-asset-symbol BNB --from <your-key-name> --chain-id Binance-Chain-Nile --trust-node --node https://seed-pre-s3.binance.org:443
 ```
 
@@ -89,13 +90,13 @@ Please note the amount is boosted by **1e8** for decimal part.
 Example on **mainnet**:
 
 ```shell
-./bnbcli gov deposit --from name --proposal-id <proposl-ID> --deposit <amount>:BNB --chain-id Binance-Chain-Tigris --node https://dataseed5.defibit.io:443
+bnbcli gov deposit --from name --proposal-id <proposl-ID> --deposit <amount>:BNB --chain-id Binance-Chain-Tigris --node https://dataseed5.defibit.io:443
 ```
 
 Example on **testnet**:
 
 ```shell
-./tbnbcli gov deposit --from name --proposal-id <proposl-ID> --deposit <amount>:BNB --chain-id=Binance-Chain-Nile --node=data-seed-pre-2-s1.binance.org:80
+tbnbcli gov deposit --from name --proposal-id <proposl-ID> --deposit <amount>:BNB --chain-id=Binance-Chain-Nile --node=data-seed-pre-2-s1.binance.org:80
 ```
 
 #### Query Information of a Proposal
@@ -158,7 +159,7 @@ Example on **testnet**:
 ```
 
 Example output:
-```
+```json
 [
   {
     "voter": "tbnb1q82g2h9q0kfe7sysnj5w7nlak92csfjztymp39",
