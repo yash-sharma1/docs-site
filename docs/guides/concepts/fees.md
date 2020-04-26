@@ -22,6 +22,7 @@ Trading fee can be queried at [here](https://dex.binance.org/api/v1/fees?format=
 The difference between Binance Chain and Ethereum is that there is no notion of `gas`. As a result,
 fees for the rest transactions are fixed. The details are showned in the table below:
 
+* Current Fees Table on Mainnet
 
 Transaction Type | Pay in Non-BNB Asset | Pay in BNB | Exchange (DEX) Related
 -- | -- | -- | --
@@ -45,6 +46,8 @@ HTLT | N/A | 0.000375 BNB | N
 depositHTLT | N/A | 0.000375 BNB | N
 claimHTLT | N/A | 0.000375 BNB | N
 refundHTLT | N/A | 0.000375 BNB | N
+
+* Current Fees Table on Testnet
 
 Transaction Type | Pay in Non-BNB Asset | Pay in BNB | Exchange (DEX) Related
 -- | -- | -- | --
@@ -248,6 +251,7 @@ fee_for: 1
 ```
 
 The `fee_for`parameter indicate the different distribution way:
+
 * `1` means rewards is only for block proposer
 * `2` means rewards are shared among all validators
 * `3` means fee is free.

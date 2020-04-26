@@ -8,7 +8,7 @@ use_directory_urls: false
 
 theme:
   name: 'material'
-  include_search_page: false
+  include_search_page: true
   search_index_only: true
   font:
     text: Roboto
@@ -64,6 +64,7 @@ nav:
       - Different Fullnodes in network: guides/node/nodetypes.md
       - Upgrade: guides/node/upgrade.md
       - Local Network: guides/node/localnetwork.md
+      - Common Issues: fullnodeissue.md
     - Binance Chain Client: api-reference/cli.md
     - Light Client: light-client.md
     - Simple API Server: api-reference/api-server.md
@@ -76,12 +77,12 @@ nav:
       - C++: https://github.com/binance-chain/cplusplus-sdk/wiki
       - C#: https://github.com/binance-chain/csharp-sdk
     - API Reference:
-      - HTTP API - Paths and Models: api-reference/dex-api/paths.md
+      - Accelerated Node HTTP API - Paths and Models: api-reference/dex-api/paths.md
+      - Accelerated Node HTTP API Swagger: api-swagger/index.html
       - WebSockets - Connecting: api-reference/dex-api/ws-connection.md
       - WebSockets - Streams: api-reference/dex-api/ws-streams.md
-      - Node RPC: api-reference/node-rpc.md
-      - RPC Swagger: rpc-swagger/index.html
-      - Accelerated Node API Swagger: api-swagger/index.html
+      - Node RPC - Paths and Models: api-reference/node-rpc.md
+      - Node RPC Swagger: rpc-swagger/index.html
       - CHANGELOG: changelog.md
   - Wallets:
     - Binance Chain Walletsupport: wallets/wallets.md
