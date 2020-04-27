@@ -79,13 +79,13 @@ This transaction is aimed to aimed to enable transfer memo checker scripts.
 * Example on mainnet:
 
 ```
-./bnbcli account_flag enable-memo-checker --chain-id Binance-Chain-Tigris --node  https://dataseed5.defibit.io:443 --trust-node
+./bnbcli account_flags enable-memo-checker --chain-id Binance-Chain-Tigris --node  https://dataseed5.defibit.io:443 --trust-node
 ```
 
 * Example on testnet:
 
 ```
-./tbnbcli account_flag enable-memo-checker --chain-id Binance-Chain-Nile --trust-node --node http://data-seed-pre-0-s3.binance.org:80
+./tbnbcli account_flags enable-memo-checker --chain-id Binance-Chain-Nile --trust-node --node http://data-seed-pre-0-s3.binance.org:80
 ```
 
 ### Disable-memo-checker
