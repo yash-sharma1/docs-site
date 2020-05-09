@@ -2360,6 +2360,9 @@ You need to enable indexer in `config.tml`. You can modify the `index_tags` to i
 - `height`: `int` - height of the block where this transaction was in
 - `hash`: `[]byte` - hash of the transaction
 
+!!! Tip
+	Due to changes of underling Tendermint library, `ResponseCheckTx`, `ResponseDeliverTx`, `ResponseBeginBlock`, and `ResponseEndBlock` now include **Events** instead of **Tags**. Each Event contains a type and a list of attributes (list of key-value pairs) allowing for inclusion of multiple distinct events in each response.
+
 **Available Query Path**
 
 Right now, you can only query by transaction height: `tx.height`. Please note that on Binance Chain testnet, you can only use this data seed node for tx search: <https://data-seed-pre-0-s3.binance.org>
@@ -2395,69 +2398,37 @@ tx, err := client.TxSearch(q, true)
   "result": {
     "txs": [
       {
-        "hash": "36F0945A22CD6921FF9F85F64080334B4887DE4021B2EA5EE7B1D182C3FFEE01",
-        "height": "7772995",
+        "hash": "1FDE1BF2748AD972F937E3B8C526B9B651853C366E0D335CD1D8DC887AF2DB52",
+        "height": "86489220",
         "index": 0,
         "tx_result": {
+          "data": "eyJvcmRlcl9pZCI6IjE0NjhFRTQxMkMzQURDOUNGRjNFRjMxQURDN0VERDI4OEY1RTIwOEUtNDkwMzE4OCJ9",
           "log": "Msg 0: ",
-          "tags": [
+          "events": [
             {
-              "key": "YWN0aW9u",
-              "value": "b3JkZXJDYW5jZWw="
+              "attributes": [
+                {
+                  "key": "YWN0aW9u",
+                  "value": "b3JkZXJOZXc="
+                }
+              ]
             }
           ]
         },
-        "tx": "0wHwYl3uClkWbmgbChTNdDQzSsK8lun9QAyrI4Rcntau1hINWFJQLkItNTg1X0JOQhouQ0Q3NDM0MzM0QUMyQkM5NkU5RkQ0MDBDQUIyMzg0NUM5RUQ2QUVENi0yNDA2MxJwCibrWumHIQMYHcUQ0nCVF2d7BEJZSZVOWKeYJTQYSwxLydi0bOYaohJAQ5r6jZtvhCl+AkEPQhtbRMa/JnwaWfIhxEHytoVUlCtHxFr1SecRojiqSdVOi6byPxHR8xigqb5uqMKh4jDAexhQIP+7ASAD"
-      },
-      {
-        "hash": "C37A11FE0EBA8CFE1F21AC5BF37EAB5722BE60600D79F380F20FA509CD8B48E1",
-        "height": "7772995",
-        "index": 1,
-        "tx_result": {
-          "log": "Msg 0: ",
-          "tags": [
-            {
-              "key": "YWN0aW9u",
-              "value": "b3JkZXJDYW5jZWw="
-            }
-          ]
-        },
-        "tx": "0wHwYl3uClkWbmgbChTNdDQzSsK8lun9QAyrI4Rcntau1hINWFJQLkItNTg1X0JOQhouQ0Q3NDM0MzM0QUMyQkM5NkU5RkQ0MDBDQUIyMzg0NUM5RUQ2QUVENi0yNDA2MhJwCibrWumHIQMYHcUQ0nCVF2d7BEJZSZVOWKeYJTQYSwxLydi0bOYaohJA41OdfzSk04HfryLZWLmHC43MSW9bRwoIaPzU8DLHZmlYvMY41VtrAGLf8zdaHbYd4hFNQDckjM3yQafi+cvZZBhQIIC8ASAD"
-      },
-      {
-        "hash": "42072AA0CBAB78FA4E5ED011AC57D82CDF66F70AD5DB50BF3399C549D45E5714",
-        "height": "7772995",
-        "index": 2,
-        "tx_result": {
-          "data": "eyJvcmRlcl9pZCI6IkQyNEI3M0ZFRjZCRTJCRkZCQzhEQUI5ODNBNEM0RUNFQ0YzNzdBOTAtMjM4MDQifQ==",
-          "log": "Msg 0: ",
-          "tags": [
-            {
-              "key": "YWN0aW9u",
-              "value": "b3JkZXJOZXc="
-            }
-          ]
-        },
-        "tx": "5AHwYl3uCmrObcBDChTSS3P+9r4r/7yNq5g6TE7Ozzd6kBIuRDI0QjczRkVGNkJFMkJGRkJDOERBQjk4M0E0QzRFQ0VDRjM3N0E5MC0yMzgwNBoNWFJQLkItNTg1X0JOQiACKAEwlJVsOIDKlM2kFUABEnAKJuta6YchArsvV8SMf6RIE0nbASGdmdYhOxp8JzsYFqCMNKybLJ4vEkDuWgnSxsQzkLEVkGCd+oHXW3SB4J0DKnSUiPEfMnCkwFFhsST2t8e2kRfgZy0Ds4oAcn33v9UTmApJuu/VB0ZDGE8g+7kBIAM="
-      },
-      {
-        "hash": "D4A78F9CB1E818413477D28F08AF2E76CAE263E2809BA3176D18EBF49A5310A1",
-        "height": "7772995",
-        "index": 3,
-        "tx_result": {
-          "data": "eyJvcmRlcl9pZCI6IkNENzQzNDMzNEFDMkJDOTZFOUZENDAwQ0FCMjM4NDVDOUVENkFFRDYtMjQwNjYifQ==",
-          "log": "Msg 0: ",
-          "tags": [
-            {
-              "key": "YWN0aW9u",
-              "value": "b3JkZXJOZXc="
-            }
-          ]
-        },
-        "tx": "5AHwYl3uCmrObcBDChTNdDQzSsK8lun9QAyrI4Rcntau1hIuQ0Q3NDM0MzM0QUMyQkM5NkU5RkQ0MDBDQUIyMzg0NUM5RUQ2QUVENi0yNDA2NhoNWFJQLkItNTg1X0JOQiACKAEwzI5xOIDMo6nJCUABEnAKJuta6YchAxgdxRDScJUXZ3sEQllJlU5Yp5glNBhLDEvJ2LRs5hqiEkD+dxuHhYbPxsYuXiueWMrBs/W7+5mwHwiw7b+nDuxiKipCvYqJDi15tjdHxcIC1YkwRWB4/XhXDw4/TKSwtZutGFAggbwBIAM="
+        "tx": "6QHwYl3uCm7ObcBDChQUaO5BLDrcnP8+8xrcft0oj14gjhIwMTQ2OEVFNDEyQzNBREM5Q0ZGM0VGMzFBREM3RUREMjg4RjVFMjA4RS00OTAzMTg4Gg9FVEhCRUFSLUIyQl9CTkIgAigCMJiL8wQ4gOTWphlAARJzCibrWumHIQN71QxNe08M6356bk2a6vV44SNkfxQb6DJo5F3sUPjM1RJADS7q9+Hlan0KMFWpd5S4ICALh3JvSo39xL1pGhgkwFwSy46hN8rzh9ZslXgFgv21srx6fPF3P+B87VcFEbn6qBiMwBQgk6KrAg==",
+        "proof": {
+          "RootHash": "5580E084B92507148E9851F4C03E71A6CAC122973C209C2DE8D28EAE3B8BA620",
+          "Data": "6QHwYl3uCm7ObcBDChQUaO5BLDrcnP8+8xrcft0oj14gjhIwMTQ2OEVFNDEyQzNBREM5Q0ZGM0VGMzFBREM3RUREMjg4RjVFMjA4RS00OTAzMTg4Gg9FVEhCRUFSLUIyQl9CTkIgAigCMJiL8wQ4gOTWphlAARJzCibrWumHIQN71QxNe08M6356bk2a6vV44SNkfxQb6DJo5F3sUPjM1RJADS7q9+Hlan0KMFWpd5S4ICALh3JvSo39xL1pGhgkwFwSy46hN8rzh9ZslXgFgv21srx6fPF3P+B87VcFEbn6qBiMwBQgk6KrAg==",
+          "Proof": {
+            "total": "1",
+            "index": "0",
+            "leaf_hash": "VYDghLklBxSOmFH0wD5xpsrBIpc8IJwt6NKOrjuLpiA=",
+            "aunts": []
+          }
+        }
       }
     ],
-    "total_count": "4"
+    "total_count": "1"
   }
 }
 ```
