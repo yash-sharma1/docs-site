@@ -199,6 +199,11 @@ For detailed usage, you can refer to:
 - [offline](../offline.md)
 - [timelock](../timelock.md)
 - [memo validation](../memo-validation.md)
+- [staking](../guides/concepts/bc-staking.md)
+- [slashing](../guides/concepts/bc-slashing.md)
+- [bridge](../guides/concepts/bc-bridge.md)
+
+
 
 ## Use CLI for Different Blockchains
 

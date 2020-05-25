@@ -25,7 +25,7 @@ extra_css:
        - stylesheets/codehilite.css
 nav:
   - Home: index.md
-  - Get Started:
+  - Binance Chain:
     - Introduction: guides/intro.md
     - Create Address: guides/create-address.md
     - Binance DEX Trading: guides/trading-interface.md
@@ -54,6 +54,30 @@ nav:
          - Threshold Signature Scheme: guides/concepts/threshold-signature-scheme.md
          - Atomic Swap: atomic-swap.md
          - WalletConnect: guides/concepts/walletconnect.md
+  - Binance Smart Chain:
+    - Introduction: smart-chain/guides/bsc-intro.md
+    - Concepts:
+      - Consensus: smart-chain/guides/concepts/consensus.md
+      - Comparison: smart-chain/guides/general.md
+      - Genesis File: smart-chain/guides/concepts/genesis.md
+      - Participate: smart-chain/developer/fullnode.md
+      - Cross-chain:
+        - Cross-chain Mechanism: smart-chain/guides/concepts/cross-chain.md
+        - BSC Relayer: smart-chain/guides/concepts/bsc-relayer.md
+        - Oracle Module: smart-chain/guides/concepts/oracle-module.md
+        - Oracle Relayer: smart-chain/guides/concepts/oracle-relayer.md
+        - Relayer Incentives: smart-chain/guides/concepts/incentives.md
+    - Staking:
+      - Validator:
+        - Guides: smart-chain/validator/guideline.md
+        - Become Candidate: smart-chain/validator/candidate.md
+        - Staking parameters: smart-chain/validator/Parameters.md
+      - Delegator Guide: smart-chain/delegator/del-guide.md
+    - Binance Smart Chain Explorer: https://explorer.binance.org/smart-testnet
+    - Wallet:
+      - MetaMask Guides: smart-chain/wallet/metamask.md
+      - Ledger: smart-chain/wallet/ledger.md
+      - MEW: smart-chain/wallet/myetherwallet.md
   - Developers:
     - Binance Chain Fullnode:
       - Install: guides/node/install.md
@@ -76,7 +100,7 @@ nav:
       - Swift: https://github.com/binance-chain/swift-sdk/blob/master/README.md
       - C++: https://github.com/binance-chain/cplusplus-sdk/wiki
       - C#: https://github.com/binance-chain/csharp-sdk
-    - API Reference:
+    - Binance Chain API Reference:
       - Accelerated Node HTTP API - Paths and Models: api-reference/dex-api/paths.md
       - Accelerated Node HTTP API Swagger: api-swagger/index.html
       - WebSockets - Connecting: api-reference/dex-api/ws-connection.md
@@ -84,6 +108,17 @@ nav:
       - Node RPC - Paths and Models: api-reference/node-rpc.md
       - Node RPC Swagger: rpc-swagger/index.html
       - CHANGELOG: changelog.md
+    - Binance Smart Chain:
+      - Binance Smart Chain Fullnode: smart-chain/developer/fullnode.md
+      - BSC Relayer: smart-chain/developer/bsc-relayer.md
+      - BEP2E Tokens: smart-chain/developer/BEP2E.md
+      - General:
+        - Create Wallet: smart-chain/developer/create-wallet.md
+        - BEP2E:
+          - Issue Token: smart-chain/developer/issue-BEP2E.md
+          - Bind Token: smart-chain/developer/bind-tokens.md
+          - Cross-chain Transfer: smart-chain/validator/cross-chain-transfer.md
+      - RPC: smart-chain/developer/rpc.md
   - Wallets:
     - Binance Chain Walletsupport: wallets/wallets.md
     - Wallet Tutorial:
@@ -100,13 +135,27 @@ nav:
   - Binance DEX Testnet: https://testnet.binance.org
   - Chain Explorer Testnet: https://testnet-explorer.binance.org
   - Get Testnet Funds: https://www.binance.vision/tutorials/binance-dex-funding-your-testnet-account
+  - Binance Smart Chain Testnet Explorer: https://explorer.binance.org/smart-testnet
+  - Binance Smart Chain Faucet: https://testnet.binance.org/faucet-smart
   - The Binance Chain Telegram Group : https://t.me/BinanceDEXchange
   - Twitter: https://twitter.com/binance_dex
   - Telegram Announcement Channel English: https://t.me/Binance_DEX_Announcement
   - 币安DEX中文群: https://t.me/BinanceDEXchangeCN
   - 币安链公告频道: https://t.me/Binance_DEX_ChineseAnnouncements
   - FAQ:
-    - v0.5: faq/faq.md
+    - Binance Chain FAQ: faq/faq.md
+    - Binance Smart Chain FAQ:
+      - General:
+        - Info: faq/bsc/general.md
+        - Binance Smart Chain: faq/bsc/bsc.md
+        - Ecosystem: faq/bsc/eco.md
+      - Token:
+        - Intro: faq/bsc/token.md
+        - BEPs: faq/bsc/bep.md
+      - Staking:
+        - Validator: faq/bsc/val.md
+        - Delegator: faq/bsc/del.md
+      - Crosschain: faq/bsc/cross.md
   - More Help: resources.md
   - Contributing: CONTRIBUTING.md
 

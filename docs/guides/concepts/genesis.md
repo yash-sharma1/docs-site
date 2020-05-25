@@ -3,7 +3,7 @@ id: genesis
 title: Genesis File
 ---
 
-This document explains how the genesis file of the Binance Chain mainnet is structured. It also explains how you can build a genesis file for your own `gaia` testnet.
+This document explains how the genesis file of the Binance Chain mainnet is structured. It also explains how you can build a genesis file for your own testnet.
 
 Note that you can generate a default genesis file for your own testnet by running the following command:
 
