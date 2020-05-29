@@ -15,7 +15,7 @@ However, as BSC wants to remain compatible with Ethereum as much as possible. On
 1. The staking token is **[BNB](https://www.binance.com/cn/trade/BNB_USDT)**, as it is a native token on both blockchains anyway
 2. The staking, i.e. token bond and delegation actions and records for BSC, happens on BC.
 3. The BSC validator set is determined by its staking and delegation logic, via a staking module built on BC for BSC, and propagated every day UTC 00:00 from BC to BSC via Cross-Chain communication.
-4. The reward distribution happens on BC around every day UTC 00:00.
+4. The reward distribution happens on BC around every day UTC 00:00 after.
 
 ## Ranking Algorithm
 
@@ -32,23 +32,51 @@ So the main idea is we transfer all the rewards from BSC to BC once every day an
 ### Main Workflow:
 1. ValidatorSet is updated in BreatheBlock, the frequency is once a day. let’s assume it happens on day N.
 2. The info of validator set changes of day N would be transmitted to BSCthrough interchain communication.
-3. The validator set contract on BSC would receive and update the new validatorset.
-
-After that, it would trigger several interchain transfer to transfer the fees that every **previous validators** collected in this period to their addresses on BC. we can see that fees belongs to the validators of day N-1.
-
+3. The validator set contract on BSC would receive and update the new validatorset. After that, it would trigger several interchain transfer to transfer the fees that every **previous validators** collected in this period to their addresses on BC. we can see that fees belongs to the validators of day N-1.
 4. To make some room for the error handling, we distribute the fees of day N-1 in the next breathe block (day N+1).
 
 ### Details
 
 1. even if validator set or any their voting powers are not changed on that day, we still transmit the validator set info to BSC.
-2. the validator set contract maintains a map like `ValidatorFeeMap` recording the fees value that every validators collected after the previous period(We define the **period**     as the time between two contract calls of validator set changes). The actual fees are collected on the contract address.
-3. the interchain transfer to send fees from the contract address to each validator’s distribution address on BC. Note the distribution address is **auto generated** on BC when     handling the create-validator tx, so no private key is corresponded to     that address and no one except the distribution module can move the tokens     on that address.
+2. the validator set contract maintains the history of the fees that every validators collected after the previous period(We define the **period** as the time between two contract calls of validator set changes). The actual fees are collected on the contract address.
+3. the interchain transfer to send fees from the contract address to each validator’s distribution address on BC. Note the distribution address is **auto generated** on BC when handling the create-validator tx, so no private key is corresponded to that address and no one except the distribution module can move the tokens on that address. This address is displayed as **Distribution Addr** in validator info.
+```bash
+Validator
+Fee Address: tbnb15mgzha93ny878kuvjl0pnqmjygwccdadpw5dxf
+Operator Address: bva15mgzha93ny878kuvjl0pnqmjygwccdad08uecu
+Validator Consensus Pubkey:
+Jailed: false
+Status: Bonded
+Tokens: 5000000000000
+Delegator Shares: 5000000000000
+Description: {Elbrus "" www.binance.org This is Elbrus org on rialto network.}
+Bond Height: 74158
+Unbonding Height: 0
+Minimum Unbonding Time: 1970-01-01 00:00:00 +0000 UTC
+Commission: {rate: 75000000, maxRate: 90000000, maxChangeRate: 3000000, updateTime: 2020-05-22 12:24:19.478568234 +0000 UTC}
+Distribution Addr: tbnb1srkkfjk8qctvvy4s3cllhpnkz9679jphr30t2c
+Side Chain Id: rialto
+Consensus Addr on Side Chain: 0xF474Cf03ccEfF28aBc65C9cbaE594F725c80e12d
+Fee Addr on Side Chain: 0xe61a183325A18a173319dD8E19c8d069459E2175
+```
+
 4. we have a lower limit of the value of interchain transfer, at least the value can cover the transfer fee. Also, interchain transfer will only allow max 8 decimals for the amount. The tiny left part would be kept in the contract or put into the system reward pool.
-5. the reward(totalfees \* commissionRate) would be distributed in proportion to the delegations, the left part would be sent to the validator fee address.
+5. the reward: (totalfees \* commissionRate) would be distributed in proportion to the delegations, the left part would be sent to the validator fee address.
 
 ### Error handling:
 
 1. if the cross-chain transfer failed, the tokens would be sent back to a specified address(i.e. the  `SideFeeAddr` in the store section, validators can change this address via the EditValidator tx). After that, validators can manually deposit the tokens to its own `DistributionAddr` on BC via Transfer tx. We do not force the validator to do so, but it’s an indicator that can help delegators choose validators.
+
+## Fee Table
+
+Transaction Type  | Pay in BNB |
+-- | -- |
+Create A New Smart Chain Validator | 10 |
+Edit Smart Chain Validator Information| 1 |
+Delegate Smart Chain Validator | 1 |
+Redelegate Smart Chain Validator | 3 |
+Undelegate Smart Chain Validator | 2 |
+
 
 ## Commands
 
@@ -107,13 +135,49 @@ tbnbcli staking bsc-create-validator --chain-id Binance-Chain-Kongo --from tbnb1
 
 2. If you want a separated self-delegator address, both `self-delegator` and `validator operator` need to sign this transaction. Here we need to use another two commands to support multiple signatures.
 
-a. use the above commands appended with a parameter “**--generate-only**” and save the result to a file which would be used to be signed.
+a. use the following commands appended with a parameter “**--generate-only**” and save the result to a json file which would be used to be signed.
+
+```bash
+tbnbcli staking bsc-create-validator --chain-id Binance-Chain-Kongo --from {validator-operator-address}  --address-delegator {delegator-address} --amount 5000000000000:BNB --moniker bsc_v1 --identity "xxx" --website "www.example.com" --details "bsc validator node 1" --commission-rate 80000000 --commission-max-rate 95000000 --commission-max-change-rate 3000000 --side-chain-id rialto --side-cons-addr 0x9B24Ee0BfBf708b541fB65b6087D6e991a0D11A8 --side-fee-addr 0x5885d2A27Bd4c6D111B83Bc3fC359eD951E8E6F8 --home ~/home_cli --generate-only > unsigned.json
+```
 
 b. both validator operator(--from) and self-delegator(--address-delegator) use “**bnbcli sign**” command to sign the file from a).
 
+**Delegator** address need to sign `unsigned.json` first
+
+* Online Mode
+
+```bash
+./tbnbcli sign unsigned.json --from {delegator-address} --node data-seed-prealpha-1-s1.binance.org:80 --chain-id Binance-Chain-Kongo >> delegator-signed.json
+```
+
+* Offline Mode
+
+```bash
+./tbnbcli sign unsigned.json --account-number <delegator-account-number> --sequence <address-sequence> --chain-id Binance-Chain-Kongo --offline --name {delegator-address} >> delegator-signed.json
+```
+
+Then, **validator** operator addres will sign it later.
+
+* Online Mode
+
+```bash
+./tbnbcli sign delegator-signed.json --from {validator-address} --node data-seed-prealpha-1-s1.binance.org:80 --chain-id Binance-Chain-Kongo >> both-signed.json
+```
+
+* Offline Mode
+
+```bash
+./tbnbcli sign delegator-signed.json --account-number <validator-account-number> --sequence <address-sequence> --chain-id Binance-Chain-Kongo --offline --name {validator-address} >> both-signed.json
+```
+
 c. use “**bnbcli broadcast**” to send the transaction from above to the blockchain nodes.
 
+```bash
+./tbnbcli broadcast both-signed.json  --node data-seed-prealpha-1-s1.binance.org:80 --chain-id Binance-Chain-Kongo
+```
 
+Verify your transaction in [explorer](https://explorer.binance.org/testnet)
 
 ### Edit BSC Validator
 
