@@ -1,3 +1,191 @@
+# Upcoming Changes in Binance Chain API v0.7.0
+
+## Node RPC
+
+Extra paths are available for querying information about `BEP8` tokens and trading pairs.
+
+**New Query Path**
+
+*  `/mini-tokens/info`
+*  `/mini-tokens/list`
+*  `/dex-mini/pairs`
+
+
+## HTTP API
+### /api/v1/depth
+##### ***Changes***
+
+Add pending_match flag in response to indicate that current block has not run matching process for the new orders incoming in this block.
+In detail, if there are new orders created in current block, but the matching process has not run for the block, then pending_math=true. As a result, there could be orders with cross prices - price of ask is lower than price of bid. Client can ignore the response with pending_match=true and query the depth API until pending_match=false.
+
+
+*  /api/v1/depth
+---
+***GET***
+**Summary:** Get the order book.
+
+**Description:** Gets the order book depth data for a given pair symbol.
+
+The given _limit_ must be one of the allowed limits below.
+
+**Destination:** Validator node.
+
+**Rate Limit:** 10 requests per IP per second.
+
+**URL for testnet:** [https://testnet-dex.binance.org/api/v1/depth?symbol=xxx-000_BNB](https://testnet-dex.binance.org/api/v1/depth?symbol=xxx-000_BNB)
+
+**Parameters**
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| symbol | query | Market pair symbol, e.g. NNB-0AD_BNB | Yes | string |
+| limit | query | The limit of results. Allowed limits: [5, 10, 20, 50, 100, 500, 1000] | No | integer |
+
+**Responses**
+
+### MarketDepth
+
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| asks | [ string (fixed8) ] | Price and qty in decimal form, e.g. 1.00000000 | ["1.00000000","800.00000000"] |
+| bids | [ string (fixed8) ] | Price and qty in decimal form, e.g. 1.00000000 | ["1.00000000","800.00000000"] |
+| pending_match | boolean | If new orders inserted in current block and the matching process has not started in the block, return true. |  |
+
+### MarketDepth
+
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| asks | [ string (fixed8) ] | Price and qty in decimal form, e.g. 1.00000000 | ["1.00000000","800.00000000"] |
+| bids | [ string (fixed8) ] | Price and qty in decimal form, e.g. 1.00000000 | ["1.00000000","800.00000000"] |
+| pending_match | boolean | If new orders inserted in current block and the matching process has not started in the block, return true. |  |
+
+### /api/v1/mini/tokens
+
+##### ***Changes***
+
+Gets a list of available mini tokens.
+
+### MiniTokens
+
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| name | string |  | Binance Chain Mini Token |
+| symbol | string |  | BTC-000 |
+| original_symbol | string |  | BTC |
+| total_supply | string (fixed8) | In decimal form, e.g. 1.00000000 | 0.00000000 |
+| token_type | integer | Type of the mini token |  |
+| owner | string (address) | Address |  |
+| mintable | boolean | mintable |  |
+| token_uri | string | URI for token description |  |
+
+### /api/v1/mini/markets:
+
+##### ***Changes***
+
+Gets a list of available mini tokens trading pairs.
+
+### Market
+
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| base_asset_symbol | string (currency) | symbol of base asset | BNB |
+| quote_asset_symbol | string (currency) | symbol of quote asset | ABC-5CA |
+| list_price | string (fixed8) | In decimal form | 1.00000000 |
+| tick_size | string (fixed8) | Minimium price change in decimal form | 0.00000001 |
+| lot_size | string (fixed8) | Minimium trading quantity in decimal form | 1.00000000 |
+
+### /api/v1/mini/kline
+
+##### ***Changes***
+
+Get mini-token candlestick bars. Interval allowed value: [1h, 2h, 4h, 6h, 8h, 12h, 1d, 3d, 1w, 1M]
+
+### Candlestick
+
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| close | number | closing price |  |
+| closeTime | long | time of closing trade |  |
+| high | number | the highest price |  |
+| low | number | the lowest price |  |
+| numberOfTrades | integer | total trades |  |
+| open | number | open price |  |
+| openTime | long | time of open trade |  |
+| quoteAssetVolume | number | the total trading volume in quote asset |  |
+| volume | number | the total trading volume |  |
+
+### /api/v1/mini/orders/closed
+
+##### ***Changes***
+
+Get closed orders of mini-token pairs.
+
+### OrderList
+
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| order | [ [Order]() ] | list of orders |  |
+| total | long |  |  |
+
+### /api/v1/mini/orders/open
+
+##### ***Changes***
+
+Get open orders of mini-token pairs.
+
+### OrderList
+
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| order | [ [Order]() ] | list of orders |  |
+| total | long |  |  |
+
+### /api/v1/mini/ticker/24hr
+
+##### ***Changes***
+
+Get a market ticker of mini-token pairs.
+
+### TickerStatistics
+
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| askPrice | string | sell price |  |
+| askQuantity | string | sell quantity |  |
+| bidPrice | string | buy price |  |
+| bidQuantity | string | buy quantity |  |
+| closeTime | long | time of closing |  |
+| count | long | total trade count |  |
+| firstId | string | ID of first trade |  |
+| highPrice | string | highest price |  |
+| lastId | string | ID of last trade |  |
+| lastPrice | string | last price |  |
+| lastQuantity | string | last quantity |  |
+| lowPrice | string | lowest price |  |
+| openPrice | string | open price |  |
+| openTime | long | open time |  |
+| prevClosePrice | string | last close price |  |
+| priceChange | string | change of price |  |
+| priceChangePercent | string | change of price in percentage |  |
+| quoteVolume | string | trading volume in quote asset |  |
+| symbol | string | trading symbol |  |
+| volume | string | trading volume |  |
+| weightedAvgPrice | string | weighted average price |  |
+
+
+### /api/v1/mini/trades
+
+##### ***Changes***
+
+Get market trades of mini-token pairs.
+
+### TradePage
+
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| total | long | total number of trades |  |
+| trade | [ [Trade]() ] |  |  |
+
 # Upcoming Changes in Binance Chain API v0.6.4
 
 ## HTTP API
