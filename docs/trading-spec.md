@@ -167,7 +167,7 @@ Trading fee can be queried at [here](https://dex.binance.org/api/v1/fees?format=
 
 ### Current Fees Table on Testnet
 
-Fees are variable and may change over time as governance proposals are proposed and voted on. The current fees table for Testnet as of **2019-04-17** is as follows:
+Fees are variable and may change over time as governance proposals are proposed and voted on. The current fees table for Testnet as of **2020-06-24** is as follows:
 
 
 Transaction Type | Pay in Non-BNB Asset | Pay in BNB | Exchange (DEX) Related
@@ -178,9 +178,9 @@ Order Expire (No Fill) | Equivalent 0.00025 BNB | 0.00005 BNB | Y
 IOC (No Fill) | Equivalent 0.0001 BNB | 0.000025 BNB | Y
 Transfer | N/A | 0.000375 BNB | N
 Multi-send | N/A | 0.0003 BNB | N
-Issue Asset | N/A | 500 BNB | N
-Mint Asset | N/A | 5 BNB | N
-Burn Asset | N/A | 0.5 BNB | N
+Issue Asset | N/A | 100 BNB | N
+Mint Asset | N/A | 0.01 BNB | N
+Burn Asset | N/A | 0.01 BNB | N
 Freeze/Unfreeze Asset | N/A | 0.005 BNB | N
 Lock/unlock/relock Asset | N/A | 0.01 BNB | N
 List Asset | N/A | 1000 BNB | N
@@ -189,9 +189,14 @@ Deposit | N/A | 0.000625 BNB | N
 Enable Memo Check | N/A | 1 BNB | N
 Disable Memo Check | N/A | 1 BNB | N
 HTLT | N/A | 0.000375 BNB | N
-depositHTLT | N/A |  0.000375 BNB | Y
-claimHTLT | N/A |  0.000375 BNB | Y
-refundHTLT | N/A |  0.000375 BNB | Y
+depositHTLT | N/A |  0.000375 BNB | N
+claimHTLT | N/A |  0.000375 BNB | N
+refundHTLT | N/A |  0.000375 BNB | N
+refundHTLT | N/A |  0.000375 BNB | N
+TinyIssueFee | N/A | 2 BNB | N
+MiniIssueFee | N/A | 3 BNB | N
+SetTokenUri | N/A| 0.000375 BNB | N
+List BEP8 Token| N/A| 8 BNB | N
 
 
 ### Testnet Fees API
