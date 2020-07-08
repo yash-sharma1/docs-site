@@ -146,7 +146,7 @@ The listing process is different from BEP2 token list. BEP8 token issuer can lis
 
 ## BEP8 Token Trading Pair Matching
 
-The number of BEP8 trading pairs could be much bigger than BEP2 pairs due to the cheap issue/listing fee. As they are designed to use limited network resource, Binance DEX match engine will only allocate a fixed resource on matching the BEP8 pairs. Unlike BEP2 token, BEP8 trading pairs will be matched every 16 blocks.
+The number of BEP8 trading pairs could be much bigger than BEP2 pairs due to the cheap issue/listing fee. As they are designed to use limited network resource, Binance DEX match engine will only allocate a fixed resource on matching the BEP8 pairs. Unlike BEP2 token, BEP8 trading pairs are not matched every block, but they are guaranteed to be matched at least once in every 16 blocks.
 
 ### Place Order
 
