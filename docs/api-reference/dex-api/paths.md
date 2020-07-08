@@ -1,12 +1,13 @@
 HTTP API
 ========
 Within the ecosystem of Binance Chain, there are several accelerated nodes which provides more secure and faster lines to access Binance Chain and DEX data service including HTTP API.
-For testnet, there are 2 accelerated nodes setup as below. API users should try to use them directly.
-  * testnet-dex-atlantic.binance.org
-  * testnet-dex-asiapacific.binance.org
+
 For mainnet, there are more accelerated nodes.
+
   * dex-atlantic.binance.org
+
   * dex-asiapacific.binance.org
+
   * dex-european.binance.org
 
 
@@ -837,6 +838,233 @@ If the time window is larger than limits, only the first n klines will return. I
 | 404 | Not Found |  |
 | 500 | internal server error | [Error](#error) |
 
+### /api/v1/mini/tokens
+---
+##### ***GET***
+**Summary:** Gets a list of available mini tokens.
+
+**Parameters**
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| offset | query | offset | No | integer |
+| limit | query | limit | No | integer |
+
+**Responses**
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | Success | [MiniTokens](#minitokens) |
+| 400 | Bad Request | [Error](#error) |
+| 500 | internal server error | [Error](#error) |
+
+### /api/v1/mini/markets
+---
+##### ***GET***
+**Summary:** Gets a list of mini market pairs.
+
+**Parameters**
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| offset | query | offset | No | integer |
+| limit | query | limit | No | integer |
+
+**Responses**
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | Success | [Markets](#markets) |
+| 400 | Bad Request | [Error](#error) |
+
+### /api/v1/mini/klines
+---
+##### ***GET***
+**Summary:** Get mini-token candlestick bars.
+
+**Description:** Gets candlestick/kline bars for a mini-token symbol pair. Bars are uniquely identified by their open time.
+
+If the time window is larger than limits, only the first n klines will return. In this case, please either shrink the window or increase the limit to get proper amount of klines.
+
+**Rate Limit:** 10 requests per IP per second.
+
+**Example**
+
+```
+[
+  1499040000000,      // Open time
+  "0.01634790",       // Open
+  "0.80000000",       // High
+  "0.01575800",       // Low
+  "0.01577100",       // Close
+  "148976.11427815",  // Volume
+  1499644799999,      // Close time
+  "2434.19055334",    // Quote asset volume
+  308                // Number of trades
+]
+```
+
+
+**Parameters**
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| symbol | query | symbol | Yes | string |
+| interval | query | interval. Allowed value: [1h, 2h, 4h, 6h, 8h, 12h, 1d, 3d, 1w, 1M] | Yes | enum string |
+| limit | query | default 300; max 1000. | No | integer |
+| startTime | query | start time in Milliseconds | No | long |
+| endTime | query | end time in Milliseconds | No | long |
+
+**Responses**
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [ [Candlestick](#candlestick) ] |
+
+### /api/v1/mini/orders/closed
+---
+##### ***GET***
+**Summary:** Get closed orders of mini-token pairs.
+
+**Description:** Gets closed (filled and cancelled) orders for a given address.
+
+**Query Window:** Default query window is latest 7 days; The maximum start - end query window is 3 months.
+
+**Rate Limit:** 5 requests per IP per second.
+
+
+**Parameters**
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| address | query | the owner address | Yes | string |
+| end | query | end time in Milliseconds | No | long |
+| limit | query | default 500; max 1000. | No | integer |
+| offset | query | start with 0; default 0. | No | integer |
+| side | query | order side. 1 for buy and 2 for sell. | No | integer |
+| start | query | start time in Milliseconds | No | long |
+| status | query | order status list. Allowed value: [Ack, IocExpire, IocNoFill, FullyFill, Canceled, Expired, FailedBlocking, FailedMatching] | No | enum string |
+| symbol | query | symbol | No | string |
+| total | query | total number required, 0 for not required and 1 for required; default not required, return total=-1 in response | No | integer |
+
+**Responses**
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [OrderList](#orderlist) |
+
+### /api/v1/mini/orders/open
+---
+##### ***GET***
+**Summary:** Get open orders of mini-token pairs.
+
+**Description:** Gets open orders for a given address.
+**Rate Limit:** 5 requests per IP per second.
+
+
+**Parameters**
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| address | query | the owner address | Yes | string |
+| limit | query | default 500; max 1000. | No | integer |
+| offset | query | start with 0; default 0. | No | integer |
+| symbol | query | symbol | No | string |
+| total | query | total number required, 0 for not required and 1 for required; default not required, return total=-1 in response | No | integer |
+
+**Responses**
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [OrderList](#orderlist) |
+| 400 | Bad Request | [Error](#error) |
+| 404 | Not Found |  |
+| default | Generic error response | [Error](#error) |
+
+### /api/v1/mini/orders/{id}
+---
+##### ***GET***
+**Summary:** Get an order of mini-token pairs.
+
+**Description:** Gets metadata for an individual order by its ID.
+**Rate Limit:** 5 requests per IP per second.
+
+
+**Parameters**
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| id | path | order id | Yes | string |
+
+**Responses**
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [Order](#order) |
+| 400 | Bad Request | [Error](#error) |
+| 404 | Not Found |  |
+| default | Generic error response | [Error](#error) |
+
+### /api/v1/mini/ticker/24hr
+---
+##### ***GET***
+**Summary:** Get a market ticker of mini-token pairs.
+
+**Description:** Gets 24 hour price change statistics for a market pair symbol. Updated every second.
+**Rate Limit:** 5 requests per IP per second.
+
+
+**Parameters**
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| symbol | query | symbol | No | string |
+
+**Responses**
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [ [TickerStatistics](#tickerstatistics) ] |
+| 400 | Bad Request | [Error](#error) |
+| 404 | Not Found |  |
+| default | Generic error response | [Error](#error) |
+
+### /api/v1/mini/trades
+---
+##### ***GET***
+**Summary:** Get market trades of mini-token pairs.
+
+**Description:** Gets a list of historical trades.
+**Query Window:** Default query window is latest 7 days; The maximum start - end query window is 3 months.
+**Rate Limit:** 5 requests per IP per second.
+
+
+**Parameters**
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| address | query | the buyer/seller address | No | string |
+| buyerOrderId | query | buyer order id | No | string |
+| end | query | end time in Milliseconds | No | long |
+| height | query | block height | No | long |
+| limit | query | default 500; max 1000. | No | integer |
+| offset | query | start with 0; default 0. | No | integer |
+| quoteAsset | query | quote asset | No | string |
+| sellerOrderId | query | seller order id | No | string |
+| side | query | order side. 1 for buy and 2 for sell. | No | integer |
+| start | query | start time in Milliseconds | No | long |
+| symbol | query | symbol | No | string |
+| total | query | total number required, 0 for not required and 1 for required; default not required, return total=-1 in response | No | integer |
+
+**Responses**
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [TradePage](#tradepage) |
+| 400 | Bad Request | [Error](#error) |
+| 404 | Not Found |  |
+| default | Generic error response | [Error](#error) |
+
 ### Models
 ---
 
@@ -1030,6 +1258,7 @@ varies with msg type, if you query with --format=json.
 | ---- | ---- | ----------- | ------- |
 | asks | [ string (fixed8) ] | Price and qty in decimal form, e.g. 1.00000000 | ["1.00000000","800.00000000"] |
 | bids | [ string (fixed8) ] | Price and qty in decimal form, e.g. 1.00000000 | ["1.00000000","800.00000000"] |
+| pending_match | boolean | If new orders inserted in current block and the matching process has not started in the block, return true. |  |
 
 ### Candlestick
 
