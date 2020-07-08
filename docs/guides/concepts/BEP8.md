@@ -143,6 +143,11 @@ The listing process is different from BEP2 token list. BEP8 token issuer can lis
 ```bash
 ./bnbcli dex list-mini -s=$mini-token-symbol --quote-asset-symbol=BNB --init-price=1000000000 --from=alice --chain-id Binance-Chain-Tigris   --node  https://dataseed5.defibit.io:443  --trust-node
 ```
+
+## BEP8 Token Trading Pair Matching
+
+The number of BEP8 trading pairs could be much bigger than BEP2 pairs due to the cheap issue/listing fee. As they are designed to use limited network resource, Binance DEX match engine will only allocate a fixed resource on matching the BEP8 pairs. Unlike BEP2 token, BEP8 trading pairs will be matched every 16 blocks.
+
 ### Place Order
 
 The minimum amount of the Mini-BEP2 token should be larger than or equal to **1**, which is presented as 1e8 with the 8 digit decimal rule internally. The only exceptional case is that the user sells the total amount of the free BEP8 token in his account
