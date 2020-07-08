@@ -4,13 +4,15 @@ info:
   version: 1.0.0
   description: |
     Within the ecosystem of Binance Chain, there are several accelerated nodes which provides more secure and faster lines to access Binance Chain and DEX data service including HTTP API.
-    For testnet, there are 2 accelerated nodes setup as below. API users should try to use them directly.
-      * testnet-dex-atlantic.binance.org
-      * testnet-dex-asiapacific.binance.org
+
     For mainnet, there are more accelerated nodes.
+
       * dex-atlantic.binance.org
+
       * dex-asiapacific.binance.org
+
       * dex-european.binance.org
+
   license:
     name: 'Apache 2.0'
     url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
@@ -1507,7 +1509,517 @@ paths:
             description: 'internal server error'
             schema:
               $ref: "#/definitions/Error"
+  /api/v1/mini/tokens:
+    get:
+      tags:
+        - mini
+      summary: Gets a list of available mini tokens.
+      operationId: getMiniTokens
+      parameters:
+        - in: query
+          name: offset
+          description: offset
+          required: false
+          type: integer
+          default: 0
+          format: int32
+        - in: query
+          name: limit
+          description: limit
+          required: false
+          type: integer
+          default: 100
+          format: int32
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/MiniTokens'
+        '400':
+          description: 'Bad Request'
+          schema:
+            $ref: "#/definitions/Error"
+        '500':
+          description: 'internal server error'
+          schema:
+            $ref: "#/definitions/Error"
+  /api/v1/mini/markets:
+    get:
+      tags:
+        - mini
+      summary: Gets a list of mini market pairs.
+      parameters:
+        - in: query
+          name: offset
+          description: offset
+          required: false
+          type: integer
+          default: 0
+          format: int32
+        - in: query
+          name: limit
+          description: limit
+          required: false
+          type: integer
+          default: 100
+          format: int32
+      operationId: getMiniPairs
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/Markets'
+        '400':
+          description: 'Bad Request'
+          schema:
+            $ref: "#/definitions/Error"
+  /api/v1/mini/klines:
+    get:
+      tags:
+        - market
+      summary: Get mini-token candlestick bars.
+      description: |
+        Gets candlestick/kline bars for a mini-token symbol pair. Bars are uniquely identified by their open time.
 
+        If the time window is larger than limits, only the first n klines will return. In this case, please either shrink the window or increase the limit to get proper amount of klines.
+
+        **Rate Limit:** 10 requests per IP per second.
+
+        **Example**
+
+        ```
+        [
+          1499040000000,      // Open time
+          "0.01634790",       // Open
+          "0.80000000",       // High
+          "0.01575800",       // Low
+          "0.01577100",       // Close
+          "148976.11427815",  // Volume
+          1499644799999,      // Close time
+          "2434.19055334",    // Quote asset volume
+          308                // Number of trades
+        ]
+        ```
+      operationId: getCandlestickBars
+      produces:
+        - application/json
+      parameters:
+        - name: symbol
+          in: query
+          description: symbol
+          required: true
+          type: string
+        - name: interval
+          in: query
+          description: "interval. Allowed value: [1h, 2h, 4h, 6h, 8h, 12h, 1d, 3d, 1w, 1M]"
+          required: true
+          type: enum string
+          allowEmptyValue: false
+          enum:
+            - 1h
+            - 2h
+            - 4h
+            - 6h
+            - 8h
+            - 12h
+            - 1d
+            - 3d
+            - 1w
+            - 1M
+        - name: limit
+          in: query
+          description: default 300; max 1000.
+          required: false
+          type: integer
+          format: int32
+          allowEmptyValue: false
+        - name: startTime
+          in: query
+          description: start time in Milliseconds
+          required: false
+          type: integer
+          format: int64
+          allowEmptyValue: false
+        - name: endTime
+          in: query
+          description: end time in Milliseconds
+          required: false
+          type: integer
+          format: int64
+          allowEmptyValue: false
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Candlestick'
+            example: ' [[
+
+                                1499040000000,      // Open time
+
+                                "0.01634790",       // Open
+
+                                "0.80000000",       // High
+
+                                "0.01575800",       // Low
+
+                                "0.01577100",       // Close
+
+                                "148976.11427815",  // Volume
+
+                                1499644799999,      // Close time
+
+                                "2434.19055334",    // Quote asset volume
+
+                                308                // Number of trades
+
+                        ]] '
+      deprecated: false
+  /api/v1/mini/orders/closed:
+    get:
+      tags:
+        - order
+      summary: Get closed orders of mini-token pairs.
+      description: |
+        Gets closed (filled and cancelled) orders for a given address.
+
+        **Query Window:** Default query window is latest 7 days; The maximum start - end query window is 3 months.
+
+        **Rate Limit:** 5 requests per IP per second.
+
+      operationId: getClosedOrders
+      produces:
+        - application/json
+      parameters:
+        - name: address
+          in: query
+          description: the owner address
+          required: true
+          type: string
+          allowEmptyValue: false
+        - name: end
+          in: query
+          description: end time in Milliseconds
+          required: false
+          type: integer
+          format: int64
+          allowEmptyValue: false
+        - name: limit
+          in: query
+          description: default 500; max 1000.
+          required: false
+          type: integer
+          default: 500
+          format: int32
+          allowEmptyValue: false
+        - name: offset
+          in: query
+          description: start with 0; default 0.
+          required: false
+          type: integer
+          default: 0
+          format: int32
+          allowEmptyValue: false
+        - name: side
+          in: query
+          description: order side. 1 for buy and 2 for sell.
+          required: false
+          type: integer
+          format: int32
+          allowEmptyValue: false
+          enum:
+            - BUY
+            - SELL
+        - name: start
+          in: query
+          description: start time in Milliseconds
+          required: false
+          type: integer
+          format: int64
+          allowEmptyValue: false
+        - name: status
+          in: query
+          description: "order status list. Allowed value: [Ack, IocExpire, IocNoFill, FullyFill, Canceled, Expired, FailedBlocking, FailedMatching]"
+          required: false
+          type: enum string
+          items:
+            type: string
+          collectionFormat: multi
+          allowEmptyValue: false
+        - name: symbol
+          in: query
+          description: symbol
+          required: false
+          type: string
+        - name: total
+          in: query
+          description: 'total number required, 0 for not required and 1 for required; default not required, return total=-1 in response'
+          required: false
+          type: integer
+          format: int32
+          allowEmptyValue: false
+          enum:
+            - 0
+            - 1
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/OrderList'
+      deprecated: false
+  /api/v1/mini/orders/open:
+    get:
+      tags:
+        - order
+      summary: Get open orders of mini-token pairs.
+      description: |
+        Gets open orders for a given address.
+        **Rate Limit:** 5 requests per IP per second.
+      operationId: getOpenOrders
+      produces:
+        - application/json
+      parameters:
+        - name: address
+          in: query
+          description: the owner address
+          required: true
+          type: string
+          allowEmptyValue: false
+        - name: limit
+          in: query
+          description: default 500; max 1000.
+          required: false
+          type: integer
+          default: 500
+          format: int32
+          allowEmptyValue: false
+        - name: offset
+          in: query
+          description: start with 0; default 0.
+          required: false
+          type: integer
+          default: 0
+          format: int32
+          allowEmptyValue: false
+        - name: symbol
+          in: query
+          description: symbol
+          required: false
+          type: string
+        - name: total
+          in: query
+          description: 'total number required, 0 for not required and 1 for required; default not required, return total=-1 in response'
+          required: false
+          type: integer
+          format: int32
+          allowEmptyValue: false
+          enum:
+            - 0
+            - 1
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/OrderList'
+        '400':
+          description: 'Bad Request'
+          schema:
+            $ref: "#/definitions/Error"
+        '404':
+          description: 'Not Found'
+        default:
+          description: Generic error response
+          schema:
+            $ref: "#/definitions/Error"
+      deprecated: false
+  /api/v1/mini/orders/{id}:
+    get:
+      tags:
+        - order
+      summary: Get an order of mini-token pairs.
+      description: |
+        Gets metadata for an individual order by its ID.
+        **Rate Limit:** 5 requests per IP per second.
+      operationId: getOrder
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: order id
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Order'
+        '400':
+          description: 'Bad Request'
+          schema:
+            $ref: "#/definitions/Error"
+        '404':
+          description: 'Not Found'
+        default:
+          description: Generic error response
+          schema:
+            $ref: "#/definitions/Error"
+      deprecated: false
+  /api/v1/mini/ticker/24hr:
+    get:
+      tags:
+        - market
+      summary: Get a market ticker of mini-token pairs.
+      description: |
+        Gets 24 hour price change statistics for a market pair symbol. Updated every second.
+        **Rate Limit:** 5 requests per IP per second.
+      operationId: get24HrPriceStatistics
+      produces:
+        - application/json
+      parameters:
+        - name: symbol
+          in: query
+          description: symbol
+          required: false
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/TickerStatistics'
+        '400':
+          description: 'Bad Request'
+          schema:
+            $ref: "#/definitions/Error"
+        '404':
+          description: 'Not Found'
+        default:
+          description: Generic error response
+          schema:
+            $ref: "#/definitions/Error"
+      deprecated: false
+  /api/v1/mini/trades:
+    get:
+      tags:
+        - trade
+      summary: Get market trades of mini-token pairs.
+      description: |
+        Gets a list of historical trades.
+        **Query Window:** Default query window is latest 7 days; The maximum start - end query window is 3 months.
+        **Rate Limit:** 5 requests per IP per second.
+      operationId: getTrades
+      produces:
+        - application/json
+      parameters:
+        - name: address
+          in: query
+          description: the buyer/seller address
+          required: false
+          type: string
+          allowEmptyValue: false
+        - name: buyerOrderId
+          in: query
+          description: buyer order id
+          required: false
+          type: string
+          allowEmptyValue: false
+        - name: end
+          in: query
+          description: end time in Milliseconds
+          required: false
+          type: integer
+          format: int64
+          allowEmptyValue: false
+        - name: height
+          in: query
+          description: block height
+          required: false
+          type: integer
+          format: int64
+          allowEmptyValue: false
+        - name: limit
+          in: query
+          description: default 500; max 1000.
+          required: false
+          type: integer
+          default: 500
+          format: int32
+          allowEmptyValue: false
+        - name: offset
+          in: query
+          description: start with 0; default 0.
+          required: false
+          type: integer
+          default: 0
+          format: int32
+          allowEmptyValue: false
+        - name: quoteAsset
+          in: query
+          description: quote asset
+          required: false
+          type: string
+          allowEmptyValue: false
+        - name: sellerOrderId
+          in: query
+          description: seller order id
+          required: false
+          type: string
+          allowEmptyValue: false
+        - name: side
+          in: query
+          description: order side. 1 for buy and 2 for sell.
+          required: false
+          type: integer
+          format: int32
+          allowEmptyValue: false
+          enum:
+            - BUY
+            - SELL
+        - name: start
+          in: query
+          description: start time in Milliseconds
+          required: false
+          type: integer
+          format: int64
+          allowEmptyValue: false
+        - name: symbol
+          in: query
+          description: symbol
+          required: false
+          type: string
+        - name: total
+          in: query
+          description: 'total number required, 0 for not required and 1 for required; default not required, return total=-1 in response'
+          required: false
+          type: integer
+          format: int32
+          allowEmptyValue: false
+          enum:
+            - 0
+            - 1
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/TradePage'
+        '400':
+          description: 'Bad Request'
+          schema:
+            $ref: "#/definitions/Error"
+        '404':
+          description: 'Not Found'
+        default:
+          description: Generic error response
+          schema:
+            $ref: "#/definitions/Error"
+      deprecated: false
 definitions:
   Error:
     type: object
@@ -1901,6 +2413,9 @@ definitions:
         minItems: 2
         maxItems: 2
         required: true
+      pending_match:
+        type: boolean
+        description: "If new orders inserted in current block and the matching process has not started in the block, return true."
   Candlestick:
     type: object
     properties:

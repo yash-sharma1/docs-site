@@ -1,6 +1,9 @@
-# Upcoming Changes in Binance Chain API v0.7.0
+CHANGELOG
+========
 
-## Node RPC
+## Upcoming Changes in Binance Chain Mainnet API v0.7.2
+
+### Node RPC
 
 Extra paths are available for querying information about `BEP8` tokens and trading pairs.
 
@@ -11,15 +14,15 @@ Extra paths are available for querying information about `BEP8` tokens and tradi
 *  `/dex-mini/pairs`
 
 
-## HTTP API
-### /api/v1/depth
-##### ***Changes***
+### HTTP API
+
+#### /api/v1/depth
+
+***Changes***
 
 Add pending_match flag in response to indicate that current block has not run matching process for the new orders incoming in this block.
 In detail, if there are new orders created in current block, but the matching process has not run for the block, then pending_math=true. As a result, there could be orders with cross prices - price of ask is lower than price of bid. Client can ignore the response with pending_match=true and query the depth API until pending_match=false.
 
-
-*  /api/v1/depth
 ---
 ***GET***
 **Summary:** Get the order book.
@@ -32,7 +35,7 @@ The given _limit_ must be one of the allowed limits below.
 
 **Rate Limit:** 10 requests per IP per second.
 
-**URL for testnet:** [https://testnet-dex.binance.org/api/v1/depth?symbol=xxx-000_BNB](https://testnet-dex.binance.org/api/v1/depth?symbol=xxx-000_BNB)
+**URL for testnet:** [https://dex.binance.org/api/v1/depth?symbol=xxx-000_BNB](https://dex.binance.org/api/v1/depth?symbol=xxx-000_BNB)
 
 **Parameters**
 
@@ -43,7 +46,7 @@ The given _limit_ must be one of the allowed limits below.
 
 **Responses**
 
-### MarketDepth
+#### MarketDepth
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
@@ -51,7 +54,7 @@ The given _limit_ must be one of the allowed limits below.
 | bids | [ string (fixed8) ] | Price and qty in decimal form, e.g. 1.00000000 | ["1.00000000","800.00000000"] |
 | pending_match | boolean | If new orders inserted in current block and the matching process has not started in the block, return true. |  |
 
-### MarketDepth
+#### MarketDepth
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
@@ -59,13 +62,13 @@ The given _limit_ must be one of the allowed limits below.
 | bids | [ string (fixed8) ] | Price and qty in decimal form, e.g. 1.00000000 | ["1.00000000","800.00000000"] |
 | pending_match | boolean | If new orders inserted in current block and the matching process has not started in the block, return true. |  |
 
-### /api/v1/mini/tokens
+#### /api/v1/mini/tokens
 
-##### ***Changes***
+***Changes***
 
 Gets a list of available mini tokens.
 
-### MiniTokens
+#### MiniTokens
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
@@ -78,13 +81,13 @@ Gets a list of available mini tokens.
 | mintable | boolean | mintable |  |
 | token_uri | string | URI for token description |  |
 
-### /api/v1/mini/markets:
+#### /api/v1/mini/markets:
 
-##### ***Changes***
+***Changes***
 
 Gets a list of available mini tokens trading pairs.
 
-### Market
+#### Market
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
@@ -94,13 +97,13 @@ Gets a list of available mini tokens trading pairs.
 | tick_size | string (fixed8) | Minimium price change in decimal form | 0.00000001 |
 | lot_size | string (fixed8) | Minimium trading quantity in decimal form | 1.00000000 |
 
-### /api/v1/mini/kline
+#### /api/v1/mini/kline
 
-##### ***Changes***
+***Changes***
 
 Get mini-token candlestick bars. Interval allowed value: [1h, 2h, 4h, 6h, 8h, 12h, 1d, 3d, 1w, 1M]
 
-### Candlestick
+#### Candlestick
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
@@ -114,39 +117,39 @@ Get mini-token candlestick bars. Interval allowed value: [1h, 2h, 4h, 6h, 8h, 12
 | quoteAssetVolume | number | the total trading volume in quote asset |  |
 | volume | number | the total trading volume |  |
 
-### /api/v1/mini/orders/closed
+#### /api/v1/mini/orders/closed
 
-##### ***Changes***
+***Changes***
 
 Get closed orders of mini-token pairs.
 
-### OrderList
+#### OrderList
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
 | order | [ [Order]() ] | list of orders |  |
 | total | long |  |  |
 
-### /api/v1/mini/orders/open
+#### /api/v1/mini/orders/open
 
-##### ***Changes***
+***Changes***
 
 Get open orders of mini-token pairs.
 
-### OrderList
+#### OrderList
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
 | order | [ [Order]() ] | list of orders |  |
 | total | long |  |  |
 
-### /api/v1/mini/ticker/24hr
+#### /api/v1/mini/ticker/24hr
 
-##### ***Changes***
+***Changes***
 
 Get a market ticker of mini-token pairs.
 
-### TickerStatistics
+#### TickerStatistics
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
@@ -173,24 +176,212 @@ Get a market ticker of mini-token pairs.
 | weightedAvgPrice | string | weighted average price |  |
 
 
-### /api/v1/mini/trades
+#### /api/v1/mini/trades
 
-##### ***Changes***
+***Changes***
 
 Get market trades of mini-token pairs.
 
-### TradePage
+#### TradePage
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
 | total | long | total number of trades |  |
 | trade | [ [Trade]() ] |  |  |
 
-# Upcoming Changes in Binance Chain API v0.6.4
+## Upcoming Changes in Binance Chain Testnet API v0.7.0
 
-## HTTP API
+### Node RPC
 
-### Add Error Message for Newly Created Address
+Extra paths are available for querying information about `BEP8` tokens and trading pairs.
+
+**New Query Path**
+
+*  `/mini-tokens/info`
+*  `/mini-tokens/list`
+*  `/dex-mini/pairs`
+
+
+### HTTP API
+
+#### /api/v1/depth
+
+***Changes***
+
+Add pending_match flag in response to indicate that current block has not run matching process for the new orders incoming in this block.
+In detail, if there are new orders created in current block, but the matching process has not run for the block, then pending_math=true. As a result, there could be orders with cross prices - price of ask is lower than price of bid. Client can ignore the response with pending_match=true and query the depth API until pending_match=false.
+
+---
+***GET***
+**Summary:** Get the order book.
+
+**Description:** Gets the order book depth data for a given pair symbol.
+
+The given _limit_ must be one of the allowed limits below.
+
+**Destination:** Validator node.
+
+**Rate Limit:** 10 requests per IP per second.
+
+**URL for testnet:** [https://testnet-dex.binance.org/api/v1/depth?symbol=xxx-000_BNB](https://testnet-dex.binance.org/api/v1/depth?symbol=xxx-000_BNB)
+
+**Parameters**
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| symbol | query | Market pair symbol, e.g. NNB-0AD_BNB | Yes | string |
+| limit | query | The limit of results. Allowed limits: [5, 10, 20, 50, 100, 500, 1000] | No | integer |
+
+**Responses**
+
+#### MarketDepth
+
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| asks | [ string (fixed8) ] | Price and qty in decimal form, e.g. 1.00000000 | ["1.00000000","800.00000000"] |
+| bids | [ string (fixed8) ] | Price and qty in decimal form, e.g. 1.00000000 | ["1.00000000","800.00000000"] |
+| pending_match | boolean | If new orders inserted in current block and the matching process has not started in the block, return true. |  |
+
+#### MarketDepth
+
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| asks | [ string (fixed8) ] | Price and qty in decimal form, e.g. 1.00000000 | ["1.00000000","800.00000000"] |
+| bids | [ string (fixed8) ] | Price and qty in decimal form, e.g. 1.00000000 | ["1.00000000","800.00000000"] |
+| pending_match | boolean | If new orders inserted in current block and the matching process has not started in the block, return true. |  |
+
+#### /api/v1/mini/tokens
+
+***Changes***
+
+Gets a list of available mini tokens.
+
+#### MiniTokens
+
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| name | string |  | Binance Chain Mini Token |
+| symbol | string |  | BTC-000 |
+| original_symbol | string |  | BTC |
+| total_supply | string (fixed8) | In decimal form, e.g. 1.00000000 | 0.00000000 |
+| token_type | integer | Type of the mini token |  |
+| owner | string (address) | Address |  |
+| mintable | boolean | mintable |  |
+| token_uri | string | URI for token description |  |
+
+#### /api/v1/mini/markets:
+
+***Changes***
+
+Gets a list of available mini tokens trading pairs.
+
+#### Market
+
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| base_asset_symbol | string (currency) | symbol of base asset | BNB |
+| quote_asset_symbol | string (currency) | symbol of quote asset | ABC-5CA |
+| list_price | string (fixed8) | In decimal form | 1.00000000 |
+| tick_size | string (fixed8) | Minimium price change in decimal form | 0.00000001 |
+| lot_size | string (fixed8) | Minimium trading quantity in decimal form | 1.00000000 |
+
+#### /api/v1/mini/kline
+
+***Changes***
+
+Get mini-token candlestick bars. Interval allowed value: [1h, 2h, 4h, 6h, 8h, 12h, 1d, 3d, 1w, 1M]
+
+#### Candlestick
+
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| close | number | closing price |  |
+| closeTime | long | time of closing trade |  |
+| high | number | the highest price |  |
+| low | number | the lowest price |  |
+| numberOfTrades | integer | total trades |  |
+| open | number | open price |  |
+| openTime | long | time of open trade |  |
+| quoteAssetVolume | number | the total trading volume in quote asset |  |
+| volume | number | the total trading volume |  |
+
+#### /api/v1/mini/orders/closed
+
+***Changes***
+
+Get closed orders of mini-token pairs.
+
+#### OrderList
+
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| order | [ [Order]() ] | list of orders |  |
+| total | long |  |  |
+
+#### /api/v1/mini/orders/open
+
+***Changes***
+
+Get open orders of mini-token pairs.
+
+#### OrderList
+
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| order | [ [Order]() ] | list of orders |  |
+| total | long |  |  |
+
+#### /api/v1/mini/ticker/24hr
+
+***Changes***
+
+Get a market ticker of mini-token pairs.
+
+#### TickerStatistics
+
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| askPrice | string | sell price |  |
+| askQuantity | string | sell quantity |  |
+| bidPrice | string | buy price |  |
+| bidQuantity | string | buy quantity |  |
+| closeTime | long | time of closing |  |
+| count | long | total trade count |  |
+| firstId | string | ID of first trade |  |
+| highPrice | string | highest price |  |
+| lastId | string | ID of last trade |  |
+| lastPrice | string | last price |  |
+| lastQuantity | string | last quantity |  |
+| lowPrice | string | lowest price |  |
+| openPrice | string | open price |  |
+| openTime | long | open time |  |
+| prevClosePrice | string | last close price |  |
+| priceChange | string | change of price |  |
+| priceChangePercent | string | change of price in percentage |  |
+| quoteVolume | string | trading volume in quote asset |  |
+| symbol | string | trading symbol |  |
+| volume | string | trading volume |  |
+| weightedAvgPrice | string | weighted average price |  |
+
+
+#### /api/v1/mini/trades
+
+***Changes***
+
+Get market trades of mini-token pairs.
+
+#### TradePage
+
+| Name | Type | Description | Example |
+| ---- | ---- | ----------- | ------- |
+| total | long | total number of trades |  |
+| trade | [ [Trade]() ] |  |  |
+
+## Upcoming Changes in Binance Chain API v0.6.4
+
+### HTTP API
+
+#### Add Error Message for Newly Created Address
 
 You will get `{"code":404,"message":"account not found"}` for newly created account:
 
@@ -205,12 +396,14 @@ code: 404,
 message: "account not found"
 }
 ```
-### /api/v1/trades
+#### /api/v1/trades
 
-##### ***Changes***
+***Changes***
+
 Add `buyerSource` and `sellerSource` in the response Trade data structure. The Source Id reference can be found in https://github.com/binance-chain/BEPs/blob/master/BEP10.md.
 
-### Trade
+#### Trade
+
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
 | baseAsset | string | base asset symbol |  |
@@ -233,14 +426,15 @@ Add `buyerSource` and `sellerSource` in the response Trade data structure. The S
 | time | long | trade time |  |
 | tradeId | string | trade ID |  |
 
-# Upcoming Changes in Binance Chain API v0.6.3
+## Upcoming Changes in Binance Chain API v0.6.3
 
-## HTTP API
+### HTTP API
 
-### /api/v1/atomic-swaps
-### /api/v1/atomic-swaps/{id}
+#### /api/v1/atomic-swaps
+#### /api/v1/atomic-swaps/{id}
 
-##### ***Changes***
+***Changes***
+
 The API is used to query atomic-swaps by id or by address.
 In the `AtomicSwap` data structure:
 * A new field `blockTimestamp` is added to indicate the block time in millisecond
@@ -248,7 +442,7 @@ In the `AtomicSwap` data structure:
 * `createTime` and `updateTime` are removed from `AtomicSwap`.
 
 
-### AtomicSwap
+#### AtomicSwap
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
@@ -268,7 +462,7 @@ In the `AtomicSwap` data structure:
 | timestamp | long | The timestamp for randomNumberHash calculation, randomNumberHash=sha256(randomNumber, timestamp). The unit is second. |  |
 | toAddr | string |  |  |
 
-## WebSocket
+### WebSocket
 
 As described in https://docs.binance.org/api-reference/dex-api/ws-streams.html#6-book-depth-streams, you can now customize the returned level from orderbook. The default level is 20 and you can extend the level to 100, 500, or 1000 with compression enabled.
 
@@ -281,11 +475,11 @@ var  marketDepth = new WebSocket("wss://dex-atlantic.binance.org/api/ws/NEXO-A84
 var  marketDepth = new WebSocket("wss://testnet-de.binance.org/api/ws/ALT-3B6_BNB@marketDepth100");
 ```
 
-## Node RPC
+### Node RPC
 
 Due to changes of underling Tendermint library, `ResponseCheckTx`, `ResponseDeliverTx`, `ResponseBeginBlock`, and `ResponseEndBlock` now include `Events` instead of `Tags`. Each `Event` contains a type and a list of attributes (list of key-value pairs) allowing for inclusion of multiple distinct events in each response.
 
-### Events
+#### Events
 
 Some methods (`CheckTx, BeginBlock, DeliverTx, EndBlock`)
 include an `Events` field in their `Response*`. Each event contains a type and a
@@ -397,17 +591,17 @@ type ResponseEndBlock struct {
 }
 ```
 
-# Upcoming Changes in Binance Chain API v0.6.2
+## Upcoming Changes in Binance Chain API v0.6.2
 
-## HTTP API
+### HTTP API
 
-### /api/v2/transactions-in-block/{blockHeight}
+#### /api/v2/transactions-in-block/{blockHeight}
 
-##### ***Changes***
+***Changes***
 
 This endpoint is used for getting all transactions in the block. Multi-send and multi-coin transactions are flattened as sub-transactions.
 
-### TxV2
+#### TxV2
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
@@ -430,13 +624,13 @@ This endpoint is used for getting all transactions in the block. Multi-send and 
 | txType | string |  |  |
 | value | string |  |  |
 
-### /api/v1/timelocks/{account_addr}
+#### /api/v1/timelocks/{account_addr}
 
-##### ***Changes***
+***Changes***
 
 This new function is for getting the whole timelock history of an address.
 
-### TimeLocks
+#### TimeLocks
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
@@ -445,13 +639,13 @@ This new function is for getting the whole timelock history of an address.
 | amount | [  ] |  |  |
 | locktime | string | The available unlock time |  |
 
-### /api/v1/timelock/{account_addr}?(id={recordid})
+####/api/v1/timelock/{account_addr}?(id={recordid})
 
-##### ***Changes***
+***Changes***
 
 This new function is for getting the timelock history of an address by id.
 
-### TimeLocks
+#### TimeLocks
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
@@ -460,22 +654,22 @@ This new function is for getting the timelock history of an address by id.
 | amount | [  ] |  |  |
 | locktime | string | The available unlock time |  |
 
-# Upcoming Changes in Binance Chain API v0.6.1
+## Upcoming Changes in Binance Chain API v0.6.1
 
-## HTTP API
+### HTTP API
 
 As you know, There are some accelerate nodes which provides some advanced API services for the public. Here is a list of all the HTTP API information it provides on mainnet: https://docs.binance.org/api-reference/dex-api/paths.html
 
 In the latest update of HTTP API for testnet, there are the following changes:
 
-### /api/v1/account/{address}
+#### /api/v1/account/{address}
 
-##### ***Changes***
+***Changes***
 In the `Account` data structure, a new field `flags` is added to indicate the constrains for this address.
 
 * `flags` is used to indicate which script needs to be executed.
 
-### Account
+#### Account
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
@@ -486,25 +680,27 @@ In the `Account` data structure, a new field `flags` is added to indicate the co
 | flags | integer | indicate additional check for this account|  |
 | sequence | long | sequence is for preventing replay attack |  |
 
-# Upcoming Changes in Binance Chain API v0.6.0
+## Upcoming Changes in Binance Chain API v0.6.0
 
-## HTTP API
+### HTTP API
 
 As you know, There are some accelerate nodes which provides some advanced API services for the public. Here is a list of all the HTTP API information it provides on mainnet: https://docs.binance.org/api-reference/dex-api/paths.html
 
 In the latest update of HTTP API for testnet, there are the following changes:
 
 
-### /api/v1/trades
+#### /api/v1/trades
 ---
 
-##### ***Changes***
+***Changes***
+
 In the `Trade` data structure, a new field `Ticker Type` is added. The enumerate values are: "Unknown", "SellTaker","BuyTaker","BuySurplus","SellSurplus","Neutral". When there is a maker and taker, `SellTaker` and  `BuyTaker` are used to indicate the side. When both sides are taker,  `BuySurplus`, `SellSurplus` and `Neutral` are used to indicate market pressure.`Unknown` mean the type is not possible to define.
 
 * `buySingleFee` is used to show trading fee for the buyer address on this single trade.
 * `sellSingleFee`is used to show  trading fee for the seller address on this single trade.
 
-##### ***GET***
+***GET***
+
 **Summary:** Get market trades.
 
 **Description:** Gets a list of historical trades.
@@ -541,14 +737,14 @@ In the `Trade` data structure, a new field `Ticker Type` is added. The enumerate
 | default | Generic error response | [Error](#error) |
 
 
-### TradePage
+#### TradePage
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
 | total | long |  |  |
 | trade | [ [Trade](#trade) ] |  |  |
 
-### Trade
+#### Trade
 
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
@@ -572,10 +768,11 @@ In the `Trade` data structure, a new field `Ticker Type` is added. The enumerate
 
 
 
-## Websocket
+### Websocket
 
-### Trades
-#### Changes
+#### Trades
+
+***Changes***
 
 In received Payload of `trades`, a new filed `tt` is added. Its enumerate values are:
 * 0: Unknown
@@ -621,11 +818,12 @@ In received Payload of `trades`, a new filed `tt` is added. Its enumerate values
 }
 ```
 
-## Extra data from your fullnode
+### Extra data from your fullnode
 
 All those [extra info](https://docs.binance.org/get-extra-data-from-fullnode.html#publish-different-messages-to-local-files ) can also be found in exported data from your fullnode.
 
-### Changes
+***Changes***
+
 In `trade` data structure, there are five new fields: `SSrc`,`BSrc`,`SSingleFee`, `BSingleFee` and `TickerType`.
 
 * `SSrc`: Source code of Sell order transaction
@@ -743,10 +941,11 @@ For example:
 }
 ```
 
-# Tendermint Changes
-
 ## Upcoming Changes in v0.6.2
-### 1. Better Handle Index database
+
+### Tendermint Changes
+
+#### 1. Better Handle Index database
 
 Now Tendermint will recover index data from restart or crash. You can see the latest indexed height from status:
 ```
@@ -766,11 +965,11 @@ Now Tendermint will recover index data from restart or crash. You can see the la
 ...
 }
 ```
-### 2. More configuration in config file
+#### 2. More configuration in config file
 
 A new field is added: ` skip_tx_from_persistent` under mempool part. If you set this to be True, your node will not broadcast transactions to its persistent peers.
 
-### 3. Change of Monitoring Metrics
+#### 3. Change of Monitoring Metrics
 
 * Add the following metrics:
    * IndexHegiht：This metric will show the latest indexed height.

@@ -1,6 +1,14 @@
 HTTP API
 ========
-The Binance Chain HTTP API provides access to a Binance Chain node deployment and market data services.
+Within the ecosystem of Binance Chain, there are several accelerated nodes which provides more secure and faster lines to access Binance Chain and DEX data service including HTTP API.
+
+
+For testnet, there are 2 accelerated nodes setup as below. API users should try to use them directly.
+
+* testnet-dex-atlantic.binance.org
+
+* testnet-dex-asiapacific.binance.org
+
 
 **Version:** 1.0.0
 
