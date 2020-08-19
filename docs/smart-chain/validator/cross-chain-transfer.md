@@ -43,7 +43,7 @@ Committed at block 465899 (tx hash: 68FFF82197E27A3EC14AFF8C99A035FA9CA7120312AA
 
 ### transferOut
 
-Call **transferOut** of TokenHub contract in MyEtherWallet:
+Call **transferOut** of [TokenHub contract](https://raw.githubusercontent.com/binance-chain/bsc-genesis-contract/master/abi/tokenhub.abi)) in [MyEtherWallet](https://www.myetherwallet.com/):
 
 ![img](https://lh3.googleusercontent.com/q8-nnt12h8gvYyMe6iwLalwzY-1jHfQ11BsSyIz3qkQPCjp_-D-dIzPxZ-HuMJngCxTs7pt65-zSUIYImpsoO8bJ_QC_pyfPMu_2O7Lh65uDvVXrkhKqOakI070vKuEK3UNnlk8m)
 
@@ -52,16 +52,17 @@ Call **transferOut** of TokenHub contract in MyEtherWallet:
 | Parameter Name | Type    | Description                                                  |
 | -------------- | ------- | ------------------------------------------------------------ |
 | contractAddr   | address | for BNB, the value must be 0x0000000000000000000000000000000000000000 |
-| recipient      | address | decode bech32 address  to hex string. This is a online too to decode bech32: https://slowli.github.io/bech32-buffer/ |
+| recipient      | address | decode bech32 address, starting with `0x` . To transfer to hex string. This is a online too to decode bech32: https://slowli.github.io/bech32-buffer/ |
 | amount         | uint256 | The BNB decimals on  BSC is 18. If you want to transfer one BNB, then the value should be 1e18. Besides, the value must be N * 1e10 |
 | expireTime     | uint256 | Timestamp, counted by  second                                |
+
 The value here should follow this equation:
 
 ```
-txValue = (amount + miniRelayFee)/1e18
+txValue = (amount + RelayFee)/1e18
 ```
 
-The initial miniRelayFee is 1e16. It can be changed by on-chain governance
+`RelayFee`should be 0.01BNB and it can be updated by on-chain governance. For example, if you transfer 1BNB from BSC to BC, the value should be at least 1.01BNB.
 
 After all the above parameters have been set to proper values, users can click the transact button to build transactions, and metamask plugin will be ejected. Then users can click the confirm button in metamask to sign and broadcast transactions.
 
@@ -83,7 +84,7 @@ Call **batchTransferOutBNB** of TokenHub contract in MyEtherWallet:
 The value here should follow this equation:
 
 ```
-txValue = (sumOfAmounts + miniRelayFee * batchSize)/1e18
+txValue = (sumOfAmounts + RelayFee * batchSize)/1e18
 ```
 
 ## Transfer BEP2 to BSC
@@ -105,7 +106,7 @@ Before calling **transferOut** or **batchTransferOut**, users need to call **app
 | amount         | uint256 | BEP2E token amount.  Here the decimals is 18, so the amount must be N * 1e10. |
 | expireTime     | uint256 | Timestamp, counted by  second                                |
 
-The value here should be miniRelayFee/1e18.
+The value here should be RelayFee.
 
 ### Mint
 
