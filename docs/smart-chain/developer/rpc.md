@@ -20,6 +20,7 @@ BSC RPC Endpoints:
 * https://bsc-dataseed4.ninicoin.io/
 
 BC RPC Endpoints:
+
 * https://dataseed1.binance.org/
 * https://dataseed2.binance.org/
 * https://dataseed3.binance.org/
