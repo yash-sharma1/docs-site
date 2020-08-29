@@ -9,6 +9,10 @@ Please refer to this [doc](../../tokens.md)
 **Example**
 Let's issue a new token `ABC`
 ```bash
+## mainnet
+bnbcli token issue --symbol ABC --token-name "ABC token" --mintable --total-supply 10000000000000000 --from owner --chain-id Binance-Chain-Tigris --node http://dataseed4.org:80
+
+## testnet
 tbnbcli token issue --symbol ABC --token-name "ABC token" --mintable --total-supply 10000000000000000 --from owner --chain-id Binance-Chain-Ganges --node http://data-seed-pre-0-s3.binance.org:80
 ```
 
@@ -20,6 +24,10 @@ The symbol of the BEP20 token must be exactly identical to the prefix of the bep
 ## Token Binding
 ### Send Bind Transaction
 ```bash
+## mainnet
+bnbcli bridge bind --symbol ABC-A64 --amount 6000000000000000 --expire-time 1597545851 --contract-decimals 18 --from owner --chain-id Binance-Chain-Tigris --contract-address 0xee3de9d0640ab4342bf83fe2897201543924a324 --node http://dataseed4.binance.org:80
+
+## testnet
 tbnbcli bridge bind --symbol ABC-A64 --amount 6000000000000000 --expire-time 1597545851 --contract-decimals 18 --from owner --chain-id Binance-Chain-Ganges --contract-address 0xee3de9d0640ab4342bf83fe2897201543924a324 --node http://data-seed-pre-0-s3.binance.org:80
 ```
 The total supply of the ABC-A64 token is 100 million. The above bind transfer will transfer 60 million to a pure-code-controlled address. And then there are 40 million flowable tokens in BC. According to our bind mechanism, we have to lock 40 million token to **TokenManager** contract and leave 60 million flowable token on BSC. Thus the sum of flowable tokens on both chains is 100 million. Please remember that the amounts I mentioned above don’t include decimals.
@@ -42,6 +50,9 @@ The total supply of the ABC-A64 token is 100 million. The above bind transfer wi
     
     Wait for about 20 seconds and execute this command:
     ```bash
+    ## mainnet
+    bnbcli token info --symbol ABC-A64 --trust-node --node http://dataseed4.binance.org:80
+    ## testnet
     tbnbcli token info --symbol ABC-A64 --trust-node --node http://data-seed-pre-0-s3.binance.org:80
     ```
     

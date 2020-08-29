@@ -8,7 +8,11 @@ First, you should make sure that it's already bound. For example, you could see 
 
 
 ```shell
-tbnbcli token info --symbol BNB --trust-node --node http://data-seed-pre-0-s3.binance.org:80
+## mainnet
+bnbcli token info --symbol BNB --trust-node --node http://dataseed4.binance.org:80
+
+## testnet
+tbnbcli token info --symbol BNB --trust-node --node http://data-seed-pre-0-s3.binance.org:80 
 ```
 
 ```json
@@ -35,6 +39,10 @@ As BNB is the native token on both chains, so we use `0x000000000000000000000000
 **Example:**
 
 ```shell
+## mainnet
+bnbcli bridge transfer-out --to 0xEe9546E92e6876EdF6a234eFFbD72d75360d91f0 --expire-time 1597543193 --chain-id Binance-Chain-Tigris --from owner --amount 100000000:BNB --node http://dataseed4.binance.org:80
+
+## testnet
 tbnbcli bridge transfer-out --to 0xEe9546E92e6876EdF6a234eFFbD72d75360d91f0 --expire-time 1597543193 --chain-id Binance-Chain-Ganges --from owner --amount 100000000:BNB --node http://data-seed-pre-0-s3.binance.org:80
 ```
 
@@ -95,6 +103,10 @@ txValue = (sumOfAmounts + RelayFee * batchSize)/1e18
 ## Transfer BEP2 to BSC
 Execute the following command to transfer ABC-A64 token to BSC:
 ```bash
+## mainnet
+bnbcli bridge transfer-out --to 0xEe9546E92e6876EdF6a234eFFbD72d75360d91f0 --expire-time 1597543193 --chain-id Binance-Chain-Tigris --from owner --amount 10000000000:ABC-A64 --node http://dataseed4.binance.org:80
+
+## testnet
 tbnbcli bridge transfer-out --to 0xEe9546E92e6876EdF6a234eFFbD72d75360d91f0 --expire-time 1597543193 --chain-id Binance-Chain-Ganges --from owner --amount 10000000000:ABC-A64 --node http://data-seed-pre-0-s3.binance.org:80
 ```
 ## Transfer BEP20 to BC
@@ -121,6 +133,10 @@ If both the BEP20 token and bep2 token are mintable, then token owners can still
 
 1. Execute the following command to mint 10000 ABC-A64:
 ```bash
+## mainnet
+bnbcli token mint --symbol ABC-A64 --amount 1000000000000 --from owner --chain-id Binance-Chain-Tigris --node http://dataseed4.binance.org:80
+
+## testnet
 tbnbcli token mint --symbol ABC-A64 --amount 1000000000000 --from owner --chain-id Binance-Chain-Ganges --node http://data-seed-pre-0-s3.binance.org:80
 ```
 
@@ -135,6 +151,10 @@ tbnbcli token mint --symbol ABC-A64 --amount 1000000000000 --from owner --chain-
 
 * Execute the following command to mint 10000 ABC-A64:
 ```bash
+## mainnet
+bnbcli token mint --symbol ABC-A64 --amount 1000000000000 --from owner --chain-id Binance-Chain-Tigris --node http://dataseed4.binance.org:80
+
+## testnet
 tbnbcli token mint --symbol ABC-A64 --amount 1000000000000 --from owner --chain-id Binance-Chain-Ganges --node http://data-seed-pre-0-s3.binance.org:80
 ```
 * Transfer all minted ABC-A64 token to the pure-code-controlled address: `tbnb1v8vkkymvhe2sf7gd2092ujc6hweta38xnc4wpr`(mainnet address: `bnb1v8vkkymvhe2sf7gd2092ujc6hweta38xadu2pj`)

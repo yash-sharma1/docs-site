@@ -81,7 +81,11 @@ Undelegate Smart Chain Validator | 0.002 |
 ## Commands
 
 ### Download
-Please download `tbnbcli` binary from [here](https://github.com/binance-chain/smart-chain-binary/tree/master/bc/cli)
+#### Mainnet
+Please download `bnbcli` binary from [here](https://github.com/binance-chain/node-binary/tree/master/cli/prod)
+
+#### Testnet
+Please download `tbnbcli` binary from [here](https://github.com/binance-chain/node-binary/tree/master/cli/testnet)
 
 ### Create BSC Validator
 
@@ -124,12 +128,20 @@ Some address parameters we need to highlight here:
 * Mainnet
 
 ```bash
-bnbcli staking bsc-create-validator --chain-id Binance-Chain-Tigris --from bnb1tfh30c67mkzfz06as2hk0756mgdx8mgypu7ajl --amount 2000000000000:BNB --moniker bsc_v1 --identity "xxx" --website "[www.example.](http://www.binance.org)com" --details "bsc validator node 1" --commission-rate 80000000 --commission-max-rate 95000000 --commission-max-change-rate 3000000 --side-chain-id chapel --side-cons-addr 0x9B24Ee0BfBf708b541fB65b6087D6e991a0D11A8 --side-fee-addr 0x5885d2A27Bd4c6D111B83Bc3fC359eD951E8E6F8 --home ~/home_cli
+## mainnet
+bnbcli staking bsc-create-validator --chain-id Binance-Chain-Tigris --from bnb1tfh30c67mkzfz06as2hk0756mgdx8mgypu7ajl --amount 2000000000000:BNB --moniker bsc_v1 --identity "xxx" --website "[www.example.](http://www.binance.org)com" --details "bsc validator node 1" --commission-rate 80000000 --commission-max-rate 95000000 --commission-max-change-rate 3000000 --side-chain-id bsc --side-cons-addr 0x9B24Ee0BfBf708b541fB65b6087D6e991a0D11A8 --side-fee-addr 0x5885d2A27Bd4c6D111B83Bc3fC359eD951E8E6F8 --home ~/home_cli
+
+## testnet
+tbnbcli staking bsc-create-validator --chain-id Binance-Chain-Ganges --from bnb1tfh30c67mkzfz06as2hk0756mgdx8mgypu7ajl --amount 2000000000000:BNB --moniker bsc_v1 --identity "xxx" --website "[www.example.](http://www.binance.org)com" --details "bsc validator node 1" --commission-rate 80000000 --commission-max-rate 95000000 --commission-max-change-rate 3000000 --side-chain-id chapel --side-cons-addr 0x9B24Ee0BfBf708b541fB65b6087D6e991a0D11A8 --side-fee-addr 0x5885d2A27Bd4c6D111B83Bc3fC359eD951E8E6F8 --home ~/home_cli
 ```
 
 * Testnet
 
 ```bash
+## mainnet
+bnbcli staking bsc-create-validator --chain-id Binance-Chain-Tigris --from tbnb1tfh30c67mkzfz06as2hk0756mgdx8mgypu7ajl --amount 2000000000000:BNB --moniker bsc_v1 --identity "xxx" --website "[www.example.](http://www.binance.org)com" --details "bsc validator node 1" --commission-rate 80000000 --commission-max-rate 95000000 --commission-max-change-rate 3000000 --side-chain-id bsc --side-cons-addr 0x9B24Ee0BfBf708b541fB65b6087D6e991a0D11A8 --side-fee-addr 0x5885d2A27Bd4c6D111B83Bc3fC359eD951E8E6F8 --home ~/home_cli
+
+## testnet
 tbnbcli staking bsc-create-validator --chain-id Binance-Chain-Ganges --from tbnb1tfh30c67mkzfz06as2hk0756mgdx8mgypu7ajl --amount 2000000000000:BNB --moniker bsc_v1 --identity "xxx" --website "[www.example.](http://www.binance.org)com" --details "bsc validator node 1" --commission-rate 80000000 --commission-max-rate 95000000 --commission-max-change-rate 3000000 --side-chain-id chapel --side-cons-addr 0x9B24Ee0BfBf708b541fB65b6087D6e991a0D11A8 --side-fee-addr 0x5885d2A27Bd4c6D111B83Bc3fC359eD951E8E6F8 --home ~/home_cli
 ```
 
@@ -138,6 +150,10 @@ tbnbcli staking bsc-create-validator --chain-id Binance-Chain-Ganges --from tbnb
 a. use the following commands appended with a parameter “**--generate-only**” and save the result to a json file which would be used to be signed.
 
 ```bash
+## mainnet
+bnbcli staking bsc-create-validator --chain-id Binance-Chain-Tigris --from {validator-operator-address}  --address-delegator {delegator-address} --amount 5000000000000:BNB --moniker bsc_v1 --identity "xxx" --website "www.example.com" --details "bsc validator node 1" --commission-rate 80000000 --commission-max-rate 95000000 --commission-max-change-rate 3000000 --side-chain-id bsc --side-cons-addr 0x9B24Ee0BfBf708b541fB65b6087D6e991a0D11A8 --side-fee-addr 0x5885d2A27Bd4c6D111B83Bc3fC359eD951E8E6F8 --home ~/home_cli --generate-only > unsigned.json
+
+## testnet
 tbnbcli staking bsc-create-validator --chain-id Binance-Chain-Ganges --from {validator-operator-address}  --address-delegator {delegator-address} --amount 5000000000000:BNB --moniker bsc_v1 --identity "xxx" --website "www.example.com" --details "bsc validator node 1" --commission-rate 80000000 --commission-max-rate 95000000 --commission-max-change-rate 3000000 --side-chain-id chapel --side-cons-addr 0x9B24Ee0BfBf708b541fB65b6087D6e991a0D11A8 --side-fee-addr 0x5885d2A27Bd4c6D111B83Bc3fC359eD951E8E6F8 --home ~/home_cli --generate-only > unsigned.json
 ```
 
@@ -148,12 +164,20 @@ b. both validator operator(--from) and self-delegator(--address-delegator) use �
 * Online Mode
 
 ```bash
+## mainnet
+./bnbcli sign unsigned.json --from {delegator-address} --node dataseed4.binance.org:80 --chain-id Binance-Chain-Tigris >> delegator-signed.json
+
+## testnet
 ./tbnbcli sign unsigned.json --from {delegator-address} --node data-seed-pre-0-s3.binance.org:80 --chain-id Binance-Chain-Ganges >> delegator-signed.json
 ```
 
 * Offline Mode
 
 ```bash
+## mainnet
+./bnbcli sign unsigned.json --account-number <delegator-account-number> --sequence <address-sequence> --chain-id Binance-Chain-Tigris --offline --name {delegator-address} >> delegator-signed.json
+
+## testnet
 ./tbnbcli sign unsigned.json --account-number <delegator-account-number> --sequence <address-sequence> --chain-id Binance-Chain-Ganges --offline --name {delegator-address} >> delegator-signed.json
 ```
 
@@ -162,22 +186,34 @@ Then, **validator** operator addres will sign it later.
 * Online Mode
 
 ```bash
+## mainnet
+./bnbcli sign delegator-signed.json --from {validator-address} --node dataseed4.binance.org:80 --chain-id Binance-Chain-Tigris >> both-signed.json
+
+## testnet
 ./tbnbcli sign delegator-signed.json --from {validator-address} --node data-seed-pre-0-s3.binance.org:80 --chain-id Binance-Chain-Ganges >> both-signed.json
 ```
 
 * Offline Mode
 
 ```bash
+## mainnet
+./bnbcli sign delegator-signed.json --account-number <validator-account-number> --sequence <address-sequence> --chain-id Binance-Chain-Tigris --offline --name {validator-address} >> both-signed.json
+
+## testnet
 ./tbnbcli sign delegator-signed.json --account-number <validator-account-number> --sequence <address-sequence> --chain-id Binance-Chain-Ganges --offline --name {validator-address} >> both-signed.json
 ```
 
 c. use “**bnbcli broadcast**” to send the transaction from above to the blockchain nodes.
 
 ```bash
+## mainnet
+./bnbcli broadcast both-signed.json  --node dataseed4.binance.org:80 --chain-id Binance-Chain-Tigris
+
+## testnet 
 ./tbnbcli broadcast both-signed.json  --node data-seed-pre-0-s3.binance.org:80 --chain-id Binance-Chain-Ganges
 ```
 
-Verify your transaction in [explorer](https://explorer.binance.org/testnet)
+Verify your transaction in [mainnet-explorer](https://explorer.binance.org/) or [testnet-explorer](https://testnet-explorer.binance.org/)
 
 ### Edit BSC Validator
 
@@ -202,7 +238,7 @@ Verify your transaction in [explorer](https://explorer.binance.org/testnet)
 * Mainnet
 
 ```bash
-bnbcli staking bsc-edit-validator --chain-id Binance-Chain-Ganges --side-chain-id chapel --moniker bsc_v1_new --from bnb1tfh30c67mkzfz06as2hk0756mgdx8mgypu7ajl --home ~/home_cli
+bnbcli staking bsc-edit-validator --chain-id Binance-Chain-Tigris --side-chain-id bsc --moniker bsc_v1_new --from bnb1tfh30c67mkzfz06as2hk0756mgdx8mgypu7ajl --home ~/home_cli
 ```
 
 * Testnet
@@ -228,12 +264,13 @@ tbnbcli staking bsc-edit-validator --chain-id Binance-Chain-Ganges --side-chain-
 
 #### Examples
 
-* Mainnet
-
 ```bash
-bnbcli staking bsc-delegate --chain-id Binance-Chain-Ganges --side-chain-id chapel --from bnb1tfh30c67mkzfz06as2hk0756mgdx8mgypu7ajl --validator bva1tfh30c67mkzfz06as2hk0756mgdx8mgypqldvm --amount 1000000000:BNB --home ~/home_cli
+## mainnet
+bnbcli staking bsc-delegate --chain-id Binance-Chain-Tigris --side-chain-id bsc --from bnb1tfh30c67mkzfz06as2hk0756mgdx8mgypu7ajl --validator bva1tfh30c67mkzfz06as2hk0756mgdx8mgypqldvm --amount 1000000000:BNB --home ~/home_cli
+
+## testnet
+tbnbcli staking bsc-delegate --chain-id Binance-Chain-Ganges --side-chain-id chapel --from tbnb1tfh30c67mkzfz06as2hk0756mgdx8mgypu7ajl --validator bva1tfh30c67mkzfz06as2hk0756mgdx8mgypqldvm --amount 1000000000:BNB --home ~/home_cli
 ```
-* Testnet
 
 
 ### Redelegate BNB
@@ -254,14 +291,14 @@ bnbcli staking bsc-delegate --chain-id Binance-Chain-Ganges --side-chain-id chap
 * Mainnet
 
 ```bash
-bnbcli staking bsc-redelegate --chain-id Binance-Chain-Tigris --side-chain-id chapel --from bnb1tfh30c67mkzfz06as2hk0756mgdx8mgypu7ajl --addr-validator-source bva1tfh30c67mkzfz06as2hk0756mgdx8mgypqldvm --addr-validator-dest bva1jam9wn8drs97mskmwg7jwm09kuy5yjumvvx6r2 --amount1000000000:BNB --home ~/home_cli
+bnbcli staking bsc-redelegate --chain-id Binance-Chain-Tigris --side-chain-id bsc --from bnb1tfh30c67mkzfz06as2hk0756mgdx8mgypu7ajl --addr-validator-source bva1tfh30c67mkzfz06as2hk0756mgdx8mgypqldvm --addr-validator-dest bva1jam9wn8drs97mskmwg7jwm09kuy5yjumvvx6r2 --amount1000000000:BNB --home ~/home_cli
 ```
 
 
-* Mainnet
+* Testnet
 
 ```bash
-tbnbcli staking bsc-redelegate --chain-id Binance-Chain-Ganges --side-chain-id chapel --from bnb1tfh30c67mkzfz06as2hk0756mgdx8mgypu7ajl --addr-validator-source bva1tfh30c67mkzfz06as2hk0756mgdx8mgypqldvm --addr-validator-dest bva1jam9wn8drs97mskmwg7jwm09kuy5yjumvvx6r2 --amount1000000000:BNB --home ~/home_cli
+tbnbcli staking bsc-redelegate --chain-id Binance-Chain-Ganges --side-chain-id chapel --from tbnb1tfh30c67mkzfz06as2hk0756mgdx8mgypu7ajl --addr-validator-source bva1tfh30c67mkzfz06as2hk0756mgdx8mgypqldvm --addr-validator-dest bva1jam9wn8drs97mskmwg7jwm09kuy5yjumvvx6r2 --amount1000000000:BNB --home ~/home_cli
 ```
 
 
@@ -300,7 +337,7 @@ bnbcli staking bsc-unbond --chain-id Binance-Chain-Ganges --side-chain-id chapel
 * Mainnet
 
 ```bash
-bnbcli staking side-validator bva1hz5sg3u0v4gq2veyw5355z7qx6y7uuqhcuzf3f  --side-chain-id chapel --chain-id=Binance-Chain-Ganges --home ~/home_cli
+bnbcli staking side-validator bva1hz5sg3u0v4gq2veyw5355z7qx6y7uuqhcuzf3f  --side-chain-id bsc --chain-id=Binance-Chain-Tigris --home ~/home_cli
 ```
 
 ### Query side chain delegation by delegator and operator
@@ -317,7 +354,7 @@ bnbcli staking side-validator bva1hz5sg3u0v4gq2veyw5355z7qx6y7uuqhcuzf3f  --side
 * Mainnet
 
 ```bash
-bnbcli staking side-delegation bnb1hz5sg3u0v4gq2veyw5355z7qx6y7uuqhcqre0d bva1hz5sg3u0v4gq2veyw5355z7qx6y7uuqhcuzf3f --chain-id=Binance-Chain-Ganges --side-chain-id chapel --home ~/home_cli
+bnbcli staking side-delegation bnb1hz5sg3u0v4gq2veyw5355z7qx6y7uuqhcqre0d bva1hz5sg3u0v4gq2veyw5355z7qx6y7uuqhcuzf3f --chain-id=Binance-Chain-Tigris --side-chain-id bsc --home ~/home_cli
 ```
 
 
@@ -335,7 +372,7 @@ bnbcli staking side-delegation bnb1hz5sg3u0v4gq2veyw5355z7qx6y7uuqhcqre0d bva1hz
 * Mainnet
 
 ```bash
-bnbcli staking side-delegations bnb1hz5sg3u0v4gq2veyw5355z7qx6y7uuqhcqre0d --side-chain-id chapel --node=0.0.0.0:26657 --chain-id=Binance-Chain-Ganges --trust-node
+bnbcli staking side-delegations bnb1hz5sg3u0v4gq2veyw5355z7qx6y7uuqhcqre0d --side-chain-id bsc --node=0.0.0.0:26657 --chain-id=Binance-Chain-Tigris --trust-node
 ```
 
 ###  Query side chain unbonding delegation
@@ -350,11 +387,11 @@ bnbcli staking side-unbonding-delegation [delegator-addr] [operator-addr] [flags
 | **parameter  name** | **example**       | **comments**                                        | **required** |
 | ------------------- | ----------------- | --------------------------------------------------- | ------------ |
 | --chan-id           | Binance-Chain-XXX | the chain id of binance chain                       | Yes          |
-| --side-chain-id     | chapel            | chain-id of the side chain the validator belongs to | Yes          |
+| --side-chain-id     | bsc/chapel            | chain-id of the side chain the validator belongs to | Yes          |
 
 **For example**
 ```bash
-bnbcli staking     side-unbonding-delegation bnb1rtzy6szuyzcj4amfn6uarvne8a5epxrdklwhhj bva12hlquylu78cjylk5zshxpdj6hf3t0tahqmr98n --side-chain-id=chapel --chain-id=test-chain-8d7sJz --home ~/home_cli
+bnbcli staking  side-unbonding-delegation bnb1rtzy6szuyzcj4amfn6uarvne8a5epxrdklwhhj bva12hlquylu78cjylk5zshxpdj6hf3t0tahqmr98n --side-chain-id=bsc --chain-id=Binance-Chain-Tigris --home ~/home_cli
 ```
 
 
@@ -376,7 +413,7 @@ bnbcli staking side-unbonding-delegations [delegator-addr] [flags]
 **For example**
 
 ```bash
-bnbcli staking     side-unbonding-delegations bnb1rtzy6szuyzcj4amfn6uarvne8a5epxrdklwhhj --side-chain-id=chapel --chain-id=test-chain-8d7sJz --home ~/home_cli
+bnbcli staking  side-unbonding-delegations bnb1rtzy6szuyzcj4amfn6uarvne8a5epxrdklwhhj --side-chain-id=bsc --chain-id=Binance-Chain-Tigris --home ~/home_cli
 ```
 
 
@@ -392,11 +429,11 @@ bnbcli staking side-val-unbonding-delegation [operator-addr] [flags]
 | **parameter  name** | **example**       | **comments**                                        | **required** |
 | ------------------- | ----------------- | --------------------------------------------------- | ------------ |
 | --chan-id           | Binance-Chain-XXX | the chain id of binance chain                       | Yes          |
-| --side-chain-id     | chapel            | chain-id of the side chain the validator belongs to | Yes          |
+| --side-chain-id     | bsc/chapel            | chain-id of the side chain the validator belongs to | Yes          |
 
 **For example**
 ```bash
-bnbcli staking     side-val-unbonding-delegations bva12hlquylu78cjylk5zshxpdj6hf3t0tahqmr98n --side-chain-id=chapel --chain-id=test-chain-8d7sJz --home ~/home_cli
+bnbcli staking side-val-unbonding-delegations bva12hlquylu78cjylk5zshxpdj6hf3t0tahqmr98n --side-chain-id=bsc --chain-id=Binance-Chain-Tigris --home ~/home_cli
 ```
 
 ### Query side chain re-delegation
@@ -412,12 +449,12 @@ bnbcli staking side-redelegation [delegator-addr] [src-operator-addr] [dst-opera
 | **parameter  name** | **example**       | **comments**                                        | **required** |
 | ------------------- | ----------------- | --------------------------------------------------- | ------------ |
 | --chan-id           | Binance-Chain-XXX | the chain id of binance chain                       | Yes          |
-| --side-chain-id     | chapel            | chain-id of the side chain the validator belongs to | Yes          |
+| --side-chain-id     | bsc/chapel            | chain-id of the side chain the validator belongs to | Yes          |
 
 **For example**
 
 ```bash
-bnbcli staking     side-redelegation bnb1rtzy6szuyzcj4amfn6uarvne8a5epxrdklwhhj bva12hlquylu78cjylk5zshxpdj6hf3t0tahqmr98n  bva1hz5sg3u0v4gq2veyw5355z7qx6y7uuqhcuzf3f --side-chain-id=chapel --chain-id=test-chain-8d7sJz --home ~/home_cli
+bnbcli staking  side-redelegation bnb1rtzy6szuyzcj4amfn6uarvne8a5epxrdklwhhj bva12hlquylu78cjylk5zshxpdj6hf3t0tahqmr98n  bva1hz5sg3u0v4gq2veyw5355z7qx6y7uuqhcuzf3f --side-chain-id=bsc --chain-id=Binance-Chain-Tigris --home ~/home_cli
 ```
 
 ### Query side chain re-delegations by delegator
@@ -433,12 +470,12 @@ bnbcli staking side-redelegations [delegator-addr] [flags]
 | **parameter  name** | **example**       | **comments**                                        | **required** |
 | ------------------- | ----------------- | --------------------------------------------------- | ------------ |
 | --chan-id           | Binance-Chain-XXX | the chain id of binance chain                       | Yes          |
-| --side-chain-id     | chapel            | chain-id of the side chain the validator belongs to | Yes          |
+| --side-chain-id     | bsc/chapel            | chain-id of the side chain the validator belongs to | Yes          |
 
 **For example**
 
 ```bash
-bnbcli staking side-redelegations bnb1rtzy6szuyzcj4amfn6uarvne8a5epxrdklwhhj --side-chain-id=chapel --chain-id=test-chain-8d7sJz --home ~/home_cli
+bnbcli staking side-redelegations bnb1rtzy6szuyzcj4amfn6uarvne8a5epxrdklwhhj --side-chain-id=bsc --chain-id=Binance-Chain-Tigris --home ~/home_cli
 ```
 
 ### Query side chain re-delegations by validator
@@ -452,12 +489,12 @@ bnbcli staking side-val-redelegations [operator-addr] [flags]
 | **parameter  name** | **example**       | **comments**                                        | **required** |
 | ------------------- | ----------------- | --------------------------------------------------- | ------------ |
 | --chan-id           | Binance-Chain-XXX | the chain id of binance chain                       | Yes          |
-| --side-chain-id     | chapel            | chain-id of the side chain the validator belongs to | Yes          |
+| --side-chain-id     | bsc/chapel            | chain-id of the side chain the validator belongs to | Yes          |
 
 **For example**
 
 ```bash
-bnbcli staking side-val-redelegations bva12hlquylu78cjylk5zshxpdj6hf3t0tahqmr98n --side-chain-id=chapel --chain-id=test-chain-8d7sJz --home ~/home_cli
+bnbcli staking side-val-redelegations bva12hlquylu78cjylk5zshxpdj6hf3t0tahqmr98n --side-chain-id=bsc --chain-id=Binance-Chain-Tigris --home ~/home_cli
 ```
 
 
@@ -468,13 +505,13 @@ bnbcli staking side-val-redelegations bva12hlquylu78cjylk5zshxpdj6hf3t0tahqmr98n
 | **parameter  name** | **example**       | **comments**                                        | **required** |
 | ------------------- | ----------------- | --------------------------------------------------- | ------------ |
 | --chan-id           | Binance-Chain-XXX | the chain id of binance chain                       | Yes          |
-| --side-chain-id     | chapel            | chain-id of the side chain the validator belongs to | Yes          |
+| --side-chain-id     | bsc/chapel            | chain-id of the side chain the validator belongs to | Yes          |
 
 
 **For example**
 
 ```bash
-bnbcli staking     side-pool --side-chain-id=chapel --chain-id=test-chain-8d7sJz --home     ~/home_cli
+bnbcli staking     side-pool --side-chain-id=bsc --chain-id=Binance-Chain-Tigris --home     ~/home_cli
 ```
 
 
@@ -491,7 +528,7 @@ bnbcli staking     side-pool --side-chain-id=chapel --chain-id=test-chain-8d7sJz
 **For example**
 
 ```bash
-bnbcli staking side-top-validators --top 10 --side-chain-id=chapel --chain-id=test-chain-8d7sJz --home ~/home_cli
+bnbcli staking side-top-validators --top 10 --side-chain-id=bsc --chain-id=Binance-Chain-Tigris --home ~/home_cli
 ```
 
 ###  Query side chain validators count
@@ -507,5 +544,5 @@ bnbcli staking side-top-validators --top 10 --side-chain-id=chapel --chain-id=te
 **For example**
 
 ```bash
-bnbcli staking  side-validators-count --jail-involved --side-chain-id=chapel --chain-id=test-chain-8d7sJz --home ~/home_cli
+bnbcli staking  side-validators-count --jail-involved --side-chain-id=bsc --chain-id=Binance-Chain-Tigris --home ~/home_cli
 ```
