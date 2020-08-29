@@ -40,11 +40,35 @@ Congratulations! you have create your MetaMask account!
 
 2. Add a new network</br><img src="https://lh6.googleusercontent.com/jrq511YshO6rPPx4i-ePRy2gs-66b465c_JFXEW8Cm5CSNTM7CXgCPuFmIh_Im3JlEhxpAqEDDjmUqfskq2m5rG-FKhwZ4_jIenOTdAVs_rMMTjTvZlM6iOpQeivrz_V1liSvuB5" alt="img" style="zoom:33%;" /></br>
 
-    * Network name: Binance Smart Chain Testnet
-    * RPC URL: https://data-seed-prebsc-1-s1.binance.org:8545
-    * ChainID: 97
-    * Symbol: BNB 
-    * Block Explorer: https://explorer.binance.org/smart-testnet 
+    * Testnet
+        * RPC URLs:
+            * "https://data-seed-prebsc-1-s1.binance.org:8545"
+            * "https://data-seed-prebsc-2-s1.binance.org:8545"
+            * "https://data-seed-prebsc-1-s2.binance.org:8545"
+            * "https://data-seed-prebsc-2-s2.binance.org:8545"
+            * "https://data-seed-prebsc-1-s3.binance.org:8545"
+            * "https://data-seed-prebsc-2-s3.binance.org:8545"
+        * ChainID: 97
+        * Symbol: BNB 
+        * Block Explorer: https://explorer.binance.org/smart-testnet 
+    
+    * Mainnet
+        * RPC URLs:
+           * "https://bsc-dataseed1.binance.org:443"
+           * "https://bsc-dataseed2.binance.org:443"
+           * "https://bsc-dataseed3.binance.org:443"
+           * "https://bsc-dataseed4.binance.org:443"
+           * "https://bsc-dataseed1.defibit.io:443"
+           * "https://bsc-dataseed2.defibit.io:443"
+           * "https://bsc-dataseed3.defibit.io:443"
+           * "https://bsc-dataseed4.defibit.io:443"
+           * "https://bsc-dataseed1.ninicoin.io:443"
+           * "https://bsc-dataseed2.ninicoin.io:443"
+           * "https://bsc-dataseed3.ninicoin.io:443"
+           * "https://bsc-dataseed4.ninicoin.io:443"
+        * ChainID: 56
+        * Symbol: BNB 
+        * Block Explorer: https://explorer.binance.org/smart 
 
 3. Claim some testnet token to your account
 Click on your address for copy
