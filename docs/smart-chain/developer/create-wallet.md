@@ -8,9 +8,12 @@ This article is a guide about key management strategy on client side of your Dec
 
 `web3.js` doc is [here](https://web3js.readthedocs.io/en/v1.2.2/getting-started.html#adding-web3-js)
 
-## Connect to BSC Testnet
+## Connect to BSC network
 
 ```javascript
+    // mainnet 
+     const web3 = new Web3('https://bsc-dataseed1.binance.org:443');
+    // testnet
 	const web3 = new Web3('https://data-seed-prebsc-1-s1.binance.org:8545');
 ```
 
@@ -32,7 +35,7 @@ If you have backup the private key of your account, you can use it to restore yo
 const Web3 = require('web3');
 async function main() {
 
-	const web3 = new Web3('https://data-seed-prebsc-1-s1.binance.org:8545');
+	const web3 = new Web3('https://bsc-dataseed1.binance.org:443');
     const loader = setupLoader({ provider: web3 }).web3;
 
     const account = web3.eth.accounts.create();

@@ -1,17 +1,15 @@
-# Binance Smart Chain  Testnet Staking Parameters
+# Binance Smart ChainStaking Parameters
 
-## Staking Token
-
-BNB
 
 ## Max Validator Count
 
-11, which is different from 21 validators in Mainnet
+- 11 validators on Testnet
+- 21 validators on Mainnet
 
 
 ## Validator Candidate
 
-* Minimiun Self-delegate Amount: 50000BNB
+* Minimiun Self-delegate Amount: 20000BNB on Mainnet and 100BNB on testnet.
 * Claim reward frequency: everyday at 0:00 UTC
 * Unbonding Period: 7 days
 

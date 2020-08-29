@@ -2,7 +2,41 @@
 
 ## Available Resources
 
-BSC RPC:
+### Mainnet(ChainID 56)
+
+BSC RPC Endpoints:
+
+* https://bsc-dataseed1.binance.org/
+* https://bsc-dataseed2.binance.org/
+* https://bsc-dataseed3.binance.org/
+* https://bsc-dataseed4.binance.org/
+* https://bsc-dataseed1.defibit.io/
+* https://bsc-dataseed2.defibit.io/
+* https://bsc-dataseed3.defibit.io/
+* https://bsc-dataseed4.defibit.io/
+* https://bsc-dataseed1.ninicoin.io/
+* https://bsc-dataseed2.ninicoin.io/
+* https://bsc-dataseed3.ninicoin.io/
+* https://bsc-dataseed4.ninicoin.io/
+
+BC RPC Endpoints:
+* https://dataseed1.binance.org/
+* https://dataseed2.binance.org/
+* https://dataseed3.binance.org/
+* https://dataseed4.binance.org/
+* https://dataseed1.defibit.io/
+* https://dataseed2.defibit.io/
+* https://dataseed3.defibit.io/
+* https://dataseed4.defibit.io/
+* https://dataseed1.ninicoin.io/
+* https://dataseed2.ninicoin.io/
+* https://dataseed3.ninicoin.io/
+* https://dataseed4.ninicoin.io/
+
+
+### Testnet(ChainID 97)
+
+BSC RPC Endpoints:
 
 * https://data-seed-prebsc-1-s1.binance.org:8545/
 * https://data-seed-prebsc-2-s1.binance.org:8545/
@@ -11,7 +45,7 @@ BSC RPC:
 * https://data-seed-prebsc-1-s3.binance.org:8545/
 * https://data-seed-prebsc-2-s3.binance.org:8545/
 
-BC RPC:
+BC RPC Endpoints:
 
 *  http://data-seed-pre-0-s1.binance.org:80
 *  http://data-seed-pre-1-s1.binance.org:80
@@ -22,7 +56,11 @@ BC RPC:
 ## Start
 
 You can start the HTTP JSON-RPC with the --rpc flag
-```
+```bash
+## mainnet
+geth attach https://bsc-dataseed1.binance.org
+
+## testnet
 geth attach https://data-seed-prebsc-1-s1.binance.org:8545/
 ```
 

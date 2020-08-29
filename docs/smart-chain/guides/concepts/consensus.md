@@ -46,7 +46,7 @@ The coming section will explain how these contracts distributing reward.
 
 ## Staking dApps on BSC
 
-### [BSCValidatorSet contract](https://explorer.binance.org/smart-testnet/address/0x0000000000000000000000000000000000001000/contracts)
+### [BSCValidatorSet contract](https://explorer.binance.org/smart/address/0x0000000000000000000000000000000000001000/contracts)
 It is a watcher of validators change of BSC on Binance chain. It implement the following interfaces:
 
 - **handleSynPackage(uint8, bytes calldata msgBytes)**
@@ -83,7 +83,7 @@ It is a watcher of validators change of BSC on Binance chain. It implement the f
 
         1. Increase the revenue of the validator.
 
-### [System Reward contract](https://explorer.binance.org/smart-testnet/address/0x0000000000000000000000000000000000001002/contracts)
+### [System Reward contract](https://explorer.binance.org/smart/address/0x0000000000000000000000000000000000001002/contracts)
 For now, only **Cross Chain contract** is permitted to call system reward contract. It implement the following interfaces:
 
 - **claimRewards(address payable to, uint256 amount) external**
@@ -97,7 +97,7 @@ For now, only **Cross Chain contract** is permitted to call system reward contra
 
         1. Transfer amount of BNB to specified address
 
-### [Liveness Slash contract](https://explorer.binance.org/smart-testnet/address/0x0000000000000000000000000000000000001001)
+### [Liveness Slash contract](https://explorer.binance.org/smart/address/0x0000000000000000000000000000000000001001)
 If a validator failed to produce a block, will record it and finally slash it. It implement the following interfaces:
 
 - **Slash(validator address) external**
@@ -145,7 +145,7 @@ However, given that validators would be economically incentivized to seal blocks
 A validator node prepares the block header of next block.
 
 * Load snapshot from cache or database,
-* If (height % epoch)==0, should fetch ValidatorSet from `BSCValidatorSet` [contract](https://explorer.binance.org/smart-testnet/address/0x0000000000000000000000000000000000001000/transactions).
+* If (height % epoch)==0, should fetch ValidatorSet from `BSCValidatorSet` [contract](https://explorer.binance.org/smart/address/0x0000000000000000000000000000000000001000/transactions).
 *  Every epoch block, will store validators set message in `extraData` field of block header to facilitate the implement of light client.
 * The coinbase is the address of the validator
 

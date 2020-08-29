@@ -34,8 +34,11 @@ All these parameters will be determined by BSC Validator Set together through a 
 | --voter             | bnb1h9ymecpakr8p8lhchtah2xxx7x4xq099umclqu | filter by proposals voted on by voted                | No           |
 
 
-* Testnet
 ```bash
+## mainnet
+./bnbcli gov  query-proposals --side-chain-id  bsc --trust-node --chain-id Binance-Chain-Tigris
+
+## testnet
 ./tbnbcli gov  query-proposals --side-chain-id  chapel --trust-node --chain-id Binance-Chain-Ganges
 ```
 
@@ -47,8 +50,11 @@ All these parameters will be determined by BSC Validator Set together through a 
 | --side-chain-id    | chapel                                     | the id of side chain, default is native chain        | Yes          |
 | --proposal-id      | 1                                          | proposalID of proposal being queried                 | Yes          |
 
-* Testnet
 ```bash
+## mainnet
+./bnbcli gov  query-proposal  --proposal-id  1  --side-chain-id  bsc --trust-node --chain-id Binance-Chain-Tigris
+
+## testnet
 ./tbnbcli gov  query-proposal  --proposal-id  1  --side-chain-id  chapel --trust-node --chain-id Binance-Chain-Ganges
 ```
 
@@ -58,8 +64,11 @@ All these parameters will be determined by BSC Validator Set together through a 
 | -------------------| ------------------------------------------ | ---------------------------------------------------- | ------------ |
 | --side-chain-id    | chapel                                     | the id of side chain, default is native chain        | Yes          |
 
-* Testnet
 ```bash
+## mainnet
+ ./bnbcli params side-params --side-chain-id bsc  --trust-node
+
+## testnet
  ./tbnbcli params side-params --side-chain-id chapel  --trust-node
 ```
 
@@ -77,8 +86,11 @@ All these parameters will be determined by BSC Validator Set together through a 
 | --value            | 0x000000000000000000000000000000000000000000000000000000000000001b | the specified value of the parameter on side chain, should encoded in hex | Yes          |
 | --voting-period    | 604800                                                             | voting period in seconds (default 604800)                                 | No           |
 
-* Testnet
 ```bash
+## mainet
+./bnbcli params  submit-bscParam-change-proposal  --key "felonyThreshold" --value "0x000000000000000000000000000000000000000000000000000000000000001b"   --target 0x0000000000000000000000000000000000001001   --deposit 200000000000:BNB     --voting-period 100   --side-chain-id  bsc  --title "test csc change"  --from alice  --trust-node   --chain-id Binance-Chain-Tigris
+
+## testnet
 ./tbnbcli params  submit-bscParam-change-proposal  --key "felonyThreshold" --value "0x000000000000000000000000000000000000000000000000000000000000001b"   --target 0x0000000000000000000000000000000000001001   --deposit 200000000000:BNB     --voting-period 100   --side-chain-id  chapel  --title "test csc change"  --from alice  --trust-node   --chain-id Binance-Chain-Ganges
 ```
 
@@ -95,8 +107,11 @@ All these parameters will be determined by BSC Validator Set together through a 
 | --title            | "test csc change"                                                  | title of proposal                                                         | Yes          |
 | --voting-period    | 604800                                                             | voting period in seconds (default 604800)                                 | No           |
 
-* Testnet
 ```bash
+## mainnet
+./bnbcli side-chain  submit-channel-manage-proposal  --channel-id  2 --enable=true  --deposit 200000000000:BNB     --voting-period 100   --side-chain-id  bsc  --title "test csc change"  --from alice  --trust-node   --chain-id Binance-Chain-Tigris
+
+## testnet
 ./tbnbcli side-chain  submit-channel-manage-proposal  --channel-id  2 --enable=true  --deposit 200000000000:BNB     --voting-period 100   --side-chain-id  chapel  --title "test csc change"  --from alice  --trust-node   --chain-id Binance-Chain-Ganges
 ```
 
@@ -112,8 +127,11 @@ All these parameters will be determined by BSC Validator Set together through a 
 | --sc-param-file    | param.json                                                         | the file of Side Chain params (json format)                               | Yes          |
 | --voting-period    | 604800                                                             | voting period in seconds (default 604800)                                 | No           |
 
-* Testnet
 ```bash
+## mainnet
+./bnbcli params  submit-sc-change-proposal  --sc-param-file param.json  --deposit 200000000000:BNB  --voting-period 100   --side-chain-id  bsc  --title "test proposal"  --from delegator1  --trust-node  --chain-id Binance-Chain-Tigris
+
+## testnet
 ./tbnbcli params  submit-sc-change-proposal  --sc-param-file param.json  --deposit 200000000000:BNB  --voting-period 100   --side-chain-id  chapel  --title "test proposal"  --from delegator1  --trust-node  --chain-id Binance-Chain-Ganges
 ```
 
@@ -126,8 +144,11 @@ All these parameters will be determined by BSC Validator Set together through a 
 | --proposal-id      | 1                                          | proposalID of proposal being queried                 | Yes          |
 | --option           | Yes                                        | vote option {yes, no, no_with_veto, abstain}         | Yes          |
 
-* Testnet
 ```bash
+## mainnet
+ ./bnbcli gov vote --from alice   --side-chain-id  bsc    --proposal-id 1 --option Yes  --chain-id Binance-Chain-Tigris
+
+## testnet
  ./tbnbcli gov vote --from alice   --side-chain-id  chapel    --proposal-id 1 --option Yes  --chain-id Binance-Chain-Ganges
 ```
 
@@ -141,7 +162,10 @@ All these parameters will be determined by BSC Validator Set together through a 
 | --proposal-id      | 1                                          | proposalID of proposal being queried                 | Yes          |
 | --deposit          | Yes                                        | amount of deposit                                    | Yes          |
 
-* Testnet
 ```bash
+## mainnet
+ ./bnbcli gov deposit --from alice   --side-chain-id  bsc    --proposal-id 1 --deposit 1000000000:BNB --chain-id Binance-Chain-Tigris
+
+## testnet
  ./tbnbcli gov deposit --from alice   --side-chain-id  chapel    --proposal-id 1 --deposit 1000000000:BNB --chain-id Binance-Chain-Ganges
 ```

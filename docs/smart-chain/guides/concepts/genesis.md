@@ -10,7 +10,8 @@ A genesis file is a JSON file which defines the initial state of your blockchain
 
 The state defined in the genesis file contains all the necessary information, like initial token allocation, genesis time, default parameters, and more. Let us break down these information.
 
-Genesis Link fot Chapel Testnet: <https://github.com/binance-chain/bsc/releases/download/v1.0.0-beta.1/genesis.json>
+Genesis Link for mainnet:  <https://github.com/binance-chain/bsc/releases/download/v1.0.2/mainnet.zip>
+Genesis Link for Chapel Testnet: <https://github.com/binance-chain/bsc/releases/download/v1.0.2/testnet.zip>
 
 ## Explaination
 
@@ -70,16 +71,16 @@ Allows to define a list of pre-filled wallets.
 
 | Contract Name         | Address                                   | ABI file                                      |
 | ----------------------|-------------------------------------------|--------------------------------------------------- |
-| BSCValidatorSet       |[0x0000000000000000000000000000000000001000](https://explorer.binance.org/smart-testnet/address/0x0000000000000000000000000000000000001000/contracts) |[bscvalidatorset](../../system-smart-contract/bscvalidatorset.abi)|
-| SlashIndicator        |[0x0000000000000000000000000000000000001001](https://explorer.binance.org/smart-testnet/address/0x0000000000000000000000000000000000001001/contracts) |[slashindicator](../../system-smart-contract/slashindicator.abi)|
-| SystemReward          |[0x0000000000000000000000000000000000001002](https://explorer.binance.org/smart-testnet/address/0x0000000000000000000000000000000000001002/contracts) |[systemreward](../../system-smart-contract/systemreward.abi)|
-| TendermintLightClient |[0x0000000000000000000000000000000000001003](https://explorer.binance.org/smart-testnet/address/0x0000000000000000000000000000000000001003/contracts) |[tendermintlightclient](../../system-smart-contract/tendermintlightclient.abi) |
-| TokenHub              |[0x0000000000000000000000000000000000001004](https://explorer.binance.org/smart-testnet/address/0x0000000000000000000000000000000000001004/contracts) |[tokenhub](../../system-smart-contract/tokenhub.abi)|
-| RelayerIncentivize    |[0x0000000000000000000000000000000000001005](https://explorer.binance.org/smart-testnet/address/0x0000000000000000000000000000000000001005/contracts) |[relayerincentivize](../../system-smart-contract/relayerincentivize.abi)|
-| RelayerHub            |[0x0000000000000000000000000000000000001006](https://explorer.binance.org/smart-testnet/address/0x0000000000000000000000000000000000001006/contracts) |[relayerhub](../../system-smart-contract/relayerhub.abi) |
-| GovHub                |[0x0000000000000000000000000000000000001007](https://explorer.binance.org/smart-testnet/address/0x0000000000000000000000000000000000001007/contracts) |[govhub](../../system-smart-contract/govhub.abi) |
-| TokenManager          |[0x0000000000000000000000000000000000001008](https://explorer.binance.org/smart-testnet/address/0x0000000000000000000000000000000000001008/contracts) |[tokenmanager](../../system-smart-contract/tokenmanager.abi) |
-| CrossChain            |[0x0000000000000000000000000000000000002000](https://explorer.binance.org/smart-testnet/address/0x0000000000000000000000000000000000002000/contracts) |[crosschain](../../system-smart-contract/crosschain.abi) |
+| BSCValidatorSet       |[0x0000000000000000000000000000000000001000](https://explorer.binance.org/smart/address/0x0000000000000000000000000000000000001000/contracts) |[bscvalidatorset](../../system-smart-contract/bscvalidatorset.abi)|
+| SlashIndicator        |[0x0000000000000000000000000000000000001001](https://explorer.binance.org/smart/address/0x0000000000000000000000000000000000001001/contracts) |[slashindicator](../../system-smart-contract/slashindicator.abi)|
+| SystemReward          |[0x0000000000000000000000000000000000001002](https://explorer.binance.org/smart/address/0x0000000000000000000000000000000000001002/contracts) |[systemreward](../../system-smart-contract/systemreward.abi)|
+| TendermintLightClient |[0x0000000000000000000000000000000000001003](https://explorer.binance.org/smart/address/0x0000000000000000000000000000000000001003/contracts) |[tendermintlightclient](../../system-smart-contract/tendermintlightclient.abi) |
+| TokenHub              |[0x0000000000000000000000000000000000001004](https://explorer.binance.org/smart/address/0x0000000000000000000000000000000000001004/contracts) |[tokenhub](../../system-smart-contract/tokenhub.abi)|
+| RelayerIncentivize    |[0x0000000000000000000000000000000000001005](https://explorer.binance.org/smart/address/0x0000000000000000000000000000000000001005/contracts) |[relayerincentivize](../../system-smart-contract/relayerincentivize.abi)|
+| RelayerHub            |[0x0000000000000000000000000000000000001006](https://explorer.binance.org/smart/address/0x0000000000000000000000000000000000001006/contracts) |[relayerhub](../../system-smart-contract/relayerhub.abi) |
+| GovHub                |[0x0000000000000000000000000000000000001007](https://explorer.binance.org/smart/address/0x0000000000000000000000000000000000001007/contracts) |[govhub](../../system-smart-contract/govhub.abi) |
+| TokenManager          |[0x0000000000000000000000000000000000001008](https://explorer.binance.org/smart/address/0x0000000000000000000000000000000000001008/contracts) |[tokenmanager](../../system-smart-contract/tokenmanager.abi) |
+| CrossChain            |[0x0000000000000000000000000000000000002000](https://explorer.binance.org/smart/address/0x0000000000000000000000000000000000002000/contracts) |[crosschain](../../system-smart-contract/crosschain.abi) |
 
 * **number**
 
