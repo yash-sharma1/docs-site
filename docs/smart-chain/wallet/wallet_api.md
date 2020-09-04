@@ -1,7 +1,7 @@
 Binance Chain Wallet injects a global API into websites visited by its users at `window.BinanceChain`.
 
-This API borrowed heavily from API metamask provided considered the massive adoption. So web3 site developer could easily connect their app with the Binance Chain Wallet. It allows websites to request users' Binance Smart Chain accounts, read data from the blockchain the user is connected to, and suggest that the user sign messages and transactions.
-The presence of the provider object indicates an Binance Chain user.
+This API borrowed heavily from API metamask provided considered the massive adoption. So web3 site developers could easily connect their app with the Binance Chain Wallet. It allows websites to request users' Binance Smart Chain accounts, read data from the blockchain the user is connected to, and suggest that the user sign messages and transactions.
+The presence of the provider object indicates a Binance Chain user.
 
 The API this extension wallet provides includes API specified by [EIP-1193](https://eips.ethereum.org/EIPS/eip-1193) and API defined by [MetaMask](https://docs.metamask.io/guide/ethereum-provider.html) (including some massively relied legacy ones).
 
@@ -13,13 +13,11 @@ The API this extension wallet provides includes API specified by [EIP-1193](http
 
     Important Information
 
-    On **November 16, 2020**, we are making changes to our provider API that will be breaking for some web3 sites.
+    On **November 16, 2020**, MetaMask is making changes to their provider API that will be breaking for some web3 sites.
     These changes are _upcoming_, but you can prepare for them today.
     Follow [this GitHub issue](https://github.com/MetaMask/metamask-extension/issues/8077) for updates.
 
-    All consumers of MetaMask's provider may be affected by the `eth_chainId` bug (see [next subsection](#window-ethereum-api-changes)).
-    Other than that, if you are new to using the provider, you do not have to worry about these changes, and can skip ahead [to the next section](#api).
-
+    In this implementation, some APIs will be supported as [Legacy API](#legacy-api) (For example we will still implement the `chainIdChanged` on BinanceChain object until MetaMask formally deprecates it).
 
 ## Basic Usage
 
@@ -29,7 +27,6 @@ For any non-trivial Binance Smart Chain web application — a.k.a. web3 site —
 - Detect which Binance Smart Chain network the user is connected to
 - Get the user's Binance Smart Chain account(s)
 
-The snippet at the top of this page is sufficient for detecting the provider.
 You can learn how to accomplish the other two by reviewing the snippet in the [Using the Provider section](#using-the-provider).
 
 The provider API is all you need to create a full-featured web3 application.
@@ -71,16 +68,10 @@ A hexadecimal string representing the current chain ID.
 
 ### BinanceChain.autoRefreshOnNetworkChange
 
-As the consumer of this API, it is your responsbility to handle chain changes using the [`chainChanged` event](#chainChanged).
-We recommend reloading the page on `chainChange` unless you have good reason not to.
+As the consumer of this API, it is your responsibility to handle chain changes using the [`chainChanged` event](#chainChanged).
+We recommend reloading the page on `chainChange` unless you have a good reason not to.
 
-
-By default, this property is `true`.
-
-If this property is truthy, Binance Chain Wallet will reload the page in the following cases:
-
-- When the connected chain (network) changes, if `window.BinanceChain` has been accessed during the page lifecycle
-- When `window.BinanceChain` is accessed, if the connected chain (network) has changed during the page lifecycle
+Please refer to [MetaMask Doc](https://docs.metamask.io/guide/ethereum-provider.html#ethereum-autorefreshonnetworkchange), the only difference is we injected a different object.
 
 To disable this behavior, set this property to `false` immediately after detecting the provider:
 
@@ -92,24 +83,15 @@ BinanceChain.autoRefreshOnNetworkChange = false;
 
 ### BinanceChain.isConnected()
 
-!!! tip
-
-    Note that this method has nothing to do with the user's accounts.
-
-    You may often encounter the word "connected" in reference to whether a web3 site can access the user's accounts.
-    In the provider interface, however, "connected" and "disconnected" refer to whether the provider can make RPC requests to the current chain.
-
+Please refer to [MetaMask Doc](https://docs.metamask.io/guide/ethereum-provider.html#ethereum-isconnected), the only difference is we injected a different object.
 
 ```typescript
 BinanceChain.isConnected(): boolean;
 ```
 
-Returns `true` if the provider is connected to the current chain, and `false` otherwise.
-
-If the provider is not connected, the page will have to be reloaded in order for connection to be re-established.
-Please see the [`connect`](#connect) and [`disconnect`](#disconnect) events for more information.
-
 ### BinanceChain.request(args)
+
+Please refer to [MetaMask Doc](https://docs.metamask.io/guide/ethereum-provider.html#ethereum-request-args), the only difference is we injected a different object.
 
 ```typescript
 interface RequestArguments {
@@ -120,19 +102,9 @@ interface RequestArguments {
 BinanceChain.request(args: RequestArguments): Promise<unknown>;
 ```
 
-Use `request` to submit RPC requests to Binance Smart Chain via Binance Chain Wallet.
-It returns a `Promise` that resolves to the result of the RPC method call.
-
-The `params` and return value will vary by RPC method.
-In practice, if a method has any `params`, they are almost always of type `Array<any>`.
-
-If the request fails for any reason, the Promise will reject with an [Ethereum RPC Error](#errors). (Binance Smart Chain shares same RPC Error)
-
-Binance Chain Wallet supports most standardized Ethereum RPC methods, in addition to a number of methods that may not be
-supported by other wallets.
-See the Binance Chain Wallet [RPC API documentation](./rpc-api.html) for details.
-
 #### Example
+
+The code snippet below is as same as [MetaMask's example](https://docs.metamask.io/guide/ethereum-provider.html#example), the only difference is we injected a different object.
 
 ```javascript
 params: [
@@ -163,9 +135,8 @@ BinanceChain
 
 ## Events
 
-The BinanceChain provider implements the [Node.js `EventEmitter`](https://nodejs.org/api/events.html) API.
-This sections details the events emitted via that API.
-There are innumerable `EventEmitter` guides elsewhere, but you can listen for events like this:
+Please refer to [MetaMask Doc](https://docs.metamask.io/guide/ethereum-provider.html#events), the only difference is we injected a different object.
+
 
 ```javascript
 BinanceChain.on('accountsChanged', (accounts) => {
@@ -176,12 +147,14 @@ BinanceChain.on('accountsChanged', (accounts) => {
 BinanceChain.on('chainChanged', (chainId) => {
   // Handle the new chain.
   // Correctly handling chain changes can be complicated.
-  // We recommend reloading the page unless you have a very good reason not to.
+  // We recommend reloading the page unless you have a very a good reason not to.
   window.location.reload();
 });
 ```
 
 ### connect
+
+Please refer to [MetaMask Doc](https://docs.metamask.io/guide/ethereum-provider.html#connect), the only difference is we injected a different object.
 
 ```typescript
 interface ConnectInfo {
@@ -191,60 +164,38 @@ interface ConnectInfo {
 BinanceChain.on('connect', handler: (connectInfo: ConnectInfo) => void);
 ```
 
-The Binance Chain Wallet provider emits this event when it first becomes able to submit RPC requests to a chain.
-We recommend using a `connect` event handler and the [`BinanceChain.isConnected()` method](#BinanceChain-isconnected) in order to determine when/if the provider is connected.
-
 ### disconnect
+
+Please refer to [MetaMask Doc](https://docs.metamask.io/guide/ethereum-provider.html#disconnect), the only difference is we injected a different object.
 
 ```typescript
 BinanceChain.on('disconnect', handler: (error: ProviderRpcError) => void);
 ```
 
-The MetaMask provider emits this event if it becomes unable to submit RPC requests to any chain.
-In general, this will only happen due to network connectivity issues or some unforeseen error.
-
-Once `disconnect` has been emitted, the provider will not accept any new requests until the connection to the chain has been re-restablished, which requires reloading the page.
-You can also use the [`BinanceChain.isConnected()` method](#BinanceChain-isconnected) to determine if the provider is disconnected.
-
 ### accountsChanged
+
+Please refer to [MetaMask Doc](https://docs.metamask.io/guide/ethereum-provider.html#accountschanged), the only difference is we injected a different object.
 
 ```typescript
 BinanceChain.on('accountsChanged', handler: (accounts: Array<string>) => void);
 ```
 
-The Binance Chain Wallet provider emits this event whenever the return value of the `eth_accounts` RPC method changes.
-`eth_accounts` returns an array that is either empty or contains a single account address.
-The returned address, if any, is the address of the most recently used account that the caller is permitted to access.
-Callers are identified by their URL _origin_, which means that all sites with the same origin share the same permissions.
-
-This means that `accountsChanged` will be emitted whenever the user's exposed account address changes.
-
-!!! tip
-
-    We plan to allow the `eth_accounts` array to be able to contain multiple addresses in the near future.
-
 ### chainChanged
 
-!!! warning
-    **NOTE:** See the [Chain IDs section](#chain-ids) for important information about the Binance Chain Wallet provider's chain IDs.
-
+Please refer to [MetaMask Doc](https://docs.metamask.io/guide/ethereum-provider.html#chainchanged), the only difference is we injected a different object.
 
 ```typescript
 BinanceChain.on('chainChanged', handler: (chainId: string) => void);
 ```
-
-The Binance Chain Wallet provider emits this event when the currently connected chain changes.
-
-All RPC requests are submitted to the currently connected chain.
-Therefore, it's critical to keep track of the current chain ID by listening for this event.
-
-We _strongly_ recommend reloading the page on chain changes, unless absolutely necessary not to.
 
 ```javascript
 BinanceChain.on('chainChanged', (_chainId) => window.location.reload());
 ```
 
 ### message
+
+Please refer to [MetaMask Doc](https://docs.metamask.io/guide/ethereum-provider.html#message), the only difference is we injected a different object.
+
 
 ```typescript
 interface ProviderMessage {
@@ -255,54 +206,90 @@ interface ProviderMessage {
 BinanceChain.on('message', handler: (message: ProviderMessage) => void);
 ```
 
-The Binance Chain Wallet provider emits this event when it receives some message that the consumer should be notified of.
-The kind of message is identified by the `type` string.
-
-RPC subscription updates are a common use case for the `message` event.
-For example, if you create a subscription using `eth_subscribe`, each subscription update will be emitted as a `message` event with a `type` of `eth_subscription`.
-
 ## Errors
 
-All errors thrown or returned by the Binance Chain Wallet provider follow this interface:
-
-```typescript
-interface ProviderRpcError extends Error {
-  message: string;
-  code: number;
-  data?: unknown;
-}
-```
-
-The [`BinanceChain.request(args)` method](#BinanceChain-request-args) throws errors eagerly.
-You can often use the error `code` property to determine why the request failed.
-Common codes and their meaning include:
-
-* `4001`
-
-    * The request was rejected by the user
-
-* `-32602`
-
-    * The parameters were invalid
-
-* `-32603`
-
-    * Internal error
-
-For the complete list of errors, please see [EIP-1193](https://eips.ethereum.org/EIPS/eip-1193#provider-errors) and [EIP-1474](https://eips.ethereum.org/EIPS/eip-1474#error-codes).
-
-!!! tip
-    The [`eth-rpc-errors`](https://npmjs.com/package/eth-rpc-errors) package implements all RPC errors thrown by the MetaMask provider, and can help you identify their meaning.
-
+Please refer to [MetaMask Doc](https://docs.metamask.io/guide/ethereum-provider.html#errors), the only difference is we injected a different object.
 
 ## Using the Provider
 
 This snippet explains how to accomplish the three most common requirements for web3 sites:
 
-- Detect the BinanceChain provider (`window.BinanceChain`)
 - Detect which BinanceChain network the user is connected to
 - Get the user's BinanceChain account(s)
 
+```
+/**********************************************************/
+/* Handle chain (network) and chainChanged (per EIP-1193) */
+/**********************************************************/
+
+// Normally, we would recommend the 'eth_chainId' RPC method, but it currently
+// returns incorrectly formatted chain ID values.
+let currentChainId = BinanceChain.chainId;
+
+BinanceChain.on('chainChanged', handleChainChanged);
+
+function handleChainChanged(_chainId) {
+  // We recommend reloading the page, unless you must do otherwise
+  window.location.reload();
+}
+
+/***********************************************************/
+/* Handle user accounts and accountsChanged (per EIP-1193) */
+/***********************************************************/
+
+let currentAccount = null;
+BinanceChain
+  .request({ method: 'eth_accounts' })
+  .then(handleAccountsChanged)
+  .catch((err) => {
+    // Some unexpected error.
+    // For backwards compatibility reasons, if no accounts are available,
+    // eth_accounts will return an empty array.
+    console.error(err);
+  });
+
+// Note that this event is emitted on page load.
+// If the array of accounts is non-empty, you're already
+// connected.
+BinanceChain.on('accountsChanged', handleAccountsChanged);
+
+// For now, 'eth_accounts' will continue to always return an array
+function handleAccountsChanged(accounts) {
+  if (accounts.length === 0) {
+    // Binance Chain Wallet is locked or the user has not connected any accounts
+    console.log('Please connect to Binance Chain Wallet.');
+  } else if (accounts[0] !== currentAccount) {
+    currentAccount = accounts[0];
+    // Do any other work!
+  }
+}
+
+/*********************************************/
+/* Access the user's accounts (per EIP-1102) */
+/*********************************************/
+
+// You should only attempt to request the user's accounts in response to user
+// interaction, such as a button click.
+// Otherwise, you popup-spam the user like it's 1999.
+// If you fail to retrieve the user's account(s), you should encourage the user
+// to initiate the attempt.
+document.getElementById('connectButton', connect);
+
+function connect() {
+  BinanceChain
+    .request({ method: 'eth_requestAccounts' })
+    .then(handleAccountsChanged)
+    .catch((err) => {
+      if (err.code === 4001) {
+        // EIP-1193 userRejectedRequest error
+        // If this happens, the user rejected the connection request.
+        console.log('Please connect to MetaMask.');
+      } else {
+        console.error(err);
+      }
+    });
+}
+```
 
 ## Legacy API
 
@@ -317,42 +304,21 @@ To be compatible with existing dApps that support MetaMask, Binance Chain Wallet
 
 ### BinanceChain.networkVersion (DEPRECATED)
 
-!!! warning
-    You should always prefer the chain ID over the network ID.
-
-    If you must get the network ID, use [`BinanceChain.request({ method: 'net_version' })`](#BinanceChain-request-args).
-
-    The value of this property can change at any time.
-
-
-A decimal string representing the current blockchain's network ID.
+Please refer to [MetaMask Doc](https://docs.metamask.io/guide/ethereum-provider.html#legacy-properties), the only difference is we injected a different object.
 
 ### BinanceChain.selectedAddress (DEPRECATED)
 
-!!! warning
-    Use [`BinanceChain.request({ method: 'eth_accounts' })`](#BinanceChain-request-args) instead.
-
-    The value of this property can change at any time.
-
-
-Returns a hexadecimal string representing the user's "currently selected" address.
-
-The "currently selected" address is the first item in the array returned by `eth_accounts`.
+Please refer to [MetaMask Doc](https://docs.metamask.io/guide/ethereum-provider.html#ethereum-selectedaddress-deprecated), the only difference is we injected a different object.
 
 ## Legacy Methods
 
 ### BinanceChain.enable() (DEPRECATED)
 
-!!! warning
-    Use [`BinanceChain.request({ method: 'eth_requestAccounts' })`](#BinanceChain-request-args) instead.
-
-
-Alias for `BinanceChain.request({ method: 'eth_requestAccounts' })`.
+Please refer to [MetaMask Doc](https://docs.metamask.io/guide/ethereum-provider.html#ethereum-enable-deprecated), the only difference is we injected a different object.
 
 ### BinanceChain.sendAsync() (DEPRECATED)
 
-!!! warning
-    Use [`BinanceChain.request()`](#BinanceChain-request-args) instead.
+Please refer to [MetaMask Doc](https://docs.metamask.io/guide/ethereum-provider.html#ethereum-sendasync-deprecated), the only difference is we injected a different object.
 
 
 ```typescript
@@ -376,15 +342,10 @@ type JsonRpcCallback = (error: Error, response: JsonRpcResponse) => unknown;
 BinanceChain.sendAsync(payload: JsonRpcRequest, callback: JsonRpcCallback): void;
 ```
 
-This is the ancestor of `BinanceChain.request`. It only works for JSON-RPC methods, and takes a JSON-RPC request payload object and an error-first callback function as its arguments.
-
-See the [Ethereum JSON-RPC API](https://eips.ethereum.org/EIPS/eip-1474) for details.
 
 ### BinanceChain.send() (DEPRECATED)
 
-!!! warning
-    Use [`BinanceChain.request()`](#BinanceChain-request-args) instead.
-
+Please refer to [MetaMask Doc](https://docs.metamask.io/guide/ethereum-provider.html#ethereum-send-deprecated), the only difference is we injected a different object.
 
 ```typescript
 BinanceChain.send(
@@ -426,9 +387,7 @@ You can think of these signatures as follows:
 
 ### close (DEPRECATED)
 
-!!! warning
-    Use [`disconnect`](#disconnect) instead.
-
+Please refer to [MetaMask Doc](https://docs.metamask.io/guide/ethereum-provider.html#close-deprecated), the only difference is we injected a different object.
 
 ```typescript
 BinanceChain.on('close', handler: (error: Error) => void);
@@ -436,11 +395,7 @@ BinanceChain.on('close', handler: (error: Error) => void);
 
 ### chainIdChanged (DEPRECATED)
 
-!!! warning
-    Use [`chainChanged`](#chainchanged) instead.
-
-
-Misspelled alias of [`chainChanged`](#chainchanged).
+Please refer to [MetaMask Doc](https://docs.metamask.io/guide/ethereum-provider.html#chainidchanged-deprecated), the only difference is we injected a different object.
 
 ```typescript
 BinanceChain.on('chainChanged', handler: (chainId: string) => void);
@@ -448,13 +403,7 @@ BinanceChain.on('chainChanged', handler: (chainId: string) => void);
 
 ### networkChanged (DEPRECATED)
 
-!!! warning
-    Use [`chainChanged`](#chainchanged) instead.
-
-
-Like [`chainChanged`](#chainchanged), but with the `networkId` instead.
-Network IDs are insecure, and were effectively deprecated in favor of chain IDs by [EIP-155](https://eips.ethereum.org/EIPS/eip-155).
-Avoid using them unless you know what you are doing.
+Please refer to [MetaMask Doc](https://docs.metamask.io/guide/ethereum-provider.html#networkchanged-deprecated), the only difference is we injected a different object.
 
 ```typescript
 BinanceChain.on('networkChanged', handler: (networkId: string) => void);
@@ -462,9 +411,7 @@ BinanceChain.on('networkChanged', handler: (networkId: string) => void);
 
 ### notification (DEPRECATED)
 
-!!! warning
-    Use [`message`](#message) instead.
-
+Please refer to [MetaMask Doc](https://docs.metamask.io/guide/ethereum-provider.html#notification-deprecated), the only difference is we injected a different object.
 
 ```typescript
 BinanceChain.on('notification', handler: (payload: any) => void);
