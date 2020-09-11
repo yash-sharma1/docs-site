@@ -2,7 +2,7 @@
 ## What is it?
 Binance Chain Extension Wallet is a Crypto Wallet for Binance Chain, Binance Smart Chain. You can send and receive funds on Binance Chain, Binance Smart Chain and cross-chain transfers between both of Binance’s blockchains.
 
-In the future, Binance Chain Extension Wallet will add support for  Ethereum blockchain and enable support for distributed applications, or "Dapps" in your browser!
+In the future, Binance Chain Extension Wallet will add support for Ethereum blockchain and enable access for distributed applications, or "Dapps" in your browser!
 
 It’s supported in Firefox and Chrome browsers. 
 
