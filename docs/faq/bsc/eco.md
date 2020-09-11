@@ -32,3 +32,16 @@ Current list:
 
 Details are [here](https://www.binance.org/en/blog/binance-presents-project-token-canal-2/)
 
+## How to Send and Receive BNB on Smart Chain?
+
+[Binance.com](https:/www.binance.com) can withdraw BNB to BSC.
+
+On your Binance account, open your BNB wallet then tap on Withdraw. Select BEP20 as the Network. Indicate the amount and complete the steps to withdraw
+
+## How to Send and Receive Pegged tokens on Smart Chain?
+
+[Binance.com](https:/www.binance.com) can withdraw those pegged tokens to BSC.
+
+On your Binance account, open your BNB wallet then tap on Withdraw. Select BEP20 as the Network. Indicate the amount and complete the steps to withdraw
+
+![img](https://lh5.googleusercontent.com/dR9bBqUpNlBFX6zsKFkVRMgHz27Ak0Icu8AFsuJm_1ke6-qSG5Cg2FJLcpRYlFeuFEpisOdXpwn1KDOHBH7qQV9CpYxVb--2B1NxQm-L6B6qSl9Cq90uCSrwHEPAOh69Z0MM2VtG)
