@@ -1,27 +1,34 @@
 # Use Binance Chain Extension Wallet
 ## What is it?
-Binance Chain Wallet is a Crypto Wallet for Binance Chain, Binance Smart Chain, and Ethereum. You can send and receive funds on Binance Chain, Binance Smart Chain, and Ethereum, and cross-chain transfers between both of Binance’s blockchains.
+Binance Chain Extension Wallet is a Crypto Wallet for Binance Chain, Binance Smart Chain. You can send and receive funds on Binance Chain, Binance Smart Chain and cross-chain transfers between both of Binance’s blockchains.
 
-It’s supported in Chrome and Firefox browsers.
+In the future, Binance Chain Extension Wallet will add support for  Ethereum blockchain and enable support for distributed applications, or "Dapps" in your browser!
+
+It’s supported in Firefox and Chrome browsers. 
+
+!!! Tip
+		Firfox users are more likely to access the latest version
+
+
 
 ## Install
 
-**Example: Install Binance Chain Wallet in Chrome browser**
+**Example: Install Binance Chain Wallet in Firfox browser**
 
-* Open Extension Category in Chrome: https://chrome.google.com/webstore/category/extensions
+* Open Extension in Firfox: < https://addons.mozilla.org/en-US/firefox/addon/binance-chain/?src=search>
 
 * Search for Binance Chain
 
-![img](https://lh5.googleusercontent.com/Z8Aar6ow30C-fLWiDUn1cDV-9cb3NMqXbQfAnI6KGdDIE6U3nkUkL2VJI-f-IxNMC-gZPA0ANqI5ZZ-TTm1nQJkz_qIYdXJOHsdyVqHmf2vdzWtrmU5bxfzCVto-4j-drhez1V-z)
+![img](https://lh5.googleusercontent.com/ks5BM5SBqrjbDWdbGhsKymWvuLIJina_JZ4lo_j-skzhnFXvF8laumgJpl8nCv7XC_2Z6bwOhrt7v-oHLXv-eHNLlfY_9qSiQWyiyWuDlN8XKfc329MgTiyUpq9D8K562nH_zdkS)
 
 Note: Make sure it’s offered by Binance Chain
 
 
-* Click on “Add to Chrome”
+* Click on “Add to Fiirfox”
 
-![img](https://lh6.googleusercontent.com/O7NI4l-530HBIl6B4oUVV0a27R7Q7-xCPHGPE03iLw5v7Kh7t91GDwiBB9E_E1WCR52Lk_aTAZQ2-Cz4ZKmtU47Tv0CfmM61GSo4dGo9B6w-RNTpoxuymPfCN23WKGJRGUBBqyNK)
+<img src="https://lh4.googleusercontent.com/BxNDhV2jxT9B7D8cbS7Fh8XY1TVeh_45Sm18xn_sBCTSUGtQzFI086TBS61QHXquLxmikpSpILOAlpE-azn9EWgdwU0kraW1VrCbjqXK8liCylFw_IBfyW40yOk5aNCX34oRi_sX" alt="img" style="zoom:33%;" />
 
-That’s it! You have successfully installed the Binance Chain Wallet extension in Chrome!
+That’s it! You have successfully installed the Binance Chain Wallet extension in Firefox!
 
 
 The workflow is the same for all browsers
