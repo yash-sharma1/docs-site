@@ -7,7 +7,7 @@ In the future, Binance Chain Extension Wallet will add support for Ethereum bloc
 It’s supported in Firefox and Chrome browsers. 
 
 !!! Tip
-		Firfox users are more likely to access the latest version
+		Firfox users are more likely to access the latest version timely
 
 
 
