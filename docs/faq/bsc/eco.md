@@ -8,6 +8,11 @@ Future coding competitions; Hackathons
 
 Binance Side Chain is welcoming everyone.
 
+* [ForTube](https://docs.for.tube/)
+* [Spartanswap](https://spartanswap.com/)
+* [Burgerswap](http://burgerswap.org)
+* [Bounce.finance](http://bsc.bounce.finance/)
+
 ## What are Pegged tokens on Binance Smart chain?
 
 Soon after the launch of Binance Chain, Binance issued several pegged BEP2 tokens that are running on other blockchain networks, including BTC (BTCB), ETH, XRP, LTC, BCH, and ONT. These tokens are backed by real tokens locked in public addresses, and have allowed users to benefit from both the volatility of these tokens as well as the fast transfer and trading experience of Binance Chain.
