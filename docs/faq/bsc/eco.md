@@ -36,12 +36,26 @@ Details are [here](https://www.binance.org/en/blog/binance-presents-project-toke
 
 [Binance.com](https:/www.binance.com) can withdraw BNB to BSC.
 
-On your Binance account, open your BNB wallet then tap on Withdraw. Select BEP20 as the Network. Indicate the amount and complete the steps to withdraw
+1. If you don't have an existing address of Binance Smart Chain, please use these [wallets](https://docs.binance.org/smart-chain/wallet/binance.html) to create one.
+
+2. On your Binance account, open your BNB wallet then tap on Withdraw. Select BEP20 as the Network. Indicate the amount and paste your BSC address.
+
+3. Complete the steps to withdraw
+
+4. Wait for the exchange to process your request. Once it is confirmed, you will immediately receive BNB to your Smart Chain address.
 
 ## How to Send and Receive Pegged tokens on Smart Chain?
 
 [Binance.com](https:/www.binance.com) can withdraw those pegged tokens to BSC.
 
-On your Binance account, open your BNB wallet then tap on Withdraw. Select BEP20 as the Network. Indicate the amount and complete the steps to withdraw
+1. If you don't have an existing address of Binance Smart Chain, please use these [wallets](https://docs.binance.org/smart-chain/wallet/binance.html) to create one.
+
+2. On your Binance account, open your wallet then tap on Withdraw. Select BEP20 as the Network. Indicate the amount and paste your BSC address.
+
 
 ![img](https://lh5.googleusercontent.com/dR9bBqUpNlBFX6zsKFkVRMgHz27Ak0Icu8AFsuJm_1ke6-qSG5Cg2FJLcpRYlFeuFEpisOdXpwn1KDOHBH7qQV9CpYxVb--2B1NxQm-L6B6qSl9Cq90uCSrwHEPAOh69Z0MM2VtG)
+
+
+3. Complete the steps to withdraw
+
+4. Wait for the exchange to process your request. Once it is confirmed, you will immediately receive BNB to your Smart Chain address.
