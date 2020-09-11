@@ -1,15 +1,18 @@
 # Use Metamask For Binance Smart Chain
 ## What is it?
 
-MetaMask was created out of the needs of creating more secure and usable Ethereum-based web sites. In particular, it handles account management and connecting the user to the blockchain. 
-It’s supported in Chrome, Brave, and Safari browsers. 
+MetaMask was created out of the needs of creating more secure and usable Ethereum-based web sites. In particular, it handles account management and connecting the user to the blockchain.
+It’s supported in Chrome, Brave, and Safari browsers.
 ## Install
+
 **Example: Install MetaMask in Brave browser**
+
 * Open Extension Category in Brave: https://chrome.google.com/webstore/category/extensionsSearch for MetaMask
-![img](https://lh5.googleusercontent.com/JMX8XXKQLkARgzfJUsPDrW8VCTUuP0xsUcqRELilEUr7owNdb5lC1mtAFd8KwbBHKnSRf-T9Df50Yh9Cw88ni5w9bmTIKOqvNWkVpgD1NzU36hDpBRLivqCP1tmZXWhcj41cR3Ly){ width=50%}
+
+![img](https://lh5.googleusercontent.com/JMX8XXKQLkARgzfJUsPDrW8VCTUuP0xsUcqRELilEUr7owNdb5lC1mtAFd8KwbBHKnSRf-T9Df50Yh9Cw88ni5w9bmTIKOqvNWkVpgD1NzU36hDpBRLivqCP1tmZXWhcj41cR3Ly)
 
 !!! warning
-    Note: Make sure it’s offered by metamask.io 
+    Note: Make sure it’s offered by metamask.io
 
 * Click on “Add to Brave”
 
@@ -21,58 +24,45 @@ That’s it! You have successfully installed MetaMask extension in Brave!
 
 ## Create an account in MetaMask for Binance Smart Chain
 
-1. Click on the “Create a wallet” button 
+1. Click on the “Create a wallet” button
+
 <img src="https://lh5.googleusercontent.com/Tnz34GivDYUUsCfoi4GZvJ-XXcACX2m5BamPzlQZ7nI71XBVrYYoCv-Kot4E24QHz3P3tzt31O9OeeV-Lbtn_ZrvYGNpp-GWIMWN82MdPslljJZMCwkfPM8SmsBGWL7bFcPTKWG-" alt="img" style="zoom:33%;" />
 2. Create Password of at least 8 characters</br>
 <img src="https://lh6.googleusercontent.com/q2Yq_dtl38CD2V41amALyCSr2IjrLeEYgpEQh1LKrI7iVWjzkWse0FdLPNlCb_qqjR6mI3vfkKxYgHemCBgHLkEPwPErBXb0ioGxC0GGEzGyh_JYz8kL3MukPll-xhgMpjZmDNXp" alt="img" style="zoom:33%;" />
 
 3. Click on “Create” and then write down your backup phrase.
+
 <img src="https://lh5.googleusercontent.com/hluBiNbCN4-8J31jX_5j2OqoNZZxb1WoApMr8RnxQ68FswgpD5D0WCZLb01nMVxDR57k-7WlDndvHEIgpB9pVHCr6O9KgenSPG6ayZrZ3D2wtZuWfTiu5Pbi_mDM19414i5FUDl4" alt="img" style="zoom:33%;" />
 
 4. Select each phrase in order to make sure it is correct then click “Confirm”.
+
 <img src="https://lh5.googleusercontent.com/rokxHmh0CZCjyIQqrngQm7qfEGRXbBvHoHuiZHvAon4_k0DLirngnQKqzucSJfrGdyVf-42IhwtDhz2C4PLm4dUjWH3rMrOTPqNC0kUYMSQEflF1ltbGwtiAYFQoxvyKfcNFGJCj" alt="img" style="zoom:33%;" />
 
 Congratulations! you have create your MetaMask account!
 
 ## Connect Your MetakMast With Binance Smart Chain testnet
 
-1. Go to setting page</br><img src="https://lh5.googleusercontent.com/NqWPIv1MrMJ-W2wDKjxtdxcdFhDwiqhsZ6G6MY6FQnhxPTCCPfPHBJ59vBl1ddxpbfV11ufETWAolV1s9YjCYHPeJCKW1S-sr8gfjcFt3swXM-p3IgafNBqPZ86DvThK-I9gKbrw" alt="img" style="zoom:33%;" />
+1. Go to setting page</br>
+
+<img src="https://lh5.googleusercontent.com/NqWPIv1MrMJ-W2wDKjxtdxcdFhDwiqhsZ6G6MY6FQnhxPTCCPfPHBJ59vBl1ddxpbfV11ufETWAolV1s9YjCYHPeJCKW1S-sr8gfjcFt3swXM-p3IgafNBqPZ86DvThK-I9gKbrw" alt="img" style="zoom:33%;" />
 
 2. Add a new network</br><img src="https://lh6.googleusercontent.com/jrq511YshO6rPPx4i-ePRy2gs-66b465c_JFXEW8Cm5CSNTM7CXgCPuFmIh_Im3JlEhxpAqEDDjmUqfskq2m5rG-FKhwZ4_jIenOTdAVs_rMMTjTvZlM6iOpQeivrz_V1liSvuB5" alt="img" style="zoom:33%;" /></br>
 
-    * Testnet
-        * RPC URLs:
-            * "https://data-seed-prebsc-1-s1.binance.org:8545"
-            * "https://data-seed-prebsc-2-s1.binance.org:8545"
-            * "https://data-seed-prebsc-1-s2.binance.org:8545"
-            * "https://data-seed-prebsc-2-s2.binance.org:8545"
-            * "https://data-seed-prebsc-1-s3.binance.org:8545"
-            * "https://data-seed-prebsc-2-s3.binance.org:8545"
+      * Testnet
+        * [RPC URLs](../developer/rpc.md)
         * ChainID: 97
-        * Symbol: BNB 
-        * Block Explorer: https://explorer.binance.org/smart-testnet 
-    
-    * Mainnet
-        * RPC URLs:
-           * "https://bsc-dataseed1.binance.org:443"
-           * "https://bsc-dataseed2.binance.org:443"
-           * "https://bsc-dataseed3.binance.org:443"
-           * "https://bsc-dataseed4.binance.org:443"
-           * "https://bsc-dataseed1.defibit.io:443"
-           * "https://bsc-dataseed2.defibit.io:443"
-           * "https://bsc-dataseed3.defibit.io:443"
-           * "https://bsc-dataseed4.defibit.io:443"
-           * "https://bsc-dataseed1.ninicoin.io:443"
-           * "https://bsc-dataseed2.ninicoin.io:443"
-           * "https://bsc-dataseed3.ninicoin.io:443"
-           * "https://bsc-dataseed4.ninicoin.io:443"
+        * Symbol: BNB
+        * Block Explorer: https://explorer.binance.org/smart-testnet
+
+      * Mainnet
+        * [RPC URLs](../developer/rpc.md)
         * ChainID: 56
-        * Symbol: BNB 
-        * Block Explorer: https://explorer.binance.org/smart 
+        * Symbol: BNB
+        * Block Explorer: https://explorer.binance.org/smart
 
 3. Claim some testnet token to your account
 Click on your address for copy
-<img src="https://lh3.googleusercontent.com/3-6iXj8gVhTYrhzkDHcRBWOMvkkfUwm2W8aDssNTZ5bFqCsjq1BlY-nhCJDZWwT8kx-9URnQur1JxmAot-3Nu1lhypqVM068MovqDlv-oXPDJtz4PwsNTYGM3TZM_F5uRlnUwrP3" alt="img" style="zoom:33%;" /> 
+<img src="https://lh3.googleusercontent.com/3-6iXj8gVhTYrhzkDHcRBWOMvkkfUwm2W8aDssNTZ5bFqCsjq1BlY-nhCJDZWwT8kx-9URnQur1JxmAot-3Nu1lhypqVM068MovqDlv-oXPDJtz4PwsNTYGM3TZM_F5uRlnUwrP3" alt="img" style="zoom:33%;" />
 
 4. Go to faucet page: https://testnet.binance.org/faucet-smart, then paste your address in the box and click on “Give me BNB”
 
@@ -81,7 +71,7 @@ Click on your address for copy
 ![img](https://lh6.googleusercontent.com/DqxU17JcP9iW5f1yUujY5S8w2m32yv00jrQgJJ0vp_OptrNwCWotbb1_X7msseR72OpXSj8fxbLXhWZgpVEtaMJ_STof2D2mZcGsl6Qh4-KWJH8LsYu97SXySMToDnx15qS4po5z)</br>
 After the transfer transaction is sent, you will see an increase of your balance<img src="https://lh6.googleusercontent.com/Azy6npo0J6hrV_H_X2-IfVcYHE7U6vaMEh2_GPnVb_5oKZSy9Qqa43QYlzEZlmgcJHnMYbyAvyFNJ16Opcn4xbNRO_6Z11Gnl0eePqOkwOfgOptGT0H9gWG2uepkRaHlYsOZ1w4b" alt="img" style="zoom:33%;" />
 
-## Transfer BNB to other Binance Smart Chain address 
+## Transfer BNB to other Binance Smart Chain address
 
 1. Log in to your MetaMask</br>
 <img src="https://lh3.googleusercontent.com/7HKZWIzMtfolKrO42OI6Zw3XCUj4CjKo15mXT8n_B3J6CC4Po3nDK59ORv2qvgL_G84I_JOYrnp3oNXcfSO3u0IsXBo4vvB3CpaberJ86ORb9_02campWQOyBr-Y07yYPI68qR85" alt="img" style="zoom: 33%;" />
