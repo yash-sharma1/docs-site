@@ -8,6 +8,11 @@ Future coding competitions; Hackathons
 
 Binance Side Chain is welcoming everyone.
 
+* [ForTube](https://docs.for.tube/)
+* [Spartanswap](https://spartanswap.com/)
+* [Burgerswap](http://burgerswap.org)
+* [Bounce.finance](http://bsc.bounce.finance/)
+
 ## What are Pegged tokens on Binance Smart chain?
 
 Soon after the launch of Binance Chain, Binance issued several pegged BEP2 tokens that are running on other blockchain networks, including BTC (BTCB), ETH, XRP, LTC, BCH, and ONT. These tokens are backed by real tokens locked in public addresses, and have allowed users to benefit from both the volatility of these tokens as well as the fast transfer and trading experience of Binance Chain.
@@ -32,3 +37,30 @@ Current list:
 
 Details are [here](https://www.binance.org/en/blog/binance-presents-project-token-canal-2/)
 
+## How to Send and Receive BNB on Smart Chain?
+
+[Binance.com](https:/www.binance.com) can withdraw BNB to BSC.
+
+1. If you don't have an existing address of Binance Smart Chain, please use these [wallets](https://docs.binance.org/smart-chain/wallet/metamask.html) to create one.
+
+2. On your Binance account, open your BNB wallet then tap on Withdraw. Select BEP20 as the Network. Indicate the amount and paste your BSC address.
+
+3. Complete the steps to withdraw
+
+4. Wait for the exchange to process your request. Once it is confirmed, you will immediately receive BNB to your Smart Chain address.
+
+## How to Send and Receive Pegged tokens on Smart Chain?
+
+[Binance.com](https:/www.binance.com) can withdraw those pegged tokens to BSC.
+
+1. If you don't have an existing address of Binance Smart Chain, please use these [wallets](https://docs.binance.org/smart-chain/wallet/metamask.html) to create one.
+
+2. On your Binance account, open your wallet then tap on Withdraw. Select BEP20 as the Network. Indicate the amount and paste your BSC address.
+
+
+![img](https://lh5.googleusercontent.com/dR9bBqUpNlBFX6zsKFkVRMgHz27Ak0Icu8AFsuJm_1ke6-qSG5Cg2FJLcpRYlFeuFEpisOdXpwn1KDOHBH7qQV9CpYxVb--2B1NxQm-L6B6qSl9Cq90uCSrwHEPAOh69Z0MM2VtG)
+
+
+3. Complete the steps to withdraw
+
+4. Wait for the exchange to process your request. Once it is confirmed, you will immediately receive BNB to your Smart Chain address.
