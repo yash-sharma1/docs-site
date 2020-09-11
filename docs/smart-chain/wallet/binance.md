@@ -7,13 +7,13 @@ In the future, Binance Chain Extension Wallet will add support for Ethereum bloc
 It’s supported in Firefox and Chrome browsers. 
 
 !!! Tip
-		Firfox users are more likely to access the latest version timely
+		Firefox users are more likely to access the latest version timely
 
 
 
 ## Install
 
-**Example: Install Binance Chain Wallet in Firfox browser**
+**Example: Install Binance Chain Wallet in Firefox browser**
 
 * Open Extension in Firfox: < https://addons.mozilla.org/en-US/firefox/addon/binance-chain/?src=search>
 
@@ -24,7 +24,7 @@ It’s supported in Firefox and Chrome browsers.
 Note: Make sure it’s offered by Binance Chain
 
 
-* Click on “Add to Fiirfox”
+* Click on “Add to Firefox”
 
 <img src="https://lh4.googleusercontent.com/BxNDhV2jxT9B7D8cbS7Fh8XY1TVeh_45Sm18xn_sBCTSUGtQzFI086TBS61QHXquLxmikpSpILOAlpE-azn9EWgdwU0kraW1VrCbjqXK8liCylFw_IBfyW40yOk5aNCX34oRi_sX" alt="img" style="zoom:33%;" />
 
