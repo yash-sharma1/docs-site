@@ -7,7 +7,7 @@ The presence of the provider object indicates a Binance Chain/Binance Smart Chai
 The API this extension wallet provides includes API specified by [EIP-1193](https://eips.ethereum.org/EIPS/eip-1193) and API defined by [MetaMask](https://docs.metamask.io/guide/ethereum-provider.html) (including some massively relied legacy ones).
 
 ## Development Progress
-Currently this API and its corresponding UI are in actively development. Only a subset of most important json-rpc has been implemented including for `request`:
+Currently (version 1.91.2) this API and its corresponding UI are in actively development. Only a subset of most important json-rpc has been implemented including for `request`:
 ```
   eth_accounts
   eth_blockNumber
@@ -100,10 +100,16 @@ If you are in need of higher-level abstractions than those provided by this API,
 
 These are the IDs of the Binance Smart chains that Binance Chain Wallet supports by default.
 
-| Hex  | Decimal | Network                                    |
-| ---- | ------- | ------------------------------------------ |
-| 0x38 | 56      | Binance Smart Chain Main Network (MainNet) |
-| 0x61 | 97      | Binance Smart Chain Test Network           |
+| Hex  | Decimal | Network                                        |
+| ---- | ------- | ---------------------------------------------- |
+| 0x38 | 56      | Binance Smart Chain Main Network (bsc-mainnet) |
+| 0x61 | 97      | Binance Smart Chain Test Network (bsc-testnet) |
+
+This API can also return chain ids of Binance Chains if user switch to them. Possible return value would be:
+| Chain Id             | Network                                  |
+| -------------------- | ---------------------------------------- |
+| Binance-Chain-Tigris | Binance Chain Main Network (bbc-mainnet) |
+| Binance-Chain-Ganges | Binance Chain Test Network (bbc-testnet) |
 
 ## Properties
 
@@ -194,6 +200,30 @@ BinanceChain
     // If the request fails, the Promise will reject with an error.
   });
 ```
+
+### BinanceChain.bnbSign(address: string, message: string): Promise<{publicKey: string, signature: string}>
+
+Like `eth_sign` enable dapp verify user has control over an ethereum address by signing arbitary message. We provide this method for dapp developers request signature of arbitary messages for Binance Chain (BC) and Binance Smart Chain (BSC).
+
+If `address` parameter is a binance chain address (start with `bnb` or `tbnb`), we will simply **calculate sha256 hash of the message** and let user sign the hash with his binance chain address' private key. Note: Binance Chain use the same ellipic curve (`secp256k1`) as Ethereum.
+
+If `address` parameter is a binance smart chain address (start with `0x`), the message would be hashed in the same way with [`eth_sign`](https://eth.wiki/json-rpc/API#eth_sign).
+
+The returned `publicKey` would be in compressed encoded format (a hex string encoded 33 bytes starting with "0x02", "0x03") for Binance Chain. And uncompressed encoded format (a hex string encoded 65 bytes starting with "0x04").
+
+The returned `signature` would be bytes encoded in hex string starting with `0x`. For BinanceChain, its r,s catenated 64 bytes in total. For Binance Smart Chain, like `eth_sign`, its r, s catenated 64 bytes and a recover byte in the end.
+
+!!! warning
+
+    DApp developers should verify whether returned publickey can be converted into the address user claimed in addition to a ECDSA signature verification. Because any plugin can inject the same object `BinanceChain` as Binance Chain Wallet.
+
+### BinanceChain.switchNetwork(networkId: string): Promise<{networkId: string}>
+
+As Binance Chain Wallet natively support Binance Chain and Binance Smart Chain which are heterogeneous blockchains run in parallel. APIs would be different in many situation. (We would open APIs for Binance Chain very soon).
+
+Developers could judge which network is selected by user currently via `BinanceChain.chainId` or listening to the `chainChanged` event via `BinanceChain.on('chainChanged', callback)`.
+
+To request for network switching, developers could invoke this API with `bbc-mainnet` (Binance Chain Main Network), `bsc-mainnet` (Binance Smart Chain Main Network), `bbc-testnet` (Binance Chain Test Network), `bsc-testnet` (Binance Smart Chain Test Network) to propmt user agree on network switching.
 
 ## Events
 
