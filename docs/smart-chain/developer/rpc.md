@@ -19,6 +19,13 @@ BSC RPC Endpoints:
 * https://bsc-dataseed3.binance.org/
 * https://bsc-dataseed4.binance.org/
 
+BSC Websocket Endpoints:
+
+*Note: provided by community with no quality promised, building your node should be always the long term goal*
+
+* wss://bsc-ws-node.nariox.org:443
+
+
 BC RPC Endpoints:
 
 * https://dataseed1.binance.org/
