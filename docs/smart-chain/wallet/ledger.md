@@ -11,7 +11,7 @@ BNB and coins on Binance Smart Chain are supported by the Ledger Nano S hardware
 ## App Installation Instructions
 
 !!! Tip
-		The existing Ethereum App is compatible with Binance Smart Chain 
+		The existing Ethereum App is compatible with Binance Smart Chain
 
 1) Plug in and unlock your Ledger device, open Ledger Live on your computer, then open the "Manager" panel.
 
@@ -34,18 +34,16 @@ Binance Smart Chain is compatible with MetaMask. Users can use MetaMask as a bri
 1) Connect [MetaMask](./metamask.md) to BSC Testnet by following this guide to add a custom network
 
  * Testnet
- 
-        * [RPC URLs](../developer/rpc.md)
-        * ChainID: 97
-        * Symbol: BNB
-        * Block Explorer: https://explorer.binance.org/smart-testnet
+    * [RPC URLs](../developer/rpc.md)
+    * ChainID: 97
+    * Symbol: BNB
+    * Block Explorer: https://explorer.binance.org/smart-testnet
 
  * Mainnet
- 
-        * [RPC URLs](../developer/rpc.md)
-        * ChainID: 56
-        * Symbol: BNB
-        * Block Explorer: https://explorer.binance.org/smart
+    * [RPC URLs](../developer/rpc.md)
+    * ChainID: 56
+    * Symbol: BNB
+    * Block Explorer: https://explorer.binance.org/smart
 
 2) Unlock your Metamask
 
@@ -67,6 +65,6 @@ You should see a new account
 
 <img src="https://lh5.googleusercontent.com/7Uo7dvi4PVqPiYnVcUEFkVsGNemyIgB0hAq2y244NhM_pNXVwFZi9zU1aYwmqf1koc-bC3BLthA-phkKD8_hr1hd9RkxTCJohbmwTcJiHscPOCzVn5O-Xs6Z2-ci17pVr2Lj1ljr" alt="img" style="zoom:33%;" />
 
-7) Please read this [doc](metamask.md) to learn about how to interact with blockchain. 
+7) Please read this [doc](metamask.md) to learn about how to interact with blockchain.
 
-With Ledger, you need to approve your transaction in your device. 
+With Ledger, you need to approve your transaction in your device.
