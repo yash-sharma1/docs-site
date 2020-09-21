@@ -1,212 +1,212 @@
-# Binance Smart Chain Band Oracle Developer Docs
+# Band Standard Dataset (BSC)
 
-## Band Protocol Integration
+## Introduction
 
-Developers building on Binance Smart Chain can now leverage Band's decentralized oracle infrastructure. With Band's oracle, they now have access to various cryptocurrency price data to integrate into their applications.
+We have implemented a new interface for developers to integrate price data from Band’s oracle into their application. Now, instead of making the requests to BandChain themselves, dApps and the developers can more easily access price data through our new
 
-## The Bridge Contract
+These price rate values was calculated using the latest result values from BandChain’s [price](https://guanyu-poa.cosmoscan.io/oracle-script/8) and [ForEx](https://guanyu-poa.cosmoscan.io/oracle-script/9) oracle scripts on our proof-of-authority mainnet, and are currently being updated every 20 minutes.
 
-### Bridge Architecture
+The data standard currently support the following symbols:
 
-Anyone looking to integrate Band's oracle data into their application can do so through Band's bridge contract. This contract is deployed on the Binance Smart Chain testnet at address `0xB911BbbF3Ef768B13b0e0257345b4756df5D4187`. The contract source code can also be found on the BandChain [repository](https://github.com/bandprotocol/bandchain/blob/master/bridges/evm/contracts/BridgeWithCache.sol).
+### Cryptocurrencies:
 
-The price data originates from [data requests](https://github.com/bandprotocol/bandchain/wiki/System-Overview#oracle-data-request) made on BandChain. The values are the median of the results retrieved by BandChain's validators from [CoinGecko](https://www.coingecko.com/api/documentations/v3), [CryptoCompare](https://min-api.cryptocompare.com/), [Binance](https://github.com/binance-exchange/binance-official-api-docs/blob/master/rest-api.md), and [Alpha Vantage](https://www.alphavantage.co/) APIs. The data request is then made by executing an price aggregator oracle script, the code of which can be examined on BandChain's [devnet](https://guanyu-devnet.cosmoscan.io/oracle-script/76).
+|              Token Name               | Symbol |
+| :-----------------------------------: | :----: |
+|             Binance Coin              |  BNB   |
+|              Binance USD              |  BUSD  |
+|                Bitcoin                |  BTC   |
+|               Ethereum                |  ETH   |
+|                Tether                 |  USDT  |
+|                  XRP                  |  XRP   |
+|               Chainlink               |  LINK  |
+|               Polkadot                |  DOT   |
+|             Bitcoin Cash              |  BCH   |
+|               Litecoin                |  LTC   |
+|                Cardano                |  ADA   |
+|              Bitcoin SV               |  BSV   |
+| [Crypto.com](http://crypto.com/) Coin |  CRO   |
+|                  EOS                  |  EOS   |
+|                 Tezos                 |  XTZ   |
+|                 Tron                  |  TRX   |
+|                Stellar                |  XLM   |
+|                Cosmos                 |  ATOM  |
+|                Monero                 |  XMR   |
+|                  OKB                  |  OKB   |
 
-Band's bridge contract then retrieves and stores the results of those requests onto the contract state.
+### Foreign Currencies:
 
-### Data Available (Testnet)
+*Coming Soon*
 
-The bridge contract stores the following price pairs, the values of which are updated every 5 minutes. The specific data that are available through the bridge contract, as well as the source(s) where the data was retrieved from, is as follow:
+### Commodities
 
-Cryptocurrency Prices ([CoinGecko](https://coingecko.com), [CryptoCompare](https://www.cryptocompare.com/), [Binance](https://binance.com), [Binance US](https://binance.us)):
+*Coming Soon*
 
-- BTC/USD
-- ETH/USD
-- BNB/USD
-- BUSD/USD
-- BAND/USD
+# Supported Price Pairs
 
-Commodity Prices ([Alpha Vantage](https://www.alphavantage.co/)):
+Band Standard Dataset supports price query with any denomination as long as the base and quote symbols are supported in the list above.
 
-- XAU/USD
-- XAG/USD
+For example, you can use the APIs in Javascripts and Solidity to query the following price pairs:
 
-Foreign Exchange Conversions Rates ([Alpha Vantage](https://www.alphavantage.co/)):
+- `BTC/USD`
+- `BNB/ETH`
 
-- EUR/USD
-- CNY/USD
-- JPY/USD
-- GBP/USD
-- KRW/USD
+# Using the Reference Prices in Smart Contracts
 
-In addition to the actual price value, the following information are also available:
+For EVM-compatible chains, we’ve deployed a new `StdReference` contract. This contract exposes `getReferenceData` and `getRefenceDataBulk` functions.
 
-- the multiplier used to calculate the stored price value
-- the timestamp of when the specific price request was resolved on BandChain
+`getReferenceData` takes two strings as the inputs, the base and quote symbol, respectively. It then queries the `StdReference` contract for the latest rates for those two tokens, and returns a `ReferenceData` struct, shown below.
 
-These parameters are intended to act as security parameters to help anyone using the data to verify that the data they are using is what they expect and, perhaps more importantly, actually valid.
+```
+struct ReferenceData {
+    uint256 rate; // base/quote exchange rate, multiplied by 1e18.
+    uint256 lastUpdatedBase; // UNIX epoch of the last time when base price gets updated.
+    uint256 lastUpdatedQuote; // UNIX epoch of the last time when quote price gets updated.
+}
+```
 
-### Bridge Contract Price Update Process
+`getReferenceDataBulk` instead takes two lists, one of the `base` tokens, and one of the `quotes`. It then proceeds to similarly queries the price for each base/quote pair at each index, and returns an array of `ReferenceData` structs.
 
-For the ease of development, the Band Foundation will be maintaining and updating the bridge contract with the latest price data. In the near future, we will be releasing guides on how developers can create similar contracts themselves to retrieve data from Band's oracle.
+For example, if we call `getReferenceDataBulk` with `['BTC','BTC','ETH']` and `['USD','ETH','BNB']`, the returned `ReferenceData` array will contain information regarding the pairs:
 
-## Retrieving and Using the Price Data
+- `BTC/USD`
+- `BTC/ETH`
+- `ETH/BNB`
 
-We will now illustrate an example of a simple price database contract that uses data from Band's oracle. The code for the contract is shown below.
+### Example Usage
 
-```javascript
-pragma solidity 0.6.0;
+The contract code below demonstrates a simple usage of the new `StdReference` contract and the `getReferenceData` function.
+
+```
+pragma solidity 0.6.11;
 pragma experimental ABIEncoderV2;
 
-import "./Obi.sol";
-import {IBridge} from "./IBridgeWithCache.sol";
-import {ParamsDecoder, ResultDecoder} from "./Decoders.sol";
-import "openzeppelin-solidity/contracts/math/SafeMath.sol";
+interface IStdReference {
+    /// A structure returned whenever someone requests for standard reference data.
+    struct ReferenceData {
+        uint256 rate; // base/quote exchange rate, multiplied by 1e18.
+        uint256 lastUpdatedBase; // UNIX epoch of the last time when base price gets updated.
+        uint256 lastUpdatedQuote; // UNIX epoch of the last time when quote price gets updated.
+    }
 
+    /// Returns the price data for the given base/quote pair. Revert if not available.
+    function getReferenceData(string memory _base, string memory _quote)
+        external
+        view
+        returns (ReferenceData memory);
 
-contract SimplePriceDB {
-    using SafeMath for uint256;
-    using ResultDecoder for bytes;
-    using ParamsDecoder for bytes;
+    /// Similar to getReferenceData, but with multiple base/quote pairs at once.
+    function getRefenceDataBulk(string[] memory _bases, string[] memory _quotes)
+        external
+        view
+        returns (ReferenceData[] memory);
+}
 
-    IBridge bridge;
-    IBridge.RequestPacket req;
+contract DemoOracle {
+    IStdReference ref;
 
     uint256 public price;
 
-    constructor(IBridge bridge_) public {
-         bridge = bridge_;
-
-        req.clientId = "bsc";
-        req.oracleScriptId = 76;
-        // {symbol:"BTC"}
-        req.params = hex"00000003425443";
-        req.askCount = 4;
-        req.minCount = 4;
+    constructor(IStdReference _ref) public {
+        ref = _ref;
     }
 
-
-    // getPrice fetches the latest BTC/USD price value from the bridge contract and saves it to state.
-    function getPrice() public {
-       (IBridge.ResponsePacket memory res,) = bridge.getLatestResponse(req);
-        ResultDecoder.Result memory result = res.result.decodeResult();
-        price = result.px;
-    }
-}
-```
-
-Let's break down the code into sections.
-
-### Imports
-
-
-```javascript
-import "./Obi.sol";
-import {IBridge} from "./IBridgeWithCache.sol";
-import {ParamsDecoder, ResultDecoder} from "./Decoders.sol";
-import "openzeppelin-solidity/contracts/math/SafeMath.sol";
-```
-
-Aside from `SafeMath.sol`, the contract we will be writing requires three helper files specific to Band's oracle: `Obi.sol`, `Decoders.sol`, and `IBridgeWithCache.sol`.
-
-
-#### `Obi.sol`
-
-This contains a set of function to help serialized and deserialize binary data when interacting with the BandChain ecosystem. The full standard specificationcan be found on their [wiki](https://github.com/bandprotocol/bandchain/wiki/Oracle-Binary-Encoding-(OBI)) and the code on the BandChain [repository](https://github.com/bandprotocol/bandchain/blob/master/bridges/evm/contracts/obi/Obi.sol).
-
-#### `Decoders.sol`
-
-This is what we will use to work with data related to requests made on BandChain. This will help us in extracting the various information, such as the price value, we may need from the request response from Band's oracle. The file is available from the oracle script's [bridge code tab](https://guanyu-devnet.cosmoscan.io/oracle-script/76#bridge) on the devnet explorer.
-
-#### `IBridgeWithCache.sol`
-
-The interface file for Band's bridge contract.
-
-### Contract
-
-```javascript
-contract SimplePriceDB {
-    using SafeMath for uint256;
-    using ResultDecoder for bytes;
-    using ParamsDecoder for bytes;
-
-    IBridge bridge;
-    IBridge.RequestPacket req;
-
-    uint256 public price;
-
-    constructor(IBridge bridge_) public {
-         bridge = bridge_;
-
-        req.clientId = "bsc";
-        req.oracleScriptId = 76;
-        // {symbol:"BTC"}
-        req.params = hex"00000003425443";
-        req.askCount = 4;
-        req.minCount = 4;
+    function getPrice() external view returns (uint256){
+        IStdReference.ReferenceData memory data = ref.getReferenceData("BTC","USD");
+        return data.rate;
     }
 
+    function getMultiPrices() external view returns (uint256[] memory){
+        string[] memory baseSymbols = new string[](2);
+        baseSymbols[0] = "BTC";
+        baseSymbols[1] = "ETH";
 
-    // getPrice fetches the latest BTC/USD price value from the bridge contract and saves it to state.
-    function getPrice() public {
-       (IBridge.ResponsePacket memory res,) = bridge.getLatestResponse(req);
-        ResultDecoder.Result memory result = res.result.decodeResult();
-        price = result.px;
+        string[] memory quoteSymbols = new string[](2);
+        quoteSymbols[0] = "USD";
+        quoteSymbols[1] = "USD";
+        IStdReference.ReferenceData[] memory data = ref.getRefenceDataBulk(baseSymbols,quoteSymbols);
+
+        uint256[] memory prices = new uint256[](2);
+        prices[0] = data[0].rate;
+        prices[1] = data[1].rate;
+
+        return prices;
+    }
+
+    function savePrice(string memory base, string memory quote) external {
+        IStdReference.ReferenceData memory data = ref.getReferenceData(base,quote);
+        price = data.rate;
     }
 }
 ```
 
-The contract itself can then be futher broken down into two parts: the constructor and the main `getPrice` function.
+## Contract Addresses
 
-#### Contract Constructor
+Due to the high transaction fees & potential network congestions, the price feeds on the blockchains are updated at different frequencies depending on the network.
 
-```javascript
-constructor(IBridge bridge_) public {
-     bridge = bridge_;
+### Supported Networks
 
-    req.clientId = "bsc";
-    req.oracleScriptId = 76;
-    // {symbol:"BTC"}
-    req.params = hex"00000003425443";
-    req.askCount = 4;
-    req.minCount = 4;
-}
+| Blockchain    |         Aggregator Contract Address          | Update Every |                           Explorer                           |
+| :------------ | :------------------------------------------: | :----------: | :----------------------------------------------------------: |
+| BSC (Testnet) | `0x2d12c12d17fbc9185d75baf216164130fc269ff1` |   20 mins    | [link](https://testnet.bscscan.com/address/0x2d12c12d17fbc9185d75baf216164130fc269ff1) |
+| BSC (Mainnet) | `0x2d12c12d17fbc9185d75baf216164130fc269ff1` |   20 mins    | [link](https://bscscan.com/address/0x2d12c12d17fbc9185d75baf216164130fc269ff1) |
+
+# Using the Reference Prices in JavaScript
+
+Our node helper library [`bandchain.js`](https://www.npmjs.com/package/@bandprotocol/bandchain.js) also now supports a new function, `getReferenceData`. This function takes one argument, a list of token pairs to query the result of. It then returns a list of corresponding rate values.
+
+### Example Usage
+
+The code below shows an example usage of the function
+
+```
+const BandChain = require('@bandprotocol/bandchain.js');
+
+(async () => {
+  const endpoint = 'https://poa-api.bandchain.org';
+
+  const bandchain = new BandChain(endpoint);
+  const rates = await bandchain.getReferenceData(['BTC/USD', 'BTC/ETH', 'EUR/USD', 'EUR/BTC']);
+  console.log(rates);
+})();
 ```
 
-The contract's constructor takes one argument, the address of the bridge contract. It then sets the various fields of the `req` `RequestPacket` variable. This `req` variable will be what we will use as the key to match and retrieve the price from the bridge contract. Specifically, in this case, we set `req` to have the following parameters.
+The corresponding result will then be similar to
 
-- `clientId` (`"band_bsc"`): the unique identifier of this oracle request, as specified by the client
-- `oracleScriptId` (`76`): The unique identifier number assigned to the oracle script when it was first registered on Bandchain.
-- `params` (`hex"00000003425443"`): The data passed over to the oracle script for the script to use during its execution. In this case, it is hex representation of the OBI-encoded request struct`{"symbol":"BTC"}`
-- `minCount` (`4`): The minimum number of validators necessary for the request to proceed to the execution phase
-- `askCount` (`4`): The number of validators that are requested to respond to this request
-
-The specific params for each of the available price pairs are:
-
-| Pair     | Params                 |
-|----------|------------------------|
-| BTC/USD  | `hex"00000003425443"`  |
-| ETH/USD  | `hex"00000003455448`   |
-| BNB/USD  | `hex"00000003424e42`   |
-| BUSD/USD | `hex"0000000442555344` |
-| BAND/USD | `hex"0000000442414e44` |
-| XAU/USD  | `hex"00000003584155`   |
-| XAG/USD  | `hex"00000003584147`   |
-| EUR/USD  | `hex"00000003455552`   |
-| CNY/USD  | `hex"00000003434e59`   |
-| JPY/USD  | `hex"000000034a5059`   |
-| GBP/USD  | `hex"00000003474250`   |
-| KRW/USD  | `hex"000000034b5257`   |
-
-#### getPrice Function
-
-```javascript
-// getPrice fetches the latest BTC/USD price value from the bridge contract and saves it to state.
-function getPrice() public {
-   (IBridge.ResponsePacket memory res,) = bridge.getLatestResponse(req);
-    ResultDecoder.Result memory result = res.result.decodeResult();
-    price = result.px;
-}
+```
+$ node index.js
+[
+  {
+    pair: 'BTC/USD',
+    rate: 11886.605,
+    rawRate: { value: 11886605000000n, decimals: 9 }
+  },
+  {
+    pair: 'BTC/ETH',
+    rate: 25.848312529900404,
+    rawRate: { value: 25848312529n, decimals: 9 }
+  },
+  {
+    pair: 'EUR/USD',
+    rate: 1.197215344,
+    rawRate: { value: 1197215344n, decimals: 9 }
+  },
+  {
+    pair: 'EUR/BTC',
+    rate: 0.00010071970457502374,
+    rawRate: { value: 100719n, decimals: 9 }
+  }
+]
 ```
 
-This is then the main function that we will use to fetch the price from Band's bridge contract and save it into our price database contract's state. It calls the bridge contract's `getLatestResponse` to retrieve the latest request response associated with a `BTC/USD` price request. It then uses `Decoders.sol`'s `decodeResult` method to parse that response into a struct. Finally, we save the price value from that response into the contract's `price` variable.
+For each pair, the following information will be returned:
+
+- `pair`: The base/quote symbol pair string
+
+- `rate`: The resulting rate of the given pair
+
+- `rawRate` This object consists of two parts.
+
+  - `value` is the `BigInt` value of the actual rate, multiplied by `10^decimals`
+  - `decimals` is then the exponent by which `rate` was multiplied by to get `rawRate`
+
+### Original Link: <https://hackmd.io/@tansawit/aggregator-ecosystem-guide-bsc>
