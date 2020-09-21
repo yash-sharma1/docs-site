@@ -6,6 +6,10 @@
 
 BSC RPC Endpoints:
 
+Recommend
+* https://bsc-dataseed.binance.org/
+
+Backups
 * https://bsc-dataseed1.defibit.io/
 * https://bsc-dataseed2.defibit.io/
 * https://bsc-dataseed3.defibit.io/
