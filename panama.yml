@@ -1,0 +1,488 @@
+swagger: '2.0'
+info:
+  description: API description for swap service
+  version: V1.0
+  title: Swagger API reference for swap service
+  contact:
+    name: Binance Chain
+host: api.binance.org
+basePath: /panama
+tags:
+  - name: API for panama swap
+    description: API for panama swap
+paths:
+  '/api/v1/tokens':
+    get:
+      tags:
+        - API for swap tokens
+      summary: get
+      operationId: gettokensUsingGET_1
+      produces:
+        - application/json
+      parameters:
+         - name: direction
+           in: query
+           description: 'In or OUT'
+           required: false
+           type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/TokenList'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  '/api/v1/tokens/{symbol}/networks':
+    get:
+      tags:
+        - API for swap tokens networks
+      summary: get
+      operationId: gettokensnetworkUsingGET_1
+      produces:
+        - application/json
+      parameters:
+        - name: symbol
+          in: path
+          description: token symbol
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/NetworkList'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  '/api/v1/swaps':
+    get:
+      tags:
+        - API for swap
+      summary: find
+      operationId: findUsingGET_1
+      produces:
+        - application/json
+      parameters:
+        - name: direction
+          in: query
+          description: direction
+          required: false
+          type: string
+        - name: endTime
+          in: query
+          description: endTime
+          required: false
+          type: integer
+          format: int64
+        - name: limit
+          in: query
+          description: limit
+          required: false
+          type: integer
+          default: 20
+          format: int64
+        - name: offset
+          in: query
+          description: offset
+          required: false
+          type: integer
+          default: 0
+          format: int64
+        - name: startTime
+          in: query
+          description: startTime
+          required: false
+          type: integer
+          format: int64
+        - name: status
+          in: query
+          description: status
+          required: false
+          type: array
+          items:
+            type: string
+          collectionFormat: multi
+        - name: symbol
+          in: query
+          description: symbol
+          required: false
+          type: string
+        - name: walletAddress
+          in: query
+          description: walletAddress
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseStatusBodySwapList'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+    post:
+      tags:
+        - API for swap
+      summary: create
+      operationId: createUsingPOST
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: payload
+          description: payload
+          required: true
+          schema:
+            $ref: '#/definitions/SwapCreationRequest'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseStatusBodySwapCreation'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  '/api/v1/swaps/{swapId}':
+    get:
+      tags:
+        - API for swap
+      summary: get
+      operationId: getUsingGET_1
+      produces:
+        - application/json
+      parameters:
+        - name: swapId
+          in: path
+          description: swapId
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseStatusBodySwapDetail'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  '/api/v1/swaps/{swapId}/email':
+    put:
+      tags:
+        - API for swap
+      summary: createEmail
+      operationId: createEmailUsingPUT
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: payload
+          description: payload
+          required: true
+          schema:
+            $ref: '#/definitions/EmailUpdateRequest'
+        - name: swapId
+          in: path
+          description: swapId
+          required: true
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/ResponseStatus'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+definitions:
+  EmailUpdateRequest:
+    type: object
+    properties:
+      email:
+        type: string
+      walletAddress:
+        type: string
+    title: EmailUpdateRequest
+  ResponseStatus:
+    type: object
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
+    title: ResponseStatus
+  ResponseStatusBodySwapCreation:
+    type: object
+    properties:
+      code:
+        type: integer
+        format: int32
+      data:
+        $ref: '#/definitions/SwapCreation'
+      message:
+        type: string
+    title: ResponseStatusBody«SwapCreation»
+  ResponseStatusBodySwapDetail:
+    type: object
+    properties:
+      code:
+        type: integer
+        format: int32
+      data:
+        $ref: '#/definitions/SwapDetail'
+      message:
+        type: string
+    title: ResponseStatusBody«SwapDetail»
+  SwapCreation:
+    type: object
+    properties:
+      amount:
+        type: number
+      createTime:
+        type: string
+        format: date-time
+      depositAddress:
+        type: string
+      depositAddressLabel:
+        type: string
+      depositTimeout:
+        type: string
+        format: date-time
+      direction:
+        type: string
+      fromNetwork:
+        type: string
+      id:
+        type: string
+      networkFee:
+        type: number
+      networkFeePromoted:
+        type: boolean
+      status:
+        type: string
+      swapFee:
+        type: number
+      swapFeeRate:
+        type: number
+      symbol:
+        type: string
+      toAddress:
+        type: string
+      toAddressLabel:
+        type: string
+      toNetwork:
+        type: string
+      walletAddress:
+        type: string
+    title: SwapCreation
+  SwapCreationRequest:
+    type: object
+    properties:
+      amount:
+        type: number
+      direction:
+        type: string
+      fromNetwork:
+        type: string
+      source:
+        type: integer
+        format: int32
+      symbol:
+        type: string
+      toAddress:
+        type: string
+      toAddressLabel:
+        type: string
+      toNetwork:
+        type: string
+      walletAddress:
+        type: string
+    title: SwapCreationRequest
+  SwapDetail:
+    type: object
+    properties:
+      actualFromAmount:
+        type: number
+      actualNetworkFee:
+        type: number
+      actualSwapFee:
+        type: number
+      actualToAmount:
+        type: number
+      amount:
+        type: number
+      createTime:
+        type: string
+        format: date-time
+      depositAddress:
+        type: string
+      depositAddressLabel:
+        type: string
+      depositReceivedConfirms:
+        type: integer
+        format: int32
+      depositRequiredConfirms:
+        type: integer
+        format: int32
+      depositTimeout:
+        type: string
+        format: date-time
+      depositTxId:
+        type: string
+      depositTxLink:
+        type: string
+      direction:
+        type: string
+      fromNetwork:
+        type: string
+      id:
+        type: string
+      networkFee:
+        type: number
+      networkFeePromoted:
+        type: boolean
+      status:
+        type: string
+      swapFee:
+        type: number
+      swapFeeRate:
+        type: number
+      swapTxId:
+        type: string
+      swapTxLink:
+        type: string
+      symbol:
+        type: string
+      toAddress:
+        type: string
+      toAddressLabel:
+        type: string
+      toNetwork:
+        type: string
+      updateTime:
+        type: string
+        format: date-time
+      walletAddress:
+        type: string
+    title: SwapDetail
+  ResponseStatusBodySwapList:
+    type: object
+    properties:
+      code:
+        type: integer
+        format: int32
+      data:
+        $ref: '#/definitions/SwapList'
+      message:
+        type: string
+    title: ResponseStatusBody«SwapList»
+  SwapList:
+    type: object
+    properties:
+      swaps:
+        type: array
+        items:
+          $ref: '#/definitions/SwapDetail'
+      total:
+        type: integer
+        format: int64
+    title: SwapList
+  TokenList:
+    type: object
+    properties:
+      swaps:
+        type: array
+        items:
+          $ref: '#/definitions/TokenDetail'
+      total:
+        type: integer
+        format: int64
+    title: TokenList
+  TokenDetail:
+    type: object
+    properties:
+      name:
+        type: string
+      symbol:
+        type: string
+      bcSymbol:
+        type: string
+      icon:
+        type: string
+      minAmount:
+        type: number
+      maxAmount:
+        type: number
+      promotion:
+        type: boolean
+      enabled:
+        type: boolean
+      bscContractAddress:
+        type: string
+      bscContractDecimal:
+        type: integer
+        format: int32
+  NetworkList:
+    type: object
+    properties:
+      from:
+        type: array
+        items:
+          $ref: '#/definitions/NetworkDetail'
+      to:
+        type: array
+        items:
+          $ref: '#/definitions/NetworkDetail'
+    title: TokenList
+  NetworkDetail:
+    type: object
+    properties:
+      name:
+        type: string
+      supportLabel:
+        type: boolean
+      labelName:
+        type: string
+      labelRegex:
+        type: string
+      txUrl:
+        type: number
+      enabled:
+        type: boolean
+      requiredConfirms:
+        type: integer
+        format: int32
+      tokenStandard:
+        type: string
