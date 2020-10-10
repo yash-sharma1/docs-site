@@ -40,7 +40,7 @@ That’s it! You have successfully installed MetaMask extension in Brave!
 
 Congratulations! you have create your MetaMask account!
 
-## Connect Your MetakMast With Binance Smart Chain testnet
+## Connect Your MetakMast With Binance Smart Chain
 
 1. Go to setting page</br>
 
