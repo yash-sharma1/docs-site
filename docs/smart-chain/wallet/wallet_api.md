@@ -7,20 +7,19 @@ The presence of the provider object `window.BinanceChain` indicates a Binance Ch
 The API this extension wallet provides includes API specified by [EIP-1193](https://eips.ethereum.org/EIPS/eip-1193) and API defined by [MetaMask](https://docs.metamask.io/guide/ethereum-provider.html) (including some massively relied legacy ones).
 
 ## Development Progress
-Currently (version 1.96.1) this API and its corresponding UI are in actively development. Only a subset of most important json-rpc has been implemented including for `request`:
+Currently (version 1.108.2) this API and its corresponding UI are in actively development. Only the following json-rpc **hasn't** been implemented for `request`:
 ```
-  eth_accounts
-  eth_blockNumber
-  eth_call
-  eth_chainId
-  eth_estimateGas
-  eth_gasPrice
-  eth_getBalance
-  eth_getTransactionReceipt
-  eth_requestAccounts
-  eth_sendTranscation
-  eth_sign
-  net_version
+  web3_clientVersion,
+  web3_sha3,
+  net_version,
+  net_peerCount,
+  net_listening,
+  eth_newFilter,
+  eth_newBlockFilter,
+  eth_newPendingTransactionFilter,
+  eth_uninstallFilter,
+  eth_getFilterChanges,
+  eth_getFilterLogs
 ```
 
 Other MetaMask properties and method implemented includes:
@@ -37,6 +36,10 @@ disconnect
 accountsChanged // As currently the plugin only support one account, so listening to this event is a no-op
 chainChanged
 ```
+
+As Binance Chain Wallet natively support Binance Chain, we are planning open a series of APIs for dApp developers to interact with Binance Chain. In the end of day, most [APIs available in Binance Chain javascript sdk](https://github.com/binance-chain/javascript-sdk/tree/master/docs) would be available.
+
+Currently only [`transfer`](https://github.com/binance-chain/javascript-sdk/tree/master/docs#transfer-tokens) is supported.
 
 ## Difference with MetaMask
 
@@ -226,6 +229,63 @@ As Binance Chain Wallet natively support Binance Chain and Binance Smart Chain w
 Developers could judge which network is selected by user currently via `BinanceChain.chainId` or listening to the `chainChanged` event via `BinanceChain.on('chainChanged', callback)`.
 
 To request for network switching, developers could invoke this API with `bbc-mainnet` (Binance Chain Main Network), `bsc-mainnet` (Binance Smart Chain Main Network), `bbc-testnet` (Binance Chain Test Network), `bsc-testnet` (Binance Smart Chain Test Network) to propmt user agree on network switching.
+
+### BinanceChain.requestAccounts()
+
+Request all accounts maintained by this extension.
+
+The `id` in response would be used as `accountId` for the APIs for Binance Chain. 
+
+This method would return an array of Account:
+```
+{
+  addresses: [{address: string, type: string}],
+  icon: string,
+  id: string,
+  name: string
+}
+```
+
+For example:
+```
+[
+    {
+        "id":"fba0b0ce46c7f79cd7cd91cdd732b6c699440acf8c539d7e7d753d38c9deea544230e51899d5d9841b8698b74a3c77b79e70d686c76cb35dca9cac0e615628ed",
+        "name":"Account 1",
+        "icon":"data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjQgMjQiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgY2xhc3M9InNjLXBraElSIGhnRUNmUyI+PHJlY3Qgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiByeD0iOCIgZmlsbD0iI2ZjNmU3NSI+PC9yZWN0Pjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBkb21pbmFudC1iYXNlbGluZT0iY2VudHJhbCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzFlMjAyNiIgc3R5bGU9ImZvbnQtc3R5bGU6bm9ybWFsO2ZvbnQtc2l6ZToxNHB4O2ZvbnQtZmFtaWx5OkJpbmFuY2VQbGV4LCAtYXBwbGUtc3lzdGVtLCAmI3gyNzsuU0ZOU1RleHQtUmVndWxhciYjeDI3OywgJiN4Mjc7U2FuIEZyYW5jaXNjbyYjeDI3OywKQmxpbmtNYWNTeXN0ZW1Gb250LCAmI3gyNzsuUGluZ0ZhbmctU0MtUmVndWxhciYjeDI3OywgJiN4Mjc7TWljcm9zb2Z0IFlhSGVpJiN4Mjc7LCAmI3gyNztTZWdvZSBVSSYjeDI3OywgJiN4Mjc7SGVsdmV0aWNhIE5ldWUmI3gyNzssCkhlbHZldGljYSwgQXJpYWwsIHNhbnMtc2VyaWYiPkE8L3RleHQ+PC9zdmc+",
+        "addresses":[
+            {
+                "type":"bbc-testnet",
+                "address":"tbnb1akt8vgstdaz8pax5zgykzee5u9kamjdkkcf2dw"
+            },
+            {
+                "type":"bbc-mainnet",
+                "address":"bnb1akt8vgstdaz8pax5zgykzee5u9kamjdkcdqwdl"
+            },
+            {
+                "type":"eth",
+                "address":"0x43364696e478E344E95831CE8427623202e5CBFb"
+            }
+        ]
+    }
+]
+```
+
+### BinanceChain.transfer({fromAddress:string, toAddress:string, asset:string, amount:number, accountId:string, networkId:string})>
+
+Transfer certain `amount` of `asset` (BNB or BEP2) on Binance Chain.
+
+`accountId` could be retrieved from the `BinanceChain.requestAccounts` API
+
+`networkId` could be `bbc-mainnet` or `bbc-testnet`
+
+For example:
+
+1. This will ask user's approval for transfering 1 BNB to himself.
+`BinanceChain.transfer({fromAddress:"tbnb1sndxdzsg42jg8lc0hehx8dzzpyfxrvq937mt0w", toAddress:"tbnb1sndxdzsg42jg8lc0hehx8dzzpyfxrvq937mt0w", asset:"BNB", amount:1, accountId:"fba0b0ce46c7f79cd7cd91cdd732b6c699440acf8c539d7e7d753d38c9deea544230e51899d5d9841b8698b74a3c77b79e70d686c76cb35dca9cac0e615628ed", networkId:"bbc-testnet"})`
+
+2. This will ask user's approval for transfering 1 BUSD to himself.
+`BinanceChain.transfer({fromAddress:"tbnb1sndxdzsg42jg8lc0hehx8dzzpyfxrvq937mt0w", toAddress:"tbnb1sndxdzsg42jg8lc0hehx8dzzpyfxrvq937mt0w", asset:"BUSD-BAF", amount:1, accountId:"fba0b0ce46c7f79cd7cd91cdd732b6c699440acf8c539d7e7d753d38c9deea544230e51899d5d9841b8698b74a3c77b79e70d686c76cb35dca9cac0e615628ed", networkId:"bbc-testnet"})`
 
 ## Events
 
