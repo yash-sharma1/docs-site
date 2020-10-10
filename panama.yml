@@ -8,8 +8,8 @@ info:
 host: api.binance.org
 basePath: /panama
 tags:
-  - name: API for swap
-    description: Internal Swap Controller Impl
+  - name: API for panama swap
+    description: API for panama swap
 paths:
   '/api/v1/tokens':
     get:
