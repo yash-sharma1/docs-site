@@ -88,3 +88,4 @@ With Ledger, you need to approve your transaction in your device.
 12) Track the transaction stsatus in “Activity” tab
 
 <img src="https://lh4.googleusercontent.com/ejb2jVBsYnFHctelQtR9gS36Z96td60sQ1yVFYdSbLr_jCTkyv2Im2P1wkHxS3JGAYHRXQTiac3FO9dUH1GX0eKHG1Vwk764tSMERGza_vmQcxxm32S66-kFi18wTifSrF-uD9tL" alt="img" style="zoom:33%;" />
+

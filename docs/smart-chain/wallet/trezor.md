@@ -4,13 +4,13 @@ BNB and coins on Binance Smart Chain are supported by the Trezor hardware wallet
 
 ## Requirements
 * Visit <https://wallet.trezor.io> and initialize your Trezor
-* Trezor Model T firmware version 2.3.0 and earlier.
-* Trezor Model One firmware version 1.9.3 and earlier.
+* Trezor Model T firmware version **2.3.0** and earlier.
+* Trezor Model One firmware version **1.9.3** and earlier.
 * An internet connection and an available USB port. Use an adapter for USB-C ports
 * U2F compatible browsers: Google Chrome, Opera, FireFox, Brave
 
 
-##Connect with MetaMask
+## Connect with MetaMask
 
 Binance Smart Chain is compatible with MetaMask. Users can use MetaMask as a bridge between Trezor and Binance Smart Chain to make transactions to the Binance Smart Chain testnet.
 
@@ -57,7 +57,6 @@ You should see a new account
 ![img](https://lh4.googleusercontent.com/6NKBwtaMaTetlmDBfuHFFFpbBvF49KZl9FFrD5B9uT_fPILH80BhjMOB7zUWTFsXbP0-hYuSa8xBzaiIS2OD7bGhIXlUGkbPE5n8VSXcU5chmtSXfrHqb1oV0FJyWw7AKbR6Ts6Z)
 
 ### Confirm the same info in your Trezor device
-
 ![img](https://lh3.googleusercontent.com/undvuvIO0EUSzQmLnUoJbkF4_YqYE3QQk-M5cacvcycIWi5ei1kPKWAMW8jLABbLR3eI45M5bKzsumMJ161ogGe2jP7GhJBeM0AdH9FbCmy7ym6lUECoDGfg9nFusgmK6SUCbjHZ)
 
 ### Track the transaction stsatus in “Activity” tab
