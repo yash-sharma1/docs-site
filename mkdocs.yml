@@ -91,6 +91,7 @@ nav:
       - Binance Extension Wallet Guides: smart-chain/wallet/binance.md
       - MetaMask Guides: smart-chain/wallet/metamask.md
       - Ledger: smart-chain/wallet/ledger.md
+      - Trezor: smart-chain/wallet/trezor.md
       - MEW: smart-chain/wallet/myetherwallet.md
       - Math Wallet: smart-chain/wallet/math.md
       - Trust Wallet: smart-chain/wallet/trustwallet.md
