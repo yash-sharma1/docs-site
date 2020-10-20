@@ -81,6 +81,24 @@ Current list:
 - Pegged XTZ Token URL:
 	- [Binance Chain](https://explorer.binance.org/asset/XTZ-F7A )
 	- [Binance Smart Chain](https://bscscan.com/token/0x16939ef78684453bfdfb47825f8a5f714f12623a)
+- Pegged BAT Token URL:
+	- [Binance Chain](https://explorer.binance.org/asset/BAT-07A )
+	- [Binance Smart Chain](https://bscscan.com/token/0x101d82428437127bF1608F699CD651e6Abf9766E)
+- Pegged SNX Token URL:
+	- [Binance Chain](https://explorer.binance.org/asset/SNX-C26 )
+	- [Binance Smart Chain](https://bscscan.com/token/0x9Ac983826058b8a9C7Aa1C9171441191232E8404)
+- Pegged FYI Token URL:
+	- [Binance Chain](https://explorer.binance.org/asset/YFI-1A4 )
+	- [Binance Smart Chain](https://bscscan.com/token/0x88f1A5ae2A3BF98AEAF342D26B30a79438c9142e)
+- Pegged UNI Token URL:
+	- [Binance Chain](https://explorer.binance.org/asset/UNI-DD8 )
+	- [Binance Smart Chain](https://bscscan.com/token/0xBf5140A22578168FD562DCcF235E5D43A02ce9B1)
+- Pegged FIL Token URL:
+	- [Binance Chain](https://explorer.binance.org/asset/FIL-E2C )
+	- [Binance Smart Chain](https://bscscan.com/token/0x0D8Ce2A99Bb6e3B7Db580eD848240e4a0F9aE153)
+- Pegged NEAR Token URL:
+	- [Binance Chain](https://explorer.binance.org/asset/NEAR-4FD )
+	- [Binance Smart Chain](https://bscscan.com/token/0x1Fa4a73a3F0133f0025378af00236f3aBDEE5D63)
 
 Many more assets are coming soon ~
 
