@@ -155,8 +155,9 @@ nav:
         - Chainlink Protocol Integration: smart-chain/developer/link.md
       - Wallet API: smart-chain/wallet/wallet_api.md
   - Wallets:
-    - Binance Chain Walletsupport: wallets/wallets.md
-    - Wallet Tutorial:
+    - Binance Chain Wallet Support: wallets/wallets.md
+    - Binance Smart Chain Wallet Support: wallets/bsc-wallets.md
+    - Binance Chain Wallet Tutorial:
       - Trust Wallet User Guide: wallets/tutorial/how-to-create-a-wallet-on-trustwallet.md
       - Ledger Wallet Guide: wallets/tutorial/ledger-nano-s-usage-guide.md
       - Trezor Wallet Guide: wallets/tutorial/trezor-model-t-user-guide.md

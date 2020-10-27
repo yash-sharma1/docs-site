@@ -9,6 +9,11 @@ It’s supported in Firefox and Chrome browsers.
 !!! Tip
 		Firefox users are more likely to access the latest version timely
 
+## Download Link
+
+Firefox App Store Link:: <https://addons.mozilla.org/en-US/firefox/addon/binance-chain/?src=search>
+
+Chrome Web Store Link: <https://chrome.google.com/webstore/detail/binance-chain-wallet/fhbohimaelbohpjbbldcngcnapndodjp>
 
 
 ## Install
