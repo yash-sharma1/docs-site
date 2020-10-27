@@ -1,5 +1,5 @@
 ## Introduction</b>
-![img](https://lh4.googleusercontent.com/7v7l76quCKeXrt-rQJcq5JP3mg_iO6PXtIHmSaCjPpEM5wFRuFD6M9M7rPYwAep3vSrTunvi4axybqkx3WPrWNdgyt9OL1lr2M6l0XeczpER5UJjTYAkzLW9NzQp42FbKY2uz-0W)</b>
+![img](https://lh6.googleusercontent.com/h72oSQTbHmSP99oQzsQJsKgaqTjAiAW3nuI086zFVKaqAZgHLV2AzOoUYI48Zr_ISoLwtYdgADTCyqUsZkFZuP2J4tHueEae9_1T1s_3V-f4CuwMzsaKCPvPAazvL3DJ5ZCMmmoh)</b>
 Introducing Binance Bridge, a bridge service providing access to inter-blockchain liquidity for Binance Chain, Binance Smart Chain decentralized applications, and bring valuable assets to Binance Chain ecosystems.
 ## Peg-In Procedure</b>
 Peg-in procedure allows users to swap the native tokens to the equivalent of pegged tokens on Binance Chain or Binance Smart Chain. The following steps are taken:</b>
@@ -11,7 +11,7 @@ Peg-in procedure allows users to swap the native tokens to the equivalent of peg
 5. The user can see the change of his balance of these pegged tokens.
 6. Binance Bridge Service Provider will lock the original tokens.
 </b>
-![img](https://lh4.googleusercontent.com/zSzSvzq0t03ilZV2V6TueETlMpEGSFVf0wuRrUWvtKZxnZLfYD02Qe9QmLICKHDUZRB_r7iKJRZ-0XhNhsBqLFTlz8x5nd-ZIPvG6oAyhob462Hm6RDHLLOZ1u7e3lWB5vWsLaVV)
+![img](https://lh3.googleusercontent.com/W7ENOSDkUz5OrXsbfw1N5rGlETRmENxa9ALkYePe7fnUGgJar22ygMHiKkKYfuGQLy3aB_3Skk7ajbRErhD_ZL8lruuqJ7bNLByYuqiUVOiLY2Apyn4C7j2M-j2I8jMXQAJk11-L)
 </b>
 ## Peg-Out Procedure</b>
 Peg-out procedure allows users to swap the equivalent of pegged tokens on Binance Chain or Binance Smart Chain to the native tokens. The following steps are taken:</b>
@@ -28,7 +28,7 @@ Peg-out procedure allows users to swap the equivalent of pegged tokens on Binanc
 
 6. Binance Bridge Service Provider will lock the pegged tokens.
 </b>
-![img](https://lh3.googleusercontent.com/Ncm8y7l--g4UCqfYZ1wfFUTpPv36BuKOG82klxrJuAhoFIJjhENwIq-SRvPZIFozI0-taHRT3C-Z5rAMXZ9SAAiXQD-oomg1u8u-TGvu7aFm6uFuC5m4wSa-qJ9L0vbdpstn9BXy)
+![img](https://lh6.googleusercontent.com/HDFJLidp1kPA2ewC-4BeLCLOzf-ejlE8ALOY70g0ePXr9ZY0FQlWAi-lvqXvM73i754Y9RQLrs3iwyk4aeTLIYctVRNet9D5JCNXMik8UaUh7Zc001Y3ISQuu1O9fAFNJk_NwFx1)
 </b>
 ## Supported Assets
 Current list:
@@ -104,15 +104,15 @@ Many more assets are coming soon ~
 
 ## Peg-in User Guide
 
-- [Install Binance Extension Wallet](https://docs.binance.org/smart-chain/wallet/binance.html)
+- [Install Binance Extension Wallet](https://docs.binance.org/smart-chain/wallet/binance.html) or [MetaMask](https://docs.binance.org/smart-chain/wallet/metamask.html)
 
 - Go to [Binance Bridge page](https://www.binance.org/en/bridge), Click on “Connect Wallet”
 
-![img](https://lh4.googleusercontent.com/CG2TacU20SWX0unlZwSRT-vQrkVR1F9nvH3Ymg-idXpqQBs6T5hwDob-ctTbs2zJwL-WWTiFuTO_ED_xkqzRKWwAMEEwdveqT4h50jh-Om306ZWVtM9cbTOxNXbkk4jr1gX0FhUI)
+![img](https://lh5.googleusercontent.com/h8IwdUMVb7cLKxkeY6gb3H0xzAWqtl-ZIUsuQhQJ8W25e97BUInuMo7dibipPMgNyKsFobREoPbA4eNFbt2sPzkuFJurwHXCDCT-nPn9jpGmZpsMZ3KdiPCekJMfX-5_Vj_gJrZ6)
 
-- Unlock your Binance Extension wallet to choose your destination address
+- Unlock your Binance Extension wallet or MetaMask to choose your destination address
 
-<img src="https://lh3.googleusercontent.com/1x6ngsLr0Zkl4rsbcCIWvEUQIMBPqm95fctrcvpdQQY4HWDgfeFT-lLkJoOUROxC3yzPbjxsOUOOfhuDZMV41CxrT_kaYU6fWiNHqZ-B089QgL_ZPRf8ozzlQr_2CKF5O7Z5Kmnl" alt="img" style="zoom:33%;" />
+<img src="https://lh4.googleusercontent.com/WVqoDnBfa7_YF6QQQQ7RS6lTtqrgYX4E-8nGtYQHmxklvjD91QTqdh34UkoxDhi4URmbtRxnAn_UrXl4rLAodlhgeu4JAT6Td_TJ2Fwxh4l-j8KlcsdFjiQ0KdB9nNMExCuCGKyy" alt="img" style="zoom:33%;" />
 
 - Enter Swap Info
 
@@ -135,14 +135,16 @@ Failed
 
 ## Peg-out User Guide
 
-- Install Binance Extension Wallet
+- Install Binance Extension Wallet or MetaMask
 - Go to swap page, click on the “Peg-out” tabClick on “Connect Wallet”
-![img](https://lh4.googleusercontent.com/th-GRLjqonK0Otx8rmxW3PlSK78GeipNPqJtc128XjmD3WP3ox_sGFr-vcMbJxvPVuukLuek5Qs2Dv-odoOeBX2r1XCrX75gnF3c14hD9ZC5-FcnFao2bDhXj7SdFkqmUDzTUl9Z)
 
-- Unlock your Binance Extension wallet to choose your source address.
+![img](https://lh5.googleusercontent.com/h8IwdUMVb7cLKxkeY6gb3H0xzAWqtl-ZIUsuQhQJ8W25e97BUInuMo7dibipPMgNyKsFobREoPbA4eNFbt2sPzkuFJurwHXCDCT-nPn9jpGmZpsMZ3KdiPCekJMfX-5_Vj_gJrZ6)
+
+- Unlock your Binance Extension wallet or MetaMask to choose your source address.
 Please note that you can only exchange your assets on **Binance Smart Chain** to their equivalents. Make sure that you have switched to Binance Smart Chain network.
 
-![img](https://lh3.googleusercontent.com/Zx3y-32vst38jNDAWvdkoaXeKS_avITTXwKh1GlBsQ1RzVvIO7NJxfPoSye-JCtg935PslLTEGSULekZwdyCVVETfAeX8mzBAB-r93YZAG9S-umQF7CvtI9SCbUGRRNQr9jAweZq)
+
+<img src="https://lh4.googleusercontent.com/WVqoDnBfa7_YF6QQQQ7RS6lTtqrgYX4E-8nGtYQHmxklvjD91QTqdh34UkoxDhi4URmbtRxnAn_UrXl4rLAodlhgeu4JAT6Td_TJ2Fwxh4l-j8KlcsdFjiQ0KdB9nNMExCuCGKyy" alt="img" style="zoom:33%;" />
 
 - Enter Swap Info
 
