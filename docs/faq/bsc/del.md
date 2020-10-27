@@ -34,6 +34,6 @@ The [minimum delegated amount](../../smart-chain/validator/Parameters.md) is **1
 
 ## How to claim my rewards?
 
-The rewards will be distributed to every delegators from `bscvalidator` [smart contract](https://explorer.binance.org/smart-testnet/address/0x0000000000000000000000000000000000001000/transactions) everyday.
+The rewards will be distributed to every delegators from `bscvalidator` [smart contract](https://bscscan.com/address/0x0000000000000000000000000000000000001000) everyday.
 
 You can read about the details [here](../../guides/concepts/bc-staking.md)

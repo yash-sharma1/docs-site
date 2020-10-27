@@ -72,21 +72,21 @@ Or, dynamic Sync Cross Chain Protocol Configuration from <https://github.com/bin
 
 ### Veryfy Status
 
-You could call [RelayerHub Contract](https://explorer.binance.org/smart/address/0x0000000000000000000000000000000000001006) to verify that your relayer is registered. Go to [read contract](https://explorer.binance.org/smart/address/0x0000000000000000000000000000000000001006/read_contract) and call **isRelayer** function. If it returns **true**, then your relayer is working properly.
+You could call [RelayerHub Contract](https://bscscan.com/address/0x0000000000000000000000000000000000001006) to verify that your relayer is registered. Go to [read contract](https://bscscan.com/address/0x0000000000000000000000000000000000001006#readContract) and call **isRelayer** function. If it returns **true**, then your relayer is working properly.
 
 
 ## Relayer Rewards
 
-1. You can witness the distribution of relayer rewards in the log of system contract:  <https://explorer.binance.org/smart/address/0x0000000000000000000000000000000000001005/logs>. According to the design of [Relayer Incentive](../guides/concepts/incentives.md), the rewards will be distributed every 1000 data packages. The total accumulated rewards can be read from [contract](https://explorer.binance.org/smart/address/0x0000000000000000000000000000000000001005/read_contract)the value of `_collectedRewardForHeaderRelayer` and `_collectedRewardForTransferRelayer`.
+1. You can witness the distribution of relayer rewards in the log of system contract:  <https://bscscan.com/address/0x0000000000000000000000000000000000001005#events>. According to the design of [Relayer Incentive](../guides/concepts/incentives.md), the rewards will be distributed every 1000 data packages. The total accumulated rewards can be read from [contract](https://bscscan.com/address/0x0000000000000000000000000000000000001005#readContract)the value of `_collectedRewardForHeaderRelayer` and `_collectedRewardForTransferRelayer`.
 
 2. Query your relayer's status
 
-The total accumulated relayed count can be read from [contract](https://explorer.binance.org/smart/address/0x0000000000000000000000000000000000001005/read_contract)the value of `_transferRelayersSubmitCount`
+The total accumulated relayed count can be read from [contract](https://bscscan.com/address/0x0000000000000000000000000000000000001005#readContract)the value of `_transferRelayersSubmitCount`
 
 
 ## Stop Relayer
 
-To get your locked **100BNB** back, you need to call [RelayerHub Contract](https://explorer.binance.org/smart/address/0x0000000000000000000000000000000000001006) to unregister your relayer. The fee is **0.1BNB**
+To get your locked **100BNB** back, you need to call [RelayerHub Contract](https://bscscan.com/address/0x0000000000000000000000000000000000001006) to unregister your relayer. The fee is **0.1BNB**
 
 * Go to MyEtherWallet and [interact with contract](https://www.myetherwallet.com/interface/interact-with-contract)
 * Fill in the contract addresss: **0x0000000000000000000000000000000000001006** with [abi](../system-smart-contract/relayerhub.abi) interface

@@ -59,7 +59,7 @@ To prevent the relayer who has the best network always winning the game, we gath
 
 ### Distribution And Claim Reward
 
-In each round, the last package delivery transaction will trigger the reward distribution. Both the header reward pool and package reward pool will be distributed. However, the reward won't be paid directly to relayer accounts. The distribution algorithm just calculates rewards for all relayers and write down the amounts. Relayers are required to actively send transactions to claim their own accumulated rewards. 
+In each round, the last package delivery transaction will trigger the reward distribution. Both the header reward pool and package reward pool will be distributed. However, the reward won't be paid directly to relayer accounts. The distribution algorithm just calculates rewards for all relayers and write down the amounts. Relayers are required to actively send transactions to claim their own accumulated rewards.
 
 ## Other Consideration
 
@@ -77,7 +77,7 @@ Block header sync transaction with `validatorSet` change will claim reward to re
 
 For example, a relayer may deliver packages using a different address in round robin, we can’t recognize this. We try to introduce registration and BNB deposit for relayer to raise the cost of cheat.  How it works:
 
-* A BSC account needs call `register` of [RelayerHub](https://explorer.binance.org/smart/address/0x0000000000000000000000000000000000001006/contracts) contract to deposit 100BNB(more or less than 100 BNB will be rejected) to become a BSC relayer.
+* A BSC account needs call `register` of [RelayerHub](https://bscscan.com/address/0x0000000000000000000000000000000000001006) contract to deposit 100BNB(more or less than 100 BNB will be rejected) to become a BSC relayer.
 * Only a valid relayer can sync Binance Chain Headers and deliver cross-chain packages.
 * Relayer can withdraw its deposit, but we will charge 0.1 BNB as the transaction fee so that it will receive 99.9 BNB back.
 * The charged fee will directly go to system reward pool.

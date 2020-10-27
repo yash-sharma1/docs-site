@@ -37,7 +37,7 @@ It’s ready, and now you can get some testnet BNB from the faucet.
 
 ### 2. Go to <https://testnet.binance.org/faucet-smart/>
 
-Go to explorer to verify BNB is sent: https://explorer.binance.org/smart-testnet
+Go to explorer to verify BNB is sent: <https://testnet.bscscan.com/>
 
 ## Transfer BNB from BSC to BC in Testnet
 
@@ -68,11 +68,11 @@ Link: <https://explorer.binance.org/testnet>
 
 One of the key innovations of a dual-chain architecture is that token issuer can manage its assets on both chains. They could bind BEP2 tokens and BEP20 tokens together. In Binance Chain Ganges Testnet, there are several pegged tokens:
 
-* Pegged BTC on [Binance Chain Testnet](https://explorer.binance.org/testnet/asset/BTC-E24) and  [Binance Smart Chain Testnet](https://explorer.binance.org/smart-testnet/address/0x4EfDF3235e9e6eD26221C18c4D7D2c3931544274/read_contract)
+* Pegged BTC on [Binance Chain Testnet](https://explorer.binance.org/testnet/asset/BTC-E24) and  [Binance Smart Chain Testnet](https://testnet.bscscan.com/address/0x6ce8dA28E2f864420840cF74474eFf5fD80E65B8#code)
 * Pegged ETH on  [Binance Chain Testnet](
-https://explorer.binance.org/testnet/asset/ETH-64F) and  [Binance Smart Chain Testnet](https://explorer.binance.org/smart-testnet/address/0xEbF6be46Ba6CB02d37856bb2393a2eDf1F34bC5c/read_contract)
+https://explorer.binance.org/testnet/asset/ETH-64F) and  [Binance Smart Chain Testnet](https://testnet.bscscan.com/address/0xd66c6b4f0be8ce5b39d52e0fd1344c389929b378#code)
 * Pegged XRP on  [Binance Chain Testnet](
-https://explorer.binance.org/testnet/asset/XRP-C46) and  [Binance Smart Chain Testnet](https://explorer.binance.org/smart-testnet/address/0x2176Aa88a9c10078897867b9745bD0b0e637C885/read_contract)
+https://explorer.binance.org/testnet/asset/XRP-C46) and  [Binance Smart Chain Testnet](https://testnet.bscscan.com/address/0xa83575490d7df4e2f47b7d38ef351a2722ca45b9#code)
 
 You can get some of these pegged tokens from faucet and transfer them back to Binance Chain testnet.
 

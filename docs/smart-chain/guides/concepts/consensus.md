@@ -24,7 +24,7 @@ We investigated some popular implementations of PoA consensus and find out that 
 2. **BSC validators**. Validators are responsible for validating transactions and generating blocks, ensuring the network’s security and the consistency of the ledger. In return, they receive rewards from the gas consumption of transactions.
 3. **Staking dApps on BSC(also named as system contract)**. There are several genesis contracts to help implement staking on BSC. Six classification groups of them:
     - **Light client contract**. It is a watcher of distributed consensus process implemented by contract that only validates the consensus algorithm of Binance Chain.
-    - **Cross Chain Contract**. It is the cross chain communication layer. It will verify the sequence and merkle proof of a cross chain package. 
+    - **Cross Chain Contract**. It is the cross chain communication layer. It will verify the sequence and merkle proof of a cross chain package.
     - **BSCValidatorSet contract**. It is a watcher of validators change of BSC on Binance Chain. It will apply the validator set change for BSC. It also stores rewarded gas fee of blocking for validators, and distribute revenue to validators when receiving cross chain package of validatorSet change.
     - **System Reward contract**. The incentive mechanism for relayers to maintain system contracts. They will get rewards from system reward contract.
     - **Liveness Slash Contract**. The liveness of BSC relies on validator set can produce blocks timely when it is their turn. Validators can miss their turns due to any reason. This instability of the operation will hurt the performance of the network and introduce more non-deterministic into the system. This contract responsible for recording the missed blocking metrics of each validator. Once the metrics are above the predefined threshold, the blocking reward for validator will not be relayed to BC for distribution but shared with other better validators.
@@ -46,7 +46,7 @@ The coming section will explain how these contracts distributing reward.
 
 ## Staking dApps on BSC
 
-### [BSCValidatorSet contract](https://explorer.binance.org/smart/address/0x0000000000000000000000000000000000001000/contracts)
+### [BSCValidatorSet contract](https://bscscan.com/address/0x0000000000000000000000000000000000001000)
 It is a watcher of validators change of BSC on Binance chain. It implement the following interfaces:
 
 - **handleSynPackage(uint8, bytes calldata msgBytes)**
@@ -83,7 +83,7 @@ It is a watcher of validators change of BSC on Binance chain. It implement the f
 
         1. Increase the revenue of the validator.
 
-### [System Reward contract](https://explorer.binance.org/smart/address/0x0000000000000000000000000000000000001002/contracts)
+### [System Reward contract](https://bscscan.com/address/0x0000000000000000000000000000000000001002)
 For now, only **Cross Chain contract** is permitted to call system reward contract. It implement the following interfaces:
 
 - **claimRewards(address payable to, uint256 amount) external**
@@ -97,7 +97,7 @@ For now, only **Cross Chain contract** is permitted to call system reward contra
 
         1. Transfer amount of BNB to specified address
 
-### [Liveness Slash contract](https://explorer.binance.org/smart/address/0x0000000000000000000000000000000000001001)
+### [Liveness Slash contract](https://bscscan.com/address/0x0000000000000000000000000000000000001001)
 If a validator failed to produce a block, will record it and finally slash it. It implement the following interfaces:
 
 - **Slash(validator address) external**
@@ -135,7 +135,7 @@ epoch block won’t get another N/2 subsequent blocks that signed by other valid
 #### System transaction
 The consensus engine may invoke system contracts, such transactions are called system transactions. System transactions is signed by the the validator who is producing the block. For the witness node, will generate the system transactions(without signature) according to its intrinsic logic and compare them with the system transactions in the block before applying them.
 
-#### Enforce backoff 
+#### Enforce backoff
 In Clique consensus protocol, out-of-turn validators have to wait a randomized amount of time before sealing the block. It is implemented in the client-side node software and works with the assumption that validators would run the canonical version.
 However, given that validators would be economically incentivized to seal blocks as soon as possible, it would be possible that the validators would run a modified version of the node software to ignore such a delay. To prevent validator rushing to seal a block, every out-turn validator will get a specified time slot to seal the block. Any block with a earlier blocking time produced by a out-turn validator will be discarded by other witness node.
 
@@ -145,7 +145,7 @@ However, given that validators would be economically incentivized to seal blocks
 A validator node prepares the block header of next block.
 
 * Load snapshot from cache or database,
-* If (height % epoch)==0, should fetch ValidatorSet from `BSCValidatorSet` [contract](https://explorer.binance.org/smart/address/0x0000000000000000000000000000000000001000/transactions).
+* If (height % epoch)==0, should fetch ValidatorSet from `BSCValidatorSet` [contract](https://bscscan.com/address/0x0000000000000000000000000000000000001000).
 *  Every epoch block, will store validators set message in `extraData` field of block header to facilitate the implement of light client.
 * The coinbase is the address of the validator
 
@@ -184,11 +184,11 @@ The signed content is the `Keccak256` of RLP encoded of the block header.
 
 
 ### Security and Finality
-Given there are more than 1/2\*N+1 validators are honest, PoA based networks usually work securely and properly. However, there are still cases where certain amount Byzantine validators may still manage to attack the network, e.g. through the “Clone Attack”. To secure as much as BC, BSC users are encouraged to wait until receiving blocks sealed by more than 2/3\*N+1 different validators. In that way, the BSC can be trusted at a similar security level to BC and can tolerate less than 1/3\*N Byzantine validators. 
+Given there are more than 1/2\*N+1 validators are honest, PoA based networks usually work securely and properly. However, there are still cases where certain amount Byzantine validators may still manage to attack the network, e.g. through the “Clone Attack”. To secure as much as BC, BSC users are encouraged to wait until receiving blocks sealed by more than 2/3\*N+1 different validators. In that way, the BSC can be trusted at a similar security level to BC and can tolerate less than 1/3\*N Byzantine validators.
 
 With 21 validators, if the block time is 5 seconds, the 2/3\*N+1 different validator seals will need a time period of (2/3\*21+1)\*5 = 75 seconds. Any critical applications for BSC may have to wait for 2/3\*N+1 to ensure a relatively secure finality. However, besides such an arrangement, BSC does introduce Slashing logic to penalize Byzantine validators for double signing or instability. This Slashing logic will expose the malicious validators in a very short time and make the [Clone Attack](https://arxiv.org/pdf/1902.10244.pdf) very hard or extremely non-economic to execute. With this enhancement, 1/2\*N+1 or even fewer blocks are enough as confirmation for most transactions.
 
 ### Potential Issue
- 
+
 #### Extending the ruling of the current validator set via temporary censorship
 If the transaction that updates the validator is sent to the BSC right on the epoch period, then it is possible for the in-turn validator to censor the transaction and not change the set of validators for that epoch. While a transaction cannot be forever censored without the help of other n/2 validators, by this it can extend the time of the current validator set and gain some rewards. In general, the probability of this scheme can increase by colluding with other validators. It is relatively benign issue that a block may be approximately 5 secs and one epoch being 240 blocks, i.e. 20 mins so the validators could only be extended for another 20 mins.

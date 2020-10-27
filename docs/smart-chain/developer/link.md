@@ -356,16 +356,5 @@ event NewRound(uint256 indexed roundId, address indexed startedBy, uint256 start
 
 Chainlink price feed contracts are updated on a regular basis by multiple Chainlink nodes. This section lists the contract addresses for Price Feeds on the Binance Smart Chain.
 
-| **Name** | **Address**                                                  |
-| -------- | ------------------------------------------------------------ |
-| BTC/USD  | [0xf18c5e1a0E8309f1b6e9884DA0fcEd4139cc76fa](https://explorer.binance.org/smart-testnet/address/0xf18c5e1a0E8309f1b6e9884DA0fcEd4139cc76fa/transactions) |
-| BTC/ETH  | [0x71199172Af06b51c7594Afb0ea9C2D2D3ef13eb8](https://explorer.binance.org/smart-testnet/address/0x71199172Af06b51c7594Afb0ea9C2D2D3ef13eb8/transactions) |
-| BUSD/ETH | [0x5f466C6daFDC6f3ffAd683622Edbfe214D388B18](https://explorer.binance.org/smart-testnet/address/0x5f466C6daFDC6f3ffAd683622Edbfe214D388B18/transactions) |
-| BUSD/USD | [0xDEC6bA5a1025117B07596A88CBb2F45dDfEdA250](https://explorer.binance.org/smart-testnet/address/0xDEC6bA5a1025117B07596A88CBb2F45dDfEdA250/transactions) |
-| BTC/BUSD | [0x0893AaF58f62279909F9F6FF2E5642f53342e77F](https://explorer.binance.org/smart-testnet/address/0x0893AaF58f62279909F9F6FF2E5642f53342e77F/transactions) |
-| LINK/USD | [0x1a1517EB62382140E713DE3a341D468a4D66B6BE](https://explorer.binance.org/smart-testnet/address/0x1a1517EB62382140E713DE3a341D468a4D66B6BE/transactions) |
-| BNB/USD  | [0x859AAa51961284C94d970B47E82b8771942F1980](https://explorer.binance.org/smart-testnet/address/0x859AAa51961284C94d970B47E82b8771942F1980/transactions) |
-| DAI/BNB  | [0x9d3425CE0F3766a949e622E535Ce16EDF5098448](https://explorer.binance.org/smart-testnet/address/0x9d3425CE0F3766a949e622E535Ce16EDF5098448/transactions) |
-
 
 
