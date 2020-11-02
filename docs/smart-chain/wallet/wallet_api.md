@@ -7,39 +7,10 @@ The presence of the provider object `window.BinanceChain` indicates a Binance Ch
 The API this extension wallet provides includes API specified by [EIP-1193](https://eips.ethereum.org/EIPS/eip-1193) and API defined by [MetaMask](https://docs.metamask.io/guide/ethereum-provider.html) (including some massively relied legacy ones).
 
 ## Development Progress
-Currently (version 1.108.2) this API and its corresponding UI are in actively development. Only the following json-rpc **hasn't** been implemented for `request`:
-```
-  web3_clientVersion,
-  web3_sha3,
-  net_version,
-  net_peerCount,
-  net_listening,
-  eth_newFilter,
-  eth_newBlockFilter,
-  eth_newPendingTransactionFilter,
-  eth_uninstallFilter,
-  eth_getFilterChanges,
-  eth_getFilterLogs
-```
+Currently (version 1.112.8) as Binance Chain Wallet natively supports Binance Chain, we are planning to open a series of APIs for dApp developers to interact with Binance Chain. At the end of the day, most [APIs available in Binance Chain javascript sdk](https://github.com/binance-chain/javascript-sdk/tree/master/docs) would be available.
 
-Other MetaMask properties and method implemented includes:
-```
-chainId
-isConnected()
-enable()
-```
-
-All MetaMask Events are supported:
-```
-connect
-disconnect
-accountsChanged // As currently the plugin only support one account, so listening to this event is a no-op
-chainChanged
-```
-
-As Binance Chain Wallet natively support Binance Chain, we are planning open a series of APIs for dApp developers to interact with Binance Chain. In the end of day, most [APIs available in Binance Chain javascript sdk](https://github.com/binance-chain/javascript-sdk/tree/master/docs) would be available.
-
-Currently only [`transfer`](https://github.com/binance-chain/javascript-sdk/tree/master/docs#transfer-tokens) is supported.
+Currently, only the following is supported:
+* [`transfer`](https://github.com/binance-chain/javascript-sdk/tree/master/docs#transfer-tokens) 
 
 ## Difference with MetaMask
 
@@ -49,7 +20,7 @@ Currently only [`transfer`](https://github.com/binance-chain/javascript-sdk/tree
 
 ### Inpage injected object
 
-The biggest difference between Binance Chain Wallet and MetaMask is we inject `BinanceChain` rather than `ethereum` (or `web3`) to web page. So user could keep two extensions at the same time.
+The biggest difference between Binance Chain Wallet and MetaMask is we inject `BinanceChain` rather than `ethereum` (or `web3`) to the web page. So user could keep two extensions at the same time.
 
 ### BinanceChain.request({method: "eth_sign", params: ["address", "message"])
 
@@ -87,7 +58,66 @@ You can learn how to accomplish the `2` and `3` from above list by reviewing the
 
 The provider API is all you need to create a full-featured web3 application.
 
-We recommend developer keep DApp's capability to interact with `window.ethereum` object, in case the user wants to switch back to MetaMask (or other web3 standard injected wallet). 
+That said, many developers use a convenience library, such as ethers and web3.js, instead of using the provider directly. If you need higher-level abstractions than those provided by this API, we recommend that you use a convenience library.
+
+Today, many dApps are built on top of the higher-level API provided by [web3-react](https://github.com/NoahZinsmeister/web3-react) or [use-wallet](https://github.com/aragon/use-wallet) (which builds on top of web3-react). 
+
+ * web3-react
+
+We made a tiny lib [bsc-connector](https://www.npmjs.com/package/@binance-chain/bsc-connector) that implements the [AbstractConnector](https://github.com/NoahZinsmeister/web3-react/blob/v6/packages/abstract-connector/src/index.ts#L4) interface of [web3-react](https://github.com/NoahZinsmeister/web3-react) library. You can add this to your project in parallel with [injected-connector](https://github.com/NoahZinsmeister/web3-react/tree/v6/packages/injected-connector) by: `yarn add @binance-chain/web3-connector` or `npm i @binance-chain/bsc-connector`.
+
+```
+import { BscConnector } from '@binance-chain/bsc-connector'
+
+export const bsc = new BscConnector({
+  supportedChainIds: [56, 97] // later on 1 ethereum mainnet and 3 ethereum ropsten will be supported
+})
+
+// invoke method on bsc e.g.
+await bsc.activate();
+await bsc.getAccount();
+await bsc.getChainId();
+```
+
+* use-wallet
+
+We already raised a [PR](https://github.com/aragon/use-wallet/pull/64) to use-wallet. After it gets merged, dApp developer could provide an option to connect with binance chain wallet (only chain id 56 and 97 are supported now) in the following way:
+
+```
+import React from 'react'
+import { useWallet, UseWalletProvider } from 'use-wallet'
+
+function App() {
+  const wallet = useWallet()
+
+  return (
+      <>
+        <h1>Wallet</h1>
+        {wallet.status === 'connected' ? (
+            <div>
+              <div>Account: {wallet.account}</div>
+              <div>Balance: {wallet.balance}</div>
+              <button onClick={() => wallet.reset()}>disconnect</button>
+            </div>
+        ) : (
+            <div>
+              Connect:
+              <button onClick={() => wallet.connect('bsc')}>Binance Chain Wallet</button>
+            </div>
+        )}
+      </>
+  )
+}
+
+// Wrap everything in <UseWalletProvider />
+export default () => (
+    <UseWalletProvider
+        chainId={56}
+    >
+      <App />
+    </UseWalletProvider>
+)
+```
 
 ## Chain IDs
 
@@ -108,7 +138,7 @@ These are the IDs of the Binance Smart chains that Binance Chain Wallet supports
 | 0x38 | 56      | Binance Smart Chain Main Network (bsc-mainnet) |
 | 0x61 | 97      | Binance Smart Chain Test Network (bsc-testnet) |
 
-This API can also return chain ids of Binance Chains if user switch to them. Possible return value would be:
+This API can also return chain ids of Binance Chains if users switch to them. The possible return value would be:
 | Chain Id             | Network                                  |
 | -------------------- | ---------------------------------------- |
 | Binance-Chain-Tigris | Binance Chain Main Network (bbc-mainnet) |
@@ -154,7 +184,7 @@ BinanceChain.isConnected(): boolean;
 
 Please refer to [MetaMask Doc](https://docs.metamask.io/guide/ethereum-provider.html#ethereum-request-args), the only difference is we injected a different object.
 
-We uses this method to wrap an RPC API, Please see [the Ethereum wiki](https://eth.wiki/json-rpc/API#json-rpc-methods).
+We use this method to wrap an RPC API, Please see [the Ethereum wiki](https://eth.wiki/json-rpc/API#json-rpc-methods).
 
 Important methods from this API include:
 
@@ -206,29 +236,29 @@ BinanceChain
 
 ### BinanceChain.bnbSign(address: string, message: string): Promise<{publicKey: string, signature: string}>
 
-*We prepared an example for this API, please checkout: https://github.com/binance-chain/js-eth-personal-sign-examples for more detail*
+*We prepared an example for this API, please check out: https://github.com/binance-chain/js-eth-personal-sign-examples for more detail*
 
-Like `eth_sign` enable dapp verify user has control over an ethereum address by signing arbitary message. We provide this method for dapp developers request signature of arbitary messages for Binance Chain (BC) and Binance Smart Chain (BSC).
+Like `eth_sign` enable dapp to verify a user has control over an ethereum address by signing an arbitrary message. We provide this method for dapp developers to request the signature of arbitrary messages for Binance Chain (BC) and Binance Smart Chain (BSC).
 
-If `address` parameter is a binance chain address (start with `bnb` or `tbnb`), we will simply **calculate sha256 hash of the message** and let user sign the hash with his binance chain address' private key. Note: Binance Chain use the same ellipic curve (`secp256k1`) as Ethereum.
+If `address` parameter is a binance chain address (start with `bnb` or `tbnb`), we will simply **calculate sha256 hash of the message** and let user sign the hash with his binance chain address' private key. Note: Binance Chain uses the same elliptic curve (`secp256k1`) as Ethereum.
 
 If `address` parameter is a binance smart chain address (start with `0x`), the message would be hashed in the same way with [`eth_sign`](https://eth.wiki/json-rpc/API#eth_sign).
 
-The returned `publicKey` would be in compressed encoded format (a hex string encoded 33 bytes starting with "0x02", "0x03") for Binance Chain. And uncompressed encoded format (a hex string encoded 65 bytes starting with "0x04").
+The returned `publicKey` would be a compressed encoded format (a hex string encoded 33 bytes starting with "0x02", "0x03") for Binance Chain. And uncompressed encoded format (a hex string encoded 65 bytes starting with "0x04").
 
 The returned `signature` would be bytes encoded in hex string starting with `0x`. For BinanceChain, its r,s catenated 64 bytes in total. For Binance Smart Chain, like `eth_sign`, its r, s catenated 64 bytes and a recover byte in the end.
 
 !!! warning
 
-    DApp developers should verify whether returned publickey can be converted into the address user claimed in addition to a ECDSA signature verification. Because any plugin can inject the same object `BinanceChain` as Binance Chain Wallet.
+    DApp developers should verify whether the returned public key can be converted into the address user claimed in addition to an ECDSA signature verification. Because any plugin can inject the same object `BinanceChain` as Binance Chain Wallet.
 
 ### BinanceChain.switchNetwork(networkId: string): Promise<{networkId: string}>
 
-As Binance Chain Wallet natively support Binance Chain and Binance Smart Chain which are heterogeneous blockchains run in parallel. APIs would be different in many situation. (We would open APIs for Binance Chain very soon).
+As Binance Chain Wallet natively supports Binance Chain and Binance Smart Chain which are heterogeneous blockchains run in parallel. APIs would be different in any situation. (We would open APIs for Binance Chain very soon).
 
 Developers could judge which network is selected by user currently via `BinanceChain.chainId` or listening to the `chainChanged` event via `BinanceChain.on('chainChanged', callback)`.
 
-To request for network switching, developers could invoke this API with `bbc-mainnet` (Binance Chain Main Network), `bsc-mainnet` (Binance Smart Chain Main Network), `bbc-testnet` (Binance Chain Test Network), `bsc-testnet` (Binance Smart Chain Test Network) to propmt user agree on network switching.
+To request for network switching, developers could invoke this API with `bbc-mainnet` (Binance Chain Main Network), `bsc-mainnet` (Binance Smart Chain Main Network), `bbc-testnet` (Binance Chain Test Network), `bsc-testnet` (Binance Smart Chain Test Network) to prompt user to agree on network switching.
 
 ### BinanceChain.requestAccounts()
 
@@ -281,10 +311,10 @@ Transfer certain `amount` of `asset` (BNB or BEP2) on Binance Chain.
 
 For example:
 
-1. This will ask user's approval for transfering 1 BNB to himself.
+1. This will ask the user's approval for transferring 1 BNB to himself.
 `BinanceChain.transfer({fromAddress:"tbnb1sndxdzsg42jg8lc0hehx8dzzpyfxrvq937mt0w", toAddress:"tbnb1sndxdzsg42jg8lc0hehx8dzzpyfxrvq937mt0w", asset:"BNB", amount:1, accountId:"fba0b0ce46c7f79cd7cd91cdd732b6c699440acf8c539d7e7d753d38c9deea544230e51899d5d9841b8698b74a3c77b79e70d686c76cb35dca9cac0e615628ed", networkId:"bbc-testnet"})`
 
-2. This will ask user's approval for transfering 1 BUSD to himself.
+2. This will ask the user's approval for transferring 1 BUSD to himself.
 `BinanceChain.transfer({fromAddress:"tbnb1sndxdzsg42jg8lc0hehx8dzzpyfxrvq937mt0w", toAddress:"tbnb1sndxdzsg42jg8lc0hehx8dzzpyfxrvq937mt0w", asset:"BUSD-BAF", amount:1, accountId:"fba0b0ce46c7f79cd7cd91cdd732b6c699440acf8c539d7e7d753d38c9deea544230e51899d5d9841b8698b74a3c77b79e70d686c76cb35dca9cac0e615628ed", networkId:"bbc-testnet"})`
 
 ## Events
@@ -301,7 +331,7 @@ BinanceChain.on('accountsChanged', (accounts) => {
 BinanceChain.on('chainChanged', (chainId) => {
   // Handle the new chain.
   // Correctly handling chain changes can be complicated.
-  // We recommend reloading the page unless you have a very a good reason not to.
+  // We recommend reloading the page unless you have a very good reason not to.
   window.location.reload();
 });
 ```
@@ -452,7 +482,7 @@ function connect() {
 
 This section documents MetaMask's legacy provider API.
 
-To be compatible with existing dApps that support MetaMask, Binance Chain Wallet implement them as well, but please don't rely on them. We may deprecate them soon in future.
+To be compatible with existing dApps that support MetaMask, Binance Chain Wallet implements them as well, but please don't rely on them. We may deprecate them soon in the future.
 
 ## Legacy Properties
 
