@@ -27,7 +27,21 @@ BNB and coins on Binance Smart Chain are supported by the Ledger Nano S hardware
 
 <img src="https://lh5.googleusercontent.com/1lT0rjEpawrZO6TkthQCCCQMs5CHH44iKDhZTJr6_VAOGsftEuJIih6d_-1VWq5DHET9yfn-FgiIA87tZ-zxl4RJPn8kpVWCK7ZHrccJBXeTjlzIfqg5CwGzoESQR3s8yUhVHbmX" alt="img" style="zoom:33%;" />
 
-##Connect with MetaMask
+## Enabling contract data for BEP20 
+
+!!! Tip
+		 Please ensure your enabled contract data before transfering BEP20 tokens 
+If you want to send BEP-20 tokens, you need to activate contract data on your device. Otherwise, invalid status `6a80` is returned.
+
+Steps: 
+
+- Connect and unlock your Ledger device.
+- Open the Ethereum application.
+- Press the right button to navigate to Settings. Then press both buttons to validate.
+- In the Contract data settings, press both buttons to allow contract data in transactions. 
+- The device displays Allowed. 
+
+## Connect with MetaMask
 
 Binance Smart Chain is compatible with MetaMask. Users can use MetaMask as a bridge between Ledger Nano S and Binance Smart Chain to make transactions to the Binance Smart Chain testnet.
 
@@ -88,4 +102,16 @@ With Ledger, you need to approve your transaction in your device.
 12) Track the transaction stsatus in “Activity” tab
 
 <img src="https://lh4.googleusercontent.com/ejb2jVBsYnFHctelQtR9gS36Z96td60sQ1yVFYdSbLr_jCTkyv2Im2P1wkHxS3JGAYHRXQTiac3FO9dUH1GX0eKHG1Vwk764tSMERGza_vmQcxxm32S66-kFi18wTifSrF-uD9tL" alt="img" style="zoom:33%;" />
+
+
+## FAQ
+
+1. Fail to tranfer BEP20 tokens
+
+Error message:
+
+```
+ '{"value":{"code":-32603,"message":"Error: TransportStatusError: Ledger device: Invalid data received (0x6a80)"}}'
+```
+You need to follow [these steps]((#enabling-contract-data-for-bep20)) to enable contract data. 
 
