@@ -13,7 +13,7 @@ It’s supported in Firefox and Chrome browsers.
 
 Firefox App Store Link:: <https://addons.mozilla.org/en-US/firefox/addon/binance-chain/?src=search>
 
-Chrome Web Store Link: <https://chrome.google.com/webstore/detail/binance-chain-wallet/fhbohimaelbohpjbbldcngcnapndodjp>
+[How to manually install the Binance Chain Extension Wallet](manual.md)
 
 
 ## Install
