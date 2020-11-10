@@ -61,7 +61,7 @@ Fee Addr on Side Chain: 0xe61a183325A18a173319dD8E19c8d069459E2175
 ```
 
 4. we have a lower limit of the value of interchain transfer, at least the value can cover the transfer fee. Also, interchain transfer will only allow max 8 decimals for the amount. The tiny left part would be kept in the contract or put into the system reward pool.
-5. the reward: (totalfees \* commissionRate) would be distributed in proportion to the delegations, the left part would be sent to the validator fee address.
+5. the reward: (totalfees \* (1-commissionRate)) would be distributed in proportion to the delegations, the left part would be sent to the validator fee address.
 
 ### Error handling:
 

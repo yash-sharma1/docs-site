@@ -12,6 +12,10 @@ Have fun trading and see you on chain!
 Binance Chain is a blockchain software system developed by Binance and its community.
 Binance DEX refers to the decentralized exchange features developed on top of Binance Chain.
 
+## What is Binance Smart Chain?
+
+Binance Smart Chain is an innovative solution to bring programmability and interoperability to Binance Chain. Binance Smart Chain relies on a system of 21 validators with Proof of Staked Authority (PoSA) consensus that can support short block time and lower fees. The most bonded validator candidates of staking will become validators and produce blocks. The double-sign detection and other slashing logic guarantee security, stability, and chain finality.
+
 ## What can I do with Binance Chain?
 
 The purpose of the new blockchain and DEX is to create an alternative marketplace for issuing and exchanging digital assets in a decentralized manner.
@@ -37,12 +41,46 @@ and node RPC interfaces.
 
 In the future you may also be able to stake your BNB to join Chain Governance, if you so wish.
 
+## What can I do with Binance Smart Chain?
+
+Binance Smart Chain (BSC) is best described as a blockchain that runs in parallel to the Binance Chain. Unlike Binance Chain, BSC boasts smart contract functionality and compatibility with the Ethereum Virtual Machine (EVM). The design goal here was to leave the high throughput of Binance Chain intact while introducing smart contracts into its ecosystem.
+
+Because BSC is EVM-compatible, it launched with support for the rich universe of [Ethereum](https://academy.binance.com/en/articles/what-is-ethereum) tools and DApps. In theory, this makes it easy for developers to port their projects over from Ethereum. For users, it means that applications like [MetaMask](smart-chain/wallet/metamask.md) can be easily configured to work with BSC. Seriously – it’s just a matter of tweaking a couple of settings. Check out Use MetaMask for Binance Smart Chain to get started.
+
+You can:
+
+- Send and receive BNB and other BEP2 tokens cross-chain
+- Issue new tokens to digitalize assets
+- Develop your own DApps
+
+You can also:
+
+- Explore the transaction history and blocks on the chain, via [bscscan](https://bscscan.com), API
+and node RPC interfaces.
+- Run a full node to listen to and broadcast live updates on transactions, blocks, and consensus activities
+- Stake BNB to become a validator of BSC
+- Develop wallets and tools to help users use Dapps
+
+## Comparision Between BC and BSC
+
+|                   | Binance Chain | Binance Smart Chain                    |
+| ----------------- | ------------- | -------------------------------------- |
+| Consensus         | DPoS          | PoSA                                   |
+| No. of Validators | 11            | up to 21                               |
+| Mean Block Time   | <1s           | ~5s                                    |
+| Programmability   | BEPs          | Support EVM-compatible smart contracts |
+| Cross Chain       |[BEP3](https://github.com/binance-chain/BEPs/blob/master/BEP3.md) introduces *Hash Timer Locked Contract functions* and further [mechanism](https://community.binance.org/topic/1892) to handle inter-blockchain tokens peg.    | BSC comes with efficient [native dual chain communication](smart-chain/guides/concepts/cross-chain.md); Optimized for scaling high-performance dApps that require fast and smooth user experience.                    |
+
 ## Get Started
 
-Want to try it out? Just give a peek at the first few of pages of the [getting started guide](get-started.md).<br/>
+Want to try it **Binance Chain**? Just give a peek at the first few of pages of the [getting started guide](get-started.md).<br/>
 You could also have a read through the [FAQ](faq/faq.md).
 
+Want to develop on **Binance Smart Chain**? First, read through the [FAQ](faq/bsc/general.md) and learn about tokens [here](smart-chain/developer/BEP20.md).
+
 ## Asset Management
+
+### BEP2 Asset
 
 Binance Chain is essentially a digital asset creation and exchange platform.<br/>
 The features listed below are currently supported on Binance Chain:
@@ -51,6 +89,13 @@ The features listed below are currently supported on Binance Chain:
 - [The Issuance, Burning, Minting and Freezing of Tokens](tokens.md)
 - [Transfer of Tokens](transfer.md)
 
+### BEP20 Asset
+
+A token protocol on BSC which is compatible with BEP2 and [ERC20](https://eips.ethereum.org/EIPS/eip-20). It extends ERC20 and contains more interfaces, such as `getOwner` and `decimals`. Read the full proposal here: <https://github.com/binance-chain/BEPs/blob/master/BEP20.md>
+
+- [Issue BEP20](smart-chain/developer/issue-BEP20.md)
+- [Wallet](wallets/bsc-wallets.md)
+
 ## BNB (and Other Coins) MainNet Switch
 
 Binance Coin (BNB) was an ERC20 token on the Ethereum network.<br/>
@@ -58,6 +103,10 @@ After the launch of Binance Chain, Binance Coin (BNB) is being converted into na
 
 Binance Chain is ready for other projects to migrate their tokens to take advantage of performant transactions with more liquidity options and native marketplace features.<br/>
 More information about how projects can set themselves up for this (via [binance.com](https://www.binance.com) or partners) will come soon.
+
+## BNB Staking
+
+Please read the guide [here](smart-chain/wallet/staking.md)
 
 ## Trading on Binance DEX
 

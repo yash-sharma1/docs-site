@@ -25,6 +25,48 @@ extra_css:
        - stylesheets/codehilite.css
 nav:
   - Home: index.md
+  - Binance Smart Chain:
+    - Introduction: smart-chain/guides/bsc-intro.md
+    - Concepts:
+      - Consensus: smart-chain/guides/concepts/consensus.md
+      - Comparison: smart-chain/guides/general.md
+      - Genesis File: smart-chain/guides/concepts/genesis.md
+      - Participate: smart-chain/developer/fullnode.md
+      - Cross-chain:
+        - Cross-chain Mechanism: smart-chain/guides/concepts/cross-chain.md
+        - BSC Relayer: smart-chain/guides/concepts/bsc-relayer.md
+        - Oracle Module: smart-chain/guides/concepts/oracle-module.md
+        - Oracle Relayer: smart-chain/guides/concepts/oracle-relayer.md
+        - Relayer Incentives: smart-chain/guides/concepts/incentives.md
+      - System Contract: smart-chain/guides/concepts/system-contract.md
+      - Governance: smart-chain/guides/concepts/bsc-gov.md
+    - Binance Bridge:
+      - User Guide: smart-chain/guides/panama.md
+      - API doc: api-reference/dex-api/bridge.md
+      - Widget: api-reference/dex-api/bridge-widget.md
+    - Staking:
+      - Validator:
+        - Guides: smart-chain/validator/guideline.md
+        - Become Candidate: smart-chain/validator/candidate.md
+        - Staking parameters: smart-chain/validator/Parameters.md
+      - Delegator Guide: smart-chain/delegator/del-guide.md
+    - Binance Smart Chain Mainnet Explorer:
+      - BscScan: https://bscscan.com/
+      - BitQuery: https://explorer.bitquery.io/bsc
+    - Binance Smart Chain Testnet Explorer:
+      - BscScan: https://testnet.bscscan.com/
+      - BitQuery: https://explorer.bitquery.io/bsc_testnet
+    - Wallet:
+      - Binance Extension Wallet Guides: smart-chain/wallet/binance.md
+      - MetaMask Guides: smart-chain/wallet/metamask.md
+      - Ledger: smart-chain/wallet/ledger.md
+      - Trezor: smart-chain/wallet/trezor.md
+      - MEW: smart-chain/wallet/myetherwallet.md
+      - Math Wallet: smart-chain/wallet/math.md
+      - Trust Wallet: smart-chain/wallet/trustwallet.md
+      - SafePal: https://blog.safepal.io/binance-smart-chain-x-safepal/
+      - TokenPocket: https://community.binance.org/topic/3374
+      - 币安链插件钱包指南: smart-chain/wallet/binance-cn.md
   - Binance Chain:
     - Introduction: guides/intro.md
     - Create Address: guides/create-address.md
@@ -55,52 +97,46 @@ nav:
          - Atomic Swap: atomic-swap.md
          - WalletConnect: guides/concepts/walletconnect.md
          - BEP8 Token Protocol: guides/concepts/BEP8.md
-  - Binance Smart Chain:
-    - Introduction: smart-chain/guides/bsc-intro.md
-    - Concepts:
-      - Consensus: smart-chain/guides/concepts/consensus.md
-      - Comparison: smart-chain/guides/general.md
-      - Genesis File: smart-chain/guides/concepts/genesis.md
-      - Participate: smart-chain/developer/fullnode.md
-      - Cross-chain:
-        - Cross-chain Mechanism: smart-chain/guides/concepts/cross-chain.md
-        - BSC Relayer: smart-chain/guides/concepts/bsc-relayer.md
-        - Oracle Module: smart-chain/guides/concepts/oracle-module.md
-        - Oracle Relayer: smart-chain/guides/concepts/oracle-relayer.md
-        - Relayer Incentives: smart-chain/guides/concepts/incentives.md
-      - System Contract: smart-chain/guides/concepts/system-contract.md
-      - Governance: smart-chain/guides/concepts/bsc-gov.md
-    - Binance Bridge:
-      - User Guide: smart-chain/guides/panama.md
-      - API doc: api-reference/dex-api/panama.md
-      - Widget: api-reference/dex-api/panama-widget.md
-    - Staking:
-      - Validator:
-        - Guides: smart-chain/validator/guideline.md
-        - Become Candidate: smart-chain/validator/candidate.md
-        - Staking parameters: smart-chain/validator/Parameters.md
-      - Delegator Guide: smart-chain/delegator/del-guide.md
-    - Binance Smart Chain Mainnet Explorer:
-      - BscScan: https://bscscan.com/
-      - BitQuery: https://explorer.bitquery.io/bsc
-    - Binance Smart Chain Testnet Explorer:
-      - BscScan: https://testnet.bscscan.com/
-      - BitQuery: https://explorer.bitquery.io/bsc_testnet
+    - Exchange Integration: exchange-integration.md
+    - List Instructions: list_instruction.md
+  - BSC Developers:
+    - General:
+      - Create Wallet: smart-chain/developer/create-wallet.md
+      - Smart Contract: https://solidity.readthedocs.io/en/v0.7.1/
+      - Remix : https://remix.ethereum.org/
+      - Web3JS: https://web3js.readthedocs.io/en/v1.2.11/
+      - Truffle: https://www.trufflesuite.com/docs/teams/quickstart
+    - Ecosystem: https://github.com/binance-chain/bsc-develop-ecosystem
+    - Deploy:
+      - Truffle: smart-chain/developer/deploy/truffle.md
+      - Remix: smart-chain/developer/deploy/remix.md
+    - Tools:
+      - Faucet: https://testnet.binance.org/faucet-smart
+      - Gas Price: https://bscscan.com/chart/gasprice
+    - BEP20 Tokens:
+      - Introduction: smart-chain/developer/BEP20.md
+      - Issue Token: smart-chain/developer/issue-BEP20.md
+      - Bind Token: smart-chain/developer/bind-tokens.md
+      - Cross-chain Transfer: smart-chain/validator/cross-chain-transfer.md
+      - Bind Token Tool: https://github.com/binance-chain/token-bind-tool
+    - Blockchain Details:
+      - Binance Smart Chain Fullnode: smart-chain/developer/fullnode.md
+      - BSC Relayer: smart-chain/developer/bsc-relayer.md
+      - Peggeg Tokens: https://docs.binance.org/faq/bsc/eco.html#what-are-pegged-tokens-on-binance-smart-chain
+      - RPC: smart-chain/developer/rpc.md
+    - Oracles:
+      - Band Protocol Integration: smart-chain/developer/band.md
+      - Chainlink Protocol Integration: smart-chain/developer/link.md
+    - Tutorial:
+      - Deploy NFT:  smart-chain/developer/ERC721.md
+      - Local BSC Network: https://github.com/ConsenSysMesh/local_ethereum_network
+      - Verify Contract on bscscan.com: smart-chain/developer/deploy/verify.md
+      - Local Network: smart-chain/developer/deploylocal.md
     - Wallet:
-      - Binance Extension Wallet Guides: smart-chain/wallet/binance.md
-      - MetaMask Guides: smart-chain/wallet/metamask.md
-      - Ledger: smart-chain/wallet/ledger.md
-      - Trezor: smart-chain/wallet/trezor.md
-      - MEW: smart-chain/wallet/myetherwallet.md
-      - Math Wallet: smart-chain/wallet/math.md
-      - Trust Wallet: smart-chain/wallet/trustwallet.md
-      - SafePal: https://blog.safepal.io/binance-smart-chain-x-safepal/
-      - 币安链插件钱包指南: smart-chain/wallet/binance-cn.md
-      - Tutorial:
-        - How to use Trust Wallet in Binance Smart Chain : https://community.trustwallet.com/t/trust-wallet-now-supports-binance-smart-chain-bsc/67250
-        - How to Send and Receive BNB on Smart Chain with Trust Wallet: https://community.trustwallet.com/t/how-to-send-and-receive-bnb-on-smart-chain/67430
-        - Staking with extension wallet: smart-chain/wallet/staking.md
-  - Developers:
+      - Binance Chain Extension Wallet API: smart-chain/wallet/wallet_api.md
+      - Math Wallet Cross-chain Transfer Tool: http://blog.mathwallet.org/?p=2052
+    - BUIDL Program: https://www.binance.com/en/blog/421499824684900972/Bridging-DeFi-and-CeFi-Introducing-a-$100M-Support-Fund-for-DeFi-Projects-on-Binance-Smart-Chain
+  - BC Developers:
     - Binance Chain Fullnode:
       - Install: guides/node/install.md
       - Join Mainnet: guides/node/join-mainnet.md
@@ -123,6 +159,8 @@ nav:
       - Swift: https://github.com/binance-chain/swift-sdk/blob/master/README.md
       - C++: https://github.com/binance-chain/cplusplus-sdk/wiki
       - C#: https://github.com/binance-chain/csharp-sdk
+    - Binance Chain Testnet: https://testnet.binance.org
+    - Chain Explorer Testnet: https://testnet-explorer.binance.org
     - Binance Chain API Reference:
       - Accelerated Node HTTP API Mainnet - Paths and Models: api-reference/dex-api/paths.md
       - Accelerated Node HTTP API Swagger: api-swagger/index.html
@@ -132,51 +170,32 @@ nav:
       - Node RPC - Paths and Models: api-reference/node-rpc.md
       - Node RPC Swagger: rpc-swagger/index.html
       - CHANGELOG: changelog.md
-    - Binance Smart Chain:
-      - Binance Smart Chain Fullnode: smart-chain/developer/fullnode.md
-      - BSC Relayer: smart-chain/developer/bsc-relayer.md
-      - BEP20 Tokens:
-          - Introduction: smart-chain/developer/BEP20.md
-          - Issue Token: smart-chain/developer/issue-BEP20.md
-          - Bind Token: smart-chain/developer/bind-tokens.md
-          - Cross-chain Transfer: smart-chain/validator/cross-chain-transfer.md
-          - Bind Token Tool: https://github.com/binance-chain/token-bind-tool
-      - General:
-        - Create Wallet: smart-chain/developer/create-wallet.md
-        - Smart Contract: https://solidity.readthedocs.io/en/v0.7.1/
-        - Remix : https://remix.ethereum.org/
-        - Web3JS: https://web3js.readthedocs.io/en/v1.2.11/
-        - Truffle: https://www.trufflesuite.com/docs/teams/quickstart
-      - RPC: smart-chain/developer/rpc.md
-      - Oracles:
-        - Band Protocol Integration: smart-chain/developer/band.md
-        - Chainlink Protocol Integration: smart-chain/developer/link.md
-      - Wallet API: smart-chain/wallet/wallet_api.md
   - Wallets:
-    - Binance Chain Wallet Support: wallets/wallets.md
     - Binance Smart Chain Wallet Support: wallets/bsc-wallets.md
+    - Binance Chain Wallet Support: wallets/wallets.md
+    - Binance Smart Chain Wallet Tutorial:
+      - Math Wallet User Guide: smart-chain/wallet/math-resource.md
+      - How to use Trust Wallet in Binance Smart Chain : https://community.trustwallet.com/t/trust-wallet-now-supports-binance-smart-chain-bsc/67250
+      - How to Send and Receive BNB on Smart Chain with Trust Wallet: https://community.trustwallet.com/t/how-to-send-and-receive-bnb-on-smart-chain/67430
+      - Staking with extension wallet: smart-chain/wallet/staking.md
+      - How to install Binance Extension Wallet Manually: smart-chain/wallet/manual.md
     - Binance Chain Wallet Tutorial:
       - Trust Wallet User Guide: wallets/tutorial/how-to-create-a-wallet-on-trustwallet.md
       - Ledger Wallet Guide: wallets/tutorial/ledger-nano-s-usage-guide.md
       - Trezor Wallet Guide: wallets/tutorial/trezor-model-t-user-guide.md
       - How to manage BEP8 token with Web Wallet: wallets/tutorial/bep8.md
-    - WalletConnectSupport: wallets/walletconnect-support.md
-    - Binance Smart Chain Wallet Tutorial:
-      - Math Wallet User Guide: smart-chain/wallet/math-resource.md
-  - Exchange Integration: exchange-integration.md
-  - List Instructions: list_instruction.md
-  - Wallets: wallets.md
-  - Binance Smart Chain White Paper: https://github.com/binance-chain/whitepaper/blob/master/WHITEPAPER.md
-  - Chain Explorer Mainnet: https://explorer.binance.org
+    - Binance Chain WalletConnect Support: wallets/walletconnect-support.md
+  - Binance Chain Blog: https://binance.org/en/blog
+  - Binance Smart Chain Explorer: https://bscscan.com
+  - Binance Chain Explorer: https://explorer.binance.org
   - Binance Chain Forum: https://community.binance.org/
-  - Binance DEX Testnet: https://testnet.binance.org
-  - Chain Explorer Testnet: https://testnet-explorer.binance.org
   - Get Testnet Funds: https://www.binance.vision/tutorials/binance-dex-funding-your-testnet-account
-  - Binance Smart Chain Faucet: https://testnet.binance.org/faucet-smart
+  - Binance Chain Faucet: https://testnet.binance.org/faucet-smart
+  - The Binance Chain Developer Group : https://t.me/joinchat/IuVfSlYWC5seijz6a0Bjww
   - The Binance Chain Telegram Group : https://t.me/BinanceDEXchange
   - Twitter: https://twitter.com/binance_dex
   - Telegram Announcement Channel English: https://t.me/Binance_DEX_Announcement
-  - 币安DEX中文群: https://t.me/BinanceDEXchangeCN
+  - 币安链中文群: https://t.me/BinanceDEXchangeCN
   - 币安链公告频道: https://t.me/Binance_DEX_ChineseAnnouncements
   - FAQ:
     - Binance Chain FAQ: faq/faq.md
@@ -192,8 +211,8 @@ nav:
         - Validator: faq/bsc/val.md
         - Delegator: faq/bsc/del.md
       - Crosschain: faq/bsc/cross.md
-  - More Help: resources.md
-  - Contributing: CONTRIBUTING.md
+    - More Help: resources.md
+    - Contributing: CONTRIBUTING.md
 
 
 markdown_extensions:

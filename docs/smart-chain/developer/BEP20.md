@@ -19,11 +19,11 @@ Then users can use [Remix IDE](https://remix.ethereum.org) and [Metamask](../wal
 
 ### Connect to Binance Smart Chain's public RPC endpoint
 
-```JavaScript
+```js
 const Web3 = require('web3');
 // mainnet
 const web3 = new Web3('https://bsc-dataseed1.binance.org:443');
-    
+
 // testnet
 const web3 = new Web3('https://data-seed-prebsc-1-s1.binance.org:8545');
 ```
