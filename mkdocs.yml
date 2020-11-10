@@ -129,9 +129,8 @@ nav:
       - Chainlink Protocol Integration: smart-chain/developer/link.md
     - Tutorial:
       - Deploy NFT:  smart-chain/developer/ERC721.md
-      - Local BSC Network: https://github.com/ConsenSysMesh/local_ethereum_network
       - Verify Contract on bscscan.com: smart-chain/developer/deploy/verify.md
-      - Local Network: smart-chain/developer/deploylocal.md
+      - Local BSC Network: smart-chain/developer/deploy/local.md
     - Wallet:
       - Binance Chain Extension Wallet API: smart-chain/wallet/wallet_api.md
       - Math Wallet Cross-chain Transfer Tool: http://blog.mathwallet.org/?p=2052
