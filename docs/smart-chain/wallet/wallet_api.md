@@ -81,41 +81,42 @@ await bsc.getChainId();
 
 * use-wallet
 
-We already raised a [PR](https://github.com/aragon/use-wallet/pull/64) to use-wallet. After it gets merged, dApp developer could provide an option to connect with binance chain wallet (only chain id 56 and 97 are supported now) in the following way:
+There is an [example](https://github.com/aragon/use-wallet/tree/master/examples/binance-chain) in use-wallet origin repo shows how to 'inject' a customized web3-react connector to `UseWalletProvider`:
 
 ```
-import React from 'react'
-import { useWallet, UseWalletProvider } from 'use-wallet'
-
 function App() {
-  const wallet = useWallet()
-
+  const { account, connect, reset, status } = useWallet()
   return (
-      <>
-        <h1>Wallet</h1>
-        {wallet.status === 'connected' ? (
-            <div>
-              <div>Account: {wallet.account}</div>
-              <div>Balance: {wallet.balance}</div>
-              <button onClick={() => wallet.reset()}>disconnect</button>
-            </div>
-        ) : (
-            <div>
-              Connect:
-              <button onClick={() => wallet.connect('bsc')}>Binance Chain Wallet</button>
-            </div>
-        )}
-      </>
+    <div>
+      <h1>Binance Chain Connector</h1>
+      {status === 'disconnected' ? (
+        <button onClick={() => connect('bsc')}>Connect</button>
+      ) : (
+        <button onClick={() => reset()}>Disconnect</button>
+      )}
+      {account && <p>Connected as {account}</p>}
+    </div>
   )
 }
 
-// Wrap everything in <UseWalletProvider />
-export default () => (
-    <UseWalletProvider
-        chainId={56}
-    >
-      <App />
-    </UseWalletProvider>
+render(
+  <UseWalletProvider
+    connectors={{
+      bsc: {
+        web3ReactConnector() {
+          return new BscConnector({ supportedChainIds: [56, 97] })
+        },
+        handleActivationError(err) {
+          if (err instanceof UserRejectedRequestError) {
+            return new ConnectionRejectedError()
+          }
+        },
+      },
+    }}
+  >
+  <App />
+  </UseWalletProvider>,
+  document.getElementById('root')
 )
 ```
 
