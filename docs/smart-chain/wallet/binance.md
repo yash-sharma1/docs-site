@@ -67,6 +67,7 @@ Congratulations! you have created your account!
 <img src="https://lh5.googleusercontent.com/WvqszPDj6yhnt4KhB9VNHQrpR3C4lcIvOnBvZE4BslWsl0fmFbjM0f8dcK1sBFPI8OSt-8RGbk7X7pEdbci7P4RCl0rOoN4_5ce-qbfXj0BnGjSj160oDZ4ObvhljeTn8c4hZmnm" alt="img" style="zoom:33%;" />
 
 * Type your recovery phrase and choose a strong password
+
 <img src="https://lh3.googleusercontent.com/VQbiCEcUSQyyHxcP0rR1FodhZcYBqaXMRpYsFy11NCJFzbtgpdewW6FCoazF1f7KiGaqMnOhL2LoEFvep5HXsJrh7VXjFuu6Qo3s1kI_3feKbOfudQS8q1GjfWSJJygTSsxGmBx5" alt="img" style="zoom:33%;" />
 
 * Click on “Get started”

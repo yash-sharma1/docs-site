@@ -210,6 +210,13 @@ nav:
         - Validator: faq/bsc/val.md
         - Delegator: faq/bsc/del.md
       - Crosschain: faq/bsc/cross.md
+    - Binance Extension Wallet:
+      - FAQ: smart-chain/wallet/faq.md
+      - Security:  smart-chain/wallet/extension/safe.md
+      - Backup: smart-chain/wallet/extension/seed.md
+      - Reset: smart-chain/wallet/extension/reset.md
+      - Manage Account: smart-chain/wallet/extension/add-account.md
+      - Developer: smart-chain/wallet/wallet_api.md
     - More Help: resources.md
     - Contributing: CONTRIBUTING.md
 
