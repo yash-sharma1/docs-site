@@ -17,20 +17,19 @@ There is also a [web wallet](https://testnet.binance.org/en/) that can directly 
 
 # How to get Testnet Fund
 
-> Note: To obtain Binance Chain testnet funds, you must have a Binance account that has a minimum of 1 BNB in it. The 1 BNB will remain in your account and can be withdrawn or traded after requesting testnet BNB for the Binance Chain. The 1 BNB requirement is merely an anti-spam measure.
+> Note: The previous Binance Chain Testnet [Faucet](https://www.binance.com/en/dex/testnet/address) is retired at 2020/08/11 at 1:00 PM (UTC). The testnet faucet has migrated to this page: https://testnet.binance.org/faucet-smart
 
-1. Navigate to the [testnet faucet](https://www.binance.com/en/dex/testnet/address) and log in to your Binance.com account.
+**Steps to claim testnet BNB:**
 
-2. Create an address on testnet by following [this guide](create-address.md)
+1. Create a new Wallet of Binance Smart Chain testnet with [MetaMask or MathWallet](https://docs.binance.org/wallets/bsc-wallets.html)
+2. Get Testnet Fund: https://testnet.binance.org/faucet-smart
 
-3. Enter your testnet address in the form
+To request funds, please make a tweet with your Binance Smart Chain address pasted into the contents. Then, copy-paste the tweets URL!
+**BNB** will be sent to your BSC wallet right away.
 
-![faucet](../assets/faucet.jpeg)
+3. Transfer From Binance Smart Chain to Binance Chain
 
-When complete, you will receive 200 testnet BNB so that you can interact with the Binance DEX testnet.
+You can use [Binance Extension Wallet](https://docs.binance.org/smart-chain/wallet/binance.html#transfer-testnet-bnb-from-bsc-to-bc) for cross-chain transfer.
 
-Once there, enter your testnet address and click on the “+ Add Address” button, you can then add another address if you wish to send testnet funds to multiple testnet accounts.
-
-When you have finished adding your testnet addresses, press “Submit”.
-
-The testnet funds will be sent shortly afterward. In order to see them, navigate to the Binance Chain Explorer and search for your testnet address, and you will be able to see them in your recent transactions on the Binance Chain. You can then use these funds on the Binance DEX.
+If you wish to test Binance Chain features, you could transfer BNB cross-chain with MathWallet dApp:
+https://docs.binance.org/smart-chain/wallet/math.html#transfer-bnb-from-bsc-to-bc
