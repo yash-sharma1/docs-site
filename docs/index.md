@@ -9,12 +9,17 @@ Have fun trading and see you on chain!
 
 ## What are Binance Chain and Binance DEX?
 
-Binance Chain is a blockchain software system developed by Binance and its community.
+[Binance Chain](https://www.binance.org) is a blockchain software system developed by Binance and its community.
 Binance DEX refers to the decentralized exchange features developed on top of Binance Chain.
+
+Please read the [FAQ](./faq/faq.md) to get started.
 
 ## What is Binance Smart Chain?
 
-Binance Smart Chain is an innovative solution to bring programmability and interoperability to Binance Chain. Binance Smart Chain relies on a system of 21 validators with Proof of Staked Authority (PoSA) consensus that can support short block time and lower fees. The most bonded validator candidates of staking will become validators and produce blocks. The double-sign detection and other slashing logic guarantee security, stability, and chain finality.
+[Binance Smart Chain](https://www.binance.org/en/smartChain) is an innovative solution to bring programmability and interoperability to Binance Chain. Binance Smart Chain relies on a system of [21 validators with Proof of Staked Authority (PoSA)](https://github.com/binance-chain/whitepaper/blob/master/WHITEPAPER.md) consensus that can support short block time and lower fees. The most bonded validator candidates of staking will become validators and produce blocks. The double-sign detection and other slashing logic guarantee security, stability, and chain finality.
+
+Please read the [FAQ](./faq/bsc/general.md) to get started.
+
 
 ## What can I do with Binance Chain?
 
@@ -22,24 +27,26 @@ The purpose of the new blockchain and DEX is to create an alternative marketplac
 
 You can:
 
-- Send and receive BNB
-- Issue new tokens to digitalize assets, and use Binance Chain as underlying exchange/transfer
+- [Send and receive BNB](transfer.md#web-wallet)
+- [Issue new tokens to digitalize assets](https://community.binance.org/topic/2487), and use Binance Chain as underlying exchange/transfer
 network for the assets
-- Send, receive, burn/mint and freeze/unfreeze tokens
-- Propose to create trading pairs between two different tokens
-- Send orders to buy or sell assets through trading pairs created on the chain
-- Watch the DEX market to confirm price and market activity of certain assets
+- Send, receive, [burn](tokens.md#burn)/[mint](tokens.md#mint) and [freeze/unfreeze](tokens.md#freeze-unfreeze) tokens
+- [Sumbit an on-chain governance proposal for Binance Smart Chain](./guides/concepts/bsc-gov.md)
 
-You can also:
 
-- Explore the transaction history and blocks on the chain, via Binance Chain Explorer, API
-and node RPC interfaces.
-- Run a full node to listen to and broadcast live updates on transactions, blocks, and consensus activities
-- Extract other data of Binance Chain via full node or APIs
-- Apply to run a validator node
-- Develop tools and application to help users use Binance Chain and Binance DEX
+**For traders**, you can:
 
-In the future you may also be able to stake your BNB to join Chain Governance, if you so wish.
+- [Propose to create trading pairs](list_instruction.md) between two different tokens
+- [Send orders](./guides/trading-interface.md) to buy or sell assets through trading pairs created on the chain with[SDK](exchange-integration.md#sdks)
+- [Watch the DEX market](./api-reference/dex-api/path.md#apiv1markets) to confirm price and market activity of certain assets
+
+**For developers**, you can also:
+
+- Explore the transaction history and blocks on the chain, via [Binance Chain Explore](https://explorer.binance.org), [API](./api-reference/dex-api/path.md)
+and [node RPC](./api-reference/node-rpc.md) interfaces.
+- Run a [full node](fullnode.md) to listen to and broadcast live updates on transactions, blocks, and consensus activities
+- Extract other data of Binance Chain via full node or [APIs](./api-reference/dex-api/path.md#apiv1markets)
+- [Develop tools](exchange-integration.md#sdks) and application to help users use Binance Chain and Binance DEX
 
 ## What can I do with Binance Smart Chain?
 
@@ -49,17 +56,18 @@ Because BSC is EVM-compatible, it launched with support for the rich universe of
 
 You can:
 
-- Send and receive BNB and other BEP2 tokens cross-chain
-- Issue new tokens to digitalize assets
-- Develop your own DApps
-
-You can also:
-
+- Send and receive [BNB](https://docs.binance.org/smart-chain/wallet/binance.html#transfer-testnet-bnb-from-bsc-to-bc) and other [BEP2 tokens](https://docs.binance.org/smart-chain/wallet/binance.html#swap-testnet-bep2-token-to-its-bep20-equivalent) cross-chain
 - Explore the transaction history and blocks on the chain, via [bscscan](https://bscscan.com), API
 and node RPC interfaces.
-- Run a full node to listen to and broadcast live updates on transactions, blocks, and consensus activities
-- Stake BNB to become a validator of BSC
-- Develop wallets and tools to help users use Dapps
+- [Stake you BNB](./smart-chain/wallet/staking.md) to earn some block rewards
+
+**Developers** can also:
+
+- [Issue](./smart-chain/developer/issue-BEP20.md) new tokens to digitalize assets
+- [Migrate](https://github.com/binance-chain/bsc-develop-ecosystem) existing DApps
+- Run a [full node](./smart-chain/developer/fullnode.md) to listen to and broadcast live updates on transactions, blocks, and consensus activities
+- Become [a validator of BSC](./smart-chain/validator/guideline.md)
+- [Develop wallets](./smart-chain/wallet/wallet_api.md) and tools to help users use Dapps
 
 ## Comparision Between BC and BSC
 

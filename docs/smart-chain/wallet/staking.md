@@ -34,7 +34,7 @@
 
 -  your delegation overview
 
-![img](https://lh6.googleusercontent.com/U1QavwEpXDRUaYfy2Ghd4N1Di8lKQ3kHKEw1rOv9Y-OV3W6wY1IbCSs8XdIwvHjMe5VfzoKnOVKazdJicAhS6LwmqlYYvRKJYBzTX9pjPZctvCQlTFNhSzV2-rZKMu2XUvfB8Xuf)
+![img](https://lh4.googleusercontent.com/m8hyetwRYQS-HLcubdSkuhjAAFDyWQptswGJKUWaAwcK-m1yVblM-5pXL599ogLJ1DjkKUo75WOzt6JUDxrnUNwNANDa1ZpuyHxlDxRg7enDF8jkhF70SkWeAPq6hAARAcphlaKw)
 
 You can see the staking history here
 
