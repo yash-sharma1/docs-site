@@ -64,7 +64,7 @@ Today, many dApps are built on top of the higher-level API provided by [web3-rea
 
  * web3-react
 
-We made a tiny lib [bsc-connector](https://www.npmjs.com/package/@binance-chain/bsc-connector) that implements the [AbstractConnector](https://github.com/NoahZinsmeister/web3-react/blob/v6/packages/abstract-connector/src/index.ts#L4) interface of [web3-react](https://github.com/NoahZinsmeister/web3-react) library. You can add this to your project in parallel with [injected-connector](https://github.com/NoahZinsmeister/web3-react/tree/v6/packages/injected-connector) by: `yarn add @binance-chain/web3-connector` or `npm i @binance-chain/bsc-connector`.
+We made a tiny lib [bsc-connector](https://www.npmjs.com/package/@binance-chain/bsc-connector) that implements the [AbstractConnector](https://github.com/NoahZinsmeister/web3-react/blob/v6/packages/abstract-connector/src/index.ts#L4) interface of [web3-react](https://github.com/NoahZinsmeister/web3-react) library. You can add this to your project in parallel with [injected-connector](https://github.com/NoahZinsmeister/web3-react/tree/v6/packages/injected-connector) by: `yarn add @binance-chain/bsc-connector` or `npm i @binance-chain/bsc-connector`.
 
 ```
 import { BscConnector } from '@binance-chain/bsc-connector'
