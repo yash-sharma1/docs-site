@@ -15,9 +15,11 @@ The [fees](trading-spec.md#fees) that are due must be paid in BNB before any of 
 
 An issuance transaction contains:
 
+> Note: [BEP87](https://github.com/binance-chain/BEPs/pull/87) is implemented after Lagrange Upgrade. It changes the minimal symbol length to **two**
+
 * Source Address: the sender address of the transaction and it will become the `owner` of the token, all created tokens will be in this account.
 * Token Name: it is the long official name, such as "Binance Coin". It is limited to 32 characters.
-* Symbol: identifier of the token, limited to alphanumeric characters and is case insensitive, for example, "BNB". The length of symbol should be between 3 and 8. <br/>
+* Symbol: identifier of the token, limited to alphanumeric characters and is case insensitive, for example, "BNB". The length of symbol should be between 2 and 8. <br/>
 "B" suffixed symbol is also allowed for migrating tokens that already exist on other chains.<br/>
 The symbol doesn't have to be unique, "-" followed by random 3 letters will be appended to the provided symbol to avoid uniqueness constraint.<br/>
 Those 3 letters are the first three letters of tx hash of the `issue` transaction.<br/>
@@ -104,4 +106,22 @@ Example on **testnet**:
 
 ```bash
 > ./tbnbcli token unfreeze --amount 20000000000000000 --symbol NNB-B90 --from alice --chain-id=Binance-Chain-Ganges --node=data-seed-pre-2-s1.binance.org:80 --trust-node
+```
+
+## TransferOwnership
+
+> Note: [BEP82](https://github.com/binance-chain/BEPs/pull/82) is implemented after Lagrange Upgrade to add this new transactionn type.
+
+**0.01 BNB** will be charged on **TransferOwnership** transactions.
+
+
+Example on **mainnet**:
+
+```bash
+./bnbcli token transfer-ownership --from  $current-owner --symbol $symbol --new-owner $new-owner  --chain-id Binance-Chain-Tigris   --node  https://dataseed5.defibit.io:443 --trust-node
+```
+Example on **testnet**:
+
+```bash
+./tbnbcli token transfer-ownership --from  $current-owner --symbol $symbol --new-owner $new-owner --chain-id Binance-Chain-Nile  --node=data-seed-pre-2-s1.binance.org:80--trust-node
 ```
