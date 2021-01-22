@@ -40,6 +40,7 @@ nav:
         - Relayer Incentives: smart-chain/guides/concepts/incentives.md
       - System Contract: smart-chain/guides/concepts/system-contract.md
       - Governance: smart-chain/guides/concepts/bsc-gov.md
+    - Ecosystem: https://github.com/binance-chain/bsc-ecosystem
     - Binance Bridge:
       - User Guide V1: smart-chain/guides/panama.md
       - User Guide V2: smart-chain/guides/bridge-v2.md
@@ -130,7 +131,11 @@ nav:
     - BEP20 Tokens:
       - Introduction: smart-chain/developer/BEP20.md
       - Issue Token: smart-chain/developer/issue-BEP20.md
-      - Bind Token: smart-chain/developer/bind-tokens.md
+      - Bind Token:
+        - Introduction: smart-chain/developer/bind/tokens-cross-chain.md
+        - Bind Token: smart-chain/developer/bind/bind-tokens.md
+        - Mirror Token: smart-chain/developer/bind/mirror.md
+        - Sync Supply: smart-chain/developer/bind/sync.md
       - Cross-chain Transfer: smart-chain/validator/cross-chain-transfer.md
       - Bind Token Tool: https://github.com/binance-chain/token-bind-tool
     - Blockchain Details:
@@ -139,8 +144,8 @@ nav:
       - Pegged Tokens: https://docs.binance.org/faq/bsc/eco.html#what-are-pegged-tokens-on-binance-smart-chain
       - RPC: smart-chain/developer/rpc.md
     - Oracles:
-      - Band Protocol Integration: smart-chain/developer/band.md
-      - Chainlink Protocol Integration: smart-chain/developer/link.md
+      - Band Protocol Integration: smart-chain/developer/oracle/band.md
+      - Chainlink Protocol Integration: smart-chain/developer/oracle/link.md
     - Tutorial:
       - Deploy NFT:  smart-chain/developer/ERC721.md
       - Verify Contract on bscscan.com: smart-chain/developer/deploy/verify.md
