@@ -31,7 +31,6 @@ nav:
       - Consensus: smart-chain/guides/concepts/consensus.md
       - Comparison: smart-chain/guides/general.md
       - Genesis File: smart-chain/guides/concepts/genesis.md
-      - Participate: smart-chain/developer/fullnode.md
       - Cross-chain:
         - Cross-chain Mechanism: smart-chain/guides/concepts/cross-chain.md
         - BSC Relayer: smart-chain/guides/concepts/bsc-relayer.md
