@@ -15,5 +15,14 @@ if you try to send tokens without having any BNB in your account you will be tol
 
 You can remedy this by sending 0.001 BNB to that account in order to be able to make the transaction.
 
-A standard Ether transfer TX will be 21000 gas & a gas price of 20 GWEI.
+A standard Ether transfer TX will be 21000 gas & a gas price of 15 Gwei.
 With tokens, the amount of gas is typically  gas, so the total TX fee increases to 0.002 BNB - 0.003 BNB.
+
+
+## Current Gas Price
+
+```
+curl --location --request POST 'https://bsc-dataseed2.binance.org' \
+--header 'Content-Type: application/json' \
+--data-raw '{"jsonrpc":"2.0", "id":1, "method":"eth_gasPrice", "params": []}'
+```
