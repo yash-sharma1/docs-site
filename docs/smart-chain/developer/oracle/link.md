@@ -37,7 +37,7 @@ contract PriceConsumerV3 {
      */
     function getLatestPrice() public view returns (int) {
         (
-            uint80 roundID, 
+            uint80 roundID,
             int price,
             uint startedAt,
             uint timeStamp,
@@ -92,7 +92,7 @@ import "https://github.com/smartcontractkit/chainlink/blob/master/evm-contracts/
 contract HistoricalPriceConsumerV3 {
 
     AggregatorV3Interface internal priceFeed;
-    
+
     /**
      * Network: Binance Smart Chain
      * Aggregator: BNB/USD
@@ -105,12 +105,12 @@ contract HistoricalPriceConsumerV3 {
     /**
      * Returns historical price for a round id.
      * roundId is NOT incremental. Not all roundIds are valid.
-     * You must know a valid roundId before consuming historical data. 
+     * You must know a valid roundId before consuming historical data.
      * @dev A timestamp with zero value means the round is not complete and should not be used.
      */
     function getHistoricalPrice(uint80 roundId) public view returns (int256) {
         (
-            uint80 id, 
+            uint80 id,
             int price,
             uint startedAt,
             uint timeStamp,
@@ -201,12 +201,12 @@ function description() external view returns (string memory)
 Get data about a specific round, using the `roundId`.
 
 ```javascript Solidity
-function getRoundData(uint80 _roundId) external view 
+function getRoundData(uint80 _roundId) external view
     returns (
-        uint80 roundId, 
-        int256 answer, 
-        uint256 startedAt, 
-        uint256 updatedAt, 
+        uint80 roundId,
+        int256 answer,
+        uint256 startedAt,
+        uint256 updatedAt,
         uint80 answeredInRound
     )
 ```
@@ -229,12 +229,12 @@ function getRoundData(uint80 _roundId) external view
 Get the price from the latest round.
 
 ```javascript Solidity
-function latestRoundData() external view 
+function latestRoundData() external view
     returns (
-        uint80 roundId, 
-        int256 answer, 
-        uint256 startedAt, 
-        uint256 updatedAt, 
+        uint80 roundId,
+        int256 answer,
+        uint256 startedAt,
+        uint256 updatedAt,
         uint80 answeredInRound
     )
 ```
@@ -268,7 +268,10 @@ Chainlink price feed contracts are updated on a regular basis by multiple Chainl
 
 ### Mainnet
 
-|Pair|Contract|
-|:---|:---|
-|BNB / USD|<a href='https://bscscan.com/address/0x0567F2323251f0Aab15c8dFb1967E4e8A7D42aeE' target='_blank' rel='noreferrer, noopener'>`0x0567F2323251f0Aab15c8dFb1967E4e8A7D42aeE`</a>|
+| Pair      | Proxy                                                        |
+| :-------- | :----------------------------------------------------------- |
+| BNB / USD | [`0x0567F2323251f0Aab15c8dFb1967E4e8A7D42aeE`](https://bscscan.com/address/0x0567F2323251f0Aab15c8dFb1967E4e8A7D42aeE) |
+| BTC / USD | [`0x264990fbd0A4796A3E3d8E37C4d5F87a3aCa5Ebf`](https://bscscan.com/address/0x264990fbd0A4796A3E3d8E37C4d5F87a3aCa5Ebf) |
+| ETH / USD | [`0x9ef1B8c0E4F7dc8bF5719Ea496883DC6401d5b2e`](https://bscscan.com/address/0x9ef1B8c0E4F7dc8bF5719Ea496883DC6401d5b2e) |
 
+Original source is from [Chainlink website](https://docs.chain.link/docs/binance-smart-chain-addresses)
