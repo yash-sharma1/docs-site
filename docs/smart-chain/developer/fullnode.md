@@ -50,9 +50,9 @@ or you can download the pre-build binaries from [release page](https://github.co
 
 ```bash
 # Linux
-wget --no-check-certificate https://github.com/binance-chain/bsc/releases/download/v1.0.5/geth_linux
+wget --no-check-certificate https://github.com/binance-chain/bsc/releases/download/v1.0.6/geth_linux
 # MacOS
-wget --no-check-certificate https://github.com/binance-chain/bsc/releases/download/v1.0.5/geth_mac
+wget --no-check-certificate https://github.com/binance-chain/bsc/releases/download/v1.0.6/geth_mac
 ```
 
 2.Download the config files
@@ -89,7 +89,7 @@ INFO [05-19|14:53:17.525] Persisted trie from memory database      nodes=21 size
 INFO [05-19|14:53:17.528] Successfully wrote genesis state         database=lightchaindata hash=7d79cc…fb0d1e
 ```
 
-4.Start your fullnode or a validator node
+4.Start your fullnode
 
 ```bash
 ## start a full node
@@ -97,17 +97,24 @@ geth --config ./config.toml --datadir ./node --pprofaddr 0.0.0.0 --metrics --ppr
 ```
 
 
-start a validator node
+Start a validator node
 
 ```bash
 ## generate the consensus key and input the password
 geth account new --datadir ./node
 echo {your-password} > password.txt
-geth --config ./config.toml --datadir ./node -unlock {your-validator-address} --password password.txt  --mine --allow-insecure-unlock  --pprofaddr 0.0.0.0 --metrics --pprof
+geth --config ./config.toml --datadir ./node -unlock {your-validator-address} --password password.txt  --mine --gcmode archive --allow-insecure-unlock  --pprofaddr 0.0.0.0 --metrics --pprof
 ```
+
+!!! Note
+	Because the default value of `TrieTimeout` in config.toml is large, it means `geth` will not persist state into database until reach this time threshold, if the node has been force shutdown, it will start syncing from last state which may take long time. The recommended setting for valiidators is `TrieTimeout = 100000000000`
 
 5.Monitor node status
 
 you can monitor the log from `/node/bsc.log` by default.
+
+### Upgrade Geth
+
+Please read [this guide](./upgrade-fullnode.md)
 
 

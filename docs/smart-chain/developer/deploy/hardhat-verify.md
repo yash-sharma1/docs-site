@@ -1,4 +1,4 @@
-# Verify wiith Hardhat
+# Verify with Hardhat
 
 Hardhat has an Etherscan plugin: [Hardhat Etherscan plugin](https://hardhat.org/plugins/nomiclabs-hardhat-etherscan.html)
 
