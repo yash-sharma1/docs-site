@@ -16,3 +16,6 @@ To setup your sentry node architecture you can follow the instructions below:
 3. Set validator as static node for sentry
 
 <img src="https://lh3.googleusercontent.com/w6notWcdyEXayM592WuI5xcpysFqgkwwBSX3sBZFIc34SHrKewZYlNMBMyGBPs375ez78i4gZmbnMyMn3Ry5s6Z6qTejatPYdDXL67moRhGmAQsjNNVF0CRZz10yznx13U34fKSc" alt="img" style="zoom:33%;" />
+
+## Firewall Configuration
+

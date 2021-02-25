@@ -13,7 +13,7 @@ Binance Smart Chain relies on a set of validators who are responsible for commit
 
 Validators rewards come from transaction fees and commission fees from delegators.
 
-Let us also assume that the reward for a block is 100 BNB and that a certaiin validator has 20% of self-bonded BNB. These tokens do not go directly to the proposer. Instead, they are shared  among validator and delegators.  These 100 BNB will be distributed according to each participant's stake:
+Let us also assume that the reward for a block is 100 BNB and that a certaiin validator has 20% of self-bonded BNB and set its commission rate to 20%. These tokens do not go directly to the proposer. Instead, they are shared  among validator and delegators.  These 100 BNB will be distributed according to each participant's stake:
 
 Commission: 80*20%= 16 BNB
 Validator gets: 100\*20% + Commission = 36 BNB
@@ -36,21 +36,25 @@ You can learn see the revenue hiiistory from BitQuery's [chart](https://explorer
 
 ## Hardware
 
+We strongly recommend not using a laptop if you are running a full node
+
+
 It's recommended to run BSC software in VPS Servers (both with firewall):
 
-	* **DigitalOcean**: [CPU optimized droplet](https://www.digitalocean.com/docs/droplets/resources/choose-plan/)
+* **DigitalOcean**: [CPU optimized droplet](https://www.digitalocean.com/docs/droplets/resources/choose-plan/)
 
-	* **Amazon EC2**: [C5 instance](https://aws.amazon.com/ec2/instance-types/c5/)
+* **Amazon EC2**: [C5 instance](https://aws.amazon.com/ec2/instance-types/c5/)
 
-	* **Google Cloud Engine**: [General-purpose (N1)](https://cloud.google.com/compute/docs/machine-types)
+* **Google Cloud Engine**: [General-purpose (N1)](https://cloud.google.com/compute/docs/machine-types)
 
-*  Memory: 16 GB of RAM
 
-*  Disk space: 2 TB of SSD storage (no normal hard disk or network hard disk)
+- Memory: 16 GB of RAM
 
-*  CPU: 64-bit
+- Disk space: 2 TB of SSD storage (no normal hard disk or network hard disk)
 
-*  Network: 1GB fiber
+- CPU: 64-bit
+
+-  Network: 1GB fiber
 
 
 *If you are running a node in Testnet, 4CPU/8GB of RAM is sufficient*
@@ -58,15 +62,122 @@ It's recommended to run BSC software in VPS Servers (both with firewall):
 
 ## Steps to Be a Validator Candidate
 
-Workflow:
+### 1. Configure your VPSnetwork ports, ssl, firewall
 
-1. Configure your VPSnetwork ports, ssl, firewall
-2. Install BSC [fullnode](../developer/fullnode.md)
-3. create your wallets
-4. Download history snapshot(optional)
-5. Start your fullnode
-6. Check sync status
-7. Stake on BC
+!!! Note
+	If you are running a node in Testnet, 2CPU/8GB of RAM is sufficient.
 
-To learn ahout details [here](candidate.md)
+We recommend using popular cloud providers as there reliability and uptime are close to 100%. These servers would be a good starting point:
+* DigitalOcean: CPU optimized droplet 32GB/16CPU
+* Amazon EC2: C5 instance
+* Google Cloud Engine: n1-highcpu-16
+
+### 2. Install BSC Fullnode
+
+**Option 1: Build from source code**
+
+Make sure that you have installed [Go 1.13+](https://golang.org/doc/install) and have added `GOPATH` to `PATH` environment variable
+
+```bash
+git clone https://github.com/binance-chain/bsc
+# Enter the folder bsc was cloned into
+cd bsc
+# Comile and install bsc
+make geth
+```
+
+**Option 2: Download the binaries**
+
+or you can download the pre-build binaries from [release page](https://github.com/binance-chain/bsc/releases/latest) or follow the instructions below:
+
+```bash
+# Linux
+wget --no-check-certificate https://github.com/binance-chain/bsc/releases/download/v1.0.6/geth_linux
+# MacOS
+wget --no-check-certificate https://github.com/binance-chain/bsc/releases/download/v1.0.6/geth_mac
+```
+
+**Download the config files**
+
+Download `genesis.json` and `config.toml` by:
+
+```bash
+## mainet
+wget --no-check-certificate  $(curl -s https://api.github.com/repos/binance-chain/bsc/releases/latest |grep browser_ |grep mainnet |cut -d\" -f4)
+unzip mainnet.zip
+
+## testnet
+wget --no-check-certificate  $(curl -s https://api.github.com/repos/binance-chain/bsc/releases/latest |grep browser_ |grep testnet |cut -d\" -f4)
+unzip testnet.zip
+```
+
+### 3.Write genesis state locally
+
+```bash
+geth --datadir node init genesis.json
+```
+
+You could see the following output:
+
+```
+INFO [05-19|14:53:17.468] Allocated cache and file handles         database=/Users/huangsuyu/Downloads/bsc/node/geth/chaindata cache=16.00MiB handles=16
+INFO [05-19|14:53:17.498] Writing custom genesis block
+INFO [05-19|14:53:17.501] Persisted trie from memory database      nodes=21 size=56.84KiB time=357.915µs gcnodes=0 gcsize=0.00B gctime=0s livenodes=1 livesize=-574.00B
+INFO [05-19|14:53:17.502] Successfully wrote genesis state         database=chaindata hash=7d79cc…fb0d1e
+INFO [05-19|14:53:17.503] Allocated cache and file handles         database=/Users/huangsuyu/Downloads/bsc/node/geth/lightchaindata cache=16.00MiB handles=16
+INFO [05-19|14:53:17.524] Writing custom genesis block
+INFO [05-19|14:53:17.525] Persisted trie from memory database      nodes=21 size=56.84KiB time=638.396µs gcnodes=0 gcsize=0.00B gctime=0s livenodes=1 livesize=-574.00B
+INFO [05-19|14:53:17.528] Successfully wrote genesis state         database=lightchaindata hash=7d79cc…fb0d1e
+```
+
+
+### 4. Start a validator node
+
+* Sync Mode
+
+	* Archive Sync
+
+Archive mode means that all states of values in smart contracts as well as all balances of an account are stored.
+
+You need to create an account that represents a key pair first. Use the following command to create a new account and set a password for that account:
+```bash
+geth account new --datadir ./node
+```
+
+This command will return the public address and the path to your private key. BACKUP of keyfile is necessory!
+
+If you already have an account, use the seed phrase to recover it:
+
+```bash
+geth account import --datadir ./node
+```
+
+!!! Warning
+	Please do not expose your RPC endpoints to public network.
+
+```bash
+## generate the consensus key and input the password
+geth account new --datadir ./node
+echo {your-password} > password.txt
+geth --config ./config.toml --datadir ./node -unlock {your-validator-address} --password password.txt  --mine --gcmode archive --allow-insecure-unlock  --pprofaddr 0.0.0.0 --metrics --pprof
+```
+
+!!! Note
+	Because the default value of `TrieTimeout` in config.toml is large, it means `geth` will not persist state into database until reach this time threshold, if the node has been force shutdown, it will start syncing from last state which may take long time. The recommended setting for valiidators is `TrieTimeout = 100000000000`
+
+### Wait for node to sync
+
+Your node should now be catching up with the network by replaying all the transactions from genesis and recreating the blockchain state locally. This will take a long time, so make sure you've set it up on a stable connection so you can leave while it syncs.
+
+View the status of the network with [https://bscscan.com/](https://bscscan.com/).
+
+Congratulations! You've now successfully joined a network as a full node operator.
+
+### Using a data backup (recommended for the mainnet)
+
+If you are connecting to an existing network for which you have a data backup (from a provider you trust), you can optionally load the backup into your node storage rather than syncing from scratch. Learn more [here](snapshot.md)
+
+
+### 5.Monitor node status
+
 

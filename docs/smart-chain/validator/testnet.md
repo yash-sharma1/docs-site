@@ -19,39 +19,20 @@ If you already have an account, use the seed phrase to recover it:
 geth account import --datadir ./node
 ```
 
-## For Mainnet
-### Get Genesis file and Config file
-```bash
-wget --no-check-certificate  $(curl -s https://api.github.com/repos/binance-chain/bsc/releases/latest |grep browser_ |grep mainnet |cut -d\" -f4)
-unzip mainnet.zip
-```
-
-### Start Fullnode on Binance Smart Chain
-
-Please run this command to run a fullnode as validator candidate
-
-```bash
-geth --datadir node init genesis.json
-geth --config ./config.toml --datadir ./node -unlock {validator-address} --mine --allow-insecure-unlock  --rpcapi "eth,web3,miner,net,admin,personal,debug" --metrics
-```
-
-### Become a validator candidate
-
-You can use `bnbcli` to [declare your candidacy](../../guides/concepts/bc-staking.md#create-bsc-validator) some of BNB to a validator
-
-Go to [explorer](https://explorer.binance.org/) to verify your transactions.
-
-
-
-## For testnet
-
 ### Get some testnet fund from faucet
 
 Go to this faucet page: <https://testnet.binance.org/faucet-smart>
 
 ### Transfer BNB from BSC to BC
 
-Please refer to this [guide](../validator/cross-chain-transfer.md)
+Please refer to this [guide](https://binance-wallet.gitbook.io/binance-chain-extension-wallet/best-practice/transfer-testnet-bnb-from-bsc-to-bc) to transfer BNB with Binance Chain extension wallet.
+
+
+### Become a validator candidate
+
+You can use `tbnbcli` to [declare your candidacy](../../guides/concepts/bc-staking.md#create-bsc-validator) some of BNB to a validator
+
+Go to [testnet explorer](https://testnet-explorer.binance.org/) to verify your transactions.
 
 ### Get Genesis file and Config file
 ```bash
