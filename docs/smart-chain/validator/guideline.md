@@ -50,7 +50,7 @@ It's recommended to run BSC software in VPS Servers (both with firewall):
 
 - Memory: 16 GB of RAM
 
-- Disk space: 2 TB of SSD storage (no normal hard disk or network hard disk)
+- Disk space: 500 GB of SSD storage (no normal hard disk or network hard disk)
 
 - CPU: 64-bit
 
@@ -180,4 +180,14 @@ If you are connecting to an existing network for which you have a data backup (f
 
 ### 5.Monitor node status
 
+To get started quickly, run GethExporter in a Docker container.
 
+```
+docker run -it -d -p 9090:9090 \
+  -e "GETH=http://mygethserverhere.com:8545" \
+  hunterlong/gethexporter
+```
+
+![](https://grafana.com/api/dashboards/6976/images/4471/image)
+
+Reference: <https://grafana.com/grafana/dashboards/6976>

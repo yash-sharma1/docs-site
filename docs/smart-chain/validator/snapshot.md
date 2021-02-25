@@ -11,7 +11,7 @@ The following commands are step by step instructions for BSC node operators that
 Basically, a compressed version of the last-known "good" chaindata is downloaded. Remove the node's old data and update it with the newly downloaded data. Finally, restart the sync-process from this known-good checkpoint.
 
 
-Note: Ensure there is enough disk space for both the tar file AND its uncompressed contents. Double the space or more.
+Note: Ensure there is enough disk space for both the zip file AND its uncompressed contents. Double the space or more.
 
 
 > Tip: extract the data in background
