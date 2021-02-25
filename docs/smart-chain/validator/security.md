@@ -13,6 +13,7 @@ To setup your sentry node architecture you can follow the instructions below:
 
 Please do not expose your validator fullnode RPC endpoints to public network.
 
+Install your [fullnode](../developer/fullnode.md)
 
 2. Set sentry as peers  for validator node
 

@@ -33,6 +33,7 @@ nav:
       - Genesis File: smart-chain/guides/concepts/genesis.md
       - Cross-chain:
         - Cross-chain Mechanism: smart-chain/guides/concepts/cross-chain.md
+        - Cross-chain Guide: smart-chain/developer/cross-chain-transfer.md
         - BSC Relayer: smart-chain/guides/concepts/bsc-relayer.md
         - Oracle Module: smart-chain/guides/concepts/oracle-module.md
         - Oracle Relayer: smart-chain/guides/concepts/oracle-relayer.md
@@ -50,7 +51,6 @@ nav:
       - Validator:
         - Guides: smart-chain/validator/guideline.md
         - Validator Security: smart-chain/validator/security.md
-        - Staking parameters: smart-chain/validator/Parameters.md
         - Chaindata Snapshot: smart-chain/validator/snapshot.md
         - Best Pratice: smart-chain/validator/best-practice.md
         - Testnet : smart-chain/validator/testnet.md
@@ -142,7 +142,7 @@ nav:
         - Bind Token: smart-chain/developer/bind/bind-tokens.md
         - Mirror Token: smart-chain/developer/bind/mirror.md
         - Sync Supply: smart-chain/developer/bind/sync.md
-      - Cross-chain Transfer: smart-chain/validator/cross-chain-transfer.md
+      - Cross-chain Transfer: smart-chain/developer/cross-chain-transfer.md
       - Bind Token Tool: https://github.com/binance-chain/token-bind-tool
     - Blockchain Details:
       - Binance Smart Chain Fullnode: smart-chain/developer/fullnode.md
@@ -237,6 +237,7 @@ nav:
       - Staking:
         - Validator: faq/bsc/val.md
         - Delegator: faq/bsc/del.md
+        - Staking parameters: smart-chain/validator/Parameters.md
       - Crosschain: faq/bsc/cross.md
     - Binance Extension Wallet:
       - FAQ: smart-chain/wallet/faq.md
