@@ -49,8 +49,11 @@ nav:
     - Staking:
       - Validator:
         - Guides: smart-chain/validator/guideline.md
+        - Validator Security: smart-chain/validator/security.md
         - Become Candidate: smart-chain/validator/candidate.md
         - Staking parameters: smart-chain/validator/Parameters.md
+        - Chaindata Snapshot: smart-chain/validator/snapshot.md
+        - Best Pratice: smart-chain/validator/best-practice.md
       - Delegator Guide: smart-chain/delegator/del-guide.md
     - Binance Smart Chain Mainnet Explorer:
       - BscScan: https://bscscan.com/

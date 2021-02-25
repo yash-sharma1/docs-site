@@ -1,4 +1,4 @@
-# How to join Binance Smart Chain as Validator?
+# Validator Guide
 
 ## What is Binance Smart Chain?
 
@@ -21,18 +21,10 @@ All delegators get: 100\*80% - Commission = 64 BNB
 
 If validators double sign, are frequently offline, their staked BNB ( not including BNB of users that delegated to them) can be slashed. The penalty depends on the severity of the violation.
 
+Read the details about slashing conditions in this [doc]()
+
+
 You can learn see the revenue hiiistory from BitQuery's [chart](https://explorer.bitquery.io/bsc/miners) or a table of [BscScan](https://bscscan.com/validatorset)
-
-### Slashing conditions
-
-* Double-Sign Slash: 10000BNB
-    * Details: Anyone can submit a slashing request on BC with the evidence of Double Sign of BSC, which should contain the 2 block headers with the same height and parent block, sealed by the offending validator.
-* Offline Slash: 50BNB
-    * Details: If a validator missed more than 50 blocks every 24h, the blocking reward for validator will not be relayed to BC for distribution but shared with other better validators. If it missed more than 150 blocks every 24h, then this will be propagated back to BC where another Slashing will happen
-* Rewards for submitting double-sign evidence: 1000BNB
-* Double-Sign Jail time: 2^63-1 seconds
-* Downtime Jail time: 2 days
-* Too Low self-delegation Jail time: 1 day
 
 ## Hardware
 
@@ -54,19 +46,4 @@ It's recommended to run BSC software in VPS Servers (both with firewall):
 
 
 *If you are running a node in Testnet, 4CPU/8GB of RAM is sufficient*
-
-
-## Steps to Be a Validator Candidate
-
-Workflow:
-
-1. Configure your VPSnetwork ports, ssl, firewall
-2. Install BSC [fullnode](../developer/fullnode.md)
-3. create your wallets
-4. Download history snapshot(optional)
-5. Start your fullnode
-6. Check sync status
-7. Stake on BC
-
-To learn ahout details [here](candidate.md)
 
