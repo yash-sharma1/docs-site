@@ -26,6 +26,11 @@ Backups
 * https://bsc-dataseed3.binance.org/
 * https://bsc-dataseed4.binance.org/
 
+Archive nodes
+
+* https://bsc-private-dataseed1.nariox.org
+* https://bsc-private-dataseed2.nariox.org
+
 BSC Websocket Endpoints:
 
 *Note: provided by community with no quality promised, building your node should be always the long term goal*
