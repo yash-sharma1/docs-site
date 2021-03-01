@@ -4,13 +4,13 @@
 
 The total cost of transfer from BC to BSC is composed of 2 parts:
 
-* Fee for executing `bridge transfer-out` transaction is 0.01BNB,  pay validators on Binance Chain
+* Fee for executing `bridge transfer-out` transaction is 0.004BNB,  pay validators on Binance Chain
 
-* Fee for BSC-relayers 0.01BNB. it will cover the fees of calling TokenHub Contract on BSC.
+* Fee for BSC-relayers 0.004BNB. it will cover the fees of calling TokenHub Contract on BSC.
 
 The total cost of transfer from BSC to BC is composed of 2 parts:
 
-* Fee for Oracle-relayers 0.01BNB, pay for BSC relayers
+* Fee for Oracle-relayers 0.004BNB, pay for BSC relayers
 
 * Call TokenHub Contract: You need to pay BNB for calling smart-contract on BSC, this transaction is metered by gas, which is a global parameter. At the moment, you need to pay about 0.0005BNB ~ 0.0015BNB.
 
