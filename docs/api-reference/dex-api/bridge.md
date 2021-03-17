@@ -208,7 +208,7 @@ Binance Chain
 ### /api/v2/tokens
 ---
 ##### ***GET***
-**Summary:** getQuota
+**Summary:** getTokens
 
 **Responses**
 
@@ -404,6 +404,8 @@ Binance Chain
 | bscContractDecimal | integer |  |  |
 | ethContractAddress | string |  |  |
 | ethContractDecimal | integer |  |  |
+| bscGasExchangeEnabled | boolean |  |  |
+| bscGasExchangeNetworkFee | number |  |  |
 
 ### NetworkList
 
@@ -472,6 +474,7 @@ Binance Chain
 | Name | Type | Description | Example |
 | ---- | ---- | ----------- | ------- |
 | amount | number |  |  |
+| exchangeGasAmount | number |  | 0.5,1,2 |
 | fromNetwork | string |  |  |
 | source | integer |  |  |
 | symbol | string |  |  |
