@@ -2,6 +2,12 @@
 
 A snapshot is a recording of the state of Binance Chain at a particular block height.
 
+Latest snapshot of April 1st: [download](https://s3.ap-northeast-1.amazonaws.com/dex-bin.bnbstatic.com/s3-witness-data-download/data_20210401.tgz?AWSAccessKeyId=AKIAYINE6SBQPUZDDRRO&Expires=1643611407&Signature=DNHRq9emOD%2FwBLmBSCU9aHt3ENI%3D)
+
+Size: 588 GB
+
+sha1sum: 397796fe4886a59601f6aa21fcca44b852c057bb
+
 Latest snapshot of March 1st: [download](https://s3.ap-northeast-1.amazonaws.com/dex-bin.bnbstatic.com/s3-witness-data-download/data_20210311.tgz?AWSAccessKeyId=AKIAYINE6SBQPUZDDRRO&Expires=1641887091&Signature=djEqBjOX08KjyTexn3BDnELWxeQ%3D)
 
 Size: 565 GB
