@@ -42,17 +42,12 @@ nav:
       - Governance: smart-chain/guides/concepts/bsc-gov.md
     - Ecosystem: https://github.com/binance-chain/bsc-ecosystem
     - Gnosis: smart-chain/developer/gnosis.md
-    - Binance Bridge:
-      - User Guide V1: smart-chain/guides/panama.md
-      - User Guide V2: smart-chain/guides/bridge-v2.md
-      - Buy BNB as Gas: smart-chain/guides/bnb-gas.md
-      - API doc: api-reference/dex-api/bridge.md
-      - Widget: api-reference/dex-api/bridge-widget.md
+    - Binance Bridge: https://binance-wallet.gitbook.io/binance-bridge/
     - Staking:
       - Validator:
         - Guides: smart-chain/validator/guideline.md
         - Validator Security: smart-chain/validator/security.md
-        - Chaindata Snapshot: smart-chain/validator/snapshot.md
+        - Chaindata Snapshot: smart-chain/developer/snapshot.md
         - Best Pratice: smart-chain/validator/best-practice.md
         - Testnet : smart-chain/validator/testnet.md
         - Validator FAQ: faq/bsc/val.md
@@ -64,27 +59,7 @@ nav:
     - Binance Smart Chain Testnet Explorer:
       - BscScan: https://testnet.bscscan.com/
       - BitQuery: https://explorer.bitquery.io/bsc_testnet
-    - Wallet:
-      - Binance Extension Wallet Guides:
-        - Introduction: smart-chain/wallet/binance.md
-        - How to add account: smart-chain/wallet/extension/add-account.md
-        - How to add asset: smart-chain/wallet/extension/add-asset.md
-        - How to reset password or import account: smart-chain/wallet/extension/reset.md
-        - How to reveal your seed phrase: smart-chain/wallet/extension/seed.md
-        - How to use Ledger with Binance Extension Wallet: smart-chain/wallet/extension/ledger.md
-        - How to stay safe: smart-chain/wallet/extension/safe.md
-        - Wallet Direct:  smart-chain/wallet/extension/direct.md
-      - MetaMask Guides: smart-chain/wallet/metamask.md
-      - Arkane: smart-chain/wallet/arkane.md
-      - Ledger: smart-chain/wallet/ledger.md
-      - Trezor: smart-chain/wallet/trezor.md
-      - MEW: smart-chain/wallet/myetherwallet.md
-      - Math Wallet: smart-chain/wallet/math.md
-      - Trust Wallet: smart-chain/wallet/trustwallet.md
-      - SafePal: https://blog.safepal.io/binance-smart-chain-x-safepal/
-      - TokenPocket: https://community.binance.org/topic/3374
-      - 币安链插件钱包指南: smart-chain/wallet/binance-cn.md
-      - ezDeFi: smart-chain/wallet/ezdefi.md
+    - Wallet: smart-chain/wallet.md
   - Binance Chain:
     - Introduction: guides/intro.md
     - Create Address: guides/create-address.md
@@ -148,7 +123,7 @@ nav:
       - Bind Token Tool: https://github.com/binance-chain/token-bind-tool
     - Blockchain Details:
       - Binance Smart Chain Fullnode: smart-chain/developer/fullnode.md
-      - Chaindata Snapshot: smart-chain/validator/snapshot.md
+      - Chaindata Snapshot: smart-chain/developer/snapshot.md
       - BSC Relayer: smart-chain/developer/bsc-relayer.md
       - Pegged Tokens: https://docs.binance.org/faq/bsc/eco.html#what-are-pegged-tokens-on-binance-smart-chain
       - RPC: smart-chain/developer/rpc.md
