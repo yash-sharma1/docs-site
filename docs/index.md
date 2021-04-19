@@ -102,7 +102,7 @@ The features listed below are currently supported on Binance Chain:
 A token protocol on BSC which is compatible with BEP2 and [ERC20](https://eips.ethereum.org/EIPS/eip-20). It extends ERC20 and contains more interfaces, such as `getOwner` and `decimals`. Read the full proposal here: <https://github.com/binance-chain/BEPs/blob/master/BEP20.md>
 
 - [Issue BEP20](smart-chain/developer/issue-BEP20.md)
-- [Wallet](wallets/bsc-wallets.md)
+- [Wallet](smart-chain/wallet.md)
 
 ## BNB (and Other Coins) MainNet Switch
 

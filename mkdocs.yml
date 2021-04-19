@@ -181,7 +181,7 @@ nav:
       - Node RPC Swagger: rpc-swagger/index.html
       - CHANGELOG: changelog.md
   - Wallets:
-    - Binance Smart Chain Wallet Support: wallets/bsc-wallets.md
+    - Binance Smart Chain Wallet Support: smart-chain/wallet.md
     - Binance Chain Wallet Support: wallets/wallets.md
     - Binance Smart Chain Wallet Tutorial:
       - How to create a BSC wallet: smart-chain/wallet/arkane.md
