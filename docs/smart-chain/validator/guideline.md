@@ -43,14 +43,14 @@ It's recommended to run BSC software in VPS Servers (both with firewall):
 
 * **DigitalOcean**: [CPU optimized droplet](https://www.digitalocean.com/docs/droplets/resources/choose-plan/)
 
-* **Amazon EC2**: [C5 instance](https://aws.amazon.com/ec2/instance-types/c5/)
+* **Amazon EC2**: [M5.zn instance](https://aws.amazon.com/ec2/instance-types/m5/)
 
-* **Google Cloud Engine**: [General-purpose (N1)](https://cloud.google.com/compute/docs/machine-types)
+* **Google Cloud Engine**: [Compute-Optimized (c2)](https://cloud.google.com/compute/docs/machine-types)
 
 
-- Memory: 16 GB of RAM
+- Memory: 32 GB of RAM
 
-- Disk space: 500 GB of SSD storage (no normal hard disk or network hard disk)
+- Disk space: 1T GB of SSD storage (no normal hard disk or network hard disk)
 
 - CPU: 64-bit
 
