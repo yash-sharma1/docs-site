@@ -46,7 +46,7 @@ Please run this command to run a fullnode as validator candidate
 
 ```bash
 geth --datadir node init genesis.json
-geth --config ./config.toml --datadir ./node -unlock {validator-address} --mine --allow-insecure-unlock  --rpcapi "eth,web3,miner,net,admin,personal,debug" --metrics
+geth --config ./config.toml --datadir ./node -unlock {validator-address} --mine --allow-insecure-unlock 
 ```
 
 ### Become a validator candidate of testnet
