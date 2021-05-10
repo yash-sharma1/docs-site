@@ -92,9 +92,9 @@ or you can download the pre-build binaries from [release page](https://github.co
 
 ```bash
 # Linux
-wget --no-check-certificate https://github.com/binance-chain/bsc/releases/download/v1.0.7/geth_linux
+wget --no-check-certificate https://github.com/binance-chain/bsc/releases/download/v1.1.0-beta/geth_linux
 # MacOS
-wget --no-check-certificate https://github.com/binance-chain/bsc/releases/download/v1.0.7/geth_mac
+wget --no-check-certificate https://github.com/binance-chain/bsc/releases/download/v1.1.0-beta/geth_mac
 ```
 
 **Download the config files**
@@ -159,7 +159,7 @@ geth account import --datadir ./node
 ## generate the consensus key and input the password
 geth account new --datadir ./node
 echo {your-password} > password.txt
-geth --config ./config.toml --datadir ./node -unlock {your-validator-address} --password password.txt  --mine --gcmode archive --allow-insecure-unlock  --pprofaddr 0.0.0.0 --metrics --pprof
+geth --config ./config.toml --datadir ./node -unlock {your-validator-address} --password password.txt  --mine  --allow-insecure-unlock --cache 18000
 ```
 
 !!! Note
