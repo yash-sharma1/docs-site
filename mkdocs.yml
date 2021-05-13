@@ -45,6 +45,7 @@ nav:
     - Binance Bridge: https://binance-wallet.gitbook.io/binance-bridge/
     - Staking:
       - Validator:
+        - Overview: smart-chain/validator/overview.md
         - Guides: smart-chain/validator/guideline.md
         - Validator Security: smart-chain/validator/security.md
         - Chaindata Snapshot: smart-chain/developer/snapshot.md

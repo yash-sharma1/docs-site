@@ -81,5 +81,7 @@ No, you cannot.
 
 After you sent `undelegate` transaction, you have to wait 7 days. This period starts at UTC 00:00 next day
 
+## What is 'self-delegation'? How can I increase my 'self-delegation'?
 
+Self-delegation is delegation from a validator to themselves. This amount can be increases by sending a delegate transaction from your validator's operator address.
 

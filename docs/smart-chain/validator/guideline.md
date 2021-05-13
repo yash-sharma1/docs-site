@@ -1,61 +1,16 @@
 # How to join Binance Smart Chain as Validator?
 
-## What is Binance Smart Chain?
+## Before You Start
 
-Binance Smart Chain is an innovative solution to bring programmability and interoperability to Binance Chain. Binance Smart Chain relies on a system of 21 validators with [Proof of Staked Authority (PoSA) consensus](https://github.com/binance-chain/whitepaper/blob/master/WHITEPAPER.md#consensus-and-validator-quorum) that can support short block time and lower fees. The most bonded validator candidates of staking will become validators and produce blocks. The double-sign detection and other slashing logic guarantee security, stability, and chain finality.
+### Choose Your Validator hardware
 
-## What is Validator?
+- VPS running recent versions of Mac OS X or Linux.
+- 2T GB of free disk space, solid-state drive(SSD).
+- 8 cores of CPU and 32 gigabytes of memory (RAM)
+- Suggest m5zn.2xlarge instance type on AWS, or c2-standard-8 on Google cloud.
+- A broadband Internet connection with upload/download speeds of 10 megabyte per second
 
-Binance Smart Chain relies on a set of validators who are responsible for committing new blocks in the blockchain. These validators participate in the consensus protocol by signing blocks that contain cryptographic signatures signed by each validator's private key.  The validator set is determined by a staking module built on Binance Chain for Binance Smart Chain, and propagated every day UTC 00:00 from BC to BSC via Cross-Chain communication.
-
-
-## Economics
-
-Validator's rewards come from transaction fees and commission fees from delegators.
-
-Let us also assume that the reward for a block is 100 BNB and that a certain validator has 20% of self-bonded BNB and sets its commission rate to 20%. These tokens do not go directly to the proposer. Instead, they are shared among validators and delegators.  These 100 BNB will be distributed according to each participant's stake:
-
-Commission: 80*20%= 16 BNB
-Validator gets: 100\*20% + Commission = 36 BNB
-All delegators get: 100\*80% - Commission = 64 BNB
-
-If validators double sign, are frequently offline, their staked BNB ( not including BNB of users that delegated to them) can be slashed. The penalty depends on the severity of the violation.
-
-You can learn to see the revenue history from BitQuery's [chart](https://explorer.bitquery.io/bsc/miners) or a table of [BscScan](https://bscscan.com/validatorset)
-
-### Slashing conditions
-
-* Double-Sign Slash: 10000BNB
-    * Details: Anyone can submit a slashing request on BC with the evidence of Double Sign of BSC, which should contain the 2 block headers with the same height and parent block, sealed by the offending validator.
-* Offline Slash: 50BNB
-    * Details: If a validator missed more than 50 blocks every 24h, the blocking reward for validator will not be relayed to BC for distribution but shared with other better validators. If it missed more than 150 blocks every 24h, then this will be propagated back to BC where another Slashing will happen
-* Rewards for submitting double-sign evidence: 1000BNB
-* Double-Sign Jail time: 2^63-1 seconds
-* Downtime Jail time: 2 days
-* Too Low self-delegation Jail time: 1 day
-
-## Hardware
-
-We strongly recommend not using a laptop if you are running a full node
-
-
-It's recommended to run BSC software in VPS Servers (both with firewall):
-
-* **DigitalOcean**: [CPU optimized droplet](https://www.digitalocean.com/docs/droplets/resources/choose-plan/)
-
-* **Amazon EC2**: [M5.zn instance](https://aws.amazon.com/ec2/instance-types/m5/)
-
-* **Google Cloud Engine**: [Compute-Optimized (c2)](https://cloud.google.com/compute/docs/machine-types)
-
-
-- Memory: 32 GB of RAM
-
-- Disk space: 1T GB of SSD storage (no normal hard disk or network hard disk)
-
-- CPU: 64-bit
-
--  Network: 1GB fiber
-
+### Setup a fullnode at testnet
 
 *If you are running a node in Testnet, 4CPU/8GB of RAM is sufficient*
 
@@ -257,3 +212,10 @@ docker run -it -d -p 9090:9090 \
 You can submit a PullRequest to this repository to update your information: <https://github.com/binance-chain/validator-directory>
 
 Reference: <https://grafana.com/grafana/dashboards/6976>
+
+
+## Publish Validator Information
+
+Please submit a Pull Request to this repo <https://github.com/binance-chain/validator-directory>
+
+This repository is a place for validator candidates to give potential delegators a brief introduction about your team and infrastructure, and present your ecosystem contributions.
