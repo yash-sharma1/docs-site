@@ -1,11 +1,16 @@
 # Snapshot
 
-April snapshot:
+For v1.1.0:
 
+* [2021-05-13 snapshot](https://s3.ap-northeast-1.amazonaws.com/dex-bin.bnbstatic.com/geth-20210513.zip?AWSAccessKeyId=AKIAYINE6SBQPUZDDRRO&Expires=1623567762&Signature=1SJt28tOgUCBdOg4Z7BcK0RkjpE%3D)(Size: 203G)
 
-* [Download data from 2021-04-15](https://s3.ap-northeast-1.amazonaws.com/dex-bin.bnbstatic.com/s3-witness-data-download/chaindata-2021-04-15.zip?AWSAccessKeyId=AKIAYINE6SBQPUZDDRRO&Expires=1644459350&Signature=a4vfmga8%2BRwNZl3boisIMEdSWbA%3D) (271 GB, md5sum 3ace16d3e2a52100025da387c73861a3f00de833)
+* [2021-05-02 snapshot](https://s3.ap-northeast-1.amazonaws.com/dex-bin.bnbstatic.com/geth.zip?AWSAccessKeyId=AKIAYINE6SBQPUZDDRRO&Expires=1646568179&Signature=DaVl4clXyVS%2F65GEUHTqWOfD2DA%3D) (Size: 175G)
 
-* [Download data from 2021-04-17](https://binance-smart-chain-snapshot.s3.amazonaws.com/snap.tar.gz ) (260 GB, md5sum dd68c7fddaba42997eda013535a572cb)
+For v1.0.7:
+
+* [2021-04-15 snapshot](https://s3.ap-northeast-1.amazonaws.com/dex-bin.bnbstatic.com/s3-witness-data-download/chaindata-2021-04-15.zip?AWSAccessKeyId=AKIAYINE6SBQPUZDDRRO&Expires=1644459350&Signature=a4vfmga8%2BRwNZl3boisIMEdSWbA%3D) (271 GB, md5sum 3ace16d3e2a52100025da387c73861a3f00de833)
+
+* [2021-04-17  snapshot](https://binance-smart-chain-snapshot.s3.amazonaws.com/snap.tar.gz ) (260 GB, md5sum dd68c7fddaba42997eda013535a572cb)
 
 
 March snapshot:  [download](https://s3.ap-northeast-1.amazonaws.com/dex-bin.bnbstatic.com/s3-witness-data-download/chaindata_202103.zip?AWSAccessKeyId=AKIAYINE6SBQPUZDDRRO&Expires=1641450253&Signature=hOC8I8HSpCOytlYMVQwKRc5oUaI%3D) (146 GB, md5sum 74ada3bcd6a9d0f101501919f6cc8a534e9d796e)

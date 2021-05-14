@@ -81,9 +81,16 @@ admin.addPeer( "enode://8fb5dd1259e0672efb8c141434bf0c24c73b338f7c2da15efc2def74
 
 * Add `Trusted nodes`
 
-Geth supports trusted nodes that are always allowed to reconnect, even if the peer limit is reached. They can be added permanently via a config file <datadir>/geth/trusted-nodes.json or temporary via RPC call. 
+Geth supports trusted nodes that are always allowed to reconnect, even if the peer limit is reached. They can be added permanently via a config file <datadir>/geth/trusted-nodes.json or temporary via RPC call.
 
+## Chaindata Snapshot
 
+Please download the chain data [snapshot](./snapshot) and extract to your home folder to speed up
+
+```
+## Extract the data
+unzip geth.zip -d /NAME_OF_YOUR_HOME/node &
+```
 
 ### Sync Mode
 
@@ -155,9 +162,13 @@ INFO [05-19|14:53:17.528] Successfully wrote genesis state         database=ligh
 
 4.Start your fullnode
 
+
+!!! Note
+    BREAKING CHANGE: Non-EIP155 transactions (i.e. transactions which are not replay-protected) are now rejected by the RPC API. You can disable this restriction using the --rpc.allow-unprotected-txs command-line flag.
+
 ```bash
 ## start a full node
-geth --config ./config.toml --datadir ./node --syncmode snap
+geth --config ./config.toml --datadir ./node  --cache 18000 --rpc.allow-unprotected-txs --txlookuplimit 0
 ```
 
 

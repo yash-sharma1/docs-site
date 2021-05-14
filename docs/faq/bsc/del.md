@@ -49,4 +49,7 @@ Since validatorset info is updated every day UTC 00:00, to make some room for th
 Since Unbonding Period is 7 days. Thus, after you sent undelegate transaction, your staked BNB will not  receive any rewards since the next UTC 00:00. After 7 days start from the next UTC 00:00, you will receive your BNB .
 
 ## What's the potential loss for delegators?
-The only risk for delegators is the loss of rewards when their staked validator is slashed. Their staked BNB will not be impacted. 
+The only risk for delegators is the loss of rewards when their staked validator is slashed. Their staked BNB will not be impacted.
+
+## Can a validator run away with their delegators' BNB?
+By delegating to a validator, a user delegates voting power.  This does not mean that the validator has custody of their delegators' BNB. By no means can a validator run away with its delegator's funds.
