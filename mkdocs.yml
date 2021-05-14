@@ -46,7 +46,7 @@ nav:
     - Staking:
       - Validator:
         - Overview: smart-chain/validator/overview.md
-        - Guides: smart-chain/validator/guideline.md
+        - Validator Guides: smart-chain/validator/guideline.md
         - Validator Security: smart-chain/validator/security.md
         - Chaindata Snapshot: smart-chain/developer/snapshot.md
         - Best Pratice: smart-chain/validator/best-practice.md

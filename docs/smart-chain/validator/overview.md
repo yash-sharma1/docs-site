@@ -31,7 +31,7 @@ If you try to cheat the system, or act contrary to the specification, you will b
 ### Potential Loss
 
 
-* Loss for Double-Sign Slash
+#### Loss for Double-Sign Slash
 
 Running your validator keys simultaneously on two or more machines will result in Double-Sign slashing.
 
@@ -43,7 +43,7 @@ Penalty for Double-Sign Slash:
 > Note: Rewards for submitting double-sign evidence: 1000BNB Anyone can submit a slashing request on BC with the evidence of Double Sign of BSC, which should contain the 2 block headers with the same height and parent block, sealed by the offending validator.
 
 
-* Loss for Offline Slash:
+#### Loss for Offline Slash:
 
 
 If a validator missed more than 50 blocks every 24h, the blocking reward for validator will not be relayed to BC for distribution but shared with other better validators. If it missed more than 150 blocks every 24h, then this will be propagated back to BC where another Slashing will happen
@@ -55,6 +55,6 @@ Penalty for Offline Slash:
 
 
 
-* Loss for Too Low self-delegation
+#### Loss for Too Low self-delegation
 
 Validator candidates must stake 10000BNB as self-delegation. If the self-delegation amount is lower, the Jail time is 1 day.
