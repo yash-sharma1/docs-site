@@ -1,6 +1,29 @@
 CHANGELOG
 ========
 
+## Upcoming Changes in Binance Chain Mainnet API - 2021-06-04
+
+### HTTP API
+
+#### /api/v1/transactions
+
+***Changes***
+
+Since 2021-06-04 0:00,UTC, all queries with `startTime` after 2021-06-04 0:00 UTC and range less than 7 days, the following changes will take effect.
+
+
+About `address`:
+
+* `Mutli Send Transfer` transaction history.
+* `HTL_TRANSFER` transactions as receiver
+
+About `Asset`:
+
+* `quote asset` parameter can be passed to `asset` to search for NEW_ORDER, CANCEL_ORDER,MINI_TOKEN_LIST,LISTING transactions
+* `quote asset` or `base asset` parameter can be passed to `asset` to search for SUBMIT_PROPOSAL, SIDE_SUBMIT_PROPOSAL transactions
+* DEPOSIT_HTL HTL_TRANSFER, SIDE_DEPOSIT, TIME_LOCK, TIME_RELOCK, TRANSFER can deal with multiple assets, you can search by any of them.
+
+
 ## Upcoming Changes in Binance Chain Mainnet API v0.7.2
 
 ### Node RPC
