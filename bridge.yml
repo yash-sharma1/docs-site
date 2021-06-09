@@ -8,6 +8,32 @@ info:
 host: api.binance.org
 basePath: /bridges
 paths:
+  /api/v1/tokens:
+    get:
+      tags:
+        - API for swap tokens
+      summary: get
+      operationId: gettokensUsingGET_1
+      produces:
+        - application/json
+      parameters:
+         - name: direction
+           in: query
+           description: 'In or OUT'
+           required: false
+           type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/TokenList'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
   /api/v1/swaps:
     get:
       tags:

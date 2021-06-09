@@ -94,6 +94,26 @@ Rate Limit: 2000 request per IP per 5 mins.
 
 ## API V1
 
+### /api/v1/tokens
+---
+##### ***GET***
+**Summary:** get
+
+**Parameters**
+
+| Name | Located in | Description | Required | Schema |
+| ---- | ---------- | ----------- | -------- | ---- |
+| direction | query | In or OUT | No | string |
+
+**Responses**
+
+| Code | Description | Schema |
+| ---- | ----------- | ------ |
+| 200 | OK | [TokenList](#tokenlist) |
+| 401 | Unauthorized |  |
+| 403 | Forbidden |  |
+| 404 | Not Found |  |
+
 ### /api/v1/swaps
 ---
 ##### ***GET***
