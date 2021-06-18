@@ -1,22 +1,23 @@
 # API reference for block service
-API description for block service
+API description for block and transaction service
 
 ## Version: V1.0
-Base path: <https://binance.org/bc/>
+Mainnet base path: <https://api.binance.org/bc/>
+Testnet base path: <https://testnet-api.binance.org/bc/>
 
 ### /api/v1/blocks
 
 #### GET
 ##### Summary
 
-getBlocksByHeights
+Get a batch of blocks, including fees.
 
 ##### Parameters
 
 | Name | Located in | Description | Required | Schema |
 | ---- | ---------- | ----------- | -------- | ---- |
-| endHeight | query | endHeight | Yes | long |
-| startHeight | query | startHeight | Yes | long |
+| endHeight | query | endHeight, endHeight-startHeight <= 50 | Yes | long |
+| startHeight | query | startHeight, startHeight should bigger than 0 | Yes | long |
 
 ##### Responses
 
@@ -32,7 +33,7 @@ getBlocksByHeights
 #### GET
 ##### Summary
 
-getBlockByHeight
+Get a block, including fees, for a particular block height.
 
 ##### Parameters
 
@@ -54,7 +55,7 @@ getBlockByHeight
 #### GET
 ##### Summary
 
-getTxsByHeight
+Get transactions in a particular block height.
 
 ##### Parameters
 
@@ -76,7 +77,7 @@ getTxsByHeight
 #### GET
 ##### Summary
 
-getTxsByTimeTypeAssetAddress
+Search transactions by criteria.
 
 ##### Parameters
 
@@ -85,19 +86,16 @@ getTxsByTimeTypeAssetAddress
 | address | query | address | Yes | string |
 | addressType | query | addressType | No | string |
 | asset | query | asset | No | string |
-| endTime | query | endTime | Yes | long |
-| limit | query | limit | No | integer |
-| offset | query | offset | No | integer |
-| startTime | query | startTime | Yes | long |
+| endTime | query | endTime in in milliseconds, endTime - startTime should be smaller than 7 days | Yes | long |
+| limit | query | max 50 | No | integer |
+| offset | query | max 10000 | No | integer |
+| startTime | query | startTime in milliseconds | Yes | long |
 | type | query | type | No | string |
 
 Be Noted:
 1. The timeframe between endTime and startTime should be less than 7 days. The shorter timeframe will get faster response, and longer timeframe will trigger more strict rate limiter.
 2. type: NEW_ORDER, ISSUE_TOKEN, BURN_TOKEN, LIST_TOKEN, CANCEL_ORDER, FREEZE_TOKEN, UN_FREEZE_TOKEN, TRANSFER, PROPOSAL, SIDE_PROPOSAL, VOTE, SIDE_VOTE, DEPOSIT, SIDE_DEPOSIT, MINT, CREATE_VALIDATOR, REMOVE_VALIDATOR, TIME_LOCK, TIME_UNLOCK, TIME_RELOCK, SET_ACCOUNT_FLAG, HTL_TRANSFER, DEPOSIT_HTL, CLAIM_HTL, REFUND_HTL, CREATE_SIDECHAIN_VALIDATOR, EDIT_SIDECHAIN_VALIDATOR, SIDECHAIN_DELEGATE, SIDECHAIN_REDELEGATE, SIDECHAIN_UNDELEGATE, ORACLE_CLAIM, CROSS_TRANSFER_OUT, CROSS_BIND, CROSS_UNBIND, BSC_SUBMIT_EVIDENCE, SIDECHAIN_UNJAIL, TRANSFER_TOKEN_OWNERSHIP, TINY_TOKEN_ISSUE, MINI_TOKEN_ISSUE, MINI_TOKEN_LIST, MINI_TOKEN_SET_URI
 3. addressType: FROM or TO
-4. The response is different from the /api/v1/transactions api. Major changes:
-a) The amount/quantity/price will be returned as Long, keeping consist with the on chain data.
-b) For some tx type, the returned 'data' will be different, please refer to *example* for reference.
 
 ##### Responses
 
@@ -113,7 +111,7 @@ b) For some tx type, the returned 'data' will be different, please refer to *exa
 #### GET
 ##### Summary
 
-getTxByHash
+Get a transaction by a hash.
 
 ##### Parameters
 
@@ -184,7 +182,7 @@ getTxByHash
 | blockHeight | long |  | No |
 | blockTime | long |  | No |
 | code | integer |  | No |
-| data | string |  | No |
+| data | string | different schemas for different tx types | No |
 | fee | long |  | No |
 | fromAddr | string |  | No |
 | hash | string |  | No |
@@ -200,7 +198,7 @@ getTxByHash
 | Name | Type | Description | Required |
 | ---- | ---- | ----------- | -------- |
 | blockHeight | long |  | No |
-| code | integer | _Example:_ `0` | No |
+| code | integer |  | No |
 | confirmBlocks | long |  | No |
 | data | string |  | No |
 | fromAddr | string |  | No |
