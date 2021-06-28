@@ -20,7 +20,7 @@
     toAddr: null
 }
 ```
-
+Note: ```amount``` field is null - if you want to get the base or quote asset amount, you can parse it from ```data``` field.
 
 ## CANCEL_ORDER
 ```json5
@@ -86,6 +86,7 @@
     toAddr: null
 }
 ```
+Note: mutli send transfer is a special kind of TRANSFER. In this case, you can consider this is a bucket, some addresses put tokens into it and other addresses get tokens out of it.
 
 
 ## CROSS_TRANSFER_OUT
@@ -791,6 +792,7 @@
     toAddr: null
 }
 ```
+
 
 # Example for block response
 

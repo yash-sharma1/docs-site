@@ -16,7 +16,7 @@ Please call [/api/v1/blocks/{blockHeight}/txs](http://api.binance.org/bc/api/v1/
 
 ### Migration Cautions
 * All the amount/quantity/price/fee will be returned as Long. For converting them to floats (as old response in /api/v1/transactions-in-block, /api/v2/transactions-in-block), you need to divide them by 10e8.
-* For the *data* field, the response in new api could be different, please refer to the tx examples for more details.
+* For the *data* field, the response in new api could be different, please refer to the [tx examples](block-service-example.md) for more details.
 
 
 ## Migration of /api/v1/transactions
@@ -38,4 +38,4 @@ Please call [/api/v1/txs](http://api.binance.org/bc/api/v1/txs?address={address}
 
 ### Migration Cautions
 * All the amount/quantity/price/fee will be returned as Long. For converting them to floats (as old response in /api/v1/transactions), you need to divide them by 10e8.
-* For the *data* field, the response in new api could be different, please refer to the tx examples for more details.
+* For the *data* field, the response in new api could be different, please refer to the [tx examples](block-service-example.md) for more details.
