@@ -37,6 +37,7 @@ Please call [/api/v1/txs](http://api.binance.org/bc/api/v1/txs?address={address}
 * The rate limit is 500 requests per ip in 5 minutes, which is much bigger comparing to the rate limit of /api/v1/transactions.
 
 ### Migration Cautions
+
 * Some query parameter names changed (e.g., txAsset->asset, txType->type), and some parameters are removed (e.g., blockHeight), please do read the new api docs.
 * All the amount/quantity/price/fee will be returned as Long. For converting them to floats (as old response in /api/v1/transactions), you need to divide them by 10e8.
 * For the *data* field, the response in new api could be different, please refer to the [tx examples](block-service-example.md) for more details.
