@@ -656,7 +656,7 @@ If the time window is larger than limits, only the first n klines will return. I
 ### /api/v1/transactions
 ---
 
-**Note:** This endpoint will be retired soon
+**Note:** This endpoint will be retired soon, use [this api](https://docs.binance.org/api-reference/dex-api/block-service.html#apiv1txs) instead.
 
 ##### ***GET***
 **Summary:** Get transactions.
@@ -665,7 +665,7 @@ If the time window is larger than limits, only the first n klines will return. I
 
 **Query Window:** Default query window is latest 24 hours;The maximum start - end query window is 3 months.
 
-**Rate Limit:** 60 requests per IP per minute.
+**Rate Limit:** 35 requests per IP per minute.
 
 
 **Parameters**
@@ -694,16 +694,16 @@ If the time window is larger than limits, only the first n klines will return. I
 
 ### /api/v1/transactions-in-block/{blockHeight}
 ---
-**Note:** This endpoint will be retired soon
+**Note:** This endpoint will be retired soon, use [this api](https://docs.binance.org/api-reference/dex-api/block-service.html#apiv1blocksblockheighttxs) instead.
 
 ##### ***GET***
 **Summary:** Get transactions in the specific block.
 
 **Description:** Get transactions in the block. Multi-send and multi-coin transactions are flattened as transactions. This API is deprecated.
 
-**Rate Limit:** 5 requests per IP per second.
+**Rate Limit:** 3 requests per IP per second.
 
-**Rate Limit:** 60 requests per IP per minute.
+**Rate Limit:** 30 requests per IP per minute.
 
 
 **Parameters**
@@ -723,7 +723,7 @@ If the time window is larger than limits, only the first n klines will return. I
 
 ### /api/v2/transactions-in-block/{blockHeight}
 
-**Note:** This endpoint will be retired soon
+**Note:** This endpoint will be retired soon, use [this api](https://docs.binance.org/api-reference/dex-api/block-service.html#apiv1blocksblockheighttxs) instead.
 
 ---
 ##### ***GET***
@@ -731,9 +731,9 @@ If the time window is larger than limits, only the first n klines will return. I
 
 **Description:** Get transactions in the block. Multi-send and multi-coin transactions are included as sub-transactions.
 
-**Rate Limit:** 5 request per IP per second.
+**Rate Limit:** 3 request per IP per second.
 
-**Rate Limit:** 60 requests per IP per minute.
+**Rate Limit:** 30 requests per IP per minute.
 
 
 **Parameters**
