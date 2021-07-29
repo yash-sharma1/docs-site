@@ -10,35 +10,20 @@
 
 We support running a full node on `Mac OS X`and `Linux`.
 
-
-## Minimum Requirements
-The hardware must meet certain requirements to run a node.
-
-### Fullnode
-- VPS running recent versions of Mac OS X or Linux.
-- 1T GB of free disk space, solid-state drive(SSD).
-- 8 cores of CPU and 16 gigabytes of memory (RAM).
-- A broadband Internet connection with upload/download speeds of at least 1 megabyte per second
-
-### Validator
-- VPS running recent versions of Mac OS X or Linux.
-- 1T GB of free disk space, solid-state drive(SSD).
-- 8 cores of CPU and 16 gigabytes of memory (RAM).
-- A broadband Internet connection with upload/download speeds of at least 1 megabyte per second
-
 ## Suggested Requirements
 
 ### Fullnode
 - VPS running recent versions of Mac OS X or Linux.
-- 1T GB of free disk space, solid-state drive(SSD).
+- **IMPORTANT** 1T GB of free disk space, solid-state drive(SSD), gp3, 3k IOPS, 125MB/S throughput, read latency <1ms. (if start with snap/fast sync, it will need NVMe SSD)
 - 8 cores of CPU and 32 gigabytes of memory (RAM).
+- Suggest c5.4xlarge instance type on AWS, c2-standard-8 on Google cloud.
 - A broadband Internet connection with upload/download speeds of 5 megabyte per second
 
 ### Validator
 - VPS running recent versions of Mac OS X or Linux.
-- 2T GB of free disk space, solid-state drive(SSD).
-- 8 cores of CPU and 32 gigabytes of memory (RAM)
-- Suggest m5zn.2xlarge instance type on AWS, or c2-standard-8 on Google cloud.
+- **IMPORTANT** 2T GB of free disk space, solid-state drive(SSD), gp3, 8k IOPS, 250MB/S throughput, read latency <1ms
+- 12 cores of CPU and 48 gigabytes of memory (RAM)
+- Suggest m5zn.3xlarge instance type on AWS, or c2-standard-8 on Google cloud.
 - A broadband Internet connection with upload/download speeds of 10 megabyte per second
 
 ## Settings
