@@ -35,3 +35,4 @@
 | 29     | [Ownbit](ownbit.md)                            | <https://ownbit.io>              |No|No|  No|
 | 30     | [Frontier](frontier.md)                        | <https://frontierwallet.com/>    |No|Yes|  No|
 | 31     | [Infinity Wallet](infinitywallet.md) (Desktop Wallet) | <https://infinitywallet.io/>     |Yes  | No|Yes|
+| 32     | [BitKeep Wallet](bitkeep.md) (App & Chrome)    | <https://bitkeep.com/> |Yes|No| Yes|

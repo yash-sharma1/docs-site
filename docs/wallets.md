@@ -37,3 +37,4 @@
 | 31     | [Frontier](wallets/frontier.md)                        | <https://frontierwallet.com/>    |No|Yes|  No|
 | 32     | [D'CENT Wallet](wallets/dcent-wallet.md)               | <https://dcentwallet.com/>       |No|Yes|  No|
 | 33     | [Infinity Wallet](wallets/infinitywallet.md) (Desktop Wallet) | <https://infinitywallet.io/>     |Yes  | No|Yes|
+| 34     | [BitKeep Wallet](wallets/bitkeep.md) (App & Chrome) | <https://bitkeep.com/>     |Yes  | No|Yes|
