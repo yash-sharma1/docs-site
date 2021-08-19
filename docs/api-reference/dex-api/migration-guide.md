@@ -8,7 +8,15 @@ Otherwise, you can skip this document and refer to the api document.
 
 ## Migration of /api/v1/transactions-in-block, /api/v2/transactions-in-block
 ### New API
+
 Please call [/api/v1/blocks/{blockHeight}/txs](http://api.binance.org/bc/api/v1/blocks/{height}/txs) instead.
+
+#### Base Url
+Mainnet base path: [https://api.binance.org/bc/](https://api.binance.org/bc/)
+
+Testnet base path: [https://testnet-api.binance.org/bc/](https://testnet-api.binance.org/bc/)
+
+
 
 ### Main Strengthens
 * The new api can query all historical blocks' transactions, not only blocks in the past 24 hours.
@@ -21,7 +29,15 @@ Please call [/api/v1/blocks/{blockHeight}/txs](http://api.binance.org/bc/api/v1/
 
 ## Migration of /api/v1/transactions
 ### New API
+
 Please call [/api/v1/txs](http://api.binance.org/bc/api/v1/txs?address={address}&startTime={startTime}&endTime={endTime}) instead.
+
+
+#### Base Url
+Mainnet base path: [https://api.binance.org/bc/](https://api.binance.org/bc/)
+
+Testnet base path: [https://testnet-api.binance.org/bc/](https://testnet-api.binance.org/bc/)
+
 
 ### Main Strengthens
 * Cross chain support
