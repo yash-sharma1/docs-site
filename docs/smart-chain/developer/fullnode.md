@@ -106,9 +106,9 @@ or you can download the pre-build binaries from [release page](https://github.co
 
 ```bash
 # Linux
-wget  https://github.com/binance-chain/bsc/releases/download/v1.1.0-beta/geth_linux
+wget  https://github.com/binance-chain/bsc/releases/download/v1.1.2/geth_linux
 # MacOS
-wget  https://github.com/binance-chain/bsc/releases/download/v1.1.0-beta/geth_mac
+wget  https://github.com/binance-chain/bsc/releases/download/v1.1.2/geth_mac
 ```
 
 2.Download the config files
@@ -117,11 +117,11 @@ Download `genesis.json` and `config.toml` by:
 
 ```bash
 ## mainet
-wget https://github.com/binance-chain/bsc/releases/download/v1.1.0-beta/mainnet.zip
+wget https://github.com/binance-chain/bsc/releases/download/v1.1.2/mainnet.zip
 unzip mainnet.zip
 
 ## testnet
-wget https://github.com/binance-chain/bsc/releases/download/v1.1.0-beta/testnet.zip
+wget https://github.com/binance-chain/bsc/releases/download/v1.1.2/testnet.zip
 unzip testnet.zip
 ```
 
