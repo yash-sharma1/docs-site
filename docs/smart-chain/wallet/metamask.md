@@ -118,7 +118,7 @@ You can create a new file or import a sample contract: <https://gist.github.com/
 ![img](https://lh6.googleusercontent.com/x918VLGGD8BG8-27sMOuqhpuVawQPpM6paq-7WOi3PVjmQJw4Lo1jlNFCa9R_TPYHJgFc-7xrRuMxTzdlTUzVPl-XQG8hBYqmlsk8VJr3oBsnI4kfyBVUfuiSzswQl2-9kK8fNdf)
 5. Adjust Gas Fee for your contract, then confirm your deploy contract</br>
 <img src="https://lh5.googleusercontent.com/ciF5AVMG8DziCOjktsUAPdPlEgaqsrBOfLc0cYtYX1kWm1GgKNNmSLKqWuR628sQKU4iKXyE1mIT2h2ownM3POMUu6tdMuFUebmYVLy2d54l6j30yJrGr6ymX_tlQHDTWjKIgzCx" alt="img" style="zoom:33%;" /></br>
-You can see that there is a new ceate contract transaction in block explorer
+You can see that there is a new create contract transaction in block explorer
 ![img](https://lh6.googleusercontent.com/7xsQbT6W66buPH6mfKKt_gXKa0iioDD8P98OmtMoU717ADZ7USMssS0UEMHcEQphQBRXjJsiSInNSs25OroEcIstxHSKGu19e-NWTg08-qyN1myyIdDO-OCcySpZ9m9-E2GPuACL)
 
 6. In MetaMask, Click on “Add Token”</br>
