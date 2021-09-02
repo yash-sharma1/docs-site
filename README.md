@@ -1,6 +1,6 @@
 # Binance Chain Documentation
 
-This documentation site is automatically deployed to [https://binance-chain.github.io](https://binance-chain.github.io).
+This documentation site is automatically deployed to [https://docs.binance.org/](https://docs.binance.org/).
 
 The main documentation is stored in the `docs` folder and is generated with [Mkdocs](https://www.mkdocs.org/).
 
