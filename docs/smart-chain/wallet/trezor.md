@@ -59,6 +59,6 @@ You should see a new account
 ### Confirm the same info in your Trezor device
 ![img](https://lh3.googleusercontent.com/undvuvIO0EUSzQmLnUoJbkF4_YqYE3QQk-M5cacvcycIWi5ei1kPKWAMW8jLABbLR3eI45M5bKzsumMJ161ogGe2jP7GhJBeM0AdH9FbCmy7ym6lUECoDGfg9nFusgmK6SUCbjHZ)
 
-### Track the transaction stsatus in “Activity” tab
+### Track the transaction status in “Activity” tab
 
 <img src="https://lh4.googleusercontent.com/ejb2jVBsYnFHctelQtR9gS36Z96td60sQ1yVFYdSbLr_jCTkyv2Im2P1wkHxS3JGAYHRXQTiac3FO9dUH1GX0eKHG1Vwk764tSMERGza_vmQcxxm32S66-kFi18wTifSrF-uD9tL" alt="img" style="zoom:33%;" />
