@@ -119,6 +119,7 @@ nav:
         - Introduction: smart-chain/developer/bind/tokens-cross-chain.md
         - Bind Token: smart-chain/developer/bind/bind-tokens.md
         - Mirror Token: smart-chain/developer/bind/mirror.md
+        - Circulation Model: smart-chain/developer/circulation-model.md
         - Sync Supply: smart-chain/developer/bind/sync.md
       - Cross-chain Transfer: smart-chain/developer/cross-chain-transfer.md
       - Bind Token Tool: https://github.com/binance-chain/token-bind-tool
