@@ -36,3 +36,5 @@
 | 30     | [Frontier](frontier.md)                        | <https://frontierwallet.com/>    |No|Yes|  No|
 | 31     | [Infinity Wallet](infinitywallet.md) (Desktop Wallet) | <https://infinitywallet.io/>     |Yes  | No|Yes|
 | 32     | [BitKeep Wallet](bitkeep.md) (App & Chrome)    | <https://bitkeep.com/> |Yes|No| Yes|
+| 33     | [imToken](imToken.md) (App)    | <https://token.im> |Yes|Yes| Yes|
+

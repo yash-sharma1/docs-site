@@ -14,3 +14,4 @@
 | 7      | [XWallet](xwallet.md)                          | Mainnet                          |
 | 8      | [Atomic Wallet](atomic-wallet.md)              | Mainnet                          |
 | 8      | [Infinity Wallet](infinitywallet.md)           | Mainnet                          |
+| 9      | [imToken](imToken.md)           | Mainnet                          |
