@@ -18,3 +18,4 @@
 |12|[1inch wallet](https://www.youtube.com/watch?v=BXFvPMxJ4_Q)|<https://1inch.io/wallet/>|No|
 |13|[Infinity wallet](./wallet/infinitywallet.md) (Desktop)| <https://infinitywallet.io/download/> |No|
 |14|[BitKeep](./wallet/bitkeep.md) (App&Chrome)|<https://bitkeep.com>|No|
+|15|[Coin98 Wallet](./wallet/coin98wallet.md) (App Web Extension)|<https://coin98.com/wallet>|No|
