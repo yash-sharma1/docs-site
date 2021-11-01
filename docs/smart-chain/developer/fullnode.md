@@ -90,6 +90,38 @@ Synchronizes a full node starting at genesis, verifying all blocks and executing
 
 ## Steps to Run a Fullnode
 
+### Sync From Snapshot
+
+1. Download the pre-build binaries from [release page](https://github.com/binance-chain/bsc/releases/latest) or follow the instructions below:
+
+```bash
+# Linux
+wget  https://github.com/binance-chain/bsc/releases/download/v1.1.3/geth_linux
+# MacOS
+wget  https://github.com/binance-chain/bsc/releases/download/v1.1.3/geth_mac
+```
+
+2. Download the config files
+
+Download `genesis.json` and `config.toml` by:
+
+```bash
+wget https://github.com/binance-chain/bsc/releases/download/v1.1.3/mainnet.zip
+unzip mainnet.zip
+```
+
+3. Download snapshot
+
+Download latest snapshot from [Download site](https://github.com/binance-chain/bsc-snapshots)
+Follow the guide to structure the files.
+
+4. Start a full node
+```
+geth --config ./config.toml --datadir ./node  --cache 8000 --rpc.allow-unprotected-txs --txlookuplimit 0
+```
+
+### Sync From Genesis Block
+
 1.Build from source code
 
 Make sure that you have installed [Go 1.13+](https://golang.org/doc/install) and have added `GOPATH` to `PATH` environment variable
@@ -106,9 +138,9 @@ or you can download the pre-build binaries from [release page](https://github.co
 
 ```bash
 # Linux
-wget  https://github.com/binance-chain/bsc/releases/download/v1.1.2/geth_linux
+wget  https://github.com/binance-chain/bsc/releases/download/v1.1.3/geth_linux
 # MacOS
-wget  https://github.com/binance-chain/bsc/releases/download/v1.1.2/geth_mac
+wget  https://github.com/binance-chain/bsc/releases/download/v1.1.3/geth_mac
 ```
 
 2.Download the config files
@@ -117,14 +149,13 @@ Download `genesis.json` and `config.toml` by:
 
 ```bash
 ## mainet
-wget https://github.com/binance-chain/bsc/releases/download/v1.1.2/mainnet.zip
+wget https://github.com/binance-chain/bsc/releases/download/v1.1.3/mainnet.zip
 unzip mainnet.zip
 
 ## testnet
-wget https://github.com/binance-chain/bsc/releases/download/v1.1.2/testnet.zip
+wget https://github.com/binance-chain/bsc/releases/download/v1.1.3/testnet.zip
 unzip testnet.zip
 ```
-
 
 3.Write genesis state locally
 
@@ -153,7 +184,7 @@ INFO [05-19|14:53:17.528] Successfully wrote genesis state         database=ligh
 
 ```bash
 ## start a full node
-geth --config ./config.toml --datadir ./node  --cache 18000 --rpc.allow-unprotected-txs --txlookuplimit 0
+geth --config ./config.toml --datadir ./node  --cache 8000 --rpc.allow-unprotected-txs --txlookuplimit 0
 ```
 
 
@@ -163,7 +194,7 @@ Start a validator node
 ## generate the consensus key and input the password
 geth account new --datadir ./node
 echo {your-password} > password.txt
-geth --config ./config.toml --datadir ./node --syncmode snap -unlock {your-validator-address} --password password.txt  --mine  --allow-insecure-unlock  --cache 18000
+geth --config ./config.toml --datadir ./node --syncmode snap -unlock {your-validator-address} --password password.txt  --mine  --allow-insecure-unlock  --cache 8000
 ```
 
 !!! Note
