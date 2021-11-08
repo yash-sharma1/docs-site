@@ -140,6 +140,7 @@ These are the IDs of the Binance Smart chains that Binance Chain Wallet supports
 | 0x61 | 97      | Binance Smart Chain Test Network (bsc-testnet) |
 
 This API can also return chain ids of Binance Chains if users switch to them. The possible return value would be:
+
 | Chain Id             | Network                                  |
 | -------------------- | ---------------------------------------- |
 | Binance-Chain-Tigris | Binance Chain Main Network (bbc-mainnet) |
