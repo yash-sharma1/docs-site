@@ -4,7 +4,7 @@
 
 | Number | Wallet Name              | Website | Staking Support|
 |------ | ------------------- | ------------------------------ |-----|
-| 1    | Binance Extension Wallet | <https://binance-wallet.gitbook.io/binance-chain-extension-wallet> | Yes  |
+| 1    | Binance Extension Wallet | <https://binance-wallet.gitbook.io/binance-chain-wallet/> | Yes  |
 | 2    | [Trust Wallet](./wallet/trustwallet.md) | <https://trustwallet.com/> | Yes   |
 |3     | [Math Wallet](./wallet/math.md)|<https://mathwallet.org/en-us/>| Yes  |
 |4s     |  [SafePal](https://blog.safepal.io/binance-smart-chain-x-safepal/)|  <https://safepal.io/> | No  |
