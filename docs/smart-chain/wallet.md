@@ -19,3 +19,4 @@
 |13|[Infinity wallet](./wallet/infinitywallet.md) (Desktop)| <https://infinitywallet.io/download/> |No|
 |14|[BitKeep](./wallet/bitkeep.md) (App&Chrome)|<https://bitkeep.com>|No|
 |15|[Coin98 Wallet](./wallet/coin98wallet.md) (App Web Extension)|<https://coin98.com/wallet>|No|
+|16|[Guarda Wallet](https://guarda.com/coins/binance-coin-wallet/)|<https://guarda.com/coins/binance-coin-wallet/>|No|

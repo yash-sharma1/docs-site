@@ -1,12 +1,14 @@
 # Guarda Wallet
 
 ## What is it?
-Guarda is here to solve the daily multitasking issue – store all your currencies in one light application and access them instantly.
+Guarda, the all-in-one wallet for simple and secure multi-asset management. With additional support for staking, purchase and quick crypto exchange.
+
+<https://guarda.com/>
 
 ## Instruction
 
-* Downloads: <https://guarda.co/mobile-wallet>
+* How to Create a wallet: <https://www.youtube.com/watch?v=BiwZBfvjASU>
 
 ## Resource
 
-<https://guarda.freshdesk.com/support/home>
+<https://support.guarda.com/>
