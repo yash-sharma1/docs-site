@@ -134,6 +134,9 @@ nav:
       - multichain.xyz: https://multichain.xyz/
       - pNetwork: https://www.binance.org/en/blog/pnetworks-ethereum-bsc-bridge-now-live-on-the-binance-smart-chain/
       - curvegrid: https://www.curvegrid.com/
+      - Anyswap: https://anyswap.exchange/
+      - renbridge: https://bridge.renproject.io/welcome
+      - allbridge: https://app.allbridge.io/bridge/
     - Oracles:
       - Band Protocol Integration: smart-chain/developer/oracle/band.md
       - Chainlink Protocol Integration: smart-chain/developer/oracle/link.md
