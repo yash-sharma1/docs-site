@@ -86,7 +86,7 @@ The rate limit of BSC endpoint on Testnet and Mainnet is 10K/5min.
 
 * [GetBlock.io](https://getblock.io/): <https://getblock.io/nodes/bsc>
 
-* QuikNode : <https://quiknode.io>
+* QuickNode : <https://quicknode.com>
 
 
 ## Start
