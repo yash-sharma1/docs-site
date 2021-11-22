@@ -137,6 +137,7 @@ nav:
       - Anyswap: https://anyswap.exchange/
       - renbridge: https://bridge.renproject.io/welcome
       - allbridge: https://app.allbridge.io/bridge/
+      - cBridge: https://cbridge.celer.network/
     - Oracles:
       - Band Protocol Integration: smart-chain/developer/oracle/band.md
       - Chainlink Protocol Integration: smart-chain/developer/oracle/link.md
