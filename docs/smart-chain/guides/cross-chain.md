@@ -2,7 +2,6 @@
 
 | Type |  Name                                            | Website                          | Tutorial|
 | ------ | ------------------------------------- | -------------------------------- |-------------------------------- |
-| Fungible Token      | Binance Bridge            | <https://www.binance.org/en/bridge> |[Link](bridge-v2.md)|
 | Fungible Token      | Anyswap           | <https://bsc.anyswap.exchange/bridge> |[Link](https://anyswap-faq.readthedocs.io/en/latest/How%20To%20Setup%20and%20Use%20Anyswap.html)|
 | Fungible Token      | multichain.xyz           | <https://multichain.xyz/> ||
 | Fungible Token      | xDai          | <https://bsc-to-xdai-omnibridge.web.app/> |[link](https://www.xdaichain.com/for-users/bridges/binance-smart-chain-omnibridge/bsc-omnibridge-example )|
