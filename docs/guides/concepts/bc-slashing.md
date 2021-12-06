@@ -44,7 +44,7 @@ When your validator is `unjailed` on binance chain, it must wait for the next UT
 ### Transaction Validation
 * validator address must not be empty
 * side chain id exists
-* self-delegation of the validator exists and the tokens of it must be greater than the min-self-delegation setting by 20000BNB
+* self-delegation of the validator exists and the tokens of it must be greater than the min-self-delegation setting by *10000BNB*
 * the validator is in ‘jailed’ now
 * already passed the duration set when ‘jailed’ happened
 
