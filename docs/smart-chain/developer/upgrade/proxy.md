@@ -11,13 +11,17 @@ Here’s what you’d need to do to fix a bug in a contract you cannot upgrade:
 
 There are several approaches that allow us to make some changes to smart contracts.
 
-**Separate logic and data**
+#### Separate logic and data
 
 By using this approach, data will be read from a designated data contract directly. This is a rather common approach that is also used outside of Solidity. One of the main disadvantages of this approach is that you cannot change the interface of contracts external to the entire system, and you cannot add or remove functions.
 
-**Delegatecall Proxy**
+####  Proxy Contracts 
 
-`delegatecall` opcode was implemented in [EIP-7](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-7.md). It is possible to delegate execution to other contract, but execution context stays the same. As with delegatecall, the msg.sender will remain that of the caller of the proxy contract. One of the main disadvantages of this approach is that contract code of the proxy will not reflect the state that it stores.
+A proxy contract works in the way that all message calls to this contract are redirected to the latest deployed contract logic. To upgrade a contract, one can simply deploy the new version of the contract and update the reference to the new contract address in the proxy contract using the `delegatecall` opcode.
+
+#####  Delegatecall Opcode:
+
+`delegatecall` opcode was implemented in [EIP-7](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-7.md). It is possible to delegate execution to other contract, but execution context stays the same. As with `delegatecall`, the `msg.sender` will remain that of the caller of the proxy contract. One of the main disadvantages of this approach is that contract code of the proxy will not reflect the state that it stores.
 
 ## Writing Upgradeable BEP20 Contracts
 

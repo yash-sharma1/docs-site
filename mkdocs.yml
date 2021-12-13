@@ -7,7 +7,8 @@ edit_uri: ""
 use_directory_urls: false
 
 theme:
-  name: 'material'
+  name: null
+  custom_dir: mkdocs-material/material
   include_search_page: true
   search_index_only: true
   font:
@@ -29,37 +30,30 @@ nav:
     - Introduction: smart-chain/guides/bsc-intro.md
     - Concepts:
       - Consensus: smart-chain/guides/concepts/consensus.md
-      - Comparison: smart-chain/guides/general.md
       - Genesis File: smart-chain/guides/concepts/genesis.md
-      - BC & BSC Cross-chain:
-        - Cross-chain Mechanism: smart-chain/guides/concepts/cross-chain.md
-        - Cross-chain Guide: smart-chain/developer/cross-chain-transfer.md
-        - BSC Relayer: smart-chain/guides/concepts/bsc-relayer.md
+      - BC & BSC Cross-chain Communication:
+        - Architecture: smart-chain/guides/concepts/cross-chain.md        
+        - Built-in System Contracts: smart-chain/guides/concepts/system-contract.md
         - Oracle Module: smart-chain/guides/concepts/oracle-module.md
-        - Oracle Relayer: smart-chain/guides/concepts/oracle-relayer.md
+        - BSC Relayer: smart-chain/guides/concepts/bsc-relayer.md
         - Relayer Incentives: smart-chain/guides/concepts/incentives.md
-      - System Contract: smart-chain/guides/concepts/system-contract.md
+        - Oracle Relayer: smart-chain/guides/concepts/oracle-relayer.md
+        - Cross-chain Token Transfer Guide: smart-chain/developer/cross-chain-transfer.md
       - Governance: smart-chain/guides/concepts/bsc-gov.md
     - Ecosystem: https://github.com/binance-chain/bsc-ecosystem
-    - Gnosis: smart-chain/developer/gnosis.md
-    - Binance Bridge: https://binance-wallet.gitbook.io/binance-bridge/
     - Staking:
       - Validator:
         - Overview: smart-chain/validator/overview.md
         - Validator Guides: smart-chain/validator/guideline.md
         - Validator Security: smart-chain/validator/security.md
-        - Chaindata Snapshot: smart-chain/developer/snapshot.md
-        - Best Pratice: smart-chain/validator/best-practice.md
+        - Best Pratices: smart-chain/validator/best-practice.md
         - Testnet : smart-chain/validator/testnet.md
-        - Validator FAQ: faq/bsc/val.md
       - Delegator Guide: smart-chain/delegator/del-guide.md
-    - Cross Chain Apps: smart-chain/guides/cross-chain.md
-    - Binance Smart Chain Mainnet Explorer:
-      - BscScan: https://bscscan.com/
-      - BitQuery: https://explorer.bitquery.io/bsc
-    - Binance Smart Chain Testnet Explorer:
-      - BscScan: https://testnet.bscscan.com/
-      - BitQuery: https://explorer.bitquery.io/bsc_testnet
+      - Slashing: guides/concepts/bc-slashing.md
+    - Binance Smart Chain Explorers:
+      - Mainnet Explorers: smart-chain/developer/BSC-mainnet-explorers.md
+      - Testnet Explorers: smart-chain/developer/BSC-testnet-explorers.md
+    - Cross-Chain Suport: smart-chain/guides/cross-chain.md
     - Wallet: smart-chain/wallet.md
   - Binance Chain:
     - Introduction: guides/intro.md
@@ -94,62 +88,42 @@ nav:
     - Exchange Integration: exchange-integration.md
     - List Instructions: list_instruction.md
   - BSC Developers:
-    - General:
-      - Create Wallet: smart-chain/developer/create-wallet.md
-      - Smart Contract: https://solidity.readthedocs.io/en/v0.7.1/
-      - Remix : https://remix.ethereum.org/
-      - Web3JS: https://web3js.readthedocs.io/en/v1.2.11/
-      - Truffle: https://www.trufflesuite.com/docs/teams/quickstart
+    - Tools: smart-chain/developer/dev-tools.md
     - Ecosystem: https://github.com/binance-chain/bsc-develop-ecosystem
     - Deploy:
       - Remix: smart-chain/developer/deploy/remix.md
-      - Truffle: smart-chain/developer/deploy/truffle.md
-      - Truffle Verify: smart-chain/developer/deploy/truffle-verify.md
-      - HardHat: smart-chain/developer/deploy/hardhat.md
-      - HardHat Verify: smart-chain/developer/deploy/hardhat-verify.md
-      - Verify Proxy Contract: smart-chain/developer/upgrade/verify-proxy.md
-    - Tools:
-      - Faucet: https://testnet.binance.org/faucet-smart
-      - Gas Price: https://bscscan.com/chart/gasprice
-      - Wallet Provider for DApps: smart-chain/wallet/arkane-developer.md
+      - Truffle: smart-chain/developer/deploy/truffle-new.md
+      - HardHat: smart-chain/developer/deploy/hardhat-new.md
+      - Deploy NFT:  smart-chain/developer/ERC721.md
+      - Local BSC Network: smart-chain/developer/deploy/local.md
+      - Verify Contract on BscSCAN: smart-chain/developer/deploy/verify.md
+      - Proxy Contracts: 
+        - Upgradable BEP20 Proxy Contracts: smart-chain/developer/upgrade/proxy.md
+        - Verify Proxy Contracts: smart-chain/developer/upgrade/verify-proxy.md
     - BEP20 Tokens:
       - Introduction: smart-chain/developer/BEP20.md
-      - Issue Token: smart-chain/developer/issue-BEP20.md
+      - Issue BEP20 Tokens: smart-chain/developer/issue-BEP20.md
       - Bind Token:
         - Introduction: smart-chain/developer/bind/tokens-cross-chain.md
         - Bind Token: smart-chain/developer/bind/bind-tokens.md
         - Mirror Token: smart-chain/developer/bind/mirror.md
         - Circulation Model: smart-chain/developer/circulation-model.md
-        - Sync Supply: smart-chain/developer/bind/sync.md
+        - Sync Token Supply: smart-chain/developer/bind/sync.md
       - Cross-chain Transfer: smart-chain/developer/cross-chain-transfer.md
-      - Bind Token Tool: https://github.com/binance-chain/token-bind-tool
-    - Blockchain Details:
+    - Running Fullnode:
       - Binance Smart Chain Fullnode: smart-chain/developer/fullnode.md
       - Chaindata Snapshot: smart-chain/developer/snapshot.md
-      - BSC Relayer: smart-chain/developer/bsc-relayer.md
-      - Pegged Tokens: https://docs.binance.org/faq/bsc/eco.html#what-are-pegged-tokens-on-binance-smart-chain
       - RPC: smart-chain/developer/rpc.md
-    - Cross Chain Technology:
-      - Poly.network: https://medium.com/poly-network/poly-network-now-supports-cross-chain-transfer-of-eth-neo-heco-assets-to-bsc-fed6880d5681
-      - multichain.xyz: https://multichain.xyz/
-      - pNetwork: https://www.binance.org/en/blog/pnetworks-ethereum-bsc-bridge-now-live-on-the-binance-smart-chain/
-      - curvegrid: https://www.curvegrid.com/
-      - Anyswap: https://anyswap.exchange/
-      - renbridge: https://bridge.renproject.io/welcome
-      - allbridge: https://app.allbridge.io/bridge/
-      - cBridge: https://cbridge.celer.network/
-    - Oracles:
-      - Band Protocol Integration: smart-chain/developer/oracle/band.md
-      - Chainlink Protocol Integration: smart-chain/developer/oracle/link.md
-      - Chainlink Protocol VRF: https://docs.chain.link/docs/chainlink-vrf
-    - Tutorial:
-      - Deploy NFT:  smart-chain/developer/ERC721.md
-      - Verify Contract on bscscan.com: smart-chain/developer/deploy/verify.md
-      - Local BSC Network: smart-chain/developer/deploy/local.md
-      - Proxy Contract: smart-chain/developer/upgrade/proxy.md
+    - Oracles for Querying Token Price:
+      - Band Protocol Price Feed: smart-chain/developer/oracle/band.md
+      - Chainlink Protocol Price Feed: smart-chain/developer/oracle/link.md
     - Wallet:
+      - Wallet Guide: smart-chain/wallet.md
+      - Wallet Key Management: smart-chain/developer/create-wallet.md
       - Binance Chain Extension Wallet API: smart-chain/wallet/wallet_api.md
       - Math Wallet Cross-chain Transfer Tool: http://blog.mathwallet.org/?p=2052
+      - Arkane Wallet Integration for DApps: smart-chain/wallet/arkane-developer.md
+      - Gnosis: smart-chain/developer/gnosis.md
     - BUIDL Program: https://www.binance.com/en/blog/421499824684900972/Bridging-DeFi-and-CeFi-Introducing-a-$100M-Support-Fund-for-DeFi-Projects-on-Binance-Smart-Chain
   - BC Developers:
     - Binance Chain Fullnode:
@@ -248,8 +222,6 @@ markdown_extensions:
     - pymdownx.arithmatex
     - pymdownx.superfences
     - codehilite
-
-
 
 plugins:
   - search

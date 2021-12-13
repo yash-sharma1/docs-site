@@ -1,4 +1,4 @@
-# Incentive Mechanism
+# Incentive Mechanism for BSC Relayer 
 
 The BSC relayers play an important role in relaying interchain packages from BC to BSC.
 All BSC relayers build their stable infrastructure, watch any event happened on the Binance Chain, and act timely to get paid accordingly. The following discussion is about how to distribute the rewards to let the relayers are willing to make a long-term contribution.

@@ -1,6 +1,6 @@
 # Local Binance Smart Chain Network
 
-See also : [https://github.com/ethereum/go-ethereum/wiki/Private-network](https://github.com/ethereum/go-ethereum/wiki/Private-network)
+See also : [How to set up private network of multiple Geth nodes](https://geth.ethereum.org/docs/interface/private-network)
 
 
 ## Setting up your BSC Node(s)
