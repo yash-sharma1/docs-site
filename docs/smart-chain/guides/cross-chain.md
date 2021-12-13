@@ -1,4 +1,8 @@
-* List of Cross-chain Apps Supporting Binance Smart Chain
+# Cross-Chain Support for Binance Smart Chain
+
+The ability ot transfer tokens cross-chain is an essential need. This allows users to transfer their funds from one blockchain network to another. Keeping the importance of cross-chain support in mind, multiple networks now have their respective "bridges" to help in easy fund transfers. Following is a list of bridges and exchanges that support cross-chain transfer of BSC with other tokens.
+
+## List of Cross-chain Apps Supporting Binance Smart Chain
 
 | Type |  Name                                            | Website                          | Tutorial|
 | ------ | ------------------------------------- | -------------------------------- |-------------------------------- |

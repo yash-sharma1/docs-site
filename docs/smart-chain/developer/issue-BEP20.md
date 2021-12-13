@@ -1,3 +1,7 @@
+# Issue BEP20 Tokens
+
+In this section we provide a brief step by step guide on how to issue BEP20 tokens on BSC network.
+
 **Compile and Deploy BEP20 Contract**
 
 1. Open Remix IDE: [https://remix.ethereum.org](https://remix.ethereum.org/)
