@@ -15,6 +15,7 @@ The ability ot transfer tokens cross-chain is an essential need. This allows use
 | Fungible Token      |      renbridge    | <https://bridge.renproject.io/> |[link](https://docs.renproject.io/developers/)|
 | Fungible Token      |      cBridge    | <https://cbridge.celer.network/> |[link](https://cbridge-docs.celer.network/)|
 | Fungible Token      |      AtomicDEX    | <https://atomicdex.io/> |[link](https://developers.komodoplatform.com/basic-docs/atomicdex/introduction-to-atomicdex.html)|
+| Fungible Token      | Synapse    | <https://synapseprotocol.com/> |[link](https://docs.synapseprotocol.com/how-to/bridge)|
 | NFT     |     pNetwork    | <https://dapp.ptokens.io/> |[link](https://www.binance.org/en/blog/pnetworks-ethereum-bsc-bridge-now-live-on-the-binance-smart-chain/)|
 | NFT     |     curvegrid    | <https://www.curvegrid.com/> |[link](https://www.curvegrid.com/docs)|
 
