@@ -3,6 +3,7 @@
 To facilitate a marketplace on BSC to pull in off-chain metadata for BEP721 assets, the NFT contract will need to return a URI where the metadata can be found. To find this URI, the tokenURI method in ERC721 and the uri method in ERC1155 is used to track your NFT. You should implement the function in the Contract:
 
 ```
+
 /**
  * @dev Returns an URI for a given token ID
  */
@@ -12,6 +13,7 @@ function tokenURI(uint256 _tokenId) public view returns (string) {
       Strings.uint2str(_tokenId)
   );
 }
+
 ```
 
 The tokenURI function in your Contract should return an HTTP or IPFS URL. When queried, this URL should in turn return a JSON blob of data with the metadata for your token.
@@ -22,6 +24,7 @@ Marketplaces on BSC support metadata that is structured according to [the offici
 The below metadata structure, allows the BSC Marketplace to read and display the details about the assets which your NFTs represent.
 
 ```
+
 {
     "name":"NFT Name",
     "description":"NFT Description",
@@ -29,6 +32,7 @@ The below metadata structure, allows the BSC Marketplace to read and display the
     "external_url":"https://originalsite.io/2",
     "attributes":[...]
 }
+
 ```
 
 Here's how each of these properties work:
@@ -47,6 +51,7 @@ Here's how each of these properties work:
 To present NFT traits, include the following array in the metadata: 
 
 ```
+
 {
     "attributes":[
         {
@@ -82,6 +87,7 @@ To present NFT traits, include the following array in the metadata:
         }
     ]
 }
+
 ```
 
 Here `trait_type` is the name of the trait, `value` is the value of the trait, and `display_type` is a field indicating how you would like a numeric value should be displayed. For string traits, you don't have to worry about `display_type`. 
@@ -95,9 +101,11 @@ There are 3 supported options for `display_type`: `number` will show the value i
 Marketplace also supports date traits in `date` `display_type`. Pass in a unix timestamp as the value.
 
 ```
+
    {
       "display_type": "date", 
       "trait_type": "birthday", 
       "value": 1608490000
     }
+    
 ```
