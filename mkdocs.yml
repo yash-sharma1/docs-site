@@ -93,6 +93,7 @@ nav:
       - Remix: smart-chain/developer/deploy/remix.md
       - Truffle: smart-chain/developer/deploy/truffle-new.md
       - HardHat: smart-chain/developer/deploy/hardhat-new.md
+      - NFT Metadata Standard: smart-chain/developer/nft-metadata-standard.md
       - Deploy NFT:  smart-chain/developer/ERC721.md
       - Local BSC Network: smart-chain/developer/deploy/local.md
       - Verify Contract on BscSCAN: smart-chain/developer/deploy/verify.md
