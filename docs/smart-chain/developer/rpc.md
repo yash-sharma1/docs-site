@@ -88,7 +88,7 @@ The rate limit of BSC endpoint on Testnet and Mainnet is 10K/5min.
 
 * QuickNode : <https://quicknode.com>
 
-* [NodeReal](https://nodereal.io/): <https://binance.nodereal.io>
+* [NodeReal](https://nodereal.io/): <https://nodereal.io/>
 
 
 ## Start
