@@ -40,7 +40,7 @@ Of course, feel free to create a new issue if you think something needs to be ad
 
 
 * Push your changes to a topic branch in your fork of the repository.
-* Submit a pull request to the [docs repository](https://github.com/binance-chain/docs-site) in the Binance Chain organization.
+* Submit a pull request to the [docs repository](https://github.com/bnb-chain/docs-site) in the Binance Chain organization.
   * Include a descriptive [commit message][commit-msg].
   * Changes contributed via pull request should focus on a single issue at a time.
   * Rebase your local changes against the master branch. Resolve any conflicts that arise.

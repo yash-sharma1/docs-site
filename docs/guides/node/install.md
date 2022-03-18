@@ -34,10 +34,10 @@ Please go to https://git-lfs.github.com/ and install `git lfs`.
 2. Download Binary with Git LFS:
 
 ```
-git lfs clone https://github.com/binance-chain/node-binary.git
+git lfs clone https://github.com/bnb-chain/node-binary.git
 ```
 
-Please go to [changelog](https://github.com/binance-chain/node-binary/blob/master/fullnode/Changelog.md) to get the information about the latest release of full node version.
+Please go to [changelog](https://github.com/bnb-chain/node-binary/blob/master/fullnode/Changelog.md) to get the information about the latest release of full node version.
 
 Go to directory according to the network you want to join in.
 

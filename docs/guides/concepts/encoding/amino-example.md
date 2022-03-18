@@ -16,7 +16,7 @@ Amino supports JSON encoding natively, which is the same as other usual json mar
 
 ### Examples in Go-SDK
 
-Let's take a look at an [example function](https://github.com/binance-chain/go-sdk/blob/fe7524098533a6ce6077cf5f28f677329963d17b/client/rpc/dex_client.go#L373) of Binance Chain go-sdk.
+Let's take a look at an [example function](https://github.com/bnb-chain/go-sdk/blob/fe7524098533a6ce6077cf5f28f677329963d17b/client/rpc/dex_client.go#L373) of Binance Chain go-sdk.
 
 ```golang
 func (c *HTTP) GetProposal(proposalId int64) (types.Proposal, error) {

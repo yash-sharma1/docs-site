@@ -1,6 +1,6 @@
 # Encoding
 
-The Cosmos SDK utilizes two binary wire encoding protocols, [Binance Chain Amino](https://github.com/binance-chain/bnc-go-amino)
+The Cosmos SDK utilizes two binary wire encoding protocols, [Binance Chain Amino](https://github.com/bnb-chain/bnc-go-amino)
 and [Protocol Buffers](https://developers.google.com/protocol-buffers), where Amino is an object encoding specification. It is a subset of Proto3 with an extension for interface support. See the [Proto3 spec](https://developers.google.com/protocol-buffers/docs/proto3)
 for more information on Proto3, which Amino is largely compatible with (but not with Proto2).
 

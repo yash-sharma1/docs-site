@@ -2,7 +2,7 @@ site_name: Binance Chain Docs
 site_description: Binance Chain Technology Documentation
 site_author: Binance Chain Community
 
-repo_url: https://github.com/binance-chain/
+repo_url: https://github.com/bnb-chain/
 edit_uri: ""
 use_directory_urls: false
 
@@ -39,7 +39,7 @@ nav:
         - Oracle Relayer: smart-chain/guides/concepts/oracle-relayer.md
         - Cross-chain Token Transfer Guide: smart-chain/developer/cross-chain-transfer.md
       - Governance: smart-chain/guides/concepts/bsc-gov.md
-    - Ecosystem: https://github.com/binance-chain/bsc-ecosystem
+    - Ecosystem: https://github.com/bnb-chain/bsc-ecosystem
     - Staking:
       - Validator:
         - Overview: smart-chain/validator/overview.md
@@ -79,7 +79,7 @@ nav:
            - Trading Spec: trading-spec.md
            - Match Engine: match.md
            - Match examples: match-examples.md
-         - Binance Chain Evolution Proposal: https://github.com/binance-chain/BEPs/blob/master/BEP1.md
+         - Binance Chain Evolution Proposal: https://github.com/bnb-chain/BEPs/blob/master/BEP1.md
          - Threshold Signature Scheme: guides/concepts/threshold-signature-scheme.md
          - Atomic Swap: atomic-swap.md
          - WalletConnect: guides/concepts/walletconnect.md
@@ -88,7 +88,7 @@ nav:
     - List Instructions: list_instruction.md
   - BSC Developers:
     - Tools: smart-chain/developer/dev-tools.md
-    - Ecosystem: https://github.com/binance-chain/bsc-develop-ecosystem
+    - Ecosystem: https://github.com/bnb-chain/bsc-develop-ecosystem
     - Deploy:
       - Remix: smart-chain/developer/deploy/remix.md
       - Truffle: smart-chain/developer/deploy/truffle-new.md
@@ -142,13 +142,13 @@ nav:
     - Light Client: light-client.md
     - Simple API Server: api-reference/api-server.md
     - Binance Chain SDK:
-      - GoLang: https://github.com/binance-chain/go-sdk/wiki
-      - JavaScript: https://github.com/binance-chain/javascript-sdk/wiki
-      - Python: https://github.com/binance-chain/python-sdk
-      - Java: https://github.com/binance-chain/java-sdk/wiki
-      - Swift: https://github.com/binance-chain/swift-sdk/blob/master/README.md
-      - C++: https://github.com/binance-chain/cplusplus-sdk/wiki
-      - C#: https://github.com/binance-chain/csharp-sdk
+      - GoLang: https://github.com/bnb-chain/go-sdk/wiki
+      - JavaScript: https://github.com/bnb-chain/javascript-sdk/wiki
+      - Python: https://github.com/bnb-chain/python-sdk
+      - Java: https://github.com/bnb-chain/java-sdk/wiki
+      - Swift: https://github.com/bnb-chain/swift-sdk/blob/master/README.md
+      - C++: https://github.com/bnb-chain/cplusplus-sdk/wiki
+      - C#: https://github.com/bnb-chain/csharp-sdk
     - Binance Chain Testnet: https://testnet.binance.org
     - Chain Explorer Testnet: https://testnet-explorer.binance.org
     - Binance Chain API Reference:
@@ -227,7 +227,7 @@ plugins:
   - search
 
 repo_name: 'binance-chain/docs-site'
-repo_url: 'https://github.com/binance-chain/docs-site'
+repo_url: 'https://github.com/bnb-chain/docs-site'
 
 extra:
   social:

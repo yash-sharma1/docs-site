@@ -7,10 +7,10 @@ The presence of the provider object `window.BinanceChain` indicates a Binance Ch
 The API this extension wallet provides includes API specified by [EIP-1193](https://eips.ethereum.org/EIPS/eip-1193) and API defined by [MetaMask](https://docs.metamask.io/guide/ethereum-provider.html) (including some massively relied legacy ones).
 
 ## Development Progress
-Currently (version 1.112.8) as Binance Chain Wallet natively supports Binance Chain, we are planning to open a series of APIs for dApp developers to interact with Binance Chain. At the end of the day, most [APIs available in Binance Chain javascript sdk](https://github.com/binance-chain/javascript-sdk/tree/master/docs) would be available.
+Currently (version 1.112.8) as Binance Chain Wallet natively supports Binance Chain, we are planning to open a series of APIs for dApp developers to interact with Binance Chain. At the end of the day, most [APIs available in Binance Chain javascript sdk](https://github.com/bnb-chain/javascript-sdk/tree/master/docs) would be available.
 
 Currently, only the following is supported:
-* [`transfer`](https://github.com/binance-chain/javascript-sdk/tree/master/docs#transfer-tokens) 
+* [`transfer`](https://github.com/bnb-chain/javascript-sdk/tree/master/docs#transfer-tokens) 
 
 ## Difference with MetaMask
 
@@ -238,7 +238,7 @@ BinanceChain
 
 ### BinanceChain.bnbSign(address: string, message: string): Promise<{publicKey: string, signature: string}>
 
-*We prepared an example for this API, please check out: https://github.com/binance-chain/js-eth-personal-sign-examples for more detail*
+*We prepared an example for this API, please check out: https://github.com/bnb-chain/js-eth-personal-sign-examples for more detail*
 
 Like `eth_sign` enable dapp to verify a user has control over an ethereum address by signing an arbitrary message. We provide this method for dapp developers to request the signature of arbitrary messages for Binance Chain (BC) and Binance Smart Chain (BSC).
 

@@ -28,13 +28,13 @@ The [minimum delegated amount](../../smart-chain/validator/Parameters.md) is **1
 
 You can use:
 
-* [command line tool](https://github.com/binance-chain/node/releases/tag/v0.8.1)
+* [command line tool](https://github.com/bnb-chain/node/releases/tag/v0.8.1)
 * [Binance Chain extension wallet](../../smart-chain/wallet/binance.md)
 * [Math Wallet](http://blog.mathwallet.xyz/?p=3890)
 
 ## Where can I find out more about staking economics and rewards?
 
-You can read details in White Paper: <https://github.com/binance-chain/whitepaper/blob/master/WHITEPAPER.md#rewarding>
+You can read details in White Paper: <https://github.com/bnb-chain/whitepaper/blob/master/WHITEPAPER.md#rewarding>
 
 ## Where do network rewards come from?
 

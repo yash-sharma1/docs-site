@@ -418,7 +418,7 @@ message: "account not found"
 
 ***Changes***
 
-Add `buyerSource` and `sellerSource` in the response Trade data structure. The Source Id reference can be found in https://github.com/binance-chain/BEPs/blob/master/BEP10.md.
+Add `buyerSource` and `sellerSource` in the response Trade data structure. The Source Id reference can be found in https://github.com/bnb-chain/BEPs/blob/master/BEP10.md.
 
 #### Trade
 
