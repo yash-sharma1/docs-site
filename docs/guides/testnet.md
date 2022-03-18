@@ -4,7 +4,7 @@ The testnet is a test environment for Binance Chain network, run by the Binance 
 
 The validators on the testnet are from development team.
 
-You can connect a node to the testnet by downloading the [node binary](https://github.com/binance-chain/node-binary/tree/master/fullnode/testnet/0.6.3-hotfix) to use this [configuration](https://github.com/binance-chain/node-binary/tree/master/fullnode/testnet/0.6.3-hotfix/config).
+You can connect a node to the testnet by downloading the [node binary](https://github.com/bnb-chain/node-binary/tree/master/fullnode/testnet/0.6.3-hotfix) to use this [configuration](https://github.com/bnb-chain/node-binary/tree/master/fullnode/testnet/0.6.3-hotfix/config).
 
 There is also a [web wallet](https://testnet.binance.org/en/) that can directly interact with the DEX. testnet.
 

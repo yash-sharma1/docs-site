@@ -17,12 +17,12 @@ Combining TSS feature  with Binance Chain client will help users manage their fu
 
 Many development resources have been poured into implementing TSS, a cryptographic protocol for distributed key generation and signing. TSS is now compatible and reusable for ECDSA-based blockchains, including Binance Chain, Bitcoin, and Ethereum networks. We expect that members of the Binance ecosystem and partner community can integrate this TSS library with their applications, such as wallets and custodians, and further develop this exciting new technology.
 
-With the support of the Binance Chain community, we are happy to share the open-source code at https://github.com/binance-chain/tss-lib.
+With the support of the Binance Chain community, we are happy to share the open-source code at https://github.com/bnb-chain/tss-lib.
 
 ## Security Audit
 
 
-The implementation of a multi-party threshold ECDSA [library](https://github.com/binance-chain/tss-lib) is open source so it can be publicly audited by anyone. An independent third party auditors from [Kudelski Security](https://www.kudelskisecurity.com/)  are hired to validate the security of the cryptography in TSS solution. The latest report in October by can be found [here](../../assets/audit-binance-tss-lib-final.pdf).
+The implementation of a multi-party threshold ECDSA [library](https://github.com/bnb-chain/tss-lib) is open source so it can be publicly audited by anyone. An independent third party auditors from [Kudelski Security](https://www.kudelskisecurity.com/)  are hired to validate the security of the cryptography in TSS solution. The latest report in October by can be found [here](../../assets/audit-binance-tss-lib-final.pdf).
 
 Security checks are routinely and continuously planed for all parts of TSS lib implmentations and future audits  will be reported to Binance Chain community.
 
@@ -43,8 +43,8 @@ Let’s take a look at the major steps in TSS:
 ##  Where can I download the Binance TSS CLI?
 
 You can download tss client and Binance Chain Commandline here:
-* Mainnet: <https://github.com/binance-chain/node-binary/tree/master/cli/prod/0.6.3>
-* Testnet: <https://github.com/binance-chain/node-binary/tree/master/cli/testnet/0.6.3>
+* Mainnet: <https://github.com/bnb-chain/node-binary/tree/master/cli/prod/0.6.3>
+* Testnet: <https://github.com/bnb-chain/node-binary/tree/master/cli/testnet/0.6.3>
 
 ## How to Use
 * **Warning**: Please test your TSS setup before use this on mainnet.

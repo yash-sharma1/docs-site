@@ -14,7 +14,7 @@ If you are syncing slowly, please check the speed of your disk.
 
 ## Use Chaindata Snapshot
 
-Please download the chain data [snapshot](https://github.com/binance-chain/bsc-snapshots) and extract to your home folder to speed up
+Please download the chain data [snapshot](https://github.com/bnb-chain/bsc-snapshots) and extract to your home folder to speed up
 
 
 

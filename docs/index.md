@@ -16,7 +16,7 @@ Please read the [FAQ](./faq/faq.md) to get started.
 
 ## What is Binance Smart Chain?
 
-[Binance Smart Chain](https://www.binance.org/en/smartChain) is an innovative solution to bring programmability and interoperability to Binance Chain. Binance Smart Chain relies on a system of [21 validators with Proof of Staked Authority (PoSA)](https://github.com/binance-chain/whitepaper/blob/master/WHITEPAPER.md) consensus that can support short block time and lower fees. The most bonded validator candidates of staking will become validators and produce blocks. The double-sign detection and other slashing logic guarantee security, stability, and chain finality.
+[Binance Smart Chain](https://www.binance.org/en/smartChain) is an innovative solution to bring programmability and interoperability to Binance Chain. Binance Smart Chain relies on a system of [21 validators with Proof of Staked Authority (PoSA)](https://github.com/bnb-chain/whitepaper/blob/master/WHITEPAPER.md) consensus that can support short block time and lower fees. The most bonded validator candidates of staking will become validators and produce blocks. The double-sign detection and other slashing logic guarantee security, stability, and chain finality.
 
 Please read the [FAQ](./faq/bsc/general.md) to get started.
 
@@ -64,7 +64,7 @@ and node RPC interfaces.
 **Developers** can also:
 
 - [Issue](./smart-chain/developer/issue-BEP20.md) new tokens to digitalize assets
-- [Migrate](https://github.com/binance-chain/bsc-develop-ecosystem) existing DApps
+- [Migrate](https://github.com/bnb-chain/bsc-develop-ecosystem) existing DApps
 - Run a [full node](./smart-chain/developer/fullnode.md) to listen to and broadcast live updates on transactions, blocks, and consensus activities
 - Become [a validator of BSC](./smart-chain/validator/guideline.md)
 - [Develop wallets](./smart-chain/wallet/wallet_api.md) and tools to help users use Dapps
@@ -77,7 +77,7 @@ and node RPC interfaces.
 | No. of Validators | 11            | up to 21                               |
 | Mean Block Time   | <1s           | ~5s                                    |
 | Programmability   | BEPs          | Support EVM-compatible smart contracts |
-| Cross Chain       |[BEP3](https://github.com/binance-chain/BEPs/blob/master/BEP3.md) introduces *Hash Timer Locked Contract functions* and further [mechanism](https://community.binance.org/topic/1892) to handle inter-blockchain tokens peg.    | BSC comes with efficient [native dual chain communication](smart-chain/guides/concepts/cross-chain.md); Optimized for scaling high-performance dApps that require fast and smooth user experience.                    |
+| Cross Chain       |[BEP3](https://github.com/bnb-chain/BEPs/blob/master/BEP3.md) introduces *Hash Timer Locked Contract functions* and further [mechanism](https://community.binance.org/topic/1892) to handle inter-blockchain tokens peg.    | BSC comes with efficient [native dual chain communication](smart-chain/guides/concepts/cross-chain.md); Optimized for scaling high-performance dApps that require fast and smooth user experience.                    |
 
 ## Get Started
 
@@ -99,7 +99,7 @@ The features listed below are currently supported on Binance Chain:
 
 ### BEP20 Asset
 
-A token protocol on BSC which is compatible with BEP2 and [ERC20](https://eips.ethereum.org/EIPS/eip-20). It extends ERC20 and contains more interfaces, such as `getOwner` and `decimals`. Read the full proposal here: <https://github.com/binance-chain/BEPs/blob/master/BEP20.md>
+A token protocol on BSC which is compatible with BEP2 and [ERC20](https://eips.ethereum.org/EIPS/eip-20). It extends ERC20 and contains more interfaces, such as `getOwner` and `decimals`. Read the full proposal here: <https://github.com/bnb-chain/BEPs/blob/master/BEP20.md>
 
 - [Issue BEP20](smart-chain/developer/issue-BEP20.md)
 - [Wallet](smart-chain/wallet.md)

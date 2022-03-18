@@ -28,13 +28,13 @@ Majority of SDKs provide simplified functions to:
 
 List of currently available SDKs and their respective documentations:
 
-- [Go](https://github.com/binance-chain/go-sdk) - [Documentation](https://github.com/binance-chain/go-sdk/wiki)
-- [Java](https://github.com/binance-chain/java-sdk) - [Documentation](https://github.com/binance-chain/java-sdk/wiki)
-- [JavaScript](https://github.com/binance-chain/javascript-sdk) - [Documentation](https://github.com/binance-chain/javascript-sdk/wiki)
-- [C++](https://github.com/binance-chain/cplusplus-sdk) - [Documentation](https://github.com/binance-chain/cplusplus-sdk/wiki)
-- [C#](https://github.com/binance-chain/csharp-sdk) - [Documentation](https://github.com/binance-chain/csharp-sdk)
-- [Python](https://github.com/binance-chain/python-sdk) - [Documentation](https://python-binance-chain.readthedocs.io/en/latest/binance-chain.html#module-binance_chain)
-- [Swift](https://github.com/binance-chain/swift-sdk) - [Documentation](https://github.com/binance-chain/swift-sdk/blob/master/README.md)
+- [Go](https://github.com/bnb-chain/go-sdk) - [Documentation](https://github.com/bnb-chain/go-sdk/wiki)
+- [Java](https://github.com/bnb-chain/java-sdk) - [Documentation](https://github.com/bnb-chain/java-sdk/wiki)
+- [JavaScript](https://github.com/bnb-chain/javascript-sdk) - [Documentation](https://github.com/bnb-chain/javascript-sdk/wiki)
+- [C++](https://github.com/bnb-chain/cplusplus-sdk) - [Documentation](https://github.com/bnb-chain/cplusplus-sdk/wiki)
+- [C#](https://github.com/bnb-chain/csharp-sdk) - [Documentation](https://github.com/bnb-chain/csharp-sdk)
+- [Python](https://github.com/bnb-chain/python-sdk) - [Documentation](https://python-binance-chain.readthedocs.io/en/latest/binance-chain.html#module-binance_chain)
+- [Swift](https://github.com/bnb-chain/swift-sdk) - [Documentation](https://github.com/bnb-chain/swift-sdk/blob/master/README.md)
 
 ## Important: Ensuring Transaction Finality
 

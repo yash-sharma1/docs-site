@@ -1,7 +1,7 @@
 # Join Mainnet
 
 !!! Tip
-    See the [node-binary repo](https://github.com/binance-chain/node-binary/blob/master/README.md) for information on the mainnet, including the correct version of the binaries to use and details about the genesis file.
+    See the [node-binary repo](https://github.com/bnb-chain/node-binary/blob/master/README.md) for information on the mainnet, including the correct version of the binaries to use and details about the genesis file.
 
 !!! warning
     You need to install [bnbchaind](./install.md) before you go further

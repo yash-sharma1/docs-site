@@ -30,8 +30,8 @@ console.log("address: ", address);
 ```Go tab="GoLang"
 //-----   Import packages  -------------
 import (
-	sdk "github.com/binance-chain/go-sdk/client"
-	"github.com/binance-chain/go-sdk/keys"
+	sdk "github.com/bnb-chain/go-sdk/client"
+	"github.com/bnb-chain/go-sdk/keys"
 )
 //-----   Init KeyManager  -------------
 km, _ := keys.NewKeyManager()

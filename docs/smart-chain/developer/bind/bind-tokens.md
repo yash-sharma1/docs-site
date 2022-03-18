@@ -4,7 +4,7 @@ BSC and BC work together to ensure that one token can circulate in both formats 
 
 ## Bind Token Tool
 
-The Bind Token Tool can be retrevied from [here](https://github.com/binance-chain/token-bind-tool).
+The Bind Token Tool can be retrevied from [here](https://github.com/bnb-chain/token-bind-tool).
 
 ## Issue BEP2 or BEP8 Token
 

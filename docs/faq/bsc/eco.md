@@ -2,7 +2,7 @@
 
 ## How is Binance Smart Chain Ecosystem?
 
-<https://github.com/binance-chain/bsc-ecosystem>
+<https://github.com/bnb-chain/bsc-ecosystem>
 
 ## What are the incentives for developers to build on BSC Chain?
 

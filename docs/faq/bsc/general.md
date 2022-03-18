@@ -2,18 +2,18 @@
 
 ## Where will the published whitepaper be found?
 
-<https://binance.org/whitepaper.pdf> and also <https://github.com/binance-chain/whitepaper>, where feedback is more than welcome.
+<https://binance.org/whitepaper.pdf> and also <https://github.com/bnb-chain/whitepaper>, where feedback is more than welcome.
 
 ## Where can I take a look at Binance Smart Chain code? Is there a GitHub repository?
 
 The codebase of BSC is open-sourced here:
 
-* <https://github.com/binance-chain/bsc>
-* <https://github.com/binance-chain/bsc-relayer>
-* <https://github.com/binance-chain/bsc-relayer-config>
-* <https://github.com/binance-chain/bsc-genesis-contract>
-* <https://github.com/binance-chain/bsc-double-sign-sdk>
-* <https://github.com/binance-chain/oracle-relayer>
+* <https://github.com/bnb-chain/bsc>
+* <https://github.com/bnb-chain/bsc-relayer>
+* <https://github.com/bnb-chain/bsc-relayer-config>
+* <https://github.com/bnb-chain/bsc-genesis-contract>
+* <https://github.com/bnb-chain/bsc-double-sign-sdk>
+* <https://github.com/bnb-chain/oracle-relayer>
 
 ## Where can I find some support?
 
