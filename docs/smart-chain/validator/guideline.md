@@ -24,7 +24,7 @@ you can download the pre-build binaries from [release page](https://github.com/b
 Download `genesis.json` and `config.toml` by:
 ```bash
 ## testnet
-wget --no-check-certificate  $(curl -s https://api.github.com/repos/binance-chain/bsc/releases/latest |grep browser_ |grep testnet |cut -d\" -f4)
+wget --no-check-certificate  $(curl -s https://api.github.com/repos/bnb-chain/bsc/releases/latest |grep browser_ |grep testnet |cut -d\" -f4)
 unzip testnet.zip
 ```
 
@@ -101,7 +101,7 @@ Download `genesis.json` and `config.toml` by:
 
 ```bash
 ## mainet
-wget --no-check-certificate  $(curl -s https://api.github.com/repos/binance-chain/bsc/releases/latest |grep browser_ |grep mainnet |cut -d\" -f4)
+wget --no-check-certificate  $(curl -s https://api.github.com/repos/bnb-chain/bsc/releases/latest |grep browser_ |grep mainnet |cut -d\" -f4)
 unzip mainnet.zip
 ```
 
