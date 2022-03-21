@@ -66,7 +66,7 @@ All set!
 
 You can query BEP2 Token symbol from `tokenhub` contract.
 
-Use the latest [ABI](https://raw.githubusercontent.com/binance-chain/bsc-genesis-contract/master/abi/tokenhub.abi)
+Use the latest [ABI](https://raw.githubusercontent.com/bnb-chain/bsc-genesis-contract/master/abi/tokenhub.abi)
 
 Select `getBoundBep2Symbol` function
 

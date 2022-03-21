@@ -36,7 +36,7 @@ Go to [testnet explorer](https://testnet-explorer.binance.org/) to verify your t
 
 ### Get Genesis file and Config file
 ```bash
-wget --no-check-certificate  $(curl -s https://api.github.com/repos/binance-chain/bsc/releases/latest |grep browser_ |grep testnet |cut -d\" -f4)
+wget --no-check-certificate  $(curl -s https://api.github.com/repos/bnb-chain/bsc/releases/latest |grep browser_ |grep testnet |cut -d\" -f4)
 unzip testnet.zip
 ```
 

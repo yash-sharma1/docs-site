@@ -22,7 +22,7 @@ We have a community-maintained installer script (`install.sh`) that takes care o
 
 ```
 # One-line install
-sh <(wget -qO- https://raw.githubusercontent.com/binance-chain/node-binary/master/install.sh)
+sh <(wget -qO- https://raw.githubusercontent.com/bnb-chain/node-binary/master/install.sh)
 ```
 The script will install the `lightd` binaries. Verify that everything is OK:
 

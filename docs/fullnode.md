@@ -33,7 +33,7 @@ We have a community-maintained installer script (`install.sh`) that takes care o
 
 ```shell
 # One-line install
-sh <(wget -qO- https://raw.githubusercontent.com/binance-chain/node-binary/master/install.sh)
+sh <(wget -qO- https://raw.githubusercontent.com/bnb-chain/node-binary/master/install.sh)
 ```
 
 ### Option Two: Manual Installation
