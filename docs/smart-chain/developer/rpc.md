@@ -94,6 +94,7 @@ The rate limit of BSC endpoint on Testnet and Mainnet is 10K/5min.
 
 * [NodeReal](https://nodereal.io/): <https://binance.nodereal.io>
 
+* [DataHub by Figment](https://datahub.figment.io): <https://datahub.figment.io>
 
 ## Start
 
@@ -108,4 +109,4 @@ geth attach https://data-seed-prebsc-1-s1.binance.org:8545/
 
 ## JSON-RPC methods
 
-Please refer to this [wiki page](https://github.com/ethereum/wiki/wiki/JSON-RPC) or use Postman: <https://documenter.getpostman.com/view/4117254/ethereum-json-rpc/RVu7CT5J?version=latest>
+Please refer to this [wiki page](https://ethereum.org/en/developers/docs/apis/json-rpc/), [Ethereum API Specification](https://github.com/ethereum/execution-apis) or use Postman: <https://documenter.getpostman.com/view/4117254/ethereum-json-rpc/RVu7CT5J?version=latest>
